@@ -1,37 +1,21 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-let transporter;
-
-const getTransporter = () => {
-  if (!transporter) {
-    transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: Number(process.env.SMTP_PORT) === 465,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-      // IMPORTANT: many container platforms (Railway included) have broken/unreliable
-      // IPv6 routing. Node 18+ tries IPv6 first by default, gets no response, and only
-      // falls back to IPv4 after a long OS-level timeout — this is what produces a
-      // ~2 minute hang ending in ETIMEDOUT, even though the SMTP server itself is
-      // perfectly reachable over IPv4. Forcing IPv4 skips that dead-end entirely.
-      family: 4,
-      connectionTimeout: 15000, // fail fast (15s) instead of hanging for 2 minutes
-    });
-  }
-  return transporter;
-};
+// Switched from Gmail SMTP to Resend's HTTPS API. Railway (like most container
+// platforms) blocks or throttles outbound SMTP on ports 587/465 — emails would
+// hang for the full connection timeout and then fail with ETIMEDOUT, even
+// though the code and credentials were correct. Resend sends over normal
+// HTTPS (443), which is never blocked, and requires a verified sending
+// domain (RESEND_FROM_EMAIL) rather than a raw Gmail account.
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendEmail = async ({ to, subject, html }) => {
-  const info = await getTransporter().sendMail({
-    from: process.env.SMTP_FROM || process.env.SMTP_USER,
+  const { error } = await resend.emails.send({
+    from: process.env.RESEND_FROM_EMAIL || "YNeet <noreply@yneet.in>",
     to,
     subject,
     html,
   });
-  return info;
+  if (error) throw new Error(error.message || "Failed to send email via Resend");
 };
 
 export const otpEmailTemplate = (code, purpose) => `
