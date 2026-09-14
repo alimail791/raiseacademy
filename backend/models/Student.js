@@ -33,6 +33,11 @@ const studentSchema = new mongoose.Schema(
     // logging in on a new device immediately invalidates every other device's token.
     currentSessionId: { type: String },
 
+    // The YNeet referral code captured from ?ref= on the registration link, if any.
+    // Read once by YNeet's SSO bridge on this student's first-ever login there,
+    // to credit whoever referred them.
+    referredByCode: { type: String },
+
     isEmailVerified: { type: Boolean, default: true }, // verified via OTP before creation
     role: { type: String, enum: ["student", "admin"], default: "student" },
 

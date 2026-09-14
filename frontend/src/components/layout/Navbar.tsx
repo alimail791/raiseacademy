@@ -84,14 +84,12 @@ const Navbar = () => {
                 <LayoutDashboard size={16} />
                 {user.role === "admin" ? "Admin" : "Dashboard"}
               </Link>
-              {user.role !== "admin" && (
-                <button
-                  onClick={goToYneet}
-                  className="text-sm font-semibold px-4 py-2 rounded-full bg-gold text-ink hover:bg-gold-dark transition-colors"
-                >
-                  YNeet
-                </button>
-              )}
+              <button
+                onClick={goToYneet}
+                className="text-sm font-semibold px-4 py-2 rounded-full bg-gold text-ink hover:bg-gold-dark transition-colors"
+              >
+                {user.role === "admin" ? "YNeet Admin" : "YNeet"}
+              </button>
               <button
                 onClick={() => {
                   logout();
@@ -142,14 +140,12 @@ const Navbar = () => {
                 >
                   {user.role === "admin" ? "Admin" : "Dashboard"}
                 </Link>
-                {user.role !== "admin" && (
-                  <button
-                    onClick={() => { setOpen(false); goToYneet(); }}
-                    className="text-center text-sm font-semibold px-4 py-2 rounded-full bg-gold text-ink"
-                  >
-                    YNeet
-                  </button>
-                )}
+                <button
+                  onClick={() => { setOpen(false); goToYneet(); }}
+                  className="text-center text-sm font-semibold px-4 py-2 rounded-full bg-gold text-ink"
+                >
+                  {user.role === "admin" ? "YNeet Admin" : "YNeet"}
+                </button>
                 <button
                   onClick={() => {
                     setOpen(false);

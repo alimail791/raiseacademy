@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
 import { Check } from "lucide-react";
@@ -47,6 +47,8 @@ const inputClass =
 
 const Register = () => {
   const [step, setStep] = useState(0);
+  const [searchParams] = useSearchParams();
+  const referredByCode = searchParams.get("ref") || undefined;
   const [form, setForm] = useState<FormState>(initial);
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
@@ -127,6 +129,7 @@ const Register = () => {
       const payload = {
         ...form,
         neetExamYear: form.neetExamYear ? Number(form.neetExamYear) : undefined,
+        referredByCode,
       };
       const res = await api.post("/auth/register", payload);
       login(res.data.token, res.data.user);

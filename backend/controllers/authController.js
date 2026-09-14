@@ -28,6 +28,7 @@ const publicUser = (u) => ({
   role: u.role,
   progress: u.progress,
   yneetSubscribed: u.yneetSubscribed,
+  referredByCode: u.referredByCode,
 });
 
 // PATCH internal — called by the YNeet backend (server-to-server, shared secret)
@@ -69,6 +70,7 @@ export const register = async (req, res, next) => {
       course,
       currentClass,
       neetExamYear,
+      referredByCode,
     } = req.body;
 
     if (!fullName || !gender || !phone || !email || !place || !password || !board || !course) {
@@ -106,6 +108,7 @@ export const register = async (req, res, next) => {
       currentClass: emptyToUndefined(currentClass),
       neetExamYear: emptyToUndefined(neetExamYear),
       currentSessionId: newSessionId(),
+      referredByCode: emptyToUndefined(referredByCode),
     });
 
     // Clean up used OTPs
