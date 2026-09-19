@@ -6,10 +6,19 @@ import { Resend } from "resend";
 // though the code and credentials were correct. Resend sends over normal
 // HTTPS (443), which is never blocked, and requires a verified sending
 // domain (RESEND_FROM_EMAIL) rather than a raw Gmail account.
-const resend = new Resend(process.env.RESEND_API_KEY);
+//
+// The client is created lazily (inside sendEmail, not here at module load
+// time) because ES module imports all resolve before server.js's own
+// dotenv.config() call runs — a top-level `new Resend(process.env.X)` here
+// would see an empty env and throw before dotenv ever gets a chance to load it.
+let resend;
+const getResend = () => {
+  if (!resend) resend = new Resend(process.env.RESEND_API_KEY);
+  return resend;
+};
 
 export const sendEmail = async ({ to, subject, html }) => {
-  const { error } = await resend.emails.send({
+  const { error } = await getResend().emails.send({
     from: process.env.RESEND_FROM_EMAIL || "YNeet <noreply@yneet.in>",
     to,
     subject,
