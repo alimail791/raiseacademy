@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/layout/ProtectedRoute";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Courses from "./pages/Courses";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";

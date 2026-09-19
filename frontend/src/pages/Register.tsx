@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
 import { Check } from "lucide-react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
+import { goToYneet } from "../utils/yneet";
 
 const boards = ["CBSE", "Tamil Nadu State Board"];
 const courses = ["NEET Foundation", "NEET Coaching"];
@@ -55,7 +56,6 @@ const Register = () => {
   const [otpVerified, setOtpVerified] = useState(false);
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
-  const navigate = useNavigate();
 
   const set = (key: keyof FormState, value: string) => setForm((f) => ({ ...f, [key]: value }));
 
@@ -134,7 +134,8 @@ const Register = () => {
       const res = await api.post("/auth/register", payload);
       login(res.data.token, res.data.user);
       toast.success("Welcome to YNeet!");
-      navigate("/dashboard");
+      // Straight into YNeet — see the same change in Login.tsx for why.
+      goToYneet();
     } catch (err: any) {
       toast.error(err?.response?.data?.message || "Registration failed");
     } finally {

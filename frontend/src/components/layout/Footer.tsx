@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { SITE } from "../../utils/siteInfo";
 
 const Footer = () => {
@@ -22,16 +22,22 @@ const Footer = () => {
           <ul className="space-y-2 text-sm">
             <li><Link to="/courses" className="hover:text-gold">Courses</Link></li>
             <li><Link to="/register" className="hover:text-gold">Enroll Now</Link></li>
+            <li>
+              <a
+                href="https://testmandi.in/tests/premium_neet_1/neet-complete-practice-test-biology-physics-chemistry"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gold"
+              >
+                TestMandi — NEET Practice Tests
+              </a>
+            </li>
           </ul>
         </div>
 
         <div>
           <h4 className="font-display font-semibold text-paper mb-3">Contact</h4>
           <ul className="space-y-2.5 text-sm">
-            <li className="flex items-center gap-2">
-              <Mail size={16} className="text-gold" />
-              <a href={`mailto:${SITE.email}`} className="hover:text-gold">{SITE.email}</a>
-            </li>
             <li className="flex items-center gap-2">
               <MessageCircle size={16} className="text-gold" />
               <a

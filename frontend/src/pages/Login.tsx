@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
+import { goToYneet } from "../utils/yneet";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +19,14 @@ const Login = () => {
       const res = await api.post("/auth/login", { email, password });
       login(res.data.token, res.data.user);
       toast.success(`Welcome back, ${res.data.user.fullName.split(" ")[0]}!`);
-      navigate(res.data.user.role === "admin" ? "/admin" : "/dashboard");
+      if (res.data.user.role === "admin") {
+        navigate("/admin");
+      } else {
+        // Students go straight into YNeet — Raise Academy's own dashboard is
+        // skipped entirely, since the point of logging in here is to reach
+        // YNeet's subscription/study tools, not to browse this site further.
+        goToYneet();
+      }
     } catch (err: any) {
       toast.error(err?.response?.data?.message || "Login failed");
     } finally {

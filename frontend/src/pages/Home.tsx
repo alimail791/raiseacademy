@@ -11,6 +11,7 @@ import {
   Wallet,
 } from "lucide-react";
 import Counter from "../components/Counter";
+import FreeTestSection from "../components/FreeTestSection";
 import { SITE } from "../utils/siteInfo";
 
 const whyUs = [
@@ -81,6 +82,12 @@ const Home = () => {
               Enroll Now <ArrowRight size={18} />
             </Link>
             <a
+              href="#free-test"
+              className="inline-flex items-center gap-2 bg-paper/10 border border-paper/30 text-paper font-semibold px-6 py-3 rounded-full hover:bg-paper/20 transition-colors"
+            >
+              Take a Free Mock Test <ArrowRight size={18} />
+            </a>
+            <a
               href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(SITE.whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -125,6 +132,30 @@ const Home = () => {
               <p className="text-ink/60 text-sm mt-2">{item.desc}</p>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* FREE TEST — embedded directly here so visitors take it without leaving the page */}
+      <section className="bg-ink/[0.03]">
+        <FreeTestSection />
+      </section>
+
+      {/* TESTMANDI CROSS-PROMOTION */}
+      <section className="py-16">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4">Want more NEET practice beyond our program?</h2>
+          <p className="text-ink/70 leading-relaxed mb-7">
+            TestMandi hosts full-length NEET mock tests covering Biology, Physics and Chemistry, each with an instant,
+            topic-wise score report — a solid way to track your weak areas between study sessions.
+          </p>
+          <a
+            href="https://testmandi.in/tests/premium_neet_1/neet-complete-practice-test-biology-physics-chemistry"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border border-ink/20 text-ink font-semibold px-6 py-3 rounded-full hover:border-gold hover:text-gold-dark transition-colors"
+          >
+            Take a NEET mock test on TestMandi <ArrowRight size={18} />
+          </a>
         </div>
       </section>
 
