@@ -14,6 +14,11 @@ import contentRoutes from "./routes/contentRoutes.js";
 dotenv.config();
 
 const app = express();
+// Railway sits behind a reverse proxy that adds an X-Forwarded-For header.
+// Without this, express-rate-limit throws ERR_ERL_UNEXPECTED_X_FORWARDED_FOR
+// and crashes requests to /api/auth and /api/otp. `1` trusts exactly one hop
+// (Railway's own edge), which is correct here.
+app.set("trust proxy", 1);
 
 app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173", credentials: true }));
 app.use(express.json());
