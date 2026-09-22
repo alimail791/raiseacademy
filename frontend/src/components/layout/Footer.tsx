@@ -22,6 +22,7 @@ const Footer = () => {
           <ul className="space-y-2 text-sm">
             <li><Link to="/courses" className="hover:text-gold">Courses</Link></li>
             <li><Link to="/register" className="hover:text-gold">Enroll Now</Link></li>
+            <li><Link to="/help" className="hover:text-gold">Help & FAQ</Link></li>
             <li>
               <a
                 href="https://testmandi.in/tests/premium_neet_1/neet-complete-practice-test-biology-physics-chemistry"

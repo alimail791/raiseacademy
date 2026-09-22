@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/layout/ProtectedRoute";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Courses from "./pages/Courses";
+import Help from "./pages/Help";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/help" element={<Help />} />
 
           <Route
             path="/dashboard"
