@@ -4,6 +4,11 @@ import crypto from "crypto";
 import Student from "../models/Student.js";
 import Otp from "../models/Otp.js";
 import { isEmailVerifiedFor } from "./otpController.js";
+import { sendEmail, newRegistrationAdminTemplate } from "../utils/sendEmail.js";
+
+// Where the "a new student just registered" alert goes. Overridable via env
+// without a code change; falls back to the owner's own inbox.
+const ADMIN_ALERT_EMAIL = process.env.ADMIN_ALERT_EMAIL || "alimail791@gmail.com";
 
 const signToken = (id, sid) =>
   jwt.sign({ id, sid }, process.env.JWT_SECRET, {
@@ -113,6 +118,14 @@ export const register = async (req, res, next) => {
 
     // Clean up used OTPs
     await Otp.deleteMany({ email: email.toLowerCase(), purpose: "register" });
+
+    // Best-effort: notify the admin inbox of the new registration. Never block or
+    // fail the registration response if this email doesn't go through.
+    sendEmail({
+      to: ADMIN_ALERT_EMAIL,
+      subject: `New registration — ${student.fullName}`,
+      html: newRegistrationAdminTemplate(student),
+    }).catch((e) => console.warn("Admin registration-alert email failed:", e.message));
 
     const token = signToken(student._id, student.currentSessionId);
     res.status(201).json({ token, user: publicUser(student) });

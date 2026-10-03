@@ -36,3 +36,24 @@ export const otpEmailTemplate = (code, purpose) => `
     <p style="color:#888; font-size:12px; margin-top:24px;">YNeet</p>
   </div>
 `;
+
+// Internal admin notification — sent on every new student registration. Not
+// shown to the student; just an operational heads-up for whoever runs the site.
+export const newRegistrationAdminTemplate = (student) => `
+  <div style="font-family: Arial, sans-serif; max-width: 480px; margin: auto; padding: 24px; border: 1px solid #eee; border-radius: 12px;">
+    <h2 style="color:#14213D;">New student registered</h2>
+    <table style="width:100%; font-size:14px; color:#333; border-collapse: collapse;">
+      <tr><td style="padding:4px 0; color:#888;">Name</td><td style="padding:4px 0;">${student.fullName}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Email</td><td style="padding:4px 0;">${student.email}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Phone</td><td style="padding:4px 0;">${student.phone || "—"}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Place</td><td style="padding:4px 0;">${student.place || "—"}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Course</td><td style="padding:4px 0;">${student.course || "—"}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Board</td><td style="padding:4px 0;">${student.board || "—"}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Class</td><td style="padding:4px 0;">${student.currentClass || "—"}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">NEET Year</td><td style="padding:4px 0;">${student.neetExamYear || "—"}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Referred By</td><td style="padding:4px 0;">${student.referredByCode || "—"}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Registered At</td><td style="padding:4px 0;">${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST</td></tr>
+    </table>
+    <p style="color:#888; font-size:12px; margin-top:24px;">Raise Academy / YNeet — automated alert</p>
+  </div>
+`;

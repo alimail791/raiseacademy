@@ -21,7 +21,7 @@ const whyUs = [
   { icon: TrendingUp, title: "Progress Tracking", desc: "See your score trend, subject-wise strength, and estimated rank as you improve." },
   { icon: BookMarked, title: "Flashcards & Formulas", desc: "Chapter-wise flashcards and formula sheets for Physics, Chemistry and Biology." },
   { icon: MessageCircle, title: "Doubt Support", desc: "Reach us directly on WhatsApp whenever you're stuck." },
-  { icon: Wallet, title: "Affordable Plans", desc: "Start with a 5-day trial for ₹99, or go monthly for ₹299 — full access either way." },
+  { icon: Wallet, title: "Affordable Plans", desc: "Start with a 5-day trial for ₹99, or go monthly from just ₹300 (price depends on your class) — full access either way." },
 ];
 
 const Home = () => {
@@ -102,8 +102,8 @@ const Home = () => {
       {/* RESULTS STRIP */}
       <section className="bg-ink text-paper py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <Counter to={70} suffix="+" label="NEET Questions in bank" />
-          <Counter to={19} suffix="" label="Mock Tests" />
+          <Counter to={70000} suffix="+" label="NEET Questions in bank" />
+          <Counter to={70} suffix="+" label="Mock Tests" />
           <Counter to={7} suffix="" label="Class levels covered" />
           <Counter to={365} suffix="" label="Days of daily quizzes" />
         </div>
