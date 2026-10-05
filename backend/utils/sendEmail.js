@@ -18,12 +18,26 @@ const getResend = () => {
 };
 
 export const sendEmail = async ({ to, subject, html }) => {
-  const { error } = await getResend().emails.send({
+  // A plain-text alternative alongside the HTML noticeably improves inbox
+  // placement (HTML-only mail is a common spam signal). Optional reply-to lets
+  // people answer a real mailbox, which also helps reputation.
+  const text = html
+    .replace(/<style[\s\S]*?<\/style>/gi, "")
+    .replace(/<\/(p|div|tr|h\d)>/gi, "\n")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n\s+/g, "\n")
+    .trim();
+  const payload = {
     from: process.env.RESEND_FROM_EMAIL || "YNeet <noreply@yneet.in>",
     to,
     subject,
     html,
-  });
+    text,
+  };
+  if (process.env.RESEND_REPLY_TO) payload.replyTo = process.env.RESEND_REPLY_TO;
+  const { error } = await getResend().emails.send(payload);
   if (error) throw new Error(error.message || "Failed to send email via Resend");
 };
 
