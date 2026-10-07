@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Courses from "./pages/Courses";
 import Help from "./pages/Help";
+import NeetTrial from "./pages/NeetTrial";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/neet-trial" element={<NeetTrial />} />
 
           <Route
             path="/dashboard"

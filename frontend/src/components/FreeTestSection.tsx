@@ -63,6 +63,7 @@ const FreeTestSection = () => {
         setCurrent(0);
       } else {
         setFinished(true);
+        try { (window as any).gtag?.("event", "free_test_complete"); } catch { /* analytics only */ }
       }
     }
   };
@@ -106,7 +107,7 @@ const FreeTestSection = () => {
               to="/register"
               className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark transition-colors"
             >
-              Register Free &amp; Unlock Everything <ArrowRight size={18} />
+              Register &amp; Start Your ₹99 Trial <ArrowRight size={18} />
             </Link>
           </div>
         </div>
@@ -119,6 +120,12 @@ const FreeTestSection = () => {
             <h2 className="font-display text-3xl font-bold">10 Questions Each — Physics, Chemistry &amp; Biology</h2>
             <p className="text-ink/60 mt-2">No login needed. See instantly whether you got it right.</p>
           </div>
+
+          {answeredCount >= 10 && (
+            <p className="text-center text-sm mb-4 text-ink/70">
+              Doing well? <Link to="/register" className="text-gold font-semibold underline">Register</Link> to save your progress and see your rank.
+            </p>
+          )}
 
           <div className="flex justify-center gap-2 mb-6">
             {SUBJECTS.map((s) => (
