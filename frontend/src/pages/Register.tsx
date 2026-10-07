@@ -133,6 +133,8 @@ const Register = () => {
       };
       const res = await api.post("/auth/register", payload);
       login(res.data.token, res.data.user);
+      // Google Analytics / Ads conversion: a completed registration.
+      try { (window as any).gtag?.("event", "sign_up", { method: "email", transport_type: "beacon" }); } catch { /* analytics must never block sign-up */ }
       toast.success("Welcome to YNeet!");
       // Straight into YNeet — see the same change in Login.tsx for why.
       goToYneet();
