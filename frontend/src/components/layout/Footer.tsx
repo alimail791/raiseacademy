@@ -24,6 +24,11 @@ const Footer = () => {
             <li><Link to="/register" className="hover:text-gold">Enroll Now</Link></li>
             <li><Link to="/help" className="hover:text-gold">Help & FAQ</Link></li>
             <li>
+              <a href="https://pay.yneet.in" target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                Pay online
+              </a>
+            </li>
+            <li>
               <a
                 href="https://testmandi.in/tests/premium_neet_1/neet-complete-practice-test-biology-physics-chemistry"
                 target="_blank"
@@ -48,6 +53,16 @@ const Footer = () => {
                 className="hover:text-gold"
               >
                 Talk on WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href="https://pay.yneet.in/refund" target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                Refund policy
+              </a>
+            </li>
+            <li>
+              <a href="https://pay.yneet.in/contact" target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                Contact us
               </a>
             </li>
           </ul>
