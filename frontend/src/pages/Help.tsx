@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: "How much does YNeet cost?",
-    a: "A 5-Day trial plan and a Monthly plan are both available from the Pricing page inside YNeet after you register — pricing is shown there in full before you pay anything.",
+    a: "A 5-day full-access trial costs ₹99, and monthly plans start from ₹300 depending on your class. You'll see the exact price for your class on the Pricing page inside YNeet after you register, before you pay anything.",
   },
   {
     q: "I forgot my password",
@@ -71,11 +71,11 @@ export default function Help() {
                 <span className="font-medium text-ink">{item.q}</span>
                 <ChevronDown size={18} className={`text-ink/40 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
               </button>
-              {open && (
-                <div className="px-5 pb-4 text-ink/70 text-sm leading-relaxed">
-                  {item.a}
-                </div>
-              )}
+              {/* Always in the DOM (just hidden when closed) so search
+                  engines can read every answer, not only the questions. */}
+              <div hidden={!open} className="px-5 pb-4 text-ink/70 text-sm leading-relaxed">
+                {item.a}
+              </div>
             </div>
           );
         })}

@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
+import usePageMeta from "./usePageMeta";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -21,6 +22,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminStudents from "./pages/admin/AdminStudents";
 
 function App() {
+  usePageMeta();
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
