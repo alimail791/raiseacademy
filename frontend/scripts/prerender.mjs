@@ -78,6 +78,8 @@ fs.writeFileSync(
         { source: "/dashboard", destination: "/app.html" },
         { source: "/admin", destination: "/app.html" },
         { source: "/admin/**", destination: "/app.html" },
+        { source: "/institute", destination: "/app.html" },
+        { source: "/institute/**", destination: "/app.html" },
       ],
     },
     null,

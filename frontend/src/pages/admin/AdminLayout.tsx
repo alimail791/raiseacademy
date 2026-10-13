@@ -1,11 +1,12 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LayoutDashboard, Users, LogOut, ExternalLink } from "lucide-react";
+import { LayoutDashboard, Users, LogOut, ExternalLink, School } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { goToYneet } from "../../utils/yneet";
 
 const links = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/admin/students", label: "Registrations", icon: Users },
+  { to: "/admin/institutes", label: "Institutes", icon: School },
 ];
 
 const AdminLayout = () => {

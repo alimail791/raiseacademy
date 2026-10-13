@@ -20,6 +20,9 @@ import NotFound from "./pages/NotFound";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminStudents from "./pages/admin/AdminStudents";
+import AdminInstitutes from "./pages/admin/AdminInstitutes";
+import InstituteLogin from "./pages/institute/InstituteLogin";
+import InstitutePanel from "./pages/institute/InstitutePanel";
 
 function App() {
   usePageMeta();
@@ -55,7 +58,11 @@ function App() {
           >
             <Route index element={<AdminDashboard />} />
             <Route path="students" element={<AdminStudents />} />
+            <Route path="institutes" element={<AdminInstitutes />} />
           </Route>
+
+          <Route path="/institute/login" element={<InstituteLogin />} />
+          <Route path="/institute" element={<InstitutePanel />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

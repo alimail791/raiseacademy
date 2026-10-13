@@ -5,6 +5,8 @@ import Student from "../models/Student.js";
 import Otp from "../models/Otp.js";
 import { isEmailVerifiedFor } from "./otpController.js";
 import { sendEmail, newRegistrationAdminTemplate } from "../utils/sendEmail.js";
+import Institute from "../models/Institute.js";
+import { instituteAccessFor } from "../utils/yneetSync.js";
 
 // Where the "a new student just registered" alert goes. Overridable via env
 // without a code change; falls back to the owner's own inbox.
@@ -170,8 +172,10 @@ export const login = async (req, res, next) => {
 };
 
 // GET /api/auth/me
+// instituteAccess is read by YNeet's SSO bridge to apply an institute's bulk plan.
 export const getMe = async (req, res) => {
-  res.json({ user: publicUser(req.user) });
+  const institute = req.user.instituteId ? await Institute.findById(req.user.instituteId).catch(() => null) : null;
+  res.json({ user: { ...publicUser(req.user), instituteAccess: instituteAccessFor(institute) } });
 };
 
 // POST /api/auth/reset-password

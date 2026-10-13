@@ -38,6 +38,10 @@ const studentSchema = new mongoose.Schema(
     // to credit whoever referred them.
     referredByCode: { type: String },
 
+    // Set when an institute has assigned one of its bulk-pack seats to this student.
+    // YNeet grants access until the institute's endDate while this is set.
+    instituteId: { type: mongoose.Schema.Types.ObjectId, ref: "Institute", index: true },
+
     isEmailVerified: { type: Boolean, default: true }, // verified via OTP before creation
     role: { type: String, enum: ["student", "admin"], default: "student" },
 

@@ -10,6 +10,7 @@ import authRoutes from "./routes/authRoutes.js";
 import otpRoutes from "./routes/otpRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
+import instituteRoutes from "./routes/instituteRoutes.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(morgan("dev"));
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 50 });
 app.use("/api/auth", authLimiter);
 app.use("/api/otp", authLimiter);
+app.use("/api/institute/login", authLimiter);
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 
@@ -35,6 +37,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/otp", otpRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/content", contentRoutes);
+app.use("/api/institute", instituteRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

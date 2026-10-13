@@ -23,6 +23,7 @@ const Footer = () => {
             <li><Link to="/courses" className="hover:text-gold">Courses</Link></li>
             <li><Link to="/register" className="hover:text-gold">Enroll Now</Link></li>
             <li><Link to="/help" className="hover:text-gold">Help & FAQ</Link></li>
+            <li><Link to="/institute/login" className="hover:text-gold">Institute Login</Link></li>
             <li>
               <a href="https://pay.yneet.in" target="_blank" rel="noopener noreferrer" className="hover:text-gold">
                 Pay online
