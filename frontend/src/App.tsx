@@ -23,6 +23,7 @@ import AdminStudents from "./pages/admin/AdminStudents";
 import AdminInstitutes from "./pages/admin/AdminInstitutes";
 import InstituteLogin from "./pages/institute/InstituteLogin";
 import InstitutePanel from "./pages/institute/InstitutePanel";
+import InstituteForgot from "./pages/institute/InstituteForgot";
 
 function App() {
   usePageMeta();
@@ -62,6 +63,7 @@ function App() {
           </Route>
 
           <Route path="/institute/login" element={<InstituteLogin />} />
+          <Route path="/institute/forgot" element={<InstituteForgot />} />
           <Route path="/institute" element={<InstitutePanel />} />
 
           <Route path="*" element={<NotFound />} />

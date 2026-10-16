@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import Institute from "../models/Institute.js";
 import Student from "../models/Student.js";
-import { sendEmail } from "../utils/sendEmail.js";
+import { sendEmail, otpEmailTemplate } from "../utils/sendEmail.js";
+import Otp from "../models/Otp.js";
 import { syncYneetAccess } from "../utils/yneetSync.js";
 
 // Standard bulk packs (one year). Admin can still enter any seat count / amount.
@@ -296,5 +297,47 @@ export const instituteResendLogin = async (req, res, next) => {
       html: box(`<p>Hi ${esc(s.fullName)},</p><p><b>Login:</b> <a href="${SITE()}/login">${SITE()}/login</a><br/><b>Email:</b> ${esc(s.email)}<br/><b>Password:</b> ${password}</p>`),
     }).catch(() => { emailed = false; });
     res.json({ password, emailed });
+  } catch (err) { next(err); }
+};
+
+// ───────────────────────── Forgot password (institute) ─────────────────────────
+// Step 1: POST /api/institute/forgot { email } → 6-digit code by email (10 min).
+// Always answers the same way so the form can't be used to check which emails exist.
+export const instituteForgotPassword = async (req, res, next) => {
+  try {
+    const email = String(req.body.email || "").trim().toLowerCase();
+    if (!email) return res.status(400).json({ message: "Enter your institute email" });
+    const inst = await Institute.findOne({ email });
+    if (inst) {
+      const code = crypto.randomInt(100000, 999999).toString();
+      await Otp.deleteMany({ email, purpose: "institute-reset" });
+      await Otp.create({ email, purpose: "institute-reset", codeHash: await bcrypt.hash(code, 10), expiresAt: new Date(Date.now() + 10 * 60 * 1000) });
+      await sendEmail({ to: email, subject: "YNeet Institute — Password Reset Code", html: otpEmailTemplate(code, "reset") });
+    }
+    res.json({ message: "If this email has an institute account, a 6-digit code has been sent to it." });
+  } catch (err) { next(err); }
+};
+
+// Step 2: POST /api/institute/reset-password { email, code, newPassword } → logs the institute in.
+export const instituteResetPassword = async (req, res, next) => {
+  try {
+    const email = String(req.body.email || "").trim().toLowerCase();
+    const { code, newPassword } = req.body;
+    if (!email || !code || !newPassword) return res.status(400).json({ message: "Email, code and new password are required" });
+    if (String(newPassword).length < 6) return res.status(400).json({ message: "New password must be at least 6 characters" });
+    const otp = await Otp.findOne({ email, purpose: "institute-reset" }).sort({ createdAt: -1 });
+    if (!otp || otp.expiresAt < new Date()) return res.status(400).json({ message: "Code expired. Please request a new one." });
+    if (otp.attempts >= 5) return res.status(429).json({ message: "Too many wrong attempts. Please request a new code." });
+    if (!(await bcrypt.compare(String(code).trim(), otp.codeHash))) {
+      otp.attempts += 1; await otp.save();
+      return res.status(400).json({ message: "Incorrect code" });
+    }
+    const inst = await Institute.findOne({ email });
+    if (!inst) return res.status(400).json({ message: "Institute account not found" });
+    inst.password = await bcrypt.hash(newPassword, 10);
+    await inst.save();
+    await Otp.deleteMany({ email, purpose: "institute-reset" });
+    const used = await Student.countDocuments({ instituteId: inst._id });
+    res.json({ message: "Password changed", token: signInstituteToken(inst), institute: instituteView(inst, used) });
   } catch (err) { next(err); }
 };

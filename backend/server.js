@@ -30,6 +30,8 @@ const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 50 });
 app.use("/api/auth", authLimiter);
 app.use("/api/otp", authLimiter);
 app.use("/api/institute/login", authLimiter);
+app.use("/api/institute/forgot", authLimiter);
+app.use("/api/institute/reset-password", authLimiter);
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 

@@ -14,6 +14,8 @@ router.delete("/admin/:id", protect, adminOnly, c.adminDeleteInstitute);
 
 // Institute panel
 router.post("/login", c.instituteLogin);
+router.post("/forgot", c.instituteForgotPassword);
+router.post("/reset-password", c.instituteResetPassword);
 router.get("/me", c.protectInstitute, c.instituteMe);
 router.post("/change-password", c.protectInstitute, c.instituteChangePassword);
 router.get("/students", c.protectInstitute, c.instituteListStudents);

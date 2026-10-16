@@ -1,5 +1,5 @@
 import { useState, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import instituteApi, { INST_TOKEN } from "../../api/instituteApi";
 import { SITE } from "../../utils/siteInfo";
@@ -43,8 +43,11 @@ const InstituteLogin = () => {
           className="w-full bg-gold text-ink font-semibold py-3 rounded-full hover:bg-gold-dark transition-colors disabled:opacity-60">
           {loading ? "Logging in..." : "Login"}
         </button>
+        <div className="text-sm text-center">
+          <Link to="/institute/forgot" className="text-rise-dark hover:underline">Forgot password?</Link>
+        </div>
         <p className="text-xs text-ink/50 text-center pt-1">
-          Forgot your password or want a student pack?{" "}
+          Want a student pack for your institute?{" "}
           <a className="text-rise-dark hover:underline" target="_blank" rel="noreferrer"
             href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent("Hi YNeet, I'm asking about the institute student pack.")}`}>
             WhatsApp us
