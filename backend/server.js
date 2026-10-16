@@ -11,6 +11,7 @@ import otpRoutes from "./routes/otpRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
 import instituteRoutes from "./routes/instituteRoutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
 
 dotenv.config();
 
@@ -22,7 +23,7 @@ const app = express();
 app.set("trust proxy", 1);
 
 app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173", credentials: true }));
-app.use(express.json());
+app.use(express.json({ limit: "2mb" })); // blog posts can be larger than the 100 kB default
 app.use(morgan("dev"));
 
 // Basic rate limiting for auth/otp endpoints to slow down abuse
@@ -40,6 +41,7 @@ app.use("/api/otp", otpRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/content", contentRoutes);
 app.use("/api/institute", instituteRoutes);
+app.use("/api/blog", blogRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

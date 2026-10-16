@@ -10,6 +10,8 @@ import About from "./pages/About";
 import Courses from "./pages/Courses";
 import Help from "./pages/Help";
 import NeetTrial from "./pages/NeetTrial";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -21,6 +23,7 @@ import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminStudents from "./pages/admin/AdminStudents";
 import AdminInstitutes from "./pages/admin/AdminInstitutes";
+import AdminBlog from "./pages/admin/AdminBlog";
 import InstituteLogin from "./pages/institute/InstituteLogin";
 import InstitutePanel from "./pages/institute/InstitutePanel";
 import InstituteForgot from "./pages/institute/InstituteForgot";
@@ -40,6 +43,8 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/help" element={<Help />} />
           <Route path="/neet-trial" element={<NeetTrial />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
 
           <Route
             path="/dashboard"
@@ -60,6 +65,7 @@ function App() {
             <Route index element={<AdminDashboard />} />
             <Route path="students" element={<AdminStudents />} />
             <Route path="institutes" element={<AdminInstitutes />} />
+            <Route path="blog" element={<AdminBlog />} />
           </Route>
 
           <Route path="/institute/login" element={<InstituteLogin />} />
