@@ -6,14 +6,17 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
+import { BlogDataProvider, type BlogData } from "./blog/blogData";
 
 export { PAGE_META, metaFor, SITE_ORIGIN } from "./seo";
 
-export function render(url: string) {
+export function render(url: string, blogData?: BlogData) {
   return renderToString(
     <StaticRouter location={url}>
       <AuthProvider>
-        <App />
+        <BlogDataProvider value={blogData}>
+          <App />
+        </BlogDataProvider>
       </AuthProvider>
     </StaticRouter>
   );

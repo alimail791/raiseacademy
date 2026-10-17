@@ -24,6 +24,8 @@ export default function usePageMeta() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // Blog articles set their own tags once the post loads (pages/BlogPost.tsx).
+    if (/^\/blog\/[^/]+\/?$/.test(pathname)) return;
     const m = metaFor(pathname);
     document.title = m.title;
     setTag('meta[name="description"]', meta("description"), "content", m.description);

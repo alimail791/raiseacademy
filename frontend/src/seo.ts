@@ -39,6 +39,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Five days of full access to every YNeet mock test, daily quiz and practice question for just ₹99. Made for Class 11, 12 and droppers. Monthly plans from ₹300.",
   },
+  "/blog": {
+    title: "NEET Preparation Blog — PYQs, Mock Tests, Cutoffs & Study Plans | YNeet",
+    description:
+      "NEET preparation guides from YNeet: how to use previous year questions, mock test strategy, cutoffs, counselling and study plans for Class 11, 12 and droppers.",
+  },
   "/register": {
     title: "Register for YNeet — Start Your NEET Preparation",
     description:
@@ -59,6 +64,9 @@ export const PAGE_META: Record<string, PageMeta> = {
 export function metaFor(path: string): PageMeta & { canonical: string } {
   const clean = path !== "/" ? path.replace(/\/+$/, "") : "/";
   const isAppRoute = clean === "/dashboard" || clean === "/admin" || clean.startsWith("/admin/");
+  // Individual articles set their own title/description once loaded (see
+  // pages/BlogPost.tsx); until then they get the blog's tags, still indexable.
+  if (/^\/blog\/[^/]+$/.test(clean)) return { ...PAGE_META["/blog"], canonical: `${SITE_ORIGIN}${clean}` };
   const meta =
     PAGE_META[clean] ||
     (isAppRoute
