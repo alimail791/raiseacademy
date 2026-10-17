@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Counter from "../components/Counter";
 import FreeTestSection from "../components/FreeTestSection";
+import OurOtherSites from "../components/OurOtherSites";
 import { SITE } from "../utils/siteInfo";
 
 const whyUs = [
@@ -158,6 +159,11 @@ const Home = () => {
           </a>
         </div>
       </section>
+
+      {/* OTHER RAISE ACADEMY SITES */}
+      <div className="bg-ink/[0.03]">
+        <OurOtherSites />
+      </div>
 
       {/* CTA */}
       <section className="bg-rise text-white py-16">

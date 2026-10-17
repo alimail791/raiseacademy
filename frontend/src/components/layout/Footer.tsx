@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { OTHER_SITES, siteLink, trackSiteClick } from "../OurOtherSites";
 import { MessageCircle } from "lucide-react";
 import { SITE } from "../../utils/siteInfo";
 
@@ -40,6 +41,13 @@ const Footer = () => {
                 TestMandi — NEET Practice Tests
               </a>
             </li>
+            {OTHER_SITES.map((o) => (
+              <li key={o.key}>
+                <a href={siteLink(o.url, "footer")} target="_blank" rel="noopener" onClick={() => trackSiteClick(o.key, "footer")} className="hover:text-gold">
+                  {o.name} <span className="text-paper/50">· {o.domain}</span>
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
