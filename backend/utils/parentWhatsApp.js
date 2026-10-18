@@ -7,6 +7,7 @@ import { yneetPost } from "./yneetSync.js";
 // approved message template. Turned on by setting these Railway variables:
 //   WA_TOKEN            – permanent access token (same app as the WhatsApp bot)
 //   WA_PHONE_NUMBER_ID  – phone number ID of the business number
+//                         (or WA_PHONE_ID_SHARED, the name the WhatsApp bot uses)
 //   WA_PARENT_TEMPLATE  – template name (default: yneet_parent_weekly)
 //   WA_TEMPLATE_LANG    – template language code (default: en)
 // The template body must have 6 variables, in this order:
@@ -14,9 +15,10 @@ import { yneetPost } from "./yneetSync.js";
 //   {{4}} average score, {{5}} chapters to practise, {{6}} institute name.
 
 const DAY = 24 * 60 * 60 * 1000;
+const phoneId = () => process.env.WA_PHONE_NUMBER_ID || process.env.WA_PHONE_ID_SHARED;
 const RUN_AT_UTC_MIN = 5 * 60 + 30; // 11:00 IST, an hour after YNeet's email run
 
-export const waConfigured = () => !!(process.env.WA_TOKEN && process.env.WA_PHONE_NUMBER_ID);
+export const waConfigured = () => !!(process.env.WA_TOKEN && phoneId());
 
 // Template parameters may not contain new lines, tabs or 4+ spaces in a row.
 const param = (v, max = 120) => String(v ?? "—").replace(/[\r\n\t]+/g, " ").replace(/ {4,}/g, "   ").trim().slice(0, max) || "—";
@@ -34,7 +36,7 @@ export const reportParams = (studentName, instituteName, data) => {
 };
 
 export async function sendTemplate(phone10, params) {
-  const res = await fetch(`https://graph.facebook.com/v21.0/${process.env.WA_PHONE_NUMBER_ID}/messages`, {
+  const res = await fetch(`https://graph.facebook.com/v21.0/${phoneId()}/messages`, {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.WA_TOKEN}`, "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -55,7 +57,7 @@ export async function sendTemplate(phone10, params) {
 }
 
 export async function sendParentWhatsAppReports() {
-  if (!waConfigured()) { console.log("Parent WhatsApp reports: not configured (set WA_TOKEN and WA_PHONE_NUMBER_ID)."); return { sent: 0, skipped: "not configured" }; }
+  if (!waConfigured()) { console.log("Parent WhatsApp reports: not configured (set WA_TOKEN and WA_PHONE_ID_SHARED)."); return { sent: 0, skipped: "not configured" }; }
   const weekAgo = new Date(Date.now() - 7 * DAY + 60 * 60 * 1000);
   const students = await Student.find({
     instituteId: { $ne: null },
