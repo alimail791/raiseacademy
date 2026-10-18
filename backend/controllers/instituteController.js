@@ -5,7 +5,7 @@ import Institute from "../models/Institute.js";
 import Student from "../models/Student.js";
 import { sendEmail, otpEmailTemplate } from "../utils/sendEmail.js";
 import Otp from "../models/Otp.js";
-import { syncYneetAccess } from "../utils/yneetSync.js";
+import { syncYneetAccess, yneetPost } from "../utils/yneetSync.js";
 
 // Standard bulk packs (one year). Admin can still enter any seat count / amount.
 export const PACKS = [
@@ -340,4 +340,57 @@ export const instituteResetPassword = async (req, res, next) => {
     const used = await Student.countDocuments({ instituteId: inst._id });
     res.json({ message: "Password changed", token: signInstituteToken(inst), institute: instituteView(inst, used) });
   } catch (err) { next(err); }
+};
+
+// ───────────────────────── Student progress (from YNeet) ─────────────────────────
+
+const progressFor = async (instituteId) => {
+  const students = await Student.find({ instituteId }).sort({ fullName: 1 });
+  if (!students.length) return { summary: null, students: [] };
+  const data = await yneetPost("institute-progress", { userIds: students.map((s) => String(s._id)) });
+  const byId = Object.fromEntries((data.students || []).map((p) => [p.userId, p]));
+  return {
+    summary: data.summary,
+    students: students.map((s) => ({ ...studentView(s), progress: byId[String(s._id)] || { joined: false } })),
+  };
+};
+
+// GET /api/institute/progress
+export const instituteProgress = async (req, res, next) => {
+  try { res.json(await progressFor(req.institute._id)); }
+  catch (err) { res.status(502).json({ message: "Couldn't load progress right now. Please try again in a minute." }); }
+};
+
+// GET /api/institute/progress/:id — one student (must belong to this institute)
+export const instituteStudentProgress = async (req, res, next) => {
+  try {
+    const s = await Student.findOne({ _id: req.params.id, instituteId: req.institute._id });
+    if (!s) return res.status(404).json({ message: "Student not found in your list" });
+    const detail = await yneetPost("institute-student", { userId: String(s._id) });
+    res.json({ student: studentView(s), detail });
+  } catch (err) { res.status(502).json({ message: "Couldn't load this student's progress. Please try again." }); }
+};
+
+// GET /api/institute/progress.csv
+export const instituteProgressCsv = async (req, res, next) => {
+  try {
+    const { students } = await progressFor(req.institute._id);
+    const esc = (v) => { if (v === null || v === undefined) return ""; const s = String(v); return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+    const d = (x) => (x ? new Date(x).toISOString().slice(0, 10) : "");
+    const cols = ["Name", "Email", "Phone", "Class", "Started YNeet", "Days active (7d)", "Tests (7d)", "Tests (30d)", "Total tests", "Avg score % (30d)", "Accuracy % (30d)", "Latest mock /720", "Physics", "Chemistry", "Biology", "Best mock (30d)", "Change first→latest mock", "Practice Qs total", "Last active", "Weak chapters"];
+    const rows = students.map(({ fullName, email, phone, currentClass, progress: p }) => [
+      fullName, email, phone, currentClass, p.joined ? "Yes" : "Not yet", p.activeDays7, p.tests7, p.tests30, p.testsTotal, p.avgPct30, p.accuracy30,
+      p.latestMock?.score, p.latestMock?.physics, p.latestMock?.chemistry, p.latestMock?.biology, p.bestMock30, p.mockTrend, p.practiceTotal, d(p.lastActive),
+      (p.weakChapters || []).map((w) => `${w.chapter} (${w.subject})`).join("; "),
+    ].map(esc).join(","));
+    res.setHeader("Content-Type", "text/csv; charset=utf-8");
+    res.setHeader("Content-Disposition", `attachment; filename="student_progress_${new Date().toISOString().slice(0, 10)}.csv"`);
+    res.send("﻿" + cols.join(",") + "\r\n" + rows.join("\r\n") + "\r\n");
+  } catch (err) { res.status(502).json({ message: "Couldn't export progress right now." }); }
+};
+
+// Admin: same progress view for any institute (for demos / support)
+export const adminInstituteProgress = async (req, res, next) => {
+  try { res.json(await progressFor(req.params.id)); }
+  catch (err) { res.status(502).json({ message: err.message }); }
 };

@@ -29,3 +29,19 @@ export const instituteAccessFor = (institute) =>
   institute && institute.status === "active" && institute.endDate > new Date()
     ? { instituteId: String(institute._id), name: institute.name, endDate: institute.endDate.toISOString() }
     : null;
+
+// Server-to-server read from YNeet (progress data for the institute panel).
+export const yneetPost = async (path, body) => {
+  const base = process.env.YNEET_API_URL;
+  const key = process.env.INTERNAL_SERVICE_KEY;
+  if (!base || !key) throw new Error("YNeet connection is not configured");
+  const res = await fetch(`${base.replace(/\/$/, "")}/internal/${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-internal-key": key },
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(20000),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || data.success === false) throw new Error(data.message || `YNeet returned ${res.status}`);
+  return data;
+};

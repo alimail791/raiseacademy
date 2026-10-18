@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Upload, Download, UserPlus, Trash2, Mail, LogOut, KeyRound } from "lucide-react";
 import instituteApi, { INST_TOKEN, parseCsv } from "../../api/instituteApi";
+import InstituteProgress from "./InstituteProgress";
 
 interface Institute {
   name: string; email: string; seats: number; seatsUsed: number; seatsLeft: number;
@@ -28,6 +29,7 @@ const InstitutePanel = () => {
   const [results, setResults] = useState<Result[] | null>(null);
   const [search, setSearch] = useState("");
   const [pw, setPw] = useState({ open: false, current: "", next: "" });
+  const [tab, setTab] = useState<"progress" | "manage" | null>(null);
 
   const load = async () => {
     try {
@@ -124,6 +126,8 @@ const InstitutePanel = () => {
     return <div className="min-h-[60vh] flex items-center justify-center"><div className="h-8 w-8 border-4 border-gold border-t-transparent rounded-full animate-spin" /></div>;
   }
 
+  // Open on Progress once there are students to report on, otherwise on Manage.
+  const activeTab = tab || (students.length ? "progress" : "manage");
   const pct = Math.min(100, Math.round((inst.seatsUsed / inst.seats) * 100));
   const daysLeft = Math.ceil((new Date(inst.endDate).getTime() - Date.now()) / 86400000);
   const shown = students.filter((s) => !search || `${s.fullName} ${s.email} ${s.phone}`.toLowerCase().includes(search.toLowerCase()));
@@ -157,6 +161,18 @@ const InstitutePanel = () => {
         </div>
       )}
 
+      <div className="flex gap-1 p-1 bg-ink/5 rounded-full w-fit">
+        {([["progress", "📊 Student progress"], ["manage", "👥 Manage students"]] as const).map(([k, label]) => (
+          <button key={k} onClick={() => setTab(k)}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${activeTab === k ? "bg-white shadow text-ink" : "text-ink/60 hover:text-ink"}`}>
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {activeTab === "progress" && <InstituteProgress onAddStudents={() => setTab("manage")} />}
+
+      {activeTab === "manage" && (<>
       <div className="grid sm:grid-cols-3 gap-4">
         <div className="bg-white rounded-2xl border border-ink/10 p-5 sm:col-span-2">
           <div className="flex justify-between text-sm"><span className="font-semibold">Seats used</span><span>{inst.seatsUsed} of {inst.seats}</span></div>
@@ -257,6 +273,7 @@ const InstitutePanel = () => {
           </table>
         </div>
       </div>
+      </>)}
     </div>
   );
 };

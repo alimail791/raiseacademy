@@ -11,6 +11,7 @@ router.put("/admin/:id", protect, adminOnly, c.adminUpdateInstitute);
 router.post("/admin/:id/reset-password", protect, adminOnly, c.adminResetInstitutePassword);
 router.get("/admin/:id/students", protect, adminOnly, c.adminInstituteStudents);
 router.delete("/admin/:id", protect, adminOnly, c.adminDeleteInstitute);
+router.get("/admin/:id/progress", protect, adminOnly, c.adminInstituteProgress);
 
 // Institute panel
 router.post("/login", c.instituteLogin);
@@ -22,5 +23,8 @@ router.get("/students", c.protectInstitute, c.instituteListStudents);
 router.post("/students", c.protectInstitute, c.instituteAddStudents);
 router.delete("/students/:id", c.protectInstitute, c.instituteRemoveStudent);
 router.post("/students/:id/resend", c.protectInstitute, c.instituteResendLogin);
+router.get("/progress.csv", c.protectInstitute, c.instituteProgressCsv);
+router.get("/progress", c.protectInstitute, c.instituteProgress);
+router.get("/progress/:id", c.protectInstitute, c.instituteStudentProgress);
 
 export default router;
