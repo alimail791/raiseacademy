@@ -30,7 +30,14 @@ const instituteView = (i, seatsUsed) => ({
 const studentView = (s) => ({
   id: s._id, fullName: s.fullName, email: s.email, phone: s.phone, gender: s.gender,
   currentClass: s.currentClass, course: s.course, createdAt: s.createdAt,
+  parentEmail: s.parentEmail || "", parentPhone: s.parentPhone || "",
 });
+
+const cleanParentEmail = (v) => { const e = String(v || "").trim().toLowerCase(); return /^\S+@\S+\.\S+$/.test(e) ? e : ""; };
+const cleanPhone = (v) => { const d = String(v || "").replace(/\D/g, ""); return d.length === 10 ? d : d.length === 12 && d.startsWith("91") ? d.slice(2) : ""; };
+// Push the parent email to YNeet (weekly email report). Best-effort.
+const syncParentEmail = (studentId, parentEmail) =>
+  yneetPost("parent-contact", { userId: String(studentId), parentEmail: parentEmail || "" }).catch((e) => console.warn("Parent email sync failed:", e.message));
 
 const resyncAll = async (institute) => {
   const students = await Student.find({ instituteId: institute._id }).select("_id");
@@ -225,6 +232,8 @@ export const instituteAddStudents = async (req, res, next) => {
       const phone = String(r.phone || "").trim();
       const gender = normGender(r.gender);
       const cls = normClass(r.currentClass || r.class);
+      const parentEmail = cleanParentEmail(r.parentEmail || r.parentemail);
+      const parentPhone = cleanPhone(r.parentPhone || r.parentphone || r.parentWhatsapp || r.parentwhatsapp);
       const fail = (message) => results.push({ row: i + 1, email, ok: false, message });
 
       if (!fullName || !/^\S+@\S+\.\S+$/.test(email) || !phone) { fail("Name, valid email and phone are required"); continue; }
@@ -234,9 +243,10 @@ export const instituteAddStudents = async (req, res, next) => {
       if (existing) {
         if (existing.instituteId && String(existing.instituteId) === String(inst._id)) { fail("Already in your list"); continue; }
         if (existing.instituteId) { fail("This student is already assigned to another institute"); continue; }
-        await Student.updateOne({ _id: existing._id }, { $set: { instituteId: inst._id } });
+        await Student.updateOne({ _id: existing._id }, { $set: { instituteId: inst._id, ...(parentEmail && { parentEmail }), ...(parentPhone && { parentPhone }) } });
         used++;
         await syncYneetAccess(existing._id, inst);
+        if (parentEmail) syncParentEmail(existing._id, parentEmail);
         sendEmail({
           to: email, subject: `${inst.name} has given you YNeet access`,
           html: box(`<p>Hi ${esc(existing.fullName)},</p><p><b>${esc(inst.name)}</b> has added you to YNeet until <b>${fmtDate(inst.endDate)}</b>.</p><p>Log in at <a href="${SITE()}/login">${SITE()}/login</a> with your existing email and password, then open YNeet.</p>`),
@@ -254,6 +264,7 @@ export const instituteAddStudents = async (req, res, next) => {
           course: ["11", "12", "Dropper"].includes(cls) ? "NEET Coaching" : "NEET Foundation",
           currentClass: cls, password: await bcrypt.hash(password, 10), instituteId: inst._id,
           currentSessionId: crypto.randomBytes(16).toString("hex"),
+          ...(parentEmail && { parentEmail }), ...(parentPhone && { parentPhone }),
         });
         used++;
         await syncYneetAccess(s._id, inst);
@@ -405,4 +416,37 @@ export const instituteSetStudentPassword = async (req, res, next) => {
     await Student.updateOne({ _id: s._id }, { $set: { password: await bcrypt.hash(newPassword, 10) } });
     res.json({ ok: true });
   } catch (err) { next(err); }
+};
+
+// PUT /api/institute/students/:id/parent { parentEmail, parentPhone } — "" clears
+export const instituteSetParent = async (req, res, next) => {
+  try {
+    const s = await Student.findOne({ _id: req.params.id, instituteId: req.institute._id });
+    if (!s) return res.status(404).json({ message: "Student not found in your list" });
+    const rawEmail = String(req.body.parentEmail || "").trim(), rawPhone = String(req.body.parentPhone || "").trim();
+    const parentEmail = cleanParentEmail(rawEmail), parentPhone = cleanPhone(rawPhone);
+    if (rawEmail && !parentEmail) return res.status(400).json({ message: "Enter a valid parent email" });
+    if (rawPhone && !parentPhone) return res.status(400).json({ message: "Enter a 10-digit WhatsApp number" });
+    if (parentEmail && parentEmail === s.email) return res.status(400).json({ message: "That's the student's own email. Please enter the parent's email." });
+    const emailChanged = (s.parentEmail || "") !== parentEmail;
+    const set = {}, unset = {};
+    if (parentEmail) set.parentEmail = parentEmail; else unset.parentEmail = 1;
+    if (parentPhone) set.parentPhone = parentPhone; else unset.parentPhone = 1;
+    if ((s.parentPhone || "") !== parentPhone) unset.lastParentWaSent = 1; // new number → send this week's WhatsApp
+    await Student.updateOne({ _id: s._id }, { ...(Object.keys(set).length && { $set: set }), ...(Object.keys(unset).length && { $unset: unset }) });
+    let sync = null;
+    if (emailChanged) sync = await syncParentEmail(s._id, parentEmail);
+    res.json({ ok: true, parentEmail, parentPhone, firstReportSent: !!sync?.sent, studentJoined: sync ? sync.provisioned !== false : null });
+  } catch (err) { next(err); }
+};
+
+// GET /api/institute/students/:id/parent-report — WhatsApp-ready text of this week's report
+export const instituteParentReport = async (req, res, next) => {
+  try {
+    const s = await Student.findOne({ _id: req.params.id, instituteId: req.institute._id });
+    if (!s) return res.status(404).json({ message: "Student not found in your list" });
+    const data = await yneetPost("parent-report", { userId: String(s._id) });
+    if (!data.joined) return res.json({ joined: false, text: `Hi, this is ${req.institute.name}. ${s.fullName} has not started practising on YNeet yet. Please encourage them to log in at www.yneet.in/login and take their first test.`, parentPhone: s.parentPhone || "" });
+    res.json({ joined: true, text: `${data.text}\n\n– Shared by ${req.institute.name}`, parentPhone: s.parentPhone || "" });
+  } catch (err) { res.status(502).json({ message: "Couldn't build the report right now. Please try again." }); }
 };

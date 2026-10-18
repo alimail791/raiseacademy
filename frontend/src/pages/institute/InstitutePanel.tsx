@@ -1,7 +1,7 @@
 import { useEffect, useState, FormEvent, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { Upload, Download, UserPlus, Trash2, Mail, LogOut, KeyRound } from "lucide-react";
+import { Upload, Download, UserPlus, Trash2, Mail, LogOut, KeyRound, Users, MessageCircle, X } from "lucide-react";
 import instituteApi, { INST_TOKEN, parseCsv } from "../../api/instituteApi";
 import InstituteProgress from "./InstituteProgress";
 
@@ -9,11 +9,11 @@ interface Institute {
   name: string; email: string; seats: number; seatsUsed: number; seatsLeft: number;
   startDate: string; endDate: string; status: string; live: boolean;
 }
-interface Student { id: string; fullName: string; email: string; phone: string; gender: string; currentClass?: string; createdAt: string; }
+interface Student { id: string; fullName: string; email: string; phone: string; gender: string; currentClass?: string; createdAt: string; parentEmail?: string; parentPhone?: string; }
 interface Result { row: number; email: string; ok: boolean; message?: string; password?: string; emailed?: boolean; linked?: boolean; }
-interface NewStudent { fullName: string; email: string; phone: string; gender: string; currentClass: string; }
+interface NewStudent { fullName: string; email: string; phone: string; gender: string; currentClass: string; parentEmail?: string; parentPhone?: string; }
 
-const empty: NewStudent = { fullName: "", email: "", phone: "", gender: "", currentClass: "" };
+const empty: NewStudent = { fullName: "", email: "", phone: "", gender: "", currentClass: "", parentEmail: "", parentPhone: "" };
 const CLASSES = ["6", "7", "8", "9", "10", "11", "12", "Dropper"];
 const fmt = (d: string) => new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 const input = "w-full rounded-lg border border-ink/15 px-3 py-2 text-sm focus:border-gold outline-none bg-white";
@@ -32,6 +32,8 @@ const InstitutePanel = () => {
   const [tab, setTab] = useState<"progress" | "manage" | null>(null);
   // Login details shown on screen after add / resend / set password, so the
   // institute can share them on WhatsApp even if the email lands in spam.
+  const [parentFor, setParentFor] = useState<{ student: Student; email: string; phone: string } | null>(null);
+  const [savingParent, setSavingParent] = useState(false);
   const [logins, setLogins] = useState<{ name: string; email: string; phone: string; password: string; emailed?: boolean }[]>([]);
 
   const load = async () => {
@@ -88,6 +90,8 @@ const InstitutePanel = () => {
         phone: r.phone || r.mobile || r.phonenumber || r.mobilenumber || "",
         gender: r.gender || "",
         currentClass: r.class || r.currentclass || r.standard || "",
+        parentEmail: r.parentemail || r.parentsemail || r.fatheremail || r.motheremail || "",
+        parentPhone: r.parentphone || r.parentwhatsapp || r.parentmobile || r.parentsphone || r.fatherphone || r.motherphone || "",
       })).filter((r) => r.fullName || r.email);
       if (!rows.length) { toast.error("No students found. Use the template's column names."); return; }
       setCsvRows(rows);
@@ -96,7 +100,7 @@ const InstitutePanel = () => {
   };
 
   const template = () => {
-    const csv = "fullName,email,phone,gender,class\r\nPriya S,priya@example.com,9876543210,Female,12\r\nArun K,arun@example.com,9876500000,Male,Dropper\r\n";
+    const csv = "fullName,email,phone,gender,class,parentEmail,parentPhone\r\nPriya S,priya@example.com,9876543210,Female,12,priya.parent@example.com,9876543211\r\nArun K,arun@example.com,9876500000,Male,Dropper,,9876500001\r\n";
     const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
     const a = document.createElement("a");
     a.href = url; a.download = "yneet_students_template.csv";
@@ -117,6 +121,30 @@ const InstitutePanel = () => {
       toast.success(data.emailed ? "New login sent by email. Also shown below to share on WhatsApp." : "Email couldn't be sent. Share the login shown below.");
       setLogins((l) => [{ name: s.fullName, email: s.email, phone: s.phone, password: data.password, emailed: data.emailed }, ...l.filter((x) => x.email !== s.email)]);
     } catch (err: any) { toast.error(err?.response?.data?.message || "Could not resend"); }
+  };
+
+  const saveParent = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!parentFor) return;
+    setSavingParent(true);
+    try {
+      const { data } = await instituteApi.put(`/students/${parentFor.student.id}/parent`, { parentEmail: parentFor.email, parentPhone: parentFor.phone });
+      toast.success(data.firstReportSent ? "Saved. This week's report has been emailed to the parent." : data.parentEmail || data.parentPhone ? "Saved. Weekly reports will go to the parent." : "Parent contact removed.");
+      setParentFor(null);
+      load();
+    } catch (err: any) { toast.error(err?.response?.data?.message || "Could not save"); }
+    setSavingParent(false);
+  };
+
+  // One tap: open WhatsApp with this week's report for the parent.
+  const shareReport = async (s: Student) => {
+    const win = window.open("", "_blank");
+    try {
+      const { data } = await instituteApi.get(`/students/${s.id}/parent-report`);
+      const d = String(data.parentPhone || s.parentPhone || "").replace(/\D/g, "");
+      const url = `https://wa.me/${d.length === 10 ? "91" + d : d}?text=${encodeURIComponent(data.text)}`;
+      if (win) win.location.href = url; else window.location.href = url;
+    } catch (err: any) { win?.close(); toast.error(err?.response?.data?.message || "Could not build the report"); }
   };
 
   const setStudentPassword = async (s: Student) => {
@@ -230,13 +258,18 @@ const InstitutePanel = () => {
                 <option value="">Class</option>{CLASSES.map((c) => <option key={c} value={c}>{c === "Dropper" ? c : `Class ${c}`}</option>)}
               </select>
             </div>
+            <p className="text-xs font-semibold text-ink/60 pt-1">Parent (optional) — gets a weekly progress report</p>
+            <div className="grid grid-cols-2 gap-3">
+              <input type="email" placeholder="Parent email" className={input} value={form.parentEmail} onChange={(e) => setForm({ ...form, parentEmail: e.target.value })} />
+              <input type="tel" placeholder="Parent WhatsApp no." className={input} value={form.parentPhone} onChange={(e) => setForm({ ...form, parentPhone: e.target.value })} />
+            </div>
             <button disabled={busy} className="w-full bg-gold text-ink font-semibold py-2.5 rounded-full hover:bg-gold-dark disabled:opacity-60">{busy ? "Adding..." : "Add student"}</button>
             <p className="text-xs text-ink/50">The student gets their login by email. If they already have a YNeet account, it's linked and they keep their password.</p>
           </form>
 
           <div className="bg-white rounded-2xl border border-ink/10 p-5 space-y-3">
             <h2 className="font-semibold flex items-center gap-2"><Upload size={18} /> Add many (CSV / Excel)</h2>
-            <p className="text-sm text-ink/60">Columns: <b>fullName, email, phone, gender, class</b>. In Excel use File → Save As → CSV.</p>
+            <p className="text-sm text-ink/60">Columns: <b>fullName, email, phone, gender, class</b>, and optional <b>parentEmail, parentPhone</b> for weekly parent reports. In Excel use File → Save As → CSV.</p>
             <div className="flex flex-wrap gap-2">
               <label className="cursor-pointer flex items-center gap-1.5 text-sm font-semibold bg-ink text-paper px-4 py-2 rounded-full">
                 <Upload size={15} /> Choose CSV<input type="file" accept=".csv,text/csv" className="hidden" onChange={onCsv} />
@@ -297,16 +330,23 @@ const InstitutePanel = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-sm whitespace-nowrap">
             <thead className="bg-ink/5 text-left">
-              <tr><th className="px-4 py-2.5">Name</th><th className="px-4 py-2.5">Email</th><th className="px-4 py-2.5">Phone</th><th className="px-4 py-2.5">Class</th><th className="px-4 py-2.5">Joined</th><th className="px-4 py-2.5"></th></tr>
+              <tr><th className="px-4 py-2.5">Name</th><th className="px-4 py-2.5">Email</th><th className="px-4 py-2.5">Phone</th><th className="px-4 py-2.5">Class</th><th className="px-4 py-2.5">Parent (weekly report)</th><th className="px-4 py-2.5">Joined</th><th className="px-4 py-2.5"></th></tr>
             </thead>
             <tbody>
-              {shown.length === 0 && <tr><td colSpan={6} className="px-4 py-6 text-center text-ink/50">{students.length ? "No match." : "No students yet. Add your first student above."}</td></tr>}
+              {shown.length === 0 && <tr><td colSpan={7} className="px-4 py-6 text-center text-ink/50">{students.length ? "No match." : "No students yet. Add your first student above."}</td></tr>}
               {shown.map((s) => (
                 <tr key={s.id} className="border-t border-ink/5">
                   <td className="px-4 py-2.5 font-medium">{s.fullName}</td>
                   <td className="px-4 py-2.5">{s.email}</td>
                   <td className="px-4 py-2.5">{s.phone}</td>
                   <td className="px-4 py-2.5">{s.currentClass || "—"}</td>
+                  <td className="px-4 py-2.5">
+                    <button onClick={() => setParentFor({ student: s, email: s.parentEmail || "", phone: s.parentPhone || "" })} className="text-left hover:underline">
+                      {s.parentEmail || s.parentPhone ? (
+                        <span className="text-xs leading-tight block">{s.parentEmail && <span className="block">✉️ {s.parentEmail}</span>}{s.parentPhone && <span className="block">📱 {s.parentPhone}</span>}</span>
+                      ) : <span className="text-xs font-semibold text-rise-dark">+ Add parent</span>}
+                    </button>
+                  </td>
                   <td className="px-4 py-2.5">{fmt(s.createdAt)}</td>
                   <td className="px-4 py-2.5 text-right">
                     <button onClick={() => setStudentPassword(s)} title="Set a new password" className="p-1.5 rounded hover:bg-ink/5"><KeyRound size={16} /></button>
@@ -320,6 +360,28 @@ const InstitutePanel = () => {
         </div>
       </div>
       </>)}
+
+      {parentFor && (
+        <div className="fixed inset-0 z-50 bg-ink/40 flex items-center justify-center p-4" onClick={() => setParentFor(null)}>
+          <form onSubmit={saveParent} onClick={(e) => e.stopPropagation()} className="bg-white rounded-2xl p-6 w-full max-w-md space-y-3">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="font-semibold flex items-center gap-2"><Users size={18} /> Parent of {parentFor.student.fullName}</h3>
+                <p className="text-xs text-ink/60 mt-1">Every week the parent gets the progress report: days studied, tests, scores and chapters to practise.</p>
+              </div>
+              <button type="button" onClick={() => setParentFor(null)} className="p-1 rounded hover:bg-ink/5"><X size={18} /></button>
+            </div>
+            <div><label className="text-xs font-medium">Parent email (weekly email report)</label><input type="email" className={input} value={parentFor.email} onChange={(e) => setParentFor({ ...parentFor, email: e.target.value })} placeholder="parent@example.com" /></div>
+            <div><label className="text-xs font-medium">Parent WhatsApp number (weekly WhatsApp report)</label><input type="tel" className={input} value={parentFor.phone} onChange={(e) => setParentFor({ ...parentFor, phone: e.target.value })} placeholder="10-digit number" /></div>
+            <div className="flex flex-wrap gap-2 pt-1">
+              <button disabled={savingParent} className="bg-gold text-ink font-semibold px-5 py-2 rounded-full disabled:opacity-60">{savingParent ? "Saving..." : "Save"}</button>
+              {parentFor.student.parentPhone && (
+                <button type="button" onClick={() => shareReport(parentFor.student)} className="inline-flex items-center gap-1.5 bg-[#25D366] text-white font-semibold px-4 py-2 rounded-full"><MessageCircle size={15} /> Send this week's report now</button>
+              )}
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

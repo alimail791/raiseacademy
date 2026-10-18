@@ -42,6 +42,13 @@ const studentSchema = new mongoose.Schema(
     // YNeet grants access until the institute's endDate while this is set.
     instituteId: { type: mongoose.Schema.Types.ObjectId, ref: "Institute", index: true },
 
+    // Parent contact for weekly progress reports (set by the student's institute).
+    // parentEmail is synced to YNeet's weekly email; parentPhone gets the weekly
+    // WhatsApp report (utils/parentWhatsApp.js).
+    parentEmail: { type: String, lowercase: true, trim: true },
+    parentPhone: { type: String, trim: true },
+    lastParentWaSent: { type: Date },
+
     isEmailVerified: { type: Boolean, default: true }, // verified via OTP before creation
     role: { type: String, enum: ["student", "admin"], default: "student" },
 

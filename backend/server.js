@@ -11,6 +11,7 @@ import otpRoutes from "./routes/otpRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
 import instituteRoutes from "./routes/instituteRoutes.js";
+import { startParentWhatsAppJob } from "./utils/parentWhatsApp.js";
 import blogRoutes from "./routes/blogRoutes.js";
 
 dotenv.config();
@@ -50,4 +51,5 @@ const PORT = process.env.PORT || 5000;
 
 connectDB().then(() => {
   app.listen(PORT, () => console.log(`YNeet API running on port ${PORT}`));
+  startParentWhatsAppJob(); // weekly WhatsApp progress report to institute students' parents
 });

@@ -10,7 +10,7 @@ interface Progress {
   bestMock30?: number | null; mockTrend?: number | null; activeDays7?: number; practice7?: number; practiceTotal?: number;
   streak?: number; lastActive?: string | null; weakChapters?: Weak[];
 }
-interface Row { id: string; fullName: string; email: string; phone: string; currentClass?: string; progress: Progress; }
+interface Row { id: string; fullName: string; email: string; phone: string; currentClass?: string; parentEmail?: string; parentPhone?: string; progress: Progress; }
 interface Summary { students: number; joined: number; notJoined: number; active7: number; inactive7: number; tests7: number; avgPct30: number | null; topWeakChapters: Weak[]; }
 interface TestRow { title: string; date: string; score: number; total: number; pct: number; accuracy: number; physics: number; chemistry: number; biology: number; minutes: number; }
 interface Detail { joined: boolean; classLevel?: string; targetScore?: number; streak?: number; longestStreak?: number; subjectAvg?: { physics: number | null; chemistry: number | null; biology: number | null; fullMocks: number }; tests?: TestRow[]; weakChapters?: Weak[]; }
@@ -72,6 +72,16 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
     if (!r.progress.joined) { setDetail({ joined: false }); return; }
     try { const { data } = await instituteApi.get(`/progress/${r.id}`); setDetail(data.detail); }
     catch (err: any) { toast.error(err?.response?.data?.message || "Couldn't load details"); setOpen(null); }
+  };
+
+  const shareWithParent = async (r: Row) => {
+    const win = window.open("", "_blank");
+    try {
+      const { data } = await instituteApi.get(`/students/${r.id}/parent-report`);
+      const d = String(data.parentPhone || r.parentPhone || "").replace(/\D/g, "");
+      const url = `https://wa.me/${d.length === 10 ? "91" + d : d}?text=${encodeURIComponent(data.text)}`;
+      if (win) win.location.href = url; else window.location.href = url;
+    } catch (err: any) { win?.close(); toast.error(err?.response?.data?.message || "Could not build the report"); }
   };
 
   const exportCsv = async () => {
@@ -213,6 +223,12 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
               <div>
                 <h3 className="font-display text-xl font-bold">{open.fullName}</h3>
                 <p className="text-sm text-ink/60">{open.email} · {open.phone}</p>
+                <p className="text-xs text-ink/50 mt-1">
+                  Parent: {open.parentEmail || open.parentPhone ? [open.parentEmail, open.parentPhone].filter(Boolean).join(" · ") + " — weekly report on" : "not added (add in Manage students)"}
+                </p>
+                <button onClick={() => shareWithParent(open)} className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#25D366] text-white">
+                  <MessageCircle size={13} /> {open.parentPhone ? "Send this week's report to parent" : "Share this week's report on WhatsApp"}
+                </button>
               </div>
               <button onClick={() => setOpen(null)} className="p-2 rounded-lg hover:bg-ink/5"><X size={18} /></button>
             </div>

@@ -64,6 +64,11 @@ export const PAGE_META: Record<string, PageMeta> = {
 export function metaFor(path: string): PageMeta & { canonical: string } {
   const clean = path !== "/" ? path.replace(/\/+$/, "") : "/";
   const isAppRoute = clean === "/dashboard" || clean === "/admin" || clean.startsWith("/admin/");
+  // Institute panel pages (login, forgot password, dashboard) — not indexed.
+  if (clean === "/institute" || clean.startsWith("/institute/")) {
+    const title = clean === "/institute/login" ? "Institute Login — YNeet" : clean === "/institute/forgot" ? "Reset Institute Password — YNeet" : "Institute Panel — YNeet";
+    return { title, description: "YNeet institute panel for coaching centres.", noindex: true, canonical: `${SITE_ORIGIN}${clean}` };
+  }
   // Individual articles set their own title/description once loaded (see
   // pages/BlogPost.tsx); until then they get the blog's tags, still indexable.
   if (/^\/blog\/[^/]+$/.test(clean)) return { ...PAGE_META["/blog"], canonical: `${SITE_ORIGIN}${clean}` };

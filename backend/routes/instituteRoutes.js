@@ -24,6 +24,8 @@ router.post("/students", c.protectInstitute, c.instituteAddStudents);
 router.delete("/students/:id", c.protectInstitute, c.instituteRemoveStudent);
 router.post("/students/:id/resend", c.protectInstitute, c.instituteResendLogin);
 router.post("/students/:id/password", c.protectInstitute, c.instituteSetStudentPassword);
+router.put("/students/:id/parent", c.protectInstitute, c.instituteSetParent);
+router.get("/students/:id/parent-report", c.protectInstitute, c.instituteParentReport);
 router.get("/progress.csv", c.protectInstitute, c.instituteProgressCsv);
 router.get("/progress", c.protectInstitute, c.instituteProgress);
 router.get("/progress/:id", c.protectInstitute, c.instituteStudentProgress);

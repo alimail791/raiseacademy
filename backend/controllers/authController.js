@@ -36,6 +36,7 @@ const publicUser = (u) => ({
   progress: u.progress,
   yneetSubscribed: u.yneetSubscribed,
   referredByCode: u.referredByCode,
+  parentEmail: u.parentEmail,
 });
 
 // PATCH internal — called by the YNeet backend (server-to-server, shared secret)
