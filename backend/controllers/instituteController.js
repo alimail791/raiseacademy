@@ -394,3 +394,15 @@ export const adminInstituteProgress = async (req, res, next) => {
   try { res.json(await progressFor(req.params.id)); }
   catch (err) { res.status(502).json({ message: err.message }); }
 };
+
+// POST /api/institute/students/:id/password { newPassword } — institute sets a student's password
+export const instituteSetStudentPassword = async (req, res, next) => {
+  try {
+    const newPassword = String(req.body.newPassword || "");
+    if (newPassword.length < 6) return res.status(400).json({ message: "Password must be at least 6 characters" });
+    const s = await Student.findOne({ _id: req.params.id, instituteId: req.institute._id });
+    if (!s) return res.status(404).json({ message: "Student not found in your list" });
+    await Student.updateOne({ _id: s._id }, { $set: { password: await bcrypt.hash(newPassword, 10) } });
+    res.json({ ok: true });
+  } catch (err) { next(err); }
+};

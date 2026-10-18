@@ -30,6 +30,9 @@ const InstitutePanel = () => {
   const [search, setSearch] = useState("");
   const [pw, setPw] = useState({ open: false, current: "", next: "" });
   const [tab, setTab] = useState<"progress" | "manage" | null>(null);
+  // Login details shown on screen after add / resend / set password, so the
+  // institute can share them on WhatsApp even if the email lands in spam.
+  const [logins, setLogins] = useState<{ name: string; email: string; phone: string; password: string; emailed?: boolean }[]>([]);
 
   const load = async () => {
     try {
@@ -54,6 +57,11 @@ const InstitutePanel = () => {
     try {
       const { data } = await instituteApi.post("/students", { students: rows });
       setResults(data.results);
+      const fresh = (data.results as Result[]).filter((r) => r.ok && r.password).map((r) => {
+        const row = rows[r.row - 1] || ({} as NewStudent);
+        return { name: row.fullName || r.email, email: r.email, phone: row.phone || "", password: r.password as string, emailed: r.emailed };
+      });
+      if (fresh.length) setLogins((l) => [...fresh, ...l]);
       if (data.added) toast.success(`${data.added} student${data.added > 1 ? "s" : ""} added. Login details sent by email.`);
       if (data.failed) toast.error(`${data.failed} could not be added — see below.`);
       await load();
@@ -106,9 +114,31 @@ const InstitutePanel = () => {
     if (!window.confirm(`Send ${s.fullName} a new password by email? Their old password will stop working.`)) return;
     try {
       const { data } = await instituteApi.post(`/students/${s.id}/resend`);
-      if (data.emailed) toast.success("New login sent by email.");
-      else window.prompt("Email could not be sent. Share this password with the student:", data.password);
+      toast.success(data.emailed ? "New login sent by email. Also shown below to share on WhatsApp." : "Email couldn't be sent. Share the login shown below.");
+      setLogins((l) => [{ name: s.fullName, email: s.email, phone: s.phone, password: data.password, emailed: data.emailed }, ...l.filter((x) => x.email !== s.email)]);
     } catch (err: any) { toast.error(err?.response?.data?.message || "Could not resend"); }
+  };
+
+  const setStudentPassword = async (s: Student) => {
+    const pwd = window.prompt(`Set a new password for ${s.fullName} (at least 6 characters):`);
+    if (pwd === null) return;
+    if (pwd.trim().length < 6) { toast.error("Password must be at least 6 characters"); return; }
+    try {
+      await instituteApi.post(`/students/${s.id}/password`, { newPassword: pwd.trim() });
+      toast.success("Password changed. Share it with the student.");
+      setLogins((l) => [{ name: s.fullName, email: s.email, phone: s.phone, password: pwd.trim() }, ...l.filter((x) => x.email !== s.email)]);
+    } catch (err: any) { toast.error(err?.response?.data?.message || "Could not change password"); }
+  };
+
+  const loginText = (x: { name: string; email: string; password: string }) =>
+    `Hi ${x.name.split(" ")[0]}, your YNeet login from ${inst?.name || "your institute"}:\n\nLogin: www.yneet.in/login\nEmail: ${x.email}\nPassword: ${x.password}\n\nAfter logging in, tap "Open YNeet" to start your mock tests and practice.`;
+  const waShare = (x: { name: string; email: string; phone: string; password: string }) => {
+    const d = String(x.phone || "").replace(/\D/g, "");
+    const num = d.length === 10 ? `91${d}` : d;
+    window.open(`https://wa.me/${num}?text=${encodeURIComponent(loginText(x))}`, "_blank", "noopener");
+  };
+  const copyLogin = async (x: { name: string; email: string; password: string }) => {
+    try { await navigator.clipboard.writeText(loginText(x)); toast.success("Copied"); } catch { window.prompt("Copy this:", loginText(x)); }
   };
 
   const changePassword = async (e: FormEvent) => {
@@ -131,7 +161,6 @@ const InstitutePanel = () => {
   const pct = Math.min(100, Math.round((inst.seatsUsed / inst.seats) * 100));
   const daysLeft = Math.ceil((new Date(inst.endDate).getTime() - Date.now()) / 86400000);
   const shown = students.filter((s) => !search || `${s.fullName} ${s.email} ${s.phone}`.toLowerCase().includes(search.toLowerCase()));
-  const needsSharing = (results || []).filter((r) => r.ok && r.password && !r.emailed);
   const failures = (results || []).filter((r) => !r.ok);
 
   return (
@@ -227,20 +256,36 @@ const InstitutePanel = () => {
         </div>
       )}
 
-      {(needsSharing.length > 0 || failures.length > 0) && (
-        <div className="bg-white rounded-2xl border border-ink/10 p-5 space-y-3 text-sm">
-          {needsSharing.length > 0 && (
+      {logins.length > 0 && (
+        <div className="bg-white rounded-2xl border border-gold/60 p-5 text-sm">
+          <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="font-semibold">Email didn't go out for these — share the login yourself (login at www.yneet.in/login):</p>
-              <ul className="mt-1 space-y-0.5">{needsSharing.map((r) => <li key={r.email}>{r.email} · password <code className="bg-ink/5 px-1.5 rounded">{r.password}</code></li>)}</ul>
+              <p className="font-semibold">Student login details</p>
+              <p className="text-ink/60 text-xs mt-0.5">Emails can land in spam, so share these on WhatsApp too. Shown only now — note them down if needed.</p>
             </div>
-          )}
-          {failures.length > 0 && (
-            <div>
-              <p className="font-semibold text-red-700">Not added:</p>
-              <ul className="mt-1 space-y-0.5">{failures.map((r) => <li key={`${r.row}-${r.email}`}>Row {r.row}{r.email ? ` (${r.email})` : ""}: {r.message}</li>)}</ul>
-            </div>
-          )}
+            <button onClick={() => setLogins([])} className="text-xs text-ink/50 hover:text-ink">Clear</button>
+          </div>
+          <ul className="mt-3 divide-y divide-ink/5">
+            {logins.map((x) => (
+              <li key={x.email} className="py-2.5 flex flex-wrap items-center gap-x-4 gap-y-2 justify-between">
+                <div>
+                  <p className="font-medium">{x.name} <span className="text-ink/50 font-normal">· {x.email}</span></p>
+                  <p className="text-xs text-ink/60">Password: <code className="bg-ink/5 px-1.5 py-0.5 rounded text-ink">{x.password}</code>{x.emailed === false && <span className="text-red-700"> · email not sent</span>}</p>
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={() => copyLogin(x)} className="text-xs font-semibold px-3 py-1.5 rounded-full border border-ink/15 hover:bg-ink/5">Copy</button>
+                  <button onClick={() => waShare(x)} className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#25D366] text-white">WhatsApp</button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {failures.length > 0 && (
+        <div className="bg-white rounded-2xl border border-ink/10 p-5 text-sm">
+          <p className="font-semibold text-red-700">Not added:</p>
+          <ul className="mt-1 space-y-0.5">{failures.map((r) => <li key={`${r.row}-${r.email}`}>Row {r.row}{r.email ? ` (${r.email})` : ""}: {r.message}</li>)}</ul>
         </div>
       )}
 
@@ -264,7 +309,8 @@ const InstitutePanel = () => {
                   <td className="px-4 py-2.5">{s.currentClass || "—"}</td>
                   <td className="px-4 py-2.5">{fmt(s.createdAt)}</td>
                   <td className="px-4 py-2.5 text-right">
-                    <button onClick={() => resend(s)} title="Send new login" className="p-1.5 rounded hover:bg-ink/5"><Mail size={16} /></button>
+                    <button onClick={() => setStudentPassword(s)} title="Set a new password" className="p-1.5 rounded hover:bg-ink/5"><KeyRound size={16} /></button>
+                    <button onClick={() => resend(s)} title="Send new login by email" className="p-1.5 rounded hover:bg-ink/5"><Mail size={16} /></button>
                     <button onClick={() => remove(s)} title="Remove and free seat" className="p-1.5 rounded hover:bg-red-50 text-red-700"><Trash2 size={16} /></button>
                   </td>
                 </tr>
