@@ -7,7 +7,10 @@ const institutePaymentSchema = new mongoose.Schema(
     orderId: { type: String, required: true, unique: true },
     kind: { type: String, enum: ["new", "renew"], required: true },
     seats: { type: Number, required: true },
-    amount: { type: Number, required: true }, // rupees
+    amount: { type: Number, required: true }, // rupees actually charged
+    listPrice: { type: Number },               // before any referral discount
+    referralDiscount: { type: Boolean, default: false }, // 40% credit applied to this order
+    referrerId: { type: mongoose.Schema.Types.ObjectId, ref: "Institute" }, // for "new": who referred
     instituteId: { type: mongoose.Schema.Types.ObjectId, ref: "Institute" },
     // Sign-up details held until payment succeeds (password already hashed).
     signup: {

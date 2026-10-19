@@ -1,7 +1,7 @@
-import { useState, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, FormEvent } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import { BarChart3, ClipboardCheck, FileClock, Users, MessageCircle, BookOpenCheck, X, Check, ShieldCheck } from "lucide-react";
+import { BarChart3, ClipboardCheck, FileClock, Users, MessageCircle, BookOpenCheck, X, Check, ShieldCheck, Gift } from "lucide-react";
 import api from "../api/axios";
 import { INST_TOKEN } from "../api/instituteApi";
 import { payWithRazorpay, trackPurchase } from "../utils/razorpay";
@@ -37,6 +37,16 @@ const Institutes = () => {
   const [plan, setPlan] = useState<{ seats: number; price: number } | null>(null);
   const [form, setForm] = useState(emptyForm);
   const [busy, setBusy] = useState(false);
+  // Referral: /institutes?ref=CODE — remembered for this visit so it survives navigation.
+  const [params] = useSearchParams();
+  const [ref, setRef] = useState("");
+  const [refName, setRefName] = useState("");
+  useEffect(() => {
+    let code = (params.get("ref") || "").trim().toUpperCase();
+    try { if (code) sessionStorage.setItem("yneet_inst_ref", code); else code = sessionStorage.getItem("yneet_inst_ref") || ""; } catch { /* ignore */ }
+    if (!code) return;
+    api.get("/institute/referral/check", { params: { code } }).then((r) => { if (r.data.valid) { setRef(code); setRefName(r.data.name); } }).catch(() => {});
+  }, [params]);
 
   const waLink = (msg: string) => `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 
@@ -45,7 +55,7 @@ const Institutes = () => {
     if (!plan) return;
     setBusy(true);
     try {
-      const { data } = await api.post("/institute/signup/order", { ...form, seats: plan.seats });
+      const { data } = await api.post("/institute/signup/order", { ...form, seats: plan.seats, ref });
       const paid = await payWithRazorpay({ keyId: data.keyId, orderId: data.orderId, amount: data.amount, description: `Institute plan · ${plan.seats} students · 1 month`, prefill: data.prefill });
       const { data: done } = await api.post("/institute/signup/verify", paid);
       localStorage.setItem(INST_TOKEN, done.token);
@@ -60,6 +70,12 @@ const Institutes = () => {
 
   return (
     <div>
+      {refName && (
+        <div className="bg-gold-light/60 border-b border-gold/40">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 text-sm flex items-center gap-2"><Gift size={16} className="text-gold-dark" /> You were invited by <b>{refName}</b>. Pick a plan below to get started.</div>
+        </div>
+      )}
+
       {/* HERO */}
       <section className="bg-rise-line text-paper">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
@@ -72,6 +88,7 @@ const Institutes = () => {
           </div>
         </div>
       </section>
+
 
       {/* BENEFITS */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">

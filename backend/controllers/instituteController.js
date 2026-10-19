@@ -32,7 +32,7 @@ export const instituteView = (i, seatsUsed) => ({
   id: i._id, name: i.name, contactName: i.contactName, email: i.email, phone: i.phone, city: i.city, board: i.board,
   seats: i.seats, seatsUsed, seatsLeft: Math.max(0, i.seats - seatsUsed), amountPaid: i.amountPaid, paymentRef: i.paymentRef,
   startDate: i.startDate, endDate: i.endDate, status: i.status, notes: i.notes, live: i.isLive(), createdAt: i.createdAt,
-  billing: i.billing || "yearly",
+  billing: i.billing || "yearly", referralCode: i.referralCode || "", referralCredits: i.referralCredits || 0,
 });
 
 const studentView = (s) => ({
@@ -65,7 +65,7 @@ export const adminListInstitutes = async (req, res, next) => {
 
 export const adminCreateInstitute = async (req, res, next) => {
   try {
-    const { name, contactName, email, phone, city, board, seats, amountPaid, paymentRef, startDate, notes } = req.body;
+    const { name, contactName, email, phone, city, board, seats, amountPaid, paymentRef, startDate, notes, referralCode } = req.body;
     if (!name || !email || !seats) return res.status(400).json({ message: "Name, email and seats are required" });
     if (await Institute.findOne({ email: String(email).toLowerCase() })) return res.status(409).json({ message: "An institute with this email already exists" });
 
@@ -77,6 +77,17 @@ export const adminCreateInstitute = async (req, res, next) => {
       amountPaid: Number(amountPaid) || 0, paymentRef, startDate: start, endDate: end, notes,
       password: await bcrypt.hash(password, 10),
     });
+
+    // Refer & earn: offline (yearly) sign-ups referred by another institute also earn it a 40% credit.
+    const { ensureReferralCode, creditReferrer } = await import("./instituteBillingController.js");
+    await ensureReferralCode(inst).catch(() => {});
+    if (referralCode) {
+      const ref = await Institute.findOne({ referralCode: String(referralCode).trim().toUpperCase() });
+      if (ref && String(ref._id) !== String(inst._id) && ref.email !== inst.email) {
+        await Institute.updateOne({ _id: inst._id }, { $set: { referredBy: ref._id } });
+        await creditReferrer(ref._id, inst);
+      }
+    }
 
     let emailed = true;
     await sendEmail({
@@ -104,6 +115,7 @@ export const adminUpdateInstitute = async (req, res, next) => {
     for (const k of ["name", "contactName", "phone", "city", "board", "paymentRef", "notes", "status"]) if (b[k] !== undefined) inst[k] = b[k];
     if (b.seats !== undefined) inst.seats = Number(b.seats);
     if (b.amountPaid !== undefined) inst.amountPaid = Number(b.amountPaid) || 0;
+    if (b.referralCredits !== undefined) inst.referralCredits = Math.max(0, Number(b.referralCredits) || 0);
     if (b.endDate) inst.endDate = new Date(b.endDate);
     // Renew = one more year from today or from the current end date, whichever is later.
     if (b.renew) {

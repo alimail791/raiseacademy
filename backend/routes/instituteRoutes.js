@@ -24,6 +24,8 @@ router.post("/login", c.instituteLogin);
 router.post("/billing/order", c.protectInstitute, bill.renewOrder);
 router.post("/billing/verify", c.protectInstitute, bill.renewVerify);
 router.get("/billing/history", c.protectInstitute, bill.billingHistory);
+router.get("/referral", c.protectInstitute, bill.referralInfo);
+router.get("/referral/check", bill.checkReferral);
 router.post("/forgot", c.instituteForgotPassword);
 router.post("/reset-password", c.instituteResetPassword);
 router.get("/me", c.protectInstitute, c.instituteMe);

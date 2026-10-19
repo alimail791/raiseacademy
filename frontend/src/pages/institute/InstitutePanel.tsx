@@ -1,7 +1,7 @@
 import { useEffect, useState, FormEvent, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { Upload, Download, UserPlus, Trash2, Mail, LogOut, KeyRound, Users, MessageCircle, X } from "lucide-react";
+import { Upload, Download, UserPlus, Trash2, Mail, LogOut, KeyRound, Users, MessageCircle, X, Gift, Copy } from "lucide-react";
 import instituteApi, { INST_TOKEN, parseCsv } from "../../api/instituteApi";
 import InstituteProgress from "./InstituteProgress";
 import { payWithRazorpay, trackPurchase } from "../../utils/razorpay";
@@ -10,6 +10,7 @@ import { SITE } from "../../utils/siteInfo";
 interface Institute {
   name: string; email: string; seats: number; seatsUsed: number; seatsLeft: number;
   startDate: string; endDate: string; status: string; live: boolean; billing?: "yearly" | "monthly";
+  referralCode?: string; referralCredits?: number;
 }
 const MONTHLY_PLANS = [{ seats: 20, price: 9999 }, { seats: 50, price: 19999 }, { seats: 100, price: 29999 }];
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
@@ -37,6 +38,7 @@ const InstitutePanel = () => {
   // Login details shown on screen after add / resend / set password, so the
   // institute can share them on WhatsApp even if the email lands in spam.
   const [renewOpen, setRenewOpen] = useState(false);
+  const [referral, setReferral] = useState<{ code: string; link: string; credits: number; referred: { name: string; city: string; joined: string }[] } | null>(null);
   const [paying, setPaying] = useState(false);
   const [parentFor, setParentFor] = useState<{ student: Student; email: string; phone: string } | null>(null);
   const [savingParent, setSavingParent] = useState(false);
@@ -46,6 +48,7 @@ const InstitutePanel = () => {
     try {
       const [me, list] = await Promise.all([instituteApi.get("/me"), instituteApi.get("/students")]);
       setInst(me.data.institute);
+      instituteApi.get("/referral").then((r) => setReferral(r.data)).catch(() => {});
       setStudents(list.data.students);
     } catch (err: any) {
       if (err?.response?.status === 401) { localStorage.removeItem(INST_TOKEN); navigate("/institute/login", { replace: true }); }
@@ -140,6 +143,7 @@ const InstitutePanel = () => {
       toast.success(`Renewed! Valid till ${fmt(done.institute.endDate)}.`);
       setRenewOpen(false);
       load();
+      instituteApi.get("/referral").then((r) => setReferral(r.data)).catch(() => {});
     } catch (err: any) {
       if (err?.message === "cancelled") toast("Payment cancelled.");
       else toast.error(err?.response?.data?.message || err?.message || "Payment failed");
@@ -267,17 +271,42 @@ const InstitutePanel = () => {
               {MONTHLY_PLANS.map((p) => {
                 const tooSmall = p.seats < inst.seatsUsed;
                 const current = p.seats === inst.seats;
+                const credit = (referral?.credits ?? inst.referralCredits ?? 0) > 0;
+                const pay = credit ? Math.round(p.price * 0.6) : p.price;
                 return (
                   <button key={p.seats} disabled={paying || tooSmall} onClick={() => renew(p.seats)}
                     className={`text-left p-4 rounded-xl border-2 ${current ? "border-gold bg-gold-light/40" : "border-ink/10"} ${tooSmall ? "opacity-40 cursor-not-allowed" : "hover:border-gold"}`}>
                     <p className="text-sm font-semibold text-ink/60">{p.seats} students{current && " · current"}</p>
-                    <p className="font-display text-2xl font-bold mt-1">{inr(p.price)}</p>
+                    <p className="font-display text-2xl font-bold mt-1">{inr(pay)}{credit && <span className="ml-1.5 text-sm font-medium text-ink/40 line-through">{inr(p.price)}</span>}</p>
+                    {credit && <p className="text-xs font-semibold text-rise-dark">40% referral discount</p>}
                     <p className="text-xs text-ink/50 mt-1">{tooSmall ? `You have ${inst.seatsUsed} students` : paying ? "Opening payment…" : "Pay & renew"}</p>
                   </button>
                 );
               })}
             </div>
             <p className="text-xs text-ink/50">Secure payment by UPI, card or net banking via Razorpay. A receipt is emailed to {inst.email}.</p>
+          </div>
+        </div>
+      )}
+
+      {referral && (
+        <div className="rounded-2xl border border-gold/50 bg-gold-light/30 px-5 py-4 flex flex-wrap items-center gap-4 justify-between">
+          <div className="flex items-start gap-3 min-w-[240px] flex-1">
+            <Gift className="text-gold-dark shrink-0 mt-0.5" size={22} />
+            <div className="text-sm">
+              <p className="font-semibold">Refer &amp; earn 40% off</p>
+              <p className="text-ink/70">Another coaching centre buys YNeet with your link → you get <b>40% off your next purchase</b>. Refer more, save on more renewals.</p>
+              <p className="text-xs text-ink/60 mt-1">
+                Your code <b className="text-ink">{referral.code}</b> · {referral.referred.length} joined · <b className="text-rise-dark">{referral.credits} discount{referral.credits === 1 ? "" : "s"} available</b>
+                {referral.referred.length > 0 && <> · {referral.referred.slice(0, 3).map((r) => r.name).join(", ")}{referral.referred.length > 3 ? "…" : ""}</>}
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <button onClick={async () => { try { await navigator.clipboard.writeText(referral.link); toast.success("Link copied"); } catch { window.prompt("Copy your link:", referral.link); } }}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-full border border-ink/15 bg-white hover:bg-ink/5"><Copy size={15} /> Copy link</button>
+            <a href={`https://wa.me/?text=${encodeURIComponent(`Hi! We use YNeet at ${inst.name} for our NEET students — full mock tests, PYQs 2016–2026, instant analysis, weekly parent reports and a live progress panel for the institute. Have a look: ${referral.link}`)}`}
+              target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-full bg-[#25D366] text-white"><MessageCircle size={15} /> Share on WhatsApp</a>
           </div>
         </div>
       )}

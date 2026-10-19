@@ -17,6 +17,48 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 const box = (inner) => `<div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:24px;border:1px solid #eee;border-radius:12px;"><h2 style="color:#14213D;">YNeet</h2>${inner}<p style="color:#888;font-size:12px;margin-top:24px;">YNeet · NEET preparation</p></div>`;
 const planFor = (seats) => MONTHLY_PLANS.find((p) => p.seats === Number(seats));
 
+// ───────── Refer & earn ─────────
+export const REFERRAL_DISCOUNT = 0.4;
+export const discounted = (price) => Math.round(price * (1 - REFERRAL_DISCOUNT));
+const CODE_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+const makeCode = (name) => {
+  const base = String(name || "YN").toUpperCase().replace(/[^A-Z]/g, "").slice(0, 4).padEnd(3, "X");
+  let tail = ""; for (let i = 0; i < 4; i++) tail += CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)];
+  return base + tail;
+};
+// Returns the institute's referral code, creating one the first time.
+export async function ensureReferralCode(inst) {
+  if (inst.referralCode) return inst.referralCode;
+  for (let i = 0; i < 6; i++) {
+    const code = makeCode(inst.name);
+    if (!(await Institute.findOne({ referralCode: code }))) {
+      await Institute.updateOne({ _id: inst._id }, { $set: { referralCode: code } });
+      inst.referralCode = code;
+      return code;
+    }
+  }
+  throw new Error("Could not create a referral code");
+}
+const findReferrer = async (code, email, phone) => {
+  const c = String(code || "").trim().toUpperCase();
+  if (!c) return null;
+  const ref = await Institute.findOne({ referralCode: c });
+  if (!ref || ref.email === email || (phone && ref.phone && String(ref.phone).replace(/\D/g, "").slice(-10) === phone)) return null; // no self-referral
+  return ref;
+};
+// Called once a referred institute's first plan is paid (online or set up by admin).
+export async function creditReferrer(referrerId, newInst) {
+  if (!referrerId) return;
+  const ref = await Institute.findByIdAndUpdate(referrerId, { $inc: { referralCredits: 1 } }, { new: true });
+  if (!ref) return;
+  sendEmail({
+    to: ref.email, subject: `You earned 40% off — ${newInst.name} joined YNeet with your link`,
+    html: box(`<p>Hello ${esc(ref.contactName || ref.name)},</p><p><b>${esc(newInst.name)}</b> just joined YNeet using your referral link. 🎉</p>
+      <p>You've earned <b>40% off your next purchase</b>. You now have <b>${ref.referralCredits}</b> discount${ref.referralCredits > 1 ? "s" : ""} waiting — ${ref.billing === "monthly" ? "it's applied automatically when you renew from your panel" : "we'll apply it to your next yearly renewal"}.</p>
+      <p>Keep sharing: <a href="${SITE()}/institutes?ref=${ref.referralCode}">${SITE()}/institutes?ref=${ref.referralCode}</a></p>`),
+  }).catch(() => {});
+}
+
 // One calendar month later, same date (31 Jan → 28/29 Feb).
 export const addMonth = (from) => {
   const d = new Date(from);
@@ -60,9 +102,11 @@ export const signupOrder = async (req, res, next) => {
     if (String(b.password || "").length < 6) return res.status(400).json({ message: "Password must be at least 6 characters" });
     if (await Institute.findOne({ email })) return res.status(409).json({ message: "An institute account with this email already exists. Log in to renew or change your plan." });
 
-    const order = await createOrder(plan.price, `inst_new_${Date.now()}`, { kind: "new", seats: String(plan.seats), email });
+    const referrer = await findReferrer(b.ref, email, phone);
+    const order = await createOrder(plan.price, `inst_new_${Date.now()}`, { kind: "new", seats: String(plan.seats), email, ...(referrer && { ref: referrer.referralCode }) });
     await InstitutePayment.create({
-      orderId: order.orderId, kind: "new", seats: plan.seats, amount: plan.price,
+      orderId: order.orderId, kind: "new", seats: plan.seats, amount: plan.price, listPrice: plan.price,
+      ...(referrer && { referrerId: referrer._id }),
       signup: {
         name: b.name.trim(), contactName: String(b.contactName || "").trim(), email, phone,
         city: String(b.city || "").trim(), board: ["CBSE", "Tamil Nadu State Board"].includes(b.board) ? b.board : "CBSE",
@@ -98,7 +142,10 @@ export const signupVerify = async (req, res, next) => {
         name: s.name, contactName: s.contactName, email: s.email, phone: s.phone, city: s.city, board: s.board,
         password: s.passwordHash, seats: pay.seats, amountPaid: pay.amount, paymentRef: `Razorpay ${paymentId}`,
         startDate: start, endDate: addMonth(start), billing: "monthly",
+        ...(pay.referrerId && { referredBy: pay.referrerId }),
       });
+      await ensureReferralCode(inst).catch(() => {});
+      await creditReferrer(pay.referrerId, inst);
     }
     pay.status = "paid"; pay.paymentId = paymentId; pay.paidAt = new Date(); pay.instituteId = inst._id;
     await pay.save();
@@ -110,7 +157,7 @@ export const signupVerify = async (req, res, next) => {
         <p><b>Institute panel:</b> <a href="${SITE()}/institute">${SITE()}/institute</a><br/><b>Login email:</b> ${esc(inst.email)}<br/>Use the password you chose at sign-up.</p>
         <p>Add your students from the panel — each gets their own login. Payment ID: ${esc(paymentId)}</p>`),
     }).catch((e) => console.warn("Institute welcome email failed:", e.message));
-    notifyAdmin(`New monthly institute: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Contact", `${inst.contactName || ""} ${inst.phone || ""}`], ["Email", inst.email], ["City", inst.city || ""], ["Plan", `${pay.seats} students / month`], ["Amount", inr(pay.amount)], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId]]);
+    notifyAdmin(`New monthly institute: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Contact", `${inst.contactName || ""} ${inst.phone || ""}`], ["Email", inst.email], ["City", inst.city || ""], ["Plan", `${pay.seats} students / month`], ["Amount", inr(pay.amount)], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId], ["Referred by", pay.referrerId ? String((await Institute.findById(pay.referrerId))?.name || "") : "—"]]);
 
     res.json({ token: signInstituteToken(inst), institute: instituteView(inst, 0) });
   } catch (err) {
@@ -130,9 +177,11 @@ export const renewOrder = async (req, res, next) => {
     if (!plan) return res.status(400).json({ message: "Choose a plan" });
     const used = await Student.countDocuments({ instituteId: inst._id });
     if (plan.seats < used) return res.status(400).json({ message: `You have ${used} students. Remove ${used - plan.seats} first, or choose a bigger plan.` });
-    const order = await createOrder(plan.price, `inst_renew_${Date.now()}`, { kind: "renew", seats: String(plan.seats), instituteId: String(inst._id) });
-    await InstitutePayment.create({ orderId: order.orderId, kind: "renew", seats: plan.seats, amount: plan.price, instituteId: inst._id });
-    res.json({ orderId: order.orderId, amount: order.amount, keyId: order.keyId, plan, prefill: { name: inst.contactName || inst.name, email: inst.email, contact: inst.phone || "" } });
+    const useCredit = (inst.referralCredits || 0) > 0;
+    const amount = useCredit ? discounted(plan.price) : plan.price;
+    const order = await createOrder(amount, `inst_renew_${Date.now()}`, { kind: "renew", seats: String(plan.seats), instituteId: String(inst._id), ...(useCredit && { referral: "40%" }) });
+    await InstitutePayment.create({ orderId: order.orderId, kind: "renew", seats: plan.seats, amount, listPrice: plan.price, referralDiscount: useCredit, instituteId: inst._id });
+    res.json({ orderId: order.orderId, amount: order.amount, keyId: order.keyId, plan, price: amount, listPrice: plan.price, referralDiscount: useCredit, prefill: { name: inst.contactName || inst.name, email: inst.email, contact: inst.phone || "" } });
   } catch (err) {
     if (/YNeet|payment|fetch/i.test(err.message)) return res.status(502).json({ message: "Payment service is not reachable right now. Please try again in a minute." });
     next(err);
@@ -158,15 +207,16 @@ export const renewVerify = async (req, res, next) => {
       inst.status = "active";
       inst.amountPaid = (inst.amountPaid || 0) + pay.amount;
       inst.paymentRef = `Razorpay ${paymentId}`;
+      if (pay.referralDiscount) inst.referralCredits = Math.max(0, (inst.referralCredits || 0) - 1);
       await inst.save();
       pay.status = "paid"; pay.paymentId = paymentId; pay.paidAt = new Date();
       await pay.save();
       resyncAll(inst).catch(() => {});
       sendEmail({
         to: inst.email, subject: "YNeet plan renewed",
-        html: box(`<p>Thank you! We received <b>${inr(pay.amount)}</b>. Your plan for <b>${pay.seats} students</b> is now active until <b>${fmtDate(inst.endDate)}</b>.</p><p>Payment ID: ${esc(paymentId)}</p>`),
+        html: box(`<p>Thank you! We received <b>${inr(pay.amount)}</b>${pay.referralDiscount ? ` (40% referral discount applied — you saved ${inr(pay.listPrice - pay.amount)})` : ""}. Your plan for <b>${pay.seats} students</b> is now active until <b>${fmtDate(inst.endDate)}</b>.</p><p>Payment ID: ${esc(paymentId)}</p>`),
       }).catch(() => {});
-      notifyAdmin(`Institute renewed: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Plan", `${pay.seats} students / month`], ["Amount", inr(pay.amount)], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId]]);
+      notifyAdmin(`Institute renewed: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Plan", `${pay.seats} students / month`], ["Amount", inr(pay.amount) + (pay.referralDiscount ? " (40% referral credit)" : "")], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId]]);
     }
     const used = await Student.countDocuments({ instituteId: inst._id });
     res.json({ institute: instituteView(inst, used) });
@@ -223,3 +273,23 @@ export function startRenewalReminderJob() {
   const schedule = () => setTimeout(async () => { await sendRenewalReminders().catch((e) => console.warn("Renewal reminders failed:", e.message)); schedule(); }, next());
   schedule();
 }
+
+// GET /api/institute/referral — code, link, referred institutes, credits
+export const referralInfo = async (req, res, next) => {
+  try {
+    const inst = await Institute.findById(req.institute._id);
+    const code = await ensureReferralCode(inst);
+    const referred = await Institute.find({ referredBy: inst._id }).select("name city createdAt").sort({ createdAt: -1 });
+    res.json({
+      code, link: `${SITE()}/institutes?ref=${code}`, credits: inst.referralCredits || 0, discountPct: REFERRAL_DISCOUNT * 100,
+      referred: referred.map((r) => ({ name: r.name, city: r.city || "", joined: r.createdAt })),
+      billing: inst.billing || "yearly",
+    });
+  } catch (err) { next(err); }
+};
+
+// GET /api/institute/referral/check?code=X — public: is this a valid referral code?
+export const checkReferral = async (req, res) => {
+  const ref = await Institute.findOne({ referralCode: String(req.query.code || "").trim().toUpperCase() }).select("name city").catch(() => null);
+  res.json(ref ? { valid: true, name: ref.name } : { valid: false });
+};

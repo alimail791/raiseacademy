@@ -28,6 +28,13 @@ const instituteSchema = new mongoose.Schema(
     reminderSentFor: { type: Date },
     expiredNoticeFor: { type: Date },
     notes: { type: String, trim: true },
+
+    // Refer & earn: each institute shares /institutes?ref=CODE. When a new
+    // institute buys its first plan through it, the referrer earns one credit
+    // = 40% off its next purchase (credits stack; one used per purchase).
+    referralCode: { type: String, unique: true, sparse: true, uppercase: true, trim: true },
+    referredBy: { type: mongoose.Schema.Types.ObjectId, ref: "Institute" },
+    referralCredits: { type: Number, default: 0, min: 0 },
   },
   { timestamps: true }
 );
