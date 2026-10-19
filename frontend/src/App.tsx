@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Courses from "./pages/Courses";
 import Help from "./pages/Help";
 import NeetTrial from "./pages/NeetTrial";
+import Institutes from "./pages/Institutes";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 
@@ -43,6 +44,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/help" element={<Help />} />
           <Route path="/neet-trial" element={<NeetTrial />} />
+          <Route path="/institutes" element={<Institutes />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
 

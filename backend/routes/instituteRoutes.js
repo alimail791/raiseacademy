@@ -1,6 +1,7 @@
 import express from "express";
 import { protect, adminOnly } from "../middleware/auth.js";
 import * as c from "../controllers/instituteController.js";
+import * as bill from "../controllers/instituteBillingController.js";
 
 const router = express.Router();
 
@@ -13,8 +14,16 @@ router.get("/admin/:id/students", protect, adminOnly, c.adminInstituteStudents);
 router.delete("/admin/:id", protect, adminOnly, c.adminDeleteInstitute);
 router.get("/admin/:id/progress", protect, adminOnly, c.adminInstituteProgress);
 
+// Monthly plans — public sign-up with online payment
+router.get("/plans", bill.getPlans);
+router.post("/signup/order", bill.signupOrder);
+router.post("/signup/verify", bill.signupVerify);
+
 // Institute panel
 router.post("/login", c.instituteLogin);
+router.post("/billing/order", c.protectInstitute, bill.renewOrder);
+router.post("/billing/verify", c.protectInstitute, bill.renewVerify);
+router.get("/billing/history", c.protectInstitute, bill.billingHistory);
 router.post("/forgot", c.instituteForgotPassword);
 router.post("/reset-password", c.instituteResetPassword);
 router.get("/me", c.protectInstitute, c.instituteMe);

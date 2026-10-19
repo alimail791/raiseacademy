@@ -12,6 +12,7 @@ import contactRoutes from "./routes/contactRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
 import instituteRoutes from "./routes/instituteRoutes.js";
 import { startParentWhatsAppJob } from "./utils/parentWhatsApp.js";
+import { startRenewalReminderJob } from "./controllers/instituteBillingController.js";
 import blogRoutes from "./routes/blogRoutes.js";
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use("/api/otp", authLimiter);
 app.use("/api/institute/login", authLimiter);
 app.use("/api/institute/forgot", authLimiter);
 app.use("/api/institute/reset-password", authLimiter);
+app.use("/api/institute/signup", authLimiter);
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 
@@ -52,4 +54,5 @@ const PORT = process.env.PORT || 5000;
 connectDB().then(() => {
   app.listen(PORT, () => console.log(`YNeet API running on port ${PORT}`));
   startParentWhatsAppJob(); // weekly WhatsApp progress report to institute students' parents
+  startRenewalReminderJob(); // monthly institute plans: renewal reminder emails
 });

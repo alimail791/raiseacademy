@@ -4,11 +4,15 @@ import toast from "react-hot-toast";
 import { Upload, Download, UserPlus, Trash2, Mail, LogOut, KeyRound, Users, MessageCircle, X } from "lucide-react";
 import instituteApi, { INST_TOKEN, parseCsv } from "../../api/instituteApi";
 import InstituteProgress from "./InstituteProgress";
+import { payWithRazorpay, trackPurchase } from "../../utils/razorpay";
+import { SITE } from "../../utils/siteInfo";
 
 interface Institute {
   name: string; email: string; seats: number; seatsUsed: number; seatsLeft: number;
-  startDate: string; endDate: string; status: string; live: boolean;
+  startDate: string; endDate: string; status: string; live: boolean; billing?: "yearly" | "monthly";
 }
+const MONTHLY_PLANS = [{ seats: 20, price: 9999 }, { seats: 50, price: 19999 }, { seats: 100, price: 29999 }];
+const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 interface Student { id: string; fullName: string; email: string; phone: string; gender: string; currentClass?: string; createdAt: string; parentEmail?: string; parentPhone?: string; }
 interface Result { row: number; email: string; ok: boolean; message?: string; password?: string; emailed?: boolean; linked?: boolean; }
 interface NewStudent { fullName: string; email: string; phone: string; gender: string; currentClass: string; parentEmail?: string; parentPhone?: string; }
@@ -32,6 +36,8 @@ const InstitutePanel = () => {
   const [tab, setTab] = useState<"progress" | "manage" | null>(null);
   // Login details shown on screen after add / resend / set password, so the
   // institute can share them on WhatsApp even if the email lands in spam.
+  const [renewOpen, setRenewOpen] = useState(false);
+  const [paying, setPaying] = useState(false);
   const [parentFor, setParentFor] = useState<{ student: Student; email: string; phone: string } | null>(null);
   const [savingParent, setSavingParent] = useState(false);
   const [logins, setLogins] = useState<{ name: string; email: string; phone: string; password: string; emailed?: boolean }[]>([]);
@@ -121,6 +127,23 @@ const InstitutePanel = () => {
       toast.success(data.emailed ? "New login sent by email. Also shown below to share on WhatsApp." : "Email couldn't be sent. Share the login shown below.");
       setLogins((l) => [{ name: s.fullName, email: s.email, phone: s.phone, password: data.password, emailed: data.emailed }, ...l.filter((x) => x.email !== s.email)]);
     } catch (err: any) { toast.error(err?.response?.data?.message || "Could not resend"); }
+  };
+
+  const renew = async (seats: number) => {
+    setPaying(true);
+    try {
+      const { data } = await instituteApi.post("/billing/order", { seats });
+      const paid = await payWithRazorpay({ keyId: data.keyId, orderId: data.orderId, amount: data.amount, description: `Institute plan · ${seats} students · 1 month`, prefill: data.prefill });
+      const { data: done } = await instituteApi.post("/billing/verify", paid);
+      setInst(done.institute);
+      trackPurchase(data.plan.price, `Institute monthly ${seats} (renewal)`);
+      toast.success(`Renewed! Valid till ${fmt(done.institute.endDate)}.`);
+      setRenewOpen(false);
+      load();
+    } catch (err: any) {
+      if (err?.message === "cancelled") toast("Payment cancelled.");
+      else toast.error(err?.response?.data?.message || err?.message || "Payment failed");
+    } finally { setPaying(false); }
   };
 
   const saveParent = async (e: FormEvent) => {
@@ -213,8 +236,49 @@ const InstitutePanel = () => {
       )}
 
       {!inst.live && (
-        <div className="rounded-xl bg-red-50 border border-red-200 text-red-800 px-4 py-3 text-sm">
-          {inst.status === "suspended" ? "Your institute account is suspended." : `Your pack expired on ${fmt(inst.endDate)}.`} Students can't use YNeet until it's renewed. Please contact YNeet on WhatsApp.
+        <div className="rounded-xl bg-red-50 border border-red-200 text-red-800 px-4 py-3 text-sm flex flex-wrap items-center gap-3 justify-between">
+          <span>{inst.status === "suspended" ? "Your institute account is suspended." : `Your plan ended on ${fmt(inst.endDate)}.`} Students can't use YNeet until it's renewed.</span>
+          {inst.billing === "monthly" && inst.status !== "suspended"
+            ? <button onClick={() => setRenewOpen(true)} className="bg-red-700 text-white font-semibold px-4 py-1.5 rounded-full">Renew now</button>
+            : <a href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(`Hi YNeet, I'd like to renew the plan for ${inst.name}.`)}`} target="_blank" rel="noreferrer" className="underline font-semibold">Contact YNeet on WhatsApp</a>}
+        </div>
+      )}
+
+      <div className="bg-white rounded-2xl border border-ink/10 px-5 py-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="text-sm">
+          <span className="font-semibold">{inst.billing === "monthly" ? "Monthly plan" : "Yearly pack"}</span>
+          <span className="text-ink/60"> · {inst.seats} students · {inst.live ? `valid till ${fmt(inst.endDate)}` : `ended ${fmt(inst.endDate)}`}</span>
+          {inst.live && inst.billing === "monthly" && Math.ceil((new Date(inst.endDate).getTime() - Date.now()) / 86400000) <= 5 && <span className="ml-2 text-xs font-semibold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">Ends soon</span>}
+        </div>
+        {inst.billing === "monthly" && <button onClick={() => setRenewOpen(true)} className="text-sm font-semibold bg-gold text-ink px-4 py-2 rounded-full hover:bg-gold-dark">Renew / change plan</button>}
+      </div>
+
+      {renewOpen && (
+        <div className="fixed inset-0 z-50 bg-ink/40 flex items-center justify-center p-4" onClick={() => !paying && setRenewOpen(false)}>
+          <div onClick={(e) => e.stopPropagation()} className="bg-white rounded-2xl p-6 w-full max-w-xl space-y-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="font-display text-xl font-bold">Renew for 1 month</h3>
+                <p className="text-sm text-ink/60">{inst.live ? `Adds one month after ${fmt(inst.endDate)}.` : "Starts today."} You can also change your plan size.</p>
+              </div>
+              <button disabled={paying} onClick={() => setRenewOpen(false)} className="p-1 rounded hover:bg-ink/5"><X size={18} /></button>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-3">
+              {MONTHLY_PLANS.map((p) => {
+                const tooSmall = p.seats < inst.seatsUsed;
+                const current = p.seats === inst.seats;
+                return (
+                  <button key={p.seats} disabled={paying || tooSmall} onClick={() => renew(p.seats)}
+                    className={`text-left p-4 rounded-xl border-2 ${current ? "border-gold bg-gold-light/40" : "border-ink/10"} ${tooSmall ? "opacity-40 cursor-not-allowed" : "hover:border-gold"}`}>
+                    <p className="text-sm font-semibold text-ink/60">{p.seats} students{current && " · current"}</p>
+                    <p className="font-display text-2xl font-bold mt-1">{inr(p.price)}</p>
+                    <p className="text-xs text-ink/50 mt-1">{tooSmall ? `You have ${inst.seatsUsed} students` : paying ? "Opening payment…" : "Pay & renew"}</p>
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-xs text-ink/50">Secure payment by UPI, card or net banking via Razorpay. A receipt is emailed to {inst.email}.</p>
+          </div>
         </div>
       )}
 

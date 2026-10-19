@@ -39,6 +39,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Five days of full access to every YNeet mock test, daily quiz and practice question for just ₹99. Made for Class 11, 12 and droppers. Monthly plans from ₹300.",
   },
+  "/institutes": {
+    title: "YNeet for NEET Coaching Centres — Student Packs from ₹9,999/month",
+    description:
+      "Give your NEET students full mock tests, chapter tests, PYQs 2016–2026 and instant analysis, with a live progress panel for your institute and weekly parent reports. Monthly plans from ₹9,999 for 20 students.",
+  },
   "/blog": {
     title: "NEET Preparation Blog — PYQs, Mock Tests, Cutoffs & Study Plans | YNeet",
     description:

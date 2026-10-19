@@ -14,6 +14,13 @@ export const PACKS = [
   { seats: 100, price: 300000 },
 ];
 
+// Monthly plans, paid online by the institute (Razorpay). Prices in rupees.
+export const MONTHLY_PLANS = [
+  { seats: 20, price: 9999 },
+  { seats: 50, price: 19999 },
+  { seats: 100, price: 29999 },
+];
+
 const SITE = () => (process.env.CLIENT_URL || "https://www.yneet.in").replace(/\/$/, "");
 const tempPassword = () => crypto.randomBytes(6).toString("base64").replace(/[^a-zA-Z0-9]/g, "").slice(0, 8).padEnd(8, "7");
 const fmtDate = (d) => new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
@@ -21,10 +28,11 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 
 const box = (inner) => `<div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;padding:24px;border:1px solid #eee;border-radius:12px;"><h2 style="color:#14213D;">YNeet</h2>${inner}<p style="color:#888;font-size:12px;margin-top:24px;">YNeet · NEET preparation</p></div>`;
 
-const instituteView = (i, seatsUsed) => ({
+export const instituteView = (i, seatsUsed) => ({
   id: i._id, name: i.name, contactName: i.contactName, email: i.email, phone: i.phone, city: i.city, board: i.board,
   seats: i.seats, seatsUsed, seatsLeft: Math.max(0, i.seats - seatsUsed), amountPaid: i.amountPaid, paymentRef: i.paymentRef,
   startDate: i.startDate, endDate: i.endDate, status: i.status, notes: i.notes, live: i.isLive(), createdAt: i.createdAt,
+  billing: i.billing || "yearly",
 });
 
 const studentView = (s) => ({
@@ -39,7 +47,7 @@ const cleanPhone = (v) => { const d = String(v || "").replace(/\D/g, ""); return
 const syncParentEmail = (studentId, parentEmail) =>
   yneetPost("parent-contact", { userId: String(studentId), parentEmail: parentEmail || "" }).catch((e) => console.warn("Parent email sync failed:", e.message));
 
-const resyncAll = async (institute) => {
+export const resyncAll = async (institute) => {
   const students = await Student.find({ instituteId: institute._id }).select("_id");
   for (const s of students) await syncYneetAccess(s._id, institute);
 };
@@ -51,7 +59,7 @@ export const adminListInstitutes = async (req, res, next) => {
     const list = await Institute.find().sort({ createdAt: -1 });
     const counts = await Student.aggregate([{ $match: { instituteId: { $ne: null } } }, { $group: { _id: "$instituteId", n: { $sum: 1 } } }]);
     const used = Object.fromEntries(counts.map((c) => [String(c._id), c.n]));
-    res.json({ packs: PACKS, institutes: list.map((i) => instituteView(i, used[String(i._id)] || 0)) });
+    res.json({ packs: PACKS, monthlyPlans: MONTHLY_PLANS, institutes: list.map((i) => instituteView(i, used[String(i._id)] || 0)) });
   } catch (err) { next(err); }
 };
 
@@ -147,7 +155,7 @@ export const adminDeleteInstitute = async (req, res, next) => {
 
 // ───────────────────────── Institute panel ─────────────────────────
 
-const signInstituteToken = (inst) => jwt.sign({ iid: String(inst._id), typ: "institute" }, process.env.JWT_SECRET, { expiresIn: "7d" });
+export const signInstituteToken = (inst) => jwt.sign({ iid: String(inst._id), typ: "institute" }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
 export const protectInstitute = async (req, res, next) => {
   try {
