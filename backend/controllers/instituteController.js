@@ -65,16 +65,21 @@ export const adminListInstitutes = async (req, res, next) => {
 
 export const adminCreateInstitute = async (req, res, next) => {
   try {
-    const { name, contactName, email, phone, city, board, seats, amountPaid, paymentRef, startDate, notes, referralCode } = req.body;
+    const { name, contactName, email, phone, city, board, seats, amountPaid, paymentRef, startDate, notes, referralCode, months, billing } = req.body;
     if (!name || !email || !seats) return res.status(400).json({ message: "Name, email and seats are required" });
     if (await Institute.findOne({ email: String(email).toLowerCase() })) return res.status(409).json({ message: "An institute with this email already exists" });
 
     const start = startDate ? new Date(startDate) : new Date();
-    const end = new Date(start); end.setFullYear(end.getFullYear() + 1);
+    // Plan length in months (default 12 = one year). "monthly" billing lets the
+    // institute renew online afterwards; "yearly" = renewals handled offline by admin.
+    const { addMonths } = await import("./instituteBillingController.js");
+    const planMonths = Math.min(36, Math.max(1, parseInt(months, 10) || 12));
+    const end = addMonths(start, planMonths);
     const password = tempPassword();
     const inst = await Institute.create({
       name, contactName, email, phone, city, board: board || "CBSE", seats: Number(seats),
       amountPaid: Number(amountPaid) || 0, paymentRef, startDate: start, endDate: end, notes,
+      billing: billing === "monthly" ? "monthly" : "yearly",
       password: await bcrypt.hash(password, 10),
     });
 
@@ -94,7 +99,7 @@ export const adminCreateInstitute = async (req, res, next) => {
       to: inst.email,
       subject: `Your YNeet institute account — ${inst.name}`,
       html: box(`<p>Hello ${esc(inst.contactName || inst.name)},</p>
-        <p>Your YNeet pack for <b>${inst.seats} students</b> is active until <b>${fmtDate(inst.endDate)}</b>.</p>
+        <p>Your YNeet plan for <b>${inst.seats} students</b> (${planMonths} month${planMonths > 1 ? "s" : ""}) is active until <b>${fmtDate(inst.endDate)}</b>.</p>
         <p>Log in to your institute panel to add your students. Each student gets their own YNeet login by email.</p>
         <p><b>Login:</b> <a href="${SITE()}/institute">${SITE()}/institute</a><br/><b>Email:</b> ${esc(inst.email)}<br/><b>Password:</b> ${password}</p>
         <p>Please change the password after your first login.</p>`),
@@ -117,6 +122,17 @@ export const adminUpdateInstitute = async (req, res, next) => {
     if (b.amountPaid !== undefined) inst.amountPaid = Number(b.amountPaid) || 0;
     if (b.referralCredits !== undefined) inst.referralCredits = Math.max(0, Number(b.referralCredits) || 0);
     if (b.endDate) inst.endDate = new Date(b.endDate);
+    if (b.billing === "monthly" || b.billing === "yearly") inst.billing = b.billing;
+    // Custom length: set the plan to N months from its start date, or add N months to the current end.
+    if (b.setMonths || b.addMonths) {
+      const { addMonths } = await import("./instituteBillingController.js");
+      if (b.setMonths) inst.endDate = addMonths(inst.startDate, Math.min(36, Math.max(1, parseInt(b.setMonths, 10) || 1)));
+      if (b.addMonths) {
+        const from = inst.endDate > new Date() ? inst.endDate : new Date();
+        inst.endDate = addMonths(from, Math.min(36, Math.max(1, parseInt(b.addMonths, 10) || 1)));
+      }
+      inst.status = "active";
+    }
     // Renew = one more year from today or from the current end date, whichever is later.
     if (b.renew) {
       const from = inst.endDate > new Date() ? new Date(inst.endDate) : new Date();

@@ -70,8 +70,27 @@ export const addMonth = (from) => {
   return d;
 };
 
+// N calendar months later.
+export const addMonths = (from, n = 1) => {
+  const d = new Date(from);
+  const day = d.getDate();
+  d.setDate(1);
+  d.setMonth(d.getMonth() + n);
+  const last = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+  d.setDate(Math.min(day, last));
+  return d;
+};
+export const MAX_MONTHS = 12;
+const monthsOf = (v) => Math.min(MAX_MONTHS, Math.max(1, parseInt(v, 10) || 1));
+// Price for `months` months; a referral credit takes 40% off ONE month of the order.
+export const priceFor = (plan, months, useCredit) => {
+  const list = plan.price * months;
+  return { list, amount: useCredit ? list - (plan.price - discounted(plan.price)) : list };
+};
+const monthsLabel = (m) => `${m} month${m > 1 ? "s" : ""}`;
+
 // GET /api/institute/plans — public price list
-export const getPlans = (req, res) => res.json({ monthly: MONTHLY_PLANS, yearly: PACKS });
+export const getPlans = (req, res) => res.json({ monthly: MONTHLY_PLANS, yearly: PACKS, maxMonths: MAX_MONTHS });
 
 const createOrder = async (amount, receipt, notes) =>
   yneetPost("razorpay/order", { amount: Math.round(amount * 100), receipt, notes });
@@ -103,9 +122,11 @@ export const signupOrder = async (req, res, next) => {
     if (await Institute.findOne({ email })) return res.status(409).json({ message: "An institute account with this email already exists. Log in to renew or change your plan." });
 
     const referrer = await findReferrer(b.ref, email, phone);
-    const order = await createOrder(plan.price, `inst_new_${Date.now()}`, { kind: "new", seats: String(plan.seats), email, ...(referrer && { ref: referrer.referralCode }) });
+    const months = monthsOf(b.months);
+    const { amount } = priceFor(plan, months, false);
+    const order = await createOrder(amount, `inst_new_${Date.now()}`, { kind: "new", seats: String(plan.seats), months: String(months), email, ...(referrer && { ref: referrer.referralCode }) });
     await InstitutePayment.create({
-      orderId: order.orderId, kind: "new", seats: plan.seats, amount: plan.price, listPrice: plan.price,
+      orderId: order.orderId, kind: "new", seats: plan.seats, months, amount, listPrice: amount,
       ...(referrer && { referrerId: referrer._id }),
       signup: {
         name: b.name.trim(), contactName: String(b.contactName || "").trim(), email, phone,
@@ -141,7 +162,7 @@ export const signupVerify = async (req, res, next) => {
       inst = await Institute.create({
         name: s.name, contactName: s.contactName, email: s.email, phone: s.phone, city: s.city, board: s.board,
         password: s.passwordHash, seats: pay.seats, amountPaid: pay.amount, paymentRef: `Razorpay ${paymentId}`,
-        startDate: start, endDate: addMonth(start), billing: "monthly",
+        startDate: start, endDate: addMonths(start, pay.months || 1), billing: "monthly",
         ...(pay.referrerId && { referredBy: pay.referrerId }),
       });
       await ensureReferralCode(inst).catch(() => {});
@@ -153,11 +174,11 @@ export const signupVerify = async (req, res, next) => {
     sendEmail({
       to: inst.email, subject: `Welcome to YNeet — ${inst.name}`,
       html: box(`<p>Hello ${esc(inst.contactName || inst.name)},</p>
-        <p>Thank you! Your payment of <b>${inr(pay.amount)}</b> was received. Your YNeet plan for <b>${pay.seats} students</b> is active until <b>${fmtDate(inst.endDate)}</b>.</p>
+        <p>Thank you! Your payment of <b>${inr(pay.amount)}</b> was received. Your YNeet plan for <b>${pay.seats} students · ${monthsLabel(pay.months || 1)}</b> is active until <b>${fmtDate(inst.endDate)}</b>.</p>
         <p><b>Institute panel:</b> <a href="${SITE()}/institute">${SITE()}/institute</a><br/><b>Login email:</b> ${esc(inst.email)}<br/>Use the password you chose at sign-up.</p>
         <p>Add your students from the panel — each gets their own login. Payment ID: ${esc(paymentId)}</p>`),
     }).catch((e) => console.warn("Institute welcome email failed:", e.message));
-    notifyAdmin(`New monthly institute: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Contact", `${inst.contactName || ""} ${inst.phone || ""}`], ["Email", inst.email], ["City", inst.city || ""], ["Plan", `${pay.seats} students / month`], ["Amount", inr(pay.amount)], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId], ["Referred by", pay.referrerId ? String((await Institute.findById(pay.referrerId))?.name || "") : "—"]]);
+    notifyAdmin(`New monthly institute: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Contact", `${inst.contactName || ""} ${inst.phone || ""}`], ["Email", inst.email], ["City", inst.city || ""], ["Plan", `${pay.seats} students × ${monthsLabel(pay.months || 1)}`], ["Amount", inr(pay.amount)], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId], ["Referred by", pay.referrerId ? String((await Institute.findById(pay.referrerId))?.name || "") : "—"]]);
 
     res.json({ token: signInstituteToken(inst), institute: instituteView(inst, 0) });
   } catch (err) {
@@ -178,10 +199,11 @@ export const renewOrder = async (req, res, next) => {
     const used = await Student.countDocuments({ instituteId: inst._id });
     if (plan.seats < used) return res.status(400).json({ message: `You have ${used} students. Remove ${used - plan.seats} first, or choose a bigger plan.` });
     const useCredit = (inst.referralCredits || 0) > 0;
-    const amount = useCredit ? discounted(plan.price) : plan.price;
-    const order = await createOrder(amount, `inst_renew_${Date.now()}`, { kind: "renew", seats: String(plan.seats), instituteId: String(inst._id), ...(useCredit && { referral: "40%" }) });
-    await InstitutePayment.create({ orderId: order.orderId, kind: "renew", seats: plan.seats, amount, listPrice: plan.price, referralDiscount: useCredit, instituteId: inst._id });
-    res.json({ orderId: order.orderId, amount: order.amount, keyId: order.keyId, plan, price: amount, listPrice: plan.price, referralDiscount: useCredit, prefill: { name: inst.contactName || inst.name, email: inst.email, contact: inst.phone || "" } });
+    const months = monthsOf(req.body?.months);
+    const { list, amount } = priceFor(plan, months, useCredit);
+    const order = await createOrder(amount, `inst_renew_${Date.now()}`, { kind: "renew", seats: String(plan.seats), months: String(months), instituteId: String(inst._id), ...(useCredit && { referral: "40% of 1 month" }) });
+    await InstitutePayment.create({ orderId: order.orderId, kind: "renew", seats: plan.seats, months, amount, listPrice: list, referralDiscount: useCredit, instituteId: inst._id });
+    res.json({ orderId: order.orderId, amount: order.amount, keyId: order.keyId, plan, months, price: amount, listPrice: list, referralDiscount: useCredit, prefill: { name: inst.contactName || inst.name, email: inst.email, contact: inst.phone || "" } });
   } catch (err) {
     if (/YNeet|payment|fetch/i.test(err.message)) return res.status(502).json({ message: "Payment service is not reachable right now. Please try again in a minute." });
     next(err);
@@ -202,7 +224,7 @@ export const renewVerify = async (req, res, next) => {
       }
       // Extend from the current end date if still active, so no days are lost.
       const from = inst.endDate && inst.endDate > new Date() ? inst.endDate : new Date();
-      inst.endDate = addMonth(from);
+      inst.endDate = addMonths(from, pay.months || 1);
       inst.seats = pay.seats;
       inst.status = "active";
       inst.amountPaid = (inst.amountPaid || 0) + pay.amount;
@@ -214,9 +236,9 @@ export const renewVerify = async (req, res, next) => {
       resyncAll(inst).catch(() => {});
       sendEmail({
         to: inst.email, subject: "YNeet plan renewed",
-        html: box(`<p>Thank you! We received <b>${inr(pay.amount)}</b>${pay.referralDiscount ? ` (40% referral discount applied — you saved ${inr(pay.listPrice - pay.amount)})` : ""}. Your plan for <b>${pay.seats} students</b> is now active until <b>${fmtDate(inst.endDate)}</b>.</p><p>Payment ID: ${esc(paymentId)}</p>`),
+        html: box(`<p>Thank you! We received <b>${inr(pay.amount)}</b>${pay.referralDiscount ? ` (40% referral discount applied — you saved ${inr(pay.listPrice - pay.amount)})` : ""}. Your plan for <b>${pay.seats} students</b> (${monthsLabel(pay.months || 1)}) is now active until <b>${fmtDate(inst.endDate)}</b>.</p><p>Payment ID: ${esc(paymentId)}</p>`),
       }).catch(() => {});
-      notifyAdmin(`Institute renewed: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Plan", `${pay.seats} students / month`], ["Amount", inr(pay.amount) + (pay.referralDiscount ? " (40% referral credit)" : "")], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId]]);
+      notifyAdmin(`Institute renewed: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Plan", `${pay.seats} students × ${monthsLabel(pay.months || 1)}`], ["Amount", inr(pay.amount) + (pay.referralDiscount ? " (40% referral credit)" : "")], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId]]);
     }
     const used = await Student.countDocuments({ instituteId: inst._id });
     res.json({ institute: instituteView(inst, used) });
@@ -230,7 +252,7 @@ export const renewVerify = async (req, res, next) => {
 export const billingHistory = async (req, res, next) => {
   try {
     const list = await InstitutePayment.find({ instituteId: req.institute._id, status: "paid" }).sort({ paidAt: -1 }).limit(24);
-    res.json({ payments: list.map((p) => ({ date: p.paidAt, amount: p.amount, seats: p.seats, paymentId: p.paymentId })) });
+    res.json({ payments: list.map((p) => ({ date: p.paidAt, amount: p.amount, seats: p.seats, months: p.months || 1, paymentId: p.paymentId })) });
   } catch (err) { next(err); }
 };
 
@@ -246,7 +268,7 @@ export async function sendRenewalReminders() {
       await sendEmail({
         to: inst.email, subject: `Your YNeet plan ends on ${fmtDate(inst.endDate)} — renew now`,
         html: box(`<p>Hello ${esc(inst.contactName || inst.name)},</p><p>Your YNeet plan for <b>${inst.seats} students</b> ends on <b>${fmtDate(inst.endDate)}</b>. After that your students can't take tests.</p>
-          <p>Renew for one more month (${inr(plan.price)}) in a minute from your panel: <a href="${SITE()}/institute">${SITE()}/institute</a> → Renew.</p><p>Renewing early adds the new month after your current end date, so no days are lost.</p>`),
+          <p>Renew for 1 month (${inr(plan.price)}) or more months at once, in a minute from your panel: <a href="${SITE()}/institute">${SITE()}/institute</a> → Renew.</p><p>Renewing early adds the new month after your current end date, so no days are lost.</p>`),
       });
       inst.reminderSentFor = inst.endDate; await inst.save();
     } catch (e) { console.warn("Renewal reminder failed:", inst.email, e.message); }

@@ -38,6 +38,7 @@ const InstitutePanel = () => {
   // Login details shown on screen after add / resend / set password, so the
   // institute can share them on WhatsApp even if the email lands in spam.
   const [renewOpen, setRenewOpen] = useState(false);
+  const [renewMonths, setRenewMonths] = useState(1);
   const [referral, setReferral] = useState<{ code: string; link: string; credits: number; referred: { name: string; city: string; joined: string }[] } | null>(null);
   const [paying, setPaying] = useState(false);
   const [parentFor, setParentFor] = useState<{ student: Student; email: string; phone: string } | null>(null);
@@ -135,11 +136,11 @@ const InstitutePanel = () => {
   const renew = async (seats: number) => {
     setPaying(true);
     try {
-      const { data } = await instituteApi.post("/billing/order", { seats });
-      const paid = await payWithRazorpay({ keyId: data.keyId, orderId: data.orderId, amount: data.amount, description: `Institute plan · ${seats} students · 1 month`, prefill: data.prefill });
+      const { data } = await instituteApi.post("/billing/order", { seats, months: renewMonths });
+      const paid = await payWithRazorpay({ keyId: data.keyId, orderId: data.orderId, amount: data.amount, description: `Institute plan · ${seats} students · ${renewMonths} month${renewMonths > 1 ? "s" : ""}`, prefill: data.prefill });
       const { data: done } = await instituteApi.post("/billing/verify", paid);
       setInst(done.institute);
-      trackPurchase(data.plan.price, `Institute monthly ${seats} (renewal)`);
+      trackPurchase(data.price, `Institute ${seats} × ${renewMonths}m (renewal)`);
       toast.success(`Renewed! Valid till ${fmt(done.institute.endDate)}.`);
       setRenewOpen(false);
       load();
@@ -254,7 +255,7 @@ const InstitutePanel = () => {
           <span className="text-ink/60"> · {inst.seats} students · {inst.live ? `valid till ${fmt(inst.endDate)}` : `ended ${fmt(inst.endDate)}`}</span>
           {inst.live && inst.billing === "monthly" && Math.ceil((new Date(inst.endDate).getTime() - Date.now()) / 86400000) <= 5 && <span className="ml-2 text-xs font-semibold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">Ends soon</span>}
         </div>
-        {inst.billing === "monthly" && <button onClick={() => setRenewOpen(true)} className="text-sm font-semibold bg-gold text-ink px-4 py-2 rounded-full hover:bg-gold-dark">Renew / change plan</button>}
+        {inst.billing === "monthly" && <button onClick={() => { setRenewMonths(1); setRenewOpen(true); }} className="text-sm font-semibold bg-gold text-ink px-4 py-2 rounded-full hover:bg-gold-dark">Renew / change plan</button>}
       </div>
 
       {renewOpen && (
@@ -262,23 +263,32 @@ const InstitutePanel = () => {
           <div onClick={(e) => e.stopPropagation()} className="bg-white rounded-2xl p-6 w-full max-w-xl space-y-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="font-display text-xl font-bold">Renew for 1 month</h3>
-                <p className="text-sm text-ink/60">{inst.live ? `Adds one month after ${fmt(inst.endDate)}.` : "Starts today."} You can also change your plan size.</p>
+                <h3 className="font-display text-xl font-bold">Renew your plan</h3>
+                <p className="text-sm text-ink/60">{inst.live ? `Adds ${renewMonths} month${renewMonths > 1 ? "s" : ""} after ${fmt(inst.endDate)}.` : "Starts today."} You can also change your plan size.</p>
               </div>
               <button disabled={paying} onClick={() => setRenewOpen(false)} className="p-1 rounded hover:bg-ink/5"><X size={18} /></button>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-sm font-semibold mr-1">Months:</span>
+              <button type="button" onClick={() => setRenewMonths((m) => Math.max(1, m - 1))} className="w-8 h-8 rounded-full border border-ink/20 font-bold">−</button>
+              <span className="w-10 text-center font-semibold">{renewMonths}</span>
+              <button type="button" onClick={() => setRenewMonths((m) => Math.min(12, m + 1))} className="w-8 h-8 rounded-full border border-ink/20 font-bold">+</button>
+              {[1, 3, 6, 12].map((m) => <button type="button" key={m} onClick={() => setRenewMonths(m)} className={`text-xs px-2.5 py-1 rounded-full border ${renewMonths === m ? "bg-ink text-paper border-ink" : "border-ink/15"}`}>{m}m</button>)}
             </div>
             <div className="grid sm:grid-cols-3 gap-3">
               {MONTHLY_PLANS.map((p) => {
                 const tooSmall = p.seats < inst.seatsUsed;
                 const current = p.seats === inst.seats;
                 const credit = (referral?.credits ?? inst.referralCredits ?? 0) > 0;
-                const pay = credit ? Math.round(p.price * 0.6) : p.price;
+                const list = p.price * renewMonths;
+                const pay = credit ? list - (p.price - Math.round(p.price * 0.6)) : list;
                 return (
                   <button key={p.seats} disabled={paying || tooSmall} onClick={() => renew(p.seats)}
                     className={`text-left p-4 rounded-xl border-2 ${current ? "border-gold bg-gold-light/40" : "border-ink/10"} ${tooSmall ? "opacity-40 cursor-not-allowed" : "hover:border-gold"}`}>
                     <p className="text-sm font-semibold text-ink/60">{p.seats} students{current && " · current"}</p>
-                    <p className="font-display text-2xl font-bold mt-1">{inr(pay)}{credit && <span className="ml-1.5 text-sm font-medium text-ink/40 line-through">{inr(p.price)}</span>}</p>
-                    {credit && <p className="text-xs font-semibold text-rise-dark">40% referral discount</p>}
+                    <p className="font-display text-2xl font-bold mt-1">{inr(pay)}{credit && <span className="block text-sm font-medium text-ink/40 line-through">{inr(list)}</span>}</p>
+                    <p className="text-xs text-ink/50">{inr(p.price)} × {renewMonths} month{renewMonths > 1 ? "s" : ""}</p>
+                    {credit && <p className="text-xs font-semibold text-rise-dark">Referral: 40% off one month</p>}
                     <p className="text-xs text-ink/50 mt-1">{tooSmall ? `You have ${inst.seatsUsed} students` : paying ? "Opening payment…" : "Pay & renew"}</p>
                   </button>
                 );

@@ -37,6 +37,7 @@ const Institutes = () => {
   const [plan, setPlan] = useState<{ seats: number; price: number } | null>(null);
   const [form, setForm] = useState(emptyForm);
   const [busy, setBusy] = useState(false);
+  const [months, setMonths] = useState(1);
   // Referral: /institutes?ref=CODE — remembered for this visit so it survives navigation.
   const [params] = useSearchParams();
   const [ref, setRef] = useState("");
@@ -55,11 +56,11 @@ const Institutes = () => {
     if (!plan) return;
     setBusy(true);
     try {
-      const { data } = await api.post("/institute/signup/order", { ...form, seats: plan.seats, ref });
-      const paid = await payWithRazorpay({ keyId: data.keyId, orderId: data.orderId, amount: data.amount, description: `Institute plan · ${plan.seats} students · 1 month`, prefill: data.prefill });
+      const { data } = await api.post("/institute/signup/order", { ...form, seats: plan.seats, months, ref });
+      const paid = await payWithRazorpay({ keyId: data.keyId, orderId: data.orderId, amount: data.amount, description: `Institute plan · ${plan.seats} students · ${months} month${months > 1 ? "s" : ""}`, prefill: data.prefill });
       const { data: done } = await api.post("/institute/signup/verify", paid);
       localStorage.setItem(INST_TOKEN, done.token);
-      trackPurchase(plan.price, `Institute monthly ${plan.seats}`);
+      trackPurchase(plan.price * months, `Institute ${plan.seats} × ${months}m`);
       toast.success("Payment received! Your institute panel is ready.");
       navigate("/institute");
     } catch (err: any) {
@@ -108,7 +109,7 @@ const Institutes = () => {
       <section id="plans" className="bg-ink/[0.03] py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h2 className="font-display text-2xl sm:text-3xl font-bold">Monthly plans — start today</h2>
-          <p className="text-ink/60 mt-2">Pay online, your panel is ready instantly. Renew month by month from your panel. No GST.</p>
+          <p className="text-ink/60 mt-2">Pay online for 1 to 12 months at a time — your panel is ready instantly. Renew from your panel anytime. No GST.</p>
           <div className="mt-8 grid md:grid-cols-3 gap-5">
             {MONTHLY.map((p, i) => (
               <div key={p.seats} className={`relative p-6 rounded-2xl border bg-white flex flex-col ${i === 1 ? "border-gold shadow-lg" : "border-ink/10"}`}>
@@ -121,7 +122,7 @@ const Institutes = () => {
                     <li key={t} className="flex gap-2"><Check size={16} className="text-rise shrink-0 mt-0.5" />{t}</li>
                   ))}
                 </ul>
-                <button onClick={() => { setPlan(p); setForm(emptyForm); }} className="mt-6 w-full bg-ink text-paper font-semibold py-3 rounded-full hover:bg-ink-light">Buy now · {inr(p.price)}</button>
+                <button onClick={() => { setPlan(p); setForm(emptyForm); setMonths(1); }} className="mt-6 w-full bg-ink text-paper font-semibold py-3 rounded-full hover:bg-ink-light">Buy now · {inr(p.price)}</button>
               </div>
             ))}
           </div>
@@ -167,8 +168,20 @@ const Institutes = () => {
                 <select className={input} value={form.board} onChange={(e) => setForm({ ...form, board: e.target.value })}><option>CBSE</option><option>Tamil Nadu State Board</option></select></div>
               <div><label className="text-xs font-medium">Create a password *</label><input required minLength={6} type="password" className={input} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} /></div>
             </div>
-            <button disabled={busy} className="w-full bg-gold text-ink font-semibold py-3 rounded-full hover:bg-gold-dark disabled:opacity-60">{busy ? "Please wait…" : `Pay ${inr(plan.price)} & start`}</button>
-            <p className="text-xs text-ink/50 text-center">1-month plan from today. Renew anytime from your panel — early renewals add on after your current month.</p>
+            <div className="rounded-xl bg-ink/[0.04] p-3">
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-sm font-semibold">How many months?</span>
+                <div className="flex items-center gap-2">
+                  <button type="button" onClick={() => setMonths((m) => Math.max(1, m - 1))} className="w-8 h-8 rounded-full border border-ink/20 font-bold">−</button>
+                  <span className="w-20 text-center font-semibold whitespace-nowrap">{months} month{months > 1 ? "s" : ""}</span>
+                  <button type="button" onClick={() => setMonths((m) => Math.min(12, m + 1))} className="w-8 h-8 rounded-full border border-ink/20 font-bold">+</button>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5 mt-2">{[1, 3, 6, 12].map((m) => <button type="button" key={m} onClick={() => setMonths(m)} className={`text-xs px-2.5 py-1 rounded-full border ${months === m ? "bg-ink text-paper border-ink" : "border-ink/15"}`}>{m === 12 ? "12 months" : `${m} month${m > 1 ? "s" : ""}`}</button>)}</div>
+              <p className="text-xs text-ink/60 mt-2">{inr(plan.price)} × {months} = <b className="text-ink">{inr(plan.price * months)}</b></p>
+            </div>
+            <button disabled={busy} className="w-full bg-gold text-ink font-semibold py-3 rounded-full hover:bg-gold-dark disabled:opacity-60">{busy ? "Please wait…" : `Pay ${inr(plan.price * months)} & start`}</button>
+            <p className="text-xs text-ink/50 text-center">{months}-month plan from today. Renew anytime from your panel — early renewals add on after your current end date.</p>
           </form>
         </div>
       )}

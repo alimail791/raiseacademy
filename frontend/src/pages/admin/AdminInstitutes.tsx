@@ -14,7 +14,7 @@ interface Student { id: string; fullName: string; email: string; phone: string; 
 const fmt = (d: string) => new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 const inr = (n: number) => `₹${(n || 0).toLocaleString("en-IN")}`;
 const input = "w-full rounded-lg border border-ink/15 px-3 py-2 text-sm focus:border-gold outline-none bg-white";
-const blank = { referralCode: "", pack: "20", name: "", contactName: "", email: "", phone: "", city: "", board: "CBSE", seats: "20", amountPaid: "100000", paymentRef: "", startDate: new Date().toISOString().slice(0, 10), notes: "" };
+const blank = { referralCode: "", pack: "20", name: "", contactName: "", email: "", phone: "", city: "", board: "CBSE", seats: "20", amountPaid: "100000", paymentRef: "", startDate: new Date().toISOString().slice(0, 10), months: "12", billing: "yearly", notes: "" };
 
 const AdminInstitutes = () => {
   const [list, setList] = useState<Institute[]>([]);
@@ -59,6 +59,27 @@ const AdminInstitutes = () => {
     const amt = window.prompt(`Renew ${i.name} for one more year (from ${i.live ? fmt(i.endDate) : "today"}).\n\nTotal amount received so far (₹):`, String(i.amountPaid));
     if (amt === null) return;
     update(i, { renew: true, amountPaid: Number(amt) || i.amountPaid }, "Renewed for one year");
+  };
+
+  const months = (i: Institute) => {
+    const v = window.prompt(
+      `Plan length for ${i.name} (now valid till ${fmt(i.endDate)}).\n\nType a number to ADD that many months (e.g. 7)\nor "=N" to set the plan to N months from its start date (e.g. =7):`, "1");
+    if (!v) return;
+    const set = v.trim().startsWith("=");
+    const n = parseInt(v.replace("=", ""), 10);
+    if (!n || n < 1 || n > 36) { toast.error("Enter 1 to 36 months"); return; }
+    const amt = window.prompt("Total amount received so far (₹):", String(i.amountPaid));
+    if (amt === null) return;
+    update(i, { ...(set ? { setMonths: n } : { addMonths: n }), amountPaid: Number(amt) || i.amountPaid },
+      set ? `Plan set to ${n} month${n > 1 ? "s" : ""}` : `Added ${n} month${n > 1 ? "s" : ""}`);
+  };
+
+  const toggleBilling = (i: Institute) => {
+    const to = i.billing === "monthly" ? "yearly" : "monthly";
+    const msg = to === "monthly"
+      ? `Switch ${i.name} to online monthly renewal? They can then renew from their panel via Razorpay (1–12 months).`
+      : `Switch ${i.name} to offline renewal? You renew them here after payment.`;
+    if (window.confirm(msg)) update(i, { billing: to }, to === "monthly" ? "Now online monthly" : "Now offline");
   };
 
   const changePack = (i: Institute) => {
@@ -107,7 +128,7 @@ const AdminInstitutes = () => {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="font-display text-2xl font-bold">Institutes</h1>
-          <p className="text-sm text-ink/60">Bulk student packs, 1 year. {list.length} institutes · {totalUsed}/{totalSeats} seats used · {inr(revenue)} received</p>
+          <p className="text-sm text-ink/60">Bulk student packs — yearly or custom months. {list.length} institutes · {totalUsed}/{totalSeats} seats used · {inr(revenue)} received</p>
         </div>
         <button onClick={() => setShowForm(!showForm)} className="flex items-center gap-2 text-sm font-semibold bg-gold text-ink px-4 py-2 rounded-full"><Plus size={16} /> New institute</button>
       </div>
@@ -133,7 +154,11 @@ const AdminInstitutes = () => {
           <div><label className="text-xs font-medium">Seats *</label><input required type="number" min={1} className={input} value={form.seats} onChange={(e) => setForm({ ...form, seats: e.target.value, pack: "custom" })} /></div>
           <div><label className="text-xs font-medium">Amount received (₹)</label><input type="number" className={input} value={form.amountPaid} onChange={(e) => setForm({ ...form, amountPaid: e.target.value })} /></div>
           <div><label className="text-xs font-medium">Payment ref (UTR / cheque)</label><input className={input} value={form.paymentRef} onChange={(e) => setForm({ ...form, paymentRef: e.target.value })} /></div>
-          <div><label className="text-xs font-medium">Start date (valid 1 year)</label><input type="date" className={input} value={form.startDate} onChange={(e) => setForm({ ...form, startDate: e.target.value })} /></div>
+          <div><label className="text-xs font-medium">Duration (months)</label><input type="number" min={1} max={36} className={input} value={form.months} onChange={(e) => setForm({ ...form, months: e.target.value })} />
+            <div className="flex gap-1 mt-1">{[1, 3, 6, 7, 12].map((m) => <button type="button" key={m} onClick={() => setForm({ ...form, months: String(m) })} className={`text-[11px] px-2 py-0.5 rounded-full border ${form.months === String(m) ? "bg-ink text-paper border-ink" : "border-ink/15"}`}>{m === 12 ? "1 yr" : `${m}m`}</button>)}</div></div>
+          <div><label className="text-xs font-medium">Renewal</label>
+            <select className={input} value={form.billing} onChange={(e) => setForm({ ...form, billing: e.target.value })}><option value="yearly">Offline (admin renews)</option><option value="monthly">Online — institute renews via Razorpay</option></select></div>
+          <div><label className="text-xs font-medium">Start date (valid {Number(form.months) === 12 ? "1 year" : `${form.months || 0} months`})</label><input type="date" className={input} value={form.startDate} onChange={(e) => setForm({ ...form, startDate: e.target.value })} /></div>
           <div><label className="text-xs font-medium">Referred by (code, optional)</label><input className={input} value={form.referralCode} onChange={(e) => setForm({ ...form, referralCode: e.target.value.toUpperCase() })} placeholder="e.g. SUNX7K2P" /></div>
           <div className="sm:col-span-2"><label className="text-xs font-medium">Notes</label><input className={input} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} /></div>
           <div className="sm:col-span-2 lg:col-span-3 flex gap-2">
@@ -159,6 +184,8 @@ const AdminInstitutes = () => {
               <div className="flex flex-wrap gap-1">
                 <button onClick={() => toggleStudents(i)} title="Students" className="p-2 rounded-lg hover:bg-ink/5"><Users size={16} /></button>
                 <button onClick={() => renew(i)} title="Renew 1 year" className="p-2 rounded-lg hover:bg-ink/5"><RefreshCw size={16} /></button>
+                <button onClick={() => months(i)} title="Add months / set custom plan length" className="p-2 rounded-lg hover:bg-ink/5 text-xs font-semibold">Months</button>
+                <button onClick={() => toggleBilling(i)} title="Switch offline / online monthly renewal" className="p-2 rounded-lg hover:bg-ink/5 text-xs font-semibold">{i.billing === "monthly" ? "→ Offline" : "→ Online"}</button>
                 <button onClick={() => changePack(i)} title="Change pack" className="p-2 rounded-lg hover:bg-ink/5 text-xs font-semibold">Seats</button>
                 <button onClick={() => edit(i)} title="Edit payment ref / end date" className="p-2 rounded-lg hover:bg-ink/5"><Pencil size={16} /></button>
                 <button onClick={() => resetPw(i)} title="Reset password" className="p-2 rounded-lg hover:bg-ink/5"><KeyRound size={16} /></button>

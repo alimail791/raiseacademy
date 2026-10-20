@@ -7,6 +7,7 @@ const institutePaymentSchema = new mongoose.Schema(
     orderId: { type: String, required: true, unique: true },
     kind: { type: String, enum: ["new", "renew"], required: true },
     seats: { type: Number, required: true },
+    months: { type: Number, default: 1, min: 1, max: 12 },
     amount: { type: Number, required: true }, // rupees actually charged
     listPrice: { type: Number },               // before any referral discount
     referralDiscount: { type: Boolean, default: false }, // 40% credit applied to this order
