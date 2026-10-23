@@ -107,7 +107,7 @@ const Home = () => {
       <section className="bg-ink text-paper py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           <Counter to={70000} suffix="+" label="NEET Questions in bank" />
-          <Counter to={70} suffix="+" label="Mock Tests" />
+          <Counter to={1200} suffix="+" label="NEET Tests" />
           <Counter to={7} suffix="" label="Class levels covered" />
           <Counter to={365} suffix="" label="Days of daily quizzes" />
         </div>
