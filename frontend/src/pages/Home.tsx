@@ -9,6 +9,7 @@ import {
   BrainCircuit,
   BookMarked,
   Wallet,
+  Gift,
 } from "lucide-react";
 import Counter from "../components/Counter";
 import FreeTestSection from "../components/FreeTestSection";
@@ -50,9 +51,11 @@ const Home = () => {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="uppercase tracking-widest text-gold text-sm font-semibold mb-4"
+            className="mb-5"
           >
-            NEET Preparation, Built Around You
+            <Link to="/register" className="inline-flex items-center gap-2 bg-gold text-ink text-sm sm:text-base font-bold px-4 py-2 rounded-full shadow-lg shadow-gold/30 hover:scale-[1.03] transition-transform">
+              <Gift size={18} /> 30-DAY FREE TRIAL for every student <span className="hidden sm:inline font-medium">· no payment needed</span>
+            </Link>
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -68,7 +71,7 @@ const Home = () => {
             transition={{ delay: 0.2 }}
             className="mt-6 max-w-xl text-paper/80 text-lg"
           >
-            Mastering NEET concepts, Enroll Today for top results.
+            Every NEET mock test, chapter test, PYQ and daily quiz — <b className="text-gold">free for your first 30 days</b>. Register in 2 minutes, no card needed.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -80,7 +83,7 @@ const Home = () => {
               to="/register"
               className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark transition-colors"
             >
-              Enroll Now <ArrowRight size={18} />
+              Start 30 Days Free <ArrowRight size={18} />
             </Link>
             <a
               href="#free-test"
@@ -174,7 +177,7 @@ const Home = () => {
             to="/register"
             className="inline-flex items-center gap-2 mt-7 bg-white text-rise-dark font-semibold px-7 py-3 rounded-full hover:bg-paper transition-colors"
           >
-            Enroll Now <ArrowRight size={18} />
+            Start 30 Days Free <ArrowRight size={18} />
           </Link>
         </div>
       </section>

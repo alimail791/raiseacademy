@@ -72,7 +72,7 @@ const Navbar = () => {
                 to="/register"
                 className="text-sm font-semibold px-4 py-2 rounded-full bg-gold text-ink hover:bg-gold-dark transition-colors"
               >
-                Enroll Now
+                Start Free Trial
               </Link>
             </>
           )}
@@ -130,7 +130,7 @@ const Navbar = () => {
                   Login
                 </Link>
                 <Link to="/register" onClick={() => setOpen(false)} className="flex-1 text-center text-sm font-semibold px-4 py-2 rounded-full bg-gold text-ink">
-                  Enroll Now
+                  Start Free Trial
                 </Link>
               </>
             ) : (

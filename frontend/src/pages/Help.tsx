@@ -5,7 +5,7 @@ import { SITE } from "../utils/siteInfo";
 const FAQS = [
   {
     q: "How do I enroll?",
-    a: "Click 'Enroll Now' at the top of the site, fill in your details, and register. You'll be taken straight into YNeet to pick a plan once you're signed up.",
+    a: "Click 'Start Free Trial' at the top of the site, fill in your details, and register. Your free 30-day full-access trial starts right away — no payment needed. Pick a plan only when the trial ends.",
   },
   {
     q: "What courses do you offer?",
