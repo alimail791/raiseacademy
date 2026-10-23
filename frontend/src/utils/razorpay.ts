@@ -37,4 +37,5 @@ export async function payWithRazorpay(opts: { keyId: string; orderId: string; am
 
 export const trackPurchase = (value: number, item: string) => {
   try { (window as any).gtag?.("event", "purchase", { value, currency: "INR", items: [{ item_name: item }], transport_type: "beacon" }); } catch { /* analytics only */ }
+  try { (window as any).fbq?.("track", "Purchase", { value, currency: "INR", content_name: item }); } catch { /* analytics only */ }
 };

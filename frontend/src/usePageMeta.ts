@@ -20,8 +20,16 @@ const meta = (key: string, isProperty = false) => () => {
 // Keeps <title>, description, canonical and robots in step with the current
 // route during in-app navigation. The prerendered HTML already has the right
 // values for the first load; this only matters once React Router takes over.
+// The pixel's base code counts the first page; count later in-app navigations too.
+let firstView = true;
+
 export default function usePageMeta() {
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (firstView) { firstView = false; return; }
+    try { (window as any).fbq?.("track", "PageView"); } catch { /* analytics only */ }
+  }, [pathname]);
 
   useEffect(() => {
     // Blog articles set their own tags once the post loads (pages/BlogPost.tsx).

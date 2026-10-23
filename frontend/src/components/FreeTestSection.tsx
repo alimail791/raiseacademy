@@ -64,6 +64,7 @@ const FreeTestSection = () => {
       } else {
         setFinished(true);
         try { (window as any).gtag?.("event", "free_test_complete"); } catch { /* analytics only */ }
+        try { (window as any).fbq?.("track", "Lead", { content_name: "Free sample test" }); } catch { /* analytics only */ }
       }
     }
   };

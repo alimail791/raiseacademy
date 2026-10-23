@@ -135,6 +135,8 @@ const Register = () => {
       login(res.data.token, res.data.user);
       // Google Analytics / Ads conversion: a completed registration.
       try { (window as any).gtag?.("event", "sign_up", { method: "email", transport_type: "beacon" }); } catch { /* analytics must never block sign-up */ }
+      // Meta (Instagram/Facebook ads) conversion: a completed registration.
+      try { (window as any).fbq?.("track", "CompleteRegistration", { content_name: "YNeet free trial", status: true }); } catch { /* analytics only */ }
       toast.success("Welcome to YNeet!");
       // Straight into YNeet — see the same change in Login.tsx for why.
       goToYneet();
