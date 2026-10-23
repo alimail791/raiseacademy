@@ -22,7 +22,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/courses": {
     title: "NEET Online Course for Class 11, 12 & Droppers — Mock Tests & Practice | YNeet",
     description:
-      "Online NEET preparation for Class 11, Class 12 and droppers, plus NEET Foundation for Classes 6–10. Chapter-wise and full-length mock tests, previous year questions, daily quizzes and WhatsApp doubt support. Start with a ₹99 five-day trial.",
+      "Online NEET preparation for Class 11, Class 12 and droppers, plus NEET Foundation for Classes 6–10. Chapter-wise and full-length mock tests, previous year questions, daily quizzes and WhatsApp doubt support. Start with a free 30-day trial.",
   },
   "/about": {
     title: "About YNeet — Class-Wise NEET Preparation from Class 6 to Dropper",
