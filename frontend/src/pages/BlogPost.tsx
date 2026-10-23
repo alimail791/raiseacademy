@@ -67,7 +67,7 @@ const BlogPost = () => {
         <h2 className="font-display text-2xl font-bold">Practise NEET the smart way</h2>
         <p className="text-paper/75 mt-2">Chapter-wise PYQ tests, full mock tests and WhatsApp doubt support for Class 11, 12 and droppers. Plans from ₹300 a month.</p>
         <Link to="/neet-trial" className="inline-block mt-5 bg-gold text-ink font-semibold px-6 py-3 rounded-full">
-          Start the ₹99 trial
+          Start your free 30-day trial
         </Link>
       </div>
 

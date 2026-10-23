@@ -17,11 +17,11 @@ const FAQS = [
   },
   {
     q: "Is there a free trial?",
-    a: "Yes — try the free 30-question sample test right on this page (scroll up, or tap 'Take a Free Mock Test'), no registration needed. Once registered, YNeet also offers a 5-day full-access trial plan.",
+    a: "Yes — try the free 30-question sample test right on this page (scroll up, or tap 'Take a Free Mock Test'), no registration needed. Once registered, every new student gets a free 30-day full-access trial — no payment needed.",
   },
   {
     q: "How much does YNeet cost?",
-    a: "A 5-day full-access trial costs ₹99, and monthly plans start from ₹300 depending on your class. You'll see the exact price for your class on the Pricing page inside YNeet after you register, before you pay anything.",
+    a: "Your first 30 days are free with full access. After that, plans start from ₹300 a month depending on your class, and you can buy 1 to 12 months at a time. You'll see the exact price for your class on the Pricing page inside YNeet after you register, before you pay anything.",
   },
   {
     q: "I forgot my password",

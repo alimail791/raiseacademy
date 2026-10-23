@@ -53,7 +53,7 @@ function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => voi
       if (!url) return;
       document.execCommand("createLink", false, url);
     } else if (name === "insertCta") {
-      const text = window.prompt("Button text", "Start the ₹99 trial");
+      const text = window.prompt("Button text", "Start your free 30-day trial");
       const href = text && window.prompt("Button link", "https://www.yneet.in/neet-trial");
       if (!text || !href) return;
       document.execCommand("insertHTML", false, `<div class="cta"><p><strong>Add a short line here.</strong></p><p><a href="${href.replace(/"/g, "&quot;")}">${text.replace(/</g, "&lt;")}</a></p></div><p></p>`);

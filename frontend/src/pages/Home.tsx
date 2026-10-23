@@ -22,7 +22,7 @@ const whyUs = [
   { icon: TrendingUp, title: "Progress Tracking", desc: "See your score trend, subject-wise strength, and estimated rank as you improve." },
   { icon: BookMarked, title: "Flashcards & Formulas", desc: "Chapter-wise flashcards and formula sheets for Physics, Chemistry and Biology." },
   { icon: MessageCircle, title: "Doubt Support", desc: "Reach us directly on WhatsApp whenever you're stuck." },
-  { icon: Wallet, title: "Affordable Plans", desc: "Start with a 5-day trial for ₹99, or go monthly from just ₹300 (price depends on your class) — full access either way." },
+  { icon: Wallet, title: "Affordable Plans", desc: "Start with a free 30-day trial, then plans from just ₹300/month (price depends on your class) — buy 1 to 12 months at a time." },
 ];
 
 const Home = () => {
@@ -169,7 +169,7 @@ const Home = () => {
       <section className="bg-rise text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="font-display text-3xl font-bold">Ready to raise your rank?</h2>
-          <p className="mt-3 text-white/85">Enroll now and start with a 5-day full-access trial for ₹99.</p>
+          <p className="mt-3 text-white/85">Enroll now and get 30 days of full access free.</p>
           <Link
             to="/register"
             className="inline-flex items-center gap-2 mt-7 bg-white text-rise-dark font-semibold px-7 py-3 rounded-full hover:bg-paper transition-colors"

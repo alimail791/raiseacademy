@@ -24,19 +24,19 @@ const NeetTrial = () => {
             NEET Mock Tests &amp; Practice
           </p>
           <h1 className="font-display text-3xl sm:text-5xl font-bold leading-tight">
-            Start your NEET prep today for just <span className="text-gold">₹99</span>
+            Start your NEET prep today — <span className="text-gold">free for 30 days</span>
           </h1>
           <p className="mt-4 text-paper/80 text-base sm:text-lg">
-            5 days of full access to every mock test, quiz and practice question.
+            30 days of full access to every mock test, quiz and practice question. No payment, no card.
           </p>
 
           <Link
             to="/register"
             className="mt-8 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-8 py-4 rounded-full text-lg hover:bg-gold-dark transition-colors"
           >
-            Register &amp; Start Trial <ArrowRight size={20} />
+            Register &amp; Start Free Trial <ArrowRight size={20} />
           </Link>
-          <p className="mt-3 text-paper/60 text-sm">Takes about 2 minutes. Monthly plans from ₹300.</p>
+          <p className="mt-3 text-paper/60 text-sm">Takes about 2 minutes. After the trial, plans from ₹300/month — buy 1 to 12 months at a time.</p>
         </div>
       </section>
 
@@ -54,7 +54,7 @@ const NeetTrial = () => {
             to="/register"
             className="flex-1 inline-flex justify-center items-center gap-2 bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
           >
-            Start the ₹99 trial <ArrowRight size={18} />
+            Start the free 30-day trial <ArrowRight size={18} />
           </Link>
           <a
             href={whatsapp}

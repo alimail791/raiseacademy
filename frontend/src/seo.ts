@@ -32,12 +32,12 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/help": {
     title: "Help & FAQs — YNeet NEET Preparation",
     description:
-      "Answers to common questions about YNeet: how to enroll, which courses are available, the free sample test and ₹99 trial, plans, and how to reach us on WhatsApp.",
+      "Answers to common questions about YNeet: how to enroll, which courses are available, the free sample test and free 30-day trial, plans, and how to reach us on WhatsApp.",
   },
   "/neet-trial": {
-    title: "Start NEET Prep for ₹99 — 5-Day Full-Access Trial | YNeet",
+    title: "Start NEET Prep Free — 30-Day Full-Access Trial | YNeet",
     description:
-      "Five days of full access to every YNeet mock test, daily quiz and practice question for just ₹99. Made for Class 11, 12 and droppers. Monthly plans from ₹300.",
+      "30 days of free full access to every YNeet mock test, daily quiz and practice question. Made for Class 11, 12 and droppers. Plans from ₹300/month after the trial.",
   },
   "/institutes": {
     title: "YNeet for NEET Coaching Centres — Student Packs from ₹9,999/month",

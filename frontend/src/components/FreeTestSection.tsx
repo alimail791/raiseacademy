@@ -107,7 +107,7 @@ const FreeTestSection = () => {
               to="/register"
               className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark transition-colors"
             >
-              Register &amp; Start Your ₹99 Trial <ArrowRight size={18} />
+              Register &amp; Start Your Free 30-Day Trial <ArrowRight size={18} />
             </Link>
           </div>
         </div>

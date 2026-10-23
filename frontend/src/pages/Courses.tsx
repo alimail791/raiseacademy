@@ -38,7 +38,7 @@ const included = [
 
 const steps = [
   { title: "Register", desc: "Create your account in about two minutes and tell us your class." },
-  { title: "Pick a plan", desc: "Start with the ₹99 five-day trial, or choose a monthly plan." },
+  { title: "Pick a plan", desc: "Start with the free 30-day trial, then buy as many months as you need." },
   { title: "Start practising", desc: "Every test, quiz and question you see is matched to your class syllabus." },
 ];
 
@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     q: "How much does the online NEET course cost?",
-    a: "You can start with a five-day full-access trial for ₹99. Monthly plans start from ₹300, depending on your class. Plans are one-time payments.",
+    a: "Every new student gets a free 30-day full-access trial. After that, plans start from ₹300 a month depending on your class — buy 1 to 12 months in one go. Plans are one-time payments, no auto-charge.",
   },
   {
     q: "Can I try YNeet before paying?",
@@ -126,19 +126,19 @@ const Courses = () => {
           <h2 className="font-display text-2xl font-bold">Plans &amp; pricing</h2>
           <div className="mt-6 space-y-5">
             <div>
-              <p className="text-gold font-display text-3xl font-bold">₹99</p>
-              <p className="text-paper/80">Five-day trial with full access to every mock test, quiz and practice question.</p>
+              <p className="text-gold font-display text-3xl font-bold">Free · 30 days</p>
+              <p className="text-paper/80">Full access to every mock test, quiz and practice question. No payment needed.</p>
             </div>
             <div>
               <p className="text-gold font-display text-3xl font-bold">From ₹300<span className="text-base font-body text-paper/70"> / month</span></p>
-              <p className="text-paper/80">Monthly plans, priced by class. One-time payments.</p>
+              <p className="text-paper/80">Priced by class. Choose 1 to 12 months — one-time payment.</p>
             </div>
           </div>
           <Link
             to="/register"
             className="mt-8 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark transition-colors"
           >
-            Start the ₹99 trial <ArrowRight size={18} />
+            Start your free trial <ArrowRight size={18} />
           </Link>
         </div>
       </section>

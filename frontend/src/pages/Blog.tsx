@@ -27,7 +27,7 @@ const Blog = () => {
           <div className="p-6 rounded-2xl border border-ink/10">
             New articles are on the way. Meanwhile,{" "}
             <Link to="/neet-trial" className="text-rise-dark font-semibold underline">
-              try YNeet for ₹99
+              try YNeet free for 30 days
             </Link>
             .
           </div>
@@ -51,10 +51,10 @@ const Blog = () => {
       </div>
 
       <div className="mt-12 p-7 rounded-2xl bg-ink text-paper">
-        <h2 className="font-display text-2xl font-bold">Start your NEET preparation for ₹99</h2>
+        <h2 className="font-display text-2xl font-bold">Start your NEET preparation — free for 30 days</h2>
         <p className="text-paper/75 mt-2">Five days of full access to mock tests, chapter-wise PYQs, daily quizzes and WhatsApp doubt support.</p>
         <Link to="/neet-trial" className="inline-block mt-5 bg-gold text-ink font-semibold px-6 py-3 rounded-full">
-          Start the ₹99 trial
+          Start your free 30-day trial
         </Link>
       </div>
     </div>
