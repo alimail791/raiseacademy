@@ -108,6 +108,8 @@ fs.writeFileSync(
       cleanUrls: true,
       trailingSlash: false,
       directoryListing: false,
+      // Common misspellings of the free-trial landing page ("trail" for "trial") go to the real page.
+      redirects: ["/neet-trail", "/free-trial", "/free-trail", "/trial", "/trail"].map((source) => ({ source, destination: "/neet-trial", type: 301 })),
       rewrites: [
         ...blogPosts.map((p) => ({ source: `/blog/${p.slug}`, destination: `/blog-posts/${p.slug}.html` })),
         { source: "/blog/:slug", destination: "/blog-shell.html" },
