@@ -101,7 +101,9 @@ export const adminCreateInstitute = async (req, res, next) => {
       html: box(`<p>Hello ${esc(inst.contactName || inst.name)},</p>
         <p>Your YNeet plan for <b>${inst.seats} students</b> (${planMonths} month${planMonths > 1 ? "s" : ""}) is active until <b>${fmtDate(inst.endDate)}</b>.</p>
         <p>Log in to your institute panel to add your students. Each student gets their own YNeet login by email.</p>
-        <p><b>Login:</b> <a href="${SITE()}/institute">${SITE()}/institute</a><br/><b>Email:</b> ${esc(inst.email)}<br/><b>Password:</b> ${password}</p>
+        <p style="margin:20px 0;"><a href="${SITE()}/institute/login" style="background:#F2A93B;color:#14213D;font-weight:bold;text-decoration:none;padding:12px 24px;border-radius:999px;display:inline-block;">Open Institute Login</a></p>
+        <p style="font-size:13px;color:#555;">Button not working? Copy this into your browser: <b>www.yneet.in/institute/login</b></p>
+        <p><b>Login email:</b> ${esc(inst.email)}<br/><b>Password:</b> ${password}</p>
         <p>Please change the password after your first login.</p>`),
     }).catch((e) => { emailed = false; console.warn("Institute welcome email failed:", e.message); });
 
@@ -156,7 +158,8 @@ export const adminResetInstitutePassword = async (req, res, next) => {
     let emailed = true;
     await sendEmail({
       to: inst.email, subject: "Your YNeet institute password was reset",
-      html: box(`<p>Your new password for <a href="${SITE()}/institute">${SITE()}/institute</a> is <b>${password}</b>.</p>`),
+      html: box(`<p>Your new YNeet institute password is <b>${password}</b>.</p><p style="margin:20px 0;"><a href="${SITE()}/institute/login" style="background:#F2A93B;color:#14213D;font-weight:bold;text-decoration:none;padding:12px 24px;border-radius:999px;display:inline-block;">Open Institute Login</a></p>
+        <p style="font-size:13px;color:#555;">Button not working? Copy this into your browser: <b>www.yneet.in/institute/login</b></p>`),
     }).catch(() => { emailed = false; });
     res.json({ password, emailed });
   } catch (err) { next(err); }

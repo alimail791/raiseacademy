@@ -175,7 +175,9 @@ export const signupVerify = async (req, res, next) => {
       to: inst.email, subject: `Welcome to YNeet — ${inst.name}`,
       html: box(`<p>Hello ${esc(inst.contactName || inst.name)},</p>
         <p>Thank you! Your payment of <b>${inr(pay.amount)}</b> was received. Your YNeet plan for <b>${pay.seats} students · ${monthsLabel(pay.months || 1)}</b> is active until <b>${fmtDate(inst.endDate)}</b>.</p>
-        <p><b>Institute panel:</b> <a href="${SITE()}/institute">${SITE()}/institute</a><br/><b>Login email:</b> ${esc(inst.email)}<br/>Use the password you chose at sign-up.</p>
+        <p style="margin:20px 0;"><a href="${SITE()}/institute/login" style="background:#F2A93B;color:#14213D;font-weight:bold;text-decoration:none;padding:12px 24px;border-radius:999px;display:inline-block;">Open Institute Login</a></p>
+        <p style="font-size:13px;color:#555;">Button not working? Copy this into your browser: <b>www.yneet.in/institute/login</b></p>
+        <p><b>Login email:</b> ${esc(inst.email)}<br/>Use the password you chose at sign-up.</p>
         <p>Add your students from the panel — each gets their own login. Payment ID: ${esc(paymentId)}</p>`),
     }).catch((e) => console.warn("Institute welcome email failed:", e.message));
     notifyAdmin(`New monthly institute: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Contact", `${inst.contactName || ""} ${inst.phone || ""}`], ["Email", inst.email], ["City", inst.city || ""], ["Plan", `${pay.seats} students × ${monthsLabel(pay.months || 1)}`], ["Amount", inr(pay.amount)], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId], ["Referred by", pay.referrerId ? String((await Institute.findById(pay.referrerId))?.name || "") : "—"]]);
@@ -268,7 +270,7 @@ export async function sendRenewalReminders() {
       await sendEmail({
         to: inst.email, subject: `Your YNeet plan ends on ${fmtDate(inst.endDate)} — renew now`,
         html: box(`<p>Hello ${esc(inst.contactName || inst.name)},</p><p>Your YNeet plan for <b>${inst.seats} students</b> ends on <b>${fmtDate(inst.endDate)}</b>. After that your students can't take tests.</p>
-          <p>Renew for 1 month (${inr(plan.price)}) or more months at once, in a minute from your panel: <a href="${SITE()}/institute">${SITE()}/institute</a> → Renew.</p><p>Renewing early adds the new month after your current end date, so no days are lost.</p>`),
+          <p>Renew for 1 month (${inr(plan.price)}) or more months at once, in a minute from your panel: <a href="${SITE()}/institute/login">${SITE()}/institute/login</a> → Renew.</p><p>Renewing early adds the new month after your current end date, so no days are lost.</p>`),
       });
       inst.reminderSentFor = inst.endDate; await inst.save();
     } catch (e) { console.warn("Renewal reminder failed:", inst.email, e.message); }
@@ -279,7 +281,7 @@ export async function sendRenewalReminders() {
     try {
       await sendEmail({
         to: inst.email, subject: "Your YNeet plan has ended — students are paused",
-        html: box(`<p>Your YNeet plan ended on <b>${fmtDate(inst.endDate)}</b>, so your students can't use YNeet right now.</p><p>Renew from your panel to restore access instantly: <a href="${SITE()}/institute">${SITE()}/institute</a></p>`),
+        html: box(`<p>Your YNeet plan ended on <b>${fmtDate(inst.endDate)}</b>, so your students can't use YNeet right now.</p><p>Renew from your panel to restore access instantly: <a href="${SITE()}/institute/login">${SITE()}/institute/login</a></p>`),
       });
       inst.expiredNoticeFor = inst.endDate; await inst.save();
       resyncAll(inst).catch(() => {}); // removes students' access in YNeet
