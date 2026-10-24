@@ -50,7 +50,13 @@ const Register = () => {
   const [step, setStep] = useState(0);
   const [searchParams] = useSearchParams();
   const referredByCode = searchParams.get("ref") || undefined;
-  const [form, setForm] = useState<FormState>(initial);
+  // Name and phone can arrive pre-filled from YNeet Daily (play.yneet.in), where the
+  // student has already verified this number on WhatsApp.
+  const [form, setForm] = useState<FormState>(() => ({
+    ...initial,
+    fullName: (searchParams.get("name") || "").slice(0, 60),
+    phone: (searchParams.get("phone") || "").replace(/\D/g, "").slice(-10),
+  }));
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
