@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { OTHER_SITES, siteLink, trackSiteClick } from "../OurOtherSites";
 import { MessageCircle } from "lucide-react";
-import { SITE } from "../../utils/siteInfo";
+import { SITE, gamesLink } from "../../utils/siteInfo";
 
 const Footer = () => {
   return (
@@ -23,6 +23,7 @@ const Footer = () => {
           <ul className="space-y-2 text-sm">
             <li><Link to="/courses" className="hover:text-gold">Courses</Link></li>
             <li><Link to="/register" className="hover:text-gold">Enroll Now</Link></li>
+            <li><a href={gamesLink("footer")} target="_blank" rel="noopener" className="hover:text-gold">Free NEET Games (daily)</a></li>
             <li><Link to="/help" className="hover:text-gold">Help & FAQ</Link></li>
             <li><Link to="/blog" className="hover:text-gold">Blog</Link></li>
             <li><Link to="/institutes" className="hover:text-gold">For Institutes</Link></li>

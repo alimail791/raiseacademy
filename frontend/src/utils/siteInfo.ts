@@ -1,3 +1,7 @@
+// YNeet Daily: free daily NEET puzzle games. `s` tells the games site where the
+// player came from, so sign-ups from this website show up separately in its stats.
+export const gamesLink = (spot: string) => `https://play.yneet.in/play?s=website_${spot}`;
+
 export const SITE = {
   name: "YNeet",
   logoUrl: "/logo.jpeg",

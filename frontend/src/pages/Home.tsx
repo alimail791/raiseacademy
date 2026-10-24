@@ -14,7 +14,7 @@ import {
 import Counter from "../components/Counter";
 import FreeTestSection from "../components/FreeTestSection";
 import OurOtherSites from "../components/OurOtherSites";
-import { SITE } from "../utils/siteInfo";
+import { SITE, gamesLink } from "../utils/siteInfo";
 
 const whyUs = [
   { icon: Layers, title: "Class-Scoped Content", desc: "Mock tests, quizzes and practice questions matched strictly to your class syllabus — 6th to Dropper." },
@@ -110,6 +110,56 @@ const Home = () => {
           <Counter to={1200} suffix="+" label="NEET Tests" />
           <Counter to={7} suffix="" label="Class levels covered" />
           <Counter to={365} suffix="" label="Days of daily quizzes" />
+        </div>
+      </section>
+
+      {/* FREE DAILY GAMES — a no-sign-up way in for visitors not ready to register */}
+      <section className="py-16 sm:py-20 bg-gold/10 border-y border-gold/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">New · YNeet Daily</p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold mt-2">
+              5 free NEET puzzles every day.
+            </h2>
+            <p className="text-ink/70 mt-4 text-lg max-w-xl">
+              A new set every morning, made from NCERT. Play in 5 minutes, keep your streak and see your All-India rank.
+              No sign-up needed to play.
+            </p>
+            <p className="text-ink/70 mt-3 max-w-xl">
+              Invite 3 friends and get <b>1 month of YNeet free</b>.
+            </p>
+            <a
+              href={gamesLink("home")}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-2 mt-7 bg-rise text-white font-semibold px-7 py-3 rounded-full hover:bg-rise-dark transition-colors"
+            >
+              Play today's puzzles <ArrowRight size={18} />
+            </a>
+          </div>
+          <ul className="grid sm:grid-cols-2 gap-3">
+            {[
+              { k: "B", name: "BioWord", desc: "Guess the biology term in 6 tries", c: "#2e9d68" },
+              { k: "P", name: "Pinpoint NEET", desc: "Find the NCERT chapter from 5 clues", c: "#3a6fd8" },
+              { k: "Z", name: "Pathway Zip", desc: "Connect cycles and pathways in order", c: "#d64f4a" },
+              { k: "Q", name: "Element Queens", desc: "Place atoms on a periodic-table grid", c: "#8457d4" },
+              { k: "5", name: "Daily 5", desc: "5 NEET MCQs in 2 minutes", c: "#dd851a" },
+            ].map((g) => (
+              <li key={g.name} className="flex items-center gap-3 bg-white rounded-xl border border-ink/10 p-3">
+                <span
+                  className="w-11 h-11 shrink-0 rounded-lg grid place-items-center font-display font-bold text-white text-lg"
+                  style={{ background: g.c }}
+                  aria-hidden="true"
+                >
+                  {g.k}
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-semibold">{g.name}</span>
+                  <span className="block text-sm text-ink/60">{g.desc}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

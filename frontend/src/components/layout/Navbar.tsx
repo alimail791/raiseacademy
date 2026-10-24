@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu, X, Sun, Moon, LogOut, LayoutDashboard } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
-import { SITE } from "../../utils/siteInfo";
+import { SITE, gamesLink } from "../../utils/siteInfo";
 import { goToYneet } from "../../utils/yneet";
 
 const links = [
@@ -49,6 +49,15 @@ const Navbar = () => {
               {l.label}
             </NavLink>
           ))}
+          <a
+            href={gamesLink("menu")}
+            target="_blank"
+            rel="noopener"
+            className="text-sm font-semibold text-rise-dark dark:text-gold inline-flex items-center gap-1.5"
+          >
+            Free Games
+            <span className="text-[10px] font-bold uppercase tracking-wide bg-gold text-ink px-1.5 py-0.5 rounded">New</span>
+          </a>
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
@@ -123,6 +132,16 @@ const Navbar = () => {
               {l.label}
             </NavLink>
           ))}
+          <a
+            href={gamesLink("menu")}
+            target="_blank"
+            rel="noopener"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-1.5 text-sm font-semibold py-1.5 text-rise-dark dark:text-gold"
+          >
+            Free NEET Games
+            <span className="text-[10px] font-bold uppercase tracking-wide bg-gold text-ink px-1.5 py-0.5 rounded">New</span>
+          </a>
           <div className="flex gap-3 pt-2">
             {!user ? (
               <>
