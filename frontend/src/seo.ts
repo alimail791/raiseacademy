@@ -20,9 +20,9 @@ export const PAGE_META: Record<string, PageMeta> = {
       "YNeet — NEET preparation built around your class syllabus. Full-length mock tests, daily quizzes, thousands of practice questions, a mistake notebook, flashcards, and formula sheets for Class 6 through Dropper. Free sample test, no login needed.",
   },
   "/courses": {
-    title: "NEET Online Course for Class 11, 12 & Droppers — Mock Tests & Practice | YNeet",
+    title: "NEET Online Course from Class 6 to Droppers — Mock Tests, Shorts & Practice | YNeet",
     description:
-      "Online NEET preparation for Class 11, Class 12 and droppers, plus NEET Foundation for Classes 6–10. Chapter-wise and full-length mock tests, previous year questions, daily quizzes and WhatsApp doubt support. Start with a free 30-day trial.",
+      "Online NEET preparation for Class 11, 12 and droppers (₹399/month), NEET Foundation for Class 9–10 (₹299/month) and free YNeet Junior for Class 6–8. Mock tests, PYQs, concept Shorts, daily quizzes, puzzles and WhatsApp doubt support. 30 days free.",
   },
   "/about": {
     title: "About YNeet — Class-Wise NEET Preparation from Class 6 to Dropper",
