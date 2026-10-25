@@ -6,7 +6,7 @@ import api from "../../api/axios";
 interface Institute {
   id: string; name: string; contactName?: string; email: string; phone?: string; city?: string; board?: string;
   seats: number; seatsUsed: number; seatsLeft: number; amountPaid: number; paymentRef?: string;
-  startDate: string; endDate: string; status: string; live: boolean; notes?: string; billing?: "yearly" | "monthly"; referralCode?: string; referralCredits?: number;
+  startDate: string; endDate: string; status: string; live: boolean; notes?: string; billing?: "yearly" | "monthly" | "pilot"; referralCode?: string; referralCredits?: number;
 }
 interface Pack { seats: number; price: number; }
 interface Student { id: string; fullName: string; email: string; phone: string; currentClass?: string; }
@@ -176,7 +176,7 @@ const AdminInstitutes = () => {
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="font-semibold">{i.name} <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${i.live ? "bg-rise/15 text-rise-dark" : "bg-red-100 text-red-700"}`}>{i.status === "suspended" ? "Suspended" : i.live ? "Active" : "Expired"}</span>
-                  <span className={`ml-1.5 text-xs px-2 py-0.5 rounded-full ${i.billing === "monthly" ? "bg-purple-100 text-purple-800" : "bg-ink/5 text-ink/60"}`}>{i.billing === "monthly" ? "Monthly · online" : "Yearly"}</span></p>
+                  <span className={`ml-1.5 text-xs px-2 py-0.5 rounded-full ${i.billing === "pilot" ? "bg-gold/20 text-gold-dark" : i.billing === "monthly" ? "bg-purple-100 text-purple-800" : "bg-ink/5 text-ink/60"}`}>{i.billing === "pilot" ? "Free pilot" : i.billing === "monthly" ? "Monthly · online" : "Yearly"}</span></p>
                 <p className="text-sm text-ink/60">{[i.contactName, i.email, i.phone, i.city].filter(Boolean).join(" · ")}</p>
                 <p className="text-sm mt-1"><b>{i.seatsUsed}/{i.seats}</b> seats · valid till <b>{fmt(i.endDate)}</b> · {inr(i.amountPaid)}{i.paymentRef ? ` · ref ${i.paymentRef}` : ""}</p>
                 <p className="text-xs text-ink/50 mt-0.5">Referral code {i.referralCode || "—"} · <button className="underline" onClick={() => { const v = window.prompt(`40% discount credits for ${i.name} (use one when you bill their next renewal offline):`, String(i.referralCredits || 0)); if (v !== null) update(i, { referralCredits: Number(v) || 0 }, "Credits updated"); }}>{i.referralCredits || 0} × 40% credit{(i.referralCredits || 0) === 1 ? "" : "s"}</button></p>

@@ -11,7 +11,7 @@ const boards = ["CBSE", "Tamil Nadu State Board"];
 const courses = ["NEET Foundation", "NEET Coaching"];
 // NEET Foundation = classes 6-10 (early foundation building).
 // NEET Coaching = classes 11, 12, or Dropper/Repeater (full NEET prep intensity).
-const foundationClasses = ["6", "7", "8", "9", "10"];
+const foundationClasses = ["9", "10"]; // Class 6–8 use the short free form
 const coachingClasses = ["11", "12", "Dropper"];
 const neetYears = [2027, 2028, 2029, 2030];
 
@@ -57,6 +57,10 @@ const Register = () => {
     fullName: (searchParams.get("name") || "").slice(0, 60),
     phone: (searchParams.get("phone") || "").replace(/\D/g, "").slice(-10),
   }));
+  // Class 6–8 is free and gets a one-screen form (plus email OTP) with the
+  // parent's WhatsApp instead of gender/place. Links can open it with ?junior=1.
+  const [junior, setJunior] = useState(searchParams.get("junior") === "1");
+  const [jr, setJr] = useState({ currentClass: "", parentPhone: "", board: "CBSE" });
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
@@ -125,6 +129,38 @@ const Register = () => {
     }
   };
 
+  const validateJunior = () => {
+    if (!form.fullName.trim()) { toast.error("Enter the student's name"); return false; }
+    if (!jr.currentClass) { toast.error("Choose the class"); return false; }
+    if (jr.parentPhone.replace(/\D/g, "").length < 10) { toast.error("Enter your parent's 10-digit WhatsApp number"); return false; }
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) { toast.error("Enter a valid email"); return false; }
+    if (form.password.length < 6) { toast.error("Password must be at least 6 characters"); return false; }
+    return true;
+  };
+
+  const submitJunior = async () => {
+    if (!otpVerified) { toast.error("Please verify your email OTP first"); return; }
+    setLoading(true);
+    try {
+      const res = await api.post("/auth/register", {
+        fullName: form.fullName.trim(), email: form.email, password: form.password,
+        board: jr.board, course: "NEET Foundation", currentClass: jr.currentClass,
+        parentPhone: jr.parentPhone.replace(/\D/g, "").slice(-10),
+        phone: form.phone.replace(/\D/g, "").slice(-10) || undefined,
+        referredByCode,
+      });
+      login(res.data.token, res.data.user);
+      try { (window as any).gtag?.("event", "sign_up", { method: "email", plan: "junior_free", transport_type: "beacon" }); } catch { /* analytics only */ }
+      try { (window as any).fbq?.("track", "CompleteRegistration", { content_name: "YNeet Junior free", status: true }); } catch { /* analytics only */ }
+      toast.success("Welcome to YNeet!");
+      goToYneet();
+    } catch (err: any) {
+      toast.error(err?.response?.data?.message || "Registration failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const submit = async () => {
     if (!otpVerified) {
       toast.error("Please verify your email OTP first");
@@ -157,10 +193,93 @@ const Register = () => {
     <div className="max-w-2xl mx-auto px-4 py-16">
       <h1 className="font-display text-3xl font-bold text-center">Register for YNeet</h1>
       <div className="mt-4 rounded-2xl bg-gold/15 border border-gold/40 px-4 py-3 text-center">
-        <p className="font-semibold text-ink">🎁 Your first 30 days are FREE — full access to every NEET test</p>
-        <p className="text-sm text-ink/70 mt-0.5">Starts automatically when you register. No payment, no card, no auto-charge.</p>
+        <p className="font-semibold text-ink">{junior ? "🎁 Free for Class 6–8 — daily puzzles, quiz and Shorts" : "🎁 Your first 30 days are FREE — full access to every NEET test"}</p>
+        <p className="text-sm text-ink/70 mt-0.5">{junior ? "No payment, ever." : "Starts automatically when you register. No payment, no card, no auto-charge."}</p>
       </div>
 
+      {/* Which path? Class 6–8 get the short, free form. */}
+      <div className="mt-6 grid grid-cols-2 gap-3">
+        <button type="button" onClick={() => setJunior(true)}
+          className={`rounded-2xl border-2 p-4 text-left transition-colors ${junior ? "border-rise bg-rise/10" : "border-ink/10 bg-white hover:border-rise/50"}`}>
+          <p className="font-display font-bold">Class 6–8</p>
+          <p className="text-sm text-rise-dark font-semibold">Free · 1-minute sign-up</p>
+        </button>
+        <button type="button" onClick={() => setJunior(false)}
+          className={`rounded-2xl border-2 p-4 text-left transition-colors ${!junior ? "border-gold bg-gold/10" : "border-ink/10 bg-white hover:border-gold/50"}`}>
+          <p className="font-display font-bold">Class 9 – Dropper</p>
+          <p className="text-sm text-ink/60">30 days free, then from ₹299/month</p>
+        </button>
+      </div>
+
+      {junior && (
+        <div className="mt-8 bg-white p-7 rounded-2xl border border-ink/10 space-y-4">
+          <div>
+            <label className="text-sm font-medium">Student's name</label>
+            <input className={inputClass} value={form.fullName} onChange={(e) => set("fullName", e.target.value)} placeholder="Riya Kumar" />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Class</label>
+            <div className="mt-1 grid grid-cols-3 gap-2">
+              {["6", "7", "8"].map((c) => (
+                <button type="button" key={c} onClick={() => setJr({ ...jr, currentClass: c })}
+                  className={`py-2.5 rounded-lg border font-semibold ${jr.currentClass === c ? "bg-rise text-white border-rise" : "border-ink/15 hover:border-rise"}`}>Class {c}</button>
+              ))}
+            </div>
+          </div>
+          <div>
+            <label className="text-sm font-medium">Parent's WhatsApp number</label>
+            <input className={inputClass} inputMode="numeric" value={jr.parentPhone} onChange={(e) => setJr({ ...jr, parentPhone: e.target.value })} placeholder="98765 43210" />
+            <p className="text-xs text-ink/50 mt-1">Parents get a free weekly progress report on WhatsApp.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label className="text-sm font-medium">Email (student's or parent's)</label>
+              <input type="email" className={inputClass} value={form.email} disabled={otpSent} onChange={(e) => set("email", e.target.value)} placeholder="name@gmail.com" />
+            </div>
+            <div>
+              <label className="text-sm font-medium">Create a password</label>
+              <input type="password" className={inputClass} value={form.password} onChange={(e) => set("password", e.target.value)} />
+            </div>
+          </div>
+          <div>
+            <label className="text-sm font-medium">Board</label>
+            <select className={inputClass} value={jr.board} onChange={(e) => setJr({ ...jr, board: e.target.value })}>
+              {boards.map((b) => <option key={b}>{b}</option>)}
+            </select>
+          </div>
+
+          <div className="rounded-xl bg-ink/[0.03] p-4 text-center space-y-3">
+            {!otpSent && (
+              <button type="button" disabled={loading} onClick={() => validateJunior() && sendOtp()}
+                className="w-full bg-gold text-ink font-semibold py-3 rounded-full hover:bg-gold-dark disabled:opacity-60">
+                {loading ? "Sending…" : "Send code to email"}
+              </button>
+            )}
+            {otpSent && !otpVerified && (
+              <>
+                <p className="text-sm text-ink/70">Enter the 6-digit code sent to <b>{form.email}</b></p>
+                <input maxLength={6} value={otp} onChange={(e) => setOtp(e.target.value)}
+                  className="w-full max-w-xs mx-auto block text-center tracking-[0.5em] text-xl rounded-lg border border-ink/15 px-4 py-2.5 focus:border-gold outline-none" />
+                <button type="button" onClick={verifyOtp} disabled={loading} className="w-full max-w-xs bg-gold text-ink font-semibold py-2.5 rounded-full hover:bg-gold-dark disabled:opacity-60">
+                  {loading ? "Verifying…" : "Verify code"}
+                </button>
+                <button type="button" onClick={sendOtp} className="block mx-auto text-sm text-rise-dark hover:underline">Resend code</button>
+              </>
+            )}
+            {otpVerified && (
+              <>
+                <p className="text-rise-dark font-semibold flex items-center justify-center gap-2"><Check size={18} /> Email verified</p>
+                <button type="button" onClick={() => validateJunior() && submitJunior()} disabled={loading}
+                  className="w-full bg-rise text-white font-semibold py-3 rounded-full hover:bg-rise-dark disabled:opacity-60">
+                  {loading ? "Creating account…" : "Create free account"}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {!junior && <>
       {/* Stepper */}
       <div className="flex items-center justify-between mt-8 mb-10">
         {steps.map((label, i) => (
@@ -346,6 +465,7 @@ const Register = () => {
           </button>
         )}
       </div>
+      </>}
     </div>
   );
 };

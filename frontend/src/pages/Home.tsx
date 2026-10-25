@@ -57,7 +57,7 @@ const Home = () => {
             <Link to="/register" className="inline-flex items-center gap-2 bg-gold text-ink text-sm sm:text-base font-bold px-4 py-2 rounded-full shadow-lg shadow-gold/30 hover:scale-[1.03] transition-transform">
               <Gift size={18} /> 30-DAY FREE TRIAL for every student <span className="hidden sm:inline font-medium">· no payment needed</span>
             </Link>
-            <Link to="/courses#pricing" className="ml-0 sm:ml-2 mt-2 sm:mt-0 inline-flex items-center gap-2 bg-white text-rise-dark text-sm sm:text-base font-bold px-4 py-2 rounded-full hover:scale-[1.03] transition-transform">
+            <Link to="/register?junior=1" className="ml-0 sm:ml-2 mt-2 sm:mt-0 inline-flex items-center gap-2 bg-white text-rise-dark text-sm sm:text-base font-bold px-4 py-2 rounded-full hover:scale-[1.03] transition-transform">
               FREE for Class 6–8 <span className="font-medium">· puzzles, quiz &amp; Shorts</span>
             </Link>
           </motion.p>

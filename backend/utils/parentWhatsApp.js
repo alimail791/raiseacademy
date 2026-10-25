@@ -2,7 +2,8 @@ import Student from "../models/Student.js";
 import Institute from "../models/Institute.js";
 import { yneetPost } from "./yneetSync.js";
 
-// Weekly WhatsApp progress report to parents of institute students, sent from
+// Weekly WhatsApp progress report to parents of institute students — and of
+// free Class 6–8 students, whose parent's WhatsApp is asked for at sign-up — sent from
 // the Raise Academy WhatsApp Business number through Meta's Cloud API using an
 // approved message template. Turned on by setting these Railway variables:
 //   WA_TOKEN            – permanent access token (same app as the WhatsApp bot)
@@ -60,20 +61,26 @@ export async function sendParentWhatsAppReports() {
   if (!waConfigured()) { console.log("Parent WhatsApp reports: not configured (set WA_TOKEN and WA_PHONE_ID_SHARED)."); return { sent: 0, skipped: "not configured" }; }
   const weekAgo = new Date(Date.now() - 7 * DAY + 60 * 60 * 1000);
   const students = await Student.find({
-    instituteId: { $ne: null },
     parentPhone: { $exists: true, $ne: "" },
-    $or: [{ lastParentWaSent: null }, { lastParentWaSent: { $exists: false } }, { lastParentWaSent: { $lt: weekAgo } }],
+    $and: [
+      { $or: [{ instituteId: { $ne: null } }, { currentClass: { $in: ["6", "7", "8"] } }] },
+      { $or: [{ lastParentWaSent: null }, { lastParentWaSent: { $exists: false } }, { lastParentWaSent: { $lt: weekAgo } }] },
+    ],
   }).select("fullName parentPhone instituteId");
   const institutes = {};
   let sent = 0, failed = 0;
   for (const s of students) {
     try {
-      const key = String(s.instituteId);
-      institutes[key] ??= await Institute.findById(s.instituteId);
-      const inst = institutes[key];
-      if (!inst || !inst.isLive()) continue; // pack expired / suspended
+      let fromName = "YNeet"; // free Class 6–8 students who signed up themselves
+      if (s.instituteId) {
+        const key = String(s.instituteId);
+        institutes[key] ??= await Institute.findById(s.instituteId);
+        const inst = institutes[key];
+        if (!inst || !inst.isLive()) continue; // pack expired / suspended
+        fromName = inst.name;
+      }
       const data = await yneetPost("parent-report", { userId: String(s._id) });
-      await sendTemplate(s.parentPhone, reportParams(s.fullName, inst.name, data));
+      await sendTemplate(s.parentPhone, reportParams(s.fullName, fromName, data));
       await Student.updateOne({ _id: s._id }, { $set: { lastParentWaSent: new Date() } });
       sent++;
       await new Promise((r) => setTimeout(r, 300));

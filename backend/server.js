@@ -36,6 +36,7 @@ app.use("/api/institute/login", authLimiter);
 app.use("/api/institute/forgot", authLimiter);
 app.use("/api/institute/reset-password", authLimiter);
 app.use("/api/institute/signup", authLimiter);
+app.use("/api/institute/pilot", authLimiter);
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 

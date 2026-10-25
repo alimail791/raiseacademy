@@ -189,13 +189,60 @@ export const signupVerify = async (req, res, next) => {
   }
 };
 
+// ───────── Free pilot ─────────
+
+// Free trial for a new institute: 5 student seats for 14 days, no payment.
+// One per email and per phone. Buying a plan from the panel turns it into a
+// monthly plan (see renewVerify).
+export const PILOT = { seats: 5, days: 14 };
+
+// POST /api/institute/pilot { name, contactName, email, phone, city, board, password, ref? }
+export const pilotSignup = async (req, res, next) => {
+  try {
+    const b = req.body || {};
+    const email = String(b.email || "").trim().toLowerCase();
+    if (!b.name?.trim() || !/^\S+@\S+\.\S+$/.test(email)) return res.status(400).json({ message: "Institute name and a valid email are required" });
+    const phone = String(b.phone || "").replace(/\D/g, "").slice(-10);
+    if (phone.length !== 10) return res.status(400).json({ message: "Enter a 10-digit phone number" });
+    if (String(b.password || "").length < 6) return res.status(400).json({ message: "Password must be at least 6 characters" });
+    if (await Institute.findOne({ email })) return res.status(409).json({ message: "An institute account with this email already exists. Log in instead." });
+    const samePhone = await Institute.find({ phone: { $regex: `${phone}$` } }).select("_id").limit(1);
+    if (samePhone.length) return res.status(409).json({ message: "This phone number has already been used for a YNeet institute. Log in, or WhatsApp us if you need help." });
+
+    const referrer = await findReferrer(b.ref, email, phone);
+    const start = new Date();
+    const end = new Date(start.getTime() + PILOT.days * 864e5);
+    const inst = await Institute.create({
+      name: b.name.trim(), contactName: String(b.contactName || "").trim(), email, phone,
+      city: String(b.city || "").trim(), board: ["CBSE", "Tamil Nadu State Board"].includes(b.board) ? b.board : "CBSE",
+      password: await bcrypt.hash(String(b.password), 10),
+      seats: PILOT.seats, amountPaid: 0, paymentRef: "Free pilot",
+      startDate: start, endDate: end, billing: "pilot",
+      ...(referrer && { referredBy: referrer._id }),
+    });
+    await ensureReferralCode(inst).catch(() => {});
+
+    sendEmail({
+      to: inst.email, subject: `Your free YNeet pilot is ready — ${inst.name}`,
+      html: box(`<p>Hello ${esc(inst.contactName || inst.name)},</p>
+        <p>Your free pilot is active: <b>${PILOT.seats} students for ${PILOT.days} days</b>, until <b>${fmtDate(end)}</b>. Add your students from the panel — each gets their own login with mock tests, PYQs, Shorts and analysis, and you see their progress live.</p>
+        <p style="margin:20px 0;"><a href="${SITE()}/institute/login" style="background:#F2A93B;color:#14213D;font-weight:bold;text-decoration:none;padding:12px 24px;border-radius:999px;display:inline-block;">Open Institute Login</a></p>
+        <p><b>Login email:</b> ${esc(inst.email)}<br/>Use the password you chose at sign-up.</p>
+        <p>When you're happy, choose a plan from the panel — your pilot days are kept.</p>`),
+    }).catch((e) => console.warn("Pilot welcome email failed:", e.message));
+    notifyAdmin(`New institute pilot: ${inst.name}`, [["Institute", inst.name], ["Contact", `${inst.contactName || ""} ${inst.phone || ""}`], ["Email", inst.email], ["City", inst.city || ""], ["Pilot", `${PILOT.seats} students × ${PILOT.days} days`], ["Ends", fmtDate(end)], ["Referred by", referrer ? referrer.name : "—"]]);
+
+    res.status(201).json({ token: signInstituteToken(inst), institute: instituteView(inst, 0) });
+  } catch (err) { next(err); }
+};
+
 // ───────── Existing institute: renew / change plan ─────────
 
 // POST /api/institute/billing/order { seats }
 export const renewOrder = async (req, res, next) => {
   try {
     const inst = req.institute;
-    if ((inst.billing || "yearly") !== "monthly") return res.status(400).json({ message: "Your institute is on a yearly pack. Please contact YNeet on WhatsApp to renew." });
+    if (!["monthly", "pilot"].includes(inst.billing || "yearly")) return res.status(400).json({ message: "Your institute is on a yearly pack. Please contact YNeet on WhatsApp to renew." });
     const plan = planFor(req.body?.seats);
     if (!plan) return res.status(400).json({ message: "Choose a plan" });
     const used = await Student.countDocuments(seatFilter(inst._id));
@@ -232,7 +279,12 @@ export const renewVerify = async (req, res, next) => {
       inst.amountPaid = (inst.amountPaid || 0) + pay.amount;
       inst.paymentRef = `Razorpay ${paymentId}`;
       if (pay.referralDiscount) inst.referralCredits = Math.max(0, (inst.referralCredits || 0) - 1);
+      // A pilot's first purchase makes it a normal monthly plan, and that's when
+      // the institute that referred it earns its credit.
+      const wasPilot = inst.billing === "pilot";
+      if (wasPilot) inst.billing = "monthly";
       await inst.save();
+      if (wasPilot && inst.referredBy) creditReferrer(inst.referredBy, inst).catch(() => {});
       pay.status = "paid"; pay.paymentId = paymentId; pay.paidAt = new Date();
       await pay.save();
       resyncAll(inst).catch(() => {});
@@ -262,11 +314,20 @@ export const billingHistory = async (req, res, next) => {
 export async function sendRenewalReminders() {
   const now = new Date();
   const in3 = new Date(now.getTime() + 3 * 864e5);
-  const due = await Institute.find({ billing: "monthly", status: "active", endDate: { $gt: now, $lte: in3 } });
+  const due = await Institute.find({ billing: { $in: ["monthly", "pilot"] }, status: "active", endDate: { $gt: now, $lte: in3 } });
   for (const inst of due) {
     if (inst.reminderSentFor && +inst.reminderSentFor === +inst.endDate) continue;
     const plan = planFor(inst.seats) || MONTHLY_PLANS[0];
     try {
+      if (inst.billing === "pilot") {
+        await sendEmail({
+          to: inst.email, subject: `Your free YNeet pilot ends on ${fmtDate(inst.endDate)}`,
+          html: box(`<p>Hello ${esc(inst.contactName || inst.name)},</p><p>Your free pilot ends on <b>${fmtDate(inst.endDate)}</b>. Keep your students practising by choosing a plan — from ${inr(MONTHLY_PLANS[0].price)}/month for ${MONTHLY_PLANS[0].seats} students. Your remaining pilot days are kept.</p>
+            <p>Choose a plan in a minute from your panel: <a href="${SITE()}/institute/login">${SITE()}/institute/login</a> → Choose a plan.</p>`),
+        });
+        inst.reminderSentFor = inst.endDate; await inst.save();
+        continue;
+      }
       await sendEmail({
         to: inst.email, subject: `Your YNeet plan ends on ${fmtDate(inst.endDate)} — renew now`,
         html: box(`<p>Hello ${esc(inst.contactName || inst.name)},</p><p>Your YNeet plan for <b>${inst.seats} students</b> ends on <b>${fmtDate(inst.endDate)}</b>. After that your students can't take tests.</p>
@@ -275,7 +336,7 @@ export async function sendRenewalReminders() {
       inst.reminderSentFor = inst.endDate; await inst.save();
     } catch (e) { console.warn("Renewal reminder failed:", inst.email, e.message); }
   }
-  const expired = await Institute.find({ billing: "monthly", status: "active", endDate: { $lte: now, $gt: new Date(now.getTime() - 2 * 864e5) } });
+  const expired = await Institute.find({ billing: { $in: ["monthly", "pilot"] }, status: "active", endDate: { $lte: now, $gt: new Date(now.getTime() - 2 * 864e5) } });
   for (const inst of expired) {
     if (inst.expiredNoticeFor && +inst.expiredNoticeFor === +inst.endDate) continue;
     try {

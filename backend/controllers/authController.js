@@ -81,7 +81,14 @@ export const register = async (req, res, next) => {
       referredByCode,
     } = req.body;
 
-    if (!fullName || !gender || !phone || !email || !place || !password || !board || !course) {
+    // Class 6–8 (free) use a shorter form: no gender or place, but a parent's
+    // WhatsApp is required (it also becomes the contact phone if none is given).
+    const junior = ["6", "7", "8"].includes(String(currentClass || ""));
+    const parentPhone = String(req.body.parentPhone || "").replace(/\D/g, "").slice(-10);
+    if (junior) {
+      if (parentPhone.length !== 10) return res.status(400).json({ message: "Enter your parent's 10-digit WhatsApp number" });
+      if (!fullName || !email || !password || !board) return res.status(400).json({ message: "Missing required registration fields" });
+    } else if (!fullName || !gender || !phone || !email || !place || !password || !board || !course) {
       return res.status(400).json({ message: "Missing required registration fields" });
     }
 
@@ -106,13 +113,14 @@ export const register = async (req, res, next) => {
 
     const student = await Student.create({
       fullName,
-      gender,
-      phone,
+      gender: emptyToUndefined(gender),
+      phone: phone || (junior ? parentPhone : phone),
       email: email.toLowerCase(),
-      place,
+      place: emptyToUndefined(place),
       password: hashedPassword,
       board,
-      course,
+      course: junior ? "NEET Foundation" : course,
+      ...(parentPhone && { parentPhone }),
       currentClass: emptyToUndefined(currentClass),
       neetExamYear: emptyToUndefined(neetExamYear),
       currentSessionId: newSessionId(),

@@ -9,7 +9,7 @@ import { SITE } from "../../utils/siteInfo";
 
 interface Institute {
   name: string; email: string; seats: number; seatsUsed: number; seatsLeft: number;
-  startDate: string; endDate: string; status: string; live: boolean; billing?: "yearly" | "monthly";
+  startDate: string; endDate: string; status: string; live: boolean; billing?: "yearly" | "monthly" | "pilot";
   referralCode?: string; referralCredits?: number;
 }
 const MONTHLY_PLANS = [{ seats: 20, price: 3999 }, { seats: 50, price: 8999 }, { seats: 100, price: 14999 }];
@@ -243,19 +243,20 @@ const InstitutePanel = () => {
       {!inst.live && (
         <div className="rounded-xl bg-red-50 border border-red-200 text-red-800 px-4 py-3 text-sm flex flex-wrap items-center gap-3 justify-between">
           <span>{inst.status === "suspended" ? "Your institute account is suspended." : `Your plan ended on ${fmt(inst.endDate)}.`} Students can't use YNeet until it's renewed.</span>
-          {inst.billing === "monthly" && inst.status !== "suspended"
-            ? <button onClick={() => setRenewOpen(true)} className="bg-red-700 text-white font-semibold px-4 py-1.5 rounded-full">Renew now</button>
+          {(inst.billing === "monthly" || inst.billing === "pilot") && inst.status !== "suspended"
+            ? <button onClick={() => setRenewOpen(true)} className="bg-red-700 text-white font-semibold px-4 py-1.5 rounded-full">{inst.billing === "pilot" ? "Choose a plan" : "Renew now"}</button>
             : <a href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(`Hi YNeet, I'd like to renew the plan for ${inst.name}.`)}`} target="_blank" rel="noreferrer" className="underline font-semibold">Contact YNeet on WhatsApp</a>}
         </div>
       )}
 
       <div className="bg-white rounded-2xl border border-ink/10 px-5 py-4 flex flex-wrap items-center justify-between gap-3">
         <div className="text-sm">
-          <span className="font-semibold">{inst.billing === "monthly" ? "Monthly plan" : "Yearly pack"}</span>
+          <span className="font-semibold">{inst.billing === "pilot" ? "Free pilot" : inst.billing === "monthly" ? "Monthly plan" : "Yearly pack"}</span>
           <span className="text-ink/60"> · {inst.seats} students · {inst.live ? `valid till ${fmt(inst.endDate)}` : `ended ${fmt(inst.endDate)}`}</span>
-          {inst.live && inst.billing === "monthly" && Math.ceil((new Date(inst.endDate).getTime() - Date.now()) / 86400000) <= 5 && <span className="ml-2 text-xs font-semibold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">Ends soon</span>}
+          {inst.live && inst.billing !== "yearly" && Math.ceil((new Date(inst.endDate).getTime() - Date.now()) / 86400000) <= 5 && <span className="ml-2 text-xs font-semibold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">Ends soon</span>}
         </div>
         {inst.billing === "monthly" && <button onClick={() => { setRenewMonths(1); setRenewOpen(true); }} className="text-sm font-semibold bg-gold text-ink px-4 py-2 rounded-full hover:bg-gold-dark">Renew / change plan</button>}
+        {inst.billing === "pilot" && <button onClick={() => { setRenewMonths(1); setRenewOpen(true); }} className="text-sm font-semibold bg-gold text-ink px-4 py-2 rounded-full hover:bg-gold-dark">Choose a plan</button>}
       </div>
 
       {renewOpen && (

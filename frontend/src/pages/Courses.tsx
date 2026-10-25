@@ -109,7 +109,7 @@ const Courses = () => {
         YNeet Junior — free — for Class 6–8.
       </p>
 
-      <Link to="/register" className="mt-8 flex flex-wrap items-center gap-3 rounded-2xl bg-rise text-white px-5 py-4 max-w-3xl hover:bg-rise-dark transition-colors">
+      <Link to="/register?junior=1" className="mt-8 flex flex-wrap items-center gap-3 rounded-2xl bg-rise text-white px-5 py-4 max-w-3xl hover:bg-rise-dark transition-colors">
         <Gift size={26} className="shrink-0" />
         <span className="flex-1 min-w-[200px]"><b className="font-display text-lg">Free for Class 6–8.</b> Daily science puzzles, a daily quiz and concept Shorts — no payment, ever.</span>
         <span className="inline-flex items-center gap-1 font-semibold">Register free <ArrowRight size={16} /></span>
@@ -139,7 +139,7 @@ const Courses = () => {
             </ul>
 
             <Link
-              to="/register"
+              to={c.title === "YNeet Junior" ? "/register?junior=1" : "/register"}
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-rise-dark hover:text-rise"
             >
               Enroll in {c.title} <ArrowRight size={16} />
@@ -207,7 +207,7 @@ const Courses = () => {
                   </>
                 )}
                 <p className="text-sm text-ink/70 mt-3 flex-1">{p.note}</p>
-                <Link to="/register" className={`mt-5 text-center font-semibold py-2.5 rounded-full transition-colors ${free ? "bg-rise text-white hover:bg-rise-dark" : "bg-ink text-paper hover:bg-ink/90"}`}>
+                <Link to={free ? "/register?junior=1" : "/register"} className={`mt-5 text-center font-semibold py-2.5 rounded-full transition-colors ${free ? "bg-rise text-white hover:bg-rise-dark" : "bg-ink text-paper hover:bg-ink/90"}`}>
                   {free ? "Register free" : "Start 30 days free"}
                 </Link>
               </div>
