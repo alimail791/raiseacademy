@@ -13,16 +13,16 @@ const courses = [
   {
     icon: Stethoscope,
     title: "NEET Coaching",
-    tag: "Class 11, Class 12 & Droppers",
-    desc: "Full NEET-depth preparation for the exam itself. Practise every chapter of Physics, Chemistry and Biology with chapter-wise tests, then build exam stamina with full-length NEET mock tests and previous year questions.",
-    items: ["Class 11", "Class 12", "Droppers / repeaters", "Crash courses"],
+    tag: "Class 11, Class 12 & Droppers · from ₹399/month",
+    desc: "Full NEET-depth preparation for the exam itself. Practise every chapter of Physics, Chemistry and Biology with chapter-wise tests and concept Shorts, then build exam stamina with full-length NEET mock tests and previous year questions.",
+    items: ["720-mark full mock tests with rank analysis", "Chapter-wise tests and PYQs 2016–2026", "Concept Shorts in English, Tamil and Hindi", "WhatsApp doubt support"],
   },
   {
     icon: Microscope,
     title: "NEET Foundation",
-    tag: "Class 9 & Class 10",
+    tag: "Class 9 & Class 10 · ₹299/month",
     desc: "Build the base for NEET two years early — science concepts, MCQ practice and mock tests at the right depth for your class, so the jump to NEET-level material in Class 11 feels natural.",
-    items: ["Class 9 & 10 science MCQs", "Foundation mock tests", "Concept Shorts", "Logical thinking"],
+    items: ["Class 9 & 10 science MCQs", "Foundation mock tests", "Concept Shorts", "Daily quiz and puzzles"],
   },
   {
     icon: Puzzle,
@@ -71,6 +71,14 @@ const faqs = [
     a: "YNeet is free for Class 6–8. From Class 9, every new student gets a free 30-day full-access trial. After that it's ₹299/month for Class 9–10, ₹399/month for Class 11–12 and ₹499/month for droppers — or a full year for about 8 months' price (₹2,399 / ₹3,199 / ₹3,999). Plans are one-time payments, no auto-charge.",
   },
   {
+    q: "What do Class 6–8 students get for free?",
+    a: "Daily science puzzles, a daily quiz from their syllabus and concept Shorts — no payment, ever. Sign-up takes a minute, and parents get a free weekly progress report on WhatsApp. From Class 9 they can move to NEET Foundation.",
+  },
+  {
+    q: "What are YNeet Shorts?",
+    a: "Short 3–5 minute videos that explain one NEET concept each, in English, Tamil or Hindi, followed by a quick check. They're included in every plan.",
+  },
+  {
     q: "Can I try YNeet before paying?",
     a: "Yes. The homepage has a free 30-question NEET sample test — no login needed.",
   },
@@ -91,13 +99,14 @@ const Courses = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
       <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Courses</p>
       <h1 className="font-display text-4xl font-bold mt-2 max-w-3xl">
-        Online NEET course for Class 11, Class 12 &amp; Droppers
+        Online NEET course from Class 6 to Droppers
       </h1>
       <p className="mt-5 text-ink/70 text-lg leading-relaxed max-w-3xl">
         YNeet is online NEET preparation built around your class syllabus — chapter-wise and
-        full-length mock tests, previous year questions, a daily quiz and a large practice
-        question bank for Physics, Chemistry and Biology, with doubt support on WhatsApp.
-        Class 9–10 students can start early with NEET Foundation — and YNeet is free for Class 6–8.
+        full-length mock tests, previous year questions, 3–5 minute concept Shorts, a daily quiz
+        and a 4,000+ question practice bank for Physics, Chemistry and Biology, with doubt support
+        on WhatsApp. NEET Full for Class 11, 12 and droppers, NEET Foundation for Class 9–10, and
+        YNeet Junior — free — for Class 6–8.
       </p>
 
       <Link to="/register" className="mt-8 flex flex-wrap items-center gap-3 rounded-2xl bg-rise text-white px-5 py-4 max-w-3xl hover:bg-rise-dark transition-colors">
@@ -217,6 +226,26 @@ const Courses = () => {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="mt-16 grid md:grid-cols-2 gap-6">
+        <div className="rounded-2xl border border-ink/10 bg-white p-6">
+          <h2 className="font-display text-xl font-bold">Learn with YNeet Shorts</h2>
+          <p className="text-ink/70 text-sm leading-relaxed mt-2">
+            One concept in 3–5 minutes, made by teachers across India in English, Tamil and Hindi.
+            After every Short there's a quick check from the question bank, and wrong answers go
+            straight to your mistake notebook.
+          </p>
+          <Link to="/" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-rise-dark hover:text-rise">Watch sample Shorts on the homepage <ArrowRight size={16} /></Link>
+        </div>
+        <div className="rounded-2xl border border-ink/10 bg-white p-6">
+          <h2 className="font-display text-xl font-bold">For coaching institutes</h2>
+          <p className="text-ink/70 text-sm leading-relaxed mt-2">
+            Give every student YNeet from ₹1,200 per student per year, with a live progress panel and
+            weekly parent reports. Class 6–8 students are free and don't use a seat.
+          </p>
+          <Link to="/institutes" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-rise-dark hover:text-rise">See institute plans <ArrowRight size={16} /></Link>
+        </div>
       </section>
 
       <section className="mt-16 max-w-3xl">
