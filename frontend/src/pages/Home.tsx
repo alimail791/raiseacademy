@@ -18,7 +18,7 @@ import OurOtherSites from "../components/OurOtherSites";
 import { SITE, gamesLink } from "../utils/siteInfo";
 
 const whyUs = [
-  { icon: Layers, title: "Class-Scoped Content", desc: "Mock tests, quizzes and practice questions matched strictly to your class syllabus — 6th to Dropper." },
+  { icon: Layers, title: "Class-Scoped Content", desc: "Everything is matched to your class — free puzzles for Class 6–8, NEET Foundation for 9–10 and full NEET prep for 11, 12 and droppers." },
   { icon: ClipboardCheck, title: "Daily Practice", desc: "A fresh quiz every day plus a full practice bank filtered by chapter, topic and difficulty." },
   { icon: BrainCircuit, title: "Mistake Notebook", desc: "Every wrong answer is logged automatically so you know exactly what to revise." },
   { icon: TrendingUp, title: "Progress Tracking", desc: "See your score trend, subject-wise strength, and estimated rank as you improve." },
@@ -55,7 +55,7 @@ const Home = () => {
             className="mb-5"
           >
             <Link to="/register" className="inline-flex items-center gap-2 bg-gold text-ink text-sm sm:text-base font-bold px-4 py-2 rounded-full shadow-lg shadow-gold/30 hover:scale-[1.03] transition-transform">
-              <Gift size={18} /> 30-DAY FREE TRIAL for every student <span className="hidden sm:inline font-medium">· no payment needed</span>
+              <Gift size={18} /> 30-DAY FREE TRIAL · Class 9 to Dropper <span className="hidden sm:inline font-medium">· no payment needed</span>
             </Link>
             <Link to="/register?junior=1" className="ml-0 sm:ml-2 mt-2 sm:mt-0 inline-flex items-center gap-2 bg-white text-rise-dark text-sm sm:text-base font-bold px-4 py-2 rounded-full hover:scale-[1.03] transition-transform">
               FREE for Class 6–8 <span className="font-medium">· puzzles, quiz &amp; Shorts</span>
@@ -93,7 +93,7 @@ const Home = () => {
               href="#free-test"
               className="inline-flex items-center gap-2 bg-paper/10 border border-paper/30 text-paper font-semibold px-6 py-3 rounded-full hover:bg-paper/20 transition-colors"
             >
-              Take a Free Mock Test <ArrowRight size={18} />
+              Take a Free 30-Question Test <ArrowRight size={18} />
             </a>
             <a
               href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(SITE.whatsappMessage)}`}
@@ -112,7 +112,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           <Counter to={70000} suffix="+" label="NEET Questions in bank" />
           <Counter to={1200} suffix="+" label="NEET Tests" />
-          <Counter to={7} suffix="" label="Class levels covered" />
+          <Counter to={8} suffix="" label="Class levels covered (6th–Dropper)" />
           <Counter to={365} suffix="" label="Days of daily quizzes" />
         </div>
       </section>
@@ -123,10 +123,10 @@ const Home = () => {
           <div>
             <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">New · YNeet Daily</p>
             <h2 className="font-display text-3xl sm:text-4xl font-bold mt-2">
-              5 free NEET puzzles every day.
+              5 free puzzles every day, for every class.
             </h2>
             <p className="text-ink/70 mt-4 text-lg max-w-xl">
-              A new set every morning, made from NCERT. Play in 5 minutes, keep your streak and see your All-India rank.
+              A new set every morning, made from NCERT. Class 6–8, Class 9–10 and NEET students each get puzzles from their own syllabus and their own leaderboard. Play in 5 minutes and keep your streak.
               No sign-up needed to play.
             </p>
             <p className="text-ink/70 mt-3 max-w-xl">

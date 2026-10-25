@@ -15,14 +15,14 @@ const courses = [
     title: "NEET Coaching",
     tag: "Class 11, Class 12 & Droppers · from ₹399/month",
     desc: "Full NEET-depth preparation for the exam itself. Practise every chapter of Physics, Chemistry and Biology with chapter-wise tests and concept Shorts, then build exam stamina with full-length NEET mock tests and previous year questions.",
-    items: ["720-mark full mock tests with rank analysis", "Chapter-wise tests and PYQs 2016–2026", "Concept Shorts in English, Tamil and Hindi", "WhatsApp doubt support"],
+    items: ["720-mark full mock tests with rank analysis", "Chapter-wise tests and PYQs 2016–2026", "Concept Shorts (English now, Tamil and Hindi coming)", "WhatsApp doubt support"],
   },
   {
     icon: Microscope,
     title: "NEET Foundation",
     tag: "Class 9 & Class 10 · ₹299/month",
-    desc: "Build the base for NEET two years early — science concepts, MCQ practice and mock tests at the right depth for your class, so the jump to NEET-level material in Class 11 feels natural.",
-    items: ["Class 9 & 10 science MCQs", "Foundation mock tests", "Concept Shorts", "Daily quiz and puzzles"],
+    desc: "Build the base for NEET two years early with science concepts at the right depth for your class, so the jump to NEET-level material in Class 11 feels natural.",
+    items: ["Concept Shorts", "Daily puzzles from the Class 9–10 syllabus", "Daily quiz and mistake notebook", "WhatsApp doubt support", "Foundation mock tests — coming soon"],
   },
   {
     icon: Puzzle,
@@ -36,16 +36,16 @@ const courses = [
 // Keep in sync with YNeet backend/src/utils/pricing.js
 const plans = [
   { cls: "Class 6–8", name: "YNeet Junior", monthly: 0, year: 0, note: "Puzzles, daily quiz and Shorts" },
-  { cls: "Class 9–10", name: "NEET Foundation", monthly: 299, six: 1499, year: 2399, note: "Everything in YNeet" },
-  { cls: "Class 11–12", name: "NEET Full", monthly: 399, six: 1999, year: 3199, note: "Everything in YNeet", popular: true },
+  { cls: "Class 9–10", name: "NEET Foundation", monthly: 299, six: 1499, year: 2399, note: "Shorts, daily quiz, puzzles and doubt support · Foundation mock tests coming soon" },
+  { cls: "Class 11–12", name: "NEET Full", monthly: 399, six: 1999, year: 3199, note: "Full NEET prep: mock tests, PYQs, Shorts and more", popular: true },
   { cls: "Droppers", name: "NEET Full", monthly: 499, six: 2499, year: 3999, note: "Full NEET syllabus" },
 ];
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
 const included = [
   "Full-length NEET mock tests and chapter-wise tests, with instant analysis after every attempt",
-  "YNeet Shorts — 3–5 minute concept videos in English, Tamil and Hindi, with a quick check after each",
-  "Daily NEET puzzle games on play.yneet.in",
+  "YNeet Shorts — 3–5 minute concept videos with a quick check after each (English now, Tamil and Hindi coming)",
+  "Daily puzzle games on play.yneet.in, with puzzles and a leaderboard for your class",
   "Previous year NEET questions, organised year by year",
   "A practice question bank you can filter by chapter, topic and difficulty",
   "A fresh daily quiz, scoped to your class syllabus",
@@ -76,15 +76,15 @@ const faqs = [
   },
   {
     q: "What are YNeet Shorts?",
-    a: "Short 3–5 minute videos that explain one NEET concept each, in English, Tamil or Hindi, followed by a quick check. They're included in every plan.",
+    a: "Short 3–5 minute videos that explain one concept each, followed by a quick check. They're in English now, with Tamil and Hindi coming, and they're included in every plan, including free Class 6–8.",
   },
   {
     q: "Can I try YNeet before paying?",
-    a: "Yes. The homepage has a free 30-question NEET sample test — no login needed.",
+    a: "Yes. The homepage has a free 30-question NEET sample test, no login needed. And from Class 9, every new student gets 30 days of full access free before paying anything.",
   },
   {
     q: "Is the content the same for every class?",
-    a: "No. Mock tests, quizzes and practice questions are scoped to your exact class, so a Class 11 student practises Class 11 chapters and a dropper gets the full NEET syllabus.",
+    a: "No. Everything is scoped to your class: a Class 7 student gets Class 6–8 puzzles, a Class 11 student practises Class 11 chapters, and a dropper gets the full NEET syllabus.",
   },
 ];
 
@@ -102,11 +102,10 @@ const Courses = () => {
         Online NEET course from Class 6 to Droppers
       </h1>
       <p className="mt-5 text-ink/70 text-lg leading-relaxed max-w-3xl">
-        YNeet is online NEET preparation built around your class syllabus — chapter-wise and
-        full-length mock tests, previous year questions, 3–5 minute concept Shorts, a daily quiz
-        and a 4,000+ question practice bank for Physics, Chemistry and Biology, with doubt support
-        on WhatsApp. NEET Full for Class 11, 12 and droppers, NEET Foundation for Class 9–10, and
-        YNeet Junior — free — for Class 6–8.
+        YNeet is online NEET preparation built around your class syllabus. For Class 11, 12 and
+        droppers that means chapter-wise and full-length mock tests, previous year questions, 3–5 minute concept Shorts, a daily quiz
+        and a 70,000+ question practice bank for Physics, Chemistry and Biology, with doubt support
+        on WhatsApp. NEET Foundation prepares Class 9–10, and YNeet Junior is free for Class 6–8.
       </p>
 
       <Link to="/register?junior=1" className="mt-8 flex flex-wrap items-center gap-3 rounded-2xl bg-rise text-white px-5 py-4 max-w-3xl hover:bg-rise-dark transition-colors">
@@ -150,7 +149,8 @@ const Courses = () => {
 
       <section className="mt-16 grid lg:grid-cols-2 gap-10">
         <div>
-          <h2 className="font-display text-2xl font-bold">What's included in every plan</h2>
+          <h2 className="font-display text-2xl font-bold">What's included in NEET Full</h2>
+          <p className="text-ink/60 mt-1 text-sm">For Class 11, 12 and droppers. NEET Foundation (Class 9–10) has Shorts, the daily quiz, puzzles, the mistake notebook and doubt support now, with Foundation mock tests coming soon.</p>
           <ul className="mt-5 space-y-3">
             {included.map((p) => (
               <li key={p} className="flex items-start gap-3 text-ink/80">
@@ -170,7 +170,7 @@ const Courses = () => {
             </div>
             <div>
               <p className="text-gold font-display text-3xl font-bold">Class 9+ · 30 days free</p>
-              <p className="text-paper/80">Full access to every mock test, quiz, Short and practice question. No payment needed.</p>
+              <p className="text-paper/80">Full access to everything in your class's plan for 30 days. No payment needed.</p>
             </div>
           </div>
           <Link
@@ -232,7 +232,7 @@ const Courses = () => {
         <div className="rounded-2xl border border-ink/10 bg-white p-6">
           <h2 className="font-display text-xl font-bold">Learn with YNeet Shorts</h2>
           <p className="text-ink/70 text-sm leading-relaxed mt-2">
-            One concept in 3–5 minutes, made by teachers across India in English, Tamil and Hindi.
+            One concept in 3–5 minutes, made by teachers. English now, with Tamil and Hindi coming.
             After every Short there's a quick check from the question bank, and wrong answers go
             straight to your mistake notebook.
           </p>
