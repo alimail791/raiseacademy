@@ -21,14 +21,14 @@ const YEARLY = [
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
 const benefits = [
-  { icon: ClipboardCheck, title: "Full NEET mocks & chapter tests", desc: "720-mark mock tests plus chapter-wise tests for Physics, Chemistry, Botany and Zoology for Class 11, 12 and droppers. Class 9–10 Foundation tests are coming soon." },
+  { icon: ClipboardCheck, title: "Full NEET mocks & chapter tests", desc: "720-mark mock tests plus chapter-wise tests for Physics, Chemistry, Botany and Zoology for Class 11, 12 and droppers, plus school-level tests for Class 6–10." },
   { icon: Clapperboard, title: "Concept Shorts", desc: "3–5 minute concept videos (English now, Tamil and Hindi coming), each with a quick check — perfect for revision between your classes." },
   { icon: FileClock, title: "PYQs 2016–2026", desc: "Every NEET paper year by year, with answers and explanations." },
   { icon: BarChart3, title: "Instant analysis", desc: "Score, estimated rank and weakest chapters after every test." },
   { icon: BookOpenCheck, title: "Practice & mistake notebook", desc: "Practice targeted at each student's weak chapters; every wrong answer saved to revise." },
   { icon: Users, title: "Your institute panel", desc: "See every student's progress live, nudge inactive students on WhatsApp, download Excel reports." },
   { icon: MessageCircle, title: "Weekly parent reports", desc: "Parents get a progress report every week — they see the value of your coaching." },
-  { icon: Puzzle, title: "Class 6–8 free", desc: "Add your Class 6–8 students at no cost — they don't use a seat. Daily puzzles, quiz and Shorts keep your junior batches engaged." },
+  { icon: Puzzle, title: "Class 6–8 free", desc: "Add your Class 6–8 students at no cost — they don't use a seat. Class tests, daily puzzles, quiz and Shorts keep your junior batches engaged." },
 ];
 
 const input = "mt-1 w-full rounded-lg border border-ink/15 px-3 py-2.5 text-sm focus:border-gold outline-none bg-white";

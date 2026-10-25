@@ -18,7 +18,7 @@ import OurOtherSites from "../components/OurOtherSites";
 import { SITE, gamesLink } from "../utils/siteInfo";
 
 const whyUs = [
-  { icon: Layers, title: "Class-Scoped Content", desc: "Everything is matched to your class — free puzzles for Class 6–8, NEET Foundation for 9–10 and full NEET prep for 11, 12 and droppers." },
+  { icon: Layers, title: "Class-Scoped Content", desc: "Everything is matched to your class — free tests and puzzles for Class 6–8, Foundation tests for 9–10 and full NEET prep for 11, 12 and droppers." },
   { icon: ClipboardCheck, title: "Daily Practice", desc: "A fresh quiz every day plus a full practice bank filtered by chapter, topic and difficulty." },
   { icon: BrainCircuit, title: "Mistake Notebook", desc: "Every wrong answer is logged automatically so you know exactly what to revise." },
   { icon: TrendingUp, title: "Progress Tracking", desc: "See your score trend, subject-wise strength, and estimated rank as you improve." },
@@ -58,7 +58,7 @@ const Home = () => {
               <Gift size={18} /> 30-DAY FREE TRIAL · Class 9 to Dropper <span className="hidden sm:inline font-medium">· no payment needed</span>
             </Link>
             <Link to="/register?junior=1" className="ml-0 sm:ml-2 mt-2 sm:mt-0 inline-flex items-center gap-2 bg-white text-rise-dark text-sm sm:text-base font-bold px-4 py-2 rounded-full hover:scale-[1.03] transition-transform">
-              FREE for Class 6–8 <span className="font-medium">· puzzles, quiz &amp; Shorts</span>
+              FREE for Class 6–8 <span className="font-medium">· tests, puzzles, quiz &amp; Shorts</span>
             </Link>
           </motion.p>
           <motion.h1

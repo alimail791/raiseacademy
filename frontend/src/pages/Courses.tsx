@@ -21,22 +21,22 @@ const courses = [
     icon: Microscope,
     title: "NEET Foundation",
     tag: "Class 9 & Class 10 · ₹299/month",
-    desc: "Build the base for NEET two years early with science concepts at the right depth for your class, so the jump to NEET-level material in Class 11 feels natural.",
-    items: ["Concept Shorts", "Daily puzzles from the Class 9–10 syllabus", "Daily quiz and mistake notebook", "WhatsApp doubt support", "Foundation mock tests — coming soon"],
+    desc: "Build the base for NEET two years early with tests and science concepts at the right depth for your class, so the jump to NEET-level material in Class 11 feels natural.",
+    items: ["Foundation tests: full and subject-wise", "Concept Shorts", "Daily quiz, puzzles and mistake notebook", "WhatsApp doubt support"],
   },
   {
     icon: Puzzle,
     title: "YNeet Junior",
     tag: "Classes 6–8 · Free",
-    desc: "Free for Class 6–8. Daily science puzzles, a daily quiz from your syllabus and short concept videos — a fun habit that builds curiosity for science and medicine.",
-    items: ["Daily science puzzles", "Daily quiz", "Concept Shorts", "No payment, ever"],
+    desc: "Free for Class 6–8. Class tests, daily science puzzles, a daily quiz from your syllabus and short concept videos — a fun habit that builds curiosity for science and medicine.",
+    items: ["Class tests from your syllabus", "Daily science puzzles", "Daily quiz and concept Shorts", "No payment, ever"],
   },
 ];
 
 // Keep in sync with YNeet backend/src/utils/pricing.js
 const plans = [
-  { cls: "Class 6–8", name: "YNeet Junior", monthly: 0, year: 0, note: "Puzzles, daily quiz and Shorts" },
-  { cls: "Class 9–10", name: "NEET Foundation", monthly: 299, six: 1499, year: 2399, note: "Shorts, daily quiz, puzzles and doubt support · Foundation mock tests coming soon" },
+  { cls: "Class 6–8", name: "YNeet Junior", monthly: 0, year: 0, note: "Class tests, puzzles, daily quiz and Shorts" },
+  { cls: "Class 9–10", name: "NEET Foundation", monthly: 299, six: 1499, year: 2399, note: "Foundation tests, Shorts, daily quiz, puzzles and doubt support" },
   { cls: "Class 11–12", name: "NEET Full", monthly: 399, six: 1999, year: 3199, note: "Full NEET prep: mock tests, PYQs, Shorts and more", popular: true },
   { cls: "Droppers", name: "NEET Full", monthly: 499, six: 2499, year: 3999, note: "Full NEET syllabus" },
 ];
@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: "What do Class 6–8 students get for free?",
-    a: "Daily science puzzles, a daily quiz from their syllabus and concept Shorts — no payment, ever. Sign-up takes a minute, and parents get a free weekly progress report on WhatsApp. From Class 9 they can move to NEET Foundation.",
+    a: "Class tests, daily science puzzles, a daily quiz from their syllabus and concept Shorts — no payment, ever. Sign-up takes a minute, and parents get a free weekly progress report on WhatsApp. From Class 9 they can move to NEET Foundation.",
   },
   {
     q: "What are YNeet Shorts?",
@@ -110,7 +110,7 @@ const Courses = () => {
 
       <Link to="/register?junior=1" className="mt-8 flex flex-wrap items-center gap-3 rounded-2xl bg-rise text-white px-5 py-4 max-w-3xl hover:bg-rise-dark transition-colors">
         <Gift size={26} className="shrink-0" />
-        <span className="flex-1 min-w-[200px]"><b className="font-display text-lg">Free for Class 6–8.</b> Daily science puzzles, a daily quiz and concept Shorts — no payment, ever.</span>
+        <span className="flex-1 min-w-[200px]"><b className="font-display text-lg">Free for Class 6–8.</b> Class tests, daily science puzzles, a daily quiz and concept Shorts — no payment, ever.</span>
         <span className="inline-flex items-center gap-1 font-semibold">Register free <ArrowRight size={16} /></span>
       </Link>
 
@@ -150,7 +150,7 @@ const Courses = () => {
       <section className="mt-16 grid lg:grid-cols-2 gap-10">
         <div>
           <h2 className="font-display text-2xl font-bold">What's included in NEET Full</h2>
-          <p className="text-ink/60 mt-1 text-sm">For Class 11, 12 and droppers. NEET Foundation (Class 9–10) has Shorts, the daily quiz, puzzles, the mistake notebook and doubt support now, with Foundation mock tests coming soon.</p>
+          <p className="text-ink/60 mt-1 text-sm">For Class 11, 12 and droppers. NEET Foundation (Class 9–10) has its own Foundation tests, Shorts, the daily quiz, puzzles, the mistake notebook and doubt support.</p>
           <ul className="mt-5 space-y-3">
             {included.map((p) => (
               <li key={p} className="flex items-start gap-3 text-ink/80">
@@ -166,7 +166,7 @@ const Courses = () => {
           <div className="mt-6 space-y-5">
             <div>
               <p className="text-gold font-display text-3xl font-bold">Class 6–8 · Free</p>
-              <p className="text-paper/80">Daily puzzles, daily quiz and Shorts. No payment, no trial needed.</p>
+              <p className="text-paper/80">Class tests, daily puzzles, daily quiz and Shorts. No payment, no trial needed.</p>
             </div>
             <div>
               <p className="text-gold font-display text-3xl font-bold">Class 9+ · 30 days free</p>
