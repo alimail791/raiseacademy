@@ -23,6 +23,12 @@ export const MONTHLY_PLANS = [
   { seats: 100, price: 14999 },
 ];
 
+// Class 6–8 is free on YNeet, so those students never use one of the institute's
+// paid seats. Every "seats used" count goes through seatFilter.
+const isJuniorClass = (c) => /^(class\s*)?(6|7|8)(st|nd|rd|th)?$/i.test(String(c || "").trim());
+const JUNIOR_STORED = ["6", "7", "8", "6th", "7th", "8th", "Class 6", "Class 7", "Class 8"];
+export const seatFilter = (instituteId) => ({ instituteId, currentClass: { $nin: JUNIOR_STORED } });
+
 const SITE = () => (process.env.CLIENT_URL || "https://www.yneet.in").replace(/\/$/, "");
 const tempPassword = () => crypto.randomBytes(6).toString("base64").replace(/[^a-zA-Z0-9]/g, "").slice(0, 8).padEnd(8, "7");
 const fmtDate = (d) => new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
@@ -59,7 +65,7 @@ export const resyncAll = async (institute) => {
 export const adminListInstitutes = async (req, res, next) => {
   try {
     const list = await Institute.find().sort({ createdAt: -1 });
-    const counts = await Student.aggregate([{ $match: { instituteId: { $ne: null } } }, { $group: { _id: "$instituteId", n: { $sum: 1 } } }]);
+    const counts = await Student.aggregate([{ $match: { instituteId: { $ne: null }, currentClass: { $nin: JUNIOR_STORED } } }, { $group: { _id: "$instituteId", n: { $sum: 1 } } }]);
     const used = Object.fromEntries(counts.map((c) => [String(c._id), c.n]));
     res.json({ packs: PACKS, monthlyPlans: MONTHLY_PLANS, institutes: list.map((i) => instituteView(i, used[String(i._id)] || 0)) });
   } catch (err) { next(err); }
@@ -118,7 +124,7 @@ export const adminUpdateInstitute = async (req, res, next) => {
   try {
     const inst = await Institute.findById(req.params.id);
     if (!inst) return res.status(404).json({ message: "Institute not found" });
-    const used = await Student.countDocuments({ instituteId: inst._id });
+    const used = await Student.countDocuments(seatFilter(inst._id));
     const b = req.body;
     if (b.seats !== undefined && Number(b.seats) < used) return res.status(400).json({ message: `This institute already uses ${used} seats. Remove students first or keep at least ${used} seats.` });
     for (const k of ["name", "contactName", "phone", "city", "board", "paymentRef", "notes", "status"]) if (b[k] !== undefined) inst[k] = b[k];
@@ -210,14 +216,14 @@ export const instituteLogin = async (req, res, next) => {
     if (!email || !password) return res.status(400).json({ message: "Email and password are required" });
     const inst = await Institute.findOne({ email: String(email).toLowerCase() }).select("+password");
     if (!inst || !(await bcrypt.compare(password, inst.password))) return res.status(401).json({ message: "Invalid email or password" });
-    const used = await Student.countDocuments({ instituteId: inst._id });
+    const used = await Student.countDocuments(seatFilter(inst._id));
     res.json({ token: signInstituteToken(inst), institute: instituteView(inst, used) });
   } catch (err) { next(err); }
 };
 
 export const instituteMe = async (req, res, next) => {
   try {
-    const used = await Student.countDocuments({ instituteId: req.institute._id });
+    const used = await Student.countDocuments(seatFilter(req.institute._id));
     res.json({ institute: instituteView(req.institute, used) });
   } catch (err) { next(err); }
 };
@@ -264,7 +270,7 @@ export const instituteAddStudents = async (req, res, next) => {
     const rows = Array.isArray(req.body.students) ? req.body.students.slice(0, 500) : [];
     if (!rows.length) return res.status(400).json({ message: "No students to add" });
 
-    let used = await Student.countDocuments({ instituteId: inst._id });
+    let used = await Student.countDocuments(seatFilter(inst._id));
     const results = [];
     for (let i = 0; i < rows.length; i++) {
       const r = rows[i] || {};
@@ -278,14 +284,14 @@ export const instituteAddStudents = async (req, res, next) => {
       const fail = (message) => results.push({ row: i + 1, email, ok: false, message });
 
       if (!fullName || !/^\S+@\S+\.\S+$/.test(email) || !phone) { fail("Name, valid email and phone are required"); continue; }
-      if (used >= inst.seats) { fail(`No seats left (${inst.seats} in your pack)`); continue; }
-
       const existing = await Student.findOne({ email });
       if (existing) {
         if (existing.instituteId && String(existing.instituteId) === String(inst._id)) { fail("Already in your list"); continue; }
         if (existing.instituteId) { fail("This student is already assigned to another institute"); continue; }
+        const juniorExisting = isJuniorClass(existing.currentClass);
+        if (!juniorExisting && used >= inst.seats) { fail(`No seats left (${inst.seats} in your pack)`); continue; }
         await Student.updateOne({ _id: existing._id }, { $set: { instituteId: inst._id, ...(parentEmail && { parentEmail }), ...(parentPhone && { parentPhone }) } });
-        used++;
+        if (!juniorExisting) used++;
         await syncYneetAccess(existing._id, inst);
         if (parentEmail) syncParentEmail(existing._id, parentEmail);
         sendEmail({
@@ -298,6 +304,7 @@ export const instituteAddStudents = async (req, res, next) => {
 
       if (!gender) { fail("Gender must be Male, Female or Other"); continue; }
       if (!cls) { fail("Class must be 6–12 or Dropper"); continue; }
+      if (!isJuniorClass(cls) && used >= inst.seats) { fail(`No seats left (${inst.seats} in your pack)`); continue; }
       const password = tempPassword();
       try {
         const s = await Student.create({
@@ -307,7 +314,7 @@ export const instituteAddStudents = async (req, res, next) => {
           currentSessionId: crypto.randomBytes(16).toString("hex"),
           ...(parentEmail && { parentEmail }), ...(parentPhone && { parentPhone }),
         });
-        used++;
+        if (!isJuniorClass(cls)) used++;
         await syncYneetAccess(s._id, inst);
         let emailed = true;
         await sendEmail({
@@ -389,7 +396,7 @@ export const instituteResetPassword = async (req, res, next) => {
     inst.password = await bcrypt.hash(newPassword, 10);
     await inst.save();
     await Otp.deleteMany({ email, purpose: "institute-reset" });
-    const used = await Student.countDocuments({ instituteId: inst._id });
+    const used = await Student.countDocuments(seatFilter(inst._id));
     res.json({ message: "Password changed", token: signInstituteToken(inst), institute: instituteView(inst, used) });
   } catch (err) { next(err); }
 };
