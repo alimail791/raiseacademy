@@ -54,7 +54,7 @@ const FeaturedShortsSection = () => {
             <div className="max-w-2xl">
               <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">YNeet Shorts</p>
               <h2 className="font-display text-3xl sm:text-4xl font-bold mt-2">One NEET concept in 3–5 minutes.</h2>
-              <p className="text-ink/60 mt-2">Made by teachers across India, in English, Tamil and Hindi — with a quick check after every video.</p>
+              <p className="text-ink/60 mt-2">Made by teachers, with a quick check after every video. English now, Tamil and Hindi coming soon.</p>
             </div>
             <Link to="/register" className="inline-flex items-center gap-2 bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:bg-ink/90 transition-colors">
               Watch all Shorts free <ArrowRight size={18} />

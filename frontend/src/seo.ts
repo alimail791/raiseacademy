@@ -17,17 +17,17 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/": {
     title: "YNeet | NEET Coaching, Mock Tests & Practice Questions Online",
     description:
-      "YNeet — NEET preparation built around your class syllabus. Full-length mock tests, daily quizzes, thousands of practice questions, a mistake notebook, flashcards, and formula sheets for Class 6 through Dropper. Free sample test, no login needed.",
+      "YNeet — NEET preparation built around your class syllabus. Full-length NEET mock tests, PYQs and 70,000+ practice questions for Class 11, 12 and droppers, NEET Foundation for Class 9–10, and free daily puzzles, quiz and Shorts for Class 6–8. Free sample test, no login needed.",
   },
   "/courses": {
     title: "NEET Online Course from Class 6 to Droppers — Mock Tests, Shorts & Practice | YNeet",
     description:
-      "Online NEET preparation for Class 11, 12 and droppers (₹399/month), NEET Foundation for Class 9–10 (₹299/month) and free YNeet Junior for Class 6–8. Mock tests, PYQs, concept Shorts, daily quizzes, puzzles and WhatsApp doubt support. 30 days free.",
+      "Online NEET preparation for Class 11, 12 and droppers (₹399/month), NEET Foundation for Class 9–10 (₹299/month) and free YNeet Junior for Class 6–8. Mock tests, PYQs, concept Shorts, daily quizzes, puzzles and WhatsApp doubt support. 30 days free from Class 9.",
   },
   "/about": {
     title: "About YNeet — Class-Wise NEET Preparation from Class 6 to Dropper",
     description:
-      "YNeet is a NEET preparation platform with mock tests, daily quizzes, a practice question bank, a mistake notebook, flashcards and formula sheets — matched to your exact class, from Class 6 foundation to Dropper.",
+      "YNeet is a NEET preparation platform with mock tests, daily quizzes, a practice question bank, a mistake notebook, flashcards and formula sheets for Class 11, 12 and droppers, NEET Foundation for Class 9–10 and free daily puzzles for Class 6–8.",
   },
   "/help": {
     title: "Help & FAQs — YNeet NEET Preparation",
@@ -40,9 +40,9 @@ export const PAGE_META: Record<string, PageMeta> = {
       "30 days of free full access to every YNeet mock test, daily quiz and practice question. Made for Class 11, 12 and droppers. After the trial, plans from ₹399/month or ₹3,199 for a full year.",
   },
   "/institutes": {
-    title: "YNeet for NEET Coaching Centres — Student Packs from ₹9,999/month",
+    title: "YNeet for NEET Coaching Centres — Student Plans from ₹3,999/month",
     description:
-      "Give your NEET students full mock tests, chapter tests, PYQs 2016–2026 and instant analysis, with a live progress panel for your institute and weekly parent reports. Monthly plans from ₹9,999 for 20 students.",
+      "Give your NEET students full mock tests, chapter tests, PYQs 2016–2026 and instant analysis, with a live progress panel for your institute and weekly parent reports. Monthly plans from ₹3,999 for 20 students, and a free 14-day pilot with 5 students.",
   },
   "/blog": {
     title: "NEET Preparation Blog — PYQs, Mock Tests, Cutoffs & Study Plans | YNeet",

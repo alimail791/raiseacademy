@@ -21,8 +21,8 @@ const YEARLY = [
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
 const benefits = [
-  { icon: ClipboardCheck, title: "Full NEET mocks & chapter tests", desc: "720-mark mock tests plus chapter-wise tests for Physics, Chemistry, Botany and Zoology — matched to each student's class, from Class 9 to Dropper." },
-  { icon: Clapperboard, title: "Concept Shorts", desc: "3–5 minute concept videos in English, Tamil and Hindi, each with a quick check — perfect for revision between your classes." },
+  { icon: ClipboardCheck, title: "Full NEET mocks & chapter tests", desc: "720-mark mock tests plus chapter-wise tests for Physics, Chemistry, Botany and Zoology for Class 11, 12 and droppers. Class 9–10 Foundation tests are coming soon." },
+  { icon: Clapperboard, title: "Concept Shorts", desc: "3–5 minute concept videos (English now, Tamil and Hindi coming), each with a quick check — perfect for revision between your classes." },
   { icon: FileClock, title: "PYQs 2016–2026", desc: "Every NEET paper year by year, with answers and explanations." },
   { icon: BarChart3, title: "Instant analysis", desc: "Score, estimated rank and weakest chapters after every test." },
   { icon: BookOpenCheck, title: "Practice & mistake notebook", desc: "Practice targeted at each student's weak chapters; every wrong answer saved to revise." },

@@ -5,11 +5,11 @@ import { SITE } from "../utils/siteInfo";
 const FAQS = [
   {
     q: "How do I enroll?",
-    a: "Click 'Start Free Trial' at the top of the site, fill in your details, and register. Your free 30-day full-access trial starts right away — no payment needed. Pick a plan only when the trial ends.",
+    a: "Click 'Start Free Trial' at the top of the site, pick your class and register. Class 6–8 students get a one-minute free sign-up. From Class 9, your free 30-day full-access trial starts right away, with no payment needed. Pick a plan only when the trial ends.",
   },
   {
     q: "What courses do you offer?",
-    a: "NEET Foundation (Classes 6-10) for early foundation building, and NEET Coaching (Classes 11, 12, or Dropper/Repeater) for full exam-intensity prep. See the Courses page for details.",
+    a: "YNeet Junior (Class 6–8, free), NEET Foundation (Class 9–10), and NEET Coaching (Class 11, 12 and Droppers) for full exam-level prep. Coaching institutes can also buy plans for their students. See the Courses page for details.",
   },
   {
     q: "What is YNeet?",
@@ -17,7 +17,7 @@ const FAQS = [
   },
   {
     q: "Is there a free trial?",
-    a: "Yes — try the free 30-question sample test right on this page (scroll up, or tap 'Take a Free Mock Test'), no registration needed. Once registered, every new student gets a free 30-day full-access trial — no payment needed.",
+    a: "Yes — try the free 30-question sample test on the homepage (tap 'Take a Free 30-Question Test'), no registration needed. Once registered, every new student from Class 9 gets a free 30-day full-access trial with no payment needed. Class 6–8 is always free.",
   },
   {
     q: "How much does YNeet cost?",
