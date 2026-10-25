@@ -4,7 +4,7 @@ import Student from "../models/Student.js";
 import InstitutePayment from "../models/InstitutePayment.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import { yneetPost } from "../utils/yneetSync.js";
-import { MONTHLY_PLANS, PACKS, instituteView, resyncAll, signInstituteToken } from "./instituteController.js";
+import { MONTHLY_PLANS, PACKS, instituteView, resyncAll, signInstituteToken, seatFilter } from "./instituteController.js";
 
 // Monthly institute plans, paid online. Razorpay keys live in the YNeet backend;
 // we ask it to create orders and to verify payments (utils/yneetSync.yneetPost).
@@ -198,7 +198,7 @@ export const renewOrder = async (req, res, next) => {
     if ((inst.billing || "yearly") !== "monthly") return res.status(400).json({ message: "Your institute is on a yearly pack. Please contact YNeet on WhatsApp to renew." });
     const plan = planFor(req.body?.seats);
     if (!plan) return res.status(400).json({ message: "Choose a plan" });
-    const used = await Student.countDocuments({ instituteId: inst._id });
+    const used = await Student.countDocuments(seatFilter(inst._id));
     if (plan.seats < used) return res.status(400).json({ message: `You have ${used} students. Remove ${used - plan.seats} first, or choose a bigger plan.` });
     const useCredit = (inst.referralCredits || 0) > 0;
     const months = monthsOf(req.body?.months);
@@ -242,7 +242,7 @@ export const renewVerify = async (req, res, next) => {
       }).catch(() => {});
       notifyAdmin(`Institute renewed: ${inst.name} (${inr(pay.amount)})`, [["Institute", inst.name], ["Plan", `${pay.seats} students × ${monthsLabel(pay.months || 1)}`], ["Amount", inr(pay.amount) + (pay.referralDiscount ? " (40% referral credit)" : "")], ["Valid till", fmtDate(inst.endDate)], ["Payment", paymentId]]);
     }
-    const used = await Student.countDocuments({ instituteId: inst._id });
+    const used = await Student.countDocuments(seatFilter(inst._id));
     res.json({ institute: instituteView(inst, used) });
   } catch (err) {
     if (/YNeet|verify|fetch/i.test(err.message)) return res.status(502).json({ message: "Couldn't confirm the payment right now. Please don't pay again — refresh in a minute or WhatsApp us." });

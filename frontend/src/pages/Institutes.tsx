@@ -1,7 +1,7 @@
 import { useState, useEffect, FormEvent } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import { BarChart3, ClipboardCheck, FileClock, Users, MessageCircle, BookOpenCheck, X, Check, ShieldCheck, Gift } from "lucide-react";
+import { BarChart3, ClipboardCheck, FileClock, Users, MessageCircle, BookOpenCheck, X, Check, ShieldCheck, Gift, Clapperboard, Puzzle } from "lucide-react";
 import api from "../api/axios";
 import { INST_TOKEN } from "../api/instituteApi";
 import { payWithRazorpay, trackPurchase } from "../utils/razorpay";
@@ -21,12 +21,14 @@ const YEARLY = [
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
 const benefits = [
-  { icon: ClipboardCheck, title: "Full NEET mocks & chapter tests", desc: "720-mark mock tests plus chapter-wise tests for Physics, Chemistry, Botany and Zoology — matched to 11th, 12th and Dropper." },
+  { icon: ClipboardCheck, title: "Full NEET mocks & chapter tests", desc: "720-mark mock tests plus chapter-wise tests for Physics, Chemistry, Botany and Zoology — matched to each student's class, from Class 9 to Dropper." },
+  { icon: Clapperboard, title: "Concept Shorts", desc: "3–5 minute concept videos in English, Tamil and Hindi, each with a quick check — perfect for revision between your classes." },
   { icon: FileClock, title: "PYQs 2016–2026", desc: "Every NEET paper year by year, with answers and explanations." },
   { icon: BarChart3, title: "Instant analysis", desc: "Score, estimated rank and weakest chapters after every test." },
   { icon: BookOpenCheck, title: "Practice & mistake notebook", desc: "Practice targeted at each student's weak chapters; every wrong answer saved to revise." },
   { icon: Users, title: "Your institute panel", desc: "See every student's progress live, nudge inactive students on WhatsApp, download Excel reports." },
   { icon: MessageCircle, title: "Weekly parent reports", desc: "Parents get a progress report every week — they see the value of your coaching." },
+  { icon: Puzzle, title: "Class 6–8 free", desc: "Add your Class 6–8 students at no cost — they don't use a seat. Daily puzzles, quiz and Shorts keep your junior batches engaged." },
 ];
 
 const input = "mt-1 w-full rounded-lg border border-ink/15 px-3 py-2.5 text-sm focus:border-gold outline-none bg-white";
@@ -82,7 +84,7 @@ const Institutes = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
           <p className="text-gold font-semibold uppercase tracking-widest text-sm">For NEET coaching centres</p>
           <h1 className="font-display text-3xl sm:text-5xl font-bold mt-3 max-w-3xl leading-tight">Daily NEET practice for your students. Live progress for you.</h1>
-          <p className="mt-5 text-paper/80 max-w-2xl text-lg">Give every student YNeet's mock tests, PYQs and analysis on their phone — and see who is practising, their scores and weak chapters from your own panel.</p>
+          <p className="mt-5 text-paper/80 max-w-2xl text-lg">Give every student YNeet's mock tests, PYQs, concept Shorts and analysis on their phone — and see who is practising, their scores and weak chapters from your own panel. From {inr(1200)} per student per year.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#plans" className="bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">See plans</a>
             <a href={waLink("Hi YNeet, I'd like a demo for my NEET coaching centre.")} target="_blank" rel="noopener noreferrer" className="border border-paper/30 font-semibold px-6 py-3 rounded-full hover:bg-paper/10">Ask for a free demo</a>
@@ -105,6 +107,24 @@ const Institutes = () => {
         </div>
       </section>
 
+      {/* VALUE */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-4">
+        <div className="rounded-2xl bg-rise text-white p-6 sm:p-8 grid sm:grid-cols-3 gap-6 items-center">
+          <div className="sm:col-span-2">
+            <h2 className="font-display text-2xl font-bold">Less than ₹5 a day per student</h2>
+            <p className="text-white/85 mt-2">
+              Yearly packs work out to ₹1,200–₹1,600 per student per year — less than half of what a student pays alone (₹3,199/year for Class 11–12).
+              Add it to your fees or include it free; either way your students practise more and your results improve.
+            </p>
+          </div>
+          <ul className="space-y-1.5 text-sm">
+            {["One seat works for any class, 9th to Dropper", "Class 6–8 students are free", "Swap students anytime", "No GST"].map((t) => (
+              <li key={t} className="flex gap-2"><Check size={16} className="shrink-0 mt-0.5" />{t}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* MONTHLY PLANS */}
       <section id="plans" className="bg-ink/[0.03] py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -118,7 +138,7 @@ const Institutes = () => {
                 <p className="font-display text-4xl font-bold mt-2">{inr(p.price)}<span className="text-base font-medium text-ink/50"> / month</span></p>
                 <p className="text-sm text-rise-dark font-medium mt-1">≈ {inr(Math.round(p.price / p.seats))} per student</p>
                 <ul className="mt-5 space-y-2 text-sm text-ink/70 flex-1">
-                  {["Every YNeet feature for each student", "Institute panel with live progress", "Weekly parent reports", "Swap students anytime"].map((t) => (
+                  {["Every YNeet feature for each student, including Shorts", "Institute panel with live progress", "Weekly parent reports", "Swap students anytime", "Class 6–8 students free"].map((t) => (
                     <li key={t} className="flex gap-2"><Check size={16} className="text-rise shrink-0 mt-0.5" />{t}</li>
                   ))}
                 </ul>
@@ -133,13 +153,15 @@ const Institutes = () => {
       {/* YEARLY */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <h2 className="font-display text-2xl sm:text-3xl font-bold">Yearly packs — best value</h2>
-        <p className="text-ink/60 mt-2">One year for your whole batch. Payment by bank transfer, UPI or cheque — talk to us on WhatsApp.</p>
+        <p className="text-ink/60 mt-2">One year for your whole batch — about 8 months' price. Payment by bank transfer, UPI or cheque — talk to us on WhatsApp.</p>
         <div className="mt-8 grid md:grid-cols-3 gap-5">
           {YEARLY.map((p) => (
             <div key={p.seats} className="p-6 rounded-2xl border border-ink/10 bg-white">
               <p className="font-semibold text-ink/60">{p.seats} students · 1 year</p>
               <p className="font-display text-3xl font-bold mt-2">{inr(p.price)}</p>
-              <p className="text-sm text-rise-dark font-medium mt-1">≈ {inr(Math.round(p.price / p.seats / 12))} per student per month</p>
+              <p className="text-sm text-rise-dark font-medium mt-1">{inr(Math.round(p.price / p.seats))} per student per year</p>
+              {(() => { const m = MONTHLY.find((x) => x.seats === p.seats); return m && m.price * 12 > p.price
+                ? <p className="text-xs font-semibold text-ink/60 mt-1">Save {inr(m.price * 12 - p.price)} vs 12 monthly payments</p> : null; })()}
               <a href={waLink(`Hi YNeet, I'm interested in the yearly pack for ${p.seats} students.`)} target="_blank" rel="noopener noreferrer"
                 className="mt-5 inline-flex items-center gap-2 border border-ink/20 font-semibold px-5 py-2.5 rounded-full hover:border-gold"><MessageCircle size={16} /> Enquire on WhatsApp</a>
             </div>

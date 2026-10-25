@@ -337,7 +337,7 @@ const InstitutePanel = () => {
         <div className="bg-white rounded-2xl border border-ink/10 p-5 sm:col-span-2">
           <div className="flex justify-between text-sm"><span className="font-semibold">Seats used</span><span>{inst.seatsUsed} of {inst.seats}</span></div>
           <div className="mt-3 h-3 rounded-full bg-ink/10 overflow-hidden"><div className="h-full bg-gold" style={{ width: `${pct}%` }} /></div>
-          <p className="mt-2 text-sm text-ink/60">{inst.seatsLeft} seat{inst.seatsLeft === 1 ? "" : "s"} left. Removing a student frees their seat.</p>
+          <p className="mt-2 text-sm text-ink/60">{inst.seatsLeft} seat{inst.seatsLeft === 1 ? "" : "s"} left. Removing a student frees their seat. <b className="text-rise-dark">Class 6–8 students are free — they don't use a seat.</b></p>
         </div>
         <div className="bg-white rounded-2xl border border-ink/10 p-5">
           <p className="text-sm font-semibold">Valid till</p>
