@@ -40,6 +40,7 @@ const Institutes = () => {
   const [form, setForm] = useState(emptyForm);
   const [busy, setBusy] = useState(false);
   const [months, setMonths] = useState(1);
+  const [pilot, setPilot] = useState(false); // free 14-day pilot, 5 students
   // Referral: /institutes?ref=CODE — remembered for this visit so it survives navigation.
   const [params] = useSearchParams();
   const [ref, setRef] = useState("");
@@ -52,6 +53,20 @@ const Institutes = () => {
   }, [params]);
 
   const waLink = (msg: string) => `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+  const startPilot = async (e: FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    try {
+      const { data } = await api.post("/institute/pilot", { ...form, ref });
+      localStorage.setItem(INST_TOKEN, data.token);
+      try { (window as any).gtag?.("event", "generate_lead", { lead_type: "institute_pilot" }); } catch { /* analytics only */ }
+      toast.success("Your free pilot is ready — add up to 5 students.");
+      navigate("/institute");
+    } catch (err: any) {
+      toast.error(err?.response?.data?.message || "Something went wrong");
+    } finally { setBusy(false); }
+  };
 
   const buy = async (e: FormEvent) => {
     e.preventDefault();
@@ -86,7 +101,8 @@ const Institutes = () => {
           <h1 className="font-display text-3xl sm:text-5xl font-bold mt-3 max-w-3xl leading-tight">Daily NEET practice for your students. Live progress for you.</h1>
           <p className="mt-5 text-paper/80 max-w-2xl text-lg">Give every student YNeet's mock tests, PYQs, concept Shorts and analysis on their phone — and see who is practising, their scores and weak chapters from your own panel. From {inr(1200)} per student per year.</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#plans" className="bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">See plans</a>
+            <button onClick={() => { setForm(emptyForm); setPilot(true); }} className="bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">Start free 14-day pilot</button>
+            <a href="#plans" className="border border-paper/30 font-semibold px-6 py-3 rounded-full hover:bg-paper/10">See plans</a>
             <a href={waLink("Hi YNeet, I'd like a demo for my NEET coaching centre.")} target="_blank" rel="noopener noreferrer" className="border border-paper/30 font-semibold px-6 py-3 rounded-full hover:bg-paper/10">Ask for a free demo</a>
           </div>
         </div>
@@ -122,6 +138,18 @@ const Institutes = () => {
               <li key={t} className="flex gap-2"><Check size={16} className="shrink-0 mt-0.5" />{t}</li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* FREE PILOT */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+        <div className="rounded-2xl border-2 border-gold bg-gold/10 p-6 sm:p-8 flex flex-wrap items-center justify-between gap-5">
+          <div className="max-w-2xl">
+            <p className="text-gold-dark font-semibold uppercase tracking-widest text-xs">Free pilot</p>
+            <h2 className="font-display text-2xl font-bold mt-1">Try YNeet free for 14 days with 5 students</h2>
+            <p className="text-ink/70 mt-2">No payment, no card. Your panel is ready in a minute — add 5 students, watch their scores and weak chapters, and see the difference before you pay. Choose a plan any time; your remaining pilot days are kept.</p>
+          </div>
+          <button onClick={() => { setForm(emptyForm); setPilot(true); }} className="bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:bg-ink-light">Start free pilot</button>
         </div>
       </section>
 
@@ -168,6 +196,33 @@ const Institutes = () => {
           ))}
         </div>
       </section>
+
+      {/* FREE PILOT SIGN-UP */}
+      {pilot && (
+        <div className="fixed inset-0 z-50 bg-ink/50 flex items-center justify-center p-4" onClick={() => !busy && setPilot(false)}>
+          <form onSubmit={startPilot} onClick={(e) => e.stopPropagation()} className="bg-white rounded-2xl p-6 w-full max-w-lg max-h-[92vh] overflow-y-auto space-y-3">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h3 className="font-display text-xl font-bold">Free pilot · 5 students · 14 days</h3>
+                <p className="text-sm text-ink/60">Create your institute account. No payment needed.</p>
+              </div>
+              <button type="button" disabled={busy} onClick={() => setPilot(false)} className="p-1 rounded hover:bg-ink/5"><X size={20} /></button>
+            </div>
+            <div><label className="text-xs font-medium">Institute name *</label><input required className={input} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              <div><label className="text-xs font-medium">Contact person</label><input className={input} value={form.contactName} onChange={(e) => setForm({ ...form, contactName: e.target.value })} /></div>
+              <div><label className="text-xs font-medium">Phone / WhatsApp *</label><input required type="tel" className={input} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} /></div>
+              <div><label className="text-xs font-medium">Login email *</label><input required type="email" className={input} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} /></div>
+              <div><label className="text-xs font-medium">City</label><input className={input} value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} /></div>
+              <div><label className="text-xs font-medium">Students' board</label>
+                <select className={input} value={form.board} onChange={(e) => setForm({ ...form, board: e.target.value })}><option>CBSE</option><option>Tamil Nadu State Board</option></select></div>
+              <div><label className="text-xs font-medium">Create a password *</label><input required minLength={6} type="password" className={input} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} /></div>
+            </div>
+            <button disabled={busy} className="w-full bg-gold text-ink font-semibold py-3 rounded-full hover:bg-gold-dark disabled:opacity-60">{busy ? "Please wait…" : "Start free pilot"}</button>
+            <p className="text-xs text-ink/50 text-center">One free pilot per institute. Class 6–8 students are always free and don't use a seat.</p>
+          </form>
+        </div>
+      )}
 
       {/* SIGN-UP + PAY */}
       {plan && (

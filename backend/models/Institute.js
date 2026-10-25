@@ -22,8 +22,9 @@ const instituteSchema = new mongoose.Schema(
     endDate: { type: Date, required: true },
     status: { type: String, enum: ["active", "suspended"], default: "active" },
     // "yearly" = offline pack set up by admin; "monthly" = paid online via Razorpay
-    // and renewed by the institute from its panel.
-    billing: { type: String, enum: ["yearly", "monthly"], default: "yearly" },
+    // and renewed by the institute from its panel; "pilot" = free 14-day trial for
+    // 5 students, which becomes "monthly" when the institute buys a plan.
+    billing: { type: String, enum: ["yearly", "monthly", "pilot"], default: "yearly" },
     // Renewal reminder emails already sent for the current endDate (monthly plans).
     reminderSentFor: { type: Date },
     expiredNoticeFor: { type: Date },

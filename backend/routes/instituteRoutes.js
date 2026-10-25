@@ -18,6 +18,7 @@ router.get("/admin/:id/progress", protect, adminOnly, c.adminInstituteProgress);
 router.get("/plans", bill.getPlans);
 router.post("/signup/order", bill.signupOrder);
 router.post("/signup/verify", bill.signupVerify);
+router.post("/pilot", bill.pilotSignup); // free 14-day pilot, 5 students
 
 // Institute panel
 router.post("/login", c.instituteLogin);
