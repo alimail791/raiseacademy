@@ -37,7 +37,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/neet-trial": {
     title: "Start NEET Prep Free — 30-Day Full-Access Trial | YNeet",
     description:
-      "30 days of free full access to every YNeet mock test, daily quiz and practice question. Made for Class 11, 12 and droppers. Plans from ₹300/month after the trial.",
+      "30 days of free full access to every YNeet mock test, daily quiz and practice question. Made for Class 11, 12 and droppers. After the trial, plans from ₹399/month or ₹3,199 for a full year.",
   },
   "/institutes": {
     title: "YNeet for NEET Coaching Centres — Student Packs from ₹9,999/month",

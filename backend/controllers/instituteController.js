@@ -7,18 +7,20 @@ import { sendEmail, otpEmailTemplate } from "../utils/sendEmail.js";
 import Otp from "../models/Otp.js";
 import { syncYneetAccess, yneetPost } from "../utils/yneetSync.js";
 
-// Standard bulk packs (one year). Admin can still enter any seat count / amount.
+// Standard bulk packs (one year ≈ 8 months of the monthly plan). Per student per
+// year: ₹1,600 / ₹1,400 / ₹1,200 — well below a student buying alone. Admin can
+// still enter any seat count / amount.
 export const PACKS = [
-  { seats: 20, price: 100000 },
-  { seats: 50, price: 200000 },
-  { seats: 100, price: 300000 },
+  { seats: 20, price: 31999 },
+  { seats: 50, price: 69999 },
+  { seats: 100, price: 119999 },
 ];
 
 // Monthly plans, paid online by the institute (Razorpay). Prices in rupees.
 export const MONTHLY_PLANS = [
-  { seats: 20, price: 9999 },
-  { seats: 50, price: 19999 },
-  { seats: 100, price: 29999 },
+  { seats: 20, price: 3999 },
+  { seats: 50, price: 8999 },
+  { seats: 100, price: 14999 },
 ];
 
 const SITE = () => (process.env.CLIENT_URL || "https://www.yneet.in").replace(/\/$/, "");

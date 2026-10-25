@@ -23,7 +23,7 @@ const whyUs = [
   { icon: TrendingUp, title: "Progress Tracking", desc: "See your score trend, subject-wise strength, and estimated rank as you improve." },
   { icon: BookMarked, title: "Flashcards & Formulas", desc: "Chapter-wise flashcards and formula sheets for Physics, Chemistry and Biology." },
   { icon: MessageCircle, title: "Doubt Support", desc: "Reach us directly on WhatsApp whenever you're stuck." },
-  { icon: Wallet, title: "Affordable Plans", desc: "Start with a free 30-day trial, then plans from just ₹300/month (price depends on your class) — buy 1 to 12 months at a time." },
+  { icon: Wallet, title: "Affordable Plans", desc: "Free for Class 6–8. From Class 9, start with a free 30-day trial, then plans from ₹299/month — a full year costs about 8 months' price." },
 ];
 
 const Home = () => {

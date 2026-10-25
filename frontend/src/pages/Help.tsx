@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: "How much does YNeet cost?",
-    a: "Your first 30 days are free with full access. After that, plans start from ₹300 a month depending on your class, and you can buy 1 to 12 months at a time. You'll see the exact price for your class on the Pricing page inside YNeet after you register, before you pay anything.",
+    a: "Your first 30 days are free with full access. After that, plans start from ₹299 a month depending on your class (Class 9–10 ₹299, Class 11–12 ₹399, Droppers ₹499), and a full year costs about 8 months' price. YNeet is free for Class 6–8. You'll see the exact price for your class on the Pricing page inside YNeet after you register, before you pay anything.",
   },
   {
     q: "I forgot my password",

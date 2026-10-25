@@ -9,14 +9,14 @@ import { SITE } from "../utils/siteInfo";
 
 // Keep in sync with backend controllers/instituteController.js
 const MONTHLY = [
-  { seats: 20, price: 9999 },
-  { seats: 50, price: 19999 },
-  { seats: 100, price: 29999 },
+  { seats: 20, price: 3999 },
+  { seats: 50, price: 8999 },
+  { seats: 100, price: 14999 },
 ];
 const YEARLY = [
-  { seats: 20, price: 100000 },
-  { seats: 50, price: 200000 },
-  { seats: 100, price: 300000 },
+  { seats: 20, price: 31999 },
+  { seats: 50, price: 69999 },
+  { seats: 100, price: 119999 },
 ];
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 

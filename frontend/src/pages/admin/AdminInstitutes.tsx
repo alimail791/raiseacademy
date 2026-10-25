@@ -14,7 +14,7 @@ interface Student { id: string; fullName: string; email: string; phone: string; 
 const fmt = (d: string) => new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 const inr = (n: number) => `₹${(n || 0).toLocaleString("en-IN")}`;
 const input = "w-full rounded-lg border border-ink/15 px-3 py-2 text-sm focus:border-gold outline-none bg-white";
-const blank = { referralCode: "", pack: "20", name: "", contactName: "", email: "", phone: "", city: "", board: "CBSE", seats: "20", amountPaid: "100000", paymentRef: "", startDate: new Date().toISOString().slice(0, 10), months: "12", billing: "yearly", notes: "" };
+const blank = { referralCode: "", pack: "20", name: "", contactName: "", email: "", phone: "", city: "", board: "CBSE", seats: "20", amountPaid: "31999", paymentRef: "", startDate: new Date().toISOString().slice(0, 10), months: "12", billing: "yearly", notes: "" };
 
 const AdminInstitutes = () => {
   const [list, setList] = useState<Institute[]>([]);

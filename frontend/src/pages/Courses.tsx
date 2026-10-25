@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     q: "How much does the online NEET course cost?",
-    a: "Every new student gets a free 30-day full-access trial. After that, plans start from ₹300 a month depending on your class — buy 1 to 12 months in one go. Plans are one-time payments, no auto-charge.",
+    a: "Every new student gets a free 30-day full-access trial. After that, plans start from ₹299 a month depending on your class, and a full year costs about 8 months' price. YNeet is free for Class 6–8. Plans are one-time payments, no auto-charge.",
   },
   {
     q: "Can I try YNeet before paying?",
@@ -130,7 +130,7 @@ const Courses = () => {
               <p className="text-paper/80">Full access to every mock test, quiz and practice question. No payment needed.</p>
             </div>
             <div>
-              <p className="text-gold font-display text-3xl font-bold">From ₹300<span className="text-base font-body text-paper/70"> / month</span></p>
+              <p className="text-gold font-display text-3xl font-bold">From ₹299<span className="text-base font-body text-paper/70"> / month</span></p>
               <p className="text-paper/80">Priced by class. Choose 1 to 12 months — one-time payment.</p>
             </div>
           </div>
