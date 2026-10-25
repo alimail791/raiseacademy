@@ -12,7 +12,7 @@ interface Institute {
   startDate: string; endDate: string; status: string; live: boolean; billing?: "yearly" | "monthly";
   referralCode?: string; referralCredits?: number;
 }
-const MONTHLY_PLANS = [{ seats: 20, price: 9999 }, { seats: 50, price: 19999 }, { seats: 100, price: 29999 }];
+const MONTHLY_PLANS = [{ seats: 20, price: 3999 }, { seats: 50, price: 8999 }, { seats: 100, price: 14999 }];
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 interface Student { id: string; fullName: string; email: string; phone: string; gender: string; currentClass?: string; createdAt: string; parentEmail?: string; parentPhone?: string; }
 interface Result { row: number; email: string; ok: boolean; message?: string; password?: string; emailed?: boolean; linked?: boolean; }
