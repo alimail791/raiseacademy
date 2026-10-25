@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Counter from "../components/Counter";
 import FreeTestSection from "../components/FreeTestSection";
+import FeaturedShortsSection from "../components/FeaturedShortsSection";
 import OurOtherSites from "../components/OurOtherSites";
 import { SITE, gamesLink } from "../utils/siteInfo";
 
@@ -193,6 +194,9 @@ const Home = () => {
       <section className="bg-ink/[0.03]">
         <FreeTestSection />
       </section>
+
+      {/* YNEET SHORTS — featured creator videos + creator recruitment */}
+      <FeaturedShortsSection />
 
       {/* TESTMANDI CROSS-PROMOTION */}
       <section className="py-16">
