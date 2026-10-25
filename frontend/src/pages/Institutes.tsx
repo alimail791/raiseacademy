@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { BarChart3, ClipboardCheck, FileClock, Users, MessageCircle, BookOpenCheck, X, Check, ShieldCheck, Gift, Clapperboard, Puzzle } from "lucide-react";
 import api from "../api/axios";
@@ -41,6 +41,10 @@ const Institutes = () => {
   const [busy, setBusy] = useState(false);
   const [months, setMonths] = useState(1);
   const [pilot, setPilot] = useState(false); // free 14-day pilot, 5 students
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash) setTimeout(() => document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" }), 50);
+  }, [hash]);
   // Referral: /institutes?ref=CODE — remembered for this visit so it survives navigation.
   const [params] = useSearchParams();
   const [ref, setRef] = useState("");
@@ -142,7 +146,7 @@ const Institutes = () => {
       </section>
 
       {/* FREE PILOT */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+      <section id="pilot" className="max-w-6xl mx-auto px-4 sm:px-6 py-8 scroll-mt-20">
         <div className="rounded-2xl border-2 border-gold bg-gold/10 p-6 sm:p-8 flex flex-wrap items-center justify-between gap-5">
           <div className="max-w-2xl">
             <p className="text-gold-dark font-semibold uppercase tracking-widest text-xs">Free pilot</p>

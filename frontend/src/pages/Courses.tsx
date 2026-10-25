@@ -244,7 +244,13 @@ const Courses = () => {
             Give every student YNeet from ₹1,200 per student per year, with a live progress panel and
             weekly parent reports. Class 6–8 students are free and don't use a seat.
           </p>
-          <Link to="/institutes" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-rise-dark hover:text-rise">See institute plans <ArrowRight size={16} /></Link>
+          <p className="mt-3 inline-block rounded-lg bg-gold/20 px-3 py-1.5 text-xs font-semibold text-gold-dark">
+            Try it free for 14 days with 5 students. No payment needed.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+            <Link to="/institutes#pilot" className="inline-flex items-center gap-1.5 text-sm font-semibold text-rise-dark hover:text-rise">Start the free pilot <ArrowRight size={16} /></Link>
+            <Link to="/institutes" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/60 hover:text-ink">See institute plans <ArrowRight size={16} /></Link>
+          </div>
         </div>
       </section>
 
