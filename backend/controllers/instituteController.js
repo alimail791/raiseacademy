@@ -6,6 +6,7 @@ import Student from "../models/Student.js";
 import { sendEmail, otpEmailTemplate } from "../utils/sendEmail.js";
 import Otp from "../models/Otp.js";
 import { syncYneetAccess, yneetPost } from "../utils/yneetSync.js";
+import { normalizePhone } from "../utils/parentWhatsApp.js";
 
 // Standard bulk packs (one year ≈ 8 months of the monthly plan). Per student per
 // year: ₹1,600 / ₹1,400 / ₹1,200 — well below a student buying alone. Admin can
@@ -50,7 +51,7 @@ const studentView = (s) => ({
 });
 
 const cleanParentEmail = (v) => { const e = String(v || "").trim().toLowerCase(); return /^\S+@\S+\.\S+$/.test(e) ? e : ""; };
-const cleanPhone = (v) => { const d = String(v || "").replace(/\D/g, ""); return d.length === 10 ? d : d.length === 12 && d.startsWith("91") ? d.slice(2) : ""; };
+const cleanPhone = normalizePhone; // valid 10-digit Indian mobile or ""
 // Push the parent email to YNeet (weekly email report). Best-effort.
 const syncParentEmail = (studentId, parentEmail) =>
   yneetPost("parent-contact", { userId: String(studentId), parentEmail: parentEmail || "" }).catch((e) => console.warn("Parent email sync failed:", e.message));

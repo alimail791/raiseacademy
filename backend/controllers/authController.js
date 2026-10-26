@@ -7,6 +7,7 @@ import { isEmailVerifiedFor } from "./otpController.js";
 import { sendEmail, newRegistrationAdminTemplate } from "../utils/sendEmail.js";
 import Institute from "../models/Institute.js";
 import { instituteAccessFor } from "../utils/yneetSync.js";
+import { normalizePhone } from "../utils/parentWhatsApp.js";
 
 // Where the "a new student just registered" alert goes. Overridable via env
 // without a code change; falls back to the owner's own inbox.
@@ -84,9 +85,9 @@ export const register = async (req, res, next) => {
     // Class 6–8 (free) use a shorter form: no gender or place, but a parent's
     // WhatsApp is required (it also becomes the contact phone if none is given).
     const junior = ["6", "7", "8"].includes(String(currentClass || ""));
-    const parentPhone = String(req.body.parentPhone || "").replace(/\D/g, "").slice(-10);
+    const parentPhone = normalizePhone(req.body.parentPhone);
     if (junior) {
-      if (parentPhone.length !== 10) return res.status(400).json({ message: "Enter your parent's 10-digit WhatsApp number" });
+      if (!parentPhone) return res.status(400).json({ message: "Enter your parent's 10-digit WhatsApp number" });
       if (!fullName || !email || !password || !board) return res.status(400).json({ message: "Missing required registration fields" });
     } else if (!fullName || !gender || !phone || !email || !place || !password || !board || !course) {
       return res.status(400).json({ message: "Missing required registration fields" });
