@@ -44,6 +44,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Give your NEET students full mock tests, chapter tests, PYQs 2016–2026 and instant analysis, with a live progress panel for your institute and weekly parent reports. Monthly plans from ₹3,999 for 20 students, and a free 14-day pilot with 5 students.",
   },
+  "/neet-practice": {
+    title: "NEET Chapter-wise PYQs & Practice Questions with Answers — Free | YNeet",
+    description:
+      "Free NEET previous year questions for every Physics, Chemistry and Biology chapter, with answers and explanations. No login needed. Timed chapter tests and full mocks free for 30 days on YNeet.",
+  },
   "/blog": {
     title: "NEET Preparation Blog — PYQs, Mock Tests, Cutoffs & Study Plans | YNeet",
     description:
@@ -77,6 +82,8 @@ export function metaFor(path: string): PageMeta & { canonical: string } {
   // Individual articles set their own title/description once loaded (see
   // pages/BlogPost.tsx); until then they get the blog's tags, still indexable.
   if (/^\/blog\/[^/]+$/.test(clean)) return { ...PAGE_META["/blog"], canonical: `${SITE_ORIGIN}${clean}` };
+  // Chapter pages set their own title once loaded (pages/PracticeChapter.tsx); the build writes them into the HTML.
+  if (/^\/neet-practice\/[^/]+\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   const meta =
     PAGE_META[clean] ||
     (isAppRoute

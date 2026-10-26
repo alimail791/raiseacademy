@@ -20,6 +20,8 @@ import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import Practice from "./pages/Practice";
+import PracticeChapter from "./pages/PracticeChapter";
 
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -49,6 +51,8 @@ function App() {
           <Route path="/institutes" element={<Institutes />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/neet-practice" element={<Practice />} />
+          <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
 
           <Route
             path="/dashboard"

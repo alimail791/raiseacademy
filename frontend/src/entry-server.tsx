@@ -7,15 +7,19 @@ import { StaticRouter } from "react-router-dom";
 import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import { BlogDataProvider, type BlogData } from "./blog/blogData";
+import { PracticeDataProvider, type PracticeData } from "./practice/practiceData";
 
 export { PAGE_META, metaFor, SITE_ORIGIN } from "./seo";
+export { chapterMeta } from "./practice/practiceData";
 
-export function render(url: string, blogData?: BlogData) {
+export function render(url: string, blogData?: BlogData, practiceData?: PracticeData) {
   return renderToString(
     <StaticRouter location={url}>
       <AuthProvider>
         <BlogDataProvider value={blogData}>
-          <App />
+          <PracticeDataProvider value={practiceData}>
+            <App />
+          </PracticeDataProvider>
         </BlogDataProvider>
       </AuthProvider>
     </StaticRouter>

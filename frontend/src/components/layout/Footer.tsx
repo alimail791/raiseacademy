@@ -25,6 +25,7 @@ const Footer = () => {
             <li><Link to="/register" className="hover:text-gold">Enroll Now</Link></li>
             <li><a href={gamesLink("footer")} target="_blank" rel="noopener" className="hover:text-gold">Free NEET Games (daily)</a></li>
             <li><Link to="/help" className="hover:text-gold">Help & FAQ</Link></li>
+            <li><Link to="/neet-practice" className="hover:text-gold">Free NEET PYQs (chapter-wise)</Link></li>
             <li><Link to="/blog" className="hover:text-gold">Blog</Link></li>
             <li><Link to="/institutes" className="hover:text-gold">For Institutes</Link></li>
             <li><Link to="/institute/login" className="hover:text-gold">Institute Login</Link></li>

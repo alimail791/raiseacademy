@@ -9,6 +9,7 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
   { to: "/courses", label: "Courses" },
+  { to: "/neet-practice", label: "Free PYQs" },
   { to: "/blog", label: "Blog" },
   { to: "/institutes", label: "For Institutes" },
 ];

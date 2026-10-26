@@ -34,6 +34,7 @@ export default function usePageMeta() {
   useEffect(() => {
     // Blog articles set their own tags once the post loads (pages/BlogPost.tsx).
     if (/^\/blog\/[^/]+\/?$/.test(pathname)) return;
+    if (/^\/neet-practice\/[^/]+\/[^/]+\/?$/.test(pathname)) return; // set by PracticeChapter
     const m = metaFor(pathname);
     document.title = m.title;
     setTag('meta[name="description"]', meta("description"), "content", m.description);

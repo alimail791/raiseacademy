@@ -16,7 +16,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const ssrEntry = path.join(root, "dist-ssr", "entry-server.js");
 
-const { render, metaFor, PAGE_META, SITE_ORIGIN } = await import(pathToFileURL(ssrEntry).href);
+const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta } = await import(pathToFileURL(ssrEntry).href);
 
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
@@ -40,10 +40,30 @@ try {
   console.warn(`prerender: could not fetch blog posts (${err.message}) — blog pages will load in the browser.`);
 }
 const summaries = blogPosts.map(({ bodyHtml, ...rest }) => rest);
+
+// Free chapter practice pages (/neet-practice/<subject>/<chapter>): 10 free
+// questions per NEET chapter from the YNeet API, rendered as real HTML so Google
+// can index them. If the API is down, the build still succeeds and the pages
+// load their questions in the browser (see the /neet-practice rewrite below).
+const YNEET_API = (process.env.VITE_YNEET_API_URL || "").replace(/\/$/, "");
+let practiceChapters = [];
+if (YNEET_API) {
+  try {
+    const res = await fetch(`${YNEET_API}/public/practice?full=1`);
+    if (!res.ok) throw new Error(`API responded ${res.status}`);
+    practiceChapters = (await res.json()).chapters || [];
+  } catch (err) {
+    console.warn(`prerender: could not fetch practice chapters (${err.message}) — chapter pages will load in the browser.`);
+  }
+}
+const practiceSummaries = practiceChapters.map(({ questions, ...rest }) => rest);
+const practiceFile = (slug) => `${slug.replace("/", "--")}.html`;
 const blogDataScript = (data) =>
   `<script>window.__BLOG_DATA__=${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
+const practiceDataScript = (data) =>
+  `<script>window.__PRACTICE_DATA__=${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
 
-function pageHtml(route, blogData, metaOverride) {
+function pageHtml(route, blogData, metaOverride, practiceData) {
   const m = metaOverride || metaFor(route);
   let html = template;
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(m.title)}</title>`);
@@ -54,8 +74,9 @@ function pageHtml(route, blogData, metaOverride) {
   html = replaceAttr(html, /(<meta property="og:description" content=")[^"]*(")/, m.description);
   html = replaceAttr(html, /(<meta property="og:url" content=")[^"]*(")/, m.canonical);
   html = replaceAttr(html, /(<meta name="twitter:title" content=")[^"]*(")/, m.title);
-  html = html.replace('<div id="root"></div>', `<div id="root">${render(route, blogData)}</div>`);
+  html = html.replace('<div id="root"></div>', `<div id="root">${render(route, blogData, practiceData)}</div>`);
   if (blogData) html = html.replace("</head>", `${blogDataScript(blogData)}\n</head>`);
+  if (practiceData) html = html.replace("</head>", `${practiceDataScript(practiceData)}\n</head>`);
   return html;
 }
 
@@ -65,8 +86,20 @@ function pageHtml(route, blogData, metaOverride) {
 const routes = Object.keys(PAGE_META);
 for (const route of routes) {
   const out = route === "/" ? path.join(dist, "index.html") : path.join(dist, `${route.slice(1)}.html`);
-  fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined));
+  fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, undefined, route === "/neet-practice" && practiceSummaries.length ? { chapters: practiceSummaries } : undefined));
 }
+
+// One file per chapter in practice-pages/ (flat, like blog-posts/).
+fs.mkdirSync(path.join(dist, "practice-pages"), { recursive: true });
+for (const chapter of practiceChapters) {
+  const route = `/neet-practice/${chapter.slug}`;
+  const meta = { ...chapterMeta(chapter), canonical: `${SITE_ORIGIN}${route}` };
+  fs.writeFileSync(path.join(dist, "practice-pages", practiceFile(chapter.slug)), pageHtml(route, undefined, meta, { chapter, chapters: practiceSummaries }));
+}
+fs.writeFileSync(
+  path.join(dist, "practice-shell.html"),
+  template.replace(/(<meta name="robots" content=")[^"]*(")/, "$1index, follow$2").replace(/\s*<link rel="canonical"[^>]*>/, "")
+);
 
 // One file per published article, in blog-posts/ (not blog/, which would
 // clash with blog.html under cleanUrls). serve.json below maps each
@@ -113,6 +146,8 @@ fs.writeFileSync(
       rewrites: [
         ...blogPosts.map((p) => ({ source: `/blog/${p.slug}`, destination: `/blog-posts/${p.slug}.html` })),
         { source: "/blog/:slug", destination: "/blog-shell.html" },
+        ...practiceChapters.map((c) => ({ source: `/neet-practice/${c.slug}`, destination: `/practice-pages/${practiceFile(c.slug)}` })),
+        { source: "/neet-practice/:subject/:chapter", destination: "/practice-shell.html" },
         { source: "/dashboard", destination: "/app.html" },
         { source: "/admin", destination: "/app.html" },
         { source: "/admin/**", destination: "/app.html" },
@@ -129,6 +164,7 @@ const today = new Date().toISOString().slice(0, 10);
 const indexable = [
   ...routes.filter((r) => !PAGE_META[r].noindex && r !== "/neet-trial"),
   ...blogPosts.map((p) => `/blog/${p.slug}`),
+  ...practiceChapters.map((c) => `/neet-practice/${c.slug}`),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -143,4 +179,5 @@ ${indexable
 fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
 
 fs.rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
+console.log(`Prerendered ${practiceChapters.length} chapter practice pages.`);
 console.log(`Prerendered ${routes.length} pages and ${blogPosts.length} blog posts; sitemap has ${indexable.length} URLs.`);
