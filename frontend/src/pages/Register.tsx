@@ -193,7 +193,7 @@ const Register = () => {
     <div className="max-w-2xl mx-auto px-4 py-16">
       <h1 className="font-display text-3xl font-bold text-center">Register for YNeet</h1>
       <div className="mt-4 rounded-2xl bg-gold/15 border border-gold/40 px-4 py-3 text-center">
-        <p className="font-semibold text-ink">{junior ? "🎁 Free for Class 6–8 — daily puzzles, quiz and Shorts" : "🎁 Your first 30 days are FREE — full access to every NEET test"}</p>
+        <p className="font-semibold text-ink">{junior ? "🎁 Free for Class 6–8 — class tests, daily puzzles, quiz and Shorts" : "🎁 Your first 30 days are FREE — full access to every NEET test"}</p>
         <p className="text-sm text-ink/70 mt-0.5">{junior ? "No payment, ever." : "Starts automatically when you register. No payment, no card, no auto-charge."}</p>
       </div>
 
