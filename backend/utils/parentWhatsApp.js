@@ -36,7 +36,25 @@ export const reportParams = (studentName, instituteName, data) => {
   ].map((v) => param(v));
 };
 
-export async function sendTemplate(phone10, params) {
+// Any stored format (+91 98765 43210, 919876543210, 09876543210) → a valid
+// 10-digit Indian mobile number, or "" if it can't be one (mobiles start 6–9).
+export const normalizePhone = (v) => {
+  let d = String(v || "").replace(/\D/g, "");
+  if (d.length === 12 && d.startsWith("91")) d = d.slice(2);
+  else if (d.length === 11 && d.startsWith("0")) d = d.slice(1);
+  return /^[6-9]\d{9}$/.test(d) ? d : "";
+};
+
+// Templates created with "named" variables ({{student_name}}) need each value
+// tagged with its name, or Meta rejects the send with "(#100) Invalid parameter".
+// Set WA_TEMPLATE_PARAM_NAMES to the six names, comma-separated, in order.
+const paramNames = () => (process.env.WA_TEMPLATE_PARAM_NAMES || "").split(",").map((s) => s.trim()).filter(Boolean);
+
+export async function sendTemplate(phone, params) {
+  const phone10 = normalizePhone(phone);
+  if (!phone10) throw new Error(`invalid parent WhatsApp number "${phone}" (needs a 10-digit Indian mobile)`);
+  const names = paramNames();
+  if (names.length && names.length !== params.length) throw new Error(`WA_TEMPLATE_PARAM_NAMES has ${names.length} names but the template needs ${params.length}`);
   const res = await fetch(`https://graph.facebook.com/v21.0/${phoneId()}/messages`, {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.WA_TOKEN}`, "Content-Type": "application/json" },
@@ -47,13 +65,18 @@ export async function sendTemplate(phone10, params) {
       template: {
         name: process.env.WA_PARENT_TEMPLATE || "yneet_parent_weekly",
         language: { code: process.env.WA_TEMPLATE_LANG || "en" },
-        components: [{ type: "body", parameters: params.map((text) => ({ type: "text", text })) }],
+        components: [{ type: "body", parameters: params.map((text, i) => ({ type: "text", text, ...(names.length && { parameter_name: names[i] }) })) }],
       },
     }),
     signal: AbortSignal.timeout(15000),
   });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data?.error?.message || `WhatsApp API ${res.status}`);
+  if (!res.ok) {
+    // Meta puts the real reason in error_data.details (e.g. which parameter is wrong).
+    const e = data?.error || {};
+    const details = e.error_data?.details ? ` — ${e.error_data.details}` : "";
+    throw new Error(`${e.message || `WhatsApp API ${res.status}`}${details}${e.code ? ` [code ${e.code}]` : ""}`);
+  }
   return data;
 }
 
@@ -68,7 +91,7 @@ export async function sendParentWhatsAppReports() {
     ],
   }).select("fullName parentPhone instituteId");
   const institutes = {};
-  let sent = 0, failed = 0;
+  let sent = 0, failed = 0, skipped = 0;
   for (const s of students) {
     try {
       let fromName = "YNeet"; // free Class 6–8 students who signed up themselves
@@ -76,8 +99,13 @@ export async function sendParentWhatsAppReports() {
         const key = String(s.instituteId);
         institutes[key] ??= await Institute.findById(s.instituteId);
         const inst = institutes[key];
-        if (!inst || !inst.isLive()) continue; // pack expired / suspended
+        if (!inst || !inst.isLive()) { skipped++; continue; } // pack/pilot expired or suspended
         fromName = inst.name;
+      }
+      if (!normalizePhone(s.parentPhone)) {
+        skipped++;
+        console.warn(`Parent WhatsApp report skipped for ${s.fullName}: invalid parent number "${s.parentPhone}"`);
+        continue;
       }
       const data = await yneetPost("parent-report", { userId: String(s._id) });
       await sendTemplate(s.parentPhone, reportParams(s.fullName, fromName, data));
@@ -89,8 +117,8 @@ export async function sendParentWhatsAppReports() {
       console.warn(`Parent WhatsApp report failed for ${s.fullName}:`, e.message);
     }
   }
-  console.log(`Parent WhatsApp reports: ${sent} sent, ${failed} failed, ${students.length} due.`);
-  return { sent, failed, due: students.length };
+  console.log(`Parent WhatsApp reports: ${sent} sent, ${failed} failed, ${skipped} skipped, ${students.length} due.`);
+  return { sent, failed, skipped, due: students.length };
 }
 
 function msUntilNextRun(now = new Date()) {
