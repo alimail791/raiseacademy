@@ -5,6 +5,7 @@ import {
   getMe,
   resetPassword,
   setYneetSubscriptionFlag,
+  sendWaOtpInternal,
 } from "../controllers/authController.js";
 import { protect } from "../middleware/auth.js";
 
@@ -16,5 +17,6 @@ router.get("/me", protect, getMe);
 router.post("/reset-password", resetPassword);
 // Internal, server-to-server only (guarded by X-Internal-Key header, not user auth)
 router.post("/internal/yneet-subscription", setYneetSubscriptionFlag);
+router.post("/internal/wa-otp", sendWaOtpInternal);
 
 export default router;

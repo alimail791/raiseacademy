@@ -41,7 +41,7 @@ const initial: FormState = {
   neetExamYear: "",
 };
 
-const steps = ["Personal Details", "Academic Details", "Verify Email", "Review & Submit"];
+const steps = ["Personal Details", "Academic Details", "Review & Submit"];
 
 const inputClass =
   "mt-1 w-full rounded-lg border border-ink/15 px-4 py-2.5 focus:border-gold outline-none";
@@ -57,13 +57,10 @@ const Register = () => {
     fullName: (searchParams.get("name") || "").slice(0, 60),
     phone: (searchParams.get("phone") || "").replace(/\D/g, "").slice(-10),
   }));
-  // Class 6–8 is free and gets a one-screen form (plus email OTP) with the
+  // Class 6–8 is free and gets a one-screen form with the
   // parent's WhatsApp instead of gender/place. Links can open it with ?junior=1.
   const [junior, setJunior] = useState(searchParams.get("junior") === "1");
   const [jr, setJr] = useState({ currentClass: "", parentPhone: "", board: "CBSE" });
-  const [otp, setOtp] = useState("");
-  const [otpSent, setOtpSent] = useState(false);
-  const [otpVerified, setOtpVerified] = useState(false);
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
 
@@ -103,32 +100,6 @@ const Register = () => {
   };
   const goBack = () => setStep((s) => Math.max(s - 1, 0));
 
-  const sendOtp = async () => {
-    setLoading(true);
-    try {
-      await api.post("/otp/send", { email: form.email, purpose: "register" });
-      setOtpSent(true);
-      toast.success("OTP sent to your email");
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || "Could not send OTP");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const verifyOtp = async () => {
-    setLoading(true);
-    try {
-      await api.post("/otp/verify", { email: form.email, purpose: "register", code: otp });
-      setOtpVerified(true);
-      toast.success("Email verified!");
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || "Invalid OTP");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const validateJunior = () => {
     if (!form.fullName.trim()) { toast.error("Enter the student's name"); return false; }
     if (!jr.currentClass) { toast.error("Choose the class"); return false; }
@@ -139,7 +110,6 @@ const Register = () => {
   };
 
   const submitJunior = async () => {
-    if (!otpVerified) { toast.error("Please verify your email OTP first"); return; }
     setLoading(true);
     try {
       const res = await api.post("/auth/register", {
@@ -162,10 +132,6 @@ const Register = () => {
   };
 
   const submit = async () => {
-    if (!otpVerified) {
-      toast.error("Please verify your email OTP first");
-      return;
-    }
     setLoading(true);
     try {
       const payload = {
@@ -234,7 +200,7 @@ const Register = () => {
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium">Email (student's or parent's)</label>
-              <input type="email" className={inputClass} value={form.email} disabled={otpSent} onChange={(e) => set("email", e.target.value)} placeholder="name@gmail.com" />
+              <input type="email" className={inputClass} value={form.email} onChange={(e) => set("email", e.target.value)} placeholder="name@gmail.com" />
             </div>
             <div>
               <label className="text-sm font-medium">Create a password</label>
@@ -248,34 +214,10 @@ const Register = () => {
             </select>
           </div>
 
-          <div className="rounded-xl bg-ink/[0.03] p-4 text-center space-y-3">
-            {!otpSent && (
-              <button type="button" disabled={loading} onClick={() => validateJunior() && sendOtp()}
-                className="w-full bg-gold text-ink font-semibold py-3 rounded-full hover:bg-gold-dark disabled:opacity-60">
-                {loading ? "Sending…" : "Send code to email"}
-              </button>
-            )}
-            {otpSent && !otpVerified && (
-              <>
-                <p className="text-sm text-ink/70">Enter the 6-digit code sent to <b>{form.email}</b></p>
-                <input maxLength={6} value={otp} onChange={(e) => setOtp(e.target.value)}
-                  className="w-full max-w-xs mx-auto block text-center tracking-[0.5em] text-xl rounded-lg border border-ink/15 px-4 py-2.5 focus:border-gold outline-none" />
-                <button type="button" onClick={verifyOtp} disabled={loading} className="w-full max-w-xs bg-gold text-ink font-semibold py-2.5 rounded-full hover:bg-gold-dark disabled:opacity-60">
-                  {loading ? "Verifying…" : "Verify code"}
-                </button>
-                <button type="button" onClick={sendOtp} className="block mx-auto text-sm text-rise-dark hover:underline">Resend code</button>
-              </>
-            )}
-            {otpVerified && (
-              <>
-                <p className="text-rise-dark font-semibold flex items-center justify-center gap-2"><Check size={18} /> Email verified</p>
-                <button type="button" onClick={() => validateJunior() && submitJunior()} disabled={loading}
-                  className="w-full bg-rise text-white font-semibold py-3 rounded-full hover:bg-rise-dark disabled:opacity-60">
-                  {loading ? "Creating account…" : "Create free account"}
-                </button>
-              </>
-            )}
-          </div>
+          <button type="button" onClick={() => validateJunior() && submitJunior()} disabled={loading}
+            className="w-full bg-rise text-white font-semibold py-3 rounded-full hover:bg-rise-dark disabled:opacity-60">
+            {loading ? "Creating account…" : "Create free account"}
+          </button>
         </div>
       )}
 
@@ -397,38 +339,6 @@ const Register = () => {
             )}
 
             {step === 2 && (
-              <div className="space-y-4 text-center">
-                <p className="text-ink/70">
-                  We'll send a 6-digit code to <span className="font-semibold text-ink">{form.email}</span> to verify your email.
-                </p>
-                {!otpSent && (
-                  <button onClick={sendOtp} disabled={loading} className="bg-gold text-ink font-semibold px-6 py-2.5 rounded-full hover:bg-gold-dark disabled:opacity-60">
-                    {loading ? "Sending..." : "Send OTP"}
-                  </button>
-                )}
-                {otpSent && !otpVerified && (
-                  <div className="space-y-3 max-w-xs mx-auto">
-                    <input
-                      maxLength={6}
-                      value={otp}
-                      onChange={(e) => setOtp(e.target.value)}
-                      className="w-full text-center tracking-[0.5em] text-xl rounded-lg border border-ink/15 px-4 py-2.5 focus:border-gold outline-none"
-                    />
-                    <button onClick={verifyOtp} disabled={loading} className="w-full bg-gold text-ink font-semibold py-2.5 rounded-full hover:bg-gold-dark disabled:opacity-60">
-                      {loading ? "Verifying..." : "Verify OTP"}
-                    </button>
-                    <button onClick={sendOtp} className="text-sm text-rise-dark hover:underline">Resend OTP</button>
-                  </div>
-                )}
-                {otpVerified && (
-                  <p className="text-rise-dark font-semibold flex items-center justify-center gap-2">
-                    <Check size={18} /> Email verified
-                  </p>
-                )}
-              </div>
-            )}
-
-            {step === 3 && (
               <div className="space-y-2 text-sm text-ink/80">
                 <p><span className="font-semibold">Name:</span> {form.fullName}</p>
                 <p><span className="font-semibold">Email:</span> {form.email}</p>
@@ -437,6 +347,7 @@ const Register = () => {
                 <p><span className="font-semibold">Course:</span> {form.course}</p>
                 {form.currentClass && <p><span className="font-semibold">Class:</span> {form.currentClass === "Dropper" ? "Dropper / Repeater" : form.currentClass}</p>}
                 {form.neetExamYear && <p><span className="font-semibold">Expected NEET Year:</span> {form.neetExamYear}</p>}
+                <p className="pt-3 text-xs text-ink/55">Your free trial starts right away. Within 3 days, confirm your WhatsApp number or email inside YNeet (takes 10 seconds).</p>
               </div>
             )}
           </motion.div>
@@ -458,7 +369,7 @@ const Register = () => {
         ) : (
           <button
             onClick={submit}
-            disabled={loading || !otpVerified}
+            disabled={loading}
             className="px-6 py-2.5 rounded-full bg-gold text-ink font-semibold disabled:opacity-50"
           >
             {loading ? "Submitting..." : "Complete Registration"}

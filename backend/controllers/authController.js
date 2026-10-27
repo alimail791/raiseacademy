@@ -42,6 +42,22 @@ const publicUser = (u) => ({
 
 // PATCH internal — called by the YNeet backend (server-to-server, shared secret)
 // to flag a student as an active YNeet subscriber for display on Raise Academy's side.
+// POST /api/auth/internal/wa-otp { phone, code } — YNeet asks us to deliver a
+// WhatsApp verification code (we hold the WhatsApp Business credentials).
+export const sendWaOtpInternal = async (req, res) => {
+  if (!process.env.INTERNAL_SERVICE_KEY || req.headers["x-internal-key"] !== process.env.INTERNAL_SERVICE_KEY) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+  try {
+    const { sendWhatsAppOtp } = await import("../utils/whatsappOtp.js");
+    await sendWhatsAppOtp(req.body?.phone, req.body?.code);
+    res.json({ ok: true });
+  } catch (e) {
+    console.warn("WhatsApp OTP send failed:", e.message);
+    res.status(502).json({ message: e.message });
+  }
+};
+
 export const setYneetSubscriptionFlag = async (req, res, next) => {
   try {
     const internalKey = req.headers["x-internal-key"];
@@ -65,7 +81,7 @@ export const setYneetSubscriptionFlag = async (req, res, next) => {
 };
 
 // POST /api/auth/register
-// Requires that the email was already OTP-verified via /api/otp/verify (purpose=register)
+// No OTP needed; verification happens inside YNeet within 3 days.
 export const register = async (req, res, next) => {
   try {
     const {
@@ -93,12 +109,10 @@ export const register = async (req, res, next) => {
       return res.status(400).json({ message: "Missing required registration fields" });
     }
 
-    const verified = await isEmailVerifiedFor(email, "register");
-    if (!verified) {
-      return res
-        .status(403)
-        .json({ message: "Email not verified. Please verify the OTP sent to your email first." });
-    }
+    // No OTP at sign-up any more: the account is created straight away and the
+    // student confirms their WhatsApp number or email inside YNeet within 3 days
+    // (YNeet pauses an unverified free trial after that).
+    if (!/^\S+@\S+\.\S+$/.test(String(email))) return res.status(400).json({ message: "Enter a valid email address" });
 
     const existing = await Student.findOne({ email: email.toLowerCase() });
     if (existing) {
