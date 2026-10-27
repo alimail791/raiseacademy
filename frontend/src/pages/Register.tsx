@@ -46,6 +46,23 @@ const steps = ["Personal Details", "Academic Details", "Review & Submit"];
 const inputClass =
   "mt-1 w-full rounded-lg border border-ink/15 px-4 py-2.5 focus:border-gold outline-none";
 
+// Report a completed registration to Google (Analytics + Ads) and Meta, then
+// continue. The browser leaves for app.yneet.in right after, which used to cut
+// the sign_up hit off before it was sent — so wait for Google's callback
+// (max ~1.2 s) before redirecting.
+function trackSignUpThen(next: () => void, plan: string, contentName: string) {
+  let done = false;
+  const go = () => { if (!done) { done = true; next(); } };
+  try { (window as any).fbq?.("track", "CompleteRegistration", { content_name: contentName, status: true }); } catch { /* analytics only */ }
+  try {
+    const g = (window as any).gtag;
+    if (typeof g === "function") {
+      g("event", "sign_up", { method: "email", plan, transport_type: "beacon", event_callback: go, event_timeout: 1200 });
+    } else go();
+  } catch { go(); }
+  setTimeout(go, 1500);
+}
+
 const Register = () => {
   const [step, setStep] = useState(0);
   const [searchParams] = useSearchParams();
@@ -120,10 +137,8 @@ const Register = () => {
         referredByCode,
       });
       login(res.data.token, res.data.user);
-      try { (window as any).gtag?.("event", "sign_up", { method: "email", plan: "junior_free", transport_type: "beacon" }); } catch { /* analytics only */ }
-      try { (window as any).fbq?.("track", "CompleteRegistration", { content_name: "YNeet Junior free", status: true }); } catch { /* analytics only */ }
       toast.success("Welcome to YNeet!");
-      goToYneet();
+      trackSignUpThen(goToYneet, "junior_free", "YNeet Junior free");
     } catch (err: any) {
       toast.error(err?.response?.data?.message || "Registration failed");
     } finally {
@@ -141,13 +156,9 @@ const Register = () => {
       };
       const res = await api.post("/auth/register", payload);
       login(res.data.token, res.data.user);
-      // Google Analytics / Ads conversion: a completed registration.
-      try { (window as any).gtag?.("event", "sign_up", { method: "email", transport_type: "beacon" }); } catch { /* analytics must never block sign-up */ }
-      // Meta (Instagram/Facebook ads) conversion: a completed registration.
-      try { (window as any).fbq?.("track", "CompleteRegistration", { content_name: "YNeet free trial", status: true }); } catch { /* analytics only */ }
       toast.success("Welcome to YNeet!");
-      // Straight into YNeet — see the same change in Login.tsx for why.
-      goToYneet();
+      // Google Analytics / Ads + Meta conversion, then straight into YNeet (see Login.tsx).
+      trackSignUpThen(goToYneet, "trial_30d", "YNeet free trial");
     } catch (err: any) {
       toast.error(err?.response?.data?.message || "Registration failed");
     } finally {
