@@ -25,6 +25,8 @@ const Practice = () => {
         <Link to="/register" className="inline-flex items-center gap-2 bg-ink text-paper font-semibold px-5 py-2.5 rounded-full">Start free trial <ArrowRight size={16} /></Link>
       </div>
 
+      <p className="mt-4 text-sm">Not sure where to start? <Link to="/neet-readiness" className="text-rise-dark font-semibold underline">Take the free 15-question NEET Readiness Test</Link> to find your weak chapters.</p>
+
       {chapters === null && <p className="mt-10 text-ink/50">Loading chapters…</p>}
       {chapters !== null && chapters.length === 0 && <p className="mt-10 text-ink/50">Chapters are being prepared. Meanwhile, <Link to="/neet-trial" className="underline font-semibold">try YNeet free for 30 days</Link>.</p>}
       {SUBJECTS.map((s) => {

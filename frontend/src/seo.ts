@@ -44,6 +44,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Give your NEET students full mock tests, chapter tests, PYQs 2016–2026 and instant analysis, with a live progress panel for your institute and weekly parent reports. Monthly plans from ₹3,999 for 20 students, and a free 14-day pilot with 5 students.",
   },
+  "/neet-readiness": {
+    title: "NEET Readiness Test — Free 15-Question Score Check | YNeet",
+    description:
+      "How ready are you for NEET? Take a free 15-question test (Physics, Chemistry, Biology) with NEET marking, get your readiness score out of 100, your weak chapters and a shareable score card. No login.",
+  },
   "/neet-practice": {
     title: "NEET Chapter-wise PYQs & Practice Questions with Answers — Free | YNeet",
     description:

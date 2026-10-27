@@ -193,6 +193,16 @@ const Home = () => {
         </div>
       </section>
 
+      {/* NEET READINESS — shareable 15-question score check */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-14">
+        <Link to="/neet-readiness" className="block rounded-3xl bg-rise-line text-paper p-7 sm:p-9 hover:opacity-95">
+          <p className="text-gold font-bold uppercase tracking-wider text-sm">Free · 5 minutes · No login</p>
+          <p className="font-display text-2xl sm:text-3xl font-bold mt-2">What's your NEET Readiness Score?</p>
+          <p className="text-paper/80 mt-2">15 NEET-level questions with NEET marking. Get your score out of 100, your weak chapters and a score card to share.</p>
+          <span className="mt-4 inline-block bg-gold text-ink font-bold px-6 py-3 rounded-full">Check my score →</span>
+        </Link>
+      </section>
+
       {/* FREE TEST — embedded directly here so visitors take it without leaving the page */}
       <section className="bg-ink/[0.03]">
         <FreeTestSection />
