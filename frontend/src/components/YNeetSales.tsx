@@ -138,6 +138,11 @@ export function ParentReportSection({ standalone }: { standalone?: boolean }) {
           Register your child free <ArrowRight size={16} />
         </Link>
         <p className="text-xs text-ink/55 dark:text-paper/55 mt-2">Add the parent's email in the student profile after registering.</p>
+        {standalone && (
+          <p className="text-sm mt-5">
+            Run a coaching centre or school? <Link to="/institutes" className="text-rise-dark font-semibold underline">See YNeet for institutes →</Link>
+          </p>
+        )}
       </div>
       <div className="rounded-2xl bg-[#e7f7ec] dark:bg-[#12372a] p-4 shadow-sm">
         <div className="rounded-xl bg-white dark:bg-[#1f2c33] p-4 text-[13px] leading-relaxed font-mono whitespace-pre-line text-ink dark:text-paper">

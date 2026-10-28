@@ -7,6 +7,18 @@ import { INST_TOKEN } from "../api/instituteApi";
 import { payWithRazorpay, trackPurchase } from "../utils/razorpay";
 import { SITE } from "../utils/siteInfo";
 
+// Compared with how centres run tests today. Every YNeet cell must stay true.
+const INST_COMPARE: Array<[string, string, string, string]> = [
+  ["Ready NEET tests and PYQs", "Teachers make them", "Mostly you add questions", "1,200+ tests, ready to use"],
+  ["Checking and analysis", "Manual, takes days", "Yes", "Instant, per student and chapter"],
+  ["Reports to parents", "Phone calls, PTMs", "Some", "Weekly, automatic"],
+  ["Students practise at home every day", "No", "Varies", "Yes: daily quiz, PYQs, mistake notebook"],
+  ["Your view of every student", "Mark registers", "Yes", "Live progress panel"],
+  ["Setup", "Printing every test", "Setup + training", "Panel ready in a minute"],
+  ["Cost", "Printing + teacher time", "Setup + yearly fee", "From ₹1,200 per student per year"],
+  ["Try before you pay", "—", "Demo", "Free 14-day pilot, 5 students"],
+];
+
 // Keep in sync with backend controllers/instituteController.js
 const MONTHLY = [
   { seats: 20, price: 3999 },
@@ -143,6 +155,35 @@ const Institutes = () => {
             ))}
           </ul>
         </div>
+      </section>
+
+      {/* COMPARISON — against what a centre does today, not other apps */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold">YNeet vs what most centres do today</h2>
+        <p className="text-ink/60 mt-2 max-w-3xl">Keep your teachers and your classes. YNeet takes over the test-making, checking and reporting, so your teachers spend their time teaching.</p>
+        <div className="mt-6 overflow-x-auto rounded-2xl border border-ink/10 bg-white">
+          <table className="w-full min-w-[640px] text-sm">
+            <thead>
+              <tr className="bg-ink/[0.04]">
+                <th className="text-left p-3 w-[28%]"></th>
+                {["Printed tests / own test series", "Test software or ERP", "YNeet"].map((c, i) => (
+                  <th key={c} className={`p-3 font-semibold text-center ${i === 2 ? "bg-gold/25" : ""}`}>{c}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {INST_COMPARE.map(([label, a, b, ours]) => (
+                <tr key={label} className="border-t border-ink/10">
+                  <td className="p-3 font-medium">{label}</td>
+                  <td className="p-3 text-center text-ink/65">{a}</td>
+                  <td className="p-3 text-center text-ink/65">{b}</td>
+                  <td className="p-3 text-center font-semibold bg-gold/10">{ours}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-ink/50 mt-2">Test software and ERP features vary by provider.</p>
       </section>
 
       {/* FREE PILOT */}
