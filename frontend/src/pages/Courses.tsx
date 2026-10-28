@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import { CompareTable, ParentReportSection } from "../components/YNeetSales";
 import { Link, useLocation } from "react-router-dom";
 import { Microscope, Stethoscope, ArrowRight, CheckCircle2, MessageCircle, Puzzle, Gift } from "lucide-react";
 import { SITE } from "../utils/siteInfo";
@@ -215,6 +216,9 @@ const Courses = () => {
           })}
         </div>
       </section>
+
+      <div className="mt-16 -mx-4 sm:mx-0"><CompareTable /></div>
+      <div className="mt-6 rounded-3xl bg-gold/10 border border-gold/20"><ParentReportSection /></div>
 
       <section className="mt-16">
         <h2 className="font-display text-2xl font-bold">How it works</h2>

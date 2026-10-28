@@ -12,7 +12,6 @@ import {
   Gift,
 } from "lucide-react";
 import Counter from "../components/Counter";
-import FreeTestSection from "../components/FreeTestSection";
 import FeaturedShortsSection from "../components/FeaturedShortsSection";
 import OurOtherSites from "../components/OurOtherSites";
 import { SITE, gamesLink } from "../utils/siteInfo";
@@ -201,11 +200,6 @@ const Home = () => {
           <p className="text-paper/80 mt-2">15 NEET-level questions with NEET marking. Get your score out of 100, your weak chapters and a score card to share.</p>
           <span className="mt-4 inline-block bg-gold text-ink font-bold px-6 py-3 rounded-full">Check my score →</span>
         </Link>
-      </section>
-
-      {/* FREE TEST — embedded directly here so visitors take it without leaving the page */}
-      <section className="bg-ink/[0.03]">
-        <FreeTestSection />
       </section>
 
       {/* YNEET SHORTS — featured creator videos + creator recruitment */}

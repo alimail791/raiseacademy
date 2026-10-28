@@ -23,6 +23,7 @@ import NotFound from "./pages/NotFound";
 import Practice from "./pages/Practice";
 import PracticeChapter from "./pages/PracticeChapter";
 import NeetReadiness from "./pages/NeetReadiness";
+import NeetParents from "./pages/NeetParents";
 
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -53,6 +54,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/neet-readiness" element={<NeetReadiness />} />
+          <Route path="/neet-parents" element={<NeetParents />} />
           <Route path="/neet-practice" element={<Practice />} />
           <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
 

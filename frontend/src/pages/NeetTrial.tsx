@@ -1,18 +1,12 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
-import FreeTestSection from "../components/FreeTestSection";
+import { ArrowRight, MessageCircle } from "lucide-react";
+import { FeatureGroups, CompareTable, ParentReportSection, FreeStartCards } from "../components/YNeetSales";
 import { SITE } from "../utils/siteInfo";
 
 // Landing page for Google Ads: one message, one button. The full home page
 // has many links competing for attention; ad visitors should see the offer,
-// the price and a single Register button, with the free taster below it.
-const points = [
-  "Full-length & chapter-wise NEET mock tests with instant analysis",
-  "Daily quiz, flashcards and formula sheets for Physics, Chemistry & Biology",
-  "Previous year questions, year by year",
-  "Made for 11th, 12th & Dropper — matched to your class syllabus",
-  "Doubt support on WhatsApp",
-];
+// the price and a single Register button, then what's included, how YNeet
+// compares, the parent report, and free ways in for visitors not ready yet.
 
 const NeetTrial = () => {
   const whatsapp = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(SITE.whatsappMessage)}`;
@@ -40,37 +34,28 @@ const NeetTrial = () => {
         </div>
       </section>
 
-      <section className="max-w-xl mx-auto px-4 py-10">
-        <ul className="space-y-3">
-          {points.map((p) => (
-            <li key={p} className="flex items-start gap-3 text-ink/80">
-              <CheckCircle2 className="text-gold shrink-0 mt-0.5" size={20} />
-              <span>{p}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-8 flex flex-col sm:flex-row gap-3">
-          <Link
-            to="/register"
-            className="flex-1 inline-flex justify-center items-center gap-2 bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
-          >
-            Start the free 30-day trial <ArrowRight size={18} />
-          </Link>
-          <a
-            href={whatsapp}
-            target="_blank"
-            rel="noreferrer"
-            className="flex-1 inline-flex justify-center items-center gap-2 border border-ink/20 font-semibold px-6 py-3 rounded-full hover:bg-ink/5 transition-colors"
-          >
-            <MessageCircle size={18} /> Ask us on WhatsApp
-          </a>
-        </div>
+      <FeatureGroups heading="What you get for 30 days, free" />
+
+      <section className="max-w-xl mx-auto px-4 pb-4 flex flex-col sm:flex-row gap-3">
+        <Link
+          to="/register"
+          className="flex-1 inline-flex justify-center items-center gap-2 bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
+        >
+          Start the free 30-day trial <ArrowRight size={18} />
+        </Link>
+        <a
+          href={whatsapp}
+          target="_blank"
+          rel="noreferrer"
+          className="flex-1 inline-flex justify-center items-center gap-2 border border-ink/20 font-semibold px-6 py-3 rounded-full hover:bg-ink/5 transition-colors"
+        >
+          <MessageCircle size={18} /> Ask us on WhatsApp
+        </a>
       </section>
 
-      <div className="border-t border-ink/10">
-        <p className="text-center text-ink/60 pt-10 px-4">Not sure yet? Try 30 free questions first — no login.</p>
-        <FreeTestSection />
-      </div>
+      <div className="border-t border-ink/10"><CompareTable /></div>
+      <div className="bg-gold/10 border-y border-gold/20"><ParentReportSection /></div>
+      <FreeStartCards />
     </div>
   );
 };

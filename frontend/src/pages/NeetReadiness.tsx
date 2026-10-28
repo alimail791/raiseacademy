@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { ArrowRight, Check, Clock, Share2, Download, Target, X, RotateCcw } from "lucide-react";
 import { YNEET_API } from "../practice/practiceData";
+import { gamesLink } from "../utils/siteInfo";
 
 // Free "NEET Readiness Score" quiz — 15 questions, no login. Built to be shared:
 // the result screen makes a score card for WhatsApp/Instagram status, and every
@@ -307,9 +308,15 @@ const NeetReadiness = () => {
         )}
       </section>
 
-      <button onClick={start} className="mt-10 inline-flex items-center gap-2 font-semibold text-rise-dark">
-        <RotateCcw size={16} /> Take a new set of 15 questions
-      </button>
+      <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+        <button onClick={start} className="inline-flex items-center gap-2 font-semibold text-rise-dark">
+          <RotateCcw size={16} /> Take a new set of 15 questions
+        </button>
+        <a href={gamesLink("readiness")} target="_blank" rel="noopener noreferrer" onClick={() => track("readiness_games_click")}
+          className="inline-flex items-center gap-2 font-semibold text-rise-dark">
+          🧩 Keep a daily streak: play today's 5 NEET puzzles
+        </a>
+      </div>
     </div>
   );
 };
