@@ -74,6 +74,14 @@ const Footer = () => {
                 Talk on WhatsApp
               </a>
             </li>
+            {SITE.whatsappChannel && (
+              <li className="flex items-center gap-2">
+                <MessageCircle size={16} className="text-gold" />
+                <a href={SITE.whatsappChannel} target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                  Daily NEET Question channel
+                </a>
+              </li>
+            )}
             <li>
               <a href="https://pay.yneet.in/refund" target="_blank" rel="noopener noreferrer" className="hover:text-gold">
                 Refund policy

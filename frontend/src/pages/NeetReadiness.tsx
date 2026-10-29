@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { ArrowRight, Check, Clock, Share2, Download, Target, X, RotateCcw } from "lucide-react";
 import { YNEET_API } from "../practice/practiceData";
-import { gamesLink } from "../utils/siteInfo";
+import { gamesLink, SITE } from "../utils/siteInfo";
 
 // Free "NEET Readiness Score" quiz — 15 questions, no login. Built to be shared:
 // the result screen makes a score card for WhatsApp/Instagram status, and every
@@ -316,6 +316,12 @@ const NeetReadiness = () => {
           className="inline-flex items-center gap-2 font-semibold text-rise-dark">
           🧩 Keep a daily streak: play today's 5 NEET puzzles
         </a>
+        {SITE.whatsappChannel && (
+          <a href={SITE.whatsappChannel} target="_blank" rel="noopener noreferrer" onClick={() => track("readiness_channel_click")}
+            className="inline-flex items-center gap-2 font-semibold text-rise-dark">
+            📲 Get one NEET question daily on WhatsApp
+          </a>
+        )}
       </div>
     </div>
   );

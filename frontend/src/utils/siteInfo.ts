@@ -12,5 +12,5 @@ export const SITE = {
     "Hi YNeet, I'd like help clearing a NEET doubt / know more about your plans.",
   // WhatsApp Channel invite link (https://whatsapp.com/channel/...). Empty = the
   // "Get it daily on WhatsApp" buttons stay hidden.
-  whatsappChannel: "",
+  whatsappChannel: "https://whatsapp.com/channel/0029Va6DPU1JkK7E9QxsrM36",
 };
