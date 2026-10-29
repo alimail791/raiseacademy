@@ -54,6 +54,18 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "YNeet sends parents a weekly NEET progress report: days studied, tests taken, mock scores, accuracy and weak chapters. 1,200+ NEET tests from ₹399/month. Free for 30 days, no card.",
   },
+  "/neet-question-papers": {
+    title: "NEET Previous Year Question Papers with Answers (Year-wise) — Free | YNeet",
+    description: "NEET question papers year by year with answers and explanations for every question. Physics, Chemistry and Biology. Free, no login.",
+  },
+  "/neet-question-of-the-day": {
+    title: "NEET Question of the Day — Daily NEET MCQ with Answer | YNeet",
+    description: "One NEET-level question every day, mostly from previous NEET papers, with the answer and explanation. Free, no login. Challenge your friends.",
+  },
+  "/neet-2027-exam-date": {
+    title: "NEET 2027 Exam Date, Pattern & Marking Scheme — What's Confirmed | YNeet",
+    description: "NEET UG 2027 exam date status, registration, CBT and attempt-limit news, and the exam pattern: 180 questions, 720 marks, +4/−1, 3 hours. Checked against NTA notices.",
+  },
   "/neet-practice": {
     title: "NEET Chapter-wise PYQs & Practice Questions with Answers — Free | YNeet",
     description:
@@ -93,6 +105,7 @@ export function metaFor(path: string): PageMeta & { canonical: string } {
   // pages/BlogPost.tsx); until then they get the blog's tags, still indexable.
   if (/^\/blog\/[^/]+$/.test(clean)) return { ...PAGE_META["/blog"], canonical: `${SITE_ORIGIN}${clean}` };
   // Chapter pages set their own title once loaded (pages/PracticeChapter.tsx); the build writes them into the HTML.
+  if (/^\/neet-question-papers\/\d{4}$/.test(clean)) return { ...PAGE_META["/neet-question-papers"], canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-practice\/[^/]+\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   const meta =
     PAGE_META[clean] ||

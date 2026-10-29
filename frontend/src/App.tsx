@@ -24,6 +24,9 @@ import Practice from "./pages/Practice";
 import PracticeChapter from "./pages/PracticeChapter";
 import NeetReadiness from "./pages/NeetReadiness";
 import NeetParents from "./pages/NeetParents";
+import { PapersIndex, PaperYear } from "./pages/Papers";
+import QuestionOfTheDay from "./pages/QuestionOfTheDay";
+import NeetExamDate from "./pages/NeetExamDate";
 
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -55,6 +58,10 @@ function App() {
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/neet-readiness" element={<NeetReadiness />} />
           <Route path="/neet-parents" element={<NeetParents />} />
+          <Route path="/neet-question-papers" element={<PapersIndex />} />
+          <Route path="/neet-question-papers/:year" element={<PaperYear />} />
+          <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
+          <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
           <Route path="/neet-practice" element={<Practice />} />
           <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
 

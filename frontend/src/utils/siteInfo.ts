@@ -10,4 +10,7 @@ export const SITE = {
   whatsappNumber: "919443424064",
   whatsappMessage:
     "Hi YNeet, I'd like help clearing a NEET doubt / know more about your plans.",
+  // WhatsApp Channel invite link (https://whatsapp.com/channel/...). Empty = the
+  // "Get it daily on WhatsApp" buttons stay hidden.
+  whatsappChannel: "",
 };

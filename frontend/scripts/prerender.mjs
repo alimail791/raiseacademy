@@ -16,7 +16,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const ssrEntry = path.join(root, "dist-ssr", "entry-server.js");
 
-const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta } = await import(pathToFileURL(ssrEntry).href);
+const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta } = await import(pathToFileURL(ssrEntry).href);
 
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
@@ -57,6 +57,19 @@ if (YNEET_API) {
   }
 }
 const practiceSummaries = practiceChapters.map(({ questions, ...rest }) => rest);
+
+// NEET previous-year papers by year (/neet-question-papers/<year>), same approach.
+let papers = [];
+if (YNEET_API) {
+  try {
+    const res = await fetch(`${YNEET_API}/public/papers?full=1`);
+    if (!res.ok) throw new Error(`API responded ${res.status}`);
+    papers = (await res.json()).papers || [];
+  } catch (err) {
+    console.warn(`prerender: could not fetch question papers (${err.message}) — paper pages will load in the browser.`);
+  }
+}
+const paperSummaries = papers.map(({ subjects, ...rest }) => rest);
 const practiceFile = (slug) => `${slug.replace("/", "--")}.html`;
 const blogDataScript = (data) =>
   `<script>window.__BLOG_DATA__=${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
@@ -86,7 +99,9 @@ function pageHtml(route, blogData, metaOverride, practiceData) {
 const routes = Object.keys(PAGE_META);
 for (const route of routes) {
   const out = route === "/" ? path.join(dist, "index.html") : path.join(dist, `${route.slice(1)}.html`);
-  fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, undefined, route === "/neet-practice" && practiceSummaries.length ? { chapters: practiceSummaries } : undefined));
+  const pData = route === "/neet-practice" && practiceSummaries.length ? { chapters: practiceSummaries }
+    : route === "/neet-question-papers" && paperSummaries.length ? { papers: paperSummaries } : undefined;
+  fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, undefined, pData));
 }
 
 // One file per chapter in practice-pages/ (flat, like blog-posts/).
@@ -100,6 +115,14 @@ fs.writeFileSync(
   path.join(dist, "practice-shell.html"),
   template.replace(/(<meta name="robots" content=")[^"]*(")/, "$1index, follow$2").replace(/\s*<link rel="canonical"[^>]*>/, "")
 );
+
+// One file per NEET paper year in paper-pages/.
+fs.mkdirSync(path.join(dist, "paper-pages"), { recursive: true });
+for (const paper of papers) {
+  const route = `/neet-question-papers/${paper.year}`;
+  const meta = { ...paperMeta(paper), canonical: `${SITE_ORIGIN}${route}` };
+  fs.writeFileSync(path.join(dist, "paper-pages", `${paper.year}.html`), pageHtml(route, undefined, meta, { paper, papers: paperSummaries }));
+}
 
 // One file per published article, in blog-posts/ (not blog/, which would
 // clash with blog.html under cleanUrls). serve.json below maps each
@@ -148,6 +171,8 @@ fs.writeFileSync(
         { source: "/blog/:slug", destination: "/blog-shell.html" },
         ...practiceChapters.map((c) => ({ source: `/neet-practice/${c.slug}`, destination: `/practice-pages/${practiceFile(c.slug)}` })),
         { source: "/neet-practice/:subject/:chapter", destination: "/practice-shell.html" },
+        ...papers.map((p) => ({ source: `/neet-question-papers/${p.year}`, destination: `/paper-pages/${p.year}.html` })),
+        { source: "/neet-question-papers/:year", destination: "/practice-shell.html" },
         { source: "/dashboard", destination: "/app.html" },
         { source: "/admin", destination: "/app.html" },
         { source: "/admin/**", destination: "/app.html" },
@@ -165,6 +190,7 @@ const indexable = [
   ...routes.filter((r) => !PAGE_META[r].noindex && r !== "/neet-trial"),
   ...blogPosts.map((p) => `/blog/${p.slug}`),
   ...practiceChapters.map((c) => `/neet-practice/${c.slug}`),
+  ...papers.map((p) => `/neet-question-papers/${p.year}`),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -179,6 +205,7 @@ ${indexable
 fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
 
 fs.rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
-console.log(`Prerendered ${practiceChapters.length} chapter practice pages.`);
+console.log(`Prerendered ${practiceChapters.length} chapter practice pages and ${papers.length} question-paper years.`);
+if (papers.length) console.log("PAPERS " + papers.map((p) => `${p.year}:${p.total}(P${p.counts.Physics}/C${p.counts.Chemistry}/B${p.counts.Biology})`).join(" "));
 if (practiceChapters.length) console.log("PRACTICE_CHAPTERS " + practiceChapters.map((c) => `${c.subject[0]}:${c.chapter}(${c.total}/${c.pyqCount})`).join(" | "));
 console.log(`Prerendered ${routes.length} pages and ${blogPosts.length} blog posts; sitemap has ${indexable.length} URLs.`);

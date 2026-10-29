@@ -24,7 +24,15 @@ export type PracticeChapterSummary = {
   topics: string[];
 };
 export type PracticeChapter = PracticeChapterSummary & { questions: PracticeQuestion[] };
-export type PracticeData = { chapters?: PracticeChapterSummary[]; chapter?: PracticeChapter | null };
+export type PaperQuestion = { id: string; chapter: string; question: string; options: string[]; answer: number; explanation: string };
+export type PaperSummary = { year: number; total: number; counts: Record<string, number> };
+export type Paper = PaperSummary & { subjects: Record<string, PaperQuestion[]> };
+export type PracticeData = {
+  chapters?: PracticeChapterSummary[];
+  chapter?: PracticeChapter | null;
+  papers?: PaperSummary[];
+  paper?: Paper | null;
+};
 
 const Ctx = createContext<PracticeData>({});
 
@@ -34,7 +42,7 @@ export function PracticeDataProvider({ value, children }: { value?: PracticeData
 
 export function useInitialPracticeData(): PracticeData {
   const ctx = useContext(Ctx);
-  if (ctx.chapters || ctx.chapter) return ctx;
+  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper) return ctx;
   if (typeof window !== "undefined") return (window as any).__PRACTICE_DATA__ || {};
   return {};
 }
@@ -47,5 +55,12 @@ export function chapterMeta(c: PracticeChapterSummary) {
   return {
     title: `NEET ${c.chapter} PYQs & Practice Questions with Answers | ${c.subject} | YNeet`,
     description: `Free NEET ${c.subject} practice: ${c.chapter} previous year questions${years} with answers and explanations. No login needed. Take the full timed chapter test free for 30 days on YNeet.`,
+  };
+}
+
+export function paperMeta(p: PaperSummary) {
+  return {
+    title: `NEET ${p.year} Question Paper with Answers & Explanations | YNeet`,
+    description: `NEET ${p.year} previous year questions with answers and explanations: ${p.total} questions across Physics, Chemistry and Biology. Free, no login. Take NEET-style timed mocks free for 30 days on YNeet.`,
   };
 }
