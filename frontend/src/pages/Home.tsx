@@ -88,12 +88,12 @@ const Home = () => {
             >
               Start 30 Days Free <ArrowRight size={18} />
             </Link>
-            <a
-              href="#free-test"
+            <Link
+              to="/neet-readiness"
               className="inline-flex items-center gap-2 bg-paper/10 border border-paper/30 text-paper font-semibold px-6 py-3 rounded-full hover:bg-paper/20 transition-colors"
             >
-              Take a Free 30-Question Test <ArrowRight size={18} />
-            </a>
+              Check your NEET score free <ArrowRight size={18} />
+            </Link>
             <a
               href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(SITE.whatsappMessage)}`}
               target="_blank"
