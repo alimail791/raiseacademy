@@ -7,7 +7,6 @@ import { goToYneet } from "../../utils/yneet";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About Us" },
   { to: "/courses", label: "Courses" },
   { to: "/neet-readiness", label: "Readiness Test" },
   { to: "/neet-practice", label: "Free PYQs" },

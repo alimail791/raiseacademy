@@ -1,30 +1,11 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  MessageCircle,
-  ArrowRight,
-  Layers,
-  ClipboardCheck,
-  TrendingUp,
-  BrainCircuit,
-  BookMarked,
-  Wallet,
-  Gift,
-} from "lucide-react";
+import { ArrowRight, Gift } from "lucide-react";
 import Counter from "../components/Counter";
 import FeaturedShortsSection from "../components/FeaturedShortsSection";
-import OurOtherSites from "../components/OurOtherSites";
-import { SITE, gamesLink } from "../utils/siteInfo";
+import { FeatureGroups, CompareTable, ParentReportSection } from "../components/YNeetSales";
+import { gamesLink } from "../utils/siteInfo";
 
-const whyUs = [
-  { icon: Layers, title: "Class-Scoped Content", desc: "Everything is matched to your class — free tests and puzzles for Class 6–8, Foundation tests for 9–10 and full NEET prep for 11, 12 and droppers." },
-  { icon: ClipboardCheck, title: "Daily Practice", desc: "A fresh quiz every day plus a full practice bank filtered by chapter, topic and difficulty." },
-  { icon: BrainCircuit, title: "Mistake Notebook", desc: "Every wrong answer is logged automatically so you know exactly what to revise." },
-  { icon: TrendingUp, title: "Progress Tracking", desc: "See your score trend, subject-wise strength, and estimated rank as you improve." },
-  { icon: BookMarked, title: "Flashcards & Formulas", desc: "Chapter-wise flashcards and formula sheets for Physics, Chemistry and Biology." },
-  { icon: MessageCircle, title: "Doubt Support", desc: "Reach us directly on WhatsApp whenever you're stuck." },
-  { icon: Wallet, title: "Affordable Plans", desc: "Free for Class 6–8. From Class 9, start with a free 30-day trial, then plans from ₹299/month — a full year costs about 8 months' price." },
-];
 
 const Home = () => {
   return (
@@ -56,7 +37,7 @@ const Home = () => {
             <Link to="/register" className="inline-flex items-center gap-2 bg-gold text-ink text-sm sm:text-base font-bold px-4 py-2 rounded-full shadow-lg shadow-gold/30 hover:scale-[1.03] transition-transform">
               <Gift size={18} /> 30-DAY FREE TRIAL · Class 9 to Dropper <span className="hidden sm:inline font-medium">· no payment needed</span>
             </Link>
-            <Link to="/register?junior=1" className="ml-0 sm:ml-2 mt-2 sm:mt-0 inline-flex items-center gap-2 bg-white text-rise-dark text-sm sm:text-base font-bold px-4 py-2 rounded-full hover:scale-[1.03] transition-transform">
+            <Link to="/register?junior=1" className="hidden ml-0 sm:ml-2 mt-2 sm:mt-0 sm:inline-flex items-center gap-2 bg-white text-rise-dark text-sm sm:text-base font-bold px-4 py-2 rounded-full hover:scale-[1.03] transition-transform">
               FREE for Class 6–8 <span className="font-medium">· tests, puzzles, quiz &amp; Shorts</span>
             </Link>
           </motion.p>
@@ -66,7 +47,7 @@ const Home = () => {
             transition={{ delay: 0.1 }}
             className="font-display text-4xl sm:text-6xl font-bold leading-[1.1] max-w-3xl"
           >
-            Learn Smart, Score High, <span className="text-gold">Achieve Success.</span>
+            NEET mock tests &amp; practice that <span className="text-gold">show you what to fix.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -74,7 +55,7 @@ const Home = () => {
             transition={{ delay: 0.2 }}
             className="mt-6 max-w-xl text-paper/80 text-lg"
           >
-            Every NEET mock test, chapter test, PYQ and daily quiz — <b className="text-gold">free for your first 30 days</b>. Register in 2 minutes, no card needed.
+            1,200+ NEET tests, PYQs and daily quizzes, with your weak chapters after every test. <b className="text-gold">Free for 30 days</b>, no card needed.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -84,7 +65,7 @@ const Home = () => {
           >
             <Link
               to="/register"
-              className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark transition-colors"
+              className="inline-flex items-center gap-2 bg-gold text-ink font-bold text-lg px-7 py-3.5 rounded-full hover:bg-gold-dark transition-colors"
             >
               Start 30 Days Free <ArrowRight size={18} />
             </Link>
@@ -94,14 +75,6 @@ const Home = () => {
             >
               Check your NEET score free <ArrowRight size={18} />
             </Link>
-            <a
-              href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(SITE.whatsappMessage)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
-            >
-              <MessageCircle size={18} /> Talk on WhatsApp
-            </a>
           </motion.div>
         </div>
       </section>
@@ -109,11 +82,48 @@ const Home = () => {
       {/* RESULTS STRIP */}
       <section className="bg-ink text-paper py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <Counter to={70000} suffix="+" label="NEET Questions in bank" />
-          <Counter to={1200} suffix="+" label="NEET Tests" />
-          <Counter to={8} suffix="" label="Class levels covered (6th–Dropper)" />
-          <Counter to={365} suffix="" label="Days of daily quizzes" />
+          <Counter to={1200} suffix="+" label="NEET tests" />
+          <Counter to={98} suffix="" label="Chapters of free PYQs" />
+          <Counter to={30} suffix="" label="Days free, no card" />
+          <Counter to={8} suffix="" label="Class levels (6th to Dropper)" />
         </div>
+      </section>
+
+      {/* NEET READINESS — shareable 15-question score check */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-14 pb-2">
+        <Link to="/neet-readiness" className="block rounded-3xl bg-rise-line text-paper p-7 sm:p-9 hover:opacity-95">
+          <p className="text-gold font-bold uppercase tracking-wider text-sm">Free · 5 minutes · No login</p>
+          <p className="font-display text-2xl sm:text-3xl font-bold mt-2">What's your NEET Readiness Score?</p>
+          <p className="text-paper/80 mt-2">15 NEET-level questions with NEET marking. Get your score out of 100, your weak chapters and a score card to share.</p>
+          <span className="mt-4 inline-block bg-gold text-ink font-bold px-6 py-3 rounded-full">Check my score →</span>
+        </Link>
+      </section>
+
+      <FeatureGroups heading="Everything you need for NEET, in one place" />
+
+      <div className="border-t border-ink/10"><CompareTable /></div>
+
+      <div className="bg-gold/10 border-y border-gold/20"><ParentReportSection /></div>
+
+      {/* PRICES — short version; full table on /courses */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold text-center">Simple prices, by class</h2>
+        <p className="text-center text-ink/65 dark:text-paper/65 mt-2">Start with 30 days free. After that, pay only for the months you need. One-time payment, no auto-debit.</p>
+        <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { cls: "Class 6–8", price: "Free", note: "Tests, puzzles, quiz & Shorts", to: "/register?junior=1" },
+            { cls: "Class 9–10", price: "₹299/mo", note: "or ₹2,399 a year", to: "/register" },
+            { cls: "Class 11–12", price: "₹399/mo", note: "or ₹3,199 a year", to: "/register", top: true },
+            { cls: "Dropper", price: "₹499/mo", note: "or ₹3,999 a year", to: "/register" },
+          ].map((p) => (
+            <Link key={p.cls} to={p.to} className={`rounded-2xl p-5 bg-white dark:bg-ink-light hover:border-gold ${p.top ? "border-2 border-gold" : "border border-ink/10 dark:border-paper/15"}`}>
+              <p className="text-sm font-semibold text-gold-dark">{p.cls}</p>
+              <p className="font-display text-2xl font-bold mt-1">{p.price}</p>
+              <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">{p.note}</p>
+            </Link>
+          ))}
+        </div>
+        <p className="text-center mt-5"><Link to="/courses#pricing" className="font-semibold text-rise-dark underline">See all plans and what's included</Link></p>
       </section>
 
       {/* FREE DAILY GAMES — a no-sign-up way in for visitors not ready to register */}
@@ -166,68 +176,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* WHY US */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="max-w-2xl mb-12">
-          <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Why YNeet</p>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold mt-2">
-            Built for students who want to rise, not just pass.
-          </h2>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {whyUs.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="p-6 rounded-2xl border border-ink/10 hover:border-gold/50 hover:shadow-lg transition-all bg-white"
-            >
-              <item.icon className="text-rise" size={28} />
-              <h3 className="font-display font-semibold text-lg mt-4">{item.title}</h3>
-              <p className="text-ink/60 text-sm mt-2">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* NEET READINESS — shareable 15-question score check */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-14">
-        <Link to="/neet-readiness" className="block rounded-3xl bg-rise-line text-paper p-7 sm:p-9 hover:opacity-95">
-          <p className="text-gold font-bold uppercase tracking-wider text-sm">Free · 5 minutes · No login</p>
-          <p className="font-display text-2xl sm:text-3xl font-bold mt-2">What's your NEET Readiness Score?</p>
-          <p className="text-paper/80 mt-2">15 NEET-level questions with NEET marking. Get your score out of 100, your weak chapters and a score card to share.</p>
-          <span className="mt-4 inline-block bg-gold text-ink font-bold px-6 py-3 rounded-full">Check my score →</span>
-        </Link>
-      </section>
-
       {/* YNEET SHORTS — featured creator videos + creator recruitment */}
       <FeaturedShortsSection />
-
-      {/* TESTMANDI CROSS-PROMOTION */}
-      <section className="py-16">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4">Want more NEET practice beyond our program?</h2>
-          <p className="text-ink/70 leading-relaxed mb-7">
-            TestMandi hosts full-length NEET mock tests covering Biology, Physics and Chemistry, each with an instant,
-            topic-wise score report — a solid way to track your weak areas between study sessions.
-          </p>
-          <a
-            href="https://testmandi.in/tests/premium_neet_1/neet-complete-practice-test-biology-physics-chemistry"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-ink/20 text-ink font-semibold px-6 py-3 rounded-full hover:border-gold hover:text-gold-dark transition-colors"
-          >
-            Take a NEET mock test on TestMandi <ArrowRight size={18} />
-          </a>
-        </div>
-      </section>
-
-      {/* OTHER RAISE ACADEMY SITES */}
-      <div className="bg-ink/[0.03]">
-        <OurOtherSites />
-      </div>
 
       {/* CTA */}
       <section className="bg-rise text-white py-16">

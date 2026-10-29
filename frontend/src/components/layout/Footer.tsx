@@ -21,6 +21,7 @@ const Footer = () => {
         <div>
           <h4 className="font-display font-semibold text-paper mb-3">Explore</h4>
           <ul className="space-y-2 text-sm">
+            <li><Link to="/about" className="hover:text-gold">About Us</Link></li>
             <li><Link to="/courses" className="hover:text-gold">Courses</Link></li>
             <li><Link to="/register" className="hover:text-gold">Enroll Now</Link></li>
             <li><a href={gamesLink("footer")} target="_blank" rel="noopener" className="hover:text-gold">Free NEET Games (daily)</a></li>
