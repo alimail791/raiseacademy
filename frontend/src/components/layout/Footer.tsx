@@ -30,6 +30,7 @@ const Footer = () => {
             <li><Link to="/neet-parents" className="hover:text-gold">For parents</Link></li>
             <li><Link to="/neet-practice" className="hover:text-gold">Free NEET PYQs (chapter-wise)</Link></li>
             <li><Link to="/neet-question-papers" className="hover:text-gold">NEET question papers by year</Link></li>
+            <li><Link to="/ncert-notes" className="hover:text-gold">NCERT Biology notes</Link></li>
             <li><Link to="/neet-question-of-the-day" className="hover:text-gold">NEET Question of the Day</Link></li>
             <li><Link to="/neet-2027-exam-date" className="hover:text-gold">NEET 2027 exam date</Link></li>
             <li><Link to="/blog" className="hover:text-gold">Blog</Link></li>

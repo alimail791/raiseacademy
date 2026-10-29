@@ -27,6 +27,7 @@ import NeetParents from "./pages/NeetParents";
 import { PapersIndex, PaperYear } from "./pages/Papers";
 import QuestionOfTheDay from "./pages/QuestionOfTheDay";
 import NeetExamDate from "./pages/NeetExamDate";
+import { NcertIndex, NcertChapter } from "./pages/NcertNotes";
 
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -62,6 +63,8 @@ function App() {
           <Route path="/neet-question-papers/:year" element={<PaperYear />} />
           <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
           <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
+          <Route path="/ncert-notes" element={<NcertIndex />} />
+          <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
           <Route path="/neet-practice" element={<Practice />} />
           <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
 

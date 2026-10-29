@@ -11,6 +11,7 @@ import { PracticeDataProvider, type PracticeData } from "./practice/practiceData
 
 export { PAGE_META, metaFor, SITE_ORIGIN } from "./seo";
 export { chapterMeta, paperMeta } from "./practice/practiceData";
+export { NCERT_NOTES, ncertMeta } from "./ncert/notes";
 
 export function render(url: string, blogData?: BlogData, practiceData?: PracticeData) {
   return renderToString(

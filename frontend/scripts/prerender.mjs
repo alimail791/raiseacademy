@@ -16,7 +16,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const ssrEntry = path.join(root, "dist-ssr", "entry-server.js");
 
-const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta } = await import(pathToFileURL(ssrEntry).href);
+const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
 
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
@@ -124,6 +124,14 @@ for (const paper of papers) {
   fs.writeFileSync(path.join(dist, "paper-pages", `${paper.year}.html`), pageHtml(route, undefined, meta, { paper, papers: paperSummaries }));
 }
 
+// NCERT notes (static content in src/ncert/notes.ts), one file each in ncert-pages/.
+fs.mkdirSync(path.join(dist, "ncert-pages"), { recursive: true });
+for (const n of NCERT_NOTES) {
+  const route = `/ncert-notes/${n.slug}`;
+  const meta = { ...ncertMeta(n), canonical: `${SITE_ORIGIN}${route}` };
+  fs.writeFileSync(path.join(dist, "ncert-pages", `${n.slug}.html`), pageHtml(route, undefined, meta, practiceSummaries.length ? { chapters: practiceSummaries } : undefined));
+}
+
 // One file per published article, in blog-posts/ (not blog/, which would
 // clash with blog.html under cleanUrls). serve.json below maps each
 // /blog/<slug> to its file.
@@ -173,6 +181,7 @@ fs.writeFileSync(
         { source: "/neet-practice/:subject/:chapter", destination: "/practice-shell.html" },
         ...papers.map((p) => ({ source: `/neet-question-papers/${p.year}`, destination: `/paper-pages/${p.year}.html` })),
         { source: "/neet-question-papers/:year", destination: "/practice-shell.html" },
+        ...NCERT_NOTES.map((n) => ({ source: `/ncert-notes/${n.slug}`, destination: `/ncert-pages/${n.slug}.html` })),
         { source: "/dashboard", destination: "/app.html" },
         { source: "/admin", destination: "/app.html" },
         { source: "/admin/**", destination: "/app.html" },
@@ -191,6 +200,7 @@ const indexable = [
   ...blogPosts.map((p) => `/blog/${p.slug}`),
   ...practiceChapters.map((c) => `/neet-practice/${c.slug}`),
   ...papers.map((p) => `/neet-question-papers/${p.year}`),
+  ...NCERT_NOTES.map((n) => `/ncert-notes/${n.slug}`),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -206,6 +216,12 @@ fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
 
 fs.rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
 console.log(`Prerendered ${practiceChapters.length} chapter practice pages and ${papers.length} question-paper years.`);
+if (practiceSummaries.length) {
+  const have = new Set(practiceSummaries.map((c) => c.slug));
+  const slug = (x) => x.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80);
+  const missing = NCERT_NOTES.filter((n) => !have.has(`${slug(n.subject)}/${slug(n.chapter)}`)).map((n) => n.chapter);
+  console.log(`NCERT_NOTES ${NCERT_NOTES.length} pages; no matching PYQ page for: ${missing.join(", ") || "none"}`);
+}
 if (papers.length) console.log("PAPERS " + papers.map((p) => `${p.year}:${p.total}(P${p.counts.Physics}/C${p.counts.Chemistry}/B${p.counts.Biology})`).join(" "));
 if (practiceChapters.length) console.log("PRACTICE_CHAPTERS " + practiceChapters.map((c) => `${c.subject[0]}:${c.chapter}(${c.total}/${c.pyqCount})`).join(" | "));
 console.log(`Prerendered ${routes.length} pages and ${blogPosts.length} blog posts; sitemap has ${indexable.length} URLs.`);

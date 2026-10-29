@@ -5,6 +5,7 @@ import { ArrowRight, Check, Timer, Target, TrendingUp } from "lucide-react";
 import { SITE_ORIGIN } from "../seo";
 import { useInitialPracticeData, YNEET_API, chapterMeta, type PracticeChapter as Chapter, type PracticeChapterSummary } from "../practice/practiceData";
 import NotFound from "./NotFound";
+import { NCERT_NOTES } from "../ncert/notes";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -77,6 +78,10 @@ const PracticeChapter = () => {
       <p className="text-ink/70 dark:text-paper/70 mt-3">
         {c.questions.length} free NEET {c.subject} questions on <b>{c.chapter}</b>{c.pyqCount > 0 ? <>, starting with previous year questions{yrs ? ` (${yrs})` : ""}</> : null}. Tap “Show answer” to check each one. No login needed.
       </p>
+      {(() => {
+        const note = NCERT_NOTES.find((n) => n.subject === c.subject && n.chapter.toLowerCase() === c.chapter.toLowerCase());
+        return note ? <p className="text-sm mt-2"><Link to={`/ncert-notes/${note.slug}`} className="font-semibold text-rise-dark underline">Read the short NCERT notes for this chapter first</Link></p> : null;
+      })()}
       {c.topics.length > 0 && (
         <p className="text-sm text-ink/60 dark:text-paper/60 mt-2">Topics: {c.topics.join(" · ")}</p>
       )}
