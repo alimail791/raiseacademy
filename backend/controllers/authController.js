@@ -283,3 +283,25 @@ export const setClassInternal = async (req, res) => {
     res.json({ ok: true, from, currentClass: String(currentClass), course: courseFor(String(currentClass)) });
   } catch (e) { res.status(500).json({ message: e.message }); }
 };
+
+// POST /api/auth/internal/parent { id, parentPhone? } — read (and optionally set) the
+// parent's WhatsApp number from the student's own YNeet dashboard. "" removes it.
+export const parentContactInternal = async (req, res) => {
+  if (!internalOk(req)) return res.status(401).json({ message: "Unauthorized" });
+  try {
+    const id = String(req.body?.id || "");
+    if (!mongoose.isValidObjectId(id)) return res.status(404).json({ message: "Student not found" });
+    const s = await Student.findById(id).select("parentPhone parentEmail");
+    if (!s) return res.status(404).json({ message: "Student not found" });
+    if (req.body && "parentPhone" in req.body) {
+      const raw = String(req.body.parentPhone || "").replace(/\D/g, "");
+      let d = raw;
+      if (d.length === 12 && d.startsWith("91")) d = d.slice(2);
+      else if (d.length === 11 && d.startsWith("0")) d = d.slice(1);
+      if (raw && !/^[6-9]\d{9}$/.test(d)) return res.status(400).json({ message: "Enter a valid 10-digit Indian mobile number." });
+      await Student.updateOne({ _id: s._id }, raw ? { $set: { parentPhone: d }, $unset: { lastParentWaSent: 1 } } : { $unset: { parentPhone: 1 } });
+      s.parentPhone = raw ? d : undefined;
+    }
+    res.json({ ok: true, parentPhone: s.parentPhone || null });
+  } catch (e) { res.status(500).json({ message: e.message }); }
+};

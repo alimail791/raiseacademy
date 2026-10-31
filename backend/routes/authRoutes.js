@@ -8,6 +8,7 @@ import {
   sendWaOtpInternal,
   deleteStudentInternal,
   setClassInternal,
+  parentContactInternal,
 } from "../controllers/authController.js";
 import { protect } from "../middleware/auth.js";
 
@@ -22,5 +23,6 @@ router.post("/internal/yneet-subscription", setYneetSubscriptionFlag);
 router.post("/internal/wa-otp", sendWaOtpInternal);
 router.post("/internal/delete-student", deleteStudentInternal);
 router.post("/internal/set-class", setClassInternal);
+router.post("/internal/parent", parentContactInternal);
 
 export default router;

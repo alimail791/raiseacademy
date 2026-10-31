@@ -2,8 +2,9 @@ import Student from "../models/Student.js";
 import Institute from "../models/Institute.js";
 import { yneetPost } from "./yneetSync.js";
 
-// Weekly WhatsApp progress report to parents of institute students — and of
-// free Class 6–8 students, whose parent's WhatsApp is asked for at sign-up — sent from
+// Weekly WhatsApp progress report to every parent whose WhatsApp number is saved:
+// set by an institute, asked at Class 6–8 sign-up, or added by the student in the
+// YNeet dashboard (Profile → Parent updates). Sent from
 // the Raise Academy WhatsApp Business number through Meta's Cloud API using an
 // approved message template. Turned on by setting these Railway variables:
 //   WA_TOKEN            – permanent access token (same app as the WhatsApp bot)
@@ -86,7 +87,6 @@ export async function sendParentWhatsAppReports() {
   const students = await Student.find({
     parentPhone: { $exists: true, $ne: "" },
     $and: [
-      { $or: [{ instituteId: { $ne: null } }, { currentClass: { $in: ["6", "7", "8"] } }] },
       { $or: [{ lastParentWaSent: null }, { lastParentWaSent: { $exists: false } }, { lastParentWaSent: { $lt: weekAgo } }] },
     ],
   }).select("fullName parentPhone instituteId");
