@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import TrialBar from "./components/layout/TrialBar";
 import Footer from "./components/layout/Footer";
@@ -28,6 +28,8 @@ import { PapersIndex, PaperYear } from "./pages/Papers";
 import QuestionOfTheDay from "./pages/QuestionOfTheDay";
 import NeetExamDate from "./pages/NeetExamDate";
 import { NcertIndex, NcertChapter } from "./pages/NcertNotes";
+import QotdEmbed from "./pages/QotdEmbed";
+import QotdWidget from "./pages/QotdWidget";
 
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -40,6 +42,16 @@ import InstituteForgot from "./pages/institute/InstituteForgot";
 
 function App() {
   usePageMeta();
+  const { pathname } = useLocation();
+  // Boxes other websites show in an <iframe>: no header, footer or chat button.
+  if (pathname.startsWith("/embed/")) {
+    return (
+      <Routes>
+        <Route path="/embed/qotd" element={<QotdEmbed />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    );
+  }
   return (
     <div className="min-h-screen flex flex-col">
       <TrialBar />
@@ -63,6 +75,7 @@ function App() {
           <Route path="/neet-question-papers/:year" element={<PaperYear />} />
           <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
           <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
+          <Route path="/neet-question-widget" element={<QotdWidget />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
           <Route path="/neet-practice" element={<Practice />} />

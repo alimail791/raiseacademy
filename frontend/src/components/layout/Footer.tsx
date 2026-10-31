@@ -32,6 +32,7 @@ const PARENTS: Item[] = [
   { label: "For parents", to: "/neet-parents" },
   { label: "For coaching institutes", to: "/institutes" },
   { label: "Institute login", to: "/institute/login" },
+  { label: "Free NEET widget for your website", to: "/neet-question-widget" },
 ];
 
 const HELP: Item[] = [

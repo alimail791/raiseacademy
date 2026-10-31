@@ -99,6 +99,7 @@ function pageHtml(route, blogData, metaOverride, practiceData) {
 const routes = Object.keys(PAGE_META);
 for (const route of routes) {
   const out = route === "/" ? path.join(dist, "index.html") : path.join(dist, `${route.slice(1)}.html`);
+  fs.mkdirSync(path.dirname(out), { recursive: true }); // e.g. /embed/qotd → dist/embed/
   const pData = route === "/neet-practice" && practiceSummaries.length ? { chapters: practiceSummaries }
     : route === "/neet-question-papers" && paperSummaries.length ? { papers: paperSummaries } : undefined;
   fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, undefined, pData));

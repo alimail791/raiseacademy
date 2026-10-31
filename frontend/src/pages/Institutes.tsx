@@ -184,6 +184,9 @@ const Institutes = () => {
           </table>
         </div>
         <p className="text-xs text-ink/50 mt-2">Test software and ERP features vary by provider.</p>
+        <p className="mt-6 rounded-xl bg-gold/10 border border-gold/30 p-4 text-sm">
+          <b>Free for your website:</b> show a new NEET question every day on your centre's site, with answers and explanations. <Link to="/neet-question-widget" className="font-semibold text-rise-dark underline">Get the free widget</Link>
+        </p>
       </section>
 
       {/* FREE PILOT */}

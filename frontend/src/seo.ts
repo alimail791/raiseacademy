@@ -66,6 +66,15 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "NEET 2027 Exam Date, Pattern & Marking Scheme — What's Confirmed | YNeet",
     description: "NEET UG 2027 exam date status, registration, CBT and attempt-limit news, and the exam pattern: 180 questions, 720 marks, +4/−1, 3 hours. Checked against NTA notices.",
   },
+  "/neet-question-widget": {
+    title: "Free NEET Question of the Day Widget for Your Website | YNeet",
+    description: "Add a free daily NEET question box to your coaching centre, school or blog website. A new question every day with answers and explanations. Copy one code, no sign-up.",
+  },
+  "/embed/qotd": {
+    title: "NEET Question of the Day — YNeet",
+    description: "Today's NEET question with answer and explanation, by YNeet.",
+    noindex: true,
+  },
   "/ncert-notes": {
     title: "NCERT Biology Notes for NEET — Chapter-wise, Free | YNeet",
     description: "Short NCERT Class 11 and 12 Biology notes for NEET: key points, quick tables and common traps for each chapter, with free PYQs to practise. No login.",
