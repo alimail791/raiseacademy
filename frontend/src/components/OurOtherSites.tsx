@@ -18,10 +18,10 @@ export const OTHER_SITES = [
     key: "classcoach",
     name: "ClassCoach",
     domain: "classcoach.in",
-    url: "https://classcoach.in",
-    for: "Teachers & tutors",
+    url: "https://www.classcoach.in",
+    for: "Teachers, tutors & institutes",
     icon: GraduationCap,
-    pitch: "An AI teaching assistant for tutors. Grade descriptive answers with AI, create class slides, and share notes and question banks with your students.",
+    pitch: "An AI teaching assistant for tutors and coaching institutes. Make a test from any chapter in a minute, auto-grade it, see each student's weak chapters and send parents reports on WhatsApp.",
     cta: "Try ClassCoach",
   },
   {
