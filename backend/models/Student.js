@@ -26,6 +26,8 @@ const studentSchema = new mongoose.Schema(
       enum: ["6", "7", "8", "9", "10", "11", "12", "Dropper"],
     },
     neetExamYear: { type: Number },
+    // When the student last moved up a class (self-service, once per ~5 months).
+    classChangedAt: { type: Date },
 
     // YNeet (NEET prep add-on) subscription mirror — source of truth lives in YNeet's DB,
     // this is just a light flag so Raise Academy UI can show subscription state without an extra call.

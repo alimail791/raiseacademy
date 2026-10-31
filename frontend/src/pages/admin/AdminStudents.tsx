@@ -17,7 +17,7 @@ interface Student {
   createdAt: string;
 }
 
-const COLS = 11;
+const COLS = 12;
 
 const AdminStudents = () => {
   const [students, setStudents] = useState<Student[]>([]);
@@ -29,6 +29,18 @@ const AdminStudents = () => {
       .then((res) => setStudents(res.data.students || []))
       .finally(() => setLoading(false));
   }, []);
+
+  // Permanent: removes the login here and the student's YNeet account and data.
+  const remove = async (s: Student) => {
+    const typed = window.prompt(`Permanently delete ${s.fullName} (${s.email})?\n\nThis removes their login and all YNeet data (tests, practice, progress, plan). It can't be undone.\n\nType DELETE to confirm.`);
+    if (typed !== "DELETE") return;
+    try {
+      await api.delete(`/content/students/${s._id}`);
+      setStudents((list) => list.filter((x) => x._id !== s._id));
+    } catch (e: any) {
+      alert(e?.response?.data?.message || "Delete failed");
+    }
+  };
 
   const exportCsv = async () => {
     const res = await api.get("/content/students/export", { responseType: "blob" });
@@ -68,6 +80,7 @@ const AdminStudents = () => {
               <th className="px-4 py-3">NEET Exam Year</th>
               <th className="px-4 py-3">YNeet</th>
               <th className="px-4 py-3">Joined</th>
+              <th className="px-4 py-3"></th>
             </tr>
           </thead>
           <tbody>
@@ -96,6 +109,9 @@ const AdminStudents = () => {
                   )}
                 </td>
                 <td className="px-4 py-3">{new Date(s.createdAt).toLocaleDateString()}</td>
+                <td className="px-4 py-3">
+                  <button onClick={() => remove(s)} className="text-xs font-semibold text-red-600 hover:underline">Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>

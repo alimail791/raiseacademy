@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
@@ -38,6 +39,7 @@ const publicUser = (u) => ({
   yneetSubscribed: u.yneetSubscribed,
   referredByCode: u.referredByCode,
   parentEmail: u.parentEmail,
+  classChangedAt: u.classChangedAt || null,
 });
 
 // PATCH internal — called by the YNeet backend (server-to-server, shared secret)
@@ -230,4 +232,54 @@ export const resetPassword = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+// ── Server-to-server (YNeet backend), shared INTERNAL_SERVICE_KEY ──
+const internalOk = (req) => !!process.env.INTERNAL_SERVICE_KEY && req.headers["x-internal-key"] === process.env.INTERNAL_SERVICE_KEY;
+
+// POST /api/auth/internal/delete-student { id } — permanent delete of the login.
+// Admin accounts are never deleted this way. An institute seat is freed automatically
+// (seats are counted from students that still exist).
+export const deleteStudentInternal = async (req, res) => {
+  if (!internalOk(req)) return res.status(401).json({ message: "Unauthorized" });
+  try {
+    const id = String(req.body?.id || "");
+    if (!mongoose.isValidObjectId(id)) return res.json({ ok: true, deleted: false });
+    const s = await Student.findById(id).select("role email");
+    if (!s) return res.json({ ok: true, deleted: false });
+    if (s.role === "admin") return res.status(400).json({ message: "Admin accounts can't be deleted here" });
+    await Student.deleteOne({ _id: id });
+    res.json({ ok: true, deleted: true });
+  } catch (e) { res.status(500).json({ message: e.message }); }
+};
+
+// Class ladder: 6 → 7 → … → 12 → Dropper. Classes 6–10 are "NEET Foundation",
+// 11, 12 and Dropper are "NEET Coaching".
+export const CLASS_ORDER = ["6", "7", "8", "9", "10", "11", "12", "Dropper"];
+const courseFor = (c) => (["11", "12", "Dropper"].includes(c) ? "NEET Coaching" : "NEET Foundation");
+export const CLASS_CHANGE_GAP_DAYS = 150;
+
+// POST /api/auth/internal/set-class { id, currentClass, force }
+// Without force (the student's own request) only the next class up is allowed,
+// at most once every CLASS_CHANGE_GAP_DAYS. With force (admin) any class is allowed.
+export const setClassInternal = async (req, res) => {
+  if (!internalOk(req)) return res.status(401).json({ message: "Unauthorized" });
+  try {
+    const { id, currentClass, force } = req.body || {};
+    if (!mongoose.isValidObjectId(String(id || ""))) return res.status(404).json({ message: "Student not found" });
+    if (!CLASS_ORDER.includes(String(currentClass))) return res.status(400).json({ message: "Unknown class" });
+    const s = await Student.findById(id);
+    if (!s) return res.status(404).json({ message: "Student not found" });
+    const from = s.currentClass || "12";
+    if (!force) {
+      const next = CLASS_ORDER[CLASS_ORDER.indexOf(from) + 1];
+      if (!next || String(currentClass) !== next) return res.status(400).json({ message: next ? `You can move up to Class ${next} only.` : "Dropper is the last level." });
+      if (s.classChangedAt && Date.now() - s.classChangedAt.getTime() < CLASS_CHANGE_GAP_DAYS * 86400000) {
+        const when = new Date(s.classChangedAt.getTime() + CLASS_CHANGE_GAP_DAYS * 86400000).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+        return res.status(400).json({ message: `You changed your class recently. You can move up again after ${when}, or message us on WhatsApp.` });
+      }
+    }
+    await Student.updateOne({ _id: s._id }, { $set: { currentClass: String(currentClass), course: courseFor(String(currentClass)), classChangedAt: new Date() } });
+    res.json({ ok: true, from, currentClass: String(currentClass), course: courseFor(String(currentClass)) });
+  } catch (e) { res.status(500).json({ message: e.message }); }
 };

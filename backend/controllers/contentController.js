@@ -96,3 +96,24 @@ export const exportStudentsCsv = async (req, res, next) => {
     next(err);
   }
 };
+
+// DELETE /api/content/students/:id — admin: permanently delete a student's login
+// here and their YNeet account, tests and progress there. Cannot be undone.
+export const deleteStudent = async (req, res, next) => {
+  try {
+    const s = await Student.findById(req.params.id).select("role fullName email");
+    if (!s) return res.status(404).json({ message: "Student not found" });
+    if (s.role === "admin") return res.status(400).json({ message: "Admin accounts can't be deleted" });
+    const base = process.env.YNEET_API_URL, key = process.env.INTERNAL_SERVICE_KEY;
+    if (base && key) {
+      const r = await fetch(`${base.replace(/\/$/, "")}/internal/delete-user`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-internal-key": key },
+        body: JSON.stringify({ userId: String(s._id) }),
+      }).catch((e) => ({ ok: false, statusText: e.message }));
+      if (!r.ok) return res.status(502).json({ message: "Couldn't delete the YNeet account right now. Nothing was deleted; please try again." });
+    }
+    await Student.deleteOne({ _id: s._id });
+    res.json({ ok: true });
+  } catch (err) { next(err); }
+};
