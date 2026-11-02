@@ -6,6 +6,7 @@ import { Check } from "lucide-react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import { goToYneet } from "../utils/yneet";
+import { isAppMode } from "../utils/appMode";
 
 const boards = ["CBSE", "Tamil Nadu State Board"];
 const courses = ["NEET Foundation", "NEET Coaching"];
@@ -184,7 +185,7 @@ const Register = () => {
         <button type="button" onClick={() => setJunior(false)}
           className={`rounded-2xl border-2 p-4 text-left transition-colors ${!junior ? "border-gold bg-gold/10" : "border-ink/10 bg-white hover:border-gold/50"}`}>
           <p className="font-display font-bold">Class 9 – Dropper</p>
-          <p className="text-sm text-ink/60">30 days free, then from ₹299/month</p>
+          <p className="text-sm text-ink/60">{isAppMode() ? "30 days free · no payment needed" : "30 days free, then from ₹299/month"}</p>
         </button>
       </div>
 

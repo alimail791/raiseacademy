@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { OTHER_SITES, siteLink, trackSiteClick } from "../OurOtherSites";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle, Smartphone } from "lucide-react";
+
+// Set VITE_PLAY_STORE_URL on Railway once the Android app is live on Google Play.
+const PLAY_URL: string = import.meta.env.VITE_PLAY_STORE_URL || "";
 import { SITE, gamesLink } from "../../utils/siteInfo";
 
 // Footer grouped by what a visitor is looking for: free practice first, then
@@ -41,6 +44,8 @@ const HELP: Item[] = [
   { label: "Help & FAQ", to: "/help" },
   { label: "Contact us", href: "https://pay.yneet.in/contact" },
   { label: "Refund policy", href: "https://pay.yneet.in/refund" },
+  { label: "Privacy policy", to: "/privacy" },
+  { label: "Delete my account", to: "/delete-account" },
 ];
 
 function Column({ title, items }: { title: string; items: Item[] }) {
@@ -77,6 +82,13 @@ const Footer = () => {
           <Link to="/register" className="mt-5 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-2.5 rounded-full hover:bg-gold-dark">
             Start 30 days free <ArrowRight size={16} />
           </Link>
+          {PLAY_URL && (
+            <a href={PLAY_URL} target="_blank" rel="noopener noreferrer" onClick={() => { try { (window as any).gtag?.("event", "play_store_click", { place: "footer" }); } catch { /* ignore */ } }}
+              className="mt-4 flex w-fit items-center gap-3 rounded-xl border border-paper/25 px-4 py-2 hover:border-gold">
+              <Smartphone size={20} className="text-gold" />
+              <span className="leading-tight"><span className="block text-[11px] text-paper/60">Get the app on</span><span className="font-semibold text-paper">Google Play</span></span>
+            </a>
+          )}
           {SITE.whatsappChannel && (
             <a href={SITE.whatsappChannel} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 text-sm hover:text-gold">
               <MessageCircle size={16} className="text-gold" /> Follow the Daily NEET Question channel

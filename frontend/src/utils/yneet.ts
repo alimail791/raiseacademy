@@ -1,3 +1,5 @@
+import { isAppMode } from "./appMode";
+
 // Builds the SSO handoff URL to YNeet. YNeet reads the token from the URL,
 // verifies it against Raise Academy's /api/auth/me, provisions/loads the
 // matching local profile, and then routes the student to /pricing (if not
@@ -5,7 +7,7 @@
 export const getYneetRedirectUrl = () => {
   const base = import.meta.env.VITE_YNEET_URL || "http://localhost:5174";
   const token = localStorage.getItem("ra_token") || "";
-  return `${base}/bridge?token=${encodeURIComponent(token)}`;
+  return `${base}/bridge?token=${encodeURIComponent(token)}${isAppMode() ? "&app=1" : ""}`;
 };
 
 export const goToYneet = () => {

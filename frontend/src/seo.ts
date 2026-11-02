@@ -94,6 +94,14 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Create your YNeet account in about two minutes and start NEET preparation with mock tests, daily quizzes and practice questions matched to your class.",
   },
+  "/privacy": {
+    title: "Privacy policy — YNeet",
+    description: "What YNeet collects, why, who it is shared with, and how to see or delete your data.",
+  },
+  "/delete-account": {
+    title: "Delete your YNeet account",
+    description: "How to ask YNeet to delete your account and data, what is deleted and what is kept.",
+  },
   "/login": {
     title: "Log in — YNeet",
     description: "Log in to your YNeet account.",

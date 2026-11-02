@@ -1,4 +1,6 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { isAppMode, APP_MODE_PATHS } from "./utils/appMode";
 import Navbar from "./components/layout/Navbar";
 import TrialBar from "./components/layout/TrialBar";
 import Footer from "./components/layout/Footer";
@@ -30,6 +32,8 @@ import NeetExamDate from "./pages/NeetExamDate";
 import { NcertIndex, NcertChapter } from "./pages/NcertNotes";
 import QotdEmbed from "./pages/QotdEmbed";
 import QotdWidget from "./pages/QotdWidget";
+import Privacy from "./pages/Privacy";
+import DeleteAccount from "./pages/DeleteAccount";
 
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -43,6 +47,10 @@ import InstituteForgot from "./pages/institute/InstituteForgot";
 function App() {
   usePageMeta();
   const { pathname } = useLocation();
+  // Inside the Android app: only login / sign-up, no menu, footer or prices.
+  // Decided after the first render so the prerendered HTML still hydrates cleanly.
+  const [appMode, setAppMode] = useState(false);
+  useEffect(() => { setAppMode(isAppMode()); }, []);
   // Boxes other websites show in an <iframe>: no header, footer or chat button.
   if (pathname.startsWith("/embed/")) {
     return (
@@ -50,6 +58,24 @@ function App() {
         <Route path="/embed/qotd" element={<QotdEmbed />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+    );
+  }
+  if (appMode) {
+    return (
+      <div className="min-h-screen flex flex-col bg-white">
+        <header className="py-5 text-center font-display text-2xl font-bold">YNeet</header>
+        <main className="flex-1">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/delete-account" element={<DeleteAccount />} />
+            <Route path="*" element={<Navigate to={APP_MODE_PATHS.includes(pathname) ? pathname : "/login"} replace />} />
+          </Routes>
+        </main>
+        <WhatsAppButton />
+      </div>
     );
   }
   return (
@@ -65,6 +91,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/delete-account" element={<DeleteAccount />} />
           <Route path="/neet-trial" element={<NeetTrial />} />
           <Route path="/institutes" element={<Institutes />} />
           <Route path="/blog" element={<Blog />} />
