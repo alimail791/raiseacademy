@@ -35,6 +35,7 @@ import QotdWidget from "./pages/QotdWidget";
 import Privacy from "./pages/Privacy";
 import BrainTeaser from "./pages/BrainTeaser";
 import AskYneet from "./pages/AskYneet";
+import ConceptMaps from "./pages/ConceptMaps";
 import DeleteAccount from "./pages/DeleteAccount";
 
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -106,6 +107,7 @@ function App() {
           <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
           <Route path="/brain-teaser" element={<BrainTeaser />} />
           <Route path="/ask-yneet" element={<AskYneet />} />
+          <Route path="/neet-concept-maps" element={<ConceptMaps />} />
           <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
           <Route path="/neet-question-widget" element={<QotdWidget />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />

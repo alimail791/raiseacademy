@@ -18,6 +18,7 @@ const FREE: Item[] = [
   { label: "Chapter-wise NEET PYQs", to: "/neet-practice" },
   { label: "NEET question papers by year", to: "/neet-question-papers" },
   { label: "NCERT Biology notes", to: "/ncert-notes" },
+  { label: "NEET concept maps", to: "/neet-concept-maps" },
   { label: "Brain Teaser (Class 6–8)", to: "/brain-teaser" },
   { label: "Ask YNeet: doubts answered", to: "/ask-yneet" },
   { label: "Daily NEET puzzles", href: gamesLink("footer") },
