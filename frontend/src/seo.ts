@@ -58,6 +58,10 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "NEET Previous Year Question Papers with Answers (Year-wise) — Free | YNeet",
     description: "NEET question papers year by year with answers and explanations for every question. Physics, Chemistry and Biology. Free, no login.",
   },
+  "/brain-teaser": {
+    title: "Science Brain Teaser for Class 6–8 — New Every Wednesday | YNeet",
+    description: "A fun 'Who am I?' science riddle for Class 6, 7 and 8 students every Wednesday, from the NCERT syllabus. Pick an answer; it's revealed the next day.",
+  },
   "/neet-question-of-the-day": {
     title: "NEET Question of the Day — Daily NEET MCQ with Answer | YNeet",
     description: "One NEET-level question every day, mostly from previous NEET papers, with the answer and explanation. Free, no login. Challenge your friends.",

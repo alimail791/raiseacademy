@@ -33,6 +33,7 @@ import { NcertIndex, NcertChapter } from "./pages/NcertNotes";
 import QotdEmbed from "./pages/QotdEmbed";
 import QotdWidget from "./pages/QotdWidget";
 import Privacy from "./pages/Privacy";
+import BrainTeaser from "./pages/BrainTeaser";
 import DeleteAccount from "./pages/DeleteAccount";
 
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -102,6 +103,7 @@ function App() {
           <Route path="/neet-question-papers" element={<PapersIndex />} />
           <Route path="/neet-question-papers/:year" element={<PaperYear />} />
           <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
+          <Route path="/brain-teaser" element={<BrainTeaser />} />
           <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
           <Route path="/neet-question-widget" element={<QotdWidget />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />
