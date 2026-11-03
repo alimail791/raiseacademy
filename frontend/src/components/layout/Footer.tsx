@@ -19,6 +19,7 @@ const FREE: Item[] = [
   { label: "NEET question papers by year", to: "/neet-question-papers" },
   { label: "NCERT Biology notes", to: "/ncert-notes" },
   { label: "Brain Teaser (Class 6–8)", to: "/brain-teaser" },
+  { label: "Ask YNeet: doubts answered", to: "/ask-yneet" },
   { label: "Daily NEET puzzles", href: gamesLink("footer") },
   { label: "NEET 2027 exam date", to: "/neet-2027-exam-date" },
 ];
