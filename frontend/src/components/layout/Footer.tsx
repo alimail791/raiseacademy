@@ -15,6 +15,7 @@ type Item = { label: string; to?: string; href?: string; onClick?: () => void };
 const FREE: Item[] = [
   { label: "NEET Readiness Test", to: "/neet-readiness" },
   { label: "NEET Question of the Day", to: "/neet-question-of-the-day" },
+  { label: "60-Second Sprint", to: "/neet-sprint" },
   { label: "Chapter-wise NEET PYQs", to: "/neet-practice" },
   { label: "NEET question papers by year", to: "/neet-question-papers" },
   { label: "NCERT Biology notes", to: "/ncert-notes" },

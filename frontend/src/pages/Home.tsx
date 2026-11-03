@@ -4,6 +4,7 @@ import { ArrowRight, Gift } from "lucide-react";
 import Counter from "../components/Counter";
 import FeaturedShortsSection from "../components/FeaturedShortsSection";
 import ConceptMapSection from "../components/ConceptMapSection";
+import SprintSection from "../components/SprintSection";
 import { FeatureGroups, CompareTable, ParentReportSection } from "../components/YNeetSales";
 import { gamesLink } from "../utils/siteInfo";
 
@@ -99,6 +100,9 @@ const Home = () => {
           <span className="mt-4 inline-block bg-gold text-ink font-bold px-6 py-3 rounded-full">Check my score →</span>
         </Link>
       </section>
+
+      {/* 60-SECOND SPRINT — free speed round, yesterday's questions */}
+      <SprintSection />
 
       {/* CONCEPT MAP OF THE WEEK — shows once a map is published */}
       <ConceptMapSection />

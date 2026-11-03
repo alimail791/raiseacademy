@@ -58,6 +58,10 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "NEET Previous Year Question Papers with Answers (Year-wise) — Free | YNeet",
     description: "NEET question papers year by year with answers and explanations for every question. Physics, Chemistry and Biology. Free, no login.",
   },
+  "/neet-sprint": {
+    title: "NEET 60-Second Sprint — 5 Quick NEET MCQs Against the Clock (Free) | YNeet",
+    description: "Play a free NEET speed round: 5 quick Physics, Chemistry and Biology questions in 60 seconds, with answers. No login. Compare your score with YNeet students.",
+  },
   "/neet-concept-maps": {
     title: "NEET Concept Maps — Whole NCERT Chapters on One Page (Free) | YNeet",
     description: "Free one-page concept maps of NCERT Biology, Chemistry and Physics chapters for NEET revision. A new map every Monday. No login needed.",
