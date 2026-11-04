@@ -37,6 +37,7 @@ import BrainTeaser from "./pages/BrainTeaser";
 import AskYneet from "./pages/AskYneet";
 import ConceptMaps from "./pages/ConceptMaps";
 import NeetSprint from "./pages/NeetSprint";
+import Logout from "./pages/Logout";
 import DeleteAccount from "./pages/DeleteAccount";
 
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -73,6 +74,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/logout" element={<Logout />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/delete-account" element={<DeleteAccount />} />
             <Route path="*" element={<Navigate to={APP_MODE_PATHS.includes(pathname) ? pathname : "/login"} replace />} />

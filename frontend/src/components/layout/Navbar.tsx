@@ -105,7 +105,7 @@ const Navbar = () => {
               <button
                 onClick={() => {
                   logout();
-                  navigate("/");
+                  navigate("/", { replace: true });
                 }}
                 className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full bg-ink text-paper hover:bg-ink-light transition-colors"
               >
@@ -172,7 +172,7 @@ const Navbar = () => {
                   onClick={() => {
                     setOpen(false);
                     logout();
-                    navigate("/");
+                    navigate("/", { replace: true });
                   }}
                   className="flex items-center justify-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full border border-ink/15"
                 >

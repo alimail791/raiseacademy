@@ -16,3 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+// Back button after logout: a page restored from the browser's back/forward
+// cache skips all code, so reload it and let the normal sign-in checks run.
+window.addEventListener("pageshow", (e) => {
+  if (e.persisted && !localStorage.getItem("ra_token") && /^\/(dashboard|admin|institute)/.test(location.pathname)) location.reload();
+});

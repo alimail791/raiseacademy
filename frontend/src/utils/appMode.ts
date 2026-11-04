@@ -24,4 +24,4 @@ export function isAppMode(): boolean {
   }
 }
 
-export const APP_MODE_PATHS = ["/login", "/register", "/forgot-password", "/privacy", "/delete-account"];
+export const APP_MODE_PATHS = ["/login", "/register", "/forgot-password", "/logout", "/privacy", "/delete-account"];

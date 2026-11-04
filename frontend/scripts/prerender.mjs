@@ -183,6 +183,7 @@ fs.writeFileSync(
         ...papers.map((p) => ({ source: `/neet-question-papers/${p.year}`, destination: `/paper-pages/${p.year}.html` })),
         { source: "/neet-question-papers/:year", destination: "/practice-shell.html" },
         ...NCERT_NOTES.map((n) => ({ source: `/ncert-notes/${n.slug}`, destination: `/ncert-pages/${n.slug}.html` })),
+        { source: "/logout", destination: "/app.html" },
         { source: "/dashboard", destination: "/app.html" },
         { source: "/admin", destination: "/app.html" },
         { source: "/admin/**", destination: "/app.html" },
