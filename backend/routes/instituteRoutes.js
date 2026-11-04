@@ -13,6 +13,7 @@ router.post("/admin/:id/reset-password", protect, adminOnly, c.adminResetInstitu
 router.get("/admin/:id/students", protect, adminOnly, c.adminInstituteStudents);
 router.delete("/admin/:id", protect, adminOnly, c.adminDeleteInstitute);
 router.get("/admin/:id/progress", protect, adminOnly, c.adminInstituteProgress);
+router.get("/admin/:id/insights", protect, adminOnly, c.adminInstituteInsights);
 
 // Monthly plans — public sign-up with online payment
 router.get("/plans", bill.getPlans);
@@ -41,5 +42,6 @@ router.get("/students/:id/parent-report", c.protectInstitute, c.instituteParentR
 router.get("/progress.csv", c.protectInstitute, c.instituteProgressCsv);
 router.get("/progress", c.protectInstitute, c.instituteProgress);
 router.get("/progress/:id", c.protectInstitute, c.instituteStudentProgress);
+router.get("/insights", c.protectInstitute, c.instituteInsights);
 
 export default router;
