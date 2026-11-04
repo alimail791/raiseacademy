@@ -449,6 +449,40 @@ export const instituteProgressCsv = async (req, res, next) => {
   } catch (err) { res.status(502).json({ message: "Couldn't export progress right now." }); }
 };
 
+// ───────────────────────── Academic insights (from YNeet) ─────────────────────────
+// Batch-level learning gaps for the institute's own students. Names are attached here;
+// YNeet only ever sees student ids.
+const insightsFor = async (institute, days) => {
+  const students = await Student.find({ instituteId: institute._id }).select("_id fullName currentClass").sort({ fullName: 1 });
+  if (!students.length) return { empty: true };
+  const data = await yneetPost("institute-analytics", {
+    userIds: students.map((s) => String(s._id)),
+    days: [7, 30, 90].includes(Number(days)) ? Number(days) : 30,
+    instituteName: institute.name,
+  });
+  const names = Object.fromEntries(students.map((s) => [String(s._id), s.fullName]));
+  const { success, ...rest } = data;
+  return {
+    ...rest,
+    grid: { ...data.grid, students: (data.grid?.students || []).map((g) => ({ ...g, name: names[g.userId] || "Student" })) },
+  };
+};
+
+// GET /api/institute/insights?days=30
+export const instituteInsights = async (req, res, next) => {
+  try { res.json(await insightsFor(req.institute, req.query.days)); }
+  catch (err) { res.status(502).json({ message: "Couldn't load insights right now. Please try again in a minute." }); }
+};
+
+// Admin: same insights for any institute (demos / support)
+export const adminInstituteInsights = async (req, res, next) => {
+  try {
+    const inst = await Institute.findById(req.params.id);
+    if (!inst) return res.status(404).json({ message: "Institute not found" });
+    res.json(await insightsFor(inst, req.query.days));
+  } catch (err) { res.status(502).json({ message: err.message }); }
+};
+
 // Admin: same progress view for any institute (for demos / support)
 export const adminInstituteProgress = async (req, res, next) => {
   try { res.json(await progressFor(req.params.id)); }
