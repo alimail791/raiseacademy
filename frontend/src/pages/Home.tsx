@@ -37,7 +37,7 @@ const Home = () => {
             className="mb-5"
           >
             <Link to="/register" className="inline-flex items-center gap-2 bg-gold text-ink text-sm sm:text-base font-bold px-4 py-2 rounded-full shadow-lg shadow-gold/30 hover:scale-[1.03] transition-transform">
-              <Gift size={18} /> 30-DAY FREE TRIAL · Class 9 to Dropper <span className="hidden sm:inline font-medium">· no payment needed</span>
+              <Gift size={18} /> <span className="sm:hidden">30 DAYS FREE · Class 9–Dropper</span><span className="hidden sm:inline">30-DAY FREE TRIAL · Class 9 to Dropper</span> <span className="hidden sm:inline font-medium">· no payment needed</span>
             </Link>
             <Link to="/register?junior=1" className="hidden ml-0 sm:ml-2 mt-2 sm:mt-0 sm:inline-flex items-center gap-2 bg-white text-rise-dark text-sm sm:text-base font-bold px-4 py-2 rounded-full hover:scale-[1.03] transition-transform">
               FREE for Class 6–8 <span className="font-medium">· tests, puzzles, quiz &amp; Shorts</span>

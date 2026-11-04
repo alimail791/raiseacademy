@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Menu, X, Sun, Moon, LogOut, LayoutDashboard } from "lucide-react";
+import { Menu, X, Sun, Moon, LogOut, LayoutDashboard, ChevronDown } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { SITE, gamesLink } from "../../utils/siteInfo";
 import { goToYneet } from "../../utils/yneet";
@@ -9,13 +9,25 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/courses", label: "Courses" },
   { to: "/neet-readiness", label: "Readiness Test" },
-  { to: "/neet-practice", label: "Free PYQs" },
   { to: "/blog", label: "Blog" },
   { to: "/institutes", label: "For Institutes" },
 ];
 
+// Free tools, no login: a "Free practice" dropdown on computers, a section in the phone menu.
+const FREE_LINKS: { to: string; label: string; short?: string }[] = [
+  { to: "/neet-question-of-the-day", label: "Question of the Day" },
+  { to: "/neet-sprint", label: "60-Second Sprint" },
+  { to: "/neet-concept-maps", label: "Concept Maps" },
+  { to: "/neet-practice", label: "Chapter-wise PYQs" },
+  { to: "/neet-question-papers", label: "Question papers by year", short: "Past papers" },
+  { to: "/ncert-notes", label: "NCERT Biology notes", short: "NCERT notes" },
+  { to: "/ask-yneet", label: "Ask YNeet: doubts answered", short: "Ask YNeet" },
+  { to: "/brain-teaser", label: "Brain Teaser (Class 6–8)", short: "Brain Teaser" },
+];
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [freeOpen, setFreeOpen] = useState(false);
   const [dark, setDark] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -50,6 +62,28 @@ const Navbar = () => {
               {l.label}
             </NavLink>
           ))}
+          <div className="relative" onMouseLeave={() => setFreeOpen(false)}>
+            <button
+              onClick={() => setFreeOpen((v) => !v)}
+              onMouseEnter={() => setFreeOpen(true)}
+              aria-expanded={freeOpen}
+              className="text-sm font-medium text-ink/70 dark:text-paper/70 hover:text-ink dark:hover:text-paper inline-flex items-center gap-1"
+            >
+              Free Practice <ChevronDown size={14} />
+            </button>
+            {freeOpen && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50">
+                <div className="w-64 rounded-2xl border border-ink/10 bg-paper dark:bg-ink shadow-xl p-2">
+                  {FREE_LINKS.map((l) => (
+                    <Link key={l.to} to={l.to} onClick={() => setFreeOpen(false)}
+                      className="block rounded-xl px-3 py-2 text-sm text-ink/80 dark:text-paper/80 hover:bg-gold/15">
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
           <a
             href={gamesLink("menu")}
             target="_blank"
@@ -122,7 +156,7 @@ const Navbar = () => {
       </nav>
 
       {open && (
-        <div className="lg:hidden border-t border-ink/10 bg-paper dark:bg-ink px-4 py-4 space-y-3">
+        <div className="lg:hidden border-t border-ink/10 bg-paper dark:bg-ink px-4 py-4 space-y-3 max-h-[calc(100vh-4rem)] overflow-y-auto">
           {links.map((l) => (
             <NavLink
               key={l.to}
@@ -133,6 +167,16 @@ const Navbar = () => {
               {l.label}
             </NavLink>
           ))}
+          <div className="pt-2 border-t border-ink/10">
+            <p className="text-xs font-bold uppercase tracking-wider text-gold-dark pt-2 pb-1">Free practice · no login</p>
+            <div className="grid grid-cols-2 gap-x-4">
+              {FREE_LINKS.map((l) => (
+                <NavLink key={l.to} to={l.to} onClick={() => setOpen(false)} className="block text-sm font-medium py-1.5">
+                  {l.short || l.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
           <a
             href={gamesLink("menu")}
             target="_blank"
