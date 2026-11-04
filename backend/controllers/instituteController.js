@@ -6,7 +6,8 @@ import Student from "../models/Student.js";
 import { sendEmail, otpEmailTemplate } from "../utils/sendEmail.js";
 import Otp from "../models/Otp.js";
 import { syncYneetAccess, yneetPost } from "../utils/yneetSync.js";
-import { normalizePhone } from "../utils/parentWhatsApp.js";
+import { normalizePhone, waConfigured } from "../utils/parentWhatsApp.js";
+import { insightsFor, sendInstituteInsights } from "../utils/instituteInsights.js";
 
 // Standard bulk packs (one year ≈ 8 months of the monthly plan). Per student per
 // year: ₹1,600 / ₹1,400 / ₹1,200 — well below a student buying alone. Admin can
@@ -450,28 +451,32 @@ export const instituteProgressCsv = async (req, res, next) => {
 };
 
 // ───────────────────────── Academic insights (from YNeet) ─────────────────────────
-// Batch-level learning gaps for the institute's own students. Names are attached here;
-// YNeet only ever sees student ids.
-const insightsFor = async (institute, days) => {
-  const students = await Student.find({ instituteId: institute._id }).select("_id fullName currentClass").sort({ fullName: 1 });
-  if (!students.length) return { empty: true };
-  const data = await yneetPost("institute-analytics", {
-    userIds: students.map((s) => String(s._id)),
-    days: [7, 30, 90].includes(Number(days)) ? Number(days) : 30,
-    instituteName: institute.name,
-  });
-  const names = Object.fromEntries(students.map((s) => [String(s._id), s.fullName]));
-  const { success, ...rest } = data;
-  return {
-    ...rest,
-    grid: { ...data.grid, students: (data.grid?.students || []).map((g) => ({ ...g, name: names[g.userId] || "Student" })) },
-  };
-};
-
 // GET /api/institute/insights?days=30
 export const instituteInsights = async (req, res, next) => {
   try { res.json(await insightsFor(req.institute, req.query.days)); }
   catch (err) { res.status(502).json({ message: "Couldn't load insights right now. Please try again in a minute." }); }
+};
+
+// GET /api/institute/insights/weekly — Monday WhatsApp summary settings
+export const instituteWeeklyInsights = async (req, res) => {
+  const i = req.institute;
+  res.json({ enabled: i.weeklyInsights !== false, phone: normalizePhone(i.phone), available: waConfigured(), lastSent: i.insightsWaSentAt || null });
+};
+
+// PUT /api/institute/insights/weekly { enabled }
+export const instituteSetWeeklyInsights = async (req, res, next) => {
+  try {
+    await Institute.updateOne({ _id: req.institute._id }, { $set: { weeklyInsights: !!req.body?.enabled } });
+    res.json({ enabled: !!req.body?.enabled });
+  } catch (err) { next(err); }
+};
+
+// POST /api/institute/insights/weekly/send — send this week's summary now (to check it)
+export const instituteSendWeeklyInsights = async (req, res) => {
+  const last = req.institute.insightsWaSentAt;
+  if (last && Date.now() - new Date(last).getTime() < 10 * 60 * 1000) return res.status(429).json({ message: "Already sent a few minutes ago. Please check WhatsApp." });
+  try { res.json(await sendInstituteInsights(req.institute)); }
+  catch (err) { res.status(400).json({ message: err.message }); }
 };
 
 // Admin: same insights for any institute (demos / support)

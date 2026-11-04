@@ -23,7 +23,7 @@ const RUN_AT_UTC_MIN = 5 * 60 + 30; // 11:00 IST, an hour after YNeet's email ru
 export const waConfigured = () => !!(process.env.WA_TOKEN && phoneId());
 
 // Template parameters may not contain new lines, tabs or 4+ spaces in a row.
-const param = (v, max = 120) => String(v ?? "—").replace(/[\r\n\t]+/g, " ").replace(/ {4,}/g, "   ").trim().slice(0, max) || "—";
+export const param = (v, max = 120) => String(v ?? "—").replace(/[\r\n\t]+/g, " ").replace(/ {4,}/g, "   ").trim().slice(0, max) || "—";
 
 export const reportParams = (studentName, instituteName, data) => {
   const s = data?.joined ? data.stats : null;
@@ -49,13 +49,16 @@ export const normalizePhone = (v) => {
 // Templates created with "named" variables ({{student_name}}) need each value
 // tagged with its name, or Meta rejects the send with "(#100) Invalid parameter".
 // Set WA_TEMPLATE_PARAM_NAMES to the six names, comma-separated, in order.
-const paramNames = () => (process.env.WA_TEMPLATE_PARAM_NAMES || "").split(",").map((s) => s.trim()).filter(Boolean);
+const paramNames = (envName = "WA_TEMPLATE_PARAM_NAMES") => (process.env[envName] || "").split(",").map((s) => s.trim()).filter(Boolean);
 
-export async function sendTemplate(phone, params) {
+// opts.template / opts.paramNamesEnv let other weekly messages (e.g. the institute
+// insights report) reuse this sender with their own approved template.
+export async function sendTemplate(phone, params, opts = {}) {
   const phone10 = normalizePhone(phone);
-  if (!phone10) throw new Error(`invalid parent WhatsApp number "${phone}" (needs a 10-digit Indian mobile)`);
-  const names = paramNames();
-  if (names.length && names.length !== params.length) throw new Error(`WA_TEMPLATE_PARAM_NAMES has ${names.length} names but the template needs ${params.length}`);
+  if (!phone10) throw new Error(`invalid WhatsApp number "${phone}" (needs a 10-digit Indian mobile)`);
+  const namesEnv = opts.paramNamesEnv || "WA_TEMPLATE_PARAM_NAMES";
+  const names = paramNames(namesEnv);
+  if (names.length && names.length !== params.length) throw new Error(`${namesEnv} has ${names.length} names but the template needs ${params.length}`);
   const res = await fetch(`https://graph.facebook.com/v21.0/${phoneId()}/messages`, {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.WA_TOKEN}`, "Content-Type": "application/json" },
@@ -64,7 +67,7 @@ export async function sendTemplate(phone, params) {
       to: `91${phone10}`,
       type: "template",
       template: {
-        name: process.env.WA_PARENT_TEMPLATE || "yneet_parent_weekly",
+        name: opts.template || process.env.WA_PARENT_TEMPLATE || "yneet_parent_weekly",
         language: { code: process.env.WA_TEMPLATE_LANG || "en" },
         components: [{ type: "body", parameters: params.map((text, i) => ({ type: "text", text, ...(names.length && { parameter_name: names[i] }) })) }],
       },

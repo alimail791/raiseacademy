@@ -43,5 +43,8 @@ router.get("/progress.csv", c.protectInstitute, c.instituteProgressCsv);
 router.get("/progress", c.protectInstitute, c.instituteProgress);
 router.get("/progress/:id", c.protectInstitute, c.instituteStudentProgress);
 router.get("/insights", c.protectInstitute, c.instituteInsights);
+router.get("/insights/weekly", c.protectInstitute, c.instituteWeeklyInsights);
+router.put("/insights/weekly", c.protectInstitute, c.instituteSetWeeklyInsights);
+router.post("/insights/weekly/send", c.protectInstitute, c.instituteSendWeeklyInsights);
 
 export default router;

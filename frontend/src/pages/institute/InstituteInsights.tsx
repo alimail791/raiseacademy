@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
-import { RefreshCw, MessageCircle, Copy, Lightbulb, UserPlus, EyeOff, TrendingUp, TrendingDown } from "lucide-react";
+import { RefreshCw, MessageCircle, Copy, Lightbulb, UserPlus, EyeOff, TrendingUp, TrendingDown, BellRing } from "lucide-react";
 import instituteApi from "../../api/instituteApi";
 
 type Status = "critical" | "needs_work" | "satisfactory" | "strong" | null;
@@ -60,6 +60,46 @@ const recommendFor = (list: Chapter[]): Rec | null => {
     steps: [t ? `Run a 45-minute concept class on ${t.topic}.` : `Run a 45-minute revision class on ${w.chapter}.`, `Ask students to take the ${w.chapter} chapter test and practise 20 more questions on YNeet.`, "Check this page again in 7 days to see if accuracy moved."],
     next: pool.slice(1, 3).map((c) => ({ subject: c.subject, chapter: c.chapter, accuracy: c.accuracy })),
   };
+};
+
+// Monday 8 am WhatsApp summary to the institute's own number.
+const WeeklyWhatsApp = () => {
+  const [st, setSt] = useState<{ enabled: boolean; phone: string; available: boolean; lastSent: string | null } | null>(null);
+  const [busy, setBusy] = useState(false);
+  useEffect(() => { instituteApi.get("/insights/weekly").then(({ data }) => setSt(data)).catch(() => {}); }, []);
+  if (!st || !st.available) return null;
+  const toggle = async () => {
+    setBusy(true);
+    try { const { data } = await instituteApi.put("/insights/weekly", { enabled: !st.enabled }); setSt({ ...st, enabled: data.enabled }); toast.success(data.enabled ? "Weekly WhatsApp report turned on" : "Weekly WhatsApp report turned off"); }
+    catch { toast.error("Couldn't save"); }
+    setBusy(false);
+  };
+  const sendNow = async () => {
+    setBusy(true);
+    try { const { data } = await instituteApi.post("/insights/weekly/send"); setSt({ ...st, lastSent: new Date().toISOString() }); toast.success(`Sent to ${data.sentTo} on WhatsApp`); }
+    catch (err: any) { toast.error(err?.response?.data?.message || "Couldn't send"); }
+    setBusy(false);
+  };
+  return (
+    <div className="bg-white rounded-2xl border border-ink/10 px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div className="flex items-start gap-3">
+        <BellRing size={18} className="mt-0.5 text-rise-dark flex-none" />
+        <div className="text-sm">
+          <p className="font-semibold">Weekly report on WhatsApp</p>
+          <p className="text-ink/60">
+            {!st.phone ? "Add your mobile number to your institute profile to get it." : st.enabled ? `Every Monday 8 am to ${st.phone}: participation, accuracy, chapters to fix and this week's plan.` : "Turned off."}
+            {st.lastSent && <span className="text-ink/45"> · Last sent {new Date(st.lastSent).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}</span>}
+          </p>
+        </div>
+      </div>
+      {st.phone && (
+        <div className="flex gap-2">
+          {st.enabled && <button disabled={busy} onClick={sendNow} className="text-sm px-3 py-2 rounded-lg border border-ink/15 disabled:opacity-50">Send this week's now</button>}
+          <button disabled={busy} onClick={toggle} aria-pressed={st.enabled} className={`text-sm font-semibold px-3 py-2 rounded-lg disabled:opacity-50 ${st.enabled ? "border border-ink/15" : "bg-ink text-paper"}`}>{st.enabled ? "Turn off" : "Turn on"}</button>
+        </div>
+      )}
+    </div>
+  );
 };
 
 const InstituteInsights = ({ onAddStudents }: { onAddStudents: () => void }) => {
@@ -149,6 +189,8 @@ const InstituteInsights = ({ onAddStudents }: { onAddStudents: () => void }) => 
           <button onClick={share} className="flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-lg bg-[#25D366] text-white"><MessageCircle size={15} /> Share on WhatsApp</button>
         </div>
       </div>
+
+      <WeeklyWhatsApp />
 
       {!data.enough ? (
         <div className="bg-white rounded-2xl border border-ink/10 p-8 text-center">
