@@ -1,15 +1,14 @@
 import mongoose from "mongoose";
 
-const isJunior = (doc) => ["6", "7", "8"].includes(doc.currentClass);
-
 const studentSchema = new mongoose.Schema(
   {
     fullName: { type: String, required: true, trim: true },
-    // Class 6–8 sign up with a shorter form (no gender/place), see isJunior below.
-    gender: { type: String, enum: ["Male", "Female", "Other"], required: function () { return !isJunior(this); } },
+    // Optional: the public sign-up form no longer asks for gender or place (fewer
+    // fields = more completed sign-ups). Institutes may still record gender.
+    gender: { type: String, enum: ["Male", "Female", "Other"] },
     phone: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-    place: { type: String, trim: true, required: function () { return !isJunior(this); } },
+    place: { type: String, trim: true },
     password: { type: String, required: true, select: false },
 
     board: { type: String, enum: ["CBSE", "Tamil Nadu State Board"], required: true },

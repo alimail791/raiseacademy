@@ -82,6 +82,17 @@ export const setYneetSubscriptionFlag = async (req, res, next) => {
   }
 };
 
+// Class 9–10 = NEET Foundation; 11, 12 and Dropper = NEET Coaching.
+const courseForClass = (c) => (["11", "12", "Dropper"].includes(String(c)) ? "NEET Coaching" : "NEET Foundation");
+
+// The NEET a student will sit, worked out from their class instead of asking.
+// NEET is held in May, so from June onwards the "next NEET" is next year's.
+export const neetYearForClass = (c, now = new Date()) => {
+  const nextNeet = now.getMonth() >= 5 ? now.getFullYear() + 1 : now.getFullYear();
+  const yearsAway = { "12": 0, Dropper: 0, "11": 1, "10": 2, "9": 3 }[String(c)];
+  return yearsAway === undefined ? undefined : nextNeet + yearsAway;
+};
+
 // POST /api/auth/register
 // No OTP needed; verification happens inside YNeet within 3 days.
 export const register = async (req, res, next) => {
@@ -107,8 +118,13 @@ export const register = async (req, res, next) => {
     if (junior) {
       if (!parentPhone) return res.status(400).json({ message: "Enter your parent's 10-digit WhatsApp number" });
       if (!fullName || !email || !password || !board) return res.status(400).json({ message: "Missing required registration fields" });
-    } else if (!fullName || !gender || !phone || !email || !place || !password || !board || !course) {
-      return res.status(400).json({ message: "Missing required registration fields" });
+    } else {
+      // Class 9–Dropper one-screen form: name, WhatsApp number, email, class,
+      // password. Gender, place, board, course and NEET year are optional now.
+      if (!fullName || !phone || !email || !password || !currentClass) {
+        return res.status(400).json({ message: "Missing required registration fields" });
+      }
+      if (!normalizePhone(phone)) return res.status(400).json({ message: "Enter a valid 10-digit WhatsApp number" });
     }
 
     // No OTP at sign-up any more: the account is created straight away and the
@@ -135,11 +151,11 @@ export const register = async (req, res, next) => {
       email: email.toLowerCase(),
       place: emptyToUndefined(place),
       password: hashedPassword,
-      board,
-      course: junior ? "NEET Foundation" : course,
+      board: board || "CBSE",
+      course: junior ? "NEET Foundation" : (course || courseForClass(currentClass)),
       ...(parentPhone && { parentPhone }),
       currentClass: emptyToUndefined(currentClass),
-      neetExamYear: emptyToUndefined(neetExamYear),
+      neetExamYear: emptyToUndefined(neetExamYear) ?? neetYearForClass(currentClass),
       currentSessionId: newSessionId(),
       referredByCode: emptyToUndefined(referredByCode),
     });

@@ -1,7 +1,10 @@
 import { MessageCircle } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { SITE } from "../../utils/siteInfo";
 
 const WhatsAppButton = () => {
+  // Hidden on the sign-up page: on phones it covered the form's fields.
+  if (useLocation().pathname.startsWith("/register")) return null;
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
       <a
