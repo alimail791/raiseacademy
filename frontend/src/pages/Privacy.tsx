@@ -3,7 +3,7 @@ import { SITE } from "../utils/siteInfo";
 
 // Privacy policy for www.yneet.in, app.yneet.in and the YNeet Android app.
 // Google Play requires a public privacy policy URL for every app.
-const UPDATED = "2 November 2026";
+const UPDATED = "6 November 2026";
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <section className="mt-8">
@@ -27,7 +27,7 @@ const Privacy = () => (
         <li><strong>Parent contact:</strong> a parent's WhatsApp number or email, if you add one, to send progress reports.</li>
         <li><strong>Study activity:</strong> tests taken, answers, scores, practice history, mistakes saved, streaks and time spent.</li>
         <li><strong>Payments:</strong> plan, amount and payment status. Card, UPI and bank details are handled by Razorpay; we never see or store them.</li>
-        <li><strong>Device and usage:</strong> basic analytics (pages visited, device and browser type, approximate location from IP) through Google Analytics and the Meta pixel, and a notification token if you turn on reminders.</li>
+        <li><strong>Device and usage:</strong> on the website, basic analytics (pages visited, device and browser type, approximate location from IP) through Google Analytics and the Meta pixel; these are not used inside the YNeet Android app. A notification token if you turn on reminders.</li>
       </ul>
     </Section>
 
@@ -54,11 +54,19 @@ const Privacy = () => (
       <p>We may also share data if the law requires it.</p>
     </Section>
 
-    <Section title="Students under 18">
+    <Section title="Children and students under 18">
       <p>
-        YNeet is a study tool for school students. A parent or guardian should create the account, or agree to it, for students under 18.
-        Parents can ask to see or delete their child's data at any time using the contact below.
+        YNeet is a study tool for school students, including Class 6–8 students who may be under 13. A parent or guardian must
+        create the account, or agree to it, for every student under 18. For Class 6–8 the parent ticks this agreement when signing up,
+        and gives their own WhatsApp number for progress reports.
       </p>
+      <ul className="list-disc pl-5 space-y-1">
+        <li>For children we collect only what the account needs: name, class, board, an email, a password, the parent's WhatsApp number, and study activity.</li>
+        <li>Inside the YNeet Android app we do not show ads, and we do not load advertising or analytics trackers (no Meta pixel, no Google Analytics). We never sell children's data or use it for advertising.</li>
+        <li>Children can't chat with or message other users. Doubts and images they send are seen only by our team, and are shown to others only without their name or contact details.</li>
+        <li>AI explanations answer study questions only, and answers that are shared with other students are checked by our team first.</li>
+        <li>Parents can ask to see, correct or delete their child's data at any time using the contact below.</li>
+      </ul>
     </Section>
 
     <Section title="How long we keep it">

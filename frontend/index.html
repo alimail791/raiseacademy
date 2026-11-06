@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5DK417VC2B"></script>
+    <!--
+      Analytics and ad pixels load on the website only. Inside the YNeet Android app
+      (Play Store, ?app=1 / framed / android-app referrer) nothing is loaded: the app is
+      in Google Play's Families programme (Class 6-8 students), which doesn't allow
+      ad-measurement trackers.
+    -->
     <script>
+      window.__yneetNoTrack = (function () {
+        try {
+          var q = new URLSearchParams(location.search);
+          if (q.get("app") === "1" || q.get("framed") === "1") { sessionStorage.setItem("yneet_app_mode", "1"); return true; }
+          if ((document.referrer || "").indexOf("android-app://") === 0) return true;
+          if (sessionStorage.getItem("yneet_app_mode") === "1") return true;
+          return window.self !== window.top;
+        } catch (e) { return true; }
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script>
+      if (!window.__yneetNoTrack) {
+      var gs = document.createElement("script"); gs.async = true;
+      gs.src = "https://www.googletagmanager.com/gtag/js?id=G-5DK417VC2B";
+      document.head.appendChild(gs);
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      window.gtag = function(){dataLayer.push(arguments);};
       gtag('js', new Date());
 
       gtag('config', 'G-5DK417VC2B');
+      }
     </script>
     <!-- Meta Pixel (Instagram / Facebook ads): PageView here; CompleteRegistration, Lead and Purchase are sent from the app -->
     <script>
+      if (!window.__yneetNoTrack) {
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
@@ -22,6 +44,7 @@
       fbq('init', '1374244664586903');
       fbq('init', '3217602131769640'); // second dataset, owned by the Instagram ads account
       fbq('track', 'PageView');
+      }
     </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/jpeg" href="/logo.jpeg" />

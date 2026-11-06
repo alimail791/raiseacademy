@@ -64,7 +64,7 @@ const Register = () => {
   // Class 6–8 is free and gets a one-screen form with the
   // parent's WhatsApp instead of gender/place. Links can open it with ?junior=1.
   const [junior, setJunior] = useState(searchParams.get("junior") === "1");
-  const [jr, setJr] = useState({ currentClass: "", parentPhone: "", board: "CBSE" });
+  const [jr, setJr] = useState({ currentClass: "", parentPhone: "", board: "CBSE", parentOk: false });
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
 
@@ -85,6 +85,7 @@ const Register = () => {
     if (jr.parentPhone.replace(/\D/g, "").length < 10) { toast.error("Enter your parent's 10-digit WhatsApp number"); return false; }
     if (!/^\S+@\S+\.\S+$/.test(form.email)) { toast.error("Enter a valid email"); return false; }
     if (form.password.length < 6) { toast.error("Password must be at least 6 characters"); return false; }
+    if (!jr.parentOk) { toast.error("A parent or guardian needs to tick the agreement box"); return false; }
     return true;
   };
 
@@ -183,11 +184,18 @@ const Register = () => {
             </select>
           </div>
 
+          {/* Class 6–8 students are under 13: a parent or guardian agrees for them
+              (Google Play Families policy and India's DPDP Act). */}
+          <label className="flex items-start gap-3 text-sm text-ink/80 cursor-pointer">
+            <input type="checkbox" className="mt-1 h-4 w-4 accent-rise" checked={jr.parentOk}
+              onChange={(e) => setJr({ ...jr, parentOk: e.target.checked })} />
+            <span>I am the student's parent or guardian. I agree to the <Link to="/terms" className="underline">Terms</Link> and <Link to="/privacy" className="underline">Privacy policy</Link>, and to YNeet sending study updates to the WhatsApp number above.</span>
+          </label>
+
           <button type="button" onClick={() => validateJunior() && submitJunior()} disabled={loading}
             className="w-full bg-rise text-white font-semibold py-3 rounded-full hover:bg-rise-dark disabled:opacity-60">
             {loading ? "Creating account…" : "Create free account"}
           </button>
-          <p className="text-center text-xs text-ink/55">By signing up you agree to our <Link to="/terms" className="underline">Terms</Link> and <Link to="/privacy" className="underline">Privacy policy</Link>.</p>
         </div>
       )}
 
