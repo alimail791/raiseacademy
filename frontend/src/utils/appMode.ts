@@ -24,4 +24,28 @@ export function isAppMode(): boolean {
   }
 }
 
+// "Framed" = this page is shown inside app.yneet.in/account, the YNeet Android
+// app's own login screen. The app only trusts app.yneet.in for full screen, so it
+// shows login / sign-up / logout from here inside a frame instead of leaving
+// app.yneet.in (which would bring back the browser address bar).
+export const YNEET_ORIGIN = (import.meta.env.VITE_YNEET_URL || "https://app.yneet.in").replace(/\/$/, "");
+
+export function isFramed(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.self !== window.top;
+  } catch {
+    return true; // reading window.top across origins can throw: we are framed
+  }
+}
+
+// Tell the YNeet app frame what happened, so it can move on by itself.
+export function tellYneetApp(msg: { type: "yneet-auth"; token: string } | { type: "yneet-logged-out" }) {
+  try {
+    window.parent.postMessage(msg, YNEET_ORIGIN);
+  } catch {
+    /* not framed */
+  }
+}
+
 export const APP_MODE_PATHS = ["/login", "/register", "/forgot-password", "/logout", "/privacy", "/terms", "/delete-account"];

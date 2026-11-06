@@ -1,4 +1,4 @@
-import { isAppMode } from "./appMode";
+import { isAppMode, isFramed, tellYneetApp } from "./appMode";
 
 // Builds the SSO handoff URL to YNeet. YNeet reads the token from the URL,
 // verifies it against Raise Academy's /api/auth/me, provisions/loads the
@@ -11,5 +11,11 @@ export const getYneetRedirectUrl = () => {
 };
 
 export const goToYneet = () => {
+  // Inside the Android app's login frame: hand the token to app.yneet.in,
+  // which opens /bridge itself and stays full screen.
+  if (isFramed()) {
+    tellYneetApp({ type: "yneet-auth", token: localStorage.getItem("ra_token") || "" });
+    return;
+  }
   window.location.href = getYneetRedirectUrl();
 };
