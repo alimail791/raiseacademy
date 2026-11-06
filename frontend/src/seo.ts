@@ -114,6 +114,10 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "Privacy policy — YNeet",
     description: "What YNeet collects, why, who it is shared with, and how to see or delete your data.",
   },
+  "/terms": {
+    title: "Terms of Service — YNeet",
+    description: "The terms for using YNeet: accounts, free trial and one-time plans, fair use, AI explanations, refunds and contact.",
+  },
   "/delete-account": {
     title: "Delete your YNeet account",
     description: "How to ask YNeet to delete your account and data, what is deleted and what is kept.",

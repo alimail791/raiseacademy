@@ -48,6 +48,7 @@ const HELP: Item[] = [
   { label: "Help & FAQ", to: "/help" },
   { label: "Contact us", href: "https://pay.yneet.in/contact" },
   { label: "Refund policy", href: "https://pay.yneet.in/refund" },
+  { label: "Terms of Service", to: "/terms" },
   { label: "Privacy policy", to: "/privacy" },
   { label: "Delete my account", to: "/delete-account" },
 ];

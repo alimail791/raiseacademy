@@ -33,6 +33,7 @@ import { NcertIndex, NcertChapter } from "./pages/NcertNotes";
 import QotdEmbed from "./pages/QotdEmbed";
 import QotdWidget from "./pages/QotdWidget";
 import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import BrainTeaser from "./pages/BrainTeaser";
 import AskYneet from "./pages/AskYneet";
 import ConceptMaps from "./pages/ConceptMaps";
@@ -77,6 +78,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="/delete-account" element={<DeleteAccount />} />
             <Route path="*" element={<Navigate to={APP_MODE_PATHS.includes(pathname) ? pathname : "/login"} replace />} />
           </Routes>
@@ -99,6 +101,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/help" element={<Help />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/delete-account" element={<DeleteAccount />} />
           <Route path="/neet-trial" element={<NeetTrial />} />
           <Route path="/institutes" element={<Institutes />} />

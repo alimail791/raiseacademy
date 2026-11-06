@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
 import api from "../api/axios";
@@ -187,6 +187,7 @@ const Register = () => {
             className="w-full bg-rise text-white font-semibold py-3 rounded-full hover:bg-rise-dark disabled:opacity-60">
             {loading ? "Creating account…" : "Create free account"}
           </button>
+          <p className="text-center text-xs text-ink/55">By signing up you agree to our <Link to="/terms" className="underline">Terms</Link> and <Link to="/privacy" className="underline">Privacy policy</Link>.</p>
         </div>
       )}
 
@@ -237,6 +238,7 @@ const Register = () => {
             {loading ? "Creating account…" : "Start My Free 30 Days →"}
           </button>
           <p className="text-center text-xs text-ink/55">No payment. No card. Confirm your WhatsApp inside YNeet within 3 days (takes 10 seconds).</p>
+          <p className="text-center text-xs text-ink/55">By signing up you agree to our <Link to="/terms" className="underline">Terms</Link> and <Link to="/privacy" className="underline">Privacy policy</Link>.</p>
         </div>
       )}
     </div>
