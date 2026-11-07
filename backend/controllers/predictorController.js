@@ -24,7 +24,15 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 
 // Chance bands, by student rank ÷ last year's closing rank.
 const SAFE = 0.85, REACH = 1.15;
-const bandOf = (rank, closing) => (rank <= closing * SAFE ? "safe" : rank <= closing ? "likely" : rank <= closing * REACH ? "reach" : null);
+// Seats filled only in a stray round, or that went past the regular closing rank in the
+// stray round, can still be "reach" up to the stray-round closing rank.
+const bandOf = (rank, closing, stray, strayOnly) => {
+  if (strayOnly) return rank <= closing ? "reach" : null;
+  if (rank <= closing * SAFE) return "safe";
+  if (rank <= closing) return "likely";
+  if (rank <= Math.max(closing * REACH, stray || 0)) return "reach";
+  return null;
+};
 
 // Latest year + latest imported round per quota (cached briefly).
 let datasetCache = { at: 0, value: null };
@@ -88,7 +96,7 @@ export async function predict(input) {
     }
     const cat = s.quota === "AIQ" ? input.category : (input.stateCategory || input.category);
     const cats = [...new Set(["OPEN", cat])];
-    const clause = { quota: s.quota, year: s.year, round: s.round, course: input.course, category: { $in: cats }, closingRank: { $gte: Math.floor(myRank / REACH) } };
+    const clause = { quota: s.quota, year: s.year, round: s.round, course: input.course, category: { $in: cats }, $or: [{ closingRank: { $gte: Math.floor(myRank / REACH) } }, { strayClosingRank: { $gte: myRank } }] };
     if (!home) clause.openToAll = true;
     or.push(clause);
     used.push({ quota: s.quota, name: s.name, year: s.year, round: s.round, rankType: s.rankType, home });
@@ -101,11 +109,12 @@ export async function predict(input) {
   const best = new Map();
   for (const r of rows) {
     const myRank = r.rankType === "STATE" ? input.stateRank : input.air;
-    const band = bandOf(myRank, r.closingRank);
+    const band = bandOf(myRank, r.closingRank, r.strayClosingRank, r.strayOnly);
     if (!band) continue;
     const key = [r.quota, r.college.toLowerCase(), r.seatType.toLowerCase()].join("|");
     const prev = best.get(key);
-    if (!prev || r.closingRank > prev.closingRank) best.set(key, { ...r, band, myRank });
+    const order0 = { safe: 2, likely: 1, reach: 0 };
+    if (!prev || order0[band] > order0[prev.band] || (band === prev.band && r.closingRank > prev.closingRank)) best.set(key, { ...r, band, myRank });
   }
   const order = { reach: 0, likely: 1, safe: 2 };
   const results = [...best.values()]
@@ -113,7 +122,7 @@ export async function predict(input) {
     .map((r) => ({
       college: r.college, collegeState: r.collegeState, collegeType: r.collegeType, course: r.course,
       quota: r.quota, quotaName: QUOTAS[r.quota] || r.quota, seatType: r.seatType, category: r.category,
-      closingRank: r.closingRank, openingRank: r.openingRank, rankType: r.rankType, seats: r.seats, annualFee: r.annualFee,
+      closingRank: r.closingRank, openingRank: r.openingRank, strayClosingRank: r.strayClosingRank, strayOnly: !!r.strayOnly, rankType: r.rankType, seats: r.seats, annualFee: r.annualFee,
       year: r.year, round: r.round, band: r.band,
     }));
   return { results, used, notes };
@@ -332,3 +341,26 @@ export const adminLeads = async (req, res, next) => {
     res.json({ leads });
   } catch (e) { next(e); }
 };
+
+// ───────── Bundled data ─────────
+// On start-up, load the official cutoff files shipped in data/predictor/ for any
+// quota + year that has no rows yet. Admin uploads always win (never overwritten).
+const BUNDLED = [
+  { file: "mcc_aiq_2026.csv", quota: "AIQ", year: 2026, round: 3, rankType: "AIR", source: "MCC 2026 allotments (rounds 1–3, stray)" },
+  { file: "mcc_delhi_du_ip_2026.csv", quota: "DL", year: 2026, round: 3, rankType: "AIR", source: "MCC 2026 DU/IP University quota" },
+];
+export async function seedBundledCutoffs() {
+  const { readFile } = await import("fs/promises");
+  for (const b of BUNDLED) {
+    try {
+      if (await CollegeCutoff.exists({ quota: b.quota, year: b.year })) continue;
+      const csv = await readFile(new URL(`../data/predictor/${b.file}`, import.meta.url), "utf8");
+      const { rows } = buildCutoffRows(csv, b);
+      if (rows.length) await CollegeCutoff.insertMany(rows, { ordered: false });
+      console.log(`College Predictor: loaded ${rows.length} ${b.quota} ${b.year} cutoffs from ${b.file}`);
+    } catch (e) {
+      console.warn(`College Predictor: could not load ${b.file}:`, e.message);
+    }
+  }
+  clearCache();
+}

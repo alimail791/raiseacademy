@@ -11,7 +11,7 @@ import { payWithRazorpay, trackPurchase } from "../utils/razorpay";
 type Quota = { code: string; name: string; live: boolean; year?: number; round?: number; rankType?: "AIR" | "STATE"; categories?: string[]; courses?: string[] };
 type Result = {
   college: string; collegeState: string; collegeType: string; course: string; quota: string; quotaName: string;
-  seatType: string; category: string; closingRank: number; openingRank?: number; rankType: "AIR" | "STATE";
+  seatType: string; category: string; closingRank: number; openingRank?: number; strayClosingRank?: number; strayOnly?: boolean; rankType: "AIR" | "STATE";
   seats?: number; annualFee?: number; year: number; round: number; band: "safe" | "likely" | "reach";
 };
 type Resp = {
@@ -26,7 +26,7 @@ const CATEGORIES = [["OPEN", "General / UR"], ["EWS", "EWS"], ["OBC", "OBC (NCL)
 export const BAND = {
   safe: { label: "Safe", cls: "bg-rise/15 text-rise-dark border-rise/40", note: "Your rank is well inside last year's closing rank" },
   likely: { label: "Good chance", cls: "bg-gold/20 text-ink dark:text-paper border-gold/50", note: "Your rank is within last year's closing rank" },
-  reach: { label: "Borderline", cls: "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800", note: "Up to 15% past last year's closing rank — possible in later rounds" },
+  reach: { label: "Borderline", cls: "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800", note: "Past last year's round 1–2 closing rank, but seats like this went in round 3 or the stray rounds" },
 } as const;
 
 const track = (event: string, params: Record<string, unknown> = {}) => {
@@ -252,8 +252,9 @@ const NeetCollegePredictor = () => {
                       </p>
                     </div>
                     <div className="text-sm sm:text-right shrink-0">
-                      <p className="text-ink/55 dark:text-paper/55 text-xs">Closing rank {r.year}{r.rankType === "STATE" ? " (state)" : ""}</p>
+                      <p className="text-ink/55 dark:text-paper/55 text-xs">{r.strayOnly ? "Filled in later rounds" : "Closing rank R1–2"} {r.year}{r.rankType === "STATE" ? " (state)" : ""}</p>
                       <p className="font-bold">{fmt(r.closingRank)}</p>
+                      {!r.strayOnly && r.strayClosingRank && r.strayClosingRank > r.closingRank && <p className="text-xs text-ink/55 dark:text-paper/55">Round 3 / stray: {fmt(r.strayClosingRank)}</p>}
                     </div>
                     <span className={`shrink-0 self-start sm:self-center text-xs font-bold px-3 py-1 rounded-full border ${BAND[r.band].cls}`}>{BAND[r.band].label}</span>
                   </li>

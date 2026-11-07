@@ -17,7 +17,9 @@ const collegeCutoffSchema = new mongoose.Schema(
     seatType: { type: String, trim: true, default: "" }, // e.g. All India, Deemed/Paid, Govt Quota, Management
     category: { type: String, required: true, uppercase: true, trim: true }, // normalised: OPEN, OBC, EWS, SC, ST, BC, MBC…
     openingRank: { type: Number },
-    closingRank: { type: Number, required: true },
+    closingRank: { type: Number, required: true }, // last regular round (e.g. MCC rounds 1–3)
+    strayClosingRank: { type: Number }, // closing rank in the stray vacancy round(s), when known
+    strayOnly: { type: Boolean, default: false }, // seat bucket was filled only in a stray round
     seats: { type: Number }, // seats allotted in this bucket, when known
     annualFee: { type: Number }, // optional, ₹ per year
     source: { type: String, trim: true, default: "" }, // file name / note

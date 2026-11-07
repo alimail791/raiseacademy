@@ -22,6 +22,8 @@ const ALIASES = {
   rank: ["rank", "air", "neet rank", "all india rank", "state rank", "merit rank", "general rank"],
   closingRank: ["closing rank", "closing_rank", "last rank", "cutoff rank", "cut off rank"],
   openingRank: ["opening rank", "opening_rank", "first rank"],
+  strayClosingRank: ["stray closing rank", "stray_closing_rank"],
+  strayOnly: ["stray only", "stray_only"],
   collegeState: ["college state", "college_state", "state"],
   collegeType: ["college type", "college_type", "type", "management", "institute type"],
   seats: ["seats", "intake", "seat count"],
@@ -146,6 +148,8 @@ export function buildCutoffRows(csvText, meta) {
       rows.push({
         ...base, college, course, category, closingRank, seatType,
         openingRank: toInt(get(r, "openingRank")),
+        strayClosingRank: toInt(get(r, "strayClosingRank")),
+        strayOnly: truthy(get(r, "strayOnly")),
         collegeState: get(r, "collegeState"),
         collegeType: get(r, "collegeType"),
         seats: toInt(get(r, "seats")),

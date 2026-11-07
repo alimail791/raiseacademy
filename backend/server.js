@@ -15,6 +15,7 @@ import { startParentWhatsAppJob } from "./utils/parentWhatsApp.js";
 import { startRenewalReminderJob } from "./controllers/instituteBillingController.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import predictorRoutes from "./routes/predictorRoutes.js";
+import { seedBundledCutoffs } from "./controllers/predictorController.js";
 
 dotenv.config();
 
@@ -62,4 +63,5 @@ connectDB().then(() => {
   app.listen(PORT, () => console.log(`YNeet API running on port ${PORT}`));
   startParentWhatsAppJob(); // weekly WhatsApp progress report to institute students' parents
   startRenewalReminderJob(); // monthly institute plans: renewal reminder emails
+  seedBundledCutoffs(); // NEET College Predictor: official cutoff files shipped in data/predictor
 });
