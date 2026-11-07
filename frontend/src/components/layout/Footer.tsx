@@ -82,7 +82,7 @@ const Footer = () => {
             <span className="font-display font-bold text-lg text-paper">{SITE.name}</span>
           </div>
           <p className="text-sm leading-relaxed max-w-sm">
-            NEET mock tests, chapter-wise PYQs, daily quizzes and weekly parent reports, matched to your class. Free for 30 days from Class 9; free for Class 6–8.
+            NEET mock tests, chapter-wise PYQs, daily quizzes and weekly parent reports, matched to your class. Free for 30 days for Class 9–12 and droppers; free for Class 6–8.
           </p>
           <Link to="/register" className="mt-5 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-2.5 rounded-full hover:bg-gold-dark">
             Start 30 days free <ArrowRight size={16} />
