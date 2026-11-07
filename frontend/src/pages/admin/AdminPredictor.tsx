@@ -10,7 +10,7 @@ type Preview = { mode: string; rows: number; skipped: number; colleges: number; 
 type Lead = { _id: string; createdAt: string; name: string; phone: string; verified: boolean; air?: number; category: string; homeState: string; course: string; searches: number; paid: boolean };
 
 const errMsg = (e: any) => e?.response?.data?.message || "Something went wrong.";
-const STATE_RANK_DEFAULT = new Set(["TN", "KL", "KA", "MH", "AP", "TS"]); // states that commonly list state merit rank
+const STATE_RANK_DEFAULT = new Set(["KL", "KA", "MH", "AP", "TS"]); // states that commonly list state merit rank (TN data is mark-based)
 
 const AdminPredictor = () => {
   const [sum, setSum] = useState<Summary | null>(null);
@@ -113,7 +113,7 @@ const AdminPredictor = () => {
           <label>Round<input className={input} value={f.round} onChange={(e) => setF({ ...f, round: e.target.value })} /></label>
           <label>Ranks in this file are
             <select className={input} value={f.rankType} onChange={(e) => setF({ ...f, rankType: e.target.value })}>
-              <option value="AIR">NEET All India Rank</option><option value="STATE">State merit rank</option>
+              <option value="AIR">NEET All India Rank</option><option value="STATE">State merit rank</option><option value="SCORE">NEET marks (lowest mark admitted)</option>
             </select>
           </label>
           <label>Course (if the file has no course column)

@@ -17,8 +17,10 @@ const predictorLeadSchema = new mongoose.Schema(
     stateRank: { type: Number },
     score: { type: Number },
     category: { type: String, default: "OPEN" },
+    stateCategory: { type: String, default: "" },
     homeState: { type: String, default: "" },
     course: { type: String, default: "MBBS" },
+    eligibility: { type: [String], default: [] },
     searches: { type: Number, default: 0 },
 
     // ₹299 choice-filling report

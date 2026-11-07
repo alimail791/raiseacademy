@@ -8,8 +8,9 @@ const collegeCutoffSchema = new mongoose.Schema(
     year: { type: Number, required: true },
     round: { type: Number, default: 1 },
     quota: { type: String, required: true, uppercase: true, trim: true }, // AIQ, TN, AP, TS, KL, KA, UP, MH, BR, RJ, DL
-    rankType: { type: String, enum: ["AIR", "STATE"], default: "AIR" }, // which rank the closing rank is in
-    openToAll: { type: Boolean, default: false }, // true = no domicile needed (AIQ, deemed, some private/management seats)
+    rankType: { type: String, enum: ["AIR", "STATE", "SCORE"], default: "AIR" }, // AIR / state merit rank, or SCORE = NEET marks (closingRank then holds the lowest mark admitted)
+    openToAll: { type: Boolean, default: false },
+    eligibility: { type: String, default: "" }, // "" = everyone in the quota; else a special group (TN_GOVT_SCHOOL, PWD, MINORITY, NRI…) shown only to students who say they belong to it // true = no domicile needed (AIQ, deemed, some private/management seats)
     college: { type: String, required: true, trim: true },
     collegeState: { type: String, trim: true, default: "" },
     collegeType: { type: String, trim: true, default: "" }, // Government, Private, Deemed, AIIMS, JIPMER, ESIC, Central…
