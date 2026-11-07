@@ -52,3 +52,14 @@ html {
 .blog-content .cta p { margin: 0 0 0.6em; }
 .blog-content .cta p:last-child { margin: 0; }
 .blog-content .cta a { display: inline-block; background: var(--blog-accent, #0f5b66); color: #fff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+
+/* NEET College Predictor inputs */
+@layer components {
+  .cp-in {
+    @apply mt-1 w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-ink outline-none focus:border-gold dark:border-paper/20 dark:bg-ink-light dark:text-paper;
+  }
+}
+
+@media print {
+  header, footer, .no-print, [data-whatsapp-button] { display: none !important; }
+}

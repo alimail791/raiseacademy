@@ -1,0 +1,58 @@
+college,course,category,opening_rank,closing_rank,stray_closing_rank,stray_only,seat_type,college_state,college_type,open_to_all
+"Atal Bihari Vajpayee Institute of Medical Sciences and Dr. RML Hospital, New Delhi",MBBS,EWS,4152,4954,5183,,IP University Quota,Bihar,Government,no
+"Atal Bihari Vajpayee Institute of Medical Sciences and Dr. RML Hospital, New Delhi",MBBS,OBC,4762,8038,,,IP University Quota,Bihar,Government,no
+"Atal Bihari Vajpayee Institute of Medical Sciences and Dr. RML Hospital, New Delhi",MBBS,OBC PwD,950951,950951,,,IP University Quota,Bihar,Government,no
+"Atal Bihari Vajpayee Institute of Medical Sciences and Dr. RML Hospital, New Delhi",MBBS,Open,1571,3117,,,IP University Quota,Bihar,Government,no
+"Atal Bihari Vajpayee Institute of Medical Sciences and Dr. RML Hospital, New Delhi",MBBS,Open PwD,721765,817645,,,IP University Quota,Bihar,Government,no
+"Atal Bihari Vajpayee Institute of Medical Sciences and Dr. RML Hospital, New Delhi",MBBS,SC,10446,49620,56370,,IP University Quota,Bihar,Government,no
+"Atal Bihari Vajpayee Institute of Medical Sciences and Dr. RML Hospital, New Delhi",MBBS,ST,72372,80375,79450,,IP University Quota,Bihar,Government,no
+ESIC Dental College and Hospital,BDS,EWS,46884,55451,55703,,IP University Quota,,ESIC,no
+ESIC Dental College and Hospital,BDS,OBC,44751,57559,58688,,IP University Quota,,ESIC,no
+ESIC Dental College and Hospital,BDS,Open,32237,44924,44924,,IP University Quota,,ESIC,no
+ESIC Dental College and Hospital,BDS,SC,140427,155900,155900,,IP University Quota,,ESIC,no
+ESIC Dental College and Hospital,BDS,ST,137050,232233,232233,,IP University Quota,,ESIC,no
+"ESIC Medical College & Hospital, Basaidarapur, New Delhi",MBBS,EWS,7601,10732,23527,,IP University Quota,Delhi,ESIC,no
+"ESIC Medical College & Hospital, Basaidarapur, New Delhi",MBBS,OBC,11325,12567,13606,,IP University Quota,Delhi,ESIC,no
+"ESIC Medical College & Hospital, Basaidarapur, New Delhi",MBBS,OBC PwD,1082071,1082071,1082071,,IP University Quota,Delhi,ESIC,no
+"ESIC Medical College & Hospital, Basaidarapur, New Delhi",MBBS,Open,3804,6840,10903,,IP University Quota,Delhi,ESIC,no
+"ESIC Medical College & Hospital, Basaidarapur, New Delhi",MBBS,Open PwD,423816,423816,,,IP University Quota,Delhi,ESIC,no
+"ESIC Medical College & Hospital, Basaidarapur, New Delhi",MBBS,SC,53677,61656,66331,,IP University Quota,Delhi,ESIC,no
+"ESIC Medical College & Hospital, Basaidarapur, New Delhi",MBBS,ST,117111,124759,122839,,IP University Quota,Delhi,ESIC,no
+"Lady Hardinge Medical College, New Delhi",MBBS,EWS,8595,14880,13226,,Delhi University Quota,Delhi,Government,no
+"Lady Hardinge Medical College, New Delhi",MBBS,OBC,8411,14954,15289,,Delhi University Quota,Delhi,Government,no
+"Lady Hardinge Medical College, New Delhi",MBBS,OBC PwD,777779,1027529,,,Delhi University Quota,Delhi,Government,no
+"Lady Hardinge Medical College, New Delhi",MBBS,Open,3164,7403,9668,,Delhi University Quota,Delhi,Government,no
+"Lady Hardinge Medical College, New Delhi",MBBS,Open PwD,494750,555452,,,Delhi University Quota,Delhi,Government,no
+"Lady Hardinge Medical College, New Delhi",MBBS,SC,47799,75166,60902,,Delhi University Quota,Delhi,Government,no
+"Lady Hardinge Medical College, New Delhi",MBBS,SC PwD,956433,956433,,,Delhi University Quota,Delhi,Government,no
+"Lady Hardinge Medical College, New Delhi",MBBS,ST,86925,123564,126377,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Institute of Dental Sciences, New Delhi",BDS,EWS,36429,42316,39486,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Institute of Dental Sciences, New Delhi",BDS,OBC,32140,37677,35617,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Institute of Dental Sciences, New Delhi",BDS,Open,4170,32123,32123,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Institute of Dental Sciences, New Delhi",BDS,Open PwD,980899,980899,980899,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Institute of Dental Sciences, New Delhi",BDS,SC,85575,127981,140407,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Institute of Dental Sciences, New Delhi",BDS,ST,161888,205206,205206,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Medical College, New Delhi",MBBS,OBC,551,6652,8560,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Medical College, New Delhi",MBBS,OBC PwD,793227,1074229,,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Medical College, New Delhi",MBBS,Open,130,2662,1461,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Medical College, New Delhi",MBBS,Open PwD,311078,591514,,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Medical College, New Delhi",MBBS,SC,12367,42256,43100,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Medical College, New Delhi",MBBS,SC PwD,666746,666746,,,Delhi University Quota,Delhi,Government,no
+"Maulana Azad Medical College, New Delhi",MBBS,ST,7806,70234,72596,,Delhi University Quota,Delhi,Government,no
+"University College of Medical Sciences & GTB Hospital, New Delhi",MBBS,EWS,5096,6151,6640,,Delhi University Quota,Delhi,Government,no
+"University College of Medical Sciences & GTB Hospital, New Delhi",MBBS,OBC,6367,11024,11325,,Delhi University Quota,Delhi,Government,no
+"University College of Medical Sciences & GTB Hospital, New Delhi",MBBS,OBC PwD,999757,999757,774293,,Delhi University Quota,Delhi,Government,no
+"University College of Medical Sciences & GTB Hospital, New Delhi",MBBS,Open,2598,4974,28538,,Delhi University Quota,Delhi,Government,no
+"University College of Medical Sciences & GTB Hospital, New Delhi",MBBS,Open PwD,471711,762745,,,Delhi University Quota,Delhi,Government,no
+"University College of Medical Sciences & GTB Hospital, New Delhi",MBBS,SC,42557,58638,55609,,Delhi University Quota,Delhi,Government,no
+"University College of Medical Sciences & GTB Hospital, New Delhi",MBBS,SC PwD,1108053,1108053,,,Delhi University Quota,Delhi,Government,no
+"University College of Medical Sciences & GTB Hospital, New Delhi",MBBS,ST,75216,109421,113334,,Delhi University Quota,Delhi,Government,no
+"Vardhman Mahavir Medical College & Safdarjung Hospital, Delhi",MBBS,EWS,1917,3878,,,IP University Quota,Delhi,Government,no
+"Vardhman Mahavir Medical College & Safdarjung Hospital, Delhi",MBBS,EWS PwD,158905,158905,158905,yes,IP University Quota,Delhi,Government,no
+"Vardhman Mahavir Medical College & Safdarjung Hospital, Delhi",MBBS,OBC,1450,4127,,,IP University Quota,Delhi,Government,no
+"Vardhman Mahavir Medical College & Safdarjung Hospital, Delhi",MBBS,OBC PwD,476566,476566,476566,,IP University Quota,Delhi,Government,no
+"Vardhman Mahavir Medical College & Safdarjung Hospital, Delhi",MBBS,Open,140,1381,,,IP University Quota,Delhi,Government,no
+"Vardhman Mahavir Medical College & Safdarjung Hospital, Delhi",MBBS,Open PwD,167595,281400,,,IP University Quota,Delhi,Government,no
+"Vardhman Mahavir Medical College & Safdarjung Hospital, Delhi",MBBS,SC,1464,23604,,,IP University Quota,Delhi,Government,no
+"Vardhman Mahavir Medical College & Safdarjung Hospital, Delhi",MBBS,SC PwD,290318,290318,,,IP University Quota,Delhi,Government,no
+"Vardhman Mahavir Medical College & Safdarjung Hospital, Delhi",MBBS,ST,25762,64896,75216,,IP University Quota,Delhi,Government,no

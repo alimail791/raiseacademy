@@ -25,6 +25,9 @@ import NotFound from "./pages/NotFound";
 import Practice from "./pages/Practice";
 import PracticeChapter from "./pages/PracticeChapter";
 import NeetReadiness from "./pages/NeetReadiness";
+import NeetCollegePredictor from "./pages/NeetCollegePredictor";
+import NeetCollegeReport from "./pages/NeetCollegeReport";
+import AdminPredictor from "./pages/admin/AdminPredictor";
 import NeetParents from "./pages/NeetParents";
 import { PapersIndex, PaperYear } from "./pages/Papers";
 import QuestionOfTheDay from "./pages/QuestionOfTheDay";
@@ -108,6 +111,8 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/neet-readiness" element={<NeetReadiness />} />
+          <Route path="/neet-college-predictor" element={<NeetCollegePredictor />} />
+          <Route path="/neet-college-predictor/report" element={<NeetCollegeReport />} />
           <Route path="/neet-parents" element={<NeetParents />} />
           <Route path="/neet-question-papers" element={<PapersIndex />} />
           <Route path="/neet-question-papers/:year" element={<PaperYear />} />
@@ -143,6 +148,7 @@ function App() {
             <Route path="students" element={<AdminStudents />} />
             <Route path="institutes" element={<AdminInstitutes />} />
             <Route path="blog" element={<AdminBlog />} />
+            <Route path="predictor" element={<AdminPredictor />} />
           </Route>
 
           <Route path="/institute/login" element={<InstituteLogin />} />

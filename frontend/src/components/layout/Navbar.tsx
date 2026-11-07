@@ -15,6 +15,7 @@ const links = [
 
 // Free tools, no login: a "Free practice" dropdown on computers, a section in the phone menu.
 const FREE_LINKS: { to: string; label: string; short?: string }[] = [
+  { to: "/neet-college-predictor", label: "NEET College Predictor", short: "College Predictor" },
   { to: "/neet-question-of-the-day", label: "Question of the Day" },
   { to: "/neet-sprint", label: "60-Second Sprint" },
   { to: "/neet-concept-maps", label: "Concept Maps" },
