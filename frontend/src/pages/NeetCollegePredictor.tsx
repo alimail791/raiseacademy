@@ -24,6 +24,16 @@ type Resp = {
 export const TOKEN_KEY = "cp_token";
 const PAGE_URL = "www.yneet.in/neet-college-predictor";
 const CATEGORIES = [["OPEN", "General / UR"], ["EWS", "EWS"], ["OBC", "OBC (NCL)"], ["SC", "SC"], ["ST", "ST"]];
+// Extra seat groups a student can claim in their home state (tick boxes).
+const STATE_GROUPS: Record<string, { key: string; label: string }[]> = {
+  TN: [{ key: "TN_GOVT_SCHOOL", label: "I studied Class 6 to 12 in a Tamil Nadu government school (includes the 7.5% reserved seats)" }],
+  KA: [
+    { key: "KA_KANNADA", label: "I studied Class 1 to 10 in Kannada medium" },
+    { key: "KA_RURAL", label: "I studied Class 1 to 10 in a rural area (rural quota)" },
+    { key: "KA_KK", label: "I am a Kalyana-Karnataka (Hyderabad-Karnataka, Article 371J) candidate" },
+  ],
+};
+const STATE_CAT_LABEL: Record<string, string> = { OPEN: "General / OC / GM", "CAT-1": "Category-1", S1: "SC (S1)", S2: "SC (S2)", S3: "SC (S3)", S4: "SC (S4)" };
 export const BAND = {
   safe: { label: "Safe", cls: "bg-rise/15 text-rise-dark border-rise/40", note: "Your rank is well inside last year's closing rank" },
   likely: { label: "Good chance", cls: "bg-gold/20 text-ink dark:text-paper border-gold/50", note: "Your rank is within last year's closing rank" },
@@ -49,7 +59,7 @@ const NeetCollegePredictor = () => {
   const [quotas, setQuotas] = useState<Quota[]>([]);
   const [price, setPrice] = useState(299);
   const [form, setForm] = useState({ air: "", score: "", category: "OPEN", homeState: "", stateRank: "", stateCategory: "", course: "MBBS" });
-  const [govtSchool, setGovtSchool] = useState(false); // Tamil Nadu 7.5% government-school quota
+  const [groups, setGroups] = useState<string[]>([]); // home-state seat groups the student ticked
   const [res, setRes] = useState<Resp | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -78,7 +88,8 @@ const NeetCollegePredictor = () => {
     if (!form.air && !form.stateRank && !form.score) { setError("Enter your NEET All India Rank or NEET score"); return; }
     setLoading(true); setError("");
     try {
-      const eligibility = form.homeState === "TN" && govtSchool ? ["TN_GOVT_SCHOOL"] : [];
+      const allowed = (STATE_GROUPS[form.homeState] || []).map((g) => g.key);
+      const eligibility = groups.filter((g) => allowed.includes(g));
       const r = await api.post("/predictor/predict", { ...form, eligibility, token: tok || undefined });
       setRes(r.data); setFilter("all");
       track("predictor_search", { locked: r.data.locked, total: r.data.total, category: form.category, state: form.homeState });
@@ -184,16 +195,17 @@ const NeetCollegePredictor = () => {
             <span className="text-sm font-semibold">{homeQuota.name} state category</span>
             <select value={form.stateCategory} onChange={set("stateCategory")} className="cp-in">
               <option value="">{stateCats.includes(form.category) ? "Same as above" : "Choose your community"}</option>
-              {stateCats.map((c) => <option key={c} value={c}>{c === "OPEN" ? "OC / General" : c}</option>)}
+              {stateCats.map((c) => <option key={c} value={c}>{STATE_CAT_LABEL[c] || c}</option>)}
             </select>
           </label>
         )}
-        {form.homeState === "TN" && (
-          <label className="sm:col-span-2 flex items-start gap-2 text-sm">
-            <input type="checkbox" checked={govtSchool} onChange={(e) => setGovtSchool(e.target.checked)} className="mt-1" />
-            <span>I studied Class 6 to 12 in a Tamil Nadu government school <span className="text-ink/55 dark:text-paper/55">(includes the 7.5% reserved seats)</span></span>
+        {(STATE_GROUPS[form.homeState] || []).map((g) => (
+          <label key={g.key} className="sm:col-span-2 flex items-start gap-2 text-sm">
+            <input type="checkbox" checked={groups.includes(g.key)} className="mt-1"
+              onChange={(e) => setGroups((xs) => (e.target.checked ? [...xs, g.key] : xs.filter((x) => x !== g.key)))} />
+            <span>{g.label}</span>
           </label>
-        )}
+        ))}
         <div className="sm:col-span-2 flex flex-wrap items-center gap-4">
           <button type="submit" disabled={loading} className="inline-flex items-center gap-2 bg-gold text-ink font-bold text-lg px-8 py-4 rounded-full hover:bg-gold-dark disabled:opacity-60">
             {loading ? "Checking…" : <>Show my colleges <ArrowRight size={20} /></>}
@@ -267,7 +279,7 @@ const NeetCollegePredictor = () => {
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold">{r.college}</p>
                       <p className="text-xs text-ink/55 dark:text-paper/55 mt-0.5">
-                        {[r.quotaName, r.seatType, r.collegeType, r.collegeState].filter(Boolean).join(" · ")} · {r.category === "OPEN" ? "Open" : r.category} {r.quota === "TN" && r.seatType !== "Management Quota" && r.category !== "OPEN" ? "community" : "seat"}
+                        {[r.quotaName, r.seatType, r.collegeType, r.collegeState, r.annualFee ? `₹${r.annualFee.toLocaleString("en-IN")}/yr` : ""].filter(Boolean).join(" · ")} · {r.category === "OPEN" ? "Open" : r.category} {r.quota === "TN" && r.seatType !== "Management Quota" && r.category !== "OPEN" ? "community" : "seat"}
                       </p>
                     </div>
                     <div className="text-sm sm:text-right shrink-0">

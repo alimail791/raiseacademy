@@ -25,7 +25,20 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 // Chance bands, by student rank ÷ last year's closing rank (or marks above the lowest mark).
 const SAFE = 0.85, REACH = 1.15;
 const SAFE_MARKS = 10, REACH_MARKS = 5;
-export const ELIGIBILITY = { TN_GOVT_SCHOOL: "Tamil Nadu government school student (7.5% quota)" };
+export const ELIGIBILITY = {
+  TN_GOVT_SCHOOL: "Tamil Nadu government school student (7.5% quota)",
+  KA_KANNADA: "Karnataka: studied Class 1–10 in Kannada medium",
+  KA_RURAL: "Karnataka: studied Class 1–10 in a rural area",
+  KA_KK: "Karnataka: Kalyana-Karnataka (Hyderabad-Karnataka, Article 371J) candidate",
+};
+// Seats can need several groups at once ("KA_KK+KA_RURAL"): allow every combination
+// of the groups the student ticked, joined in sorted order.
+const eligibleGroups = (list = []) => {
+  const xs = [...new Set(list)].sort();
+  const out = [null, ""];
+  for (let mask = 1; mask < 1 << xs.length; mask++) out.push(xs.filter((_, i) => mask & (1 << i)).join("+"));
+  return out;
+};
 const bandOfScore = (score, lowest, laterLowest, strayOnly) => {
   if (strayOnly) return score >= lowest ? "reach" : null;
   if (score >= lowest + SAFE_MARKS) return "safe";
@@ -121,7 +134,7 @@ export async function predict(input) {
     const reachOr = s.rankType === "SCORE"
       ? [{ closingRank: { $lte: myRank + REACH_MARKS } }, { strayClosingRank: { $lte: myRank } }]
       : [{ closingRank: { $gte: Math.floor(myRank / REACH) } }, { strayClosingRank: { $gte: myRank } }];
-    const clause = { quota: s.quota, year: s.year, round: s.round, course: input.course, category: { $in: cats }, eligibility: { $in: [null, "", ...(input.eligibility || [])] }, $or: reachOr };
+    const clause = { quota: s.quota, year: s.year, round: s.round, course: input.course, category: { $in: cats }, eligibility: { $in: eligibleGroups(input.eligibility) }, $or: reachOr };
     if (!home) clause.openToAll = true;
     or.push(clause);
     used.push({ quota: s.quota, name: s.name, year: s.year, round: s.round, rankType: s.rankType, home });
@@ -374,6 +387,7 @@ const BUNDLED = [
   { file: "mcc_aiq_2026.csv", quota: "AIQ", year: 2026, round: 3, rankType: "AIR", source: "MCC 2026 allotments (rounds 1–3, stray)" },
   { file: "mcc_delhi_du_ip_2026.csv", quota: "DL", year: 2026, round: 3, rankType: "AIR", source: "MCC 2026 DU/IP University quota" },
   { file: "tn_2026.csv", quota: "TN", year: 2026, round: 2, rankType: "SCORE", source: "Tamil Nadu 2026 GQ / MQ / 7.5% allotments" },
+  { file: "ka_2026.csv", quota: "KA", year: 2026, round: 2, rankType: "AIR", source: "KEA 2026 MBBS round 2 final allotment" },
 ];
 export async function seedBundledCutoffs() {
   const { readFile } = await import("fs/promises");
