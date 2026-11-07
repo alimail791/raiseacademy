@@ -14,6 +14,7 @@ import instituteRoutes from "./routes/instituteRoutes.js";
 import { startParentWhatsAppJob } from "./utils/parentWhatsApp.js";
 import { startRenewalReminderJob } from "./controllers/instituteBillingController.js";
 import blogRoutes from "./routes/blogRoutes.js";
+import predictorRoutes from "./routes/predictorRoutes.js";
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ const app = express();
 app.set("trust proxy", 1);
 
 app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173", credentials: true }));
+// Cutoff uploads (official allotment lists) can be several MB — parsed here before the 2 MB default below.
+app.use("/api/predictor/admin/import", express.json({ limit: "30mb" }));
 app.use(express.json({ limit: "2mb" })); // blog posts can be larger than the 100 kB default
 app.use(morgan("dev"));
 
@@ -37,6 +40,8 @@ app.use("/api/institute/forgot", authLimiter);
 app.use("/api/institute/reset-password", authLimiter);
 app.use("/api/institute/signup", authLimiter);
 app.use("/api/institute/pilot", authLimiter);
+app.use("/api/predictor/otp", rateLimit({ windowMs: 60 * 60 * 1000, max: 20 }));
+app.use("/api/predictor/predict", rateLimit({ windowMs: 60 * 1000, max: 30 }));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 
@@ -46,6 +51,7 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/content", contentRoutes);
 app.use("/api/institute", instituteRoutes);
 app.use("/api/blog", blogRoutes);
+app.use("/api/predictor", predictorRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

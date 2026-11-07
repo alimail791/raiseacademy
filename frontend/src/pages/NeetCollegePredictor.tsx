@@ -1,0 +1,315 @@
+import { useEffect, useMemo, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowRight, GraduationCap, Lock, MessageCircle, Share2, FileText, ShieldCheck } from "lucide-react";
+import api from "../api/axios";
+import { payWithRazorpay, trackPurchase } from "../utils/razorpay";
+
+// Free NEET College Predictor. Results unlock after the student confirms a WhatsApp
+// number (lead). Optional ₹299 choice-filling report. Data = last year's official
+// closing ranks, loaded by admin per quota (AIQ + 10 states).
+
+type Quota = { code: string; name: string; live: boolean; year?: number; round?: number; rankType?: "AIR" | "STATE"; categories?: string[]; courses?: string[] };
+type Result = {
+  college: string; collegeState: string; collegeType: string; course: string; quota: string; quotaName: string;
+  seatType: string; category: string; closingRank: number; openingRank?: number; rankType: "AIR" | "STATE";
+  seats?: number; annualFee?: number; year: number; round: number; band: "safe" | "likely" | "reach";
+};
+type Resp = {
+  counts: { safe: number; likely: number; reach: number }; total: number; locked: boolean; paid?: boolean;
+  results?: Result[]; more?: number; preview?: { college: string; quotaName: string; band: string }[];
+  used: { quota: string; name: string; year: number; round: number; home: boolean }[]; notes: string[]; reportPrice: number;
+};
+
+export const TOKEN_KEY = "cp_token";
+const PAGE_URL = "www.yneet.in/neet-college-predictor";
+const CATEGORIES = [["OPEN", "General / UR"], ["EWS", "EWS"], ["OBC", "OBC (NCL)"], ["SC", "SC"], ["ST", "ST"]];
+export const BAND = {
+  safe: { label: "Safe", cls: "bg-rise/15 text-rise-dark border-rise/40", note: "Your rank is well inside last year's closing rank" },
+  likely: { label: "Good chance", cls: "bg-gold/20 text-ink dark:text-paper border-gold/50", note: "Your rank is within last year's closing rank" },
+  reach: { label: "Borderline", cls: "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800", note: "Up to 15% past last year's closing rank — possible in later rounds" },
+} as const;
+
+const track = (event: string, params: Record<string, unknown> = {}) => {
+  try { (window as any).gtag?.("event", event, params); } catch { /* analytics only */ }
+};
+const errMsg = (e: any, fallback: string) => e?.response?.data?.message || fallback;
+const fmt = (n?: number) => (n ? n.toLocaleString("en-IN") : "—");
+
+const NeetCollegePredictor = () => {
+  const nav = useNavigate();
+  const [quotas, setQuotas] = useState<Quota[]>([]);
+  const [price, setPrice] = useState(299);
+  const [form, setForm] = useState({ air: "", score: "", category: "OPEN", homeState: "", stateRank: "", stateCategory: "", course: "MBBS" });
+  const [res, setRes] = useState<Resp | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [token, setToken] = useState("");
+  const [filter, setFilter] = useState<"all" | "safe" | "likely" | "reach">("all");
+  // WhatsApp gate
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [code, setCode] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [gateBusy, setGateBusy] = useState(false);
+  const [gateErr, setGateErr] = useState("");
+  const [paying, setPaying] = useState(false);
+
+  useEffect(() => {
+    try { setToken(localStorage.getItem(TOKEN_KEY) || ""); } catch { /* storage blocked */ }
+    api.get("/predictor/meta").then((r) => { setQuotas(r.data.quotas || []); setPrice(r.data.reportPrice || 299); }).catch(() => {});
+  }, []);
+
+  const live = quotas.filter((q) => q.live);
+  const homeQuota = quotas.find((q) => q.code === form.homeState);
+  const stateCats = homeQuota?.categories?.filter((c) => !c.endsWith("-PWD")) || [];
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  const run = async (tok = token) => {
+    if (!form.air && !form.stateRank) { setError("Enter your NEET All India Rank"); return; }
+    setLoading(true); setError("");
+    try {
+      const r = await api.post("/predictor/predict", { ...form, token: tok || undefined });
+      setRes(r.data); setFilter("all");
+      track("predictor_search", { locked: r.data.locked, total: r.data.total, category: form.category, state: form.homeState });
+      setTimeout(() => document.getElementById("cp-results")?.scrollIntoView({ behavior: "smooth" }), 50);
+    } catch (e) { setError(errMsg(e, "Couldn't check right now. Please try again.")); }
+    finally { setLoading(false); }
+  };
+
+  const unlocked = (tok: string) => {
+    try { localStorage.setItem(TOKEN_KEY, tok); } catch { /* storage blocked */ }
+    setToken(tok);
+    track("predictor_lead");
+    try { (window as any).fbq?.("track", "Lead", { content_name: "NEET College Predictor" }); } catch { /* analytics only */ }
+    run(tok);
+  };
+
+  const sendCode = async () => {
+    setGateErr(""); setGateBusy(true);
+    try {
+      const utm = typeof window !== "undefined" ? window.location.search.slice(1, 120) : "";
+      const r = await api.post("/predictor/otp/send", { phone, name, utm });
+      if (r.data.verified && r.data.token) unlocked(r.data.token);
+      else setOtpSent(true);
+    } catch (e) { setGateErr(errMsg(e, "Couldn't send the code. Check the number.")); }
+    finally { setGateBusy(false); }
+  };
+  const verifyCode = async () => {
+    setGateErr(""); setGateBusy(true);
+    try {
+      const r = await api.post("/predictor/otp/verify", { phone, code });
+      unlocked(r.data.token);
+    } catch (e) { setGateErr(errMsg(e, "Wrong code")); }
+    finally { setGateBusy(false); }
+  };
+
+  const buyReport = async () => {
+    if (!token) return;
+    setPaying(true); setError("");
+    track("predictor_report_click");
+    try {
+      const o = await api.post("/predictor/report/order", { token });
+      if (!o.data.paid) {
+        const p = await payWithRazorpay({ keyId: o.data.keyId, orderId: o.data.orderId, amount: o.data.amount, description: "NEET choice-filling report", prefill: o.data.prefill });
+        await api.post("/predictor/report/verify", { token, ...p });
+        trackPurchase(price, "NEET College Predictor report");
+      }
+      nav("/neet-college-predictor/report");
+    } catch (e: any) {
+      if (e?.message !== "cancelled") setError(errMsg(e, e?.message || "Payment didn't go through."));
+    } finally { setPaying(false); }
+  };
+
+  const shown = useMemo(() => (res?.results || []).filter((r) => filter === "all" || r.band === filter), [res, filter]);
+  const shareText = `Free NEET College Predictor: enter your NEET rank and see which MBBS/BDS colleges you can get (AIQ + state quota), based on last year's official closing ranks. Try it: https://${PAGE_URL}`;
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+      <span className="inline-block text-xs font-bold uppercase tracking-wider bg-gold/20 text-ink dark:text-paper px-3 py-1 rounded-full">Free · AIQ + 10 states · MBBS & BDS</span>
+      <h1 className="font-display text-3xl sm:text-5xl font-bold leading-tight mt-4">NEET College Predictor</h1>
+      <p className="text-lg text-ink/70 dark:text-paper/70 mt-4">
+        Enter your NEET rank and category to see the MBBS and BDS colleges you can get under the All India Quota and your state quota. Every result is based on last year's official closing ranks.
+      </p>
+
+      {/* ---------- Form ---------- */}
+      <form onSubmit={(e) => { e.preventDefault(); run(); }} className="mt-8 p-5 sm:p-7 rounded-3xl border border-ink/10 dark:border-paper/15 grid sm:grid-cols-2 gap-4">
+        <label className="block">
+          <span className="text-sm font-semibold">NEET All India Rank (AIR) *</span>
+          <input inputMode="numeric" value={form.air} onChange={set("air")} placeholder="e.g. 45000" className="cp-in" />
+        </label>
+        <label className="block">
+          <span className="text-sm font-semibold">NEET score <span className="font-normal text-ink/50 dark:text-paper/50">(optional)</span></span>
+          <input inputMode="numeric" value={form.score} onChange={set("score")} placeholder="out of 720" className="cp-in" />
+        </label>
+        <label className="block">
+          <span className="text-sm font-semibold">Category</span>
+          <select value={form.category} onChange={set("category")} className="cp-in">
+            {CATEGORIES.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+          </select>
+        </label>
+        <label className="block">
+          <span className="text-sm font-semibold">Course</span>
+          <select value={form.course} onChange={set("course")} className="cp-in">
+            <option value="MBBS">MBBS</option><option value="BDS">BDS</option>
+          </select>
+        </label>
+        <label className="block">
+          <span className="text-sm font-semibold">Home state (domicile)</span>
+          <select value={form.homeState} onChange={set("homeState")} className="cp-in">
+            <option value="">Other / AIQ only</option>
+            {quotas.filter((q) => q.code !== "AIQ").map((q) => <option key={q.code} value={q.code}>{q.name}{q.live ? "" : " (coming soon)"}</option>)}
+          </select>
+        </label>
+        {homeQuota && homeQuota.rankType === "STATE" && (
+          <label className="block">
+            <span className="text-sm font-semibold">{homeQuota.name} state merit rank</span>
+            <input inputMode="numeric" value={form.stateRank} onChange={set("stateRank")} placeholder="from your state rank list" className="cp-in" />
+          </label>
+        )}
+        {homeQuota?.live && stateCats.length > 0 && (
+          <label className="block">
+            <span className="text-sm font-semibold">{homeQuota.name} state category</span>
+            <select value={form.stateCategory} onChange={set("stateCategory")} className="cp-in">
+              <option value="">Same as above</option>
+              {stateCats.map((c) => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </label>
+        )}
+        <div className="sm:col-span-2 flex flex-wrap items-center gap-4">
+          <button type="submit" disabled={loading} className="inline-flex items-center gap-2 bg-gold text-ink font-bold text-lg px-8 py-4 rounded-full hover:bg-gold-dark disabled:opacity-60">
+            {loading ? "Checking…" : <>Show my colleges <ArrowRight size={20} /></>}
+          </button>
+          {error && <p className="text-red-600 text-sm">{error}</p>}
+        </div>
+        {quotas.length > 0 && (
+          <p className="sm:col-span-2 text-xs text-ink/55 dark:text-paper/55">
+            Data loaded: {live.length ? live.map((q) => `${q.name} ${q.year} (round ${q.round})`).join(" · ") : "being updated, check back soon"}.
+          </p>
+        )}
+      </form>
+
+      {/* ---------- Results ---------- */}
+      {res && (
+        <section id="cp-results" className="mt-10 scroll-mt-24">
+          <div className="rounded-3xl bg-rise-line text-paper p-6 sm:p-8">
+            <p className="text-paper/70 font-semibold">AIR {fmt(Number(form.air))} · {form.category} · {form.course}</p>
+            <p className="font-display text-4xl sm:text-5xl font-bold mt-1">{res.total} colleges</p>
+            <div className="mt-4 grid grid-cols-3 gap-3 max-w-lg">
+              {(["safe", "likely", "reach"] as const).map((b) => (
+                <div key={b} className="rounded-xl bg-paper/10 p-3">
+                  <p className="text-xs text-paper/70">{BAND[b].label}</p>
+                  <p className="text-2xl font-bold">{res.counts[b]}</p>
+                </div>
+              ))}
+            </div>
+            {res.used.length > 0 && <p className="text-xs text-paper/60 mt-4">Compared with: {res.used.map((u) => `${u.name} ${u.year} round ${u.round}`).join(" · ")}</p>}
+          </div>
+          {res.notes.map((n) => <p key={n} className="mt-3 text-sm text-ink/70 dark:text-paper/70">ℹ️ {n}</p>)}
+
+          {res.locked ? (
+            <div className="mt-6 rounded-3xl border-2 border-gold p-6 sm:p-8">
+              {res.preview?.[0] && (
+                <p className="text-sm text-ink/70 dark:text-paper/70">Your best match includes <b className="text-ink dark:text-paper">{res.preview[0].college}</b> ({res.preview[0].quotaName}).</p>
+              )}
+              <p className="font-display text-2xl font-bold mt-2 flex items-center gap-2"><Lock size={22} className="text-gold-dark" /> See the full list free</p>
+              <p className="text-sm text-ink/65 dark:text-paper/65 mt-1">Confirm your WhatsApp number to unlock every college, closing rank and chance. We'll also send counselling round dates and alerts. No spam.</p>
+              <div className="mt-4 grid sm:grid-cols-3 gap-3">
+                <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className="cp-in !mt-0" />
+                <input inputMode="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="WhatsApp number" className="cp-in !mt-0" disabled={otpSent} />
+                {!otpSent ? (
+                  <button onClick={sendCode} disabled={gateBusy || phone.replace(/\D/g, "").length < 10} className="inline-flex justify-center items-center gap-2 bg-[#25D366] text-white font-bold px-5 py-3 rounded-full disabled:opacity-50">
+                    <MessageCircle size={18} /> {gateBusy ? "Sending…" : "Send code"}
+                  </button>
+                ) : (
+                  <div className="flex gap-2">
+                    <input inputMode="numeric" value={code} onChange={(e) => setCode(e.target.value)} placeholder="6-digit code" className="cp-in !mt-0 flex-1 min-w-0" />
+                    <button onClick={verifyCode} disabled={gateBusy || code.length < 4} className="bg-ink text-paper dark:bg-gold dark:text-ink font-bold px-4 rounded-full disabled:opacity-50">Unlock</button>
+                  </div>
+                )}
+              </div>
+              {otpSent && <p className="text-xs mt-2 text-ink/60 dark:text-paper/60">Code sent on WhatsApp to {phone}. <button className="underline" onClick={() => { setOtpSent(false); setCode(""); }}>Change number</button></p>}
+              {gateErr && <p className="text-sm text-red-600 mt-2">{gateErr}</p>}
+            </div>
+          ) : (
+            <>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {(["all", "safe", "likely", "reach"] as const).map((b) => (
+                  <button key={b} onClick={() => setFilter(b)} className={`px-4 py-2 rounded-full text-sm font-semibold border ${filter === b ? "bg-ink text-paper dark:bg-gold dark:text-ink border-transparent" : "border-ink/15 dark:border-paper/20"}`}>
+                    {b === "all" ? `All (${res.results?.length || 0})` : `${BAND[b].label} (${(res.results || []).filter((r) => r.band === b).length})`}
+                  </button>
+                ))}
+              </div>
+              {res.total === 0 && (
+                <p className="mt-6 p-5 rounded-2xl border border-ink/10 dark:border-paper/15">No college in the loaded data closed near this rank last year. Check your home state data, try BDS, or look at the options below.</p>
+              )}
+              <ul className="mt-4 space-y-3">
+                {shown.map((r, i) => (
+                  <li key={i} className="p-4 rounded-2xl border border-ink/10 dark:border-paper/15 flex flex-col sm:flex-row sm:items-center gap-3">
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold">{r.college}</p>
+                      <p className="text-xs text-ink/55 dark:text-paper/55 mt-0.5">
+                        {[r.quotaName, r.seatType, r.collegeType, r.collegeState].filter(Boolean).join(" · ")} · {r.category} seat
+                      </p>
+                    </div>
+                    <div className="text-sm sm:text-right shrink-0">
+                      <p className="text-ink/55 dark:text-paper/55 text-xs">Closing rank {r.year}{r.rankType === "STATE" ? " (state)" : ""}</p>
+                      <p className="font-bold">{fmt(r.closingRank)}</p>
+                    </div>
+                    <span className={`shrink-0 self-start sm:self-center text-xs font-bold px-3 py-1 rounded-full border ${BAND[r.band].cls}`}>{BAND[r.band].label}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 rounded-3xl bg-gold/15 border border-gold/40 p-6 sm:p-8">
+                <p className="font-display text-2xl font-bold flex items-center gap-2"><FileText size={22} /> Your choice-filling report: ₹{price}</p>
+                <p className="text-sm text-ink/70 dark:text-paper/70 mt-2">
+                  {res.more ? <><b>{res.more} more colleges</b> aren't shown above. </> : null}
+                  The report puts every college you can get in the right order to fill your choices (dream → good chance → safe), separately for AIQ and your state, with closing ranks, seat types and a printable PDF.
+                </p>
+                {res.paid ? (
+                  <Link to="/neet-college-predictor/report" className="mt-4 inline-flex items-center gap-2 bg-ink text-paper dark:bg-gold dark:text-ink font-bold px-6 py-3 rounded-full">Open my report <ArrowRight size={16} /></Link>
+                ) : (
+                  <button onClick={buyReport} disabled={paying} className="mt-4 inline-flex items-center gap-2 bg-ink text-paper dark:bg-gold dark:text-ink font-bold px-6 py-3 rounded-full disabled:opacity-60">
+                    {paying ? "Opening payment…" : <>Get my report for ₹{price} <ArrowRight size={16} /></>}
+                  </button>
+                )}
+                <p className="text-xs text-ink/55 dark:text-paper/55 mt-2 flex items-center gap-1"><ShieldCheck size={14} /> One-time payment via Razorpay (UPI, cards, net banking).</p>
+              </div>
+            </>
+          )}
+
+          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+            <div className="p-6 rounded-3xl border border-ink/10 dark:border-paper/15">
+              <p className="font-display text-xl font-bold flex items-center gap-2"><GraduationCap size={20} className="text-rise-dark" /> Not happy with these colleges?</p>
+              <p className="text-sm text-ink/65 dark:text-paper/65 mt-1">A better rank next year opens far more government seats. Prepare for NEET 2027 as a dropper with full mocks, PYQs and daily practice. 30 days free.</p>
+              <Link to="/register" onClick={() => track("predictor_dropper_click")} className="mt-3 inline-flex items-center gap-2 font-semibold text-rise-dark">Start free as a dropper <ArrowRight size={16} /></Link>
+            </div>
+            <div className="p-6 rounded-3xl border border-ink/10 dark:border-paper/15">
+              <p className="font-display text-xl font-bold flex items-center gap-2"><Share2 size={20} className="text-rise-dark" /> Help a friend</p>
+              <p className="text-sm text-ink/65 dark:text-paper/65 mt-1">Share the free predictor with friends and parents in your NEET groups.</p>
+              <a href={`https://wa.me/?text=${encodeURIComponent(shareText)}`} target="_blank" rel="noopener noreferrer" onClick={() => track("predictor_share")}
+                className="mt-3 inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-5 py-2.5 rounded-full">Share on WhatsApp</a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ---------- Explainer (SEO) ---------- */}
+      <section className="mt-14 text-ink/75 dark:text-paper/75 space-y-3">
+        <h2 className="font-display text-2xl font-bold text-ink dark:text-paper">How the predictor works</h2>
+        <p>We compare your rank with the closing rank of every college, category and seat type in last year's official counselling allotments: MCC for the 15% All India Quota, deemed universities and central institutes, and each state's counselling authority for the 85% state quota.</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li><b>Safe</b>: {BAND.safe.note.toLowerCase()}.</li>
+          <li><b>Good chance</b>: {BAND.likely.note.toLowerCase()}.</li>
+          <li><b>Borderline</b>: {BAND.reach.note.toLowerCase()}.</li>
+        </ul>
+        <p>State quota seats are shown only for your home state, and some states rank by their own state merit list, so add your state rank where asked. Reserved-category students are matched with both open and their own category seats.</p>
+        <h2 className="font-display text-2xl font-bold text-ink dark:text-paper pt-4">Important</h2>
+        <p>Closing ranks change every year with seat numbers and competition, so treat this as a guide, not a guarantee. Always check the official seat matrix and rules on mcc.nic.in and your state counselling website before choice filling. YNeet is not connected with MCC or any state counselling authority.</p>
+        <p>Still preparing? Take the <Link to="/neet-readiness" className="text-rise-dark font-semibold underline">free NEET Readiness Test</Link> or practise <Link to="/neet-practice" className="text-rise-dark font-semibold underline">chapter-wise PYQs</Link>.</p>
+      </section>
+    </div>
+  );
+};
+
+export default NeetCollegePredictor;

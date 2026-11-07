@@ -78,6 +78,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "NEET Question of the Day — Daily NEET MCQ with Answer | YNeet",
     description: "One NEET-level question every day, mostly from previous NEET papers, with the answer and explanation. Free, no login. Challenge your friends.",
   },
+  "/neet-college-predictor": {
+    title: "NEET College Predictor 2027 — MBBS & BDS Colleges by Rank (AIQ + State Quota) | YNeet",
+    description:
+      "Free NEET college predictor: enter your NEET rank and category to see the MBBS and BDS colleges you can get under the All India Quota and your state quota (Tamil Nadu, Karnataka, Kerala, AP, Telangana, Maharashtra, UP, Bihar, Rajasthan, Delhi), from last year's official closing ranks.",
+  },
+  "/neet-college-predictor/report": {
+    title: "Your NEET Choice-Filling Report | YNeet",
+    description: "Your personal NEET college choice-filling list from the YNeet College Predictor.",
+    noindex: true,
+  },
   "/neet-2027-exam-date": {
     title: "NEET 2027 Exam Date, Pattern & Marking Scheme — What's Confirmed | YNeet",
     description: "NEET UG 2027 exam date status, registration, CBT and attempt-limit news, and the exam pattern: 180 questions, 720 marks, +4/−1, 3 hours. Checked against NTA notices.",
