@@ -30,7 +30,7 @@ const NeetTrial = () => {
           >
             Register &amp; Start Free Trial <ArrowRight size={20} />
           </Link>
-          <p className="mt-3 text-paper/60 text-sm">Takes about 2 minutes. After the trial, plans from ₹399/month, or ₹3,199 for a full year.</p>
+          <p className="web-only mt-3 text-paper/60 text-sm">Takes about 2 minutes. After the trial, plans from ₹399/month, or ₹3,199 for a full year.</p>
         </div>
       </section>
 

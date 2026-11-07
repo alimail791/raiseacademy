@@ -3,6 +3,10 @@ import {
   ArrowRight, BookOpen, ClipboardCheck, TrendingUp, Users, Check, X, Minus, Mail, MessageCircle, Gauge, Puzzle,
 } from "lucide-react";
 import { gamesLink } from "../utils/siteInfo";
+import { isAppMode } from "../utils/appMode";
+
+// In the Android app: no cost or payment lines (Play "consumption only" rule).
+const PAY_LINE = /cost|pay only/i;
 
 // Shared selling sections for /neet-trial, /courses and /neet-parents.
 // Every feature listed here exists in the YNeet app today — keep it that way.
@@ -38,7 +42,7 @@ export function FeatureGroups({ heading = "Everything in one place" }: { heading
               {title}
             </p>
             <ul className="mt-4 space-y-2">
-              {items.map((t) => (
+              {items.filter((t) => !(isAppMode() && PAY_LINE.test(t))).map((t) => (
                 <li key={t} className="flex gap-2 text-sm text-ink/80 dark:text-paper/80">
                   <Check size={16} className="text-rise-dark shrink-0 mt-0.5" /> {t}
                 </li>
@@ -93,7 +97,7 @@ export function CompareTable() {
             </tr>
           </thead>
           <tbody>
-            {ROWS.map(([label, ...cells]) => (
+            {ROWS.filter(([label]) => !(isAppMode() && PAY_LINE.test(label))).map(([label, ...cells]) => (
               <tr key={label} className="border-t border-ink/10 dark:border-paper/10">
                 <td className="p-3 font-medium">{label}</td>
                 {cells.map((v, i) => (
@@ -107,7 +111,7 @@ export function CompareTable() {
       <p className="text-xs text-ink/50 dark:text-paper/50 mt-2">
         <Minus size={12} className="inline" /> = varies by app or centre. Costs elsewhere are typical ranges. YNeet: ₹399/month or ₹3,199/year for Class 11–12, ₹299 for Class 9–10, ₹499 for droppers.
       </p>
-      <p className="text-center font-semibold mt-6">One year of YNeet costs less than one month of most coaching fees.</p>
+      <p className="web-only text-center font-semibold mt-6">One year of YNeet costs less than one month of most coaching fees.</p>
       <div className="text-center mt-4">
         <Link to="/register" className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">
           Start free for 30 days <ArrowRight size={16} />

@@ -81,7 +81,7 @@ const faqs = [
   },
   {
     q: "Can I try YNeet before paying?",
-    a: "Yes. The homepage has a free 30-question NEET sample test, no login needed. And from Class 9, every new student gets 30 days of full access free before paying anything.",
+    a: "Yes. The free NEET Readiness Test (15 questions, about 5 minutes) needs no login. And from Class 9, every new student gets 30 days of full access free before paying anything.",
   },
   {
     q: "Is the content the same for every class?",
@@ -270,10 +270,10 @@ const Courses = () => {
         </div>
         <div className="mt-10 flex flex-col sm:flex-row gap-3">
           <Link
-            to="/"
+            to="/neet-readiness"
             className="inline-flex justify-center items-center gap-2 border border-ink/20 font-semibold px-6 py-3 rounded-full hover:bg-ink/5 transition-colors"
           >
-            Try the free 30-question test
+            Take the free NEET Readiness Test
           </Link>
           <a
             href={whatsapp}

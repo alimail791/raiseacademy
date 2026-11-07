@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MessageCircle, ChevronDown } from "lucide-react";
 import { SITE } from "../utils/siteInfo";
+import { isAppMode } from "../utils/appMode";
 
 const FAQS = [
   {
@@ -17,7 +18,7 @@ const FAQS = [
   },
   {
     q: "Is there a free trial?",
-    a: "Yes — try the free 30-question sample test on the homepage (tap 'Take a Free 30-Question Test'), no registration needed. Once registered, every new student from Class 9 gets a free 30-day full-access trial with no payment needed. Class 6–8 is always free.",
+    a: "Yes — take the free NEET Readiness Test (15 questions, about 5 minutes) with no registration needed. Once registered, every new student from Class 9 gets a free 30-day full-access trial with no payment needed. Class 6–8 is always free.",
   },
   {
     q: "How much does YNeet cost?",
@@ -60,7 +61,7 @@ export default function Help() {
       </div>
 
       <div className="space-y-3">
-        {FAQS.map((item, i) => {
+        {FAQS.filter((f) => !(isAppMode() && /cost|price|courses page/i.test(f.q + " " + f.a))).map((item, i) => {
           const open = openIdx === i;
           return (
             <div key={i} className="border border-ink/10 rounded-xl overflow-hidden bg-white">

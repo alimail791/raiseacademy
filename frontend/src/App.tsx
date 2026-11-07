@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { isAppMode, APP_MODE_PATHS } from "./utils/appMode";
+import { isAppMode, isFramed } from "./utils/appMode";
 import Navbar from "./components/layout/Navbar";
 import TrialBar from "./components/layout/TrialBar";
 import Footer from "./components/layout/Footer";
@@ -41,6 +41,8 @@ import BrainTeaser from "./pages/BrainTeaser";
 import AskYneet from "./pages/AskYneet";
 import ConceptMaps from "./pages/ConceptMaps";
 import NeetSprint from "./pages/NeetSprint";
+import NeetShorts from "./pages/NeetShorts";
+import { AppPriceGuard, AppLeave } from "./components/AppPriceGuard";
 import Logout from "./pages/Logout";
 import DeleteAccount from "./pages/DeleteAccount";
 
@@ -70,20 +72,47 @@ function App() {
     );
   }
   if (appMode) {
+    // Inside the Android app (Play Store). Login / sign-up pages, plus every free
+    // study page for the app's Explore screen. No site menu, footer, prices or
+    // payment links (Play "consumption only"); AppPriceGuard hides any price text.
+    // In the app's frame (app.yneet.in), the app draws its own top bar.
+    const framed = isFramed();
     return (
       <div className="min-h-screen flex flex-col bg-white">
-        <header className="py-5 text-center font-display text-2xl font-bold">YNeet</header>
+        <AppPriceGuard />
+        {!framed && <header className="py-5 text-center font-display text-2xl font-bold">YNeet</header>}
         <main className="flex-1">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/logout" element={<Logout />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/delete-account" element={<DeleteAccount />} />
-            <Route path="*" element={<Navigate to={APP_MODE_PATHS.includes(pathname) ? pathname : "/login"} replace />} />
+            <Route path="/neet-readiness" element={<NeetReadiness />} />
+            <Route path="/neet-college-predictor" element={<NeetCollegePredictor />} />
+            <Route path="/neet-college-predictor/report" element={<NeetCollegeReport />} />
+            <Route path="/neet-sprint" element={<NeetSprint />} />
+            <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
+            <Route path="/neet-practice" element={<Practice />} />
+            <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
+            <Route path="/neet-question-papers" element={<PapersIndex />} />
+            <Route path="/neet-question-papers/:year" element={<PaperYear />} />
+            <Route path="/neet-concept-maps" element={<ConceptMaps />} />
+            <Route path="/ncert-notes" element={<NcertIndex />} />
+            <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
+            <Route path="/neet-shorts" element={<NeetShorts />} />
+            <Route path="/ask-yneet" element={<AskYneet />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/brain-teaser" element={<BrainTeaser />} />
+            <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
+            <Route path="/neet-trial" element={<NeetTrial />} />
+            <Route path="/neet-parents" element={<NeetParents />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="*" element={<AppLeave />} />
           </Routes>
         </main>
         <WhatsAppButton />
@@ -121,6 +150,7 @@ function App() {
           <Route path="/ask-yneet" element={<AskYneet />} />
           <Route path="/neet-concept-maps" element={<ConceptMaps />} />
           <Route path="/neet-sprint" element={<NeetSprint />} />
+          <Route path="/neet-shorts" element={<NeetShorts />} />
           <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
           <Route path="/neet-question-widget" element={<QotdWidget />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />

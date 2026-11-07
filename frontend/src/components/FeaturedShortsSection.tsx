@@ -105,7 +105,7 @@ const FeaturedShortsSection = () => {
               and the best ones are featured right here.
             </p>
           </div>
-          <a href={`${APP}/creator/apply`} className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark transition-colors">
+          <a href={`${APP}/creator/apply`} target="_top" className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark transition-colors">
             Apply as a creator <ArrowRight size={18} />
           </a>
         </div>

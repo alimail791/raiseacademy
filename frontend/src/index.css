@@ -63,3 +63,13 @@ html {
 @media print {
   header, footer, .no-print, [data-whatsapp-button] { display: none !important; }
 }
+
+/* Inside the YNeet Android app (class set by AppPriceGuard): no prices, plans,
+   payment or institute links — Google Play "consumption only" rule. */
+html.in-app a[href^="/courses"],
+html.in-app a[href*="pay.yneet.in"],
+html.in-app a[href^="/institute"],
+html.in-app a[href^="/neet-question-widget"],
+html.in-app .web-only {
+  display: none !important;
+}

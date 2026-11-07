@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, GraduationCap, Lock, MessageCircle, Share2, FileText, ShieldCheck } from "lucide-react";
 import api from "../api/axios";
 import { payWithRazorpay, trackPurchase } from "../utils/razorpay";
+import { isAppMode } from "../utils/appMode";
 
 // Free NEET College Predictor. Results unlock after the student confirms a WhatsApp
 // number (lead). Optional ₹299 choice-filling report. Data = last year's official
@@ -261,6 +262,9 @@ const NeetCollegePredictor = () => {
                 ))}
               </ul>
 
+              {/* Paid report: website only. The Play Store app sells nothing (only a
+                  report already bought on the website can be opened there). */}
+              {(!isAppMode() || res.paid) && (
               <div className="mt-8 rounded-3xl bg-gold/15 border border-gold/40 p-6 sm:p-8">
                 <p className="font-display text-2xl font-bold flex items-center gap-2"><FileText size={22} /> Your choice-filling report: ₹{price}</p>
                 <p className="text-sm text-ink/70 dark:text-paper/70 mt-2">
@@ -276,6 +280,7 @@ const NeetCollegePredictor = () => {
                 )}
                 <p className="text-xs text-ink/55 dark:text-paper/55 mt-2 flex items-center gap-1"><ShieldCheck size={14} /> One-time payment via Razorpay (UPI, cards, net banking).</p>
               </div>
+              )}
             </>
           )}
 

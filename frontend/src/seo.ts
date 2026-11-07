@@ -124,6 +124,10 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "Privacy policy — YNeet",
     description: "What YNeet collects, why, who it is shared with, and how to see or delete your data.",
   },
+  "/neet-shorts": {
+    title: "YNeet Shorts — quick NEET concept videos",
+    description: "Short NEET Physics, Chemistry and Biology concept videos from teachers, under 2 minutes each. Free to watch.",
+  },
   "/terms": {
     title: "Terms of Service — YNeet",
     description: "The terms for using YNeet: accounts, free trial and one-time plans, fair use, AI explanations, refunds and contact.",

@@ -40,7 +40,7 @@ export function isFramed(): boolean {
 }
 
 // Tell the YNeet app frame what happened, so it can move on by itself.
-export function tellYneetApp(msg: { type: "yneet-auth"; token: string } | { type: "yneet-logged-out" }) {
+export function tellYneetApp(msg: { type: "yneet-auth"; token: string } | { type: "yneet-logged-out" } | { type: "yneet-explore" }) {
   try {
     window.parent.postMessage(msg, YNEET_ORIGIN);
   } catch {
@@ -49,3 +49,16 @@ export function tellYneetApp(msg: { type: "yneet-auth"; token: string } | { type
 }
 
 export const APP_MODE_PATHS = ["/login", "/register", "/forgot-password", "/logout", "/privacy", "/terms", "/delete-account"];
+
+// Free study pages the app's Explore screen (app.yneet.in/explore) opens inside a
+// frame, for students who haven't logged in yet. Everything here is free; prices,
+// plans and payment links are hidden in app mode (see AppPriceGuard).
+export const APP_FREE_PATHS = [
+  "/neet-readiness", "/neet-college-predictor", "/neet-sprint", "/neet-question-of-the-day", "/neet-practice",
+  "/neet-question-papers", "/neet-concept-maps", "/ncert-notes", "/neet-shorts", "/ask-yneet",
+  "/blog", "/brain-teaser", "/neet-2027-exam-date", "/neet-trial", "/neet-parents", "/about", "/help",
+];
+
+export function isAppPath(pathname: string): boolean {
+  return APP_MODE_PATHS.includes(pathname) || APP_FREE_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"));
+}
