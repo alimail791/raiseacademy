@@ -22,8 +22,17 @@ const FREE_LIMIT = 40; // colleges shown on the free results page
 const ADMIN_ALERT_EMAIL = process.env.ADMIN_ALERT_EMAIL || "alimail791@gmail.com";
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-// Chance bands, by student rank ÷ last year's closing rank.
+// Chance bands, by student rank ÷ last year's closing rank (or marks above the lowest mark).
 const SAFE = 0.85, REACH = 1.15;
+const SAFE_MARKS = 10, REACH_MARKS = 5;
+export const ELIGIBILITY = { TN_GOVT_SCHOOL: "Tamil Nadu government school student (7.5% quota)" };
+const bandOfScore = (score, lowest, laterLowest, strayOnly) => {
+  if (strayOnly) return score >= lowest ? "reach" : null;
+  if (score >= lowest + SAFE_MARKS) return "safe";
+  if (score >= lowest) return "likely";
+  if (score >= lowest - REACH_MARKS || (laterLowest && score >= laterLowest)) return "reach";
+  return null;
+};
 // Seats filled only in a stray round, or that went past the regular closing rank in the
 // stray round, can still be "reach" up to the stray-round closing rank.
 const bandOf = (rank, closing, stray, strayOnly) => {
@@ -39,14 +48,14 @@ let datasetCache = { at: 0, value: null };
 export async function latestDatasets(force = false) {
   if (!force && datasetCache.value && Date.now() - datasetCache.at < 5 * 60 * 1000) return datasetCache.value;
   const agg = await CollegeCutoff.aggregate([
-    { $group: { _id: { quota: "$quota", year: "$year", round: "$round" }, rows: { $sum: 1 }, courses: { $addToSet: "$course" }, categories: { $addToSet: "$category" }, rankType: { $first: "$rankType" } } },
+    { $group: { _id: { quota: "$quota", year: "$year", round: "$round" }, rows: { $sum: 1 }, openRows: { $sum: { $cond: ["$openToAll", 1, 0] } }, courses: { $addToSet: "$course" }, categories: { $addToSet: "$category" }, rankType: { $first: "$rankType" } } },
     { $sort: { "_id.year": -1, "_id.round": -1 } },
   ]);
   const out = {};
   for (const g of agg) {
     const q = g._id.quota;
     if (out[q]) continue; // first = latest year, latest round
-    out[q] = { quota: q, name: QUOTAS[q] || q, year: g._id.year, round: g._id.round, rows: g.rows, courses: g.courses.sort(), categories: g.categories.sort(), rankType: g.rankType };
+    out[q] = { quota: q, name: QUOTAS[q] || q, year: g._id.year, round: g._id.round, rows: g.rows, openRows: g.openRows, courses: g.courses.sort(), categories: g.categories.sort(), rankType: g.rankType };
   }
   datasetCache = { at: Date.now(), value: out };
   return out;
@@ -72,12 +81,21 @@ const cleanInput = (b = {}) => {
   const air = parseInt(b.air, 10);
   const stateRank = parseInt(b.stateRank, 10);
   const score = parseInt(b.score, 10);
+  const elig = Array.isArray(b.eligibility) ? b.eligibility.filter((e) => ELIGIBILITY[e]) : [];
   return {
-    course, category, stateCategory, homeState,
+    course, category, stateCategory, homeState, eligibility: elig,
     air: air > 0 ? air : undefined,
     stateRank: stateRank > 0 ? stateRank : undefined,
-    score: Number.isFinite(score) ? score : undefined,
+    score: score > 0 && score <= 720 ? score : undefined,
   };
+};
+
+// Most competitive first: rank-based quotas by closing rank (low = hard), mark-based by
+// lowest mark (high = hard); rank-based quotas listed before mark-based ones.
+const harderFirst = (a, b) => {
+  const sa = a.rankType === "SCORE", sb = b.rankType === "SCORE";
+  if (sa !== sb) return sa ? 1 : -1;
+  return sa ? b.closingRank - a.closingRank : a.closingRank - b.closingRank;
 };
 
 // Core matching. Returns every matching college bucket, best colleges first.
@@ -89,14 +107,21 @@ export async function predict(input) {
   for (const s of Object.values(sets)) {
     if (!s.courses.includes(input.course)) continue;
     const home = s.quota === input.homeState;
-    const myRank = s.rankType === "STATE" ? input.stateRank : input.air;
+    if (!home && !s.openRows) continue; // nothing in this quota for out-of-state students
+    const myRank = s.rankType === "SCORE" ? input.score : s.rankType === "STATE" ? input.stateRank : input.air;
     if (!myRank) {
-      if (home) notes.push(`Add your ${s.name} state merit rank to see ${s.name} state-quota colleges.`);
+      if (s.rankType === "SCORE") notes.push(home ? `Add your NEET score to see ${s.name} colleges.` : `Add your NEET score to also see ${s.name} management-quota colleges.`);
+      else if (s.rankType === "STATE") { if (home) notes.push(`Add your ${s.name} state merit rank to see ${s.name} state-quota colleges.`); }
+      else notes.push(`Add your NEET All India Rank to see ${s.name} colleges.`);
       continue;
     }
     const cat = s.quota === "AIQ" ? input.category : (input.stateCategory || input.category);
+    if (home && s.quota !== "AIQ" && !s.categories.includes(cat)) notes.push(`Choose your ${s.name} community/category to include reserved seats.`);
     const cats = [...new Set(["OPEN", cat])];
-    const clause = { quota: s.quota, year: s.year, round: s.round, course: input.course, category: { $in: cats }, $or: [{ closingRank: { $gte: Math.floor(myRank / REACH) } }, { strayClosingRank: { $gte: myRank } }] };
+    const reachOr = s.rankType === "SCORE"
+      ? [{ closingRank: { $lte: myRank + REACH_MARKS } }, { strayClosingRank: { $lte: myRank } }]
+      : [{ closingRank: { $gte: Math.floor(myRank / REACH) } }, { strayClosingRank: { $gte: myRank } }];
+    const clause = { quota: s.quota, year: s.year, round: s.round, course: input.course, category: { $in: cats }, eligibility: { $in: [null, "", ...(input.eligibility || [])] }, $or: reachOr };
     if (!home) clause.openToAll = true;
     or.push(clause);
     used.push({ quota: s.quota, name: s.name, year: s.year, round: s.round, rankType: s.rankType, home });
@@ -108,21 +133,21 @@ export async function predict(input) {
   // may qualify through both OPEN and their own category — show whichever is easier).
   const best = new Map();
   for (const r of rows) {
-    const myRank = r.rankType === "STATE" ? input.stateRank : input.air;
-    const band = bandOf(myRank, r.closingRank, r.strayClosingRank, r.strayOnly);
+    const myRank = r.rankType === "SCORE" ? input.score : r.rankType === "STATE" ? input.stateRank : input.air;
+    const band = r.rankType === "SCORE" ? bandOfScore(myRank, r.closingRank, r.strayClosingRank, r.strayOnly) : bandOf(myRank, r.closingRank, r.strayClosingRank, r.strayOnly);
     if (!band) continue;
-    const key = [r.quota, r.college.toLowerCase(), r.seatType.toLowerCase()].join("|");
+    const key = [r.quota, r.college.toLowerCase(), r.seatType.toLowerCase(), r.eligibility || ""].join("|");
     const prev = best.get(key);
     const order0 = { safe: 2, likely: 1, reach: 0 };
-    if (!prev || order0[band] > order0[prev.band] || (band === prev.band && r.closingRank > prev.closingRank)) best.set(key, { ...r, band, myRank });
+    const easier = (a, b) => (a.rankType === "SCORE" ? a.closingRank < b.closingRank : a.closingRank > b.closingRank);
+    if (!prev || order0[band] > order0[prev.band] || (band === prev.band && easier(r, prev))) best.set(key, { ...r, band, myRank });
   }
-  const order = { reach: 0, likely: 1, safe: 2 };
   const results = [...best.values()]
-    .sort((a, b) => a.closingRank - b.closingRank || order[a.band] - order[b.band])
+    .sort(harderFirst)
     .map((r) => ({
       college: r.college, collegeState: r.collegeState, collegeType: r.collegeType, course: r.course,
       quota: r.quota, quotaName: QUOTAS[r.quota] || r.quota, seatType: r.seatType, category: r.category,
-      closingRank: r.closingRank, openingRank: r.openingRank, strayClosingRank: r.strayClosingRank, strayOnly: !!r.strayOnly, rankType: r.rankType, seats: r.seats, annualFee: r.annualFee,
+      closingRank: r.closingRank, openingRank: r.openingRank, strayClosingRank: r.strayClosingRank, strayOnly: !!r.strayOnly, rankType: r.rankType, eligibility: r.eligibility || "", seats: r.seats, annualFee: r.annualFee,
       year: r.year, round: r.round, band: r.band,
     }));
   return { results, used, notes };
@@ -136,11 +161,11 @@ const leadByToken = async (token) => (token ? PredictorLead.findOne({ token: Str
 export const runPredict = async (req, res, next) => {
   try {
     const input = cleanInput(req.body);
-    if (!input.air && !input.stateRank) return res.status(400).json({ message: "Enter your NEET All India Rank" });
+    if (!input.air && !input.stateRank && !input.score) return res.status(400).json({ message: "Enter your NEET All India Rank or NEET score" });
     const { results, used, notes } = await predict(input);
     const lead = await leadByToken(req.body?.token);
     if (lead) {
-      Object.assign(lead, { air: input.air, stateRank: input.stateRank, score: input.score, category: input.category, homeState: input.homeState, course: input.course });
+      Object.assign(lead, { air: input.air, stateRank: input.stateRank, score: input.score, category: input.category, stateCategory: input.stateCategory, homeState: input.homeState, course: input.course, eligibility: input.eligibility });
       lead.searches = (lead.searches || 0) + 1;
       await lead.save();
     }
@@ -254,11 +279,11 @@ export const getReport = async (req, res, next) => {
     // Choice-filling order: most desirable first. Reach colleges at the top (they cost
     // nothing to fill), then likely, then safe as the safety net — each by closing rank.
     const rankBand = { reach: 0, likely: 1, safe: 2 };
-    const choiceOrder = [...results].sort((a, b) => rankBand[a.band] - rankBand[b.band] || a.closingRank - b.closingRank);
+    const choiceOrder = [...results].sort((a, b) => rankBand[a.band] - rankBand[b.band] || harderFirst(a, b));
     const byQuota = {};
     for (const r of choiceOrder) (byQuota[r.quota] ||= { quota: r.quota, name: r.quotaName, items: [] }).items.push(r);
     res.json({
-      student: { name: lead.name, phone: lead.phone, air: lead.air, stateRank: lead.stateRank, score: lead.score, category: lead.category, homeState: lead.homeState, homeStateName: QUOTAS[lead.homeState] || "", course: lead.course },
+      student: { name: lead.name, phone: lead.phone, air: lead.air, stateRank: lead.stateRank, score: lead.score, category: lead.category, stateCategory: lead.stateCategory, homeState: lead.homeState, homeStateName: QUOTAS[lead.homeState] || "", course: lead.course, eligibility: lead.eligibility },
       counts: counts(results), total: results.length, used, notes,
       sections: Object.values(byQuota),
       generatedAt: new Date().toISOString(),
@@ -277,7 +302,7 @@ export const adminImport = async (req, res, next) => {
     const year = parseInt(b.year, 10), round = parseInt(b.round, 10) || 1;
     if (!(year >= 2015 && year <= 2100)) return res.status(400).json({ message: "Enter the counselling year" });
     if (!b.csv) return res.status(400).json({ message: "Attach a CSV file" });
-    const rankType = b.rankType === "STATE" ? "STATE" : b.rankType === "AIR" ? "AIR" : undefined;
+    const rankType = ["STATE", "AIR", "SCORE"].includes(b.rankType) ? b.rankType : undefined;
     const course = b.course ? String(b.course).toUpperCase() : undefined;
     const { mode, rows, skipped, missing } = buildCutoffRows(b.csv, { quota, year, round, rankType, course, openToAllDefault: !!b.openToAllDefault, source: String(b.source || "").slice(0, 200) });
     if (missing?.length) return res.status(400).json({ message: `Could not find these columns: ${missing.join(", ")}` });
@@ -348,6 +373,7 @@ export const adminLeads = async (req, res, next) => {
 const BUNDLED = [
   { file: "mcc_aiq_2026.csv", quota: "AIQ", year: 2026, round: 3, rankType: "AIR", source: "MCC 2026 allotments (rounds 1–3, stray)" },
   { file: "mcc_delhi_du_ip_2026.csv", quota: "DL", year: 2026, round: 3, rankType: "AIR", source: "MCC 2026 DU/IP University quota" },
+  { file: "tn_2026.csv", quota: "TN", year: 2026, round: 2, rankType: "SCORE", source: "Tamil Nadu 2026 GQ / MQ / 7.5% allotments" },
 ];
 export async function seedBundledCutoffs() {
   const { readFile } = await import("fs/promises");

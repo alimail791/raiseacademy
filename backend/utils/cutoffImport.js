@@ -29,6 +29,7 @@ const ALIASES = {
   seats: ["seats", "intake", "seat count"],
   annualFee: ["annual fee", "annual_fee", "fee", "fees", "tuition fee"],
   openToAll: ["open to all", "open_to_all"],
+  eligibility: ["eligibility", "special group"],
 };
 
 const norm = (h) => String(h || "").toLowerCase().replace(/[_\-.]+/g, " ").replace(/\s+/g, " ").trim();
@@ -150,6 +151,7 @@ export function buildCutoffRows(csvText, meta) {
         openingRank: toInt(get(r, "openingRank")),
         strayClosingRank: toInt(get(r, "strayClosingRank")),
         strayOnly: truthy(get(r, "strayOnly")),
+        eligibility: get(r, "eligibility").toUpperCase(),
         collegeState: get(r, "collegeState"),
         collegeType: get(r, "collegeType"),
         seats: toInt(get(r, "seats")),

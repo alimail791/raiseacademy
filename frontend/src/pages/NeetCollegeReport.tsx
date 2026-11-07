@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Printer } from "lucide-react";
 import api from "../api/axios";
 import { payWithRazorpay, trackPurchase } from "../utils/razorpay";
-import { BAND, TOKEN_KEY } from "./NeetCollegePredictor";
+import { BAND, TOKEN_KEY, cutoffValue, laterBetter } from "./NeetCollegePredictor";
 
 // ₹299 choice-filling report from the NEET College Predictor. Printable (Save as PDF).
 
 type Item = {
   college: string; collegeState: string; collegeType: string; quota: string; quotaName: string; seatType: string;
-  category: string; closingRank: number; openingRank?: number; strayClosingRank?: number; strayOnly?: boolean; rankType: "AIR" | "STATE"; annualFee?: number;
+  category: string; closingRank: number; openingRank?: number; strayClosingRank?: number; strayOnly?: boolean; rankType: "AIR" | "STATE" | "SCORE"; annualFee?: number;
   year: number; round: number; band: "safe" | "likely" | "reach";
 };
 type Report = {
@@ -129,7 +129,7 @@ const NeetCollegeReport = () => {
               <thead>
                 <tr className="text-left text-xs text-ink/55 dark:text-paper/55 border-b border-ink/10 dark:border-paper/15">
                   <th className="py-2 pr-2">#</th><th className="py-2 pr-2">College</th><th className="py-2 pr-2">Seat</th>
-                  <th className="py-2 pr-2 text-right">Closing rank (R1–2)</th><th className="py-2 pr-2">Chance</th>
+                  <th className="py-2 pr-2 text-right">{sec.items[0]?.rankType === "SCORE" ? "Lowest mark" : "Closing rank"}</th><th className="py-2 pr-2">Chance</th>
                 </tr>
               </thead>
               <tbody>
@@ -144,8 +144,8 @@ const NeetCollegeReport = () => {
                       </td>
                       <td className="py-2 pr-2 text-xs">{[r.seatType, r.category].filter(Boolean).join(" · ")}</td>
                       <td className="py-2 pr-2 text-right font-semibold">
-                        {fmt(r.closingRank)}{r.rankType === "STATE" && <span className="text-xs font-normal"> (state)</span>}
-                        {r.strayOnly ? <p className="text-xs font-normal text-ink/50 dark:text-paper/50">round 3 / stray only</p> : r.strayClosingRank && r.strayClosingRank > r.closingRank ? <p className="text-xs font-normal text-ink/50 dark:text-paper/50">R3 / stray: {fmt(r.strayClosingRank)}</p> : null}
+                        {cutoffValue(r, r.closingRank)}
+                        {r.strayOnly ? <p className="text-xs font-normal text-ink/50 dark:text-paper/50">later rounds only</p> : laterBetter(r) ? <p className="text-xs font-normal text-ink/50 dark:text-paper/50">later: {cutoffValue(r, r.strayClosingRank)}</p> : null}
                       </td>
                       <td className="py-2 pr-2"><span className={`text-xs font-bold px-2 py-0.5 rounded-full border whitespace-nowrap ${BAND[r.band].cls}`}>{BAND[r.band].label}</span></td>
                     </tr>

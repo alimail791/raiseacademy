@@ -9,10 +9,10 @@ import { isAppMode } from "../utils/appMode";
 // number (lead). Optional ₹299 choice-filling report. Data = last year's official
 // closing ranks, loaded by admin per quota (AIQ + 10 states).
 
-type Quota = { code: string; name: string; live: boolean; year?: number; round?: number; rankType?: "AIR" | "STATE"; categories?: string[]; courses?: string[] };
+type Quota = { code: string; name: string; live: boolean; year?: number; round?: number; rankType?: "AIR" | "STATE" | "SCORE"; categories?: string[]; courses?: string[] };
 type Result = {
   college: string; collegeState: string; collegeType: string; course: string; quota: string; quotaName: string;
-  seatType: string; category: string; closingRank: number; openingRank?: number; strayClosingRank?: number; strayOnly?: boolean; rankType: "AIR" | "STATE";
+  seatType: string; category: string; closingRank: number; openingRank?: number; strayClosingRank?: number; strayOnly?: boolean; eligibility?: string; rankType: "AIR" | "STATE" | "SCORE";
   seats?: number; annualFee?: number; year: number; round: number; band: "safe" | "likely" | "reach";
 };
 type Resp = {
@@ -27,8 +27,16 @@ const CATEGORIES = [["OPEN", "General / UR"], ["EWS", "EWS"], ["OBC", "OBC (NCL)
 export const BAND = {
   safe: { label: "Safe", cls: "bg-rise/15 text-rise-dark border-rise/40", note: "Your rank is well inside last year's closing rank" },
   likely: { label: "Good chance", cls: "bg-gold/20 text-ink dark:text-paper border-gold/50", note: "Your rank is within last year's closing rank" },
-  reach: { label: "Borderline", cls: "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800", note: "Past last year's round 1–2 closing rank, but seats like this went in round 3 or the stray rounds" },
+  reach: { label: "Borderline", cls: "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800", note: "Just past last year's cutoff in the main rounds, but seats like this went in later or stray rounds" },
 } as const;
+
+// How a cutoff is shown: rank-based quotas (AIQ, most states) vs mark-based (Tamil Nadu).
+export const cutoffLabel = (r: { rankType: string; strayOnly?: boolean }) =>
+  r.rankType === "SCORE" ? (r.strayOnly ? "Lowest mark, later rounds" : "Lowest mark") : r.strayOnly ? "Filled in later rounds" : "Closing rank";
+export const cutoffValue = (r: { rankType: string }, n?: number) =>
+  !n ? "—" : r.rankType === "SCORE" ? `${n} marks` : `${n.toLocaleString("en-IN")}${r.rankType === "STATE" ? " (state)" : ""}`;
+export const laterBetter = (r: { rankType: string; closingRank: number; strayClosingRank?: number; strayOnly?: boolean }) =>
+  !r.strayOnly && !!r.strayClosingRank && (r.rankType === "SCORE" ? r.strayClosingRank < r.closingRank : r.strayClosingRank > r.closingRank);
 
 const track = (event: string, params: Record<string, unknown> = {}) => {
   try { (window as any).gtag?.("event", event, params); } catch { /* analytics only */ }
@@ -41,6 +49,7 @@ const NeetCollegePredictor = () => {
   const [quotas, setQuotas] = useState<Quota[]>([]);
   const [price, setPrice] = useState(299);
   const [form, setForm] = useState({ air: "", score: "", category: "OPEN", homeState: "", stateRank: "", stateCategory: "", course: "MBBS" });
+  const [govtSchool, setGovtSchool] = useState(false); // Tamil Nadu 7.5% government-school quota
   const [res, setRes] = useState<Resp | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -66,10 +75,11 @@ const NeetCollegePredictor = () => {
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const run = async (tok = token) => {
-    if (!form.air && !form.stateRank) { setError("Enter your NEET All India Rank"); return; }
+    if (!form.air && !form.stateRank && !form.score) { setError("Enter your NEET All India Rank or NEET score"); return; }
     setLoading(true); setError("");
     try {
-      const r = await api.post("/predictor/predict", { ...form, token: tok || undefined });
+      const eligibility = form.homeState === "TN" && govtSchool ? ["TN_GOVT_SCHOOL"] : [];
+      const r = await api.post("/predictor/predict", { ...form, eligibility, token: tok || undefined });
       setRes(r.data); setFilter("all");
       track("predictor_search", { locked: r.data.locked, total: r.data.total, category: form.category, state: form.homeState });
       setTimeout(() => document.getElementById("cp-results")?.scrollIntoView({ behavior: "smooth" }), 50);
@@ -135,11 +145,13 @@ const NeetCollegePredictor = () => {
       {/* ---------- Form ---------- */}
       <form onSubmit={(e) => { e.preventDefault(); run(); }} className="mt-8 p-5 sm:p-7 rounded-3xl border border-ink/10 dark:border-paper/15 grid sm:grid-cols-2 gap-4">
         <label className="block">
-          <span className="text-sm font-semibold">NEET All India Rank (AIR) *</span>
+          <span className="text-sm font-semibold">NEET All India Rank (AIR)</span>
           <input inputMode="numeric" value={form.air} onChange={set("air")} placeholder="e.g. 45000" className="cp-in" />
         </label>
         <label className="block">
-          <span className="text-sm font-semibold">NEET score <span className="font-normal text-ink/50 dark:text-paper/50">(optional)</span></span>
+          <span className="text-sm font-semibold">NEET score {homeQuota?.rankType === "SCORE" || form.homeState === "TN"
+            ? <span className="font-normal text-rise-dark">(needed for {homeQuota?.name || "Tamil Nadu"} colleges)</span>
+            : <span className="font-normal text-ink/50 dark:text-paper/50">(adds Tamil Nadu management seats)</span>}</span>
           <input inputMode="numeric" value={form.score} onChange={set("score")} placeholder="out of 720" className="cp-in" />
         </label>
         <label className="block">
@@ -171,9 +183,15 @@ const NeetCollegePredictor = () => {
           <label className="block">
             <span className="text-sm font-semibold">{homeQuota.name} state category</span>
             <select value={form.stateCategory} onChange={set("stateCategory")} className="cp-in">
-              <option value="">Same as above</option>
-              {stateCats.map((c) => <option key={c} value={c}>{c}</option>)}
+              <option value="">{stateCats.includes(form.category) ? "Same as above" : "Choose your community"}</option>
+              {stateCats.map((c) => <option key={c} value={c}>{c === "OPEN" ? "OC / General" : c}</option>)}
             </select>
+          </label>
+        )}
+        {form.homeState === "TN" && (
+          <label className="sm:col-span-2 flex items-start gap-2 text-sm">
+            <input type="checkbox" checked={govtSchool} onChange={(e) => setGovtSchool(e.target.checked)} className="mt-1" />
+            <span>I studied Class 6 to 12 in a Tamil Nadu government school <span className="text-ink/55 dark:text-paper/55">(includes the 7.5% reserved seats)</span></span>
           </label>
         )}
         <div className="sm:col-span-2 flex flex-wrap items-center gap-4">
@@ -193,7 +211,7 @@ const NeetCollegePredictor = () => {
       {res && (
         <section id="cp-results" className="mt-10 scroll-mt-24">
           <div className="rounded-3xl bg-rise-line text-paper p-6 sm:p-8">
-            <p className="text-paper/70 font-semibold">AIR {fmt(Number(form.air))} · {form.category} · {form.course}</p>
+            <p className="text-paper/70 font-semibold">{[form.air && `AIR ${fmt(Number(form.air))}`, form.score && `${form.score} marks`, form.category, form.course].filter(Boolean).join(" · ")}</p>
             <p className="font-display text-4xl sm:text-5xl font-bold mt-1">{res.total} colleges</p>
             <div className="mt-4 grid grid-cols-3 gap-3 max-w-lg">
               {(["safe", "likely", "reach"] as const).map((b) => (
@@ -249,13 +267,13 @@ const NeetCollegePredictor = () => {
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold">{r.college}</p>
                       <p className="text-xs text-ink/55 dark:text-paper/55 mt-0.5">
-                        {[r.quotaName, r.seatType, r.collegeType, r.collegeState].filter(Boolean).join(" · ")} · {r.category} seat
+                        {[r.quotaName, r.seatType, r.collegeType, r.collegeState].filter(Boolean).join(" · ")} · {r.category === "OPEN" ? "Open" : r.category} {r.quota === "TN" && r.seatType !== "Management Quota" && r.category !== "OPEN" ? "community" : "seat"}
                       </p>
                     </div>
                     <div className="text-sm sm:text-right shrink-0">
-                      <p className="text-ink/55 dark:text-paper/55 text-xs">{r.strayOnly ? "Filled in later rounds" : "Closing rank R1–2"} {r.year}{r.rankType === "STATE" ? " (state)" : ""}</p>
-                      <p className="font-bold">{fmt(r.closingRank)}</p>
-                      {!r.strayOnly && r.strayClosingRank && r.strayClosingRank > r.closingRank && <p className="text-xs text-ink/55 dark:text-paper/55">Round 3 / stray: {fmt(r.strayClosingRank)}</p>}
+                      <p className="text-ink/55 dark:text-paper/55 text-xs">{cutoffLabel(r)} {r.year}</p>
+                      <p className="font-bold">{cutoffValue(r, r.closingRank)}</p>
+                      {laterBetter(r) && <p className="text-xs text-ink/55 dark:text-paper/55">Later rounds: {cutoffValue(r, r.strayClosingRank)}</p>}
                     </div>
                     <span className={`shrink-0 self-start sm:self-center text-xs font-bold px-3 py-1 rounded-full border ${BAND[r.band].cls}`}>{BAND[r.band].label}</span>
                   </li>
@@ -303,7 +321,7 @@ const NeetCollegePredictor = () => {
       {/* ---------- Explainer (SEO) ---------- */}
       <section className="mt-14 text-ink/75 dark:text-paper/75 space-y-3">
         <h2 className="font-display text-2xl font-bold text-ink dark:text-paper">How the predictor works</h2>
-        <p>We compare your rank with the closing rank of every college, category and seat type in last year's official counselling allotments: MCC for the 15% All India Quota, deemed universities and central institutes, and each state's counselling authority for the 85% state quota.</p>
+        <p>We compare your rank with the closing rank of every college, category and seat type in last year's official counselling allotments: MCC for the 15% All India Quota, deemed universities and central institutes, and each state's counselling authority for the 85% state quota. For Tamil Nadu we compare your NEET score with the lowest mark admitted to each college, community-wise, including the 7.5% government-school seats and management quota.</p>
         <ul className="list-disc pl-5 space-y-1">
           <li><b>Safe</b>: {BAND.safe.note.toLowerCase()}.</li>
           <li><b>Good chance</b>: {BAND.likely.note.toLowerCase()}.</li>
