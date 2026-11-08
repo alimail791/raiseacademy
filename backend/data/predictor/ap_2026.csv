@@ -1,0 +1,1286 @@
+college,course,category,opening_rank,closing_rank,stray_closing_rank,stray_only,seat_type,college_state,college_type,open_to_all,eligibility
+"Govt Medical College, Nellore",MBBS,OPEN,191182,191182,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Govt Medical College, Nellore",MBBS,OPEN,93796,244428,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Govt Medical College, Nellore",MBBS,OPEN,1015018,1015018,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Govt Medical College, Nellore",MBBS,OPEN,293616,961923,961923,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Govt Medical College, Nellore",MBBS,BC-A,69187,79375,87431,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,BC-B,70562,83016,89349,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,BC-C,117342,117342,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,BC-D,67211,87281,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,BC-E,83339,98672,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,EWS,63458,73533,97557,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,OPEN,38031,59610,61350,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,SC-2,124800,137665,170167,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,SC-3,96726,111488,118820,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,ST,146042,161469,186057,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt Medical College, Nellore",MBBS,BC-A,75137,77341,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,BC-B,66067,73360,79797,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,BC-C,110204,110204,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,BC-D,65103,83509,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,BC-E,65452,97634,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,EWS,63116,63116,75985,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,OPEN,44511,51654,57272,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,SC-1,178213,178213,178213,yes,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,SC-2,127849,127865,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,SC-3,96233,106094,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,ST,141063,146794,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt Medical College, Nellore",MBBS,BC-A,73410,74823,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt Medical College, Nellore",MBBS,BC-B,68987,68987,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt Medical College, Nellore",MBBS,BC-D,38546,38546,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt Medical College, Nellore",MBBS,BC-E,53274,53274,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt Medical College, Nellore",MBBS,OPEN,32245,32245,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt Medical College, Nellore",MBBS,SC-1,305452,305452,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt Medical College, Nellore",MBBS,SC-2,110636,110636,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt Medical College, Nellore",MBBS,SC-3,96067,96067,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt Medical College, Nellore",MBBS,ST,131650,156581,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt Medical College, Nellore",MBBS,BC-A,42724,69112,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt Medical College, Nellore",MBBS,BC-B,72697,76963,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt Medical College, Nellore",MBBS,OPEN,31149,31149,42079,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt Medical College, Nellore",MBBS,SC-2,135606,135606,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt Medical College, Nellore",MBBS,SC-3,83025,83025,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,OPEN,100924,218780,218780,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,OPEN,866296,866296,866296,yes,Competent Authority (special),Andhra Pradesh,Private,no,SPORTS
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-A,142864,144248,148876,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-B,132931,146330,152902,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-C,205437,205437,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-D,153437,153437,158003,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-E,132501,132501,147192,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,OPEN,104595,109114,109114,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,SC-1,234623,234623,234623,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,SC-2,218891,233346,233346,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,SC-3,166991,166991,176733,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,ST,239493,241182,241182,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-A,140912,148060,148060,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-B,141121,147878,149112,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-D,147566,151536,151877,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-E,140934,140934,140934,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,OPEN,101207,107366,107366,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,SC-2,215631,215631,215631,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,SC-3,166492,173781,173781,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,ST,234434,234434,236631,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-A,123795,123795,123795,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-B,128762,137294,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,BC-D,102135,102291,102291,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,SC-2,197563,197563,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,SC-3,157871,157871,157871,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,ST,213291,213291,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,OPEN,78860,78860,78860,yes,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,SC-3,163110,163110,163110,yes,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,OPEN,163941,202779,252043,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Anna Gowri Medical College & Hospital, Tirupati",MBBS,OPEN,315745,404643,498752,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Andhra Medical College, Visakhapatnam",MBBS,OPEN,747270,747270,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Andhra Medical College, Visakhapatnam",MBBS,OPEN,20406,32040,32040,yes,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Andhra Medical College, Visakhapatnam",MBBS,OPEN,221613,676464,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Andhra Medical College, Visakhapatnam",MBBS,OPEN,63243,63243,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"Andhra Medical College, Visakhapatnam",MBBS,OPEN,496255,496255,,,Competent Authority (special),Andhra Pradesh,Government,no,SPECIAL
+"Andhra Medical College, Visakhapatnam",MBBS,BC-A,21560,23789,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,BC-B,19429,21230,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,BC-C,24763,24763,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,BC-E,32445,66709,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,EWS,20204,27413,28822,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,OPEN,8632,17457,18510,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,SC-1,91061,91061,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,SC-2,46322,87812,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,SC-3,47186,59350,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,ST,62547,91001,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Andhra Medical College, Visakhapatnam",MBBS,BC-A,19996,21517,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,BC-C,62284,62284,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,BC-E,51936,51936,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,EWS,19109,22609,22911,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,OPEN,8691,13163,13824,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,SC-1,223772,223772,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,SC-2,54620,71165,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,SC-3,38649,53872,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,ST,76669,94396,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,BC-B,9202,9202,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Andhra Medical College, Visakhapatnam",MBBS,OPEN,5353,7854,8588,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Andhra Medical College, Visakhapatnam",MBBS,SC-3,37113,37113,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Andhra Medical College, Visakhapatnam",MBBS,BC-B,11497,11497,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,BC-D,10111,10111,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,OPEN,4560,6667,6935,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Andhra Medical College, Visakhapatnam",MBBS,ST,70032,70032,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Anil Neerukonda Institute of Dental Sciences, Visakhapatnam",BDS,OPEN,303151,336149,476646,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Anil Neerukonda Institute of Dental Sciences, Visakhapatnam",BDS,OPEN,494095,925540,1188859,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Anil Neerukonda Institute of Dental Sciences, Visakhapatnam",BDS,OPEN,253936,1182597,1182597,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Anil Neerukonda Institute of Dental Sciences, Visakhapatnam",BDS,OPEN,1147829,1147829,,,NRI,Andhra Pradesh,Private,no,NRI
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,88712,228684,228684,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,98945,98945,,,Competent Authority (special),Andhra Pradesh,Private,no,SCOUTS
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-A,110480,115339,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-B,118751,128628,141827,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-C,187046,187046,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-D,122476,125556,140466,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-E,114435,124493,124981,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,84492,85465,94827,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,SC-1,198868,198868,198868,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,SC-2,200166,202781,202781,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,SC-3,147802,147802,163529,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,ST,230632,230632,230632,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-A,110036,112956,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-B,118989,123395,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-D,123684,134075,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-E,114415,123498,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,80979,81507,88663,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,SC-2,170462,170462,175615,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,SC-3,152966,154883,154883,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,ST,209303,230351,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-A,102334,102334,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-B,124839,124839,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-D,67764,74129,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,52455,52455,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,SC-2,157930,157930,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,SC-3,147798,147798,147798,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,ST,203418,203418,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,BC-B,125286,125286,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,52254,52254,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,101539,131442,131647,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,171235,261880,290604,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,491044,1193699,1193699,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Apollo Institute of Medical Sciences & Research, Chittoor",MBBS,OPEN,784153,1134336,,,NRI,Andhra Pradesh,Private,no,NRI
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,615040,615040,,,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,71012,145656,,,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,489403,489403,,,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,439818,439818,,,Competent Authority (special),Andhra Pradesh,Private,no,SCOUTS
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-A,95074,98943,111774,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-B,98959,100416,123353,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-C,113498,113498,113498,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-D,66412,69308,76229,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-E,158479,165347,165347,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,60489,61210,66273,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,SC-2,156809,171323,175755,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,SC-3,133241,152837,152837,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,ST,185763,189652,203397,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-A,97473,97473,98376,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-B,81508,118844,118844,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-D,66941,66955,67707,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-E,150595,152918,152918,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,54007,54007,63078,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,SC-1,321581,321581,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,SC-2,162950,170781,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,SC-3,139123,145840,145840,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,ST,185052,185056,187768,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-A,94106,94106,94106,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-B,86910,101569,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-D,67650,67650,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-E,118771,118771,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,44437,51138,53137,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,SC-2,152506,152506,152506,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,SC-3,122466,122466,122466,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,ST,192899,192899,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,BC-A,90997,90997,90997,yes,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,46075,51180,51375,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,64150,129711,142287,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,143065,242935,282656,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,458807,1119666,1119666,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Alluri Sitaramaraju Academy of Medical Sciences, Eluru",MBBS,OPEN,358354,936181,,,NRI,Andhra Pradesh,Private,no,NRI
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,135750,195275,,,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,93654,162981,162981,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-A,147200,147316,147316,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-B,122392,146349,147210,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-C,194824,194824,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-D,144803,144803,154470,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-E,133761,138539,138778,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,84661,84661,110400,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,SC-1,225826,225826,225826,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,SC-2,222726,225900,225900,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,SC-3,164713,170446,170446,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,ST,232848,234559,234559,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-A,121863,132651,147170,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-B,134715,138968,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-C,189359,189359,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-D,134545,137899,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-E,126416,126416,126416,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,88060,93553,105758,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,SC-2,209758,209954,209954,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,SC-3,161218,161218,161218,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,ST,218047,232027,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-A,115277,115277,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-B,116556,129686,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-D,96230,96230,101893,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,76924,76924,76924,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,SC-2,200949,200949,200949,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,SC-3,155929,155929,155929,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,BC-B,141005,141005,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,75847,75847,75847,yes,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,165392,211809,232454,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,256023,392572,481787,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,386284,1006694,1006694,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Sri Balaji Medical College Hospital & Research Institute, Renigunta, Tirupati",MBBS,OPEN,757507,1094218,,,NRI,Andhra Pradesh,Private,no,NRI
+"CARE Dental College, Guntur",BDS,OPEN,561273,561273,575104,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"CARE Dental College, Guntur",BDS,OPEN,657322,1097577,1186283,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"CKS Theja Institute of Dental Sciences & Research, Tirupati",BDS,OPEN,223684,367474,411144,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"CKS Theja Institute of Dental Sciences & Research, Tirupati",BDS,OPEN,475925,892310,961905,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"CKS Theja Institute of Dental Sciences & Research, Tirupati",BDS,OPEN,642225,1169246,1169246,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"CKS Theja Institute of Dental Sciences & Research, Tirupati",BDS,OPEN,891171,891171,,,NRI,Andhra Pradesh,Private,no,NRI
+"Fathima Institute of Medical Sciences, Kadapa",MBBS,OPEN,131498,162300,172717,,Competent Authority (special),Andhra Pradesh,Private,no,MINORITY
+"Fathima Institute of Medical Sciences, Kadapa",MBBS,OPEN,287009,408028,435060,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,519636,519636,,,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,99154,99154,232421,,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,65946,135000,135000,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Great Eastern Medical School, Srikakulam",MBBS,BC-A,93547,117814,123558,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Great Eastern Medical School, Srikakulam",MBBS,BC-B,120388,130348,134509,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Great Eastern Medical School, Srikakulam",MBBS,BC-D,78495,86882,101516,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Great Eastern Medical School, Srikakulam",MBBS,BC-E,183075,185412,187438,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,69250,69250,76621,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Great Eastern Medical School, Srikakulam",MBBS,SC-1,349658,349658,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Great Eastern Medical School, Srikakulam",MBBS,SC-2,196872,200867,200867,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Great Eastern Medical School, Srikakulam",MBBS,SC-3,140526,144015,164757,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Great Eastern Medical School, Srikakulam",MBBS,ST,223813,223813,232496,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Great Eastern Medical School, Srikakulam",MBBS,BC-A,79642,88667,91420,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,BC-B,116455,126078,126806,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,BC-C,116645,116645,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,BC-D,77806,78393,84599,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,BC-E,179450,182451,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,67792,73024,73024,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,SC-2,196976,196976,196976,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,SC-3,142352,142713,163993,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,ST,221369,221369,230911,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,BC-A,99186,108296,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Great Eastern Medical School, Srikakulam",MBBS,BC-B,114107,114107,114107,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Great Eastern Medical School, Srikakulam",MBBS,BC-D,85628,85628,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Great Eastern Medical School, Srikakulam",MBBS,BC-E,132767,132767,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,59802,59802,67701,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Great Eastern Medical School, Srikakulam",MBBS,SC-2,195492,195492,195492,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Great Eastern Medical School, Srikakulam",MBBS,SC-3,124700,124700,124700,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Great Eastern Medical School, Srikakulam",MBBS,ST,217339,217339,217339,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Great Eastern Medical School, Srikakulam",MBBS,BC-B,115932,120130,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,BC-D,77415,77415,77415,yes,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,SC-2,180308,180308,180308,yes,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,83938,159572,195885,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,197536,378877,448937,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,482253,1116134,1116134,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Great Eastern Medical School, Srikakulam",MBBS,OPEN,910401,910401,,,NRI,Andhra Pradesh,Private,no,NRI
+"Gitam Dental College & Hospital, Visakhapatnam",BDS,OPEN,319206,382491,428155,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Gitam Dental College & Hospital, Visakhapatnam",BDS,OPEN,465583,746512,1018944,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Gitam Dental College & Hospital, Visakhapatnam",BDS,OPEN,623534,1145073,1145073,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Gitam Dental College & Hospital, Visakhapatnam",BDS,OPEN,779811,787721,,,NRI,Andhra Pradesh,Private,no,NRI
+"Government Medical College, Anantapuram",MBBS,OPEN,437767,437767,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Government Medical College, Anantapuram",MBBS,OPEN,130062,130062,130062,yes,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Government Medical College, Anantapuram",MBBS,OPEN,43371,201305,201305,yes,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Government Medical College, Anantapuram",MBBS,OPEN,563691,563691,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"Government Medical College, Anantapuram",MBBS,OPEN,318029,720347,720347,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Government Medical College, Anantapuram",MBBS,BC-A,80283,86985,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,BC-B,82412,102942,103278,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,BC-C,102903,110535,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,BC-D,80674,105870,122012,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,BC-E,86591,92059,110328,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,OPEN,47704,68948,78870,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,SC-1,168426,168426,168426,yes,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,SC-2,128906,135666,172955,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,SC-3,100601,128432,142106,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,ST,134115,147188,189902,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Anantapuram",MBBS,BC-A,79811,83147,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,BC-B,82252,92549,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,BC-C,95117,95117,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,BC-D,79133,94226,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,BC-E,79381,79381,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,OPEN,44109,64088,74079,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,SC-1,162979,162979,162979,yes,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,SC-2,120316,123138,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,SC-3,98938,122353,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,ST,155903,170342,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Anantapuram",MBBS,BC-B,55078,72441,81055,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Anantapuram",MBBS,BC-C,70248,70248,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Anantapuram",MBBS,OPEN,37133,41032,43370,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Anantapuram",MBBS,SC-2,110171,114574,114574,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Anantapuram",MBBS,BC-A,61102,61102,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Anantapuram",MBBS,BC-B,44421,81801,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Anantapuram",MBBS,OPEN,33931,39150,41251,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Anantapuram",MBBS,SC-3,100930,100930,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Eluru",MBBS,OPEN,61076,61076,61076,yes,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Government Medical College, Eluru",MBBS,OPEN,91680,91680,91680,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPECIAL
+"Government Medical College, Eluru",MBBS,OPEN,790712,790712,790712,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Government Medical College, Eluru",MBBS,BC-A,74903,82052,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,BC-B,84486,85787,87148,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,BC-C,71424,90907,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,BC-D,60293,62044,62044,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,BC-E,131899,142435,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,OPEN,44721,46433,58050,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,SC-1,275222,275222,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,SC-2,140750,140750,151413,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,SC-3,112848,112848,124690,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,ST,138812,159641,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Eluru",MBBS,BC-A,86515,86515,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Eluru",MBBS,BC-B,82987,83501,91023,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Eluru",MBBS,BC-D,58907,60114,60114,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Eluru",MBBS,BC-E,125511,125511,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Eluru",MBBS,OPEN,49536,55387,55387,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Eluru",MBBS,SC-2,137469,137469,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Eluru",MBBS,SC-3,118761,121967,121967,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Eluru",MBBS,ST,154432,154432,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Eluru",MBBS,BC-A,81990,81990,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Eluru",MBBS,BC-B,81830,81959,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Eluru",MBBS,BC-D,53823,53823,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Eluru",MBBS,SC-3,108203,108203,109432,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Eluru",MBBS,BC-A,82801,82801,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Eluru",MBBS,OPEN,43921,43921,43921,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Eluru",MBBS,OPEN,299489,299489,299489,yes,Management (unfilled NRI seats),Andhra Pradesh,Government,yes,
+"Government Medical College, Eluru",MBBS,OPEN,370897,993763,,,NRI,Andhra Pradesh,Government,no,NRI
+"Government Medical College, Eluru",MBBS,OPEN,86886,154725,193609,,Self-finance (new govt college),Andhra Pradesh,Government,no,
+"Guntur Medical College, Guntur",MBBS,OPEN,63034,1104935,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Guntur Medical College, Guntur",MBBS,OPEN,55088,55088,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Guntur Medical College, Guntur",MBBS,OPEN,414180,1107127,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Guntur Medical College, Guntur",MBBS,OPEN,80651,411001,411001,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Guntur Medical College, Guntur",MBBS,BC-A,28785,36297,39360,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,BC-B,36860,55233,61674,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,BC-C,38420,38420,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,BC-D,28898,28898,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,BC-E,33076,65353,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,EWS,29652,34972,38509,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,OPEN,15073,23853,28717,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,SC-1,142319,142319,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,SC-2,82795,92151,112765,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,SC-3,47740,82721,87487,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,ST,64310,105727,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Guntur Medical College, Guntur",MBBS,BC-A,28859,31336,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,BC-B,31720,37028,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,BC-C,34074,34074,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,BC-E,34814,63559,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,EWS,29000,31285,35570,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,OPEN,15061,22758,26147,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,SC-1,230768,230768,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,SC-2,70195,80837,83000,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,SC-3,59932,73008,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,ST,94627,108531,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Guntur Medical College, Guntur",MBBS,BC-A,16418,16418,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Guntur Medical College, Guntur",MBBS,BC-B,15206,15206,31325,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Guntur Medical College, Guntur",MBBS,BC-E,18229,18229,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Guntur Medical College, Guntur",MBBS,OPEN,5828,12834,14851,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Guntur Medical College, Guntur",MBBS,SC-2,59061,59061,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Guntur Medical College, Guntur",MBBS,BC-A,20509,21022,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Guntur Medical College, Guntur",MBBS,OPEN,8666,10688,11096,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Guntur Medical College, Guntur",MBBS,SC-2,59322,59322,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Guntur Medical College, Guntur",MBBS,SC-3,45246,45246,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Guntur Medical College, Guntur",MBBS,ST,87587,87587,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt. Medical College, Kadapa",MBBS,OPEN,313116,526101,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Govt. Medical College, Kadapa",MBBS,OPEN,118080,194784,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Govt. Medical College, Kadapa",MBBS,OPEN,997013,1045640,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Govt. Medical College, Kadapa",MBBS,OPEN,265885,393870,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"Govt. Medical College, Kadapa",MBBS,OPEN,79010,79010,79010,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPECIAL
+"Govt. Medical College, Kadapa",MBBS,OPEN,544475,544475,544475,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Govt. Medical College, Kadapa",MBBS,BC-A,79668,95573,104850,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,BC-B,85953,109869,114584,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,BC-C,168235,168235,168235,yes,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,BC-D,84988,109989,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,BC-E,86275,104037,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,EWS,81905,89685,102088,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,OPEN,55768,70718,78942,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,SC-1,177562,177562,177562,yes,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,SC-2,132629,166943,177556,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,SC-3,116195,131026,135160,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,ST,161497,173814,192912,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Govt. Medical College, Kadapa",MBBS,BC-A,81079,94674,94812,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,BC-B,83657,97545,100227,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,BC-C,104596,104596,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,BC-D,94646,97665,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,BC-E,84617,97716,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,EWS,80978,89489,98422,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,OPEN,60409,68315,77798,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,SC-1,172411,172411,172411,yes,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,SC-2,128280,144387,153830,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,SC-3,117219,121312,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,ST,171337,186990,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Govt. Medical College, Kadapa",MBBS,BC-A,76279,84503,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, Kadapa",MBBS,BC-B,84065,86782,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, Kadapa",MBBS,OPEN,37568,48332,53605,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, Kadapa",MBBS,SC-3,99268,102008,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, Kadapa",MBBS,ST,79438,79438,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, Kadapa",MBBS,BC-A,79011,79011,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt. Medical College, Kadapa",MBBS,BC-B,80827,84488,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt. Medical College, Kadapa",MBBS,OPEN,27618,39985,50487,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt. Medical College, Kadapa",MBBS,SC-2,115764,115764,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt. Medical College, Kadapa",MBBS,SC-3,96232,96232,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt. Medical College, Kadapa",MBBS,ST,166040,166040,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Machilipatnam",MBBS,OPEN,452159,452159,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Government Medical College, Machilipatnam",MBBS,OPEN,181454,181454,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Government Medical College, Machilipatnam",MBBS,OPEN,58936,99059,99059,yes,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Government Medical College, Machilipatnam",MBBS,OPEN,260421,260421,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"Government Medical College, Machilipatnam",MBBS,BC-A,82232,85043,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Machilipatnam",MBBS,BC-B,87202,87202,92299,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Machilipatnam",MBBS,BC-D,62128,63710,63710,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Machilipatnam",MBBS,BC-E,120381,120381,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Machilipatnam",MBBS,OPEN,46860,53058,59029,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Machilipatnam",MBBS,SC-1,307705,307705,307705,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Machilipatnam",MBBS,SC-2,137360,144880,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Machilipatnam",MBBS,SC-3,120209,123958,123958,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Machilipatnam",MBBS,ST,165757,170147,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Machilipatnam",MBBS,BC-A,85962,88234,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Machilipatnam",MBBS,BC-B,89345,90996,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Machilipatnam",MBBS,BC-E,125133,125133,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Machilipatnam",MBBS,OPEN,53059,58903,58903,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Machilipatnam",MBBS,SC-2,148349,148349,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Machilipatnam",MBBS,SC-3,112069,112069,113219,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Machilipatnam",MBBS,ST,146583,146583,146583,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Machilipatnam",MBBS,BC-A,84856,84856,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Machilipatnam",MBBS,BC-B,88734,88734,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Machilipatnam",MBBS,BC-D,61353,61353,61353,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Machilipatnam",MBBS,OPEN,37306,39297,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Machilipatnam",MBBS,SC-3,105301,105301,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Machilipatnam",MBBS,BC-B,91008,91008,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Machilipatnam",MBBS,OPEN,392748,620391,620391,yes,Management (unfilled NRI seats),Andhra Pradesh,Government,yes,
+"Government Medical College, Machilipatnam",MBBS,OPEN,424770,1160304,,,NRI,Andhra Pradesh,Government,no,NRI
+"Government Medical College, Machilipatnam",MBBS,OPEN,84140,172081,198477,,Self-finance (new govt college),Andhra Pradesh,Government,no,
+"Government Medical College, Nandyal",MBBS,OPEN,309406,1059162,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Government Medical College, Nandyal",MBBS,OPEN,162905,162905,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Government Medical College, Nandyal",MBBS,OPEN,77045,77045,77045,yes,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Government Medical College, Nandyal",MBBS,OPEN,234535,234535,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"Government Medical College, Nandyal",MBBS,OPEN,873491,873491,873491,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Government Medical College, Nandyal",MBBS,BC-A,96037,101600,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,BC-B,107313,110278,115799,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,BC-C,126473,126473,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,BC-D,105072,115809,123709,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,BC-E,104550,107434,109167,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,OPEN,65721,65721,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,SC-1,173749,173749,173749,yes,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,SC-2,134029,142572,178081,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,SC-3,135010,137658,140995,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,ST,185091,185091,202854,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Government Medical College, Nandyal",MBBS,BC-A,89384,96278,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Nandyal",MBBS,BC-B,107043,112949,113928,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Nandyal",MBBS,BC-D,114827,116137,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Nandyal",MBBS,BC-E,83325,83325,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Nandyal",MBBS,OPEN,62178,68896,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Nandyal",MBBS,SC-2,123221,123221,123221,yes,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Nandyal",MBBS,SC-3,137285,137285,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Nandyal",MBBS,ST,177808,177808,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Government Medical College, Nandyal",MBBS,BC-B,93493,94942,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Nandyal",MBBS,BC-D,66855,66855,66855,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Nandyal",MBBS,SC-3,127057,127057,127057,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Nandyal",MBBS,BC-D,55147,55147,55147,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Nandyal",MBBS,OPEN,48884,48884,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Nandyal",MBBS,OPEN,463481,683613,683613,yes,Management (unfilled NRI seats),Andhra Pradesh,Government,yes,
+"Government Medical College, Nandyal",MBBS,OPEN,373807,997889,,,NRI,Andhra Pradesh,Government,no,NRI
+"Government Medical College, Nandyal",MBBS,OPEN,88879,166521,173751,,Self-finance (new govt college),Andhra Pradesh,Government,no,
+"Government Medical College, Ongole",MBBS,OPEN,192290,192290,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Government Medical College, Ongole",MBBS,OPEN,53942,53942,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Government Medical College, Ongole",MBBS,OPEN,1100496,1100496,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Government Medical College, Ongole",MBBS,OPEN,41091,41091,41091,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPECIAL
+"Government Medical College, Ongole",MBBS,OPEN,410686,410686,410686,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Government Medical College, Ongole",MBBS,BC-A,66620,72405,100166,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,BC-B,70466,73439,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,BC-C,78915,80758,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,BC-D,55066,55066,55066,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,BC-E,116476,116476,122029,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,EWS,52449,58374,58374,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,OPEN,41459,43898,49374,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,SC-1,212664,212664,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,SC-2,118410,118410,146587,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,SC-3,104200,104200,121668,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,ST,154261,155798,176598,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Ongole",MBBS,BC-A,73682,79621,89621,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Ongole",MBBS,BC-B,70178,78357,92846,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Ongole",MBBS,BC-D,55081,58158,58158,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Ongole",MBBS,BC-E,95303,95303,115966,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Ongole",MBBS,EWS,51192,52241,52241,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Ongole",MBBS,OPEN,39085,40961,43608,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Ongole",MBBS,SC-2,117497,117497,120737,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Ongole",MBBS,SC-3,99157,110410,110410,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Ongole",MBBS,ST,143963,145070,159693,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Ongole",MBBS,BC-A,59592,67050,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Ongole",MBBS,BC-B,68788,68788,68788,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Ongole",MBBS,OPEN,35289,35289,38508,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Ongole",MBBS,SC-2,116331,116331,116331,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Ongole",MBBS,SC-3,94927,94927,94927,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Ongole",MBBS,ST,142175,142175,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Ongole",MBBS,BC-B,69599,72299,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Ongole",MBBS,BC-D,54555,54555,54555,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Ongole",MBBS,OPEN,32342,32342,32342,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Ongole",MBBS,SC-3,87416,87416,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Paderu",MBBS,OPEN,66719,66719,66719,yes,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Government Medical College, Paderu",MBBS,OPEN,1123502,1123502,1123502,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Government Medical College, Paderu",MBBS,BC-A,88076,88076,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,BC-B,93473,101629,101629,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,BC-C,98220,98220,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,BC-D,67846,70502,70502,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,BC-E,148966,148966,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,OPEN,59037,62544,62544,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,SC-1,292564,292564,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,SC-2,152135,156631,156631,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,SC-3,130328,134516,134516,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,ST,175727,175727,185007,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Paderu",MBBS,BC-A,88903,88903,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Paderu",MBBS,BC-B,101478,101478,101478,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Paderu",MBBS,BC-D,64341,64928,64928,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Paderu",MBBS,BC-E,148111,148111,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Paderu",MBBS,OPEN,57915,60365,60365,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Paderu",MBBS,SC-2,151797,151797,151797,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Paderu",MBBS,SC-3,131454,131454,131454,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Paderu",MBBS,ST,179730,179730,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Paderu",MBBS,BC-A,87295,89519,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Paderu",MBBS,BC-B,93399,93399,93399,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Paderu",MBBS,BC-D,63811,63811,63811,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Paderu",MBBS,OPEN,55252,55252,55252,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Paderu",MBBS,OPEN,46631,46631,46631,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Paderu",MBBS,OPEN,475035,912282,912282,yes,Management (unfilled NRI seats),Andhra Pradesh,Government,yes,
+"Government Medical College, Paderu",MBBS,OPEN,160295,192298,241801,,Self-finance (new govt college),Andhra Pradesh,Government,no,
+"Government Medical College, Rajahmundry",MBBS,OPEN,187258,187258,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Government Medical College, Rajahmundry",MBBS,OPEN,134396,134396,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Government Medical College, Rajahmundry",MBBS,OPEN,42663,287393,287393,yes,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Government Medical College, Rajahmundry",MBBS,OPEN,92398,92398,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"Government Medical College, Rajahmundry",MBBS,BC-A,52984,79689,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Rajahmundry",MBBS,BC-B,72273,79493,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Rajahmundry",MBBS,BC-D,47355,54950,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Rajahmundry",MBBS,BC-E,122028,126819,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Rajahmundry",MBBS,OPEN,39413,42156,46469,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Rajahmundry",MBBS,SC-2,128123,140727,151831,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Rajahmundry",MBBS,SC-3,104352,108702,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Rajahmundry",MBBS,ST,162880,165475,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Rajahmundry",MBBS,BC-A,69163,72719,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Rajahmundry",MBBS,BC-B,63051,65037,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Rajahmundry",MBBS,BC-D,47258,47258,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Rajahmundry",MBBS,BC-E,77423,77423,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Rajahmundry",MBBS,OPEN,38195,42735,45740,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Rajahmundry",MBBS,SC-2,148963,148963,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Rajahmundry",MBBS,SC-3,105289,105289,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Rajahmundry",MBBS,ST,161607,161607,161607,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Rajahmundry",MBBS,BC-A,77169,77169,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Rajahmundry",MBBS,BC-B,67755,69095,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Rajahmundry",MBBS,BC-C,61738,61738,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Rajahmundry",MBBS,OPEN,37148,37148,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Rajahmundry",MBBS,SC-3,88096,88096,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Rajahmundry",MBBS,BC-D,46849,46849,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Rajahmundry",MBBS,OPEN,38166,38166,38166,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Rajahmundry",MBBS,OPEN,278046,292751,292751,yes,Management (unfilled NRI seats),Andhra Pradesh,Government,yes,
+"Government Medical College, Rajahmundry",MBBS,OPEN,390158,994967,,,NRI,Andhra Pradesh,Government,no,NRI
+"Government Medical College, Rajahmundry",MBBS,OPEN,80645,125279,149315,,Self-finance (new govt college),Andhra Pradesh,Government,no,
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,OPEN,599552,599552,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,OPEN,61445,208939,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,OPEN,41402,119416,119416,yes,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,OPEN,105878,105878,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,OPEN,430670,430670,430670,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-A,56540,68889,70140,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-B,68836,79793,82440,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-C,73592,91092,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-D,48603,51457,52207,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-E,112985,139093,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,OPEN,37723,43684,47615,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-2,133021,136156,149291,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-3,101705,105147,123304,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,ST,154212,161224,181430,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-A,59916,59916,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-B,63160,76463,77512,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-C,73548,73548,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-D,48374,48624,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-E,126574,137191,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,OPEN,37221,41042,44358,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-1,245673,245673,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-2,124300,124300,130932,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-3,100071,100426,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,ST,147821,148956,158771,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-A,58372,67691,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-B,57230,57230,57230,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-E,75823,75823,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,OPEN,20491,35887,36264,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-1,193273,193273,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-2,117772,117772,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-3,86981,86981,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,BC-B,70081,75396,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,OPEN,31041,33976,35333,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-2,122849,122849,122849,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Govt. Medical College, (Old RIMS) Srikakulam",MBBS,SC-3,89446,89446,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Vizianagaram",MBBS,OPEN,107619,107619,107619,yes,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Government Medical College, Vizianagaram",MBBS,OPEN,1006973,1006973,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Government Medical College, Vizianagaram",MBBS,OPEN,409730,633019,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"Government Medical College, Vizianagaram",MBBS,OPEN,719639,719639,719639,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Government Medical College, Vizianagaram",MBBS,BC-A,79767,80984,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,BC-B,84426,84978,92075,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,BC-C,95612,95612,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,BC-D,51715,57089,58282,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,BC-E,142180,142180,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,OPEN,46154,49667,49741,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,SC-1,232755,232755,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,SC-2,140918,140918,151964,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,SC-3,108537,113228,125706,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,ST,182248,182365,182365,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Vizianagaram",MBBS,BC-A,84594,87669,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Vizianagaram",MBBS,BC-B,85859,87386,87386,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Vizianagaram",MBBS,BC-D,54966,54980,54980,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Vizianagaram",MBBS,BC-E,141017,141017,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Vizianagaram",MBBS,OPEN,47324,47324,52388,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Vizianagaram",MBBS,SC-2,143799,143799,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Vizianagaram",MBBS,SC-3,121271,129839,129839,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Vizianagaram",MBBS,ST,171959,171959,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Vizianagaram",MBBS,BC-A,66744,77065,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Vizianagaram",MBBS,BC-B,83712,83712,83712,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Vizianagaram",MBBS,BC-D,51073,52733,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Vizianagaram",MBBS,OPEN,45725,45725,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Vizianagaram",MBBS,SC-3,79693,79693,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Vizianagaram",MBBS,BC-A,84505,84505,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Vizianagaram",MBBS,OPEN,41015,41015,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Vizianagaram",MBBS,OPEN,358011,1081980,1081980,yes,Management (unfilled NRI seats),Andhra Pradesh,Government,yes,
+"Government Medical College, Vizianagaram",MBBS,OPEN,434493,933205,,,NRI,Andhra Pradesh,Government,no,NRI
+"Government Medical College, Vizianagaram",MBBS,OPEN,85630,160078,200096,,Self-finance (new govt college),Andhra Pradesh,Government,no,
+"Government Medical College, Piduguralla",MBBS,BC-A,89878,91921,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Piduguralla",MBBS,BC-B,95264,95264,95714,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Piduguralla",MBBS,BC-E,147449,147497,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Piduguralla",MBBS,OPEN,61593,62384,62384,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Piduguralla",MBBS,SC-2,149331,149331,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Piduguralla",MBBS,SC-3,140435,140435,140435,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Piduguralla",MBBS,ST,170433,170433,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Government Medical College, Piduguralla",MBBS,BC-B,95137,95137,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Piduguralla",MBBS,BC-D,71158,71158,71158,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Piduguralla",MBBS,OPEN,62291,64273,64273,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Piduguralla",MBBS,SC-3,140268,140268,140268,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Government Medical College, Piduguralla",MBBS,BC-A,92414,92414,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Piduguralla",MBBS,SC-3,116550,116550,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Government Medical College, Piduguralla",MBBS,BC-D,69895,69895,69895,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Government Medical College, Piduguralla",MBBS,OPEN,743268,743268,743268,yes,Management (unfilled NRI seats),Andhra Pradesh,Government,yes,
+"Government Medical College, Piduguralla",MBBS,OPEN,364648,647619,,,NRI,Andhra Pradesh,Government,no,NRI
+"Government Medical College, Piduguralla",MBBS,OPEN,82694,189985,201242,,Self-finance (new govt college),Andhra Pradesh,Government,no,
+"G. Pulla Reddy Dental College & Hospital, Kurnool",BDS,OPEN,202974,202974,354728,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"G. Pulla Reddy Dental College & Hospital, Kurnool",BDS,OPEN,382737,568314,891224,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"G. Pulla Reddy Dental College & Hospital, Kurnool",BDS,OPEN,956655,988299,988299,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"G. Pulla Reddy Dental College & Hospital, Kurnool",BDS,OPEN,954587,1082621,,,NRI,Andhra Pradesh,Private,no,NRI
+"G.S.L. Medical College, Rajahmundry",BDS,OPEN,241866,407707,439163,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"G.S.L. Medical College, Rajahmundry",BDS,OPEN,457582,768358,967307,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"G.S.L. Medical College, Rajahmundry",BDS,OPEN,994510,1136252,1136252,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,87486,219333,,,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,85655,85655,,,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,46285,194862,194862,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,88168,88168,88168,yes,Competent Authority (special),Andhra Pradesh,Private,no,SCOUTS
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-A,91028,106701,111962,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-B,92980,108607,110223,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-D,69249,71499,76079,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-E,154109,155206,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,55433,60733,67645,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"G.S.L. Medical College, Rajahmundry",MBBS,SC-2,172107,172107,194953,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"G.S.L. Medical College, Rajahmundry",MBBS,SC-3,125553,125553,147346,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"G.S.L. Medical College, Rajahmundry",MBBS,ST,194787,203519,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-A,97731,102505,103780,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-B,96064,104077,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-C,103655,103655,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-D,67697,71025,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-E,152761,152761,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,54537,56303,63120,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,SC-1,364092,364092,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,SC-2,166392,166392,180073,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,SC-3,129575,129575,142814,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,ST,204775,204775,205726,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-A,106025,106025,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-B,95003,108588,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"G.S.L. Medical College, Rajahmundry",MBBS,BC-E,118447,118447,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,46256,46789,52072,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"G.S.L. Medical College, Rajahmundry",MBBS,SC-2,165565,165565,165565,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"G.S.L. Medical College, Rajahmundry",MBBS,SC-3,120880,120880,120880,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"G.S.L. Medical College, Rajahmundry",MBBS,ST,187183,187183,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,37868,39333,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,87037,149215,,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,160446,263763,276893,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,318411,1167021,1167021,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"G.S.L. Medical College, Rajahmundry",MBBS,OPEN,492926,927214,,,NRI,Andhra Pradesh,Private,no,NRI
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,234890,410755,,,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,72852,228213,228213,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,815463,815463,,,Competent Authority (special),Andhra Pradesh,Private,no,SCOUTS
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,758793,758793,758793,yes,Competent Authority (special),Andhra Pradesh,Private,no,SPORTS
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-A,124728,129897,133376,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-B,131448,142598,148348,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-C,121784,122193,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-D,83494,95034,97547,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-E,185628,189179,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,71140,73902,76122,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,SC-1,409315,409315,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,SC-2,161871,194808,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,SC-3,144366,145657,153624,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,ST,190895,225849,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-A,107598,115865,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-B,118880,141706,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-C,123486,123486,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-D,79554,93840,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-E,155794,185348,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,67374,70757,73176,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,SC-2,172803,197561,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,SC-3,139342,139342,144558,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,ST,187097,223811,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-A,99282,99282,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-B,106194,106194,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-D,79495,79495,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-E,149631,149631,149631,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,50039,50039,64368,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,SC-2,155866,155866,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,SC-3,137783,137783,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,ST,181157,181157,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,BC-B,112864,112864,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,58679,65501,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,154044,199405,216485,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,220146,385740,453754,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,518142,1187883,1187883,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Gayatri Vidya Parishad Institute of Health Care And Medical Technology, Visakhapatnam",MBBS,OPEN,477591,827124,,,NRI,Andhra Pradesh,Private,no,NRI
+"Katuri Medical College, Guntur",MBBS,OPEN,68635,68635,68635,yes,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"Katuri Medical College, Guntur",MBBS,OPEN,68538,208957,208957,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Katuri Medical College, Guntur",MBBS,OPEN,65019,65019,65019,yes,Competent Authority (special),Andhra Pradesh,Private,no,SPECIAL
+"Katuri Medical College, Guntur",MBBS,BC-A,111523,111527,124538,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,BC-B,113166,121648,135961,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,BC-C,101949,108653,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,BC-D,79977,86579,96793,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,BC-E,156119,162373,164629,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,OPEN,66886,74559,74559,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,SC-1,413821,413821,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,SC-2,156156,178325,186119,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,SC-3,134882,134882,152979,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,ST,223914,226353,226353,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Katuri Medical College, Guntur",MBBS,BC-A,112907,117265,119198,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Katuri Medical College, Guntur",MBBS,BC-B,118220,125114,126930,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Katuri Medical College, Guntur",MBBS,BC-D,79835,79835,88157,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Katuri Medical College, Guntur",MBBS,BC-E,152692,152692,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Katuri Medical College, Guntur",MBBS,OPEN,64468,68371,68371,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Katuri Medical College, Guntur",MBBS,SC-2,177594,177924,183084,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Katuri Medical College, Guntur",MBBS,SC-3,128214,128214,134383,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Katuri Medical College, Guntur",MBBS,ST,202251,202251,219806,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Katuri Medical College, Guntur",MBBS,BC-A,101607,101607,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Katuri Medical College, Guntur",MBBS,BC-B,92159,92159,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Katuri Medical College, Guntur",MBBS,BC-D,78415,78679,78679,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Katuri Medical College, Guntur",MBBS,BC-E,115840,115840,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Katuri Medical College, Guntur",MBBS,OPEN,61588,64409,64409,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Katuri Medical College, Guntur",MBBS,SC-2,184235,184235,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Katuri Medical College, Guntur",MBBS,SC-3,132747,132747,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Katuri Medical College, Guntur",MBBS,ST,205791,205791,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Katuri Medical College, Guntur",MBBS,BC-A,116114,116114,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Katuri Medical College, Guntur",MBBS,BC-B,114984,114984,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Katuri Medical College, Guntur",MBBS,OPEN,62575,62575,62575,yes,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Katuri Medical College, Guntur",MBBS,OPEN,74655,176284,216990,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Katuri Medical College, Guntur",MBBS,OPEN,237461,298111,330257,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Katuri Medical College, Guntur",MBBS,OPEN,464544,1163998,1163998,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Katuri Medical College, Guntur",MBBS,OPEN,499798,499798,,,NRI,Andhra Pradesh,Private,no,NRI
+"KIMS Dental College & Hospital, Amalapuram",BDS,OPEN,482231,511189,574817,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"KIMS Dental College & Hospital, Amalapuram",BDS,OPEN,584295,1128643,,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"KIMS Dental College & Hospital, Amalapuram",BDS,OPEN,885189,1136822,1136822,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Kurnool Medical College, Kurnool",MBBS,OPEN,122222,147255,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Kurnool Medical College, Kurnool",MBBS,OPEN,93074,93074,93074,yes,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Kurnool Medical College, Kurnool",MBBS,OPEN,351422,973933,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Kurnool Medical College, Kurnool",MBBS,BC-A,38536,56979,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Kurnool Medical College, Kurnool",MBBS,BC-D,37115,43950,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Kurnool Medical College, Kurnool",MBBS,BC-E,39462,49334,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Kurnool Medical College, Kurnool",MBBS,EWS,38117,46658,56285,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Kurnool Medical College, Kurnool",MBBS,OPEN,19465,32862,36958,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Kurnool Medical College, Kurnool",MBBS,SC-2,58881,92182,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Kurnool Medical College, Kurnool",MBBS,SC-3,46454,86803,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Kurnool Medical College, Kurnool",MBBS,ST,71038,107824,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Kurnool Medical College, Kurnool",MBBS,BC-A,41938,41938,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,BC-B,37978,38862,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,BC-C,109143,109143,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,BC-D,39026,44591,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,BC-E,38727,39602,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,EWS,39911,41053,44700,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,OPEN,20110,28046,31090,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,SC-1,100457,100457,100457,yes,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,SC-2,64792,78229,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,SC-3,46299,72301,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,ST,88282,111347,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Kurnool Medical College, Kurnool",MBBS,OPEN,12151,16383,18873,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Kurnool Medical College, Kurnool",MBBS,SC-2,46466,46466,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Kurnool Medical College, Kurnool",MBBS,ST,46594,46594,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Kurnool Medical College, Kurnool",MBBS,BC-B,24637,24637,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Kurnool Medical College, Kurnool",MBBS,BC-D,36900,36900,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Kurnool Medical College, Kurnool",MBBS,OPEN,10681,14100,17034,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Kurnool Medical College, Kurnool",MBBS,ST,79535,79535,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,99643,99643,99643,yes,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,81220,81220,,,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,1026332,1026332,,,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,207395,207395,,,Competent Authority (special),Andhra Pradesh,Private,no,SCOUTS
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-A,115141,117503,119918,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-B,115785,125079,133195,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-C,112791,112791,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-D,78486,87013,98306,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-E,165146,169424,170576,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,64990,68323,75182,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,SC-2,191093,193438,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,SC-3,140395,140395,159274,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,ST,206157,211280,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-A,112324,112324,116013,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-B,111557,114982,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-D,80446,85760,91571,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-E,155766,156123,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,67750,67750,72518,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,SC-1,404786,404786,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,SC-2,185179,185179,187386,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,SC-3,131657,135271,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,ST,206944,208435,229402,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-A,113064,113064,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-B,111393,111393,111393,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-D,80756,84405,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-E,121684,121684,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,58615,62122,64503,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,SC-2,175683,175683,175683,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,SC-3,128029,128029,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,ST,204944,204944,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-B,112905,112905,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,BC-D,83295,83295,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,SC-3,132722,132722,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,157854,201327,220916,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,232307,327362,378898,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,253207,1088608,1088608,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Konaseema Inst. of Medical Sciences, Amalapuram",MBBS,OPEN,777252,1040901,,,NRI,Andhra Pradesh,Private,no,NRI
+"Lenora Institute of Dental Sciences, Rajahmundry",BDS,OPEN,437671,514545,,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Lenora Institute of Dental Sciences, Rajahmundry",BDS,OPEN,453366,993020,,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Lenora Institute of Dental Sciences, Rajahmundry",BDS,OPEN,836689,877785,877785,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,104321,104321,104321,yes,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,76198,199346,199346,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,197451,206313,206313,yes,Competent Authority (special),Andhra Pradesh,Private,no,SPORTS
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-A,123660,124865,134103,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-B,129775,141125,147879,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-C,116899,116899,124846,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-D,91405,92719,101559,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-E,174409,176718,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,72212,73433,78259,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,SC-1,340925,340925,340925,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,SC-2,193465,197352,202007,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,SC-3,158237,163388,163388,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,ST,221065,221412,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-A,119698,122485,122485,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-B,137450,137450,138150,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-D,83853,89516,96062,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-E,170382,170382,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,73806,77010,77010,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,SC-2,187711,187711,198907,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,SC-3,147299,152161,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,ST,217248,220435,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-A,118964,118964,118964,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-B,134160,134160,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-D,87815,87815,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-E,138833,138833,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,52412,52412,64249,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,SC-2,179349,179349,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,SC-3,125139,137370,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,ST,210485,210485,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-B,134690,134690,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,BC-D,79407,79407,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,61732,61732,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,101906,196012,215133,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,217333,388885,472589,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,451262,1192047,1192047,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Maharaja Inst., of Medical Sciences, Vizianagaram",MBBS,OPEN,574234,1091585,,,NRI,Andhra Pradesh,Private,no,NRI
+"Narayana Medical College, Nellore",MBBS,OPEN,96250,96250,,,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"Narayana Medical College, Nellore",MBBS,OPEN,717269,717269,,,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Narayana Medical College, Nellore",MBBS,BC-A,101757,109280,128027,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,BC-B,97570,118654,129435,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,BC-C,166431,166431,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,BC-D,92048,121837,128118,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,BC-E,110731,117341,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,OPEN,73284,77519,88619,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,SC-1,197176,197176,197176,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,SC-2,194497,199269,199269,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,SC-3,142452,142452,151275,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,ST,198203,200355,217800,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Narayana Medical College, Nellore",MBBS,BC-A,101583,102649,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Narayana Medical College, Nellore",MBBS,BC-B,92851,118022,122131,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Narayana Medical College, Nellore",MBBS,BC-D,102901,119330,120661,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Narayana Medical College, Nellore",MBBS,BC-E,119259,119259,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Narayana Medical College, Nellore",MBBS,OPEN,57392,74853,83153,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Narayana Medical College, Nellore",MBBS,SC-2,190319,190319,190760,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Narayana Medical College, Nellore",MBBS,SC-3,139972,139972,143952,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Narayana Medical College, Nellore",MBBS,ST,202850,226345,233342,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Narayana Medical College, Nellore",MBBS,BC-A,97506,97506,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Narayana Medical College, Nellore",MBBS,BC-B,95270,95270,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Narayana Medical College, Nellore",MBBS,BC-D,73746,73746,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Narayana Medical College, Nellore",MBBS,BC-E,117491,117491,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Narayana Medical College, Nellore",MBBS,OPEN,44633,51561,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Narayana Medical College, Nellore",MBBS,SC-2,174059,174059,174059,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Narayana Medical College, Nellore",MBBS,SC-3,137225,137225,137225,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Narayana Medical College, Nellore",MBBS,ST,177582,177582,177582,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Narayana Medical College, Nellore",MBBS,BC-A,100234,100234,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Narayana Medical College, Nellore",MBBS,BC-B,93815,93815,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Narayana Medical College, Nellore",MBBS,OPEN,29432,40251,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Narayana Medical College, Nellore",MBBS,OPEN,77920,116615,126396,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Narayana Medical College, Nellore",MBBS,OPEN,132780,235968,262361,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Narayana Medical College, Nellore",MBBS,OPEN,277107,1161536,1161536,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Narayana Medical College, Nellore",MBBS,OPEN,488113,604557,,,NRI,Andhra Pradesh,Private,no,NRI
+"Narayana Dental College & Hospital, Chinthareddypalem, Nellore",BDS,OPEN,308397,308397,395305,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Narayana Dental College & Hospital, Chinthareddypalem, Nellore",BDS,OPEN,431805,583675,867286,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Narayana Dental College & Hospital, Chinthareddypalem, Nellore",BDS,OPEN,414910,1072285,1072285,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Nimra Institute of Dental Sciences, Jupudi, Ibrahimpatnam",BDS,OPEN,380017,1045046,,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Nimra Institute of Dental Sciences, Jupudi, Ibrahimpatnam",BDS,OPEN,1110466,1110466,,,NRI,Andhra Pradesh,Private,no,NRI
+"NIMRA Institute of Medical Sciences, Jupudi, Ibrahimpatnam",MBBS,OPEN,89835,240934,246370,,Competent Authority (special),Andhra Pradesh,Private,no,MINORITY
+"NIMRA Institute of Medical Sciences, Jupudi, Ibrahimpatnam",MBBS,OPEN,130784,335934,342623,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"NIMRA Institute of Medical Sciences, Jupudi, Ibrahimpatnam",MBBS,OPEN,653108,962627,962627,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"NIMRA Institute of Medical Sciences, Jupudi, Ibrahimpatnam",MBBS,OPEN,563480,1088923,,,NRI,Andhra Pradesh,Private,no,NRI
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,243940,243940,,,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,136051,136051,,,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,45225,109057,109057,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-A,72474,90884,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-B,96154,96893,102902,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-D,61376,63834,65889,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-E,120687,156786,156786,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,40176,52661,58012,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,SC-1,310787,310787,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,SC-2,162221,165360,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,SC-3,121956,121956,126309,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,ST,178597,178597,185196,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-A,82231,90162,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-B,77050,93988,96104,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-C,98780,98780,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-D,60810,62735,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,42467,48912,51232,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,SC-2,159320,159320,161598,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,SC-3,111341,116269,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,ST,177579,177763,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-A,86346,86346,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-B,88860,88860,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,BC-E,75165,75165,107302,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,33342,38823,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,SC-2,152383,152383,152383,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,SC-3,101503,101503,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,ST,163789,163789,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,25463,33628,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,74966,91059,92285,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,92934,178129,189058,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,282346,981252,981252,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"NRI Academy of Medical Sciences, Chinakakani, Guntur",MBBS,OPEN,425216,971883,,,NRI,Andhra Pradesh,Private,no,NRI
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,1178726,1178726,,,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,90756,90756,,,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,1060977,1060977,,,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,239585,239585,,,Competent Authority (special),Andhra Pradesh,Private,no,SCOUTS
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-A,110755,129053,129616,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-B,109485,143044,145658,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-C,115197,118897,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-D,85585,92671,100154,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-E,180165,180165,189002,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,62562,73000,79368,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,SC-1,307718,307718,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,SC-2,194040,194040,202668,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,SC-3,154511,163656,163656,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,ST,212047,217338,226760,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-A,115895,125864,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-B,127314,130971,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-C,93622,93622,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-D,80697,83106,89510,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-E,173364,173364,179996,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,67713,69833,75772,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,SC-2,194627,194627,194627,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,SC-3,141180,141974,157180,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,ST,209133,209133,227245,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-A,104364,119895,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-B,104380,111579,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-D,89830,90790,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-E,119199,119199,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,54963,54963,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,SC-2,176127,176127,176127,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,SC-3,128038,128038,128038,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,ST,191111,191111,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-B,101339,138140,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,BC-D,76747,76747,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,44425,44425,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,67020,150703,154922,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,175551,347663,430489,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,417876,1172538,1172538,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"NRI Inst., of Medical Sciences, Visakhapatnam",MBBS,OPEN,682465,1183660,,,NRI,Andhra Pradesh,Private,no,NRI
+Sri Padmavathi Medical College for Women,MBBS,OPEN,176200,176200,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+Sri Padmavathi Medical College for Women,MBBS,OPEN,77296,138815,138815,yes,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+Sri Padmavathi Medical College for Women,MBBS,OPEN,260276,260276,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+Sri Padmavathi Medical College for Women,MBBS,OPEN,81786,81786,81786,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPECIAL
+Sri Padmavathi Medical College for Women,MBBS,BC-A,89760,107118,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,BC-B,84697,114475,118802,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,BC-C,150871,150871,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,BC-D,88318,117748,121850,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,BC-E,83011,99355,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,EWS,84691,93177,100468,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,OPEN,55170,74212,81204,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,SC-1,191057,191057,191057,yes,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,SC-2,155956,168870,191426,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,SC-3,107099,135119,142734,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,ST,172701,199373,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+Sri Padmavathi Medical College for Women,MBBS,BC-A,56481,56481,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+Sri Padmavathi Medical College for Women,MBBS,BC-B,79640,79640,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+Sri Padmavathi Medical College for Women,MBBS,BC-E,98852,98852,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+Sri Padmavathi Medical College for Women,MBBS,OPEN,35146,37135,53819,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+Sri Padmavathi Medical College for Women,MBBS,SC-2,104939,104939,145461,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+Sri Padmavathi Medical College for Women,MBBS,SC-3,100704,100704,100704,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+Sri Padmavathi Medical College for Women,MBBS,ST,158069,158069,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+Sri Padmavathi Medical College for Women,MBBS,OPEN,513614,877584,877584,yes,Management (unfilled NRI seats),Andhra Pradesh,Government,yes,
+Sri Padmavathi Medical College for Women,MBBS,OPEN,507523,1101506,,,NRI,Andhra Pradesh,Government,no,NRI
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,81781,81781,,,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,89664,202927,202927,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-A,115796,123476,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-B,121881,129891,142339,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-C,200544,200544,200544,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-D,119242,130294,145957,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-E,124695,124695,131219,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,78226,88062,96156,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,SC-1,207000,207000,207000,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,SC-2,205358,208964,208964,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,SC-3,152621,152621,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,ST,205471,213289,232314,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-A,107363,108850,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-B,117745,120499,128288,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-D,126211,126211,150569,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-E,121711,121711,126372,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,78874,78874,85759,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"PES Institute of Medical Sciences, Kuppam",MBBS,SC-2,202784,202784,202784,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"PES Institute of Medical Sciences, Kuppam",MBBS,SC-3,152550,152825,155773,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"PES Institute of Medical Sciences, Kuppam",MBBS,ST,220307,220307,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-A,104717,104717,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-B,111707,111707,116199,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"PES Institute of Medical Sciences, Kuppam",MBBS,BC-D,80618,80618,80618,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,68928,73500,73500,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"PES Institute of Medical Sciences, Kuppam",MBBS,SC-2,166638,166638,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"PES Institute of Medical Sciences, Kuppam",MBBS,SC-3,151675,151675,151675,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,62000,65505,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,125609,158766,161828,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,174076,274695,304632,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,552683,1055249,1055249,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"PES Institute of Medical Sciences, Kuppam",MBBS,OPEN,401158,1181814,,,NRI,Andhra Pradesh,Private,no,NRI
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,139538,373396,,,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,59200,138247,138247,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,122804,122804,122804,yes,Competent Authority (special),Andhra Pradesh,Private,no,SPORTS
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-A,97553,109940,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-B,104559,110768,114824,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-D,76923,78599,81604,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-E,156287,157735,160890,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,55504,62105,66149,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,SC-2,172573,177558,,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,SC-3,132647,132647,143891,,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,ST,198750,218001,218001,yes,Govt quota · AU local,Andhra Pradesh,Private,no,AP_AU
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-A,108613,108613,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-B,103083,103083,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-C,96224,96224,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-D,70454,74772,75790,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-E,117909,117909,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,55955,58955,61267,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,SC-1,385722,385722,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,SC-2,166974,166974,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,SC-3,120180,127113,,,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,ST,215567,215567,215567,yes,Govt quota · AU local · women,Andhra Pradesh,Private,no,AP_AU+FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-B,108482,108482,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-D,71678,71678,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,54366,54943,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,SC-3,118149,118149,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,ST,191241,191241,191241,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,BC-A,107070,107070,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,54208,54208,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,114637,152701,170090,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,180708,251723,286010,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,394829,1114126,1114126,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Pinnamaneni Siddhartha Inst., of Medical Sciences, Gannavaram",MBBS,OPEN,404376,775925,,,NRI,Andhra Pradesh,Private,no,NRI
+"Rangaraya Medical College, Kakinada",MBBS,OPEN,316650,860769,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Rangaraya Medical College, Kakinada",MBBS,OPEN,38005,239899,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Rangaraya Medical College, Kakinada",MBBS,OPEN,926964,1088719,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Rangaraya Medical College, Kakinada",MBBS,OPEN,657382,657382,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"Rangaraya Medical College, Kakinada",MBBS,OPEN,1183408,1183408,1183408,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"Rangaraya Medical College, Kakinada",MBBS,BC-A,30597,44436,53612,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,BC-B,37740,52473,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,BC-C,51108,51108,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,BC-D,30611,31000,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,BC-E,77054,82109,84409,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,EWS,35668,35668,45236,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,OPEN,22884,28276,30538,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,SC-1,159574,159574,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,SC-2,56256,102170,114546,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,SC-3,71322,82280,92170,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,ST,126622,134822,153283,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Rangaraya Medical College, Kakinada",MBBS,BC-A,31905,41898,42018,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,BC-B,33898,38098,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,BC-C,44473,44473,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,BC-D,30676,30676,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,BC-E,72889,74860,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,EWS,30684,36944,36944,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,OPEN,19957,24515,26826,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,SC-1,237132,237132,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,SC-2,87232,93164,94660,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,SC-3,66688,78211,82626,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,ST,112563,128124,128124,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,BC-B,32116,33549,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Rangaraya Medical College, Kakinada",MBBS,BC-D,23894,23894,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Rangaraya Medical College, Kakinada",MBBS,BC-E,52288,52288,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Rangaraya Medical College, Kakinada",MBBS,OPEN,13473,17504,19770,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Rangaraya Medical College, Kakinada",MBBS,SC-3,57263,57263,60039,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Rangaraya Medical College, Kakinada",MBBS,ST,109186,109186,109186,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Rangaraya Medical College, Kakinada",MBBS,OPEN,10251,15366,18937,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,SC-2,77817,77817,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,SC-3,52904,52904,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Rangaraya Medical College, Kakinada",MBBS,ST,108318,108318,108318,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"RVS Institute of Medical Sciences, Chittoor",MBBS,OPEN,111270,111270,111270,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-A,148951,148952,148952,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-B,153582,153582,153582,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-C,207861,207861,207861,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-D,132624,151439,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-E,148247,148247,148247,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"RVS Institute of Medical Sciences, Chittoor",MBBS,OPEN,108278,111058,111058,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"RVS Institute of Medical Sciences, Chittoor",MBBS,SC-2,235883,235883,235883,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"RVS Institute of Medical Sciences, Chittoor",MBBS,SC-3,174333,174333,174333,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"RVS Institute of Medical Sciences, Chittoor",MBBS,ST,213010,213010,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-B,153510,154406,154406,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-D,154104,154104,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-E,147744,147744,147744,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"RVS Institute of Medical Sciences, Chittoor",MBBS,SC-2,226339,226339,226339,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"RVS Institute of Medical Sciences, Chittoor",MBBS,SC-3,168385,168385,168385,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-A,134256,134256,134256,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-D,102685,102685,102685,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"RVS Institute of Medical Sciences, Chittoor",MBBS,BC-D,103200,103200,103200,yes,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"RVS Institute of Medical Sciences, Chittoor",MBBS,OPEN,235651,255021,255021,yes,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"RVS Institute of Medical Sciences, Chittoor",MBBS,OPEN,392329,397825,511371,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"RVS Institute of Medical Sciences, Chittoor",MBBS,OPEN,1011557,1011557,1011557,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Sibar Institute of Dental Sciences, Guntur",BDS,OPEN,282201,339251,,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Sibar Institute of Dental Sciences, Guntur",BDS,OPEN,390241,745315,900175,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Sibar Institute of Dental Sciences, Guntur",BDS,OPEN,975968,1135062,1135062,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"St. Joseph Dental College, Eluru",BDS,OPEN,423812,563594,,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"St. Joseph Dental College, Eluru",BDS,OPEN,666228,1022182,1110131,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,946552,946552,,,Competent Authority (special),Andhra Pradesh,Government,no,ANGLO_INDIAN
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,50645,50645,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,112142,112142,112142,yes,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,852399,992556,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"Siddhartha Medical College, Vijayawada",MBBS,BC-A,49710,54514,59178,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Siddhartha Medical College, Vijayawada",MBBS,BC-B,63203,66960,70078,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Siddhartha Medical College, Vijayawada",MBBS,BC-C,69096,69096,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Siddhartha Medical College, Vijayawada",MBBS,BC-E,93935,93935,114721,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Siddhartha Medical College, Vijayawada",MBBS,EWS,40360,40360,46397,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,31074,31074,36416,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Siddhartha Medical College, Vijayawada",MBBS,SC-2,115069,127349,127349,yes,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Siddhartha Medical College, Vijayawada",MBBS,SC-3,85631,85755,104797,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Siddhartha Medical College, Vijayawada",MBBS,ST,114236,134230,,,Govt quota · AU local,Andhra Pradesh,Government,no,AP_AU
+"Siddhartha Medical College, Vijayawada",MBBS,BC-A,49306,50989,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,BC-B,55411,58939,61694,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,BC-C,65593,65593,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,BC-D,37717,37717,37717,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,BC-E,71050,87000,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,EWS,38686,39670,42083,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,31060,34039,34039,yes,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,SC-1,302635,302635,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,SC-2,94626,97493,104336,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,SC-3,84702,84702,92411,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,ST,134523,135618,,,Govt quota · AU local · women,Andhra Pradesh,Government,no,AP_AU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,BC-A,70923,70923,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Siddhartha Medical College, Vijayawada",MBBS,BC-B,72757,78399,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Siddhartha Medical College, Vijayawada",MBBS,BC-D,76288,76288,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Siddhartha Medical College, Vijayawada",MBBS,BC-E,77461,81200,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Siddhartha Medical College, Vijayawada",MBBS,EWS,77395,96731,96731,yes,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,39453,54298,70362,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Siddhartha Medical College, Vijayawada",MBBS,SC-2,97893,119582,125148,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Siddhartha Medical College, Vijayawada",MBBS,SC-3,104753,133202,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Siddhartha Medical College, Vijayawada",MBBS,ST,131151,142739,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"Siddhartha Medical College, Vijayawada",MBBS,BC-B,70378,74619,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,EWS,72308,72509,72509,yes,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,43062,61372,69190,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,SC-2,113635,113635,119312,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,SC-3,109212,109212,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,ST,138931,138931,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,BC-A,48785,48910,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Siddhartha Medical College, Vijayawada",MBBS,BC-B,40699,40699,42130,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Siddhartha Medical College, Vijayawada",MBBS,BC-E,74868,74868,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,26902,26902,30450,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Siddhartha Medical College, Vijayawada",MBBS,SC-1,187271,187271,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Siddhartha Medical College, Vijayawada",MBBS,SC-2,91007,91007,91007,yes,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Siddhartha Medical College, Vijayawada",MBBS,SC-3,78440,78440,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Siddhartha Medical College, Vijayawada",MBBS,ST,110556,110556,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"Siddhartha Medical College, Vijayawada",MBBS,BC-A,45229,45229,45229,yes,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,OPEN,17031,28095,28907,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,SC-3,83550,83550,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Siddhartha Medical College, Vijayawada",MBBS,ST,131014,131014,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Drs. Sudha & Nageswara Rao Siddhartha Institute of Dental Sciences, Gannavaram",BDS,OPEN,281754,314463,341299,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Drs. Sudha & Nageswara Rao Siddhartha Institute of Dental Sciences, Gannavaram",BDS,OPEN,350536,715591,887026,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Drs. Sudha & Nageswara Rao Siddhartha Institute of Dental Sciences, Gannavaram",BDS,OPEN,406743,1016358,1016358,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Drs. Sudha & Nageswara Rao Siddhartha Institute of Dental Sciences, Gannavaram",BDS,OPEN,1108230,1108230,,,NRI,Andhra Pradesh,Private,no,NRI
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,153349,179559,,,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,88340,237127,237127,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,213454,213454,213454,yes,Competent Authority (special),Andhra Pradesh,Private,no,SCOUTS
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-A,112769,127915,132672,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-B,130131,141192,145508,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-C,187072,187072,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-D,130961,135956,149155,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-E,123175,130616,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,85707,87131,103213,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,SC-2,189314,194034,215864,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,SC-3,154719,154719,170138,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,ST,212445,224354,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-A,107291,113614,123993,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-B,121796,133553,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-D,126472,126646,135652,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-E,124499,135848,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,84592,86921,98901,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,SC-1,211630,211630,211630,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,SC-2,197410,197410,207584,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,SC-3,155082,164771,164771,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,ST,201016,216217,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-A,127544,127544,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-D,78736,78736,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-E,112130,112130,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,64198,74048,76762,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,SC-2,157669,157669,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,SC-3,153426,153426,153426,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,ST,221556,221556,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-A,129819,129819,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,BC-B,130582,132953,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,72681,72681,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,165074,210724,231815,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,234212,335163,374959,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,430947,1187901,1187901,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Santhiram Medical College, Nandyal, Kurnool",MBBS,OPEN,716698,716698,999893,,NRI,Andhra Pradesh,Private,no,NRI
+"Sree Sai Dental College & Research Institute, Srikakulam",BDS,OPEN,361701,588734,,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Sree Sai Dental College & Research Institute, Srikakulam",BDS,OPEN,657707,1180137,,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Sree Sai Dental College & Research Institute, Srikakulam",BDS,OPEN,602230,1162175,1162175,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"S.V.Medical College, Tirupati",MBBS,OPEN,251149,251149,,,Competent Authority (special),Andhra Pradesh,Government,no,DEFENCE
+"S.V.Medical College, Tirupati",MBBS,OPEN,89684,89684,,,Competent Authority (special),Andhra Pradesh,Government,no,NCC
+"S.V.Medical College, Tirupati",MBBS,OPEN,733952,1132307,,,Competent Authority (special),Andhra Pradesh,Government,no,PWD
+"S.V.Medical College, Tirupati",MBBS,OPEN,557797,557797,,,Competent Authority (special),Andhra Pradesh,Government,no,SCOUTS
+"S.V.Medical College, Tirupati",MBBS,OPEN,623322,631764,631764,yes,Competent Authority (special),Andhra Pradesh,Government,no,SPORTS
+"S.V.Medical College, Tirupati",MBBS,BC-A,57920,65413,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,BC-B,42899,64405,67958,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,BC-D,44408,62174,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,BC-E,44629,59425,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,EWS,43160,49378,60062,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,OPEN,19932,37002,40971,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,SC-1,693917,693917,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,SC-2,71667,105449,,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,SC-3,87178,95308,96511,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,ST,111426,129632,151443,,Govt quota · SVU local,Andhra Pradesh,Government,no,AP_SVU
+"S.V.Medical College, Tirupati",MBBS,BC-A,47702,59375,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,BC-B,42374,50967,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,BC-C,93451,93451,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,BC-D,44453,49082,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,BC-E,61084,64334,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,EWS,42922,47510,47825,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,OPEN,22174,35426,40800,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,SC-1,899865,899865,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,SC-2,98568,104368,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,SC-3,70229,82982,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,ST,114638,129699,,,Govt quota · SVU local · women,Andhra Pradesh,Government,no,AP_SVU+FEMALE
+"S.V.Medical College, Tirupati",MBBS,BC-B,28263,47506,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"S.V.Medical College, Tirupati",MBBS,BC-D,30291,30291,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"S.V.Medical College, Tirupati",MBBS,BC-E,41628,41628,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"S.V.Medical College, Tirupati",MBBS,OPEN,13817,13897,19913,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"S.V.Medical College, Tirupati",MBBS,SC-2,65464,65464,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"S.V.Medical College, Tirupati",MBBS,SC-3,69877,69877,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"S.V.Medical College, Tirupati",MBBS,ST,102957,102957,,,Govt quota · Unreserved,Andhra Pradesh,Government,no,
+"S.V.Medical College, Tirupati",MBBS,BC-A,30352,30352,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"S.V.Medical College, Tirupati",MBBS,BC-D,32793,32793,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"S.V.Medical College, Tirupati",MBBS,OPEN,7245,11490,16423,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"S.V.Medical College, Tirupati",MBBS,SC-2,68164,68164,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"S.V.Medical College, Tirupati",MBBS,SC-3,65998,65998,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"S.V.Medical College, Tirupati",MBBS,ST,114231,114231,,,Govt quota · Unreserved · women,Andhra Pradesh,Government,no,FEMALE
+"Vishnu Dental College, Bhimavaram",BDS,OPEN,312807,366152,386971,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Vishnu Dental College, Bhimavaram",BDS,OPEN,387264,677221,930233,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Vishnu Dental College, Bhimavaram",BDS,OPEN,951964,1175592,1175592,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,137253,137253,137253,yes,Competent Authority (special),Andhra Pradesh,Private,no,DEFENCE
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,143788,143788,143788,yes,Competent Authority (special),Andhra Pradesh,Private,no,NCC
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,103617,233024,233024,yes,Competent Authority (special),Andhra Pradesh,Private,no,PWD
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,166866,166866,166866,yes,Competent Authority (special),Andhra Pradesh,Private,no,SPORTS
+"Viswabharati Medical College, Kurnool",MBBS,BC-A,131215,140074,142784,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,BC-B,137394,143804,151432,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,BC-C,190981,190981,,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,BC-D,121420,145482,146873,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,BC-E,118808,137439,137946,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,93854,97060,107103,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,SC-1,198994,198994,198994,yes,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,SC-2,184991,195410,205203,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,SC-3,157453,157453,172945,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,ST,230393,231281,239369,,Govt quota · SVU local,Andhra Pradesh,Private,no,AP_SVU
+"Viswabharati Medical College, Kurnool",MBBS,BC-A,135602,135602,137926,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,BC-B,131831,141040,149231,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,BC-D,137208,140742,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,BC-E,123150,137240,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,97792,103247,103247,yes,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,SC-2,174421,174421,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,SC-3,153002,160803,168471,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,ST,212722,230656,,,Govt quota · SVU local · women,Andhra Pradesh,Private,no,AP_SVU+FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,BC-A,131173,131173,131173,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Viswabharati Medical College, Kurnool",MBBS,BC-B,115792,115792,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Viswabharati Medical College, Kurnool",MBBS,BC-D,95518,96029,101704,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Viswabharati Medical College, Kurnool",MBBS,BC-E,120822,120822,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,71590,71590,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Viswabharati Medical College, Kurnool",MBBS,SC-2,161143,161143,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Viswabharati Medical College, Kurnool",MBBS,SC-3,150715,150715,150715,yes,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Viswabharati Medical College, Kurnool",MBBS,ST,131392,131392,,,Govt quota · Unreserved,Andhra Pradesh,Private,no,
+"Viswabharati Medical College, Kurnool",MBBS,BC-A,120068,127968,127968,yes,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,BC-B,134767,134767,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,69253,69253,,,Govt quota · Unreserved · women,Andhra Pradesh,Private,no,FEMALE
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,173546,216372,219390,,"Management (B1, all-India)",Andhra Pradesh,Private,yes,
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,238013,392354,457522,,"Management (B2, AP)",Andhra Pradesh,Private,no,
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,427504,995347,995347,yes,Management (unfilled NRI seats),Andhra Pradesh,Private,yes,
+"Viswabharati Medical College, Kurnool",MBBS,OPEN,496601,980917,,,NRI,Andhra Pradesh,Private,no,NRI

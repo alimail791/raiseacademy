@@ -32,11 +32,17 @@ const STATE_GROUPS: Record<string, { key: string; label: string }[]> = {
     { key: "KA_RURAL", label: "I studied Class 1 to 10 in a rural area (rural quota)" },
     { key: "KA_KK", label: "I am a Kalyana-Karnataka (Hyderabad-Karnataka, Article 371J) candidate" },
   ],
+  AP: [
+    { key: "AP_AU", label: "My local area is Andhra University (AU) region" },
+    { key: "AP_SVU", label: "My local area is Sri Venkateswara University (SVU) region" },
+    { key: "FEMALE", label: "I am a female candidate (includes women-only seats)" },
+  ],
 };
 const STATE_CAT_LABEL: Record<string, string> = {
   OPEN: "General / OC / GM", "CAT-1": "Category-1", S1: "SC (S1)", S2: "SC (S2)", S3: "SC (S3)", S4: "SC (S4)",
   EZ: "Ezhava (EZ)", MU: "Muslim (MU)", BH: "OBC Hindu (BH)", LA: "Latin Catholic & Anglo-Indian (LA)", DV: "Dheevara (DV)",
   VK: "Viswakarma (VK)", BX: "OBC Christian (BX)", KN: "Kusavan (KN)", KU: "Kudumbi (KU)",
+  "BC-A": "BC-A", "BC-B": "BC-B", "BC-C": "BC-C", "BC-D": "BC-D", "BC-E": "BC-E", "SC-1": "SC Group I", "SC-2": "SC Group II", "SC-3": "SC Group III",
 };
 const STATE_RANK_LABEL: Record<string, string> = { KL: "KEAM rank" };
 export const BAND = {
