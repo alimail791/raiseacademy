@@ -398,6 +398,7 @@ const BUNDLED = [
   { file: "mh_2026.csv", quota: "MH", year: 2026, round: 3, rankType: "AIR", source: "Maharashtra CET Cell 2026 MBBS/BDS CAP rounds 2 + 3" },
   { file: "br_2026.csv", quota: "BR", year: 2026, round: 3, rankType: "AIR", source: "BCECEB UGMAC 2026 round 2 allotment + official round 3 closing ranks" },
   { file: "rj_2026.csv", quota: "RJ", year: 2026, round: 3, rankType: "AIR", source: "Rajasthan NEET UG counselling 2026 rounds 2 + 3" },
+  { file: "ts_2026.csv", quota: "TS", year: 2026, round: 2, rankType: "AIR", source: "KNRUHS 2026 MBBS CQ + MBBS/BDS MQ phase 2" },
   { file: "ap_2026.csv", quota: "AP", year: 2026, round: 3, rankType: "AIR", source: "Dr NTR UHS 2026 MBBS CQ + MQ, BDS MQ (phase III)" },
 ];
 export async function seedBundledCutoffs() {

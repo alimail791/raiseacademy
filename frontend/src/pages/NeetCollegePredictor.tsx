@@ -37,6 +37,7 @@ const STATE_GROUPS: Record<string, { key: string; label: string }[]> = {
     { key: "AP_SVU", label: "My local area is Sri Venkateswara University (SVU) region" },
     { key: "FEMALE", label: "I am a female candidate (includes women-only seats)" },
   ],
+  TS: [{ key: "FEMALE", label: "I am a female candidate (includes women's reserved seats)" }],
   RJ: [
     { key: "FEMALE", label: "I am a female candidate (includes girls' reserved seats)" },
     { key: "RJ_TSP", label: "I am a Scheduled Area (TSP) resident" },
