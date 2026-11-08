@@ -1,0 +1,235 @@
+college,course,category,opening_rank,closing_rank,stray_closing_rank,stray_only,seat_type,college_state,college_type,open_to_all,eligibility
+"ANMMCH, Gaya",MBBS,BC,13332,15285,18591,,State quota,Bihar,Government,no,
+"ANMMCH, Gaya",MBBS,BC,15882,19836,21292,,State quota · women,Bihar,Government,no,FEMALE
+"ANMMCH, Gaya",MBBS,OPEN,371228,655842,669444,,Special,Bihar,Government,no,SPECIAL
+"ANMMCH, Gaya",MBBS,EBC,16511,23078,25499,,State quota,Bihar,Government,no,
+"ANMMCH, Gaya",MBBS,EBC,19412,25902,26944,,State quota · women,Bihar,Government,no,FEMALE
+"ANMMCH, Gaya",MBBS,EWS,13248,15997,19168,,State quota,Bihar,Government,no,
+"ANMMCH, Gaya",MBBS,EWS,15712,19263,21052,,State quota · women,Bihar,Government,no,FEMALE
+"ANMMCH, Gaya",MBBS,BC,19254,19807,21306,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"ANMMCH, Gaya",MBBS,EBC,19254,19807,21306,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"ANMMCH, Gaya",MBBS,SC,108444,129818,134251,,State quota,Bihar,Government,no,
+"ANMMCH, Gaya",MBBS,SC,127945,147248,,,State quota · women,Bihar,Government,no,FEMALE
+"ANMMCH, Gaya",MBBS,ST,92320,92320,,,State quota · women,Bihar,Government,no,FEMALE
+"BMIMS Pawapuri, Nalanda",MBBS,BC,12121,14211,16674,,State quota,Bihar,Government,no,
+"BMIMS Pawapuri, Nalanda",MBBS,BC,16836,19091,,,State quota · women,Bihar,Government,no,FEMALE
+"BMIMS Pawapuri, Nalanda",MBBS,OPEN,560268,618866,,,Special,Bihar,Government,no,SPECIAL
+"BMIMS Pawapuri, Nalanda",MBBS,EBC,12254,22043,24006,,State quota,Bihar,Government,no,
+"BMIMS Pawapuri, Nalanda",MBBS,EBC,15075,24331,25950,,State quota · women,Bihar,Government,no,FEMALE
+"BMIMS Pawapuri, Nalanda",MBBS,EWS,14301,16622,19557,,State quota,Bihar,Government,no,
+"BMIMS Pawapuri, Nalanda",MBBS,EWS,18093,18855,19396,,State quota · women,Bihar,Government,no,FEMALE
+"BMIMS Pawapuri, Nalanda",MBBS,BC,18939,19318,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"BMIMS Pawapuri, Nalanda",MBBS,EBC,18939,19318,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"BMIMS Pawapuri, Nalanda",MBBS,SC,96759,131809,,,State quota,Bihar,Government,no,
+"BMIMS Pawapuri, Nalanda",MBBS,SC,122564,147697,,,State quota · women,Bihar,Government,no,FEMALE
+"BMIMS Pawapuri, Nalanda",MBBS,ST,106209,106209,157465,,State quota · women,Bihar,Government,no,FEMALE
+"BMIMS Pawapuri, Nalanda",MBBS,OPEN,11264,13619,,,State quota,Bihar,Government,no,
+"BMIMS Pawapuri, Nalanda",MBBS,OPEN,13645,16986,,,State quota · women,Bihar,Government,no,FEMALE
+"Buddha Hospital and Research Institute, Gaya",MBBS,OPEN,464818,885052,1188632,,"Private (UR, all-India)",Bihar,Private,yes,
+Buddha INST. of Dental Science & Hospital,BDS,OPEN,75601,541710,,,"Private (UR, all-India)",Bihar,Private,yes,
+"Darbhanga Medical College, Laheriasarai",MBBS,BC,10389,11899,14075,,State quota,Bihar,Government,no,
+"Darbhanga Medical College, Laheriasarai",MBBS,BC,12810,13290,15729,,State quota · women,Bihar,Government,no,FEMALE
+"Darbhanga Medical College, Laheriasarai",MBBS,OPEN,149015,472761,,,Special,Bihar,Government,no,SPECIAL
+"Darbhanga Medical College, Laheriasarai",MBBS,EBC,10507,12436,13418,,State quota,Bihar,Government,no,
+"Darbhanga Medical College, Laheriasarai",MBBS,EBC,13632,16655,17738,,State quota · women,Bihar,Government,no,FEMALE
+"Darbhanga Medical College, Laheriasarai",MBBS,EWS,10602,13373,14974,,State quota,Bihar,Government,no,
+"Darbhanga Medical College, Laheriasarai",MBBS,EWS,12792,13226,17262,,State quota · women,Bihar,Government,no,FEMALE
+"Darbhanga Medical College, Laheriasarai",MBBS,BC,13549,13951,15813,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Darbhanga Medical College, Laheriasarai",MBBS,EBC,13549,13951,15813,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Darbhanga Medical College, Laheriasarai",MBBS,SC,95999,109749,110596,,State quota,Bihar,Government,no,
+"Darbhanga Medical College, Laheriasarai",MBBS,SC,102010,119635,124128,,State quota · women,Bihar,Government,no,FEMALE
+"Darbhanga Medical College, Laheriasarai",MBBS,ST,79423,79423,143763,,State quota,Bihar,Government,no,
+"Darbhanga Medical College, Laheriasarai",MBBS,OPEN,8987,11701,13181,,State quota,Bihar,Government,no,
+"Darbhanga Medical College, Laheriasarai",MBBS,OPEN,12075,14476,15455,,State quota · women,Bihar,Government,no,FEMALE
+"ESIC Medical College, Bihta, Patna",MBBS,BC,12841,14003,15317,,State quota,Bihar,Government,no,
+"ESIC Medical College, Bihta, Patna",MBBS,BC,14755,16956,,,State quota · women,Bihar,Government,no,FEMALE
+"ESIC Medical College, Bihta, Patna",MBBS,OPEN,363476,621740,656247,,Special,Bihar,Government,no,SPECIAL
+"ESIC Medical College, Bihta, Patna",MBBS,EBC,14595,18849,,,State quota,Bihar,Government,no,
+"ESIC Medical College, Bihta, Patna",MBBS,EBC,16203,21221,,,State quota · women,Bihar,Government,no,FEMALE
+"ESIC Medical College, Bihta, Patna",MBBS,EWS,12044,12156,16036,,State quota,Bihar,Government,no,
+"ESIC Medical College, Bihta, Patna",MBBS,EWS,15647,17812,,,State quota · women,Bihar,Government,no,FEMALE
+"ESIC Medical College, Bihta, Patna",MBBS,BC,16368,16368,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"ESIC Medical College, Bihta, Patna",MBBS,EBC,16368,16368,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"ESIC Medical College, Bihta, Patna",MBBS,SC,124963,132452,,,State quota,Bihar,Government,no,
+"ESIC Medical College, Bihta, Patna",MBBS,SC,110560,121700,,,State quota · women,Bihar,Government,no,FEMALE
+"ESIC Medical College, Bihta, Patna",MBBS,ST,96870,96870,,,State quota,Bihar,Government,no,
+"ESIC Medical College, Bihta, Patna",MBBS,OPEN,11014,12672,15148,,State quota,Bihar,Government,no,
+"ESIC Medical College, Bihta, Patna",MBBS,OPEN,13715,16683,16986,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Bettiah",MBBS,BC,14584,16610,23878,,State quota,Bihar,Government,no,
+"Govt Medical College, Bettiah",MBBS,BC,20570,22547,24989,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Bettiah",MBBS,OPEN,668854,715278,843842,,Special,Bihar,Government,no,SPECIAL
+"Govt Medical College, Bettiah",MBBS,EBC,20643,24049,26315,,State quota,Bihar,Government,no,
+"Govt Medical College, Bettiah",MBBS,EBC,25950,26718,28373,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Bettiah",MBBS,EWS,16700,17948,20614,,State quota,Bihar,Government,no,
+"Govt Medical College, Bettiah",MBBS,EWS,19396,20384,21611,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Bettiah",MBBS,BC,21855,23640,25369,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Govt Medical College, Bettiah",MBBS,EBC,21855,23640,25369,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Govt Medical College, Bettiah",MBBS,SC,64228,134628,141971,,State quota,Bihar,Government,no,
+"Govt Medical College, Bettiah",MBBS,SC,144642,155125,,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Bettiah",MBBS,ST,93203,93203,156822,,State quota,Bihar,Government,no,
+"Govt Medical College, Bettiah",MBBS,OPEN,11360,11360,,,State quota,Bihar,Government,no,
+"Govt Medical College, Bettiah",MBBS,OPEN,17929,17929,,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Purnea",MBBS,BC,15872,16674,23331,,State quota,Bihar,Government,no,
+"Govt Medical College, Purnea",MBBS,BC,19541,22460,26257,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Purnea",MBBS,OPEN,122380,676885,863393,,Special,Bihar,Government,no,SPECIAL
+"Govt Medical College, Purnea",MBBS,EBC,20037,24518,25543,,State quota,Bihar,Government,no,
+"Govt Medical College, Purnea",MBBS,EBC,26417,27942,29086,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Purnea",MBBS,EWS,16036,22351,,,State quota,Bihar,Government,no,
+"Govt Medical College, Purnea",MBBS,EWS,19751,23258,23915,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Purnea",MBBS,BC,24048,25272,26994,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Govt Medical College, Purnea",MBBS,EBC,24048,25272,26994,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Govt Medical College, Purnea",MBBS,SC,133330,143894,146283,,State quota,Bihar,Government,no,
+"Govt Medical College, Purnea",MBBS,SC,151814,162066,163175,,State quota · women,Bihar,Government,no,FEMALE
+"Govt Medical College, Purnea",MBBS,ST,105347,105347,157814,,State quota,Bihar,Government,no,
+"Govt Medical College, Purnea",MBBS,OPEN,13439,13439,,,State quota,Bihar,Government,no,
+"Government Medical College Chapra, Saran",MBBS,BC,17861,18839,23630,,State quota,Bihar,Government,no,
+"Government Medical College Chapra, Saran",MBBS,BC,25452,26200,,,State quota · women,Bihar,Government,no,FEMALE
+"Government Medical College Chapra, Saran",MBBS,OPEN,485075,664130,746960,,Special,Bihar,Government,no,SPECIAL
+"Government Medical College Chapra, Saran",MBBS,EBC,24961,25499,27483,,State quota,Bihar,Government,no,
+"Government Medical College Chapra, Saran",MBBS,EBC,28544,29124,,,State quota · women,Bihar,Government,no,FEMALE
+"Government Medical College Chapra, Saran",MBBS,EWS,22222,24428,27812,,State quota,Bihar,Government,no,
+"Government Medical College Chapra, Saran",MBBS,EWS,23792,26662,30451,,State quota · women,Bihar,Government,no,FEMALE
+"Government Medical College Chapra, Saran",MBBS,BC,26853,27023,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Government Medical College Chapra, Saran",MBBS,EBC,26853,27023,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Government Medical College Chapra, Saran",MBBS,SC,144841,150674,154815,,State quota,Bihar,Government,no,
+"Government Medical College Chapra, Saran",MBBS,SC,154617,162697,,,State quota · women,Bihar,Government,no,FEMALE
+"Government Medical College Chapra, Saran",MBBS,ST,122276,122276,148162,,State quota,Bihar,Government,no,
+"Himalaya Medical College & Hospital, Patna",MBBS,OPEN,1045988,1045988,,,Special,Bihar,Private,no,NRI
+"Himalaya Medical College & Hospital, Patna",MBBS,OPEN,455682,660535,730812,,"Private (UR, all-India)",Bihar,Private,yes,
+"IGIMS, Patna",MBBS,BC,7190,8210,8792,,State quota,Bihar,Government,no,
+"IGIMS, Patna",MBBS,BC,9340,9923,10317,,State quota · women,Bihar,Government,no,FEMALE
+"IGIMS, Patna",MBBS,OPEN,287795,550878,,,Special,Bihar,Government,no,SPECIAL
+"IGIMS, Patna",MBBS,EBC,8159,9147,9752,,State quota,Bihar,Government,no,
+"IGIMS, Patna",MBBS,EBC,9296,9907,10026,,State quota · women,Bihar,Government,no,FEMALE
+"IGIMS, Patna",MBBS,EWS,7741,9069,9492,,State quota,Bihar,Government,no,
+"IGIMS, Patna",MBBS,EWS,8580,10527,10970,,State quota · women,Bihar,Government,no,FEMALE
+"IGIMS, Patna",MBBS,BC,9362,9672,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"IGIMS, Patna",MBBS,EBC,9362,9672,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"IGIMS, Patna",MBBS,SC,67430,82870,91296,,State quota,Bihar,Government,no,
+"IGIMS, Patna",MBBS,SC,79430,83331,,,State quota · women,Bihar,Government,no,FEMALE
+"IGIMS, Patna",MBBS,ST,75702,75702,121085,,State quota · women,Bihar,Government,no,FEMALE
+"IGIMS, Patna",MBBS,OPEN,1158,8137,8503,,State quota,Bihar,Government,no,
+"IGIMS, Patna",MBBS,OPEN,6863,8814,9058,,State quota · women,Bihar,Government,no,FEMALE
+"JKTMCH, Madhepura",MBBS,BC,15337,17367,25000,,State quota,Bihar,Government,no,
+"JKTMCH, Madhepura",MBBS,BC,20918,23737,27023,,State quota · women,Bihar,Government,no,FEMALE
+"JKTMCH, Madhepura",MBBS,OPEN,676325,730279,868136,,Special,Bihar,Government,no,SPECIAL
+"JKTMCH, Madhepura",MBBS,EBC,22576,24756,27111,,State quota,Bihar,Government,no,
+"JKTMCH, Madhepura",MBBS,EBC,27875,29086,29632,,State quota · women,Bihar,Government,no,FEMALE
+"JKTMCH, Madhepura",MBBS,EWS,19108,22530,23606,,State quota,Bihar,Government,no,
+"JKTMCH, Madhepura",MBBS,EWS,21095,26058,27845,,State quota · women,Bihar,Government,no,FEMALE
+"JKTMCH, Madhepura",MBBS,BC,24120,25369,27640,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"JKTMCH, Madhepura",MBBS,EBC,24120,25369,27640,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"JKTMCH, Madhepura",MBBS,SC,134695,144796,150674,,State quota,Bihar,Government,no,
+"JKTMCH, Madhepura",MBBS,SC,147955,156275,,,State quota · women,Bihar,Government,no,FEMALE
+"JKTMCH, Madhepura",MBBS,ST,121085,121085,160023,,State quota,Bihar,Government,no,
+"JLNMCH, Bhagalpur",MBBS,BC,11924,13744,17421,,State quota,Bihar,Government,no,
+"JLNMCH, Bhagalpur",MBBS,BC,15188,16906,19110,,State quota · women,Bihar,Government,no,FEMALE
+"JLNMCH, Bhagalpur",MBBS,OPEN,664732,710861,786453,,Special,Bihar,Government,no,SPECIAL
+"JLNMCH, Bhagalpur",MBBS,EBC,15177,19897,20975,,State quota,Bihar,Government,no,
+"JLNMCH, Bhagalpur",MBBS,EBC,16711,24715,,,State quota · women,Bihar,Government,no,FEMALE
+"JLNMCH, Bhagalpur",MBBS,EWS,13999,14872,18662,,State quota,Bihar,Government,no,
+"JLNMCH, Bhagalpur",MBBS,EWS,16719,18130,20384,,State quota · women,Bihar,Government,no,FEMALE
+"JLNMCH, Bhagalpur",MBBS,BC,16078,17917,19254,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"JLNMCH, Bhagalpur",MBBS,EBC,16078,17917,19254,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"JLNMCH, Bhagalpur",MBBS,SC,108554,129449,132941,,State quota,Bihar,Government,no,
+"JLNMCH, Bhagalpur",MBBS,SC,133957,144049,151814,,State quota · women,Bihar,Government,no,FEMALE
+"JLNMCH, Bhagalpur",MBBS,ST,93345,93345,152399,,State quota,Bihar,Government,no,
+"JLNMCH, Bhagalpur",MBBS,OPEN,11851,13257,15957,,State quota,Bihar,Government,no,
+"JLNMCH, Bhagalpur",MBBS,OPEN,10483,16677,18749,,State quota · women,Bihar,Government,no,FEMALE
+"K K Medical College and Hospital, Nalanda",MBBS,OPEN,527057,945392,963367,,"Private (UR, all-India)",Bihar,Private,yes,
+"Katihar Medical College, Katihar",MBBS,OPEN,136930,235018,,,Special,Bihar,Private,no,MINORITY
+"Katihar Medical College, Katihar",MBBS,OPEN,729477,1084974,1139123,,Special,Bihar,Private,no,NRI
+"Katihar Medical College, Katihar",MBBS,OPEN,44078,147573,174506,,"Private (UR, all-India)",Bihar,Private,yes,
+Kurma Sanskriti Medical College and Hospital Kurma Jehanabad,MBBS,OPEN,519909,814471,873239,,"Private (UR, all-India)",Bihar,Private,yes,
+"Lord Budha Koshi Medical College & Hospital, Saharsa",MBBS,OPEN,760736,1170719,,,Special,Bihar,Private,no,NRI
+"Lord Budha Koshi Medical College & Hospital, Saharsa",MBBS,OPEN,38658,335871,397811,,"Private (UR, all-India)",Bihar,Private,yes,
+"Madhubani Medical College, Madhubani",MBBS,OPEN,327928,608466,,,Special,Bihar,Private,no,MINORITY
+"Madhubani Medical College, Madhubani",MBBS,OPEN,614748,614748,614748,yes,Special,Bihar,Private,no,NRI
+"Madhubani Medical College, Madhubani",MBBS,OPEN,57231,445593,535089,,"Private (UR, all-India)",Bihar,Private,yes,
+"Mahabodhi Medical College and Hospital, Gayaji",MBBS,OPEN,338091,857018,1185598,,"Private (UR, all-India)",Bihar,Private,yes,
+"Mamta Medical College and Hospital, Siwan",MBBS,OPEN,486532,1039419,1177011,,"Private (UR, all-India)",Bihar,Private,yes,
+"MGMMC & LSK Hospital, Kishanganj",MBBS,OPEN,765694,1123275,,,Special,Bihar,Private,no,NRI
+"MGMMC & LSK Hospital, Kishanganj",MBBS,OPEN,180284,442613,,,Special,Bihar,Private,no,MINORITY
+"MGMMC & LSK Hospital, Kishanganj",MBBS,OPEN,37417,138097,,,"Private (UR, all-India)",Bihar,Private,yes,
+Mithila Minority Dental College & Hospital,BDS,OPEN,212236,805266,,,"Private (UR, all-India)",Bihar,Private,yes,
+Netaji Subhas Medical College & Hospital,MBBS,OPEN,996867,996867,,,Special,Bihar,Private,no,NRI
+Netaji Subhas Medical College & Hospital,MBBS,OPEN,107968,493905,530223,,"Private (UR, all-India)",Bihar,Private,yes,
+"Narayan Medical College, Sasaram",MBBS,OPEN,811132,1165745,1177787,,Special,Bihar,Private,no,NRI
+"Narayan Medical College, Sasaram",MBBS,OPEN,112750,280725,292699,,"Private (UR, all-India)",Bihar,Private,yes,
+"Nalanda Medical College (NMCH), Patna",MBBS,BC,8913,9308,11264,,State quota,Bihar,Government,no,
+"Nalanda Medical College (NMCH), Patna",MBBS,BC,10317,12288,12888,,State quota · women,Bihar,Government,no,FEMALE
+"Nalanda Medical College (NMCH), Patna",MBBS,OPEN,560211,609675,638439,,Special,Bihar,Government,no,SPECIAL
+"Nalanda Medical College (NMCH), Patna",MBBS,EBC,9315,11330,11981,,State quota,Bihar,Government,no,
+"Nalanda Medical College (NMCH), Patna",MBBS,EBC,10374,13628,14097,,State quota · women,Bihar,Government,no,FEMALE
+"Nalanda Medical College (NMCH), Patna",MBBS,EWS,9206,9904,12979,,State quota,Bihar,Government,no,
+"Nalanda Medical College (NMCH), Patna",MBBS,EWS,10639,12337,12668,,State quota · women,Bihar,Government,no,FEMALE
+"Nalanda Medical College (NMCH), Patna",MBBS,BC,11221,12363,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Nalanda Medical College (NMCH), Patna",MBBS,EBC,11221,12363,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Nalanda Medical College (NMCH), Patna",MBBS,SC,66920,92393,96119,,State quota,Bihar,Government,no,
+"Nalanda Medical College (NMCH), Patna",MBBS,SC,81992,104058,106402,,State quota · women,Bihar,Government,no,FEMALE
+"Nalanda Medical College (NMCH), Patna",MBBS,ST,64851,64851,133394,,State quota,Bihar,Government,no,
+"Nalanda Medical College (NMCH), Patna",MBBS,ST,86817,86817,128364,,State quota · women,Bihar,Government,no,FEMALE
+"Nalanda Medical College (NMCH), Patna",MBBS,OPEN,7281,9814,11241,,State quota,Bihar,Government,no,
+"Nalanda Medical College (NMCH), Patna",MBBS,OPEN,8372,12038,12351,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Dental College, Patna",BDS,BC,38659,38659,,,State quota,Bihar,Government,no,
+"Patna Dental College, Patna",BDS,BC,37234,37234,39088,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Dental College, Patna",BDS,OPEN,946320,961608,,,Special,Bihar,Government,no,SPECIAL
+"Patna Dental College, Patna",BDS,EBC,37649,39584,,,State quota,Bihar,Government,no,
+"Patna Dental College, Patna",BDS,EBC,35780,36236,,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Dental College, Patna",BDS,EWS,36632,40060,,,State quota,Bihar,Government,no,
+"Patna Dental College, Patna",BDS,EWS,40637,40637,,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Dental College, Patna",BDS,BC,38039,38039,39510,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Patna Dental College, Patna",BDS,EBC,38039,38039,39510,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Patna Dental College, Patna",BDS,SC,154815,172201,,,State quota,Bihar,Government,no,
+"Patna Dental College, Patna",BDS,SC,178665,180530,,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Dental College, Patna",BDS,OPEN,31154,38161,,,State quota,Bihar,Government,no,
+"Patna Dental College, Patna",BDS,OPEN,30062,35580,,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Medical College (PMCH), Patna",MBBS,BC,6218,7081,,,State quota,Bihar,Government,no,
+"Patna Medical College (PMCH), Patna",MBBS,BC,7937,7937,9340,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Medical College (PMCH), Patna",MBBS,OPEN,11324,550784,,,Special,Bihar,Government,no,SPECIAL
+"Patna Medical College (PMCH), Patna",MBBS,EBC,8051,8132,8159,,State quota,Bihar,Government,no,
+"Patna Medical College (PMCH), Patna",MBBS,EBC,8709,8709,9296,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Medical College (PMCH), Patna",MBBS,EWS,7016,7651,7741,,State quota,Bihar,Government,no,
+"Patna Medical College (PMCH), Patna",MBBS,BC,8652,9142,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Patna Medical College (PMCH), Patna",MBBS,EBC,8652,9142,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"Patna Medical College (PMCH), Patna",MBBS,SC,57148,66228,,,State quota,Bihar,Government,no,
+"Patna Medical College (PMCH), Patna",MBBS,SC,46265,78299,81992,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Medical College (PMCH), Patna",MBBS,ST,38273,38273,106209,,State quota,Bihar,Government,no,
+"Patna Medical College (PMCH), Patna",MBBS,ST,58641,58641,,,State quota · women,Bihar,Government,no,FEMALE
+"Patna Medical College (PMCH), Patna",MBBS,OPEN,3606,6670,7374,,State quota,Bihar,Government,no,
+"Patna Medical College (PMCH), Patna",MBBS,OPEN,4367,6757,7427,,State quota · women,Bihar,Government,no,FEMALE
+"RDJM Medical College & Hospital, Muzaffarpur",MBBS,OPEN,953950,953950,953950,yes,Special,Bihar,Private,no,NRI
+"RDJM Medical College & Hospital, Muzaffarpur",MBBS,OPEN,141361,448379,538654,,"Private (UR, all-India)",Bihar,Private,yes,
+Sarjug Dental College & Hospital Laheriasarai,BDS,OPEN,224315,727405,,,"Private (UR, all-India)",Bihar,Private,yes,
+"Shri Narayan Medical Institute & Hospital, Saharsa",MBBS,OPEN,861513,997245,,,Special,Bihar,Private,no,NRI
+"Shri Narayan Medical Institute & Hospital, Saharsa",MBBS,OPEN,142611,395308,472452,,"Private (UR, all-India)",Bihar,Private,yes,
+"Shrinivas (G) Educational & Research Institute of Medical Sciences, Saran",MBBS,OPEN,1013077,1013077,,,Special,Bihar,Private,no,NRI
+"Shrinivas (G) Educational & Research Institute of Medical Sciences, Saran",MBBS,OPEN,485834,703325,755102,,"Private (UR, all-India)",Bihar,Private,yes,
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,BC,17485,18932,25483,,State quota,Bihar,Private,no,
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,BC,25715,26601,28055,,State quota · women,Bihar,Private,no,FEMALE
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,OPEN,500211,591750,,,Special,Bihar,Private,no,SPECIAL
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,EBC,24779,25450,27288,,State quota,Bihar,Private,no,
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,EBC,29099,29447,29553,,State quota · women,Bihar,Private,no,FEMALE
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,EWS,20507,23344,29126,,State quota,Bihar,Private,no,
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,EWS,27069,27845,30709,,State quota · women,Bihar,Private,no,FEMALE
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,BC,26762,26994,28137,,State quota · backward-class women (RCG),Bihar,Private,no,FEMALE
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,EBC,26762,26994,28137,,State quota · backward-class women (RCG),Bihar,Private,no,FEMALE
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,SC,146464,148821,153750,,State quota,Bihar,Private,no,
+"Shri Ram Janki Medical College and Hospital, Samastipur",MBBS,SC,160504,163017,,,State quota · women,Bihar,Private,no,FEMALE
+"Shyamlal Chandrashekhar Medical College, Khagaria",MBBS,OPEN,1184199,1184199,1184199,yes,Special,Bihar,Private,no,NRI
+"Shyamlal Chandrashekhar Medical College, Khagaria",MBBS,OPEN,143551,733285,825719,,"Private (UR, all-India)",Bihar,Private,yes,
+"SKMCH, Muzaffarpur",MBBS,BC,12033,12881,16515,,State quota,Bihar,Government,no,
+"SKMCH, Muzaffarpur",MBBS,BC,14578,18088,18433,,State quota · women,Bihar,Government,no,FEMALE
+"SKMCH, Muzaffarpur",MBBS,OPEN,321014,629523,,,Special,Bihar,Government,no,SPECIAL
+"SKMCH, Muzaffarpur",MBBS,EBC,12412,15780,17325,,State quota,Bihar,Government,no,
+"SKMCH, Muzaffarpur",MBBS,EBC,16204,21594,22120,,State quota · women,Bihar,Government,no,FEMALE
+"SKMCH, Muzaffarpur",MBBS,EWS,11990,13890,16700,,State quota,Bihar,Government,no,
+"SKMCH, Muzaffarpur",MBBS,EWS,14670,17904,18093,,State quota · women,Bihar,Government,no,FEMALE
+"SKMCH, Muzaffarpur",MBBS,BC,17204,17568,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"SKMCH, Muzaffarpur",MBBS,EBC,17204,17568,,,State quota · backward-class women (RCG),Bihar,Government,no,FEMALE
+"SKMCH, Muzaffarpur",MBBS,SC,94641,120634,,,State quota,Bihar,Government,no,
+"SKMCH, Muzaffarpur",MBBS,SC,118218,138854,144049,,State quota · women,Bihar,Government,no,FEMALE
+"SKMCH, Muzaffarpur",MBBS,ST,76589,76589,144660,,State quota,Bihar,Government,no,
+"SKMCH, Muzaffarpur",MBBS,OPEN,10720,12856,15670,,State quota,Bihar,Government,no,
+"SKMCH, Muzaffarpur",MBBS,OPEN,15043,16232,17929,,State quota · women,Bihar,Government,no,FEMALE
+"Viraat Ramayan Institute of Medical Sciences, East Champaran",MBBS,OPEN,494621,923564,1173886,,"Private (UR, all-India)",Bihar,Private,yes,
