@@ -121,10 +121,11 @@ export async function predict(input) {
     if (!s.courses.includes(input.course)) continue;
     const home = s.quota === input.homeState;
     if (!home && !s.openRows) continue; // nothing in this quota for out-of-state students
+    if (s.rankType === "STATE" && !home) continue; // other states' rank lists: the student has no rank there
     const myRank = s.rankType === "SCORE" ? input.score : s.rankType === "STATE" ? input.stateRank : input.air;
     if (!myRank) {
       if (s.rankType === "SCORE") notes.push(home ? `Add your NEET score to see ${s.name} colleges.` : `Add your NEET score to also see ${s.name} management-quota colleges.`);
-      else if (s.rankType === "STATE") { if (home) notes.push(`Add your ${s.name} state merit rank to see ${s.name} state-quota colleges.`); }
+      else if (s.rankType === "STATE") notes.push(`Add your ${s.quota === "KL" ? "KEAM" : `${s.name} state merit`} rank to see ${s.name} colleges.`);
       else notes.push(`Add your NEET All India Rank to see ${s.name} colleges.`);
       continue;
     }
@@ -388,6 +389,7 @@ const BUNDLED = [
   { file: "mcc_delhi_du_ip_2026.csv", quota: "DL", year: 2026, round: 3, rankType: "AIR", source: "MCC 2026 DU/IP University quota" },
   { file: "tn_2026.csv", quota: "TN", year: 2026, round: 2, rankType: "SCORE", source: "Tamil Nadu 2026 GQ / MQ / 7.5% allotments" },
   { file: "ka_2026.csv", quota: "KA", year: 2026, round: 2, rankType: "AIR", source: "KEA 2026 MBBS round 2 final allotment" },
+  { file: "kl_2026.csv", quota: "KL", year: 2026, round: 3, rankType: "STATE", source: "KEAM 2026 MBBS/BDS phase 2 + 3 allotments" },
 ];
 export async function seedBundledCutoffs() {
   const { readFile } = await import("fs/promises");

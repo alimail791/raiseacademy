@@ -33,7 +33,12 @@ const STATE_GROUPS: Record<string, { key: string; label: string }[]> = {
     { key: "KA_KK", label: "I am a Kalyana-Karnataka (Hyderabad-Karnataka, Article 371J) candidate" },
   ],
 };
-const STATE_CAT_LABEL: Record<string, string> = { OPEN: "General / OC / GM", "CAT-1": "Category-1", S1: "SC (S1)", S2: "SC (S2)", S3: "SC (S3)", S4: "SC (S4)" };
+const STATE_CAT_LABEL: Record<string, string> = {
+  OPEN: "General / OC / GM", "CAT-1": "Category-1", S1: "SC (S1)", S2: "SC (S2)", S3: "SC (S3)", S4: "SC (S4)",
+  EZ: "Ezhava (EZ)", MU: "Muslim (MU)", BH: "OBC Hindu (BH)", LA: "Latin Catholic & Anglo-Indian (LA)", DV: "Dheevara (DV)",
+  VK: "Viswakarma (VK)", BX: "OBC Christian (BX)", KN: "Kusavan (KN)", KU: "Kudumbi (KU)",
+};
+const STATE_RANK_LABEL: Record<string, string> = { KL: "KEAM rank" };
 export const BAND = {
   safe: { label: "Safe", cls: "bg-rise/15 text-rise-dark border-rise/40", note: "Your rank is well inside last year's closing rank" },
   likely: { label: "Good chance", cls: "bg-gold/20 text-ink dark:text-paper border-gold/50", note: "Your rank is within last year's closing rank" },
@@ -186,7 +191,7 @@ const NeetCollegePredictor = () => {
         </label>
         {homeQuota && homeQuota.rankType === "STATE" && (
           <label className="block">
-            <span className="text-sm font-semibold">{homeQuota.name} state merit rank</span>
+            <span className="text-sm font-semibold">{STATE_RANK_LABEL[homeQuota.code] || `${homeQuota.name} state merit rank`}</span>
             <input inputMode="numeric" value={form.stateRank} onChange={set("stateRank")} placeholder="from your state rank list" className="cp-in" />
           </label>
         )}
