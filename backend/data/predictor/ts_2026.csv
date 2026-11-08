@@ -1,0 +1,1231 @@
+college,course,category,opening_rank,closing_rank,stray_closing_rank,stray_only,seat_type,college_state,college_type,open_to_all,eligibility
+"Army College of Dental Sciences, Secunderabad",BDS,OPEN,82555,321314,,,Management B (all-India),Telangana,Private,yes,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-A,307636,307959,,,Competent authority,Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-B,190288,202748,,,Competent authority,Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-C,253454,257424,,,Competent authority,Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-D,179657,189027,,,Competent authority,Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-E,186226,191402,,,Competent authority,Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,OPEN,126394,175552,,,Competent authority,Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,SC-2,282132,289704,,,Competent authority,Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,SC-3,240235,252777,,,Competent authority,Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,ST,239167,248313,,,Competent authority,Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,OPEN,284343,284343,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-A,274981,279698,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-B,181667,192404,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-C,248139,248139,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-D,179888,181424,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,BC-E,189039,191005,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,OPEN,124652,161164,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,SC-1,560306,560306,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,SC-2,274817,282117,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,SC-3,239121,239121,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,ST,222095,241957,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,OPEN,203179,414523,,,Management B (Telangana local),Telangana,Private,no,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,OPEN,122573,143950,,,Management B (all-India),Telangana,Private,yes,
+"Arundathi Institute of Medical Sciences, Dundigal",MBBS,OPEN,481988,1184777,,,NRI,Telangana,Private,no,NRI
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,BC-A,135194,165045,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,BC-B,61221,94581,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,BC-C,135781,135781,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,BC-D,61179,67145,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,BC-E,41070,74771,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,EWS,40171,61999,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,OPEN,26689,38753,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,SC-1,323659,323659,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,SC-2,148623,209493,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,SC-3,107426,117751,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,ST,149302,177677,,,Competent authority,Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,OPEN,185910,185910,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,OPEN,583979,1095286,,,Competent authority (special),Telangana,Private,no,PWD
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,BC-A,135528,161801,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,BC-B,55968,78156,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,BC-D,52007,60326,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,BC-E,52967,52967,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,OPEN,26054,29678,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,SC-2,157840,198263,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,SC-3,115907,117195,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,ST,159684,165732,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,OPEN,78328,207788,,,Management B (Telangana local),Telangana,Private,no,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,OPEN,32562,73726,,,Management B (all-India),Telangana,Private,yes,
+"Apollo Institute of Medical Sciences and Research, Hyderabad",MBBS,OPEN,239907,504558,,,NRI,Telangana,Private,no,NRI
+Ayaan Institute of Medical Sciences,MBBS,OPEN,185539,217379,,,Competent authority (minority),Telangana,Private,no,MINORITY
+Ayaan Institute of Medical Sciences,MBBS,OPEN,413885,413885,,,Competent authority (special),Telangana,Private,no,DEFENCE
+Ayaan Institute of Medical Sciences,MBBS,OPEN,129155,499799,,,Management (minority),Telangana,Private,no,MINORITY
+Ayaan Institute of Medical Sciences,MBBS,OPEN,605135,1182988,,,NRI,Telangana,Private,no,NRI
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,BC-A,236837,284759,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,BC-B,145401,170795,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,BC-C,207001,207001,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,BC-D,154544,158689,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,BC-E,148058,153404,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,EWS,154964,154964,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,OPEN,96690,145131,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,SC-1,524719,524719,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,SC-2,262671,273811,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,SC-3,189401,233322,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,ST,219714,234429,,,Competent authority,Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,BC-A,244270,257929,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,BC-D,152114,152114,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,BC-E,152627,152627,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,OPEN,81827,129301,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,SC-2,227990,260064,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,SC-3,189050,199343,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,ST,205341,226009,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,OPEN,222228,293146,,,Management B (Telangana local),Telangana,Private,no,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,OPEN,93781,106331,,,Management B (all-India),Telangana,Private,yes,
+"Bhaskar Medical College, Moinabad, Rangareddy",MBBS,OPEN,386551,725049,,,NRI,Telangana,Private,no,NRI
+"Balaji Dental College, Moinabad",BDS,OPEN,371782,534538,,,Management B (Telangana local),Telangana,Private,no,
+"Balaji Dental College, Moinabad",BDS,OPEN,104405,370542,,,Management B (all-India),Telangana,Private,yes,
+"Balaji Dental College, Moinabad",BDS,OPEN,388594,863518,,,NRI,Telangana,Private,no,NRI
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,BC-A,215144,298096,,,Competent authority,Telangana,Private,no,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,BC-B,179817,192764,,,Competent authority,Telangana,Private,no,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,BC-D,173915,178792,,,Competent authority,Telangana,Private,no,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,BC-E,187566,199939,,,Competent authority,Telangana,Private,no,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,OPEN,132592,172511,,,Competent authority,Telangana,Private,no,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,SC-2,274807,288133,,,Competent authority,Telangana,Private,no,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,SC-3,233908,241665,,,Competent authority,Telangana,Private,no,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,ST,224469,232361,,,Competent authority,Telangana,Private,no,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,OPEN,398995,398995,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,BC-A,257624,272007,,,Competent authority · women,Telangana,Private,no,FEMALE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,BC-C,270646,270646,,,Competent authority · women,Telangana,Private,no,FEMALE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,BC-D,174461,174461,,,Competent authority · women,Telangana,Private,no,FEMALE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,BC-E,187184,195950,,,Competent authority · women,Telangana,Private,no,FEMALE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,OPEN,128079,167028,,,Competent authority · women,Telangana,Private,no,FEMALE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,SC-1,567562,567562,,,Competent authority · women,Telangana,Private,no,FEMALE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,SC-2,265144,265407,,,Competent authority · women,Telangana,Private,no,FEMALE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,SC-3,205249,223582,,,Competent authority · women,Telangana,Private,no,FEMALE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,ST,199051,229351,,,Competent authority · women,Telangana,Private,no,FEMALE
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,OPEN,225406,431549,,,Management B (Telangana local),Telangana,Private,no,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,OPEN,115119,150321,,,Management B (all-India),Telangana,Private,yes,
+"C Ananda Rao Institute of Medical Sciences, Karimnagar",MBBS,OPEN,437318,1181957,,,NRI,Telangana,Private,no,NRI
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,BC-A,281871,307954,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,BC-B,170769,206181,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,BC-C,219660,219660,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,BC-D,181658,194816,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,BC-E,175759,186862,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,OPEN,124696,167168,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,SC-1,576009,576009,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,SC-2,278013,290654,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,SC-3,233235,249492,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,ST,218058,242608,,,Competent authority,Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,OPEN,1045378,1045378,,,Competent authority (special),Telangana,Private,no,PWD
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,BC-A,223082,269566,,,Competent authority · women,Telangana,Private,no,FEMALE
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,BC-B,178586,199769,,,Competent authority · women,Telangana,Private,no,FEMALE
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,BC-D,186138,189238,,,Competent authority · women,Telangana,Private,no,FEMALE
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,BC-E,191956,191956,,,Competent authority · women,Telangana,Private,no,FEMALE
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,OPEN,103046,158573,,,Competent authority · women,Telangana,Private,no,FEMALE
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,SC-2,253215,277260,,,Competent authority · women,Telangana,Private,no,FEMALE
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,SC-3,213007,224324,,,Competent authority · women,Telangana,Private,no,FEMALE
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,ST,217442,225793,,,Competent authority · women,Telangana,Private,no,FEMALE
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,OPEN,236055,398175,,,Management B (Telangana local),Telangana,Private,no,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,OPEN,106423,128037,,,Management B (all-India),Telangana,Private,yes,
+"CMR Institute of Medical Sciences, Kandalkoya, Medchal",MBBS,OPEN,614346,1179735,,,NRI,Telangana,Private,no,NRI
+Deccan College of Medical Sciences,MBBS,OPEN,47184,124655,,,Competent authority (minority),Telangana,Private,no,MINORITY
+Deccan College of Medical Sciences,MBBS,OPEN,177829,177829,,,Competent authority (special),Telangana,Private,no,DEFENCE
+Deccan College of Medical Sciences,MBBS,OPEN,70586,289675,,,Management (minority),Telangana,Private,no,MINORITY
+Deccan College of Medical Sciences,MBBS,OPEN,349330,743162,,,NRI,Telangana,Private,no,NRI
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,BC-A,310235,316119,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,BC-B,177867,213103,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,BC-C,253800,267264,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,BC-D,183000,196433,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,BC-E,184175,196971,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,OPEN,164800,175934,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,SC-1,570949,570949,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,SC-2,279047,297168,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,SC-3,246470,250741,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,ST,222680,246177,,,Competent authority,Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,OPEN,337371,337371,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,OPEN,1009409,1009409,,,Competent authority (special),Telangana,Private,no,PWD
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,BC-A,296124,310752,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,BC-B,184874,209508,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,BC-D,178648,191309,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,BC-E,181900,194781,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,OPEN,137364,169623,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,SC-2,270803,288123,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,SC-3,225761,235414,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,ST,223943,228243,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,OPEN,296085,424680,,,Management B (Telangana local),Telangana,Private,no,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,OPEN,104092,138513,,,Management B (all-India),Telangana,Private,yes,
+"Dr Patnam Mahender Reddy Institute of Medical Sciences, Chevella",MBBS,OPEN,407698,919422,,,NRI,Telangana,Private,no,NRI
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,BC-A,109897,116836,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,BC-B,29491,55164,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,BC-C,51960,51960,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,BC-D,28964,43908,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,BC-E,49235,49235,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,EWS,33130,41883,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,OPEN,8286,25792,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,SC-1,241863,241863,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,SC-2,117640,123231,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,SC-3,60493,83505,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,ST,99283,107364,,,Competent authority,Telangana,Government,no,
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,OPEN,221170,221170,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,OPEN,335216,529521,,,Competent authority (special),Telangana,Government,no,PWD
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,BC-A,81053,81053,,,Competent authority · women,Telangana,Government,no,FEMALE
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,BC-B,47190,52492,,,Competent authority · women,Telangana,Government,no,FEMALE
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,BC-D,34248,34248,,,Competent authority · women,Telangana,Government,no,FEMALE
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,BC-E,49052,49052,,,Competent authority · women,Telangana,Government,no,FEMALE
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,EWS,28407,30278,,,Competent authority · women,Telangana,Government,no,FEMALE
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,OPEN,2663,11939,,,Competent authority · women,Telangana,Government,no,FEMALE
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,SC-2,117826,121670,,,Competent authority · women,Telangana,Government,no,FEMALE
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,SC-3,63110,79692,,,Competent authority · women,Telangana,Government,no,FEMALE
+"ESI Medical College, Sanathnagar, Hyderabad",MBBS,ST,81872,105656,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,BC-A,330561,335296,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,BC-B,205143,226040,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,BC-C,300200,300200,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,BC-D,203379,209479,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,BC-E,198134,218013,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,OPEN,167971,189409,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,SC-1,595172,595172,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,SC-2,292431,298495,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,SC-3,255151,258026,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,ST,237766,252952,,,Competent authority,Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,OPEN,370485,370485,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,BC-A,302636,326751,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,BC-B,201288,219716,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,BC-D,195801,202752,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,BC-E,216498,217908,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,OPEN,136215,185462,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,SC-2,269666,279876,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,SC-3,245774,245774,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,ST,235572,246582,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,OPEN,221037,596288,,,Management B (Telangana local),Telangana,Private,no,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,OPEN,125791,158683,,,Management B (all-India),Telangana,Private,yes,
+"Father Colombo Institute of Medical Sciences, Warangal",MBBS,OPEN,617387,1162499,,,NRI,Telangana,Private,no,NRI
+"Gandhi Medical College, Secunderabad",MBBS,BC-A,15470,58490,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,BC-B,10733,24408,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,BC-D,10978,26342,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,BC-E,17910,25053,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,EWS,10640,27626,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,OPEN,2105,10557,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,SC-1,172428,214686,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,SC-2,24172,88312,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,SC-3,16103,47387,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,ST,36188,78263,,,Competent authority,Telangana,Government,no,
+"Gandhi Medical College, Secunderabad",MBBS,OPEN,36248,104457,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Gandhi Medical College, Secunderabad",MBBS,OPEN,202676,618164,,,Competent authority (special),Telangana,Government,no,PWD
+"Gandhi Medical College, Secunderabad",MBBS,BC-A,14425,50190,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,BC-B,12267,17777,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,BC-C,79417,79417,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,BC-D,11558,26401,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,BC-E,12482,16399,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,EWS,11572,22045,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,OPEN,1976,11472,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,SC-1,251143,251143,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,SC-2,36902,64767,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,SC-3,11676,41877,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Gandhi Medical College, Secunderabad",MBBS,ST,44477,62217,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,BC-A,281870,284281,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,BC-B,184907,188006,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,BC-C,261269,261269,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,BC-D,172906,176241,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,BC-E,172127,172127,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,OPEN,162321,172069,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,SC-1,520050,520050,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,SC-2,245800,263117,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,SC-3,223676,228376,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,ST,213163,217301,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,OPEN,459794,459794,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,BC-A,264729,279608,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,BC-B,181219,184547,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,BC-D,172080,175102,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,BC-E,181308,181308,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,OPEN,139221,164089,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,SC-2,248057,289878,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,SC-3,225656,225924,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kumuram Bheem Asifabad",MBBS,ST,192957,217369,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Gadwal",MBBS,BC-A,284520,287623,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Gadwal",MBBS,BC-B,180299,183574,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Gadwal",MBBS,BC-D,170912,173719,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Gadwal",MBBS,BC-E,175582,175582,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Gadwal",MBBS,OPEN,162887,170480,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Gadwal",MBBS,SC-2,252506,252506,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Gadwal",MBBS,SC-3,223806,225706,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Gadwal",MBBS,ST,215209,217505,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Gadwal",MBBS,OPEN,319076,319076,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Gadwal",MBBS,BC-B,175775,177443,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Gadwal",MBBS,BC-D,170839,170839,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Gadwal",MBBS,OPEN,137892,166584,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Gadwal",MBBS,SC-1,491953,491953,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Gadwal",MBBS,SC-2,255220,255220,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Gadwal",MBBS,SC-3,195558,195558,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Gadwal",MBBS,ST,214985,215328,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,BC-A,257851,279696,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,BC-B,177578,182544,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,BC-C,236742,236742,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,BC-D,170240,170240,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,BC-E,174023,179358,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,OPEN,161217,169072,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,SC-1,512358,512358,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,SC-2,237193,252804,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,SC-3,212434,219830,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,ST,190154,213067,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,OPEN,237058,237058,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,BC-A,262358,267398,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,BC-B,172887,178073,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,BC-D,170126,170384,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,BC-E,180498,180498,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,OPEN,151324,166508,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,SC-2,239196,241422,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,SC-3,205734,205734,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jayashankar Bhupalpally",MBBS,ST,205934,213371,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jangaon",MBBS,BC-A,232237,255110,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jangaon",MBBS,BC-B,152719,165638,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jangaon",MBBS,BC-C,215200,215200,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jangaon",MBBS,BC-E,149200,149200,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jangaon",MBBS,OPEN,112930,147289,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jangaon",MBBS,SC-1,292201,292201,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jangaon",MBBS,SC-2,196103,228127,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jangaon",MBBS,SC-3,185842,204739,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jangaon",MBBS,ST,185151,193240,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jangaon",MBBS,OPEN,567510,567510,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Jangaon",MBBS,BC-A,197927,221809,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jangaon",MBBS,BC-B,147367,150739,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jangaon",MBBS,BC-D,149538,149538,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jangaon",MBBS,OPEN,92322,137175,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jangaon",MBBS,SC-2,217262,223775,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jangaon",MBBS,SC-3,175761,175761,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jangaon",MBBS,ST,164860,184390,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jagityal",MBBS,BC-A,200914,255648,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jagityal",MBBS,BC-B,161698,170867,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jagityal",MBBS,BC-D,157689,161017,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jagityal",MBBS,BC-E,166779,166779,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jagityal",MBBS,OPEN,103089,155937,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jagityal",MBBS,SC-1,489297,489297,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jagityal",MBBS,SC-2,225828,246427,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jagityal",MBBS,SC-3,195243,203271,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jagityal",MBBS,ST,178237,205735,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Jagityal",MBBS,OPEN,259459,259459,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Jagityal",MBBS,BC-A,209107,234519,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jagityal",MBBS,BC-B,158445,158445,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jagityal",MBBS,BC-D,160188,160188,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jagityal",MBBS,BC-E,157869,174387,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jagityal",MBBS,OPEN,101508,143277,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jagityal",MBBS,SC-2,193711,221635,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jagityal",MBBS,SC-3,181616,194900,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Jagityal",MBBS,ST,181807,207146,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kodangal",MBBS,BC-A,287628,288186,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kodangal",MBBS,BC-B,182963,187564,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kodangal",MBBS,BC-D,172087,172154,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kodangal",MBBS,OPEN,160123,169755,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kodangal",MBBS,SC-2,253925,260748,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kodangal",MBBS,SC-3,225918,230140,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kodangal",MBBS,ST,207445,214227,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kodangal",MBBS,BC-A,284412,284412,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kodangal",MBBS,BC-B,179521,182170,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kodangal",MBBS,BC-D,174287,174287,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kodangal",MBBS,BC-E,172061,172061,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kodangal",MBBS,OPEN,139063,167072,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kodangal",MBBS,SC-2,248179,248179,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kodangal",MBBS,SC-3,200857,200857,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kodangal",MBBS,ST,205570,205570,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Khammam",MBBS,BC-A,217811,228768,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Khammam",MBBS,BC-B,141571,151169,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Khammam",MBBS,BC-D,134107,137567,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Khammam",MBBS,BC-E,135764,147592,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Khammam",MBBS,OPEN,93651,133329,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Khammam",MBBS,SC-1,463757,463757,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Khammam",MBBS,SC-2,195369,220852,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Khammam",MBBS,SC-3,157582,191701,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Khammam",MBBS,ST,161142,209014,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Khammam",MBBS,OPEN,146681,146681,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Khammam",MBBS,BC-A,198812,217619,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Khammam",MBBS,BC-B,134908,134908,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Khammam",MBBS,BC-C,196887,196887,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Khammam",MBBS,EWS,141425,141425,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Khammam",MBBS,OPEN,63037,125378,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Khammam",MBBS,SC-2,199509,211720,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Khammam",MBBS,SC-3,149256,155939,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Khammam",MBBS,ST,162928,179642,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kamareddy",MBBS,BC-A,234398,251902,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kamareddy",MBBS,BC-B,157800,191895,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kamareddy",MBBS,BC-C,202763,202763,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kamareddy",MBBS,BC-D,144701,149976,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kamareddy",MBBS,BC-E,147206,147206,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kamareddy",MBBS,OPEN,121914,164912,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kamareddy",MBBS,SC-2,222171,245117,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kamareddy",MBBS,SC-3,171237,195066,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kamareddy",MBBS,ST,189367,200770,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Kamareddy",MBBS,BC-A,234503,241664,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kamareddy",MBBS,BC-B,146492,158071,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kamareddy",MBBS,BC-E,146362,146362,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kamareddy",MBBS,OPEN,105160,131145,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kamareddy",MBBS,SC-2,205027,228138,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kamareddy",MBBS,SC-3,175867,175867,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Kamareddy",MBBS,ST,181553,185501,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Karimnagar",MBBS,BC-A,189338,215767,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,BC-B,130953,141903,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,BC-D,118920,121772,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,BC-E,120830,120909,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,EWS,134388,134388,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,OPEN,90566,117608,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,SC-1,352203,352203,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,SC-2,145978,218067,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,SC-3,172192,185453,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,ST,159390,177711,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Karimnagar",MBBS,OPEN,324899,324899,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Karimnagar",MBBS,BC-A,193106,211079,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Karimnagar",MBBS,BC-B,120330,129582,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Karimnagar",MBBS,BC-E,119015,119015,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Karimnagar",MBBS,EWS,136308,138742,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Karimnagar",MBBS,OPEN,34719,95709,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Karimnagar",MBBS,SC-2,190902,214987,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Karimnagar",MBBS,SC-3,169898,169898,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Karimnagar",MBBS,ST,158343,166608,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,BC-A,219434,265175,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Bhadradri Kothagudem",MBBS,BC-B,161453,177015,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Bhadradri Kothagudem",MBBS,BC-C,245692,259806,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Bhadradri Kothagudem",MBBS,BC-E,169368,171276,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Bhadradri Kothagudem",MBBS,OPEN,130924,161194,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Bhadradri Kothagudem",MBBS,SC-1,444422,444422,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Bhadradri Kothagudem",MBBS,SC-2,204836,243463,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Bhadradri Kothagudem",MBBS,SC-3,162891,219368,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Bhadradri Kothagudem",MBBS,ST,180868,230236,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Bhadradri Kothagudem",MBBS,OPEN,189636,189636,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,BC-A,236643,263975,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,BC-B,165605,169512,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,BC-E,161424,166575,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,EWS,161826,163373,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,OPEN,117203,147496,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,SC-1,505964,505964,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,SC-2,210989,225358,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,SC-3,182263,214633,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Bhadradri Kothagudem",MBBS,ST,177550,194785,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mancherial",MBBS,BC-A,243565,245977,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,BC-B,151276,154071,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,BC-C,197084,197084,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,BC-D,154468,155934,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,BC-E,162573,162918,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,OPEN,88593,150761,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,SC-1,444431,444431,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,SC-2,210912,225816,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,SC-3,179683,193171,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,ST,174843,189056,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mancherial",MBBS,OPEN,358784,358784,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Mancherial",MBBS,BC-A,230103,242383,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mancherial",MBBS,BC-B,151158,154092,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mancherial",MBBS,BC-D,153408,154946,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mancherial",MBBS,OPEN,109005,140718,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mancherial",MBBS,SC-2,209667,219516,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mancherial",MBBS,SC-3,175936,175936,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mancherial",MBBS,ST,180322,192937,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,BC-A,111199,166538,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,BC-B,85123,95132,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,BC-C,152395,152395,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,BC-D,76882,86762,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,BC-E,83825,89620,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,EWS,77171,98833,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,OPEN,43725,76208,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,SC-1,314031,314031,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,SC-2,154153,179634,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,SC-3,104911,134157,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,ST,120250,142183,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubnagar",MBBS,OPEN,98781,98781,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Mahabubnagar",MBBS,OPEN,511423,511423,,,Competent authority (special),Telangana,Government,no,PWD
+"Govt Medical College, Mahabubnagar",MBBS,BC-A,140922,151430,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,BC-B,80832,85603,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,BC-C,137850,137850,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,BC-E,82134,82134,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,EWS,79451,79451,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,OPEN,36510,74964,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,SC-1,321137,321137,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,SC-2,142265,156151,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,SC-3,114311,115727,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubnagar",MBBS,ST,118882,132724,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Medak",MBBS,BC-A,256535,265224,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Medak",MBBS,BC-B,172943,172943,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Medak",MBBS,BC-E,166975,166975,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Medak",MBBS,OPEN,143930,164913,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Medak",MBBS,SC-2,219352,256149,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Medak",MBBS,SC-3,204981,210915,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Medak",MBBS,ST,179356,201654,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Medak",MBBS,BC-A,249340,250164,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Medak",MBBS,BC-E,178287,178287,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Medak",MBBS,OPEN,124719,161131,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Medak",MBBS,SC-2,199907,199907,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Medak",MBBS,SC-3,209409,209409,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Medak",MBBS,ST,170280,170280,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubabad",MBBS,BC-A,239312,241775,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubabad",MBBS,BC-B,149077,162982,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubabad",MBBS,BC-C,230403,230403,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubabad",MBBS,BC-E,151187,161907,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubabad",MBBS,EWS,150763,150763,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubabad",MBBS,OPEN,111611,147588,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubabad",MBBS,SC-2,209362,232301,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubabad",MBBS,SC-3,165179,191102,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubabad",MBBS,ST,167742,191207,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mahabubabad",MBBS,OPEN,279986,279986,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Mahabubabad",MBBS,BC-A,202708,250934,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubabad",MBBS,BC-D,149096,149096,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubabad",MBBS,BC-E,165382,165382,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubabad",MBBS,OPEN,109875,148048,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubabad",MBBS,SC-1,534209,534209,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubabad",MBBS,SC-2,204871,221665,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubabad",MBBS,SC-3,187087,187087,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mahabubabad",MBBS,ST,165220,185612,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Maheshwaram",MBBS,BC-A,217429,223597,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Maheshwaram",MBBS,BC-B,140720,140720,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Maheshwaram",MBBS,BC-D,139434,139434,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Maheshwaram",MBBS,BC-E,135105,135105,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Maheshwaram",MBBS,OPEN,104407,134306,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Maheshwaram",MBBS,SC-2,228951,241653,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Maheshwaram",MBBS,SC-3,197764,201351,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Maheshwaram",MBBS,ST,181905,187232,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Maheshwaram",MBBS,OPEN,903886,903886,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Maheshwaram",MBBS,OPEN,993713,993713,,,Competent authority (special),Telangana,Government,no,PWD
+"Govt Medical College, Maheshwaram",MBBS,BC-B,136652,137896,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Maheshwaram",MBBS,BC-C,241220,241220,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Maheshwaram",MBBS,EWS,137585,137585,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Maheshwaram",MBBS,OPEN,59975,119995,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Maheshwaram",MBBS,SC-2,226390,226390,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Maheshwaram",MBBS,SC-3,195098,195098,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Maheshwaram",MBBS,ST,173868,173868,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,BC-A,171233,193067,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,BC-B,104681,121249,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,BC-C,192779,192779,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,BC-D,105659,110002,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,BC-E,107160,114747,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,EWS,107148,107758,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,OPEN,73363,102072,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,SC-2,182987,193717,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,SC-3,141541,154177,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,ST,142191,157530,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nalgonda",MBBS,OPEN,892017,892017,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Nalgonda",MBBS,OPEN,730769,730769,,,Competent authority (special),Telangana,Government,no,PWD
+"Govt Medical College, Nalgonda",MBBS,BC-A,153996,183051,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,BC-B,105981,114523,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,BC-D,102289,104462,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,BC-E,104757,114058,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,EWS,107433,117244,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,OPEN,58920,93419,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,SC-1,455225,455225,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,SC-2,189605,192949,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,SC-3,136846,149022,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nalgonda",MBBS,ST,138937,150928,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Suryapet",MBBS,BC-A,170267,185474,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,BC-B,96083,112796,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,BC-D,94639,98967,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,BC-E,103022,121659,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,EWS,92081,106500,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,OPEN,59204,91964,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,SC-1,274876,274876,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,SC-2,161301,189228,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,SC-3,114248,142354,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,ST,127051,159311,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Suryapet",MBBS,OPEN,364421,364421,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Suryapet",MBBS,BC-A,161148,168383,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Suryapet",MBBS,BC-B,93849,104641,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Suryapet",MBBS,BC-C,161174,161174,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Suryapet",MBBS,BC-E,110219,117180,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Suryapet",MBBS,OPEN,62185,91086,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Suryapet",MBBS,SC-2,152486,172638,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Suryapet",MBBS,SC-3,111368,138973,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Suryapet",MBBS,ST,103107,150045,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mulugu",MBBS,BC-A,265558,278410,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mulugu",MBBS,BC-B,176271,187788,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mulugu",MBBS,BC-D,173750,173750,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mulugu",MBBS,BC-E,180158,180158,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mulugu",MBBS,OPEN,157709,168424,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mulugu",MBBS,SC-2,244894,260923,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mulugu",MBBS,SC-3,220351,221755,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mulugu",MBBS,ST,213014,217277,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Mulugu",MBBS,BC-A,262714,262714,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mulugu",MBBS,BC-B,172237,172237,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mulugu",MBBS,BC-D,168463,170449,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mulugu",MBBS,BC-E,170424,170424,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mulugu",MBBS,OPEN,125081,164379,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mulugu",MBBS,SC-2,230114,230114,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mulugu",MBBS,SC-3,215057,215966,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Mulugu",MBBS,ST,204887,209480,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nagarkurnool",MBBS,BC-A,195063,208647,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,BC-B,126414,134239,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,BC-C,180007,180007,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,BC-D,123306,123378,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,BC-E,122482,126800,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,EWS,125184,125852,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,OPEN,92823,122240,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,SC-1,484065,484065,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,SC-2,192739,203261,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,SC-3,159399,174108,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,ST,163288,173811,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nagarkurnool",MBBS,OPEN,290803,290803,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Nagarkurnool",MBBS,OPEN,932035,945705,,,Competent authority (special),Telangana,Government,no,PWD
+"Govt Medical College, Nagarkurnool",MBBS,BC-A,190861,197133,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nagarkurnool",MBBS,BC-B,123418,129810,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nagarkurnool",MBBS,BC-D,124808,126454,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nagarkurnool",MBBS,OPEN,102177,114306,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nagarkurnool",MBBS,SC-2,192955,199295,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nagarkurnool",MBBS,SC-3,137563,172432,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nagarkurnool",MBBS,ST,161609,164813,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nirmal",MBBS,BC-A,259853,275018,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nirmal",MBBS,BC-B,174269,178514,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nirmal",MBBS,BC-D,161621,165157,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nirmal",MBBS,BC-E,163079,172104,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nirmal",MBBS,OPEN,118297,161596,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nirmal",MBBS,SC-2,248278,257506,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nirmal",MBBS,SC-3,214012,219832,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nirmal",MBBS,ST,201270,209904,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nirmal",MBBS,OPEN,220531,220531,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Nirmal",MBBS,OPEN,958782,958782,,,Competent authority (special),Telangana,Government,no,PWD
+"Govt Medical College, Nirmal",MBBS,BC-A,228498,258017,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nirmal",MBBS,BC-B,171912,173877,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nirmal",MBBS,BC-C,234930,234930,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nirmal",MBBS,BC-E,164903,180310,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nirmal",MBBS,EWS,168341,168341,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nirmal",MBBS,OPEN,121727,171983,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nirmal",MBBS,SC-2,235365,251646,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nirmal",MBBS,SC-3,199014,212968,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nirmal",MBBS,ST,184903,207988,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narayanpet",MBBS,BC-A,264926,267427,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narayanpet",MBBS,BC-B,179395,183125,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narayanpet",MBBS,BC-D,167702,167702,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narayanpet",MBBS,BC-E,176061,176307,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narayanpet",MBBS,OPEN,159419,166865,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narayanpet",MBBS,SC-1,485970,485970,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narayanpet",MBBS,SC-2,232252,250550,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narayanpet",MBBS,SC-3,223548,223548,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narayanpet",MBBS,ST,209475,211115,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narayanpet",MBBS,OPEN,990373,990373,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Narayanpet",MBBS,BC-A,253118,253118,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narayanpet",MBBS,BC-E,170088,174202,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narayanpet",MBBS,OPEN,132468,159301,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narayanpet",MBBS,SC-3,227171,227171,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narayanpet",MBBS,ST,213488,213488,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narsampet",MBBS,BC-A,269784,273455,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narsampet",MBBS,BC-B,176415,183048,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narsampet",MBBS,BC-D,164936,166573,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narsampet",MBBS,BC-E,175572,175572,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narsampet",MBBS,OPEN,144629,161511,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narsampet",MBBS,SC-2,235130,251477,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narsampet",MBBS,SC-3,196850,196850,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narsampet",MBBS,ST,203258,211949,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Narsampet",MBBS,BC-A,249314,249314,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narsampet",MBBS,BC-B,168317,176110,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narsampet",MBBS,BC-E,180354,180354,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narsampet",MBBS,OPEN,140569,142227,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narsampet",MBBS,SC-2,234825,241219,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narsampet",MBBS,SC-3,212975,218479,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Narsampet",MBBS,ST,188231,188231,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Quthbullapur",MBBS,BC-A,195003,204724,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Quthbullapur",MBBS,BC-B,114242,114242,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Quthbullapur",MBBS,BC-D,125090,125090,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Quthbullapur",MBBS,BC-E,125780,129740,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Quthbullapur",MBBS,EWS,120196,120196,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Quthbullapur",MBBS,OPEN,72363,111660,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Quthbullapur",MBBS,SC-2,170119,217288,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Quthbullapur",MBBS,SC-3,120470,120470,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Quthbullapur",MBBS,ST,161159,177576,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Quthbullapur",MBBS,OPEN,300213,300213,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Quthbullapur",MBBS,OPEN,544938,544938,,,Competent authority (special),Telangana,Government,no,PWD
+"Govt Medical College, Quthbullapur",MBBS,BC-A,179501,215121,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Quthbullapur",MBBS,BC-D,117704,134335,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Quthbullapur",MBBS,BC-E,111709,128584,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Quthbullapur",MBBS,OPEN,66725,100151,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Quthbullapur",MBBS,SC-2,201265,201265,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Quthbullapur",MBBS,ST,154949,154949,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Sangareddy",MBBS,BC-A,149109,182159,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,BC-B,97864,112782,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,BC-C,139343,139343,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,BC-D,96110,100217,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,BC-E,91052,100902,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,EWS,91818,93478,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,OPEN,38008,90898,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,SC-1,334902,334902,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,SC-2,137838,188947,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,SC-3,138964,156249,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,ST,125517,159579,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Sangareddy",MBBS,OPEN,310564,310564,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Sangareddy",MBBS,BC-A,129402,157849,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Sangareddy",MBBS,BC-B,91141,97477,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Sangareddy",MBBS,BC-C,197846,197846,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Sangareddy",MBBS,BC-D,95215,96489,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Sangareddy",MBBS,OPEN,41018,101041,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Sangareddy",MBBS,SC-2,145566,174248,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Sangareddy",MBBS,SC-3,121646,154098,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Sangareddy",MBBS,ST,109260,150733,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Rajanna Sircilla",MBBS,BC-A,201154,240042,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Rajanna Sircilla",MBBS,BC-B,159728,171116,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Rajanna Sircilla",MBBS,BC-C,207073,207073,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Rajanna Sircilla",MBBS,BC-D,158367,158367,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Rajanna Sircilla",MBBS,BC-E,166614,166614,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Rajanna Sircilla",MBBS,OPEN,126476,157963,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Rajanna Sircilla",MBBS,SC-2,224614,243427,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Rajanna Sircilla",MBBS,SC-3,197226,206038,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Rajanna Sircilla",MBBS,ST,185814,204917,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Rajanna Sircilla",MBBS,OPEN,234424,234424,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Rajanna Sircilla",MBBS,BC-A,221416,230076,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Rajanna Sircilla",MBBS,BC-D,159339,159339,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Rajanna Sircilla",MBBS,OPEN,127845,156169,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Rajanna Sircilla",MBBS,SC-1,486540,486540,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Rajanna Sircilla",MBBS,SC-2,215060,230821,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Rajanna Sircilla",MBBS,SC-3,176302,193323,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Rajanna Sircilla",MBBS,ST,189411,202699,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Vikarabad",MBBS,BC-A,257731,269542,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,BC-B,153847,173759,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,BC-C,230818,230818,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,BC-D,152714,154234,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,BC-E,152998,159398,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,OPEN,134990,152556,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,SC-1,457759,457759,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,SC-2,230508,246734,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,SC-3,179347,209376,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,ST,183052,204745,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Vikarabad",MBBS,OPEN,215269,215269,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Vikarabad",MBBS,BC-A,232531,267112,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Vikarabad",MBBS,BC-B,158429,166711,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Vikarabad",MBBS,BC-E,160209,174056,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Vikarabad",MBBS,OPEN,120194,147453,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Vikarabad",MBBS,SC-2,190948,234469,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Vikarabad",MBBS,SC-3,173022,173022,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Vikarabad",MBBS,ST,178260,194916,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nizamabad",MBBS,BC-A,138924,157593,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,BC-B,76894,87248,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,BC-C,135635,135635,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,BC-D,76484,80703,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,BC-E,90816,100845,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,EWS,78288,98064,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,OPEN,58377,73964,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,SC-2,139355,164799,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,SC-3,101932,135837,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,ST,121423,141083,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Nizamabad",MBBS,OPEN,147917,147917,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Nizamabad",MBBS,OPEN,515256,1014146,,,Competent authority (special),Telangana,Government,no,PWD
+"Govt Medical College, Nizamabad",MBBS,BC-A,139962,143233,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nizamabad",MBBS,BC-B,75836,83143,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nizamabad",MBBS,BC-D,75177,79477,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nizamabad",MBBS,EWS,76878,87497,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nizamabad",MBBS,OPEN,44808,59804,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nizamabad",MBBS,SC-1,406244,406244,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nizamabad",MBBS,SC-2,134497,157455,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nizamabad",MBBS,SC-3,114411,115088,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Nizamabad",MBBS,ST,118879,131560,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Wanaparthy",MBBS,BC-A,196986,232221,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,BC-B,136726,144029,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,BC-C,213414,213414,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,BC-D,132726,137296,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,BC-E,135650,139182,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,EWS,133379,133379,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,OPEN,113262,131255,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,SC-1,367127,367127,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,SC-2,204823,211368,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,SC-3,168414,187281,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,ST,164692,179818,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Wanaparthy",MBBS,OPEN,338149,338149,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Wanaparthy",MBBS,OPEN,890427,890427,,,Competent authority (special),Telangana,Government,no,PWD
+"Govt Medical College, Wanaparthy",MBBS,BC-A,210246,215642,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Wanaparthy",MBBS,BC-B,135660,137904,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Wanaparthy",MBBS,BC-D,131878,132882,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Wanaparthy",MBBS,BC-E,135173,135173,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Wanaparthy",MBBS,OPEN,100061,127246,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Wanaparthy",MBBS,SC-2,201059,232687,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Wanaparthy",MBBS,SC-3,158125,166395,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Wanaparthy",MBBS,ST,166542,169265,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,BC-A,253985,262468,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,BC-D,151459,151805,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,BC-E,153908,153908,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,OPEN,126876,151347,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,SC-2,206208,238548,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,SC-3,201112,201118,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,ST,170726,195529,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,BC-A,215377,215377,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,OPEN,128562,147543,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,SC-2,201470,201470,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,SC-3,200812,200812,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Yadadri Bhuvanagiri",MBBS,ST,187333,191386,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kamineni Institute of Dental Sciences, Narketpally",BDS,OPEN,367768,679529,,,Management B (Telangana local),Telangana,Private,no,
+"Kamineni Institute of Dental Sciences, Narketpally",BDS,OPEN,292370,360037,,,Management B (all-India),Telangana,Private,yes,
+"Kamineni Institute of Dental Sciences, Narketpally",BDS,OPEN,695864,1171805,,,NRI,Telangana,Private,no,NRI
+"Kakatiya Medical College, Warangal",MBBS,BC-A,121741,138857,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,BC-B,57122,71360,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,BC-C,109213,128909,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,BC-D,44456,57475,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,BC-E,55222,74857,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,EWS,50242,71913,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,OPEN,21055,43880,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,SC-1,253041,253041,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,SC-2,119392,135874,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,SC-3,82702,99369,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,ST,99434,117784,,,Competent authority,Telangana,Government,no,
+"Kakatiya Medical College, Warangal",MBBS,OPEN,79561,90972,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Kakatiya Medical College, Warangal",MBBS,OPEN,382188,1051100,,,Competent authority (special),Telangana,Government,no,PWD
+"Kakatiya Medical College, Warangal",MBBS,BC-A,88279,128152,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,BC-B,55008,65516,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,BC-C,98048,119133,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,BC-D,44675,47195,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,BC-E,56030,64178,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,EWS,45208,62037,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,OPEN,26870,43074,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,SC-1,311656,321046,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,SC-2,126542,134378,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,SC-3,79517,93505,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kakatiya Medical College, Warangal",MBBS,ST,100111,108547,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,BC-A,195225,213872,,,Competent authority,Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,BC-B,85653,122051,,,Competent authority,Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,BC-D,84413,84413,,,Competent authority,Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,BC-E,122467,124726,,,Competent authority,Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,OPEN,35016,80247,,,Competent authority,Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,SC-1,341067,341067,,,Competent authority,Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,SC-2,171937,215052,,,Competent authority,Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,SC-3,120622,145675,,,Competent authority,Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,ST,177565,211439,,,Competent authority,Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,OPEN,414111,414111,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,OPEN,839411,839411,,,Competent authority (special),Telangana,Private,no,PWD
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,BC-A,169664,178798,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,BC-B,89670,96856,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,BC-D,81077,81077,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,BC-E,121876,121876,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,EWS,84240,84240,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,OPEN,41033,54443,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,SC-2,203985,203985,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,SC-3,140479,140479,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,ST,149107,183055,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,OPEN,148967,233248,,,Management B (Telangana local),Telangana,Private,no,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,OPEN,73436,100918,,,Management B (all-India),Telangana,Private,yes,
+"Kamineni Academy of Medical Sciences and Research, Hyderabad",MBBS,OPEN,267665,609689,,,NRI,Telangana,Private,no,NRI
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,BC-A,270614,313355,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,BC-B,157154,199005,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,BC-C,206996,237315,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,BC-D,157680,166640,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,BC-E,185478,189490,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,OPEN,92130,156678,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,SC-1,531816,531816,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,SC-2,274699,279908,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,SC-3,203174,233119,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,ST,222605,230498,,,Competent authority,Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,OPEN,358621,358621,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,BC-A,206949,266404,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,BC-D,159679,159679,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,BC-E,176024,176024,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,OPEN,82140,140868,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,SC-2,245972,272376,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,SC-3,196900,196900,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,ST,213107,219608,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,OPEN,217676,365793,,,Management B (Telangana local),Telangana,Private,no,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,OPEN,94012,138749,,,Management B (all-India),Telangana,Private,yes,
+"Kamineni Institute of Medical Sciences, Narketpally",MBBS,OPEN,625762,1171694,,,NRI,Telangana,Private,no,NRI
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-A,297314,323778,,,Competent authority,Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-B,193005,217374,,,Competent authority,Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-C,268042,268042,,,Competent authority,Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-D,185394,199249,,,Competent authority,Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-E,199018,203098,,,Competent authority,Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,OPEN,161475,182982,,,Competent authority,Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,SC-2,294734,300853,,,Competent authority,Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,SC-3,250904,257706,,,Competent authority,Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,ST,242445,248584,,,Competent authority,Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-A,300381,318457,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-B,198813,215044,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-C,277554,277554,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-D,185587,197166,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,BC-E,187060,191047,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,OPEN,125001,179204,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,SC-1,587257,587257,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,SC-2,279616,300103,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,SC-3,222086,250698,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,ST,241716,248812,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Maheshwara Medical College, Patancheru, Medak",MBBS,OPEN,306994,469889,,,Management B (Telangana local),Telangana,Private,no,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,OPEN,105015,143069,,,Management B (all-India),Telangana,Private,yes,
+"Maheshwara Medical College, Patancheru, Medak",MBBS,OPEN,357850,1067620,,,NRI,Telangana,Private,no,NRI
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,BC-A,197282,230386,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,BC-B,111243,127853,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,BC-D,98084,109154,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,BC-E,100215,128099,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,EWS,101696,126644,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,OPEN,44402,80395,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,SC-1,479156,479156,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,SC-2,235052,259865,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,SC-3,159318,176894,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,ST,175589,216264,,,Competent authority,Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,OPEN,148999,148999,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,OPEN,1011851,1011851,,,Competent authority (special),Telangana,Private,no,PWD
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,BC-A,133535,215310,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,BC-B,92076,121702,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,BC-C,138923,138923,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,BC-D,89480,91011,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,BC-E,123779,123779,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,EWS,109975,122087,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,OPEN,37096,61714,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,SC-2,214972,253158,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,SC-3,127859,155472,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,ST,191495,213266,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,OPEN,176067,248864,,,Management B (Telangana local),Telangana,Private,no,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,OPEN,68475,100764,,,Management B (all-India),Telangana,Private,yes,
+"Mamata Academy of Medical Sciences, Bachupally",MBBS,OPEN,392746,658599,,,NRI,Telangana,Private,no,NRI
+"Mamata Dental College, Khammam",BDS,OPEN,401350,713329,,,Management B (Telangana local),Telangana,Private,no,
+"Mamata Dental College, Khammam",BDS,OPEN,260422,444307,,,Management B (all-India),Telangana,Private,yes,
+"Mamata Dental College, Khammam",BDS,OPEN,650224,945943,,,NRI,Telangana,Private,no,NRI
+Medicity Institute of Medical Sciences,MBBS,BC-A,293272,300157,,,Competent authority,Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,BC-B,187262,195249,,,Competent authority,Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,BC-D,173765,185377,,,Competent authority,Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,BC-E,178673,178673,,,Competent authority,Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,OPEN,130500,166389,,,Competent authority,Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,SC-1,540929,540929,,,Competent authority,Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,SC-2,272710,284276,,,Competent authority,Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,SC-3,225618,236602,,,Competent authority,Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,ST,226003,236847,,,Competent authority,Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,OPEN,1094079,1094079,,,Competent authority (special),Telangana,Private,no,DEFENCE
+Medicity Institute of Medical Sciences,MBBS,BC-A,269418,290080,,,Competent authority · women,Telangana,Private,no,FEMALE
+Medicity Institute of Medical Sciences,MBBS,BC-B,173805,189645,,,Competent authority · women,Telangana,Private,no,FEMALE
+Medicity Institute of Medical Sciences,MBBS,BC-C,243766,243766,,,Competent authority · women,Telangana,Private,no,FEMALE
+Medicity Institute of Medical Sciences,MBBS,BC-D,166459,172196,,,Competent authority · women,Telangana,Private,no,FEMALE
+Medicity Institute of Medical Sciences,MBBS,OPEN,88671,151781,,,Competent authority · women,Telangana,Private,no,FEMALE
+Medicity Institute of Medical Sciences,MBBS,SC-2,264824,269572,,,Competent authority · women,Telangana,Private,no,FEMALE
+Medicity Institute of Medical Sciences,MBBS,SC-3,213299,213299,,,Competent authority · women,Telangana,Private,no,FEMALE
+Medicity Institute of Medical Sciences,MBBS,ST,217498,230792,,,Competent authority · women,Telangana,Private,no,FEMALE
+Medicity Institute of Medical Sciences,MBBS,OPEN,211172,380606,,,Management B (Telangana local),Telangana,Private,no,
+Medicity Institute of Medical Sciences,MBBS,OPEN,83365,113373,,,Management B (all-India),Telangana,Private,yes,
+Medicity Institute of Medical Sciences,MBBS,OPEN,616495,1060414,,,NRI,Telangana,Private,no,NRI
+"Meghana Institute of Dental Sciences, Nizamabad",BDS,OPEN,496886,771838,,,Management B (Telangana local),Telangana,Private,no,
+"Meghana Institute of Dental Sciences, Nizamabad",BDS,OPEN,475505,518600,,,Management B (all-India),Telangana,Private,yes,
+"Meghana Institute of Dental Sciences, Nizamabad",BDS,OPEN,725854,1179120,,,NRI,Telangana,Private,no,NRI
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-A,314918,325652,,,Competent authority,Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-B,215999,246585,,,Competent authority,Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-C,305676,307687,,,Competent authority,Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-D,197456,203045,,,Competent authority,Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-E,197191,207449,,,Competent authority,Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,OPEN,174403,188169,,,Competent authority,Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,SC-2,297808,303308,,,Competent authority,Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,SC-3,252072,258007,,,Competent authority,Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,ST,232487,248682,,,Competent authority,Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,OPEN,364724,389982,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-A,297183,305224,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-B,203312,218227,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-C,293864,293864,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-D,195724,200772,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,BC-E,193181,193181,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,OPEN,175778,185448,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,SC-1,606954,606954,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,SC-2,267200,300092,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,SC-3,248745,257656,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,ST,224221,248194,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,OPEN,336644,533391,,,Management B (Telangana local),Telangana,Private,no,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,OPEN,117191,151089,,,Management B (all-India),Telangana,Private,yes,
+"Mahavir Institute of Medical Sciences, Vikarabad",MBBS,OPEN,358026,1189326,,,NRI,Telangana,Private,no,NRI
+"Mamata Institute of Dental Sciences, Bachupally, Hyderabad",BDS,OPEN,234960,457566,,,Management B (Telangana local),Telangana,Private,no,
+"Mamata Institute of Dental Sciences, Bachupally, Hyderabad",BDS,OPEN,168974,298558,,,Management B (all-India),Telangana,Private,yes,
+"Mamata Institute of Dental Sciences, Bachupally, Hyderabad",BDS,OPEN,530338,951545,,,NRI,Telangana,Private,no,NRI
+"Mamata Medical College, Khammam",MBBS,BC-A,268915,288245,,,Competent authority,Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,BC-B,176384,188195,,,Competent authority,Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,BC-C,245672,245672,,,Competent authority,Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,BC-D,164087,164087,,,Competent authority,Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,EWS,170744,170744,,,Competent authority,Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,OPEN,102751,163610,,,Competent authority,Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,SC-2,250697,272230,,,Competent authority,Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,SC-3,207999,232491,,,Competent authority,Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,ST,197094,219979,,,Competent authority,Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,OPEN,350296,350296,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Mamata Medical College, Khammam",MBBS,BC-A,235210,267110,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Medical College, Khammam",MBBS,BC-B,168267,168267,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Medical College, Khammam",MBBS,EWS,166857,170284,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Medical College, Khammam",MBBS,OPEN,99027,146088,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Medical College, Khammam",MBBS,SC-1,540255,540255,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Medical College, Khammam",MBBS,SC-2,258154,267154,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Medical College, Khammam",MBBS,SC-3,213176,213409,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Medical College, Khammam",MBBS,ST,191624,217881,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Mamata Medical College, Khammam",MBBS,OPEN,230864,353335,,,Management B (Telangana local),Telangana,Private,no,
+"Mamata Medical College, Khammam",MBBS,OPEN,35917,121348,,,Management B (all-India),Telangana,Private,yes,
+"Mamata Medical College, Khammam",MBBS,OPEN,491082,1186650,,,NRI,Telangana,Private,no,NRI
+"M.N.R. Dental College, Fasalwadi",BDS,OPEN,457717,705049,,,Management B (Telangana local),Telangana,Private,no,
+"M.N.R. Dental College, Fasalwadi",BDS,OPEN,209989,493889,,,Management B (all-India),Telangana,Private,yes,
+"M.N.R. Dental College, Fasalwadi",BDS,OPEN,635329,1157490,,,NRI,Telangana,Private,no,NRI
+"MNR Medical College, Sangareddy",MBBS,BC-A,296064,315823,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,BC-B,190210,213594,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,BC-C,263383,263383,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,BC-D,185873,196898,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,BC-E,185473,208764,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,OPEN,138905,178367,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,SC-1,555568,555568,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,SC-2,279347,297788,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,SC-3,241340,245951,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,ST,215603,244297,,,Competent authority,Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,OPEN,1192716,1192716,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"MNR Medical College, Sangareddy",MBBS,BC-A,278574,312125,,,Competent authority · women,Telangana,Private,no,FEMALE
+"MNR Medical College, Sangareddy",MBBS,BC-B,187495,204824,,,Competent authority · women,Telangana,Private,no,FEMALE
+"MNR Medical College, Sangareddy",MBBS,BC-C,239100,262565,,,Competent authority · women,Telangana,Private,no,FEMALE
+"MNR Medical College, Sangareddy",MBBS,BC-D,187150,188298,,,Competent authority · women,Telangana,Private,no,FEMALE
+"MNR Medical College, Sangareddy",MBBS,BC-E,201403,203986,,,Competent authority · women,Telangana,Private,no,FEMALE
+"MNR Medical College, Sangareddy",MBBS,OPEN,144335,177536,,,Competent authority · women,Telangana,Private,no,FEMALE
+"MNR Medical College, Sangareddy",MBBS,SC-2,264478,282574,,,Competent authority · women,Telangana,Private,no,FEMALE
+"MNR Medical College, Sangareddy",MBBS,SC-3,203541,239994,,,Competent authority · women,Telangana,Private,no,FEMALE
+"MNR Medical College, Sangareddy",MBBS,ST,220483,237167,,,Competent authority · women,Telangana,Private,no,FEMALE
+"MNR Medical College, Sangareddy",MBBS,OPEN,321491,482632,,,Management B (Telangana local),Telangana,Private,no,
+"MNR Medical College, Sangareddy",MBBS,OPEN,117408,155861,,,Management B (all-India),Telangana,Private,yes,
+"MNR Medical College, Sangareddy",MBBS,OPEN,609834,1151307,,,NRI,Telangana,Private,no,NRI
+"Neelima Institute of Medical Sciences, Ghatkesar",MBBS,OPEN,252839,567804,,,Management B (Telangana local),Telangana,Private,no,
+"Neelima Institute of Medical Sciences, Ghatkesar",MBBS,OPEN,166654,290088,,,Management B (all-India),Telangana,Private,yes,
+"Neelima Institute of Medical Sciences, Ghatkesar",MBBS,OPEN,464892,1187099,,,NRI,Telangana,Private,no,NRI
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,BC-A,319691,340808,,,Competent authority,Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,BC-B,221393,226036,,,Competent authority,Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,BC-C,310242,313236,,,Competent authority,Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,BC-D,197015,211152,,,Competent authority,Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,BC-E,213037,247534,,,Competent authority,Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,OPEN,181174,194845,,,Competent authority,Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,SC-2,301571,309057,,,Competent authority,Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,SC-3,262393,264720,,,Competent authority,Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,ST,240839,258139,,,Competent authority,Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,OPEN,479016,479016,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,BC-A,302839,332217,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,BC-B,196390,221505,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,BC-D,195220,209136,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,BC-E,195561,211022,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,OPEN,177748,191668,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,SC-1,604509,604509,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,SC-2,284413,297436,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,SC-3,244434,248709,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,ST,228311,255976,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,OPEN,259708,603085,,,Management B (Telangana local),Telangana,Private,no,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,OPEN,142442,165439,,,Management B (all-India),Telangana,Private,yes,
+"Nova Institute of Medical Sciences, Hayathnagar, Rangareddy",MBBS,OPEN,921951,1160218,,,NRI,Telangana,Private,no,NRI
+"Osmania Medical College, Hyderabad",MBBS,BC-A,61218,112518,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,BC-B,29506,53967,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,BC-C,26958,93530,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,BC-D,26813,43238,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,BC-E,26711,38629,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,EWS,30001,37901,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,OPEN,4381,25448,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,SC-1,165232,165232,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,SC-2,69189,130538,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,SC-3,48498,71309,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,ST,82487,98810,,,Competent authority,Telangana,Government,no,
+"Osmania Medical College, Hyderabad",MBBS,OPEN,70116,103086,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Osmania Medical College, Hyderabad",MBBS,OPEN,248170,1020047,,,Competent authority (special),Telangana,Government,no,PWD
+"Osmania Medical College, Hyderabad",MBBS,BC-A,62017,86095,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,BC-B,25786,31709,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,BC-C,85656,85656,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,BC-D,26490,31835,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,BC-E,33234,46703,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,EWS,28870,30614,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,OPEN,10707,19732,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,SC-1,93703,93703,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,SC-2,94270,117255,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,SC-3,46378,53321,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Osmania Medical College, Hyderabad",MBBS,ST,79671,96256,,,Competent authority · women,Telangana,Government,no,FEMALE
+Panineeya Maha Vidyalaya Institute of Dental Sciences,BDS,OPEN,250516,391682,,,Management B (Telangana local),Telangana,Private,no,
+Panineeya Maha Vidyalaya Institute of Dental Sciences,BDS,OPEN,116540,260906,,,Management B (all-India),Telangana,Private,yes,
+Panineeya Maha Vidyalaya Institute of Dental Sciences,BDS,OPEN,401951,715104,,,NRI,Telangana,Private,no,NRI
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,BC-A,310517,317036,,,Competent authority,Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,BC-B,193107,216435,,,Competent authority,Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,BC-C,289859,305570,,,Competent authority,Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,BC-D,183020,195119,,,Competent authority,Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,BC-E,192768,209131,,,Competent authority,Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,OPEN,155127,176030,,,Competent authority,Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,SC-2,274950,293573,,,Competent authority,Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,SC-3,253309,254020,,,Competent authority,Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,ST,236820,242675,,,Competent authority,Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,OPEN,253487,253487,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,BC-A,290532,298421,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,BC-B,197230,211945,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,BC-D,178091,193046,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,BC-E,198224,198224,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,OPEN,166717,174728,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,SC-1,582983,582983,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,SC-2,273460,274966,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,SC-3,233302,245839,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,ST,229724,239492,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,OPEN,277025,535346,,,Management B (Telangana local),Telangana,Private,no,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,OPEN,108725,157731,,,Management B (all-India),Telangana,Private,yes,
+"Pratima Relief Institute of Medical Sciences, Warangal",MBBS,OPEN,563441,1164865,,,NRI,Telangana,Private,no,NRI
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-A,300141,309684,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-B,190886,200799,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-C,298089,298089,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-D,181363,185958,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-E,181875,204862,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,OPEN,149729,174057,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,SC-1,554993,554993,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,SC-2,267923,280755,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,SC-3,221160,242375,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,ST,209039,235654,,,Competent authority,Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,OPEN,356862,356862,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-A,217421,324344,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-B,179673,193414,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-C,276908,276908,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-D,175155,182271,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,BC-E,178353,178353,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,OPEN,137151,168973,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,SC-2,253570,267781,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,SC-3,239296,239971,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,ST,209255,225915,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,OPEN,221640,434417,,,Management B (Telangana local),Telangana,Private,no,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,OPEN,114109,141442,,,Management B (all-India),Telangana,Private,yes,
+"Prathima Institute of Medical Sciences, Karimnagar",MBBS,OPEN,641809,1185523,,,NRI,Telangana,Private,no,NRI
+"Rajiv Institute of Medical Science, Adilabad",MBBS,BC-A,168381,197031,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,BC-B,100132,117232,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,BC-D,96760,105672,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,BC-E,107067,117407,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,EWS,110583,126871,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,OPEN,70089,96543,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,SC-1,276346,276346,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,SC-2,139089,193628,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,SC-3,154268,160208,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,ST,120871,154161,,,Competent authority,Telangana,Private,no,
+"Rajiv Institute of Medical Science, Adilabad",MBBS,OPEN,175642,175642,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Rajiv Institute of Medical Science, Adilabad",MBBS,OPEN,626794,926094,,,Competent authority (special),Telangana,Private,no,PWD
+"Rajiv Institute of Medical Science, Adilabad",MBBS,BC-A,158646,172171,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Rajiv Institute of Medical Science, Adilabad",MBBS,BC-B,97837,105716,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Rajiv Institute of Medical Science, Adilabad",MBBS,BC-C,173851,173851,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Rajiv Institute of Medical Science, Adilabad",MBBS,BC-D,97466,100632,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Rajiv Institute of Medical Science, Adilabad",MBBS,EWS,110136,122011,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Rajiv Institute of Medical Science, Adilabad",MBBS,OPEN,48080,86075,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Rajiv Institute of Medical Science, Adilabad",MBBS,SC-2,138799,181311,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Rajiv Institute of Medical Science, Adilabad",MBBS,SC-3,128328,147259,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Rajiv Institute of Medical Science, Adilabad",MBBS,ST,118981,138859,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,OPEN,300021,300021,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,BC-A,302788,339289,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,BC-B,206217,226555,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,BC-C,301017,301017,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,BC-D,205750,211098,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,BC-E,208929,214997,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,OPEN,156866,186679,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,SC-1,607920,607920,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,SC-2,267016,303370,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,SC-3,255205,264819,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,ST,239797,255424,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,OPEN,434830,559137,,,Management B (Telangana local) · women,Telangana,Private,no,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,OPEN,135022,166534,,,Management B (all-India) · women,Telangana,Private,yes,FEMALE
+"Raja Rajeshwari Institute of Medical Sciences, Patancheru, Sangareddy",MBBS,OPEN,247250,1172120,,,NRI,Telangana,Private,no,NRI
+"RVM Medical College, Mulugu",MBBS,BC-A,228556,333056,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,BC-B,178114,203228,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,BC-C,267387,267387,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,BC-D,170368,181313,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,BC-E,181342,202751,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,OPEN,80238,168356,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,SC-1,493462,493462,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,SC-2,255072,292246,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,SC-3,222568,248890,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,ST,221669,239911,,,Competent authority,Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,OPEN,261403,261403,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"RVM Medical College, Mulugu",MBBS,BC-A,272738,290290,,,Competent authority · women,Telangana,Private,no,FEMALE
+"RVM Medical College, Mulugu",MBBS,BC-B,170300,192786,,,Competent authority · women,Telangana,Private,no,FEMALE
+"RVM Medical College, Mulugu",MBBS,BC-E,189908,199704,,,Competent authority · women,Telangana,Private,no,FEMALE
+"RVM Medical College, Mulugu",MBBS,OPEN,121701,150426,,,Competent authority · women,Telangana,Private,no,FEMALE
+"RVM Medical College, Mulugu",MBBS,SC-2,272029,276997,,,Competent authority · women,Telangana,Private,no,FEMALE
+"RVM Medical College, Mulugu",MBBS,SC-3,223761,235152,,,Competent authority · women,Telangana,Private,no,FEMALE
+"RVM Medical College, Mulugu",MBBS,ST,233259,236867,,,Competent authority · women,Telangana,Private,no,FEMALE
+"RVM Medical College, Mulugu",MBBS,OPEN,219344,380523,,,Management B (Telangana local),Telangana,Private,no,
+"RVM Medical College, Mulugu",MBBS,OPEN,103590,132879,,,Management B (all-India),Telangana,Private,yes,
+"RVM Medical College, Mulugu",MBBS,OPEN,471502,1011081,,,NRI,Telangana,Private,no,NRI
+"Govt Medical College, Siddipet",MBBS,BC-A,139293,169222,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,BC-B,80141,93331,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,BC-C,120283,142618,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,BC-D,80602,87811,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,BC-E,81744,93404,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,EWS,84485,106308,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,OPEN,44056,79796,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,SC-1,257911,257911,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,SC-2,142984,180279,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,SC-3,117214,134093,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,ST,137250,147178,,,Competent authority,Telangana,Government,no,
+"Govt Medical College, Siddipet",MBBS,OPEN,140969,140969,,,Competent authority (special),Telangana,Government,no,DEFENCE
+"Govt Medical College, Siddipet",MBBS,OPEN,560388,1019274,,,Competent authority (special),Telangana,Government,no,PWD
+"Govt Medical College, Siddipet",MBBS,BC-A,138876,144099,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Siddipet",MBBS,BC-B,83079,85739,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Siddipet",MBBS,BC-C,158330,158330,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Siddipet",MBBS,BC-D,80681,83768,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Siddipet",MBBS,EWS,84410,97497,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Siddipet",MBBS,OPEN,47392,79405,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Siddipet",MBBS,SC-1,417538,417538,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Siddipet",MBBS,SC-2,144365,159734,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Siddipet",MBBS,SC-3,106033,135856,,,Competent authority · women,Telangana,Government,no,FEMALE
+"Govt Medical College, Siddipet",MBBS,ST,118076,134304,,,Competent authority · women,Telangana,Government,no,FEMALE
+Shadan Institute of Medical Sciences,MBBS,OPEN,126732,185166,,,Competent authority (minority),Telangana,Private,no,MINORITY
+Shadan Institute of Medical Sciences,MBBS,OPEN,282015,345259,,,Competent authority (special),Telangana,Private,no,DEFENCE
+Shadan Institute of Medical Sciences,MBBS,OPEN,88291,361997,,,Management (minority),Telangana,Private,no,MINORITY
+Shadan Institute of Medical Sciences,MBBS,OPEN,249321,916444,,,NRI,Telangana,Private,no,NRI
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,BC-A,205993,223571,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,BC-B,124511,137560,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,BC-C,198810,198810,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,BC-D,123211,129741,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,BC-E,123376,137753,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,EWS,127907,127907,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,OPEN,93424,143761,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,SC-1,401809,401809,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,SC-2,186992,204802,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,SC-3,163131,178768,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,ST,161221,179487,,,Competent authority,Telangana,Private,no,
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,OPEN,324531,324531,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,OPEN,898370,898370,,,Competent authority (special),Telangana,Private,no,PWD
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,OPEN,149892,246252,,,Competent authority (special),Telangana,Private,no,SINGARENI
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,BC-A,203099,213133,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,BC-B,128313,129883,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,BC-D,127048,127622,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,BC-E,128025,131433,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,OPEN,104026,118320,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,SC-2,183179,202250,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,SC-3,161978,163048,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Singareni Institute of Medical Sciences, Ramagundam",MBBS,ST,164242,177597,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Sri Sai College of Dental Surgery, Vikarabad",BDS,OPEN,470217,621125,,,Management B (Telangana local),Telangana,Private,no,
+"Sri Sai College of Dental Surgery, Vikarabad",BDS,OPEN,336072,427248,,,Management B (all-India),Telangana,Private,yes,
+"Sri Sai College of Dental Surgery, Vikarabad",BDS,OPEN,797406,1190184,,,NRI,Telangana,Private,no,NRI
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-A,318497,332935,,,Competent authority,Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-B,218408,222769,,,Competent authority,Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-C,308420,308420,,,Competent authority,Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-D,200874,206924,,,Competent authority,Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-E,213517,216214,,,Competent authority,Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,OPEN,179847,186046,,,Competent authority,Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,SC-2,298597,307670,,,Competent authority,Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,SC-3,258693,260127,,,Competent authority,Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,ST,245694,252355,,,Competent authority,Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,OPEN,411602,411602,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-A,313220,329530,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-B,215177,218705,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-C,307974,307974,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-D,190920,223679,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,BC-E,215178,216204,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,OPEN,177873,184930,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,SC-1,619763,619763,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,SC-2,292358,334898,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,SC-3,248095,256479,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,ST,246113,251406,,,Competent authority · women,Telangana,Private,no,FEMALE
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,OPEN,452946,587830,,,Management B (Telangana local),Telangana,Private,no,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,OPEN,147910,165297,,,Management B (all-India),Telangana,Private,yes,
+"Surabhi Institute of Medical Sciences, Siddipet",MBBS,OPEN,271356,1188216,,,NRI,Telangana,Private,no,NRI
+"SVS Dental College, Mahabubnagar",BDS,OPEN,427319,681599,,,Management B (Telangana local),Telangana,Private,no,
+"SVS Dental College, Mahabubnagar",BDS,OPEN,364025,407991,,,Management B (all-India),Telangana,Private,yes,
+"SVS Dental College, Mahabubnagar",BDS,OPEN,702553,1000715,,,NRI,Telangana,Private,no,NRI
+"S.V.S. Medical College, Mahabubnagar",MBBS,BC-A,245825,256618,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,BC-B,141427,163266,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,BC-C,205405,205405,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,BC-D,145192,145192,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,BC-E,141383,155858,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,EWS,140489,152402,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,OPEN,82655,140396,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,SC-1,311684,311684,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,SC-2,261043,267466,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,SC-3,201595,236780,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,ST,195518,219765,,,Competent authority,Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,OPEN,319947,319947,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"S.V.S. Medical College, Mahabubnagar",MBBS,BC-A,230281,240197,,,Competent authority · women,Telangana,Private,no,FEMALE
+"S.V.S. Medical College, Mahabubnagar",MBBS,BC-B,141104,141104,,,Competent authority · women,Telangana,Private,no,FEMALE
+"S.V.S. Medical College, Mahabubnagar",MBBS,BC-D,142399,142399,,,Competent authority · women,Telangana,Private,no,FEMALE
+"S.V.S. Medical College, Mahabubnagar",MBBS,EWS,154451,162140,,,Competent authority · women,Telangana,Private,no,FEMALE
+"S.V.S. Medical College, Mahabubnagar",MBBS,OPEN,88437,124804,,,Competent authority · women,Telangana,Private,no,FEMALE
+"S.V.S. Medical College, Mahabubnagar",MBBS,SC-2,248159,260190,,,Competent authority · women,Telangana,Private,no,FEMALE
+"S.V.S. Medical College, Mahabubnagar",MBBS,SC-3,225818,235048,,,Competent authority · women,Telangana,Private,no,FEMALE
+"S.V.S. Medical College, Mahabubnagar",MBBS,ST,191228,201130,,,Competent authority · women,Telangana,Private,no,FEMALE
+"S.V.S. Medical College, Mahabubnagar",MBBS,OPEN,178017,327845,,,Management B (Telangana local),Telangana,Private,no,
+"S.V.S. Medical College, Mahabubnagar",MBBS,OPEN,107040,140603,,,Management B (all-India),Telangana,Private,yes,
+"S.V.S. Medical College, Mahabubnagar",MBBS,OPEN,562857,1007233,,,NRI,Telangana,Private,no,NRI
+"Thirumala Academy of Dental Sciences, Nizamabad",BDS,OPEN,645092,815451,,,Management B (Telangana local),Telangana,Private,no,
+"Thirumala Academy of Dental Sciences, Nizamabad",BDS,OPEN,401919,540152,,,Management B (all-India),Telangana,Private,yes,
+"Thirumala Academy of Dental Sciences, Nizamabad",BDS,OPEN,1179936,1179936,,,NRI,Telangana,Private,no,NRI
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,BC-A,317325,335882,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,BC-B,219231,225098,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,BC-C,308795,308795,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,BC-D,200742,207095,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,BC-E,198793,218675,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,OPEN,166979,190088,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,SC-1,536148,536148,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,SC-2,297980,307752,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,SC-3,259334,260167,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,ST,249061,255139,,,Competent authority,Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,OPEN,356046,356046,,,Competent authority (special),Telangana,Private,no,DEFENCE
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,BC-A,324055,328835,,,Competent authority · women,Telangana,Private,no,FEMALE
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,BC-B,213681,223531,,,Competent authority · women,Telangana,Private,no,FEMALE
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,BC-D,196844,207050,,,Competent authority · women,Telangana,Private,no,FEMALE
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,BC-E,216116,216116,,,Competent authority · women,Telangana,Private,no,FEMALE
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,OPEN,181491,187199,,,Competent authority · women,Telangana,Private,no,FEMALE
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,SC-2,290683,294651,,,Competent authority · women,Telangana,Private,no,FEMALE
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,SC-3,251639,251639,,,Competent authority · women,Telangana,Private,no,FEMALE
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,ST,248859,253316,,,Competent authority · women,Telangana,Private,no,FEMALE
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,OPEN,358408,580569,,,Management B (Telangana local),Telangana,Private,no,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,OPEN,146929,160654,,,Management B (all-India),Telangana,Private,yes,
+"TRR Institute of Medical Sciences, Inole, Patancheru",MBBS,OPEN,916246,1190845,,,NRI,Telangana,Private,no,NRI
+Dr V R K Women's Medical College,MBBS,OPEN,145439,211111,,,Competent authority (minority),Telangana,Private,no,MINORITY
+Dr V R K Women's Medical College,MBBS,OPEN,110614,445237,,,Management (minority),Telangana,Private,no,MINORITY
+Dr V R K Women's Medical College,MBBS,OPEN,936208,1184341,,,NRI,Telangana,Private,no,NRI
