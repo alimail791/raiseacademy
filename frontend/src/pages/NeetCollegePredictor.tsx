@@ -37,6 +37,10 @@ const STATE_GROUPS: Record<string, { key: string; label: string }[]> = {
     { key: "AP_SVU", label: "My local area is Sri Venkateswara University (SVU) region" },
     { key: "FEMALE", label: "I am a female candidate (includes women-only seats)" },
   ],
+  RJ: [
+    { key: "FEMALE", label: "I am a female candidate (includes girls' reserved seats)" },
+    { key: "RJ_TSP", label: "I am a Scheduled Area (TSP) resident" },
+  ],
   BR: [{ key: "FEMALE", label: "I am a female candidate (includes women's reserved seats)" }],
   MH: [
     { key: "FEMALE", label: "I am a female candidate (includes women's reserved seats)" },
@@ -47,7 +51,7 @@ const STATE_CAT_LABEL: Record<string, string> = {
   OPEN: "General / OC / GM", "CAT-1": "Category-1", S1: "SC (S1)", S2: "SC (S2)", S3: "SC (S3)", S4: "SC (S4)",
   EZ: "Ezhava (EZ)", MU: "Muslim (MU)", BH: "OBC Hindu (BH)", LA: "Latin Catholic & Anglo-Indian (LA)", DV: "Dheevara (DV)",
   VK: "Viswakarma (VK)", BX: "OBC Christian (BX)", KN: "Kusavan (KN)", KU: "Kudumbi (KU)",
-  EBC: "EBC (Extremely Backward Class)",
+  EBC: "EBC (Extremely Backward Class)", MBC: "MBC (More Backward Class)",
   "VJ-A": "VJ-A (VJNT)", "NT-B": "NT-B", "NT-C": "NT-C", "NT-D": "NT-D", SEBC: "SEBC",
   "BC-A": "BC-A", "BC-B": "BC-B", "BC-C": "BC-C", "BC-D": "BC-D", "BC-E": "BC-E", "SC-1": "SC Group I", "SC-2": "SC Group II", "SC-3": "SC Group III",
 };

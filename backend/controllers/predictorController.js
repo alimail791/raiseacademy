@@ -34,6 +34,7 @@ export const ELIGIBILITY = {
   AP_SVU: "Andhra Pradesh: Sri Venkateswara University (SVU) local area",
   FEMALE: "Female candidate (women-only seats)",
   MH_HILLY: "Maharashtra: Hilly Area candidate",
+  RJ_TSP: "Rajasthan: Scheduled Area (TSP) resident",
 };
 // Seats can need several groups at once ("KA_KK+KA_RURAL"): allow every combination
 // of the groups the student ticked, joined in sorted order.
@@ -396,6 +397,7 @@ const BUNDLED = [
   { file: "kl_2026.csv", quota: "KL", year: 2026, round: 3, rankType: "STATE", source: "KEAM 2026 MBBS/BDS phase 2 + 3 allotments" },
   { file: "mh_2026.csv", quota: "MH", year: 2026, round: 3, rankType: "AIR", source: "Maharashtra CET Cell 2026 MBBS/BDS CAP rounds 2 + 3" },
   { file: "br_2026.csv", quota: "BR", year: 2026, round: 3, rankType: "AIR", source: "BCECEB UGMAC 2026 round 2 allotment + official round 3 closing ranks" },
+  { file: "rj_2026.csv", quota: "RJ", year: 2026, round: 3, rankType: "AIR", source: "Rajasthan NEET UG counselling 2026 rounds 2 + 3" },
   { file: "ap_2026.csv", quota: "AP", year: 2026, round: 3, rankType: "AIR", source: "Dr NTR UHS 2026 MBBS CQ + MQ, BDS MQ (phase III)" },
 ];
 export async function seedBundledCutoffs() {
