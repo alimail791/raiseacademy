@@ -30,6 +30,9 @@ export const ELIGIBILITY = {
   KA_KANNADA: "Karnataka: studied Class 1–10 in Kannada medium",
   KA_RURAL: "Karnataka: studied Class 1–10 in a rural area",
   KA_KK: "Karnataka: Kalyana-Karnataka (Hyderabad-Karnataka, Article 371J) candidate",
+  AP_AU: "Andhra Pradesh: Andhra University (AU) local area",
+  AP_SVU: "Andhra Pradesh: Sri Venkateswara University (SVU) local area",
+  FEMALE: "Female candidate (women-only seats)",
 };
 // Seats can need several groups at once ("KA_KK+KA_RURAL"): allow every combination
 // of the groups the student ticked, joined in sorted order.
@@ -390,6 +393,7 @@ const BUNDLED = [
   { file: "tn_2026.csv", quota: "TN", year: 2026, round: 2, rankType: "SCORE", source: "Tamil Nadu 2026 GQ / MQ / 7.5% allotments" },
   { file: "ka_2026.csv", quota: "KA", year: 2026, round: 2, rankType: "AIR", source: "KEA 2026 MBBS round 2 final allotment" },
   { file: "kl_2026.csv", quota: "KL", year: 2026, round: 3, rankType: "STATE", source: "KEAM 2026 MBBS/BDS phase 2 + 3 allotments" },
+  { file: "ap_2026.csv", quota: "AP", year: 2026, round: 3, rankType: "AIR", source: "Dr NTR UHS 2026 MBBS CQ + MQ, BDS MQ (phase III)" },
 ];
 export async function seedBundledCutoffs() {
   const { readFile } = await import("fs/promises");
