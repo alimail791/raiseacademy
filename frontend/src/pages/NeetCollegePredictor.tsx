@@ -37,6 +37,7 @@ const STATE_GROUPS: Record<string, { key: string; label: string }[]> = {
     { key: "AP_SVU", label: "My local area is Sri Venkateswara University (SVU) region" },
     { key: "FEMALE", label: "I am a female candidate (includes women-only seats)" },
   ],
+  MP: [{ key: "MP_GOVT_SCHOOL", label: "I studied in a Madhya Pradesh government school (govt-school reservation)" }],
   GJ: [
     { key: "GJ_AMD_LOCAL", label: "I live in the Ahmedabad Municipal Corporation area (NHL local quota)" },
     { key: "GJ_SURAT_LOCAL", label: "I live in the Surat Municipal Corporation area (SMIMER local quota)" },
@@ -178,7 +179,7 @@ const NeetCollegePredictor = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-      <span className="inline-block text-xs font-bold uppercase tracking-wider bg-gold/20 text-ink dark:text-paper px-3 py-1 rounded-full">Free · AIQ + 12 states · MBBS & BDS</span>
+      <span className="inline-block text-xs font-bold uppercase tracking-wider bg-gold/20 text-ink dark:text-paper px-3 py-1 rounded-full">Free · AIQ + 13 states · MBBS & BDS</span>
       <h1 className="font-display text-3xl sm:text-5xl font-bold leading-tight mt-4">NEET College Predictor</h1>
       <p className="text-lg text-ink/70 dark:text-paper/70 mt-4">
         Enter your NEET rank and category to see the MBBS and BDS colleges you can get under the All India Quota and your state quota. Every result is based on last year's official closing ranks.
