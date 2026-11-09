@@ -110,6 +110,8 @@ const NeetCollegePredictor = () => {
 
   useEffect(() => {
     try { setToken(localStorage.getItem(TOKEN_KEY) || ""); } catch { /* storage blocked */ }
+    const qAir = new URLSearchParams(window.location.search).get("air");
+    if (qAir && /^\d{1,7}$/.test(qAir)) setForm((f) => ({ ...f, air: qAir }));
     api.get("/predictor/meta").then((r) => { setQuotas(r.data.quotas || []); setPrice(r.data.reportPrice || 299); }).catch(() => {});
   }, []);
 
@@ -185,6 +187,9 @@ const NeetCollegePredictor = () => {
       <h1 className="font-display text-3xl sm:text-5xl font-bold leading-tight mt-4">NEET College Predictor</h1>
       <p className="text-lg text-ink/70 dark:text-paper/70 mt-4">
         Enter your NEET rank and category to see the MBBS and BDS colleges you can get under the All India Quota and your state quota. Every result is based on last year's official closing ranks.
+      </p>
+      <p className="mt-3 text-sm rounded-2xl bg-rise/10 border border-rise/30 px-4 py-3">
+        <b>Preparing for NEET 2027?</b> Enter the rank you're aiming for. You'll see which colleges it got students in 2026, so you know exactly what to target.
       </p>
 
       {/* ---------- Form ---------- */}
