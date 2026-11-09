@@ -181,7 +181,7 @@ const NeetCollegePredictor = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-      <span className="inline-block text-xs font-bold uppercase tracking-wider bg-gold/20 text-ink dark:text-paper px-3 py-1 rounded-full">Free · AIQ + 14 states · MBBS & BDS</span>
+      <span className="inline-block text-xs font-bold uppercase tracking-wider bg-gold/20 text-ink dark:text-paper px-3 py-1 rounded-full">Free · AIQ + 15 states · MBBS & BDS</span>
       <h1 className="font-display text-3xl sm:text-5xl font-bold leading-tight mt-4">NEET College Predictor</h1>
       <p className="text-lg text-ink/70 dark:text-paper/70 mt-4">
         Enter your NEET rank and category to see the MBBS and BDS colleges you can get under the All India Quota and your state quota. Every result is based on last year's official closing ranks.
