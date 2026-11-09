@@ -32,6 +32,8 @@ import NeetParents from "./pages/NeetParents";
 import { PapersIndex, PaperYear } from "./pages/Papers";
 import QuestionOfTheDay from "./pages/QuestionOfTheDay";
 import NeetExamDate from "./pages/NeetExamDate";
+import NeetRegistration from "./pages/NeetRegistration";
+import NeetPhotoResizer from "./pages/NeetPhotoResizer";
 import { NcertIndex, NcertChapter } from "./pages/NcertNotes";
 import QotdEmbed from "./pages/QotdEmbed";
 import QotdWidget from "./pages/QotdWidget";
@@ -92,6 +94,8 @@ function App() {
             <Route path="/delete-account" element={<DeleteAccount />} />
             <Route path="/neet-readiness" element={<NeetReadiness />} />
             <Route path="/neet-college-predictor" element={<NeetCollegePredictor />} />
+            <Route path="/neet-registration" element={<NeetRegistration />} />
+            <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
             <Route path="/neet-college-predictor/report" element={<NeetCollegeReport />} />
             <Route path="/neet-sprint" element={<NeetSprint />} />
             <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
@@ -152,6 +156,8 @@ function App() {
           <Route path="/neet-sprint" element={<NeetSprint />} />
           <Route path="/neet-shorts" element={<NeetShorts />} />
           <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
+          <Route path="/neet-registration" element={<NeetRegistration />} />
+          <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
           <Route path="/neet-question-widget" element={<QotdWidget />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />

@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  meta, runPredict, sendOtp, verifyOtp, reportOrder, reportVerify, getReport,
+  meta, runPredict, sendOtp, verifyOtp, addAlertByToken, reportOrder, reportVerify, getReport,
   adminImport, adminSummary, adminDelete, adminLeads,
 } from "../controllers/predictorController.js";
 import { protect, adminOnly } from "../middleware/auth.js";
@@ -12,6 +12,7 @@ router.get("/meta", meta);
 router.post("/predict", runPredict);
 router.post("/otp/send", sendOtp);
 router.post("/otp/verify", verifyOtp);
+router.post("/alerts", addAlertByToken);
 router.post("/report/order", reportOrder);
 router.post("/report/verify", reportVerify);
 router.get("/report", getReport);

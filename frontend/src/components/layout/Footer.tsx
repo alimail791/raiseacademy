@@ -25,6 +25,8 @@ const FREE: Item[] = [
   { label: "Ask YNeet: doubts answered", to: "/ask-yneet" },
   { label: "Daily NEET puzzles", href: gamesLink("footer") },
   { label: "NEET 2027 exam date", to: "/neet-2027-exam-date" },
+  { label: "NEET registration guide", to: "/neet-registration" },
+  { label: "NEET photo & signature resizer", to: "/neet-photo-resizer" },
 ];
 
 const YNEET: Item[] = [

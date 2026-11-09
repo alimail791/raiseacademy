@@ -92,6 +92,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "NEET 2027 Exam Date, Pattern & Marking Scheme — What's Confirmed | YNeet",
     description: "NEET UG 2027 exam date status, registration, CBT and attempt-limit news, and the exam pattern: 180 questions, 720 marks, +4/−1, 3 hours. Checked against NTA notices.",
   },
+  "/neet-registration": {
+    title: "NEET 2027 Registration: Dates, Eligibility, Fees, Documents & Step-by-Step Guide | YNeet",
+    description:
+      "How to fill the NEET 2027 application form: expected dates, eligibility checker (age, Class 12, subjects), category-wise fees, a saved document checklist, upload rules and common mistakes. Free WhatsApp alert when registration opens.",
+  },
+  "/neet-photo-resizer": {
+    title: "NEET Photo Size Resizer — Passport, Postcard Photo, Signature & Thumb in KB (Free) | YNeet",
+    description:
+      "Free NEET photo and signature resizer: crop and compress your passport photo, 4×6 postcard photo, signature and thumb impressions to the exact KB size for the NEET form. Works on your phone, nothing is uploaded.",
+  },
   "/neet-question-widget": {
     title: "Free NEET Question of the Day Widget for Your Website | YNeet",
     description: "Add a free daily NEET question box to your coaching centre, school or blog website. A new question every day with answers and explanations. Copy one code, no sign-up.",

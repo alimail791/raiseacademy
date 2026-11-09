@@ -31,6 +31,11 @@ const predictorLeadSchema = new mongoose.Schema(
     amount: { type: Number },
 
     utm: { type: String, default: "" },
+
+    // WhatsApp alerts this number signed up for from free tools, e.g.
+    // "neet-registration" (photo resizer / registration guide). Use these to
+    // send "NEET registration is open" type messages only to people who asked.
+    alerts: { type: [String], default: [] },
   },
   { timestamps: true }
 );
