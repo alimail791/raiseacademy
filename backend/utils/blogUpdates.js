@@ -59,6 +59,7 @@ const TEXT_FIXES = [
   [/(a |the )?₹\s?99 (five|5)[- ]day trial/gi, "a free 30-day trial"],
   [/(five|5)[- ]day trial for ₹\s?99/gi, "free 30-day trial"],
   [/start trial for ₹\s?99/gi, "Start your free 30-day trial"],
+  [/Try YNeet for ₹\s?99/gi, "Try YNeet free for 30 days"],
   [/trial (costs|is|for) (just |only )?₹\s?99/gi, "trial is free for 30 days"],
 ];
 
