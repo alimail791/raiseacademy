@@ -15,7 +15,10 @@ const links = [
 
 // Free tools, no login: a "Free practice" dropdown on computers, a section in the phone menu.
 const FREE_LINKS: { to: string; label: string; short?: string }[] = [
+  { to: "/neet-score-calculator", label: "NEET Score Calculator", short: "Score Calculator" },
   { to: "/neet-college-predictor", label: "NEET College Predictor", short: "College Predictor" },
+  { to: "/neet-registration", label: "NEET Registration Guide", short: "Registration Guide" },
+  { to: "/neet-photo-resizer", label: "NEET Photo & Signature Resizer", short: "Photo Resizer" },
   { to: "/neet-question-of-the-day", label: "Question of the Day" },
   { to: "/neet-sprint", label: "60-Second Sprint" },
   { to: "/neet-concept-maps", label: "Concept Maps" },
