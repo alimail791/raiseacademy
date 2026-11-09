@@ -92,6 +92,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "NEET 2027 Exam Date, Pattern & Marking Scheme — What's Confirmed | YNeet",
     description: "NEET UG 2027 exam date status, registration, CBT and attempt-limit news, and the exam pattern: 180 questions, 720 marks, +4/−1, 3 hours. Checked against NTA notices.",
   },
+  "/neet-score-calculator": {
+    title: "NEET Score Calculator 2027 — Calculate Marks from Answer Key + Expected Rank (Free) | YNeet",
+    description:
+      "Free NEET score calculator: match your responses with the NEET answer key (+4/−1), get your score out of 720 for Physics, Chemistry, Botany and Zoology, your expected All India Rank and the MBBS colleges it can get you.",
+  },
   "/neet-registration": {
     title: "NEET 2027 Registration: Dates, Eligibility, Fees, Documents & Step-by-Step Guide | YNeet",
     description:
