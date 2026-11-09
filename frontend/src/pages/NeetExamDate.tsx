@@ -76,6 +76,8 @@ const NeetExamDate = () => (
       <li><Link to="/neet-question-papers" className="font-semibold text-rise-dark underline">NEET previous year question papers with answers</Link></li>
       <li><Link to="/neet-practice" className="font-semibold text-rise-dark underline">Chapter-wise NEET PYQs</Link></li>
       <li><Link to="/neet-question-of-the-day" className="font-semibold text-rise-dark underline">NEET Question of the Day</Link></li>
+      <li><Link to="/neet-registration" className="font-semibold text-rise-dark underline">NEET registration guide & document checklist</Link></li>
+      <li><Link to="/neet-photo-resizer" className="font-semibold text-rise-dark underline">NEET photo & signature resizer</Link></li>
     </ul>
 
     <h2 className="font-display text-2xl font-bold mt-10">Frequently asked questions</h2>

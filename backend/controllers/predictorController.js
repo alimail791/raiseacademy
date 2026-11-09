@@ -217,6 +217,14 @@ export const runPredict = async (req, res, next) => {
 
 // ───────── WhatsApp number (lead) ─────────
 
+// Free tools (photo resizer, registration guide) reuse this same lead + OTP flow
+// and tag the lead with the alert the student asked for.
+const ALERTS = new Set(["neet-registration"]);
+const addAlert = (lead, alert) => {
+  const a = String(alert || "");
+  if (ALERTS.has(a) && !lead.alerts?.includes(a)) lead.alerts = [...(lead.alerts || []), a];
+};
+
 // POST /api/predictor/otp/send { phone, name? }
 export const sendOtp = async (req, res, next) => {
   try {
@@ -227,6 +235,7 @@ export const sendOtp = async (req, res, next) => {
     let lead = await PredictorLead.findOne({ phone });
     if (!lead) lead = new PredictorLead({ phone, name, utm });
     else if (name) lead.name = name;
+    addAlert(lead, req.body?.alert);
 
     // No WhatsApp sender configured (e.g. local dev): accept the number without a code.
     if (!waConfigured()) {
@@ -265,8 +274,21 @@ export const verifyOtp = async (req, res, next) => {
     lead.verified = true;
     lead.otpHash = undefined;
     lead.token = lead.token || crypto.randomBytes(24).toString("hex");
+    addAlert(lead, req.body?.alert);
     await lead.save();
     res.json({ verified: true, token: lead.token, paid: lead.paid });
+  } catch (e) { next(e); }
+};
+
+// POST /api/predictor/alerts { token, alert } — a number already confirmed
+// (e.g. via the College Predictor) signs up for another alert without a new OTP.
+export const addAlertByToken = async (req, res, next) => {
+  try {
+    const lead = await leadByToken(req.body?.token);
+    if (!lead) return res.status(401).json({ message: "Confirm your WhatsApp number first" });
+    addAlert(lead, req.body?.alert);
+    await lead.save();
+    res.json({ ok: true, phone: lead.phone.replace(/^(\d{2})\d{5}/, "$1•••••") });
   } catch (e) { next(e); }
 };
 
@@ -394,8 +416,8 @@ export const adminLeads = async (req, res, next) => {
   try {
     const leads = await PredictorLead.find({}, "-otpHash -token").sort({ createdAt: -1 }).limit(5000).lean();
     if (req.query.format === "csv") {
-      const cols = ["createdAt", "name", "phone", "verified", "air", "stateRank", "score", "category", "homeState", "course", "searches", "paid", "paidAt", "utm"];
-      const cell = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+      const cols = ["createdAt", "name", "phone", "verified", "air", "stateRank", "score", "category", "homeState", "course", "searches", "paid", "paidAt", "utm", "alerts"];
+      const cell = (v) => `"${String(Array.isArray(v) ? v.join(" ") : v ?? "").replace(/"/g, '""')}"`;
       res.setHeader("Content-Type", "text/csv");
       res.setHeader("Content-Disposition", "attachment; filename=predictor-leads.csv");
       return res.send([cols.join(","), ...leads.map((l) => cols.map((c) => cell(l[c] instanceof Date ? l[c].toISOString() : l[c])).join(","))].join("\n"));
