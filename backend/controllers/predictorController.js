@@ -15,7 +15,7 @@ import { sendEmail } from "../utils/sendEmail.js";
 export const QUOTAS = {
   AIQ: "All India Quota (MCC)",
   TN: "Tamil Nadu", AP: "Andhra Pradesh", TS: "Telangana", KL: "Kerala", KA: "Karnataka",
-  UP: "Uttar Pradesh", MH: "Maharashtra", BR: "Bihar", RJ: "Rajasthan", DL: "Delhi", PB: "Punjab",
+  UP: "Uttar Pradesh", MH: "Maharashtra", BR: "Bihar", RJ: "Rajasthan", DL: "Delhi", PB: "Punjab", GJ: "Gujarat",
 };
 export const REPORT_PRICE = Number(process.env.PREDICTOR_REPORT_PRICE || 299);
 const FREE_LIMIT = 40; // colleges shown on the free results page
@@ -37,6 +37,8 @@ export const ELIGIBILITY = {
   RJ_TSP: "Rajasthan: Scheduled Area (TSP) resident",
   PB_BACKWARD: "Punjab: Backward Area candidate",
   PB_BORDER: "Punjab: Border Area candidate",
+  GJ_AMD_LOCAL: "Gujarat: Ahmedabad Municipal Corporation area (local quota)",
+  GJ_SURAT_LOCAL: "Gujarat: Surat Municipal Corporation area (local quota)",
 };
 // Seats can need several groups at once ("KA_KK+KA_RURAL"): allow every combination
 // of the groups the student ticked, joined in sorted order.
@@ -402,6 +404,7 @@ const BUNDLED = [
   { file: "rj_2026.csv", quota: "RJ", year: 2026, round: 3, rankType: "AIR", source: "Rajasthan NEET UG counselling 2026 rounds 2 + 3" },
   { file: "ts_2026.csv", quota: "TS", year: 2026, round: 2, rankType: "AIR", source: "KNRUHS 2026 MBBS CQ + MBBS/BDS MQ phase 2" },
   { file: "pb_2026.csv", quota: "PB", year: 2026, round: 3, rankType: "AIR", source: "BFUHS Punjab 2026 MBBS/BDS rounds 2 + 3" },
+  { file: "gj_2026.csv", quota: "GJ", year: 2026, round: 4, rankType: "AIR", source: "ACPUGMEC Gujarat 2026 final institutewise admitted list" },
   { file: "ap_2026.csv", quota: "AP", year: 2026, round: 3, rankType: "AIR", source: "Dr NTR UHS 2026 MBBS CQ + MQ, BDS MQ (phase III)" },
 ];
 export async function seedBundledCutoffs() {
