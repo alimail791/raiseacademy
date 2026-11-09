@@ -16,7 +16,7 @@ type Result = {
   seats?: number; annualFee?: number; year: number; round: number; band: "safe" | "likely" | "reach";
 };
 type Resp = {
-  counts: { safe: number; likely: number; reach: number }; total: number; locked: boolean; paid?: boolean;
+  counts: { safe: number; likely: number; reach: number }; total: number; paidSeats?: number; locked: boolean; paid?: boolean;
   results?: Result[]; more?: number; preview?: { college: string; quotaName: string; band: string }[];
   used: { quota: string; name: string; year: number; round: number; home: boolean }[]; notes: string[]; reportPrice: number;
 };
@@ -267,6 +267,7 @@ const NeetCollegePredictor = () => {
                 </div>
               ))}
             </div>
+            {!!res.paidSeats && <p className="text-sm text-paper/80 mt-4">{res.paidSeats} of these are management / NRI seats with high fees. They are listed after merit seats.</p>}
             {res.used.length > 0 && <p className="text-xs text-paper/60 mt-4">Compared with: {res.used.map((u) => `${u.name} ${u.year} round ${u.round}`).join(" · ")}</p>}
           </div>
           {res.notes.map((n) => <p key={n} className="mt-3 text-sm text-ink/70 dark:text-paper/70">ℹ️ {n}</p>)}
@@ -313,7 +314,7 @@ const NeetCollegePredictor = () => {
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold">{r.college}</p>
                       <p className="text-xs text-ink/55 dark:text-paper/55 mt-0.5">
-                        {[r.quotaName, r.seatType, r.collegeType, r.collegeState, r.annualFee ? `₹${r.annualFee.toLocaleString("en-IN")}/yr` : ""].filter(Boolean).join(" · ")} · {r.category === "OPEN" ? "Open" : r.category} {r.quota === "TN" && r.seatType !== "Management Quota" && r.category !== "OPEN" ? "community" : "seat"}
+                        {[r.quotaName, r.seatType, r.collegeType, r.collegeState, r.annualFee && !isAppMode() ? `₹${r.annualFee.toLocaleString("en-IN")}/yr` : ""].filter(Boolean).join(" · ")} · {r.category === "OPEN" ? "Open" : r.category} {r.quota === "TN" && r.seatType !== "Management Quota" && r.category !== "OPEN" ? "community" : "seat"}
                       </p>
                     </div>
                     <div className="text-sm sm:text-right shrink-0">

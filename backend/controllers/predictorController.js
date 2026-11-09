@@ -122,6 +122,17 @@ const harderFirst = (a, b) => {
   return sa ? b.closingRank - a.closingRank : a.closingRank - b.closingRank;
 };
 
+// Which seats to list first: 0 = home-state quota and AIQ merit seats (govt + private
+// merit), 1 = other states' merit seats open to all (deemed, private open), 2 = paid
+// management / NRI / institutional seats (lakhs a year; only for families who can pay).
+const MGMT = /management|\bnri\b|institutional|\bmgmt\b|paid seat/i;
+export const seatTier = (r, homeState) => {
+  if (MGMT.test(r.seatType || "")) return 2;
+  if (r.quota === homeState) return 0;
+  if (r.quota === "AIQ" && !/deemed/i.test(r.collegeType || "")) return 0;
+  return 1;
+};
+
 // Core matching. Returns every matching college bucket, best colleges first.
 export async function predict(input) {
   const sets = await latestDatasets();
@@ -168,7 +179,7 @@ export async function predict(input) {
     if (!prev || order0[band] > order0[prev.band] || (band === prev.band && easier(r, prev))) best.set(key, { ...r, band, myRank });
   }
   const results = [...best.values()]
-    .sort(harderFirst)
+    .sort((a, b) => seatTier(a, input.homeState) - seatTier(b, input.homeState) || harderFirst(a, b))
     .map((r) => ({
       college: r.college, collegeState: r.collegeState, collegeType: r.collegeType, course: r.course,
       quota: r.quota, quotaName: QUOTAS[r.quota] || r.quota, seatType: r.seatType, category: r.category,
@@ -194,7 +205,8 @@ export const runPredict = async (req, res, next) => {
       lead.searches = (lead.searches || 0) + 1;
       await lead.save();
     }
-    const base = { counts: counts(results), total: results.length, used, notes, reportPrice: REPORT_PRICE };
+    const paidSeats = results.filter((r) => seatTier(r, input.homeState) === 2).length;
+    const base = { counts: counts(results), total: results.length, paidSeats, used, notes, reportPrice: REPORT_PRICE };
     if (!lead) {
       // Teaser: numbers only, plus the single best match as a hook.
       return res.json({ ...base, locked: true, preview: results.slice(0, 1).map((r) => ({ college: r.college, quotaName: r.quotaName, band: r.band })) });
