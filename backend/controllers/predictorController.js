@@ -15,7 +15,7 @@ import { sendEmail } from "../utils/sendEmail.js";
 export const QUOTAS = {
   AIQ: "All India Quota (MCC)",
   TN: "Tamil Nadu", AP: "Andhra Pradesh", TS: "Telangana", KL: "Kerala", KA: "Karnataka",
-  UP: "Uttar Pradesh", MH: "Maharashtra", BR: "Bihar", RJ: "Rajasthan", DL: "Delhi", PB: "Punjab", GJ: "Gujarat", MP: "Madhya Pradesh",
+  UP: "Uttar Pradesh", MH: "Maharashtra", BR: "Bihar", RJ: "Rajasthan", DL: "Delhi", PB: "Punjab", GJ: "Gujarat", MP: "Madhya Pradesh", JH: "Jharkhand",
 };
 export const REPORT_PRICE = Number(process.env.PREDICTOR_REPORT_PRICE || 299);
 const FREE_LIMIT = 40; // colleges shown on the free results page
@@ -40,6 +40,7 @@ export const ELIGIBILITY = {
   GJ_AMD_LOCAL: "Gujarat: Ahmedabad Municipal Corporation area (local quota)",
   GJ_SURAT_LOCAL: "Gujarat: Surat Municipal Corporation area (local quota)",
   MP_GOVT_SCHOOL: "Madhya Pradesh: government school student (govt-school reservation)",
+  JH_PTG: "Jharkhand: Primitive Tribal Group (PVTG) candidate",
 };
 // Seats can need several groups at once ("KA_KK+KA_RURAL"): allow every combination
 // of the groups the student ticked, joined in sorted order.
@@ -407,6 +408,7 @@ const BUNDLED = [
   { file: "pb_2026.csv", quota: "PB", year: 2026, round: 3, rankType: "AIR", source: "BFUHS Punjab 2026 MBBS/BDS rounds 2 + 3" },
   { file: "gj_2026.csv", quota: "GJ", year: 2026, round: 4, rankType: "AIR", source: "ACPUGMEC Gujarat 2026 final institutewise admitted list" },
   { file: "mp_2026.csv", quota: "MP", year: 2026, round: 3, rankType: "AIR", source: "DME MP 2026 MBBS/BDS rounds 1–2 + mop-up" },
+  { file: "jh_2026.csv", quota: "JH", year: 2026, round: 2, rankType: "STATE", source: "JCECEB 2026 MBBS/BDS state quota rounds 1–2 (CML rank)" },
   { file: "ap_2026.csv", quota: "AP", year: 2026, round: 3, rankType: "AIR", source: "Dr NTR UHS 2026 MBBS CQ + MQ, BDS MQ (phase III)" },
 ];
 export async function seedBundledCutoffs() {
