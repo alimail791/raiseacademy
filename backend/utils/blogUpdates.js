@@ -69,6 +69,7 @@ async function applyTextFixes() {
     let title = post.title || "";
     let meta = post.metaDescription || "";
     for (const [re, to] of TEXT_FIXES) { body = body.replace(re, to); title = title.replace(re, to); meta = meta.replace(re, to); }
+    for (const m of body.matchAll(/₹\s?99\b/g)) console.log(`blogUpdates: ${post.slug} ₹99 context: ${body.slice(Math.max(0, m.index - 120), m.index + 80).replace(/\s+/g, " ")}`);
     if (body === post.bodyHtml && title === post.title && meta === post.metaDescription) {
       if (/₹\s?99\b/.test(body)) console.log(`blogUpdates: ${post.slug} mentions ₹99 in wording not matched — check by hand`);
       continue;
