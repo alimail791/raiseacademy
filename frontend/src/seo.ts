@@ -81,7 +81,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/neet-college-predictor": {
     title: "NEET College Predictor 2027 — MBBS & BDS Colleges by Rank (AIQ + State Quota) | YNeet",
     description:
-      "Free NEET college predictor: enter your NEET rank and category to see the MBBS and BDS colleges you can get under the All India Quota and your state quota (Tamil Nadu, Karnataka, Kerala, AP, Telangana, Maharashtra, UP, Bihar, Rajasthan, Delhi), from last year's official closing ranks.",
+      "Free NEET college predictor: enter your NEET rank and category to see the MBBS and BDS colleges you can get under the All India Quota and your state quota (Tamil Nadu, Karnataka, Kerala, AP, Telangana, Maharashtra, UP, Bihar, Rajasthan, Delhi, Punjab), from last year's official closing ranks.",
   },
   "/neet-college-predictor/report": {
     title: "Your NEET Choice-Filling Report | YNeet",

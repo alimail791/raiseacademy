@@ -1,0 +1,255 @@
+college,course,category,opening_rank,closing_rank,stray_closing_rank,stray_only,seat_type,college_state,college_type,open_to_all,eligibility
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,BC,410852,572567,580040,,Govt quota,Punjab,Private,no,
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,OPEN,164976,405484,468158,,Govt quota,Punjab,Private,no,
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,SC,464496,867915,,,Govt quota,Punjab,Private,no,
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,OPEN,462618,462618,639375,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,BC,599358,823602,,,Management quota,Punjab,Private,no,
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,OPEN,364160,427961,734309,,Management quota,Punjab,Private,no,
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,SC,755430,1187104,,,Management quota,Punjab,Private,no,
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,OPEN,489688,556572,,,Special,Punjab,Private,no,DEFENCE
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,OPEN,786868,786868,786868,yes,Special,Punjab,Private,no,SPECIAL
+"Adesh Institute of Dental Sciences & Research, Bathinda",BDS,OPEN,589508,589508,,,Special,Punjab,Private,no,SPORTS
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,BC,216379,332973,,,Govt quota,Punjab,Private,no,
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,69707,113742,177434,,Govt quota,Punjab,Private,no,
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,SC,248813,748091,,,Govt quota,Punjab,Private,no,
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,119825,119825,194716,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,99680,99680,215437,,Govt quota · border area,Punjab,Private,no,PB_BORDER
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,BC,334874,438046,,,Management quota,Punjab,Private,no,
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,99277,128109,243618,,Management quota,Punjab,Private,no,
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,SC,522996,913546,,,Management quota,Punjab,Private,no,
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,127021,127021,273708,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,114312,114312,245992,,Management quota · border area,Punjab,Private,no,PB_BORDER
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,260577,300834,307123,,Special,Punjab,Private,no,DEFENCE
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,343706,727869,727869,yes,Special,Punjab,Private,no,JK_MIGRANT
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,688968,948596,,,Special,Punjab,Private,no,SPECIAL
+"Adesh Institute of Medical Sciences & Research, Bathinda",MBBS,OPEN,219628,860736,,,Special,Punjab,Private,no,SPORTS
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,BC,198941,232238,266423,,Govt quota,Punjab,Private,no,
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,OPEN,85518,221856,257879,,Govt quota,Punjab,Private,no,
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,SC,314372,439292,,,Govt quota,Punjab,Private,no,
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,BC,286723,354115,479002,,Management quota,Punjab,Private,no,
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,OPEN,222560,283879,432677,,Management quota,Punjab,Private,no,
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,SC,452325,931513,,,Management quota,Punjab,Private,no,
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,OPEN,303913,303913,,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,OPEN,458002,458002,,,Management quota · border area,Punjab,Private,no,PB_BORDER
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,OPEN,807502,807502,,,Special,Punjab,Private,no,JK_MIGRANT
+"Baba Jaswant Singh Dental College, Ludhiana",BDS,OPEN,815193,815193,,,Special,Punjab,Private,no,SPECIAL
+"Christian Dental College, Ludhiana",BDS,OPEN,273703,804330,,,Minority,Punjab,Private,no,MINORITY
+"Christian Dental College, Ludhiana",BDS,BC,126609,126609,203375,,Open quota,Punjab,Private,no,
+"Christian Dental College, Ludhiana",BDS,SC,270720,270720,,,Open quota,Punjab,Private,no,
+"Christian Dental College, Ludhiana",BDS,OPEN,66884,98708,169989,,Open quota (all-India),Punjab,Private,yes,
+"Christian Medical College, Ludhiana",MBBS,OPEN,93899,506159,,,Minority,Punjab,Private,no,MINORITY
+"Christian Medical College, Ludhiana",MBBS,BC,70603,70603,,,Open quota,Punjab,Private,no,
+"Christian Medical College, Ludhiana",MBBS,SC,205698,232948,,,Open quota,Punjab,Private,no,
+"Christian Medical College, Ludhiana",MBBS,OPEN,20446,39309,53030,,Open quota (all-India),Punjab,Private,yes,
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,BC,215170,292523,,,Govt quota,Punjab,Private,no,
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,OPEN,95216,237042,282560,,Govt quota,Punjab,Private,no,
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,SC,278280,480163,,,Govt quota,Punjab,Private,no,
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,BC,364129,535741,,,Management quota,Punjab,Private,no,
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,OPEN,243340,362365,462244,,Management quota,Punjab,Private,no,
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,SC,523178,1170097,,,Management quota,Punjab,Private,no,
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,OPEN,456806,456806,,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,OPEN,455025,455025,,,Management quota · border area,Punjab,Private,no,PB_BORDER
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,OPEN,904127,904127,904127,yes,NRI,Punjab,Private,no,NRI
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,OPEN,176739,176739,176739,yes,Special,Punjab,Private,no,JK_MIGRANT
+"Dasmesh Institute of Research & Dental Sciences, Faridkot",BDS,OPEN,434301,434301,,,Special,Punjab,Private,no,SPORTS
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,BC,44867,58698,,,Govt quota,Punjab,Private,no,
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,2198,29155,29343,,Govt quota,Punjab,Private,no,
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,SC,93606,199477,,,Govt quota,Punjab,Private,no,
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,38006,38006,39955,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,BC,89958,122879,,,Management quota,Punjab,Private,no,
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,29343,43484,62016,,Management quota,Punjab,Private,no,
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,SC,218857,329556,,,Management quota,Punjab,Private,no,
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,59103,59103,,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,64610,64610,,,Management quota · border area,Punjab,Private,no,PB_BORDER
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,541180,606012,606012,yes,NRI,Punjab,Private,no,NRI
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,49130,49130,,,Special,Punjab,Private,no,DEFENCE
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,222488,222488,,,Special,Punjab,Private,no,JK_MIGRANT
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,45207,591989,,,Special,Punjab,Private,no,SPECIAL
+"Dayanand Medical College and Hospital, Ludhiana",MBBS,OPEN,80632,113995,,,Special,Punjab,Private,no,SPORTS
+"Desh Bhagat Dental College & Hospital, Mandi Gobindgarh",BDS,BC,683152,882715,957506,,Govt quota,Punjab,Private,no,
+"Desh Bhagat Dental College & Hospital, Mandi Gobindgarh",BDS,OPEN,330402,670444,851325,,Govt quota,Punjab,Private,no,
+"Desh Bhagat Dental College & Hospital, Mandi Gobindgarh",BDS,SC,731222,1144554,1169166,,Govt quota,Punjab,Private,no,
+"Desh Bhagat Dental College & Hospital, Mandi Gobindgarh",BDS,OPEN,639375,639375,,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Desh Bhagat Dental College & Hospital, Mandi Gobindgarh",BDS,OPEN,727091,727091,,,Govt quota · border area,Punjab,Private,no,PB_BORDER
+"Desh Bhagat Dental College & Hospital, Mandi Gobindgarh",BDS,BC,863028,982482,1044469,,Management quota,Punjab,Private,no,
+"Desh Bhagat Dental College & Hospital, Mandi Gobindgarh",BDS,OPEN,627093,753423,994092,,Management quota,Punjab,Private,no,
+"Desh Bhagat Dental College & Hospital, Mandi Gobindgarh",BDS,OPEN,679621,802544,,,Special,Punjab,Private,no,DEFENCE
+"Dr. B.R. Ambedkar State Institute of Medical Sciences S.A.S. Nagar, Mohali",MBBS,BC,38190,46240,,,Govt quota,Punjab,Government,no,
+"Dr. B.R. Ambedkar State Institute of Medical Sciences S.A.S. Nagar, Mohali",MBBS,OPEN,11074,27191,34876,,Govt quota,Punjab,Government,no,
+"Dr. B.R. Ambedkar State Institute of Medical Sciences S.A.S. Nagar, Mohali",MBBS,SC,116325,166404,169067,,Govt quota,Punjab,Government,no,
+"Dr. B.R. Ambedkar State Institute of Medical Sciences S.A.S. Nagar, Mohali",MBBS,OPEN,38591,38591,,,Govt quota · border area,Punjab,Government,no,PB_BORDER
+"Dr. B.R. Ambedkar State Institute of Medical Sciences S.A.S. Nagar, Mohali",MBBS,OPEN,290271,290271,290271,yes,Special,Punjab,Government,no,PWD
+"Dr. B.R. Ambedkar State Institute of Medical Sciences S.A.S. Nagar, Mohali",MBBS,OPEN,213803,637402,,,Special,Punjab,Government,no,SPECIAL
+"Dr. B.R. Ambedkar State Institute of Medical Sciences S.A.S. Nagar, Mohali",MBBS,OPEN,422569,422569,,,Special,Punjab,Government,no,SPORTS
+"ESIC Medical College, Bharat Nagar, Ludhiana",MBBS,OPEN,16606,31197,36672,,Govt quota,Punjab,Government,no,
+"ESIC Medical College, Bharat Nagar, Ludhiana",MBBS,SC,122542,169067,175842,,Govt quota,Punjab,Government,no,
+"ESIC Medical College, Bharat Nagar, Ludhiana",MBBS,OPEN,655949,655949,,,Special,Punjab,Government,no,PWD
+"Genesis Institute of Dental Sciences & Research, Ferozepur",BDS,BC,529457,748085,,,Govt quota,Punjab,Private,no,
+"Genesis Institute of Dental Sciences & Research, Ferozepur",BDS,OPEN,123116,463202,571931,,Govt quota,Punjab,Private,no,
+"Genesis Institute of Dental Sciences & Research, Ferozepur",BDS,SC,567434,924973,1167476,,Govt quota,Punjab,Private,no,
+"Genesis Institute of Dental Sciences & Research, Ferozepur",BDS,OPEN,668196,668196,,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Genesis Institute of Dental Sciences & Research, Ferozepur",BDS,OPEN,625741,625741,,,Govt quota · border area,Punjab,Private,no,PB_BORDER
+"Genesis Institute of Dental Sciences & Research, Ferozepur",BDS,BC,670097,921648,925724,,Management quota,Punjab,Private,no,
+"Genesis Institute of Dental Sciences & Research, Ferozepur",BDS,OPEN,438951,551855,883716,,Management quota,Punjab,Private,no,
+"Genesis Institute of Dental Sciences & Research, Ferozepur",BDS,SC,1123833,1123833,,,Management quota,Punjab,Private,no,
+"Genesis Institute of Dental Sciences & Research, Ferozepur",BDS,OPEN,519890,519890,519890,yes,Special,Punjab,Private,no,JK_MIGRANT
+"Gian Sagar Dental College & Hospital, Banur",BDS,BC,486587,605614,,,Govt quota,Punjab,Private,no,
+"Gian Sagar Dental College & Hospital, Banur",BDS,OPEN,141396,520955,574351,,Govt quota,Punjab,Private,no,
+"Gian Sagar Dental College & Hospital, Banur",BDS,SC,358705,902754,905398,,Govt quota,Punjab,Private,no,
+"Gian Sagar Dental College & Hospital, Banur",BDS,BC,698268,862629,927261,,Management quota,Punjab,Private,no,
+"Gian Sagar Dental College & Hospital, Banur",BDS,OPEN,531665,569423,863344,,Management quota,Punjab,Private,no,
+"Gian Sagar Dental College & Hospital, Banur",BDS,SC,826072,826072,,,Management quota,Punjab,Private,no,
+"Gian Sagar Dental College & Hospital, Banur",BDS,OPEN,571807,571807,920133,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Gian Sagar Dental College & Hospital, Banur",BDS,OPEN,755637,755637,,,Management quota · border area,Punjab,Private,no,PB_BORDER
+"Gian Sagar Dental College & Hospital, Banur",BDS,OPEN,462384,462384,,,Special,Punjab,Private,no,JK_MIGRANT
+"Gian Sagar Medical College & Hospital, Banur",MBBS,BC,70900,77525,,,Govt quota,Punjab,Private,no,
+"Gian Sagar Medical College & Hospital, Banur",MBBS,OPEN,36831,48951,62195,,Govt quota,Punjab,Private,no,
+"Gian Sagar Medical College & Hospital, Banur",MBBS,SC,200623,237456,,,Govt quota,Punjab,Private,no,
+"Gian Sagar Medical College & Hospital, Banur",MBBS,BC,129886,169761,,,Management quota,Punjab,Private,no,
+"Gian Sagar Medical College & Hospital, Banur",MBBS,OPEN,58000,76922,103171,,Management quota,Punjab,Private,no,
+"Gian Sagar Medical College & Hospital, Banur",MBBS,SC,374576,481893,,,Management quota,Punjab,Private,no,
+"Gian Sagar Medical College & Hospital, Banur",MBBS,OPEN,79197,79197,104924,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Gian Sagar Medical College & Hospital, Banur",MBBS,OPEN,100420,100420,,,Management quota · border area,Punjab,Private,no,PB_BORDER
+"Gian Sagar Medical College & Hospital, Banur",MBBS,OPEN,49635,49635,65468,,Special,Punjab,Private,no,DEFENCE
+"Gian Sagar Medical College & Hospital, Banur",MBBS,OPEN,216375,216375,,,Special,Punjab,Private,no,JK_MIGRANT
+"Gian Sagar Medical College & Hospital, Banur",MBBS,OPEN,593530,901770,,,Special,Punjab,Private,no,SPECIAL
+"Gian Sagar Medical College & Hospital, Banur",MBBS,OPEN,206800,206800,219628,,Special,Punjab,Private,no,SPORTS
+"Government Dental College, Amritsar",BDS,BC,98595,98595,132788,,Govt quota,Punjab,Government,no,
+"Government Dental College, Amritsar",BDS,EWS,108771,120554,,,Govt quota,Punjab,Government,no,
+"Government Dental College, Amritsar",BDS,OPEN,43340,84871,107778,,Govt quota,Punjab,Government,no,
+"Government Dental College, Amritsar",BDS,SC,204772,258120,,,Govt quota,Punjab,Government,no,
+"Government Dental College, Amritsar",BDS,OPEN,513786,636450,,,Special,Punjab,Government,no,SPECIAL
+"Government Dental College, Amritsar",BDS,OPEN,639543,639543,,,Special,Punjab,Government,no,SPORTS
+"Government Dental College, Patiala",BDS,BC,98281,116726,126609,,Govt quota,Punjab,Government,no,
+"Government Dental College, Patiala",BDS,EWS,93580,117508,,,Govt quota,Punjab,Government,no,
+"Government Dental College, Patiala",BDS,OPEN,35079,82503,99149,,Govt quota,Punjab,Government,no,
+"Government Dental College, Patiala",BDS,SC,195522,261595,,,Govt quota,Punjab,Government,no,
+"Government Medical College, Amritsar",MBBS,BC,28886,44761,,,Govt quota,Punjab,Government,no,
+"Government Medical College, Amritsar",MBBS,EWS,39170,49137,50707,,Govt quota,Punjab,Government,no,
+"Government Medical College, Amritsar",MBBS,OPEN,7995,27209,33860,,Govt quota,Punjab,Government,no,
+"Government Medical College, Amritsar",MBBS,SC,34701,157514,164461,,Govt quota,Punjab,Government,no,
+"Government Medical College, Amritsar",MBBS,OPEN,28206,34534,,,Govt quota · backward area,Punjab,Government,no,PB_BACKWARD
+"Government Medical College, Amritsar",MBBS,OPEN,666971,666971,666971,yes,NRI,Punjab,Government,no,NRI
+"Government Medical College, Amritsar",MBBS,OPEN,517005,517005,,,Special,Punjab,Government,no,DEFENCE
+"Government Medical College, Amritsar",MBBS,OPEN,665163,999287,,,Special,Punjab,Government,no,PWD
+"Government Medical College, Amritsar",MBBS,OPEN,91858,320140,,,Special,Punjab,Government,no,SPORTS
+"Government Medical College, Patiala",MBBS,BC,16505,32697,,,Govt quota,Punjab,Government,no,
+"Government Medical College, Patiala",MBBS,EWS,15051,37881,40886,,Govt quota,Punjab,Government,no,
+"Government Medical College, Patiala",MBBS,OPEN,3541,15038,18092,,Govt quota,Punjab,Government,no,
+"Government Medical College, Patiala",MBBS,SC,29375,113650,119642,,Govt quota,Punjab,Government,no,
+"Government Medical College, Patiala",MBBS,OPEN,19215,19215,19215,yes,Govt quota · backward area,Punjab,Government,no,PB_BACKWARD
+"Government Medical College, Patiala",MBBS,OPEN,462552,660156,660156,yes,NRI,Punjab,Government,no,NRI
+"Government Medical College, Patiala",MBBS,OPEN,902949,902949,,,Special,Punjab,Government,no,PWD
+"Government Medical College, Patiala",MBBS,OPEN,96466,96466,,,Special,Punjab,Government,no,SPECIAL
+"Government Medical College, Patiala",MBBS,OPEN,19182,337139,,,Special,Punjab,Government,no,SPORTS
+"Guru Gobind Singh Medical College, Faridkot",MBBS,BC,42019,56500,57592,,Govt quota,Punjab,Government,no,
+"Guru Gobind Singh Medical College, Faridkot",MBBS,EWS,38142,52215,56249,,Govt quota,Punjab,Government,no,
+"Guru Gobind Singh Medical College, Faridkot",MBBS,OPEN,10820,34158,46909,,Govt quota,Punjab,Government,no,
+"Guru Gobind Singh Medical College, Faridkot",MBBS,SC,107217,185637,187146,,Govt quota,Punjab,Government,no,
+"Guru Gobind Singh Medical College, Faridkot",MBBS,OPEN,35235,36764,49970,,Govt quota · backward area,Punjab,Government,no,PB_BACKWARD
+"Guru Gobind Singh Medical College, Faridkot",MBBS,OPEN,35301,35301,,,Govt quota · border area,Punjab,Government,no,PB_BORDER
+"Guru Gobind Singh Medical College, Faridkot",MBBS,OPEN,89616,202675,202675,yes,NRI,Punjab,Government,no,NRI
+"Guru Gobind Singh Medical College, Faridkot",MBBS,OPEN,714249,714249,,,Special,Punjab,Government,no,DEFENCE
+"Guru Gobind Singh Medical College, Faridkot",MBBS,OPEN,810041,810041,810041,yes,Special,Punjab,Government,no,PWD
+"Guru Gobind Singh Medical College, Faridkot",MBBS,OPEN,164916,547752,,,Special,Punjab,Government,no,SPECIAL
+"Guru Gobind Singh Medical College, Faridkot",MBBS,OPEN,184386,420604,,,Special,Punjab,Government,no,SPORTS
+"Guru Nanak Dev Dental College, Sunam",BDS,BC,365036,571289,669228,,Govt quota,Punjab,Private,no,
+"Guru Nanak Dev Dental College, Sunam",BDS,OPEN,201576,436060,554743,,Govt quota,Punjab,Private,no,
+"Guru Nanak Dev Dental College, Sunam",BDS,SC,544555,1127051,,,Govt quota,Punjab,Private,no,
+"Guru Nanak Dev Dental College, Sunam",BDS,OPEN,505848,505848,,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Guru Nanak Dev Dental College, Sunam",BDS,OPEN,594765,594765,,,Govt quota · border area,Punjab,Private,no,PB_BORDER
+"Guru Nanak Dev Dental College, Sunam",BDS,BC,669228,845065,901743,,Management quota,Punjab,Private,no,
+"Guru Nanak Dev Dental College, Sunam",BDS,OPEN,336572,574351,889390,,Management quota,Punjab,Private,no,
+"Guru Nanak Dev Dental College, Sunam",BDS,OPEN,905398,905398,,,Special,Punjab,Private,no,DEFENCE
+"Luxmi Bai Institute of Dental Sciences & Hospital, Patiala",BDS,BC,345830,509895,,,Govt quota,Punjab,Private,no,
+"Luxmi Bai Institute of Dental Sciences & Hospital, Patiala",BDS,OPEN,110737,353788,369850,,Govt quota,Punjab,Private,no,
+"Luxmi Bai Institute of Dental Sciences & Hospital, Patiala",BDS,SC,324599,662129,,,Govt quota,Punjab,Private,no,
+"Luxmi Bai Institute of Dental Sciences & Hospital, Patiala",BDS,BC,770585,834895,,,Management quota,Punjab,Private,no,
+"Luxmi Bai Institute of Dental Sciences & Hospital, Patiala",BDS,OPEN,369850,526498,755229,,Management quota,Punjab,Private,no,
+"Luxmi Bai Institute of Dental Sciences & Hospital, Patiala",BDS,SC,964650,1187435,,,Management quota,Punjab,Private,no,
+"Luxmi Bai Institute of Dental Sciences & Hospital, Patiala",BDS,OPEN,420029,420029,,,Management quota · border area,Punjab,Private,no,PB_BORDER
+"Luxmi Bai Institute of Dental Sciences & Hospital, Patiala",BDS,OPEN,666234,666234,,,Special,Punjab,Private,no,JK_MIGRANT
+"National Dental College, Dera Bassi",BDS,BC,385957,550285,683152,,Govt quota,Punjab,Private,no,
+"National Dental College, Dera Bassi",BDS,OPEN,171063,430384,626326,,Govt quota,Punjab,Private,no,
+"National Dental College, Dera Bassi",BDS,SC,373824,796544,943629,,Govt quota,Punjab,Private,no,
+"National Dental College, Dera Bassi",BDS,OPEN,480155,480155,727091,,Govt quota · border area,Punjab,Private,no,PB_BORDER
+"National Dental College, Dera Bassi",BDS,BC,578195,607269,973115,,Management quota,Punjab,Private,no,
+"National Dental College, Dera Bassi",BDS,OPEN,439867,586938,932076,,Management quota,Punjab,Private,no,
+"National Dental College, Dera Bassi",BDS,SC,1162528,1162528,,,Management quota,Punjab,Private,no,
+"National Dental College, Dera Bassi",BDS,OPEN,904842,904842,,,Special,Punjab,Private,no,SPECIAL
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,BC,59890,68744,,,Govt quota,Punjab,Private,no,
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,29273,41815,54995,,Govt quota,Punjab,Private,no,
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,SC,186879,212274,,,Govt quota,Punjab,Private,no,
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,42811,42811,56260,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,51477,51477,56579,,Govt quota · border area,Punjab,Private,no,PB_BORDER
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,BC,101603,145416,,,Management quota,Punjab,Private,no,
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,49297,57877,80265,,Management quota,Punjab,Private,no,
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,SC,216475,409779,,,Management quota,Punjab,Private,no,
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,59504,59504,82289,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,78552,78552,78552,yes,Management quota · border area,Punjab,Private,no,PB_BORDER
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,43837,939716,,,Special,Punjab,Private,no,DEFENCE
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,105215,283343,,,Special,Punjab,Private,no,JK_MIGRANT
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,270325,660916,,,Special,Punjab,Private,no,SPECIAL
+"Punjab Institute of Medical Sciences, Jalandhar",MBBS,OPEN,158505,546834,,,Special,Punjab,Private,no,SPORTS
+"RIMT Dental College, Mandi Gobindgarh",BDS,BC,720880,901543,,,Govt quota,Punjab,Private,no,
+"RIMT Dental College, Mandi Gobindgarh",BDS,OPEN,305543,711178,896987,,Govt quota,Punjab,Private,no,
+"RIMT Dental College, Mandi Gobindgarh",BDS,SC,894285,1124199,1162528,,Govt quota,Punjab,Private,no,
+"RIMT Dental College, Mandi Gobindgarh",BDS,OPEN,910499,910499,,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"RIMT Dental College, Mandi Gobindgarh",BDS,OPEN,646516,646516,982482,,Govt quota · border area,Punjab,Private,no,PB_BORDER
+"RIMT Dental College, Mandi Gobindgarh",BDS,BC,922862,936615,1036939,,Management quota,Punjab,Private,no,
+"RIMT Dental College, Mandi Gobindgarh",BDS,OPEN,626326,756087,989594,,Management quota,Punjab,Private,no,
+"RIMT Dental College, Mandi Gobindgarh",BDS,OPEN,865603,991617,,,Special,Punjab,Private,no,DEFENCE
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,BC,71627,78516,,,Govt quota,Punjab,Private,no,
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,46877,55841,65985,,Govt quota,Punjab,Private,no,
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,SC,204122,242230,242251,,Govt quota,Punjab,Private,no,
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,91108,91108,,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,102580,102580,,,Govt quota · border area,Punjab,Private,no,PB_BORDER
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,BC,172855,224233,,,Management quota,Punjab,Private,no,
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,66809,79177,136087,,Management quota,Punjab,Private,no,
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,SC,395968,568492,,,Management quota,Punjab,Private,no,
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,92635,92635,137349,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,114413,114413,,,Management quota · border area,Punjab,Private,no,PB_BORDER
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,300834,300834,300834,yes,Special,Punjab,Private,no,DEFENCE
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,313837,313837,313837,yes,Special,Punjab,Private,no,JK_MIGRANT
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,674198,674198,688968,,Special,Punjab,Private,no,SPECIAL
+"RIMT Medical College and Hospital, Mandi Gobindgarh",MBBS,OPEN,504508,504508,,,Special,Punjab,Private,no,SPORTS
+"Rayat-Bahra Dental College & Hospital, Sahauran, Mohali",BDS,BC,479153,683044,,,Govt quota,Punjab,Private,no,
+"Rayat-Bahra Dental College & Hospital, Sahauran, Mohali",BDS,OPEN,226756,617562,646071,,Govt quota,Punjab,Private,no,
+"Rayat-Bahra Dental College & Hospital, Sahauran, Mohali",BDS,SC,487496,1055866,,,Govt quota,Punjab,Private,no,
+"Rayat-Bahra Dental College & Hospital, Sahauran, Mohali",BDS,BC,798484,919089,978290,,Management quota,Punjab,Private,no,
+"Rayat-Bahra Dental College & Hospital, Sahauran, Mohali",BDS,OPEN,550438,645344,960061,,Management quota,Punjab,Private,no,
+"Rayat-Bahra Dental College & Hospital, Sahauran, Mohali",BDS,SC,916190,1057796,,,Management quota,Punjab,Private,no,
+"Rayat-Bahra Dental College & Hospital, Sahauran, Mohali",BDS,OPEN,920133,920133,,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Rayat-Bahra Dental College & Hospital, Sahauran, Mohali",BDS,OPEN,686393,686393,,,Management quota · border area,Punjab,Private,no,PB_BORDER
+"Rayat-Bahra Dental College & Hospital, Sahauran, Mohali",BDS,OPEN,462384,462384,462384,yes,Special,Punjab,Private,no,JK_MIGRANT
+"SGRD Institute of Dental Sciences & Research, Amritsar",BDS,BC,184145,227381,282616,,Govt quota,Punjab,Private,no,
+"SGRD Institute of Dental Sciences & Research, Amritsar",BDS,OPEN,87086,170071,214519,,Govt quota,Punjab,Private,no,
+"SGRD Institute of Dental Sciences & Research, Amritsar",BDS,SC,302668,415459,,,Govt quota,Punjab,Private,no,
+"SGRD Institute of Dental Sciences & Research, Amritsar",BDS,OPEN,195358,358614,564369,,Minority,Punjab,Private,no,MINORITY
+"SGRD Institute of Dental Sciences & Research, Amritsar",BDS,OPEN,480423,480423,,,Special,Punjab,Private,no,JK_MIGRANT
+"Shaheed Kartar Singh Sarabha Dental College, Sarabha, Ludhiana",BDS,BC,269493,278268,,,Govt quota,Punjab,Private,no,
+"Shaheed Kartar Singh Sarabha Dental College, Sarabha, Ludhiana",BDS,OPEN,187362,248295,360242,,Govt quota,Punjab,Private,no,
+"Shaheed Kartar Singh Sarabha Dental College, Sarabha, Ludhiana",BDS,SC,349622,627387,,,Govt quota,Punjab,Private,no,
+"Shaheed Kartar Singh Sarabha Dental College, Sarabha, Ludhiana",BDS,OPEN,409050,409050,,,Govt quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Shaheed Kartar Singh Sarabha Dental College, Sarabha, Ludhiana",BDS,OPEN,263806,263806,462618,,Govt quota · border area,Punjab,Private,no,PB_BORDER
+"Shaheed Kartar Singh Sarabha Dental College, Sarabha, Ludhiana",BDS,BC,355560,631605,,,Management quota,Punjab,Private,no,
+"Shaheed Kartar Singh Sarabha Dental College, Sarabha, Ludhiana",BDS,OPEN,304981,394844,522595,,Management quota,Punjab,Private,no,
+"Shaheed Kartar Singh Sarabha Dental College, Sarabha, Ludhiana",BDS,SC,822643,1059857,,,Management quota,Punjab,Private,no,
+"Shaheed Kartar Singh Sarabha Dental College, Sarabha, Ludhiana",BDS,OPEN,765585,765585,,,Special,Punjab,Private,no,SPORTS
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,OPEN,66979,234790,334874,,Minority,Punjab,Private,no,MINORITY
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,BC,151651,241454,270887,,Open quota,Punjab,Private,no,
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,SC,404678,656919,,,Open quota,Punjab,Private,no,
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,OPEN,45914,90934,143423,,Open quota (all-India),Punjab,Private,yes,
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,OPEN,107986,107986,193238,,Open quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,OPEN,97414,97414,153780,,Open quota · border area,Punjab,Private,no,PB_BORDER
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,OPEN,195498,195498,256800,,Special,Punjab,Private,no,DEFENCE
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,OPEN,299786,299786,,,Special,Punjab,Private,no,JK_MIGRANT
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,OPEN,763915,763915,,,Special,Punjab,Private,no,SPECIAL
+"Sri Guru Ram Das Institute of Medical Sciences and Research, Amritsar",MBBS,OPEN,796248,796248,952577,,Special,Punjab,Private,no,SPORTS
+"Sri Sukhmani Dental College & Hospital, Dera Bassi",BDS,BC,666434,897807,,,Govt quota,Punjab,Private,no,
+"Sri Sukhmani Dental College & Hospital, Dera Bassi",BDS,OPEN,454541,629048,807469,,Govt quota,Punjab,Private,no,
+"Sri Sukhmani Dental College & Hospital, Dera Bassi",BDS,SC,664751,1194406,,,Govt quota,Punjab,Private,no,
+"Sri Sukhmani Dental College & Hospital, Dera Bassi",BDS,BC,863344,887481,1015882,,Management quota,Punjab,Private,no,
+"Sri Sukhmani Dental College & Hospital, Dera Bassi",BDS,OPEN,629120,645265,994658,,Management quota,Punjab,Private,no,
+"Sri Sukhmani Dental College & Hospital, Dera Bassi",BDS,OPEN,824864,824864,,,Management quota · backward area,Punjab,Private,no,PB_BACKWARD
+"Sri Sukhmani Dental College & Hospital, Dera Bassi",BDS,OPEN,776501,776501,,,Management quota · border area,Punjab,Private,no,PB_BORDER
