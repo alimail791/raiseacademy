@@ -52,9 +52,12 @@ export const SUBJECTS = ["Physics", "Chemistry", "Biology"] as const;
 
 export function chapterMeta(c: PracticeChapterSummary) {
   const years = c.pyqYears ? ` (${c.pyqYears[0]}–${c.pyqYears[1]})` : "";
+  // Chapter name first and short enough not to be cut off on mobile: people
+  // search "<chapter> neet pyqs" / "<chapter> neet questions".
+  const long = `${c.chapter} NEET PYQs & Questions with Answers | YNeet`;
   return {
-    title: `NEET ${c.chapter} PYQs & Practice Questions with Answers | ${c.subject} | YNeet`,
-    description: `Free NEET ${c.subject} practice: ${c.chapter} previous year questions${years} with answers and explanations. No login needed. Take the full timed chapter test free for 30 days on YNeet.`,
+    title: long.length <= 65 ? long : `${c.chapter} NEET PYQs with Answers | YNeet`,
+    description: `Free ${c.chapter} NEET previous year questions${years} with answers and explanations — ${c.subject}, no login needed. Then take the timed ${c.chapter} chapter test free for 30 days on YNeet.`,
   };
 }
 

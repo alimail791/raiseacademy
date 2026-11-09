@@ -100,8 +100,37 @@ const BlogPost = () => {
           }).replace(/</g, "\\u003c"),
         }}
       />
+      {(() => {
+        const faq = faqFromHtml(post.bodyHtml || "");
+        return faq.length ? (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+              }).replace(/</g, "\\u003c"),
+            }}
+          />
+        ) : null;
+      })()}
     </div>
   );
 };
+
+// FAQ rich results: any post body with a <div class="yn-faq"> block of
+// <h3>question</h3><p>answer</p> pairs gets FAQPage markup. Plain string
+// parsing so it works the same in the build-time render and the browser.
+function faqFromHtml(html: string): { q: string; a: string }[] {
+  const block = html.match(/<div class="yn-faq">([\s\S]*?)<\/div>/);
+  if (!block) return [];
+  const text = (s: string) => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+  const out: { q: string; a: string }[] = [];
+  const re = /<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/g;
+  let m;
+  while ((m = re.exec(block[1]))) out.push({ q: text(m[1]), a: text(m[2]) });
+  return out;
+}
 
 export default BlogPost;

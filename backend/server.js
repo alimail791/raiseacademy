@@ -16,6 +16,7 @@ import { startRenewalReminderJob } from "./controllers/instituteBillingControlle
 import blogRoutes from "./routes/blogRoutes.js";
 import predictorRoutes from "./routes/predictorRoutes.js";
 import { seedBundledCutoffs } from "./controllers/predictorController.js";
+import { applyBlogUpdates } from "./utils/blogUpdates.js";
 
 dotenv.config();
 
@@ -65,4 +66,5 @@ connectDB().then(() => {
   startParentWhatsAppJob(); // weekly WhatsApp progress report to institute students' parents
   startRenewalReminderJob(); // monthly institute plans: renewal reminder emails
   seedBundledCutoffs(); // NEET College Predictor: official cutoff files shipped in data/predictor
+  applyBlogUpdates(); // one-time SEO updates to existing blog posts (utils/blogUpdates.js)
 });
