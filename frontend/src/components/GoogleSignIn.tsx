@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import api from "../api/axios";
-import { isAppMode } from "../utils/appMode";
 
 // "Continue with Google" for Class 9–Dropper (Register and Login pages).
 // Google gives us a verified name + email in one tap. A brand-new student is then
 // asked for just two things the account needs: class and WhatsApp number.
-// Hidden when VITE_GOOGLE_CLIENT_ID isn't set, and inside the Android app
-// (Google blocks its sign-in inside app WebViews).
+// Hidden when VITE_GOOGLE_CLIENT_ID isn't set. Works in the YNeet Android app too:
+// it is a Trusted Web Activity (real Chrome), and app.yneet.in's account frame
+// allows Google sign-in (allow="identity-credentials-get").
 
 const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined;
 const CLASSES = ["9", "10", "11", "12", "Dropper"];
@@ -26,7 +26,7 @@ function loadGsi(): Promise<void> {
   return scriptPromise;
 }
 
-export const googleSignInEnabled = () => !!CLIENT_ID && typeof window !== "undefined" && !isAppMode();
+export const googleSignInEnabled = () => !!CLIENT_ID && typeof window !== "undefined";
 
 type Props = {
   text?: "signup_with" | "continue_with" | "signin_with";
