@@ -51,7 +51,37 @@ const UPDATES = [
   },
 ];
 
+// Text fixes applied to every post: the ₹99 five-day trial was replaced by a
+// free 30-day trial (Oct 2026). Runs on every start; a post is only saved when
+// something actually matched, so it does nothing once the text is gone.
+const TEXT_FIXES = [
+  [/Start your ₹\s?99 (five|5)[- ]day trial/gi, "Start your free 30-day trial"],
+  [/(a |the )?₹\s?99 (five|5)[- ]day trial/gi, "a free 30-day trial"],
+  [/(five|5)[- ]day trial for ₹\s?99/gi, "free 30-day trial"],
+  [/start trial for ₹\s?99/gi, "Start your free 30-day trial"],
+  [/trial (costs|is|for) (just |only )?₹\s?99/gi, "trial is free for 30 days"],
+];
+
+async function applyTextFixes() {
+  const posts = await BlogPost.find({ bodyHtml: /99/ });
+  for (const post of posts) {
+    let body = post.bodyHtml || "";
+    let title = post.title || "";
+    let meta = post.metaDescription || "";
+    for (const [re, to] of TEXT_FIXES) { body = body.replace(re, to); title = title.replace(re, to); meta = meta.replace(re, to); }
+    if (body === post.bodyHtml && title === post.title && meta === post.metaDescription) {
+      if (/₹\s?99\b/.test(body)) console.log(`blogUpdates: ${post.slug} mentions ₹99 in wording not matched — check by hand`);
+      continue;
+    }
+    post.bodyHtml = body; post.title = title; post.metaDescription = meta;
+    await post.save();
+    const left = /₹\s?99\b/.test(body) ? " (still mentions ₹99 somewhere — check by hand)" : "";
+    console.log(`blogUpdates: replaced ₹99 trial text in ${post.slug}${left}`);
+  }
+}
+
 export async function applyBlogUpdates() {
+  try { await applyTextFixes(); } catch (err) { console.error(`blogUpdates: text fixes failed: ${err.message}`); }
   for (const u of UPDATES) {
     try {
       const post = await BlogPost.findOne({ slug: u.slug });
