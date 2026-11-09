@@ -1,0 +1,452 @@
+college,course,category,opening_rank,closing_rank,stray_closing_rank,stray_only,seat_type,college_state,college_type,open_to_all,eligibility
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,OPEN,231623,897182,,,NRI,Madhya Pradesh,Private,no,NRI
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,OBC,113260,123017,,,Private college,Madhya Pradesh,Private,no,
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,OPEN,73869,119450,120853,,Private college,Madhya Pradesh,Private,no,
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,SC,176527,280177,,,Private college,Madhya Pradesh,Private,no,
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,ST,364612,489488,,,Private college,Madhya Pradesh,Private,no,
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,OBC,277287,277287,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,OPEN,223568,263739,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,SC,237134,288907,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,ST,494281,497206,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Amaltas Institute of Medical Sciences, Dewas",MBBS,OPEN,814345,814345,,,Special,Madhya Pradesh,Private,no,PWD
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,EWS,31453,40661,41578,,Govt college,Madhya Pradesh,Government,no,
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,OBC,31114,36718,38099,,Govt college,Madhya Pradesh,Government,no,
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,OPEN,13004,31976,32179,,Govt college,Madhya Pradesh,Government,no,
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,SC,91819,129508,,,Govt college,Madhya Pradesh,Government,no,
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,ST,181468,272042,,,Govt college,Madhya Pradesh,Government,no,
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,EWS,197714,197714,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,OBC,112687,112687,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,OPEN,101679,107600,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,SC,133513,133513,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,ST,284811,287363,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,OPEN,294649,1055322,,,Special,Madhya Pradesh,Government,no,PWD
+"Atal Bihari Vajpayee Government Medical College, Vidisha",MBBS,OPEN,34005,812526,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Bhabha College of Dental Sciences, Bhopal",BDS,OBC,408401,720478,1003679,,Private college,Madhya Pradesh,Private,no,
+"Bhabha College of Dental Sciences, Bhopal",BDS,OPEN,99291,664215,766901,,Private college,Madhya Pradesh,Private,no,
+"Bhabha College of Dental Sciences, Bhopal",BDS,SC,457773,817678,1178066,,Private college,Madhya Pradesh,Private,no,
+"Bhabha College of Dental Sciences, Bhopal",BDS,ST,588596,1190345,,,Private college,Madhya Pradesh,Private,no,
+"Bhabha College of Dental Sciences, Bhopal",BDS,OPEN,497919,801731,1148361,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Bhabha College of Dental Sciences, Bhopal",BDS,SC,610603,610603,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Bhabha College of Dental Sciences, Bhopal",BDS,ST,1137706,1137706,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Birsa Munda Government Medical College, Shahdol",MBBS,EWS,49605,57641,62711,,Govt college,Madhya Pradesh,Government,no,
+"Birsa Munda Government Medical College, Shahdol",MBBS,OBC,48691,51525,55557,,Govt college,Madhya Pradesh,Government,no,
+"Birsa Munda Government Medical College, Shahdol",MBBS,OPEN,30724,49335,51884,,Govt college,Madhya Pradesh,Government,no,
+"Birsa Munda Government Medical College, Shahdol",MBBS,SC,121777,156167,166759,,Govt college,Madhya Pradesh,Government,no,
+"Birsa Munda Government Medical College, Shahdol",MBBS,ST,285092,315749,327662,,Govt college,Madhya Pradesh,Government,no,
+"Birsa Munda Government Medical College, Shahdol",MBBS,EWS,217194,217194,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Birsa Munda Government Medical College, Shahdol",MBBS,OPEN,145959,146166,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Birsa Munda Government Medical College, Shahdol",MBBS,ST,318186,318186,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Birsa Munda Government Medical College, Shahdol",MBBS,OPEN,726406,990851,,,Special,Madhya Pradesh,Government,no,PWD
+"Birsa Munda Government Medical College, Shahdol",MBBS,OPEN,63323,67185,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Bundelkhand Medical College, Sagar",MBBS,EWS,35214,41524,42025,,Govt college,Madhya Pradesh,Government,no,
+"Bundelkhand Medical College, Sagar",MBBS,OBC,32956,39149,41282,,Govt college,Madhya Pradesh,Government,no,
+"Bundelkhand Medical College, Sagar",MBBS,OPEN,21871,35905,38424,,Govt college,Madhya Pradesh,Government,no,
+"Bundelkhand Medical College, Sagar",MBBS,SC,51242,133916,141956,,Govt college,Madhya Pradesh,Government,no,
+"Bundelkhand Medical College, Sagar",MBBS,ST,230382,284373,304689,,Govt college,Madhya Pradesh,Government,no,
+"Bundelkhand Medical College, Sagar",MBBS,OBC,106374,123442,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Bundelkhand Medical College, Sagar",MBBS,OPEN,71010,116158,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Bundelkhand Medical College, Sagar",MBBS,SC,139043,142250,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Bundelkhand Medical College, Sagar",MBBS,ST,284444,284444,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Bundelkhand Medical College, Sagar",MBBS,OPEN,722377,1083299,,,Special,Madhya Pradesh,Government,no,PWD
+"Bundelkhand Medical College, Sagar",MBBS,OPEN,36010,916008,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,EWS,44902,54059,61454,,Govt college,Madhya Pradesh,Government,no,
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,OBC,44029,48009,48955,,Govt college,Madhya Pradesh,Government,no,
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,OPEN,33177,43935,45476,,Govt college,Madhya Pradesh,Government,no,
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,SC,121078,151151,,,Govt college,Madhya Pradesh,Government,no,
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,ST,228421,297811,311844,,Govt college,Madhya Pradesh,Government,no,
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,OBC,144704,144704,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,OPEN,131296,136168,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,SC,163265,163265,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,ST,298077,300788,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,OPEN,431317,1121316,,,Special,Madhya Pradesh,Government,no,PWD
+"Chhindwara Institute of Medical Sciences, Chhindwara",MBBS,OPEN,53339,1140046,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Chirayu Medical College and Hospital, Bhopal",MBBS,OPEN,163023,983048,,,NRI,Madhya Pradesh,Private,no,NRI
+"Chirayu Medical College and Hospital, Bhopal",MBBS,OBC,72261,84330,,,Private college,Madhya Pradesh,Private,no,
+"Chirayu Medical College and Hospital, Bhopal",MBBS,OPEN,57117,80690,,,Private college,Madhya Pradesh,Private,no,
+"Chirayu Medical College and Hospital, Bhopal",MBBS,SC,170777,220968,,,Private college,Madhya Pradesh,Private,no,
+"Chirayu Medical College and Hospital, Bhopal",MBBS,ST,326847,394644,,,Private college,Madhya Pradesh,Private,no,
+"Chirayu Medical College and Hospital, Bhopal",MBBS,OBC,216005,216005,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Chirayu Medical College and Hospital, Bhopal",MBBS,OPEN,167419,215459,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Chirayu Medical College and Hospital, Bhopal",MBBS,SC,224881,224881,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Chirayu Medical College and Hospital, Bhopal",MBBS,ST,394775,401274,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"College of Dental Sciences and Hospital Rau, Indore",BDS,OPEN,640067,843683,,,NRI,Madhya Pradesh,Private,no,NRI
+"College of Dental Sciences and Hospital Rau, Indore",BDS,OBC,228873,344509,,,Private college,Madhya Pradesh,Private,no,
+"College of Dental Sciences and Hospital Rau, Indore",BDS,OPEN,147663,324908,,,Private college,Madhya Pradesh,Private,no,
+"College of Dental Sciences and Hospital Rau, Indore",BDS,SC,368474,502832,,,Private college,Madhya Pradesh,Private,no,
+"College of Dental Sciences and Hospital Rau, Indore",BDS,ST,483568,787608,992502,,Private college,Madhya Pradesh,Private,no,
+"College of Dental Sciences and Hospital Rau, Indore",BDS,OPEN,359540,371486,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"College of Dental Sciences and Hospital Rau, Indore",BDS,SC,502832,571051,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"College of Dental Sciences and Hospital Rau, Indore",BDS,ST,778672,848212,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,EWS,37218,44992,55958,,Govt college,Madhya Pradesh,Government,no,
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,OBC,36067,39962,40735,,Govt college,Madhya Pradesh,Government,no,
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,OPEN,17327,37218,37402,,Govt college,Madhya Pradesh,Government,no,
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,SC,93884,139091,144743,,Govt college,Madhya Pradesh,Government,no,
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,ST,188942,264659,267348,,Govt college,Madhya Pradesh,Government,no,
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,EWS,176756,176756,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,OBC,128430,130135,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,OPEN,89771,129266,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,SC,143795,143795,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,ST,274660,276960,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,OPEN,529600,1083299,,,Special,Madhya Pradesh,Government,no,PWD
+"Dr. Laxminarayan Pandey Government Medical College, Ratlam",MBBS,OPEN,44229,907787,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"ESIC Medical College and Hospital, Indore",MBBS,EWS,33318,34552,,,Govt college,Madhya Pradesh,Government,no,
+"ESIC Medical College and Hospital, Indore",MBBS,OBC,23002,27799,,,Govt college,Madhya Pradesh,Government,no,
+"ESIC Medical College and Hospital, Indore",MBBS,OPEN,16007,23679,,,Govt college,Madhya Pradesh,Government,no,
+"ESIC Medical College and Hospital, Indore",MBBS,SC,99243,108060,,,Govt college,Madhya Pradesh,Government,no,
+"ESIC Medical College and Hospital, Indore",MBBS,ST,161525,223842,,,Govt college,Madhya Pradesh,Government,no,
+"ESIC Medical College and Hospital, Indore",MBBS,OPEN,118686,118686,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"ESIC Medical College and Hospital, Indore",MBBS,OPEN,886999,886999,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Gajra Raja Medical College, Gwalior",MBBS,EWS,22521,30831,32740,,Govt college,Madhya Pradesh,Government,no,
+"Gajra Raja Medical College, Gwalior",MBBS,OBC,21430,26085,26155,,Govt college,Madhya Pradesh,Government,no,
+"Gajra Raja Medical College, Gwalior",MBBS,OPEN,1944,23437,23576,,Govt college,Madhya Pradesh,Government,no,
+"Gajra Raja Medical College, Gwalior",MBBS,SC,22860,100318,104312,,Govt college,Madhya Pradesh,Government,no,
+"Gajra Raja Medical College, Gwalior",MBBS,ST,147129,243606,279665,,Govt college,Madhya Pradesh,Government,no,
+"Gajra Raja Medical College, Gwalior",MBBS,EWS,106307,106307,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gajra Raja Medical College, Gwalior",MBBS,OBC,76700,76700,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gajra Raja Medical College, Gwalior",MBBS,OPEN,61791,76626,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gajra Raja Medical College, Gwalior",MBBS,SC,114999,120170,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gajra Raja Medical College, Gwalior",MBBS,ST,250572,250855,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gajra Raja Medical College, Gwalior",MBBS,OPEN,305101,827334,,,Special,Madhya Pradesh,Government,no,PWD
+"Gajra Raja Medical College, Gwalior",MBBS,OPEN,25794,694188,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Gandhi Medical College, Bhopal",MBBS,EWS,12822,21651,,,Govt college,Madhya Pradesh,Government,no,
+"Gandhi Medical College, Bhopal",MBBS,OBC,12642,17180,17327,,Govt college,Madhya Pradesh,Government,no,
+"Gandhi Medical College, Bhopal",MBBS,OPEN,2182,15360,16194,,Govt college,Madhya Pradesh,Government,no,
+"Gandhi Medical College, Bhopal",MBBS,SC,18172,80680,,,Govt college,Madhya Pradesh,Government,no,
+"Gandhi Medical College, Bhopal",MBBS,ST,74603,180016,196310,,Govt college,Madhya Pradesh,Government,no,
+"Gandhi Medical College, Bhopal",MBBS,EWS,80229,80229,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gandhi Medical College, Bhopal",MBBS,OBC,60708,60708,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gandhi Medical College, Bhopal",MBBS,OPEN,36517,61149,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gandhi Medical College, Bhopal",MBBS,SC,103647,105290,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gandhi Medical College, Bhopal",MBBS,ST,181516,193769,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Gandhi Medical College, Bhopal",MBBS,OPEN,90002,892622,,,Special,Madhya Pradesh,Government,no,PWD
+"Gandhi Medical College, Bhopal",MBBS,OPEN,12892,1151351,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Government Autonomous College of Dentistry, Indore",BDS,EWS,84313,133374,168212,,Govt college,Madhya Pradesh,Government,no,
+"Government Autonomous College of Dentistry, Indore",BDS,OBC,84224,103438,150942,,Govt college,Madhya Pradesh,Government,no,
+"Government Autonomous College of Dentistry, Indore",BDS,OPEN,55745,84224,101187,,Govt college,Madhya Pradesh,Government,no,
+"Government Autonomous College of Dentistry, Indore",BDS,SC,166527,207280,257822,,Govt college,Madhya Pradesh,Government,no,
+"Government Autonomous College of Dentistry, Indore",BDS,ST,313065,386707,431172,,Govt college,Madhya Pradesh,Government,no,
+"Government Autonomous College of Dentistry, Indore",BDS,OBC,186336,186336,301419,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Autonomous College of Dentistry, Indore",BDS,OPEN,159468,185371,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Autonomous College of Dentistry, Indore",BDS,SC,208582,221514,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Autonomous College of Dentistry, Indore",BDS,ST,397654,397654,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Autonomous College of Dentistry, Indore",BDS,OPEN,81956,344995,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Government Medical College, Datia",MBBS,EWS,44868,51131,52029,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Datia",MBBS,OBC,44081,48476,48865,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Datia",MBBS,OPEN,25772,44921,46321,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Datia",MBBS,SC,113075,150665,,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Datia",MBBS,ST,253170,307905,329569,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Datia",MBBS,EWS,210302,210302,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Datia",MBBS,OPEN,119218,146845,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Datia",MBBS,SC,154968,161227,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Datia",MBBS,ST,305792,308239,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Datia",MBBS,OPEN,810457,903776,,,Special,Madhya Pradesh,Government,no,PWD
+"Government Medical College, Datia",MBBS,OPEN,47864,282472,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Government Medical College, Satna",MBBS,EWS,50440,60601,63111,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Satna",MBBS,OBC,49041,54264,55313,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Satna",MBBS,OPEN,33904,50364,52769,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Satna",MBBS,SC,136991,160749,164814,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Satna",MBBS,ST,287709,320901,330499,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Satna",MBBS,EWS,225166,225166,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Satna",MBBS,OBC,142928,154640,163622,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Satna",MBBS,OPEN,70657,142112,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Satna",MBBS,SC,163910,163910,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Satna",MBBS,ST,324158,324787,334896,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Satna",MBBS,OPEN,594906,1158787,,,Special,Madhya Pradesh,Government,no,PWD
+"Government Medical College, Satna",MBBS,OPEN,55985,996327,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Government Medical College, Seoni",MBBS,EWS,54809,61325,63487,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Seoni",MBBS,OBC,53100,54797,55469,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Seoni",MBBS,OPEN,32548,53192,53871,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Seoni",MBBS,SC,121078,158671,166862,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Seoni",MBBS,ST,247050,316973,321242,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Seoni",MBBS,OBC,141441,141441,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Seoni",MBBS,OPEN,119577,155481,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Seoni",MBBS,ST,325526,325526,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Seoni",MBBS,OPEN,805376,977031,,,Special,Madhya Pradesh,Government,no,PWD
+"Government Medical College, Seoni",MBBS,OPEN,67317,306951,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Government Medical College, Sheopur",MBBS,EWS,54944,63133,66671,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Sheopur",MBBS,OBC,54379,55871,58026,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Sheopur",MBBS,OPEN,39491,55002,56902,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Sheopur",MBBS,SC,151385,165055,169390,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Sheopur",MBBS,ST,291470,323776,332221,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Sheopur",MBBS,OBC,157443,164291,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Sheopur",MBBS,OPEN,155481,157270,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Sheopur",MBBS,SC,167225,167225,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Sheopur",MBBS,ST,324158,326807,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Sheopur",MBBS,OPEN,1141244,1141244,,,Special,Madhya Pradesh,Government,no,PWD
+"Government Medical College, Sheopur",MBBS,OPEN,63954,320912,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Government Medical College, Singrauli",MBBS,EWS,60829,63111,66323,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Singrauli",MBBS,OBC,55750,56828,58592,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Singrauli",MBBS,OPEN,52954,56006,57109,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Singrauli",MBBS,SC,161376,166442,170100,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Singrauli",MBBS,ST,300604,324519,333550,,Govt college,Madhya Pradesh,Government,no,
+"Government Medical College, Singrauli",MBBS,EWS,233405,233405,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Singrauli",MBBS,OPEN,112836,157443,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Singrauli",MBBS,ST,326812,326812,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Government Medical College, Singrauli",MBBS,OPEN,1063589,1177028,,,Special,Madhya Pradesh,Government,no,PWD
+"Government Medical College, Singrauli",MBBS,OPEN,63875,334134,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Hitkarini Dental College and Hospital, Jabalpur",BDS,OPEN,862499,970896,,,NRI,Madhya Pradesh,Private,no,NRI
+"Hitkarini Dental College and Hospital, Jabalpur",BDS,OBC,351107,509991,633955,,Private college,Madhya Pradesh,Private,no,
+"Hitkarini Dental College and Hospital, Jabalpur",BDS,OPEN,185152,497435,509991,,Private college,Madhya Pradesh,Private,no,
+"Hitkarini Dental College and Hospital, Jabalpur",BDS,SC,461046,697181,1082560,,Private college,Madhya Pradesh,Private,no,
+"Hitkarini Dental College and Hospital, Jabalpur",BDS,ST,561380,1110911,,,Private college,Madhya Pradesh,Private,no,
+"Hitkarini Dental College and Hospital, Jabalpur",BDS,OBC,493343,493343,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Hitkarini Dental College and Hospital, Jabalpur",BDS,OPEN,385524,1166013,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Hitkarini Dental College and Hospital, Jabalpur",BDS,OPEN,921751,921751,,,Special,Madhya Pradesh,Private,no,PWD
+"Index Institute of Dental Sciences, Indore",BDS,OPEN,715740,715740,,,NRI,Madhya Pradesh,Private,no,NRI
+"Index Institute of Dental Sciences, Indore",BDS,OBC,297730,457746,471438,,Private college,Madhya Pradesh,Private,no,
+"Index Institute of Dental Sciences, Indore",BDS,OPEN,97882,405449,444766,,Private college,Madhya Pradesh,Private,no,
+"Index Institute of Dental Sciences, Indore",BDS,SC,379465,611060,643660,,Private college,Madhya Pradesh,Private,no,
+"Index Institute of Dental Sciences, Indore",BDS,ST,524573,839972,1078147,,Private college,Madhya Pradesh,Private,no,
+"Index Institute of Dental Sciences, Indore",BDS,OBC,369538,671069,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Index Institute of Dental Sciences, Indore",BDS,OPEN,312802,516259,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Index Institute of Dental Sciences, Indore",BDS,SC,484982,886963,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Index Medical College Hospital and Research Center, Indore",MBBS,OPEN,169152,970514,,,NRI,Madhya Pradesh,Private,no,NRI
+"Index Medical College Hospital and Research Center, Indore",MBBS,OBC,110800,117994,121246,,Private college,Madhya Pradesh,Private,no,
+"Index Medical College Hospital and Research Center, Indore",MBBS,OPEN,73020,111833,114748,,Private college,Madhya Pradesh,Private,no,
+"Index Medical College Hospital and Research Center, Indore",MBBS,SC,199659,276029,,,Private college,Madhya Pradesh,Private,no,
+"Index Medical College Hospital and Research Center, Indore",MBBS,ST,313138,481797,,,Private college,Madhya Pradesh,Private,no,
+"Index Medical College Hospital and Research Center, Indore",MBBS,OBC,262619,263560,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Index Medical College Hospital and Research Center, Indore",MBBS,OPEN,229728,255376,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Index Medical College Hospital and Research Center, Indore",MBBS,SC,277621,281351,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Index Medical College Hospital and Research Center, Indore",MBBS,ST,397819,485875,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Index Medical College Hospital and Research Center, Indore",MBBS,OPEN,333939,333939,,,Special,Madhya Pradesh,Private,no,PWD
+"LN Medical College, Bhopal",MBBS,OPEN,301380,972579,,,NRI,Madhya Pradesh,Private,no,NRI
+"LN Medical College, Bhopal",MBBS,OBC,78120,97061,,,Private college,Madhya Pradesh,Private,no,
+"LN Medical College, Bhopal",MBBS,OPEN,61037,94803,,,Private college,Madhya Pradesh,Private,no,
+"LN Medical College, Bhopal",MBBS,SC,180791,244400,,,Private college,Madhya Pradesh,Private,no,
+"LN Medical College, Bhopal",MBBS,ST,350968,451252,,,Private college,Madhya Pradesh,Private,no,
+"LN Medical College, Bhopal",MBBS,OBC,229307,229307,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"LN Medical College, Bhopal",MBBS,OPEN,192104,227286,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"LN Medical College, Bhopal",MBBS,SC,247131,255254,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"LN Medical College, Bhopal",MBBS,ST,452628,455057,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,OPEN,183372,984150,,,NRI,Madhya Pradesh,Private,no,NRI
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,OBC,111613,118490,120011,,Private college,Madhya Pradesh,Private,no,
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,OPEN,74006,111613,116049,,Private college,Madhya Pradesh,Private,no,
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,SC,203384,270663,,,Private college,Madhya Pradesh,Private,no,
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,ST,338881,481736,,,Private college,Madhya Pradesh,Private,no,
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,OBC,249526,253979,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,OPEN,208100,244152,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,SC,277248,280684,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,ST,484176,484176,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"LNCT Medical College and Sewakunj Hospital, Indore",MBBS,OPEN,808040,808040,1091678,,Special,Madhya Pradesh,Private,no,PWD
+"Maharana Pratap College of Dentistry and Research Center, Gwalior",BDS,OBC,418460,666868,1031824,,Private college,Madhya Pradesh,Private,no,
+"Maharana Pratap College of Dentistry and Research Center, Gwalior",BDS,OPEN,158994,613144,740674,,Private college,Madhya Pradesh,Private,no,
+"Maharana Pratap College of Dentistry and Research Center, Gwalior",BDS,SC,439254,866767,1177256,,Private college,Madhya Pradesh,Private,no,
+"Maharana Pratap College of Dentistry and Research Center, Gwalior",BDS,ST,619389,1191089,,,Private college,Madhya Pradesh,Private,no,
+"Maharana Pratap College of Dentistry and Research Center, Gwalior",BDS,OBC,671069,671069,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Maharana Pratap College of Dentistry and Research Center, Gwalior",BDS,OPEN,487234,916237,1044947,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,EWS,8097,16304,,,Govt college,Madhya Pradesh,Government,no,
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,OBC,8241,12178,,,Govt college,Madhya Pradesh,Government,no,
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,OPEN,987,12006,16110,,Govt college,Madhya Pradesh,Government,no,
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,SC,16445,60073,,,Govt college,Madhya Pradesh,Government,no,
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,ST,34887,161079,164232,,Govt college,Madhya Pradesh,Government,no,
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,EWS,67483,67483,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,OBC,57540,60430,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,OPEN,24718,51018,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,SC,84641,92382,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,ST,162877,175514,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,OPEN,156322,692570,,,Special,Madhya Pradesh,Government,no,PWD
+"Mahatma Gandhi Memorial Medical College, Indore",MBBS,OPEN,10810,892678,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Mahaveer Institute of Medical Sciences and Research, Bhopal",MBBS,OPEN,307944,992621,,,NRI,Madhya Pradesh,Private,no,NRI
+"Mahaveer Institute of Medical Sciences and Research, Bhopal",MBBS,OBC,87761,113991,,,Private college,Madhya Pradesh,Private,no,
+"Mahaveer Institute of Medical Sciences and Research, Bhopal",MBBS,OPEN,72700,102973,,,Private college,Madhya Pradesh,Private,no,
+"Mahaveer Institute of Medical Sciences and Research, Bhopal",MBBS,SC,187531,264838,,,Private college,Madhya Pradesh,Private,no,
+"Mahaveer Institute of Medical Sciences and Research, Bhopal",MBBS,ST,364381,465966,,,Private college,Madhya Pradesh,Private,no,
+"Mahaveer Institute of Medical Sciences and Research, Bhopal",MBBS,OBC,245926,245926,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mahaveer Institute of Medical Sciences and Research, Bhopal",MBBS,OPEN,158838,235588,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mahaveer Institute of Medical Sciences and Research, Bhopal",MBBS,SC,239662,268359,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mahaveer Institute of Medical Sciences and Research, Bhopal",MBBS,ST,468298,468298,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mansarovar Dental College, Bhopal",BDS,OBC,387248,594330,735220,,Private college,Madhya Pradesh,Private,no,
+"Mansarovar Dental College, Bhopal",BDS,OPEN,207268,525055,601962,,Private college,Madhya Pradesh,Private,no,
+"Mansarovar Dental College, Bhopal",BDS,SC,451958,724312,1049445,,Private college,Madhya Pradesh,Private,no,
+"Mansarovar Dental College, Bhopal",BDS,ST,537289,1126856,,,Private college,Madhya Pradesh,Private,no,
+"Mansarovar Dental College, Bhopal",BDS,OBC,579878,1084721,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mansarovar Dental College, Bhopal",BDS,OPEN,451870,1044947,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mansarovar Dental College, Bhopal",BDS,ST,1137706,1140596,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mansarovar Medical College and MGU Hospital, Sehore",MBBS,OPEN,260622,983048,,,NRI,Madhya Pradesh,Private,no,NRI
+"Mansarovar Medical College and MGU Hospital, Sehore",MBBS,OBC,137737,146325,163998,,Private college,Madhya Pradesh,Private,no,
+"Mansarovar Medical College and MGU Hospital, Sehore",MBBS,OPEN,99002,143291,158331,,Private college,Madhya Pradesh,Private,no,
+"Mansarovar Medical College and MGU Hospital, Sehore",MBBS,SC,231877,313267,315393,,Private college,Madhya Pradesh,Private,no,
+"Mansarovar Medical College and MGU Hospital, Sehore",MBBS,ST,382840,543564,576101,,Private college,Madhya Pradesh,Private,no,
+"Mansarovar Medical College and MGU Hospital, Sehore",MBBS,OBC,295127,300110,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mansarovar Medical College and MGU Hospital, Sehore",MBBS,OPEN,271847,295192,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mansarovar Medical College and MGU Hospital, Sehore",MBBS,SC,318310,321710,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Mansarovar Medical College and MGU Hospital, Sehore",MBBS,ST,516082,547039,635377,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Modern Dental College and Research Centre, Indore",BDS,OPEN,681197,938258,,,NRI,Madhya Pradesh,Private,no,NRI
+"Modern Dental College and Research Centre, Indore",BDS,OBC,270536,438159,439771,,Private college,Madhya Pradesh,Private,no,
+"Modern Dental College and Research Centre, Indore",BDS,OPEN,108612,375444,395039,,Private college,Madhya Pradesh,Private,no,
+"Modern Dental College and Research Centre, Indore",BDS,SC,392475,572579,664619,,Private college,Madhya Pradesh,Private,no,
+"Modern Dental College and Research Centre, Indore",BDS,ST,619163,886488,1102596,,Private college,Madhya Pradesh,Private,no,
+"Modern Dental College and Research Centre, Indore",BDS,OPEN,371486,458084,1084721,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Modern Dental College and Research Centre, Indore",BDS,ST,941429,982166,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,EWS,40661,51360,57173,,Govt college,Madhya Pradesh,Government,no,
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,OBC,40090,46126,48434,,Govt college,Madhya Pradesh,Government,no,
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,OPEN,30124,42456,46498,,Govt college,Madhya Pradesh,Government,no,
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,SC,110841,143823,161132,,Govt college,Madhya Pradesh,Government,no,
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,ST,239287,274748,284880,,Govt college,Madhya Pradesh,Government,no,
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,OBC,135882,152623,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,OPEN,129266,135882,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,SC,150665,161227,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,ST,258123,282065,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,OPEN,645206,1091678,,,Special,Madhya Pradesh,Government,no,PWD
+"Nandkumar Singh Chouhan Government Medical College, Khandwa",MBBS,OPEN,46976,956567,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,EWS,21651,31230,32145,,Govt college,Madhya Pradesh,Government,no,
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,OBC,20375,25296,25323,,Govt college,Madhya Pradesh,Government,no,
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,OPEN,1764,22495,22684,,Govt college,Madhya Pradesh,Government,no,
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,SC,57530,103811,106358,,Govt college,Madhya Pradesh,Government,no,
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,ST,109856,225824,235158,,Govt college,Madhya Pradesh,Government,no,
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,EWS,98167,98167,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,OBC,66109,70308,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,OPEN,61149,89564,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,SC,109931,110504,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,ST,230431,232268,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,OPEN,279194,995878,,,Special,Madhya Pradesh,Government,no,PWD
+"Netaji Subhash Chandra Bose Medical College, Jabalpur",MBBS,OPEN,25794,956255,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Peoples College of Dental Sciences and Research Centre, Bhopal",BDS,OPEN,355516,987363,,,NRI,Madhya Pradesh,Private,no,NRI
+"Peoples College of Dental Sciences and Research Centre, Bhopal",BDS,OBC,227149,333564,,,Private college,Madhya Pradesh,Private,no,
+"Peoples College of Dental Sciences and Research Centre, Bhopal",BDS,OPEN,142891,276198,278332,,Private college,Madhya Pradesh,Private,no,
+"Peoples College of Dental Sciences and Research Centre, Bhopal",BDS,SC,305635,436725,,,Private college,Madhya Pradesh,Private,no,
+"Peoples College of Dental Sciences and Research Centre, Bhopal",BDS,ST,570855,922535,967697,,Private college,Madhya Pradesh,Private,no,
+"Peoples College of Dental Sciences and Research Centre, Bhopal",BDS,OBC,395286,761972,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples College of Dental Sciences and Research Centre, Bhopal",BDS,OPEN,337928,552095,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples College of Dental Sciences and Research Centre, Bhopal",BDS,SC,548948,610603,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples College of Dental Sciences and Research Centre, Bhopal",BDS,ST,934682,957920,1137706,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples College of Medical Science, Bhopal",MBBS,OPEN,232556,992256,,,NRI,Madhya Pradesh,Private,no,NRI
+"Peoples College of Medical Science, Bhopal",MBBS,OBC,74080,89895,,,Private college,Madhya Pradesh,Private,no,
+"Peoples College of Medical Science, Bhopal",MBBS,OPEN,65466,87829,,,Private college,Madhya Pradesh,Private,no,
+"Peoples College of Medical Science, Bhopal",MBBS,SC,180971,231285,,,Private college,Madhya Pradesh,Private,no,
+"Peoples College of Medical Science, Bhopal",MBBS,ST,337603,414465,,,Private college,Madhya Pradesh,Private,no,
+"Peoples College of Medical Science, Bhopal",MBBS,OBC,221937,222814,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples College of Medical Science, Bhopal",MBBS,OPEN,187127,221529,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples College of Medical Science, Bhopal",MBBS,SC,231873,234314,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples College of Medical Science, Bhopal",MBBS,ST,414629,414713,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples Dental Academy, Bhopal",BDS,OPEN,915940,915940,,,NRI,Madhya Pradesh,Private,no,NRI
+"Peoples Dental Academy, Bhopal",BDS,OBC,264347,410584,412257,,Private college,Madhya Pradesh,Private,no,
+"Peoples Dental Academy, Bhopal",BDS,OPEN,81212,361760,395693,,Private college,Madhya Pradesh,Private,no,
+"Peoples Dental Academy, Bhopal",BDS,SC,371390,580862,610717,,Private college,Madhya Pradesh,Private,no,
+"Peoples Dental Academy, Bhopal",BDS,ST,560271,900341,1153892,,Private college,Madhya Pradesh,Private,no,
+"Peoples Dental Academy, Bhopal",BDS,OPEN,295192,700886,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples Dental Academy, Bhopal",BDS,SC,479231,712490,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Peoples Dental Academy, Bhopal",BDS,ST,897921,911842,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RD Gardi Medical College, Ujjain",MBBS,OPEN,211375,919426,,,NRI,Madhya Pradesh,Private,no,NRI
+"RD Gardi Medical College, Ujjain",MBBS,OBC,70113,73640,,,Private college,Madhya Pradesh,Private,no,
+"RD Gardi Medical College, Ujjain",MBBS,OPEN,55777,70130,,,Private college,Madhya Pradesh,Private,no,
+"RD Gardi Medical College, Ujjain",MBBS,SC,166862,191448,,,Private college,Madhya Pradesh,Private,no,
+"RD Gardi Medical College, Ujjain",MBBS,ST,324662,350713,,,Private college,Madhya Pradesh,Private,no,
+"RD Gardi Medical College, Ujjain",MBBS,OBC,170320,203671,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RD Gardi Medical College, Ujjain",MBBS,OPEN,152858,176898,180146,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RD Gardi Medical College, Ujjain",MBBS,SC,197081,197081,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RD Gardi Medical College, Ujjain",MBBS,ST,356096,356096,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RKDF Dental College and Research Centre, Bhopal",BDS,OBC,366144,660472,893161,,Private college,Madhya Pradesh,Private,no,
+"RKDF Dental College and Research Centre, Bhopal",BDS,OPEN,161849,619914,708064,,Private college,Madhya Pradesh,Private,no,
+"RKDF Dental College and Research Centre, Bhopal",BDS,SC,423505,810307,1184478,,Private college,Madhya Pradesh,Private,no,
+"RKDF Dental College and Research Centre, Bhopal",BDS,ST,697935,1077594,,,Private college,Madhya Pradesh,Private,no,
+"RKDF Dental College and Research Centre, Bhopal",BDS,OPEN,417565,990050,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RKDF Dental College and Research Centre, Bhopal",BDS,SC,608045,608045,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RKDF Dental College and Research Centre, Bhopal",BDS,ST,1055822,1055822,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RKDF Medical College Hospital and Research Centre, Bhopal",MBBS,OBC,128056,137165,146606,,Private college,Madhya Pradesh,Private,no,
+"RKDF Medical College Hospital and Research Centre, Bhopal",MBBS,OPEN,89434,133350,144882,,Private college,Madhya Pradesh,Private,no,
+"RKDF Medical College Hospital and Research Centre, Bhopal",MBBS,SC,202212,294129,,,Private college,Madhya Pradesh,Private,no,
+"RKDF Medical College Hospital and Research Centre, Bhopal",MBBS,ST,402345,523846,527826,,Private college,Madhya Pradesh,Private,no,
+"RKDF Medical College Hospital and Research Centre, Bhopal",MBBS,OBC,280078,280078,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RKDF Medical College Hospital and Research Centre, Bhopal",MBBS,OPEN,229516,259746,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RKDF Medical College Hospital and Research Centre, Bhopal",MBBS,SC,290676,315649,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RKDF Medical College Hospital and Research Centre, Bhopal",MBBS,ST,479165,532289,534675,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"RKDF Medical College Hospital and Research Centre, Bhopal",MBBS,OPEN,333939,333939,333939,yes,Special,Madhya Pradesh,Private,no,PWD
+"Ram Krishna Medical College Hospital and Research Centre, Bhopal",MBBS,OPEN,172067,988400,,,NRI,Madhya Pradesh,Private,no,NRI
+"Ram Krishna Medical College Hospital and Research Centre, Bhopal",MBBS,OBC,124809,132181,138881,,Private college,Madhya Pradesh,Private,no,
+"Ram Krishna Medical College Hospital and Research Centre, Bhopal",MBBS,OPEN,72700,126745,132276,,Private college,Madhya Pradesh,Private,no,
+"Ram Krishna Medical College Hospital and Research Centre, Bhopal",MBBS,SC,196083,298574,,,Private college,Madhya Pradesh,Private,no,
+"Ram Krishna Medical College Hospital and Research Centre, Bhopal",MBBS,ST,373488,530880,,,Private college,Madhya Pradesh,Private,no,
+"Ram Krishna Medical College Hospital and Research Centre, Bhopal",MBBS,OBC,282884,284655,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Ram Krishna Medical College Hospital and Research Centre, Bhopal",MBBS,OPEN,207124,277220,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Ram Krishna Medical College Hospital and Research Centre, Bhopal",MBBS,SC,301787,308224,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Ram Krishna Medical College Hospital and Research Centre, Bhopal",MBBS,ST,533593,534765,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Rishiraj College of Dental Sciences and Research Centre, Bhopal",BDS,OBC,333259,514635,565797,,Private college,Madhya Pradesh,Private,no,
+"Rishiraj College of Dental Sciences and Research Centre, Bhopal",BDS,OPEN,200869,472367,513294,,Private college,Madhya Pradesh,Private,no,
+"Rishiraj College of Dental Sciences and Research Centre, Bhopal",BDS,SC,408729,688456,891612,,Private college,Madhya Pradesh,Private,no,
+"Rishiraj College of Dental Sciences and Research Centre, Bhopal",BDS,ST,583808,1014896,,,Private college,Madhya Pradesh,Private,no,
+"Rishiraj College of Dental Sciences and Research Centre, Bhopal",BDS,OBC,526603,1093935,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Rishiraj College of Dental Sciences and Research Centre, Bhopal",BDS,OPEN,445009,666345,783403,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Rishiraj College of Dental Sciences and Research Centre, Bhopal",BDS,SC,552095,783403,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Rishiraj College of Dental Sciences and Research Centre, Bhopal",BDS,ST,1024712,1024712,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"School of Medical Science Sri Satya Sai University of Technology and Medical Sciences, Sehore",MBBS,OBC,133775,139815,145633,,Private college,Madhya Pradesh,Private,no,
+"School of Medical Science Sri Satya Sai University of Technology and Medical Sciences, Sehore",MBBS,OPEN,85708,137898,143131,,Private college,Madhya Pradesh,Private,no,
+"School of Medical Science Sri Satya Sai University of Technology and Medical Sciences, Sehore",MBBS,SC,265113,305929,,,Private college,Madhya Pradesh,Private,no,
+"School of Medical Science Sri Satya Sai University of Technology and Medical Sciences, Sehore",MBBS,ST,367060,535231,,,Private college,Madhya Pradesh,Private,no,
+"School of Medical Science Sri Satya Sai University of Technology and Medical Sciences, Sehore",MBBS,OBC,292770,292770,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"School of Medical Science Sri Satya Sai University of Technology and Medical Sciences, Sehore",MBBS,OPEN,282550,290356,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"School of Medical Science Sri Satya Sai University of Technology and Medical Sciences, Sehore",MBBS,SC,316720,316720,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"School of Medical Science Sri Satya Sai University of Technology and Medical Sciences, Sehore",MBBS,ST,544533,544533,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"School of Medical Science Sri Satya Sai University of Technology and Medical Sciences, Sehore",MBBS,OPEN,1061027,1061027,1061027,yes,Special,Madhya Pradesh,Private,no,PWD
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,EWS,39332,44868,50440,,Govt college,Madhya Pradesh,Government,no,
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,OBC,38814,44254,,,Govt college,Madhya Pradesh,Government,no,
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,OPEN,2213,39248,,,Govt college,Madhya Pradesh,Government,no,
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,SC,111172,140348,163526,,Govt college,Madhya Pradesh,Government,no,
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,ST,282065,302790,322618,,Govt college,Madhya Pradesh,Government,no,
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,OBC,91684,130135,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,OPEN,111011,125636,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,ST,299967,305447,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,OPEN,1002146,1167656,,,Special,Madhya Pradesh,Government,no,PWD
+"Shrimant Rajmata Vijayaraje Scindia Medical College, Shivpuri",MBBS,OPEN,42071,53339,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Shyam Shah Medical College, Rewa",MBBS,EWS,31230,40977,44992,,Govt college,Madhya Pradesh,Government,no,
+"Shyam Shah Medical College, Rewa",MBBS,OBC,28116,37820,39962,,Govt college,Madhya Pradesh,Government,no,
+"Shyam Shah Medical College, Rewa",MBBS,OPEN,15040,29962,30172,,Govt college,Madhya Pradesh,Government,no,
+"Shyam Shah Medical College, Rewa",MBBS,SC,100318,131729,140348,,Govt college,Madhya Pradesh,Government,no,
+"Shyam Shah Medical College, Rewa",MBBS,ST,233000,285379,326847,,Govt college,Madhya Pradesh,Government,no,
+"Shyam Shah Medical College, Rewa",MBBS,EWS,215964,215964,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Shyam Shah Medical College, Rewa",MBBS,OBC,91684,106374,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Shyam Shah Medical College, Rewa",MBBS,OPEN,62684,96619,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Shyam Shah Medical College, Rewa",MBBS,SC,122636,122636,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Shyam Shah Medical College, Rewa",MBBS,ST,284305,297308,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Shyam Shah Medical College, Rewa",MBBS,OPEN,525671,1047558,,,Special,Madhya Pradesh,Government,no,PWD
+"Shyam Shah Medical College, Rewa",MBBS,OPEN,29852,1020033,,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Sri Aurobindo College of Dentistry, Indore",BDS,OPEN,406160,971034,,,NRI,Madhya Pradesh,Private,no,NRI
+"Sri Aurobindo College of Dentistry, Indore",BDS,OBC,177058,218378,233582,,Private college,Madhya Pradesh,Private,no,
+"Sri Aurobindo College of Dentistry, Indore",BDS,OPEN,89559,205132,226350,,Private college,Madhya Pradesh,Private,no,
+"Sri Aurobindo College of Dentistry, Indore",BDS,SC,324994,387273,,,Private college,Madhya Pradesh,Private,no,
+"Sri Aurobindo College of Dentistry, Indore",BDS,ST,475527,684760,,,Private college,Madhya Pradesh,Private,no,
+"Sri Aurobindo College of Dentistry, Indore",BDS,OPEN,259746,314172,344542,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sri Aurobindo College of Dentistry, Indore",BDS,SC,458474,458474,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sri Aurobindo College of Dentistry, Indore",BDS,ST,620809,700886,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,OPEN,148914,971152,,,NRI,Madhya Pradesh,Private,no,NRI
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,OBC,72466,76482,,,Private college,Madhya Pradesh,Private,no,
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,OPEN,24601,72238,,,Private college,Madhya Pradesh,Private,no,
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,SC,168814,203349,,,Private college,Madhya Pradesh,Private,no,
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,ST,327016,382745,,,Private college,Madhya Pradesh,Private,no,
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,OBC,197178,197178,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,OPEN,165152,194526,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,SC,207758,207758,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,ST,386525,389046,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sri Aurobindo Institute of Medical Science, Indore",MBBS,OPEN,289620,289620,,,Special,Madhya Pradesh,Private,no,PWD
+"Sukh Sagar Medical College and Hospital, Jabalpur",MBBS,OPEN,200840,988474,,,NRI,Madhya Pradesh,Private,no,NRI
+"Sukh Sagar Medical College and Hospital, Jabalpur",MBBS,OBC,131157,137737,142338,,Private college,Madhya Pradesh,Private,no,
+"Sukh Sagar Medical College and Hospital, Jabalpur",MBBS,OPEN,63281,133140,134887,,Private college,Madhya Pradesh,Private,no,
+"Sukh Sagar Medical College and Hospital, Jabalpur",MBBS,SC,191092,301078,,,Private college,Madhya Pradesh,Private,no,
+"Sukh Sagar Medical College and Hospital, Jabalpur",MBBS,ST,344033,520063,,,Private college,Madhya Pradesh,Private,no,
+"Sukh Sagar Medical College and Hospital, Jabalpur",MBBS,OBC,279907,279907,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sukh Sagar Medical College and Hospital, Jabalpur",MBBS,OPEN,195794,280093,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sukh Sagar Medical College and Hospital, Jabalpur",MBBS,SC,304595,315613,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sukh Sagar Medical College and Hospital, Jabalpur",MBBS,ST,522307,526138,,,Private college · govt-school quota,Madhya Pradesh,Private,no,MP_GOVT_SCHOOL
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,EWS,51434,57726,63870,,Govt college,Madhya Pradesh,Government,no,
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,OBC,49817,52367,,,Govt college,Madhya Pradesh,Government,no,
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,OPEN,40005,50959,51742,,Govt college,Madhya Pradesh,Government,no,
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,SC,142639,158928,165055,,Govt college,Madhya Pradesh,Government,no,
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,ST,256731,297308,304180,,Govt college,Madhya Pradesh,Government,no,
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,EWS,225722,225722,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,OPEN,140450,159468,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,SC,166121,166121,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,ST,305526,305526,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,OPEN,1033351,1033351,,,Special,Madhya Pradesh,Government,no,PWD
+"Sunderlal Patwa Government Medical College, Mandsaur",MBBS,OPEN,62720,68917,476496,,Special,Madhya Pradesh,Government,no,SPECIAL
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,EWS,52707,60528,64594,,Govt college,Madhya Pradesh,Government,no,
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,OBC,50390,53707,54379,,Govt college,Madhya Pradesh,Government,no,
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,OPEN,38183,52541,53630,,Govt college,Madhya Pradesh,Government,no,
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,SC,108749,162131,167051,,Govt college,Madhya Pradesh,Government,no,
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,ST,267094,308221,,,Govt college,Madhya Pradesh,Government,no,
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,EWS,231096,231096,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,OBC,152623,164697,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,OPEN,149316,163622,164906,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,SC,165465,165465,,,Govt college · govt-school quota,Madhya Pradesh,Government,no,MP_GOVT_SCHOOL
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,OPEN,916216,1100067,,,Special,Madhya Pradesh,Government,no,PWD
+"Virendra Kumar Sakhlecha Government Medical College, Neemuch",MBBS,OPEN,55486,1141331,,,Special,Madhya Pradesh,Government,no,SPECIAL
