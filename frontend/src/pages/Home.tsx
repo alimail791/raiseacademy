@@ -7,6 +7,7 @@ import ConceptMapSection from "../components/ConceptMapSection";
 import SprintSection from "../components/SprintSection";
 import { FeatureGroups, CompareTable, ParentReportSection } from "../components/YNeetSales";
 import { gamesLink } from "../utils/siteInfo";
+import PredictorPromo from "../components/PredictorPromo";
 
 
 const Home = () => {
@@ -72,6 +73,12 @@ const Home = () => {
               Start 30 Days Free <ArrowRight size={18} />
             </Link>
             <Link
+              to="/neet-college-predictor"
+              className="inline-flex items-center gap-2 bg-white text-rise-dark font-bold px-6 py-3 rounded-full hover:scale-[1.03] transition-transform"
+            >
+              🎓 Which college can I get? <ArrowRight size={18} />
+            </Link>
+            <Link
               to="/neet-readiness"
               className="inline-flex items-center gap-2 bg-paper/10 border border-paper/30 text-paper font-semibold px-6 py-3 rounded-full hover:bg-paper/20 transition-colors"
             >
@@ -90,6 +97,9 @@ const Home = () => {
           <Counter to={8} suffix="" label="Class levels (6th to Dropper)" />
         </div>
       </section>
+
+      {/* COLLEGE PREDICTOR — main hook for NEET 2027 aspirants */}
+      <PredictorPromo />
 
       {/* NEET READINESS — shareable 15-question score check */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-14 pb-2">
