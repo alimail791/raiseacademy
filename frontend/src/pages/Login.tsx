@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import { goToYneet } from "../utils/yneet";
+import GoogleSignIn, { OrDivider } from "../components/GoogleSignIn";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -38,6 +39,13 @@ const Login = () => {
     <div className="max-w-md mx-auto px-4 py-20">
       <h1 className="font-display text-3xl font-bold text-center">Student Login</h1>
       <form onSubmit={handleSubmit} className="mt-8 space-y-4 bg-white p-7 rounded-2xl border border-ink/10">
+        <GoogleSignIn text="continue_with" onDone={(d) => {
+          login(d.token, d.user);
+          toast.success(d.isNew ? "Welcome to YNeet!" : `Welcome back, ${d.user.fullName.split(" ")[0]}!`);
+          if (d.isNew) { try { (window as any).gtag?.("event", "sign_up", { method: "google", plan: "trial_30d" }); } catch { /* analytics only */ } }
+          if (d.user.role === "admin") navigate("/admin"); else setTimeout(goToYneet, d.isNew ? 800 : 0);
+        }} />
+        <OrDivider label="or log in with email" />
         <div>
           <label className="text-sm font-medium">Email</label>
           <input

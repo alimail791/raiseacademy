@@ -6,6 +6,7 @@ import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import { goToYneet } from "../utils/yneet";
 import { isAppMode } from "../utils/appMode";
+import GoogleSignIn, { OrDivider } from "../components/GoogleSignIn";
 
 const boards = ["CBSE", "Tamil Nadu State Board"];
 // Class 9–Dropper. Course (Foundation/Coaching), board and NEET year are worked
@@ -37,14 +38,14 @@ const inputClass =
 // continue. The browser leaves for app.yneet.in right after, which used to cut
 // the sign_up hit off before it was sent — so wait for Google's callback
 // (max ~1.2 s) before redirecting.
-function trackSignUpThen(next: () => void, plan: string, contentName: string) {
+function trackSignUpThen(next: () => void, plan: string, contentName: string, method = "email") {
   let done = false;
   const go = () => { if (!done) { done = true; next(); } };
   try { (window as any).fbq?.("track", "CompleteRegistration", { content_name: contentName, status: true }); } catch { /* analytics only */ }
   try {
     const g = (window as any).gtag;
     if (typeof g === "function") {
-      g("event", "sign_up", { method: "email", plan, transport_type: "beacon", event_callback: go, event_timeout: 1200 });
+      g("event", "sign_up", { method, plan, transport_type: "beacon", event_callback: go, event_timeout: 1200 });
     } else go();
   } catch { go(); }
   setTimeout(go, 1500);
@@ -201,6 +202,13 @@ const Register = () => {
 
       {!junior && (
         <div className="mt-8 bg-white p-7 rounded-2xl border border-ink/10 space-y-4">
+          <GoogleSignIn text="signup_with" referredByCode={referredByCode} onDone={(d) => {
+            login(d.token, d.user);
+            toast.success(d.isNew ? "Welcome to YNeet!" : `Welcome back, ${d.user.fullName.split(" ")[0]}!`);
+            if (d.isNew) trackSignUpThen(goToYneet, "trial_30d", "YNeet free trial", "google");
+            else goToYneet();
+          }} />
+          <OrDivider />
           <div>
             <label className="text-sm font-medium">Full name</label>
             <input className={inputClass} value={form.fullName} autoComplete="name"
@@ -241,11 +249,12 @@ const Register = () => {
             </div>
           </div>
 
+          <p className="text-center text-sm font-semibold text-rise-dark">✓ Free for 30 days &nbsp;·&nbsp; ✓ No payment or card &nbsp;·&nbsp; ✓ No auto-charge</p>
           <button type="button" onClick={() => validateSenior() && submit()} disabled={loading}
             className="w-full bg-gold text-ink font-bold text-lg py-3.5 rounded-full hover:brightness-95 disabled:opacity-60">
             {loading ? "Creating account…" : "Start My Free 30 Days →"}
           </button>
-          <p className="text-center text-xs text-ink/55">No payment. No card. Confirm your WhatsApp inside YNeet within 3 days (takes 10 seconds).</p>
+          <p className="text-center text-xs text-ink/55">Confirm your WhatsApp inside YNeet within 3 days (takes 10 seconds).</p>
           <p className="text-center text-xs text-ink/55">By signing up you agree to our <Link to="/terms" className="underline">Terms</Link> and <Link to="/privacy" className="underline">Privacy policy</Link>.</p>
         </div>
       )}

@@ -178,6 +178,75 @@ export const register = async (req, res, next) => {
   }
 };
 
+// Check a Google Sign-In ID token with Google and return its verified email/name.
+// Uses Google's tokeninfo endpoint, so no extra library is needed.
+async function verifyGoogleCredential(credential) {
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  if (!clientId) throw Object.assign(new Error("Google sign-in is not set up yet"), { status: 503 });
+  if (!credential || typeof credential !== "string") throw Object.assign(new Error("Missing Google credential"), { status: 400 });
+  const r = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`);
+  const info = r.ok ? await r.json() : null;
+  const okIssuer = info && ["accounts.google.com", "https://accounts.google.com"].includes(info.iss);
+  if (!info || !okIssuer || info.aud !== clientId || String(info.email_verified) !== "true" || !info.email) {
+    throw Object.assign(new Error("Google sign-in failed. Please try again."), { status: 401 });
+  }
+  return { email: String(info.email).toLowerCase(), name: String(info.name || info.given_name || "").trim() };
+}
+
+// POST /api/auth/google { credential, phone?, currentClass?, fullName?, referredByCode? }
+// Existing account with that email → logged in. New student → if class and
+// WhatsApp number are missing, reply { needsDetails } so the page asks for just
+// those two, then the page calls again with them and the account is created.
+// Class 9–Dropper only (Class 6–8 sign up with a parent on the normal form).
+export const googleAuth = async (req, res, next) => {
+  try {
+    let g;
+    try { g = await verifyGoogleCredential(req.body?.credential); }
+    catch (e) { return res.status(e.status || 401).json({ message: e.message }); }
+
+    const existing = await Student.findOne({ email: g.email });
+    if (existing) {
+      const sid = newSessionId();
+      await Student.updateOne({ _id: existing._id }, { $set: { currentSessionId: sid } });
+      existing.currentSessionId = sid;
+      return res.json({ token: signToken(existing._id, sid), user: publicUser(existing), isNew: false });
+    }
+
+    const { currentClass, referredByCode } = req.body;
+    const phone = normalizePhone(req.body.phone);
+    const fullName = String(req.body.fullName || g.name || "").trim().slice(0, 80);
+    if (!["9", "10", "11", "12", "Dropper"].includes(String(currentClass || "")) || !phone || !fullName) {
+      return res.json({ needsDetails: true, email: g.email, fullName: g.name });
+    }
+
+    // Google accounts have no YNeet password; store a random one (they log in with Google,
+    // or can set a password later with "Forgot password").
+    const password = await bcrypt.hash(crypto.randomBytes(24).toString("hex"), 10);
+    const student = await Student.create({
+      fullName,
+      phone,
+      email: g.email,
+      password,
+      board: "CBSE",
+      course: courseForClass(currentClass),
+      currentClass: String(currentClass),
+      neetExamYear: neetYearForClass(currentClass),
+      currentSessionId: newSessionId(),
+      referredByCode: referredByCode || undefined,
+    });
+
+    sendEmail({
+      to: ADMIN_ALERT_EMAIL,
+      subject: `New registration (Google) — ${student.fullName}`,
+      html: newRegistrationAdminTemplate(student),
+    }).catch((e) => console.warn("Admin registration-alert email failed:", e.message));
+
+    res.status(201).json({ token: signToken(student._id, student.currentSessionId), user: publicUser(student), isNew: true });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // POST /api/auth/login
 export const login = async (req, res, next) => {
   try {

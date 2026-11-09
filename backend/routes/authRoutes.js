@@ -2,6 +2,7 @@ import express from "express";
 import {
   register,
   login,
+  googleAuth,
   getMe,
   resetPassword,
   setYneetSubscriptionFlag,
@@ -16,6 +17,7 @@ const router = express.Router();
 
 router.post("/register", register);
 router.post("/login", login);
+router.post("/google", googleAuth);
 router.get("/me", protect, getMe);
 router.post("/reset-password", resetPassword);
 // Internal, server-to-server only (guarded by X-Internal-Key header, not user auth)
