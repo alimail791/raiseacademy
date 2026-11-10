@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import CollegeCutoff from "../models/CollegeCutoff.js";
 import PredictorLead from "../models/PredictorLead.js";
 import { buildCutoffRows } from "../utils/cutoffImport.js";
+import { summariseQuota } from "../utils/cutoffPages.js";
 import { sendWhatsAppOtp } from "../utils/whatsappOtp.js";
 import { normalizePhone, waConfigured } from "../utils/parentWhatsApp.js";
 import { yneetPost } from "../utils/yneetSync.js";
@@ -85,6 +86,28 @@ export async function latestDatasets(force = false) {
   return out;
 }
 const clearCache = () => { datasetCache = { at: 0, value: null }; };
+
+// GET /api/predictor/cutoff-pages — every live quota's cutoff summary for the
+// public /neet-cutoff/<state> pages on www.yneet.in (fetched at website build time).
+let cutoffPagesCache = { at: 0, value: null };
+export const cutoffPages = async (req, res, next) => {
+  try {
+    if (!cutoffPagesCache.value || Date.now() - cutoffPagesCache.at > 30 * 60 * 1000) {
+      const sets = await latestDatasets();
+      const states = [];
+      for (const code of Object.keys(QUOTAS)) {
+        const d = sets[code];
+        if (!d) continue;
+        const rows = await CollegeCutoff.find({ quota: code, year: d.year, round: d.round }).lean();
+        const s = summariseQuota({ quota: code, name: QUOTAS[code], year: d.year, round: d.round, rankType: d.rankType }, rows);
+        if (s) states.push(s);
+      }
+      cutoffPagesCache = { at: Date.now(), value: states };
+    }
+    res.set("Cache-Control", "public, max-age=1800");
+    res.json({ states: cutoffPagesCache.value });
+  } catch (e) { next(e); }
+};
 
 // GET /api/predictor/meta
 export const meta = async (req, res, next) => {
