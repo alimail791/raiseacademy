@@ -41,6 +41,7 @@ import NeetPhotoResizer from "./pages/NeetPhotoResizer";
 import NeetScoreCalculator from "./pages/NeetScoreCalculator";
 import { NcertIndex, NcertChapter } from "./pages/NcertNotes";
 import QotdEmbed from "./pages/QotdEmbed";
+import { PredictorEmbed, CutoffEmbed } from "./pages/WidgetEmbeds";
 import QotdWidget from "./pages/QotdWidget";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -74,6 +75,8 @@ function App() {
     return (
       <Routes>
         <Route path="/embed/qotd" element={<QotdEmbed />} />
+        <Route path="/embed/predictor" element={<PredictorEmbed />} />
+        <Route path="/embed/cutoff" element={<CutoffEmbed />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     );
