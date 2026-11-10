@@ -86,6 +86,34 @@ const PracticeChapter = () => {
         <p className="text-sm text-ink/60 dark:text-paper/60 mt-2">Topics: {c.topics.join(" · ")}</p>
       )}
 
+      {c.weightage && (
+        <section className="mt-6 p-5 rounded-2xl border border-gold/40 bg-gold/10">
+          <h2 className="font-display text-xl font-bold">{c.chapter} weightage in NEET</h2>
+          <dl className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div><dt className="text-xs text-ink/55 dark:text-paper/55">Questions per paper</dt><dd className="font-display text-2xl font-bold">~{c.weightage.expectedQs}</dd></div>
+            <div><dt className="text-xs text-ink/55 dark:text-paper/55">Marks</dt><dd className="font-display text-2xl font-bold">~{c.weightage.marks}</dd></div>
+            <div><dt className="text-xs text-ink/55 dark:text-paper/55">Rank in {c.subject}</dt><dd className="font-display text-2xl font-bold">#{c.weightage.rank}<span className="text-sm font-normal">/{c.weightage.ofChapters}</span></dd></div>
+            <div><dt className="text-xs text-ink/55 dark:text-paper/55">Priority</dt><dd className={`font-display text-2xl font-bold ${c.weightage.priority === "High" ? "text-rise-dark" : ""}`}>{c.weightage.priority}</dd></div>
+          </dl>
+          <p className="text-sm text-ink/70 dark:text-paper/70 mt-3">
+            {c.chapter} (Class {c.weightage.classLevel.replace(/th/g, "")}) is worth about {c.weightage.expectedQs} of the {c.subject === "Biology" ? 90 : 45} {c.subject} questions in a NEET paper
+            {c.weightage.yearsUsed > 0 && c.weightage.yearsAppeared > 0 ? `, and was asked in ${c.weightage.yearsAppeared} of the last ${c.weightage.yearsUsed} papers we have` : ""}.
+            {" "}It is the {c.weightage.rank === 1 ? "most" : `#${c.weightage.rank} most`} important {c.subject} chapter by weightage.
+          </p>
+          {c.topTopics && c.topTopics.length > 0 && (
+            <>
+              <h3 className="font-semibold mt-4">Most-asked topics in {c.chapter} PYQs</h3>
+              <ul className="mt-2 flex flex-wrap gap-2 text-sm">
+                {c.topTopics.map((t) => (
+                  <li key={t.topic} className="px-3 py-1 rounded-full bg-paper dark:bg-ink border border-ink/10 dark:border-paper/15">{t.topic} <span className="text-ink/50 dark:text-paper/50">· {t.count}</span></li>
+                ))}
+              </ul>
+            </>
+          )}
+          <Link to="/neet-chapter-wise-weightage" className="inline-block mt-4 text-sm font-semibold text-rise-dark underline">NEET chapter-wise weightage: all chapters ranked →</Link>
+        </section>
+      )}
+
       <ol className="mt-8 space-y-6">
         {c.questions.map((q, i) => (
           <Fragment key={q.id}>

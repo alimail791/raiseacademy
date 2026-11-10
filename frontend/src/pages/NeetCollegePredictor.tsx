@@ -382,6 +382,7 @@ const NeetCollegePredictor = () => {
         <p>State quota seats are shown only for your home state, and some states rank by their own state merit list, so add your state rank where asked. Reserved-category students are matched with both open and their own category seats.</p>
         <h2 className="font-display text-2xl font-bold text-ink dark:text-paper pt-4">Important</h2>
         <p>Closing ranks change every year with seat numbers and competition, so treat this as a guide, not a guarantee. Always check the official seat matrix and rules on mcc.nic.in and your state counselling website before choice filling. YNeet is not connected with MCC or any state counselling authority.</p>
+        <p>See last year's closing ranks for every government MBBS college: <Link to="/neet-cutoff" className="text-rise-dark font-semibold underline">NEET cutoff by state</Link>.</p>
         <p>Still preparing? Take the <Link to="/neet-readiness" className="text-rise-dark font-semibold underline">free NEET Readiness Test</Link> or practise <Link to="/neet-practice" className="text-rise-dark font-semibold underline">chapter-wise PYQs</Link>.</p>
       </section>
     </div>

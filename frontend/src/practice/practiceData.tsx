@@ -22,6 +22,19 @@ export type PracticeChapterSummary = {
   pyqYears: [number, number] | null;
   classes: string[];
   topics: string[];
+  // NEET weightage (same numbers as the app's Chapter Priority map); null when the chapter has none.
+  weightage?: ChapterWeightage | null;
+  topTopics?: { topic: string; count: number }[];
+};
+export type ChapterWeightage = {
+  expectedQs: number;
+  marks: number;
+  classLevel: string;
+  yearsAppeared: number;
+  yearsUsed: number;
+  rank: number;
+  ofChapters: number;
+  priority: "High" | "Medium" | "Low";
 };
 export type QuestionLink = { slug: string; question: string; pyqYear: number | null };
 export type PracticeChapter = PracticeChapterSummary & { questions: PracticeQuestion[]; questionLinks?: QuestionLink[] };
@@ -58,7 +71,34 @@ export type PracticeData = {
   paper?: Paper | null;
   question?: QuestionPageData | null;
   school?: SchoolHubData | null;
+  cutoffs?: CutoffState[];
+  cutoff?: CutoffState | null;
 };
+// NEET cutoff pages (/neet-cutoff, /neet-cutoff/<state>), from the College Predictor's data.
+export type CutoffRange = { colleges: number; toughest: number; last: number };
+export type CutoffState = {
+  code: string;
+  slug: string;
+  name: string;
+  year: number;
+  round: number;
+  rankType: "AIR" | "STATE" | "SCORE";
+  categories: string[];
+  colleges: { college: string; type: string; closing: Record<string, number> }[];
+  categorySummary: { category: string; toughest: number; last: number; colleges: number }[];
+  privateMbbs: CutoffRange | null;
+  govtBds: CutoffRange | null;
+};
+export const cutoffTitleName = (c: Pick<CutoffState, "code" | "name">) => (c.code === "AIQ" ? "All India Quota (AIQ)" : c.name);
+export function cutoffMeta(c: CutoffState) {
+  const open = c.categorySummary.find((x) => x.category === "OPEN");
+  const unit = c.rankType === "SCORE" ? "marks" : c.rankType === "STATE" ? "state rank" : "AIR";
+  const fig = open ? ` General category closed at ${unit} ${open.last.toLocaleString("en-IN")} for the last government seat.` : "";
+  return {
+    title: `${cutoffTitleName(c)} NEET Cutoff ${c.year} for Government MBBS (Category-wise) | YNeet`,
+    description: `${cutoffTitleName(c)} NEET ${c.year} closing ranks for every government MBBS college, category-wise.${fig} Plus private MBBS and BDS ranges. Free college predictor.`,
+  };
+}
 
 const Ctx = createContext<PracticeData>({});
 
@@ -68,7 +108,7 @@ export function PracticeDataProvider({ value, children }: { value?: PracticeData
 
 export function useInitialPracticeData(): PracticeData {
   const ctx = useContext(Ctx);
-  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question || ctx.school) return ctx;
+  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question || ctx.school || ctx.cutoffs || ctx.cutoff) return ctx;
   if (typeof window !== "undefined") return (window as any).__PRACTICE_DATA__ || {};
   return {};
 }
@@ -81,13 +121,22 @@ export function chapterMeta(c: PracticeChapterSummary) {
   // Chapter name first and short enough not to be cut off on mobile: people
   // search "<chapter> neet pyqs" / "<chapter> neet questions".
   const long = `${c.chapter} NEET PYQs & Questions with Answers | YNeet`;
+  const w = c.weightage ? ` Weightage: about ${c.weightage.expectedQs} questions (${c.weightage.marks} marks) per paper.` : "";
   return {
     title: long.length <= 65 ? long : `${c.chapter} NEET PYQs with Answers | YNeet`,
-    description: `Free ${c.chapter} NEET previous year questions${years} with answers and explanations — ${c.subject}, no login needed. Then take the timed ${c.chapter} chapter test free for 30 days on YNeet.`,
+    description: `Free ${c.chapter} NEET previous year questions${years} with answers and explanations — ${c.subject}, no login needed.${w || ` Then take the timed ${c.chapter} chapter test free for 30 days on YNeet.`}`,
   };
 }
 
-export function paperMeta(p: PaperSummary) {
+export const subjectSlug = (s: string) => s.toLowerCase();
+export function paperMeta(p: PaperSummary, subject?: string) {
+  if (subject) {
+    const n = p.counts[subject] || 0;
+    return {
+      title: `NEET ${p.year} ${subject} Question Paper with Answers & Solutions | YNeet`,
+      description: `NEET ${p.year} ${subject} questions with answers and step-by-step explanations: ${n} questions, chapter-wise. Free, no login. Then take timed NEET ${subject} mocks free for 30 days on YNeet.`,
+    };
+  }
   return {
     title: `NEET ${p.year} Question Paper with Answers & Explanations | YNeet`,
     description: `NEET ${p.year} previous year questions with answers and explanations: ${p.total} questions across Physics, Chemistry and Biology. Free, no login. Take NEET-style timed mocks free for 30 days on YNeet.`,
