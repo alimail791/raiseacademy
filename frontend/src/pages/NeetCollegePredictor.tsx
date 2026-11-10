@@ -110,8 +110,19 @@ const NeetCollegePredictor = () => {
 
   useEffect(() => {
     try { setToken(localStorage.getItem(TOKEN_KEY) || ""); } catch { /* storage blocked */ }
-    const qAir = new URLSearchParams(window.location.search).get("air");
-    if (qAir && /^\d{1,7}$/.test(qAir)) setForm((f) => ({ ...f, air: qAir }));
+    // Pre-filled from links (e.g. the College Predictor widget on other websites):
+    // ?air=12345&score=560&category=OBC&state=TN&course=BDS
+    const qs = new URLSearchParams(window.location.search);
+    const pick = (k: string, re: RegExp) => { const v = (qs.get(k) || "").toUpperCase(); return re.test(v) ? v : ""; };
+    const qAir = qs.get("air") || "";
+    const pre = {
+      air: /^\d{1,7}$/.test(qAir) ? qAir : "",
+      score: /^\d{1,3}$/.test(qs.get("score") || "") && +qs.get("score")! <= 720 ? qs.get("score")! : "",
+      category: CATEGORIES.some(([c]) => c === pick("category", /^[A-Z]+$/)) ? pick("category", /^[A-Z]+$/) : "",
+      homeState: pick("state", /^[A-Z]{2,3}$/),
+      course: pick("course", /^(MBBS|BDS)$/),
+    };
+    setForm((f) => ({ ...f, ...Object.fromEntries(Object.entries(pre).filter(([, v]) => v)) }));
     api.get("/predictor/meta").then((r) => { setQuotas(r.data.quotas || []); setPrice(r.data.reportPrice || 299); }).catch(() => {});
   }, []);
 

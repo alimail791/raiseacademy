@@ -108,8 +108,18 @@ export const PAGE_META: Record<string, PageMeta> = {
       "Free NEET photo and signature resizer: crop and compress your passport photo, 4×6 postcard photo, signature and thumb impressions to the exact KB size for the NEET form. Works on your phone, nothing is uploaded.",
   },
   "/neet-question-widget": {
-    title: "Free NEET Question of the Day Widget for Your Website | YNeet",
-    description: "Add a free daily NEET question box to your coaching centre, school or blog website. A new question every day with answers and explanations. Copy one code, no sign-up.",
+    title: "Free NEET Widgets for Your Website — Question of the Day, College Predictor, Cutoffs | YNeet",
+    description: "Free NEET widgets for coaching centre, school and blog websites: a daily NEET question, a NEET college predictor and state-wise government MBBS cutoffs. Copy one code, no sign-up.",
+  },
+  "/embed/predictor": {
+    title: "NEET College Predictor — YNeet",
+    description: "Free NEET college predictor box by YNeet.",
+    noindex: true,
+  },
+  "/embed/cutoff": {
+    title: "NEET Cutoff — YNeet",
+    description: "Government MBBS NEET cutoffs by YNeet.",
+    noindex: true,
   },
   "/embed/qotd": {
     title: "NEET Question of the Day — YNeet",

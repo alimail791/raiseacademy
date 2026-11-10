@@ -105,7 +105,9 @@ export const cutoffPages = async (req, res, next) => {
       cutoffPagesCache = { at: Date.now(), value: states };
     }
     res.set("Cache-Control", "public, max-age=1800");
-    res.json({ states: cutoffPagesCache.value });
+    // ?state=<slug>: just that quota (the cutoff widget on other websites).
+    const one = String(req.query.state || "").toLowerCase();
+    res.json({ states: one ? cutoffPagesCache.value.filter((c) => c.slug === one) : cutoffPagesCache.value });
   } catch (e) { next(e); }
 };
 
