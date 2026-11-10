@@ -32,7 +32,22 @@ export type QuestionPageData = PracticeQuestion & {
   chapter: string;
   chapterSlug: string;
   related: (QuestionLink & { id: string })[];
+  classNum?: number; // set on Class 6–10 pages (/class-<n>-questions/<slug>)
 };
+// Class 6–10 hub (/class-<n>-questions): chapters with links to their questions.
+export type SchoolChapter = { subject: string; chapter: string; slug: string; count: number };
+export type SchoolClassSummary = { classNum: number; total: number };
+export type SchoolHubData = {
+  classNum: number;
+  classes: SchoolClassSummary[];
+  chapters: SchoolChapter[];
+  links: { slug: string; chapterSlug: string; question: string }[];
+};
+export const SCHOOL_CLASSES = [6, 7, 8, 9, 10] as const;
+// School students call Physics/Chemistry/Biology "Science".
+export const schoolSubject = (s: string) => `Science (${s})`;
+export const questionPath = (q: { slug: string; classNum?: number }) =>
+  q.classNum ? `/class-${q.classNum}-questions/${q.slug}` : `/neet-question/${q.slug}`;
 export type PaperQuestion = { id: string; chapter: string; question: string; options: string[]; answer: number; explanation: string };
 export type PaperSummary = { year: number; total: number; counts: Record<string, number> };
 export type Paper = PaperSummary & { subjects: Record<string, PaperQuestion[]> };
@@ -42,6 +57,7 @@ export type PracticeData = {
   papers?: PaperSummary[];
   paper?: Paper | null;
   question?: QuestionPageData | null;
+  school?: SchoolHubData | null;
 };
 
 const Ctx = createContext<PracticeData>({});
@@ -52,7 +68,7 @@ export function PracticeDataProvider({ value, children }: { value?: PracticeData
 
 export function useInitialPracticeData(): PracticeData {
   const ctx = useContext(Ctx);
-  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question) return ctx;
+  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question || ctx.school) return ctx;
   if (typeof window !== "undefined") return (window as any).__PRACTICE_DATA__ || {};
   return {};
 }
@@ -87,6 +103,13 @@ export function shorten(text: string, max: number) {
 }
 
 export function questionMeta(q: QuestionPageData) {
+  if (q.classNum) {
+    const tail = ` | Class ${q.classNum} Science MCQ`;
+    return {
+      title: `${shorten(q.question, 68 - tail.length)}${tail}`,
+      description: shorten(`Class ${q.classNum} Science MCQ on ${q.chapter}: ${q.question} Answer with explanation. Free, no login needed.`, 158),
+    };
+  }
   // Question first (that's what people search), then the chapter if it fits in ~68 characters.
   const long = ` | NEET ${q.chapter}`;
   const tail = long.length <= 32 ? long : ` | NEET ${q.subject}`;
@@ -95,5 +118,12 @@ export function questionMeta(q: QuestionPageData) {
   return {
     title,
     description: shorten(`${year}${q.question} Answer with explanation — free NEET ${q.subject} practice on ${q.chapter}, no login needed.`, 158),
+  };
+}
+
+export function schoolHubMeta(classNum: number, total: number) {
+  return {
+    title: `Class ${classNum} Science MCQ Questions with Answers | YNeet`,
+    description: `${total} free Class ${classNum} Science MCQs with answers and explanations — Physics, Chemistry and Biology, chapter-wise. No login needed.`,
   };
 }

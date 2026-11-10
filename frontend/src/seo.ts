@@ -178,6 +178,8 @@ export function metaFor(path: string): PageMeta & { canonical: string } {
   if (/^\/neet-question-papers\/\d{4}$/.test(clean)) return { ...PAGE_META["/neet-question-papers"], canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-practice\/[^/]+\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   // One-question pages set their own title once loaded (pages/QuestionPage.tsx); the build writes them into the HTML.
+  // Class 6–10 Science MCQ hubs and questions set their own tags once loaded (pages/SchoolHub.tsx, QuestionPage.tsx).
+  if (/^\/class-(6|7|8|9|10)-questions(\/[^/]+)?$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-question\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   const meta =
     PAGE_META[clean] ||

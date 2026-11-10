@@ -36,6 +36,7 @@ export default function usePageMeta() {
     if (/^\/blog\/[^/]+\/?$/.test(pathname)) return;
     if (/^\/neet-practice\/[^/]+\/[^/]+\/?$/.test(pathname)) return; // set by PracticeChapter
     if (/^\/neet-question\/[^/]+\/?$/.test(pathname)) return; // set by QuestionPage
+    if (/^\/class-(6|7|8|9|10)-questions(\/[^/]+)?\/?$/.test(pathname)) return; // set by SchoolHub / QuestionPage
     const m = metaFor(pathname);
     document.title = m.title;
     setTag('meta[name="description"]', meta("description"), "content", m.description);

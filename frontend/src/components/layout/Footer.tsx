@@ -23,6 +23,7 @@ const FREE: Item[] = [
   { label: "NCERT Biology notes", to: "/ncert-notes" },
   { label: "NEET concept maps", to: "/neet-concept-maps" },
   { label: "Brain Teaser (Class 6–8)", to: "/brain-teaser" },
+  { label: "Class 6–10 Science MCQs", to: "/class-9-questions" },
   { label: "Ask YNeet: doubts answered", to: "/ask-yneet" },
   { label: "Daily NEET puzzles", href: gamesLink("footer") },
   { label: "NEET 2027 exam date", to: "/neet-2027-exam-date" },

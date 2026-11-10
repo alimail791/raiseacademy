@@ -16,7 +16,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const ssrEntry = path.join(root, "dist-ssr", "entry-server.js");
 
-const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
+const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, schoolHubMeta, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
 
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
@@ -88,6 +88,22 @@ if (YNEET_API && QUESTION_PAGES_LIMIT > 0) {
     console.warn(`prerender: could not fetch question pages (${err.message}) — skipping one-question pages.`);
   }
 }
+// Class 6–10 Science MCQs: one hub per class (/class-<n>-questions) and one
+// page per question (/class-<n>-questions/<slug>). Small enough to build all.
+let schoolClasses = [];
+let schoolPages = [];
+if (YNEET_API) {
+  try {
+    const res = await fetch(`${YNEET_API}/public/school-questions`);
+    if (!res.ok) throw new Error(`API responded ${res.status}`);
+    const body = await res.json();
+    schoolClasses = body.classes || [];
+    schoolPages = (body.pages || []).filter((q) => /^[a-z0-9-]+$/i.test(q.slug) && /^(6|7|8|9|10)$/.test(String(q.classNum)));
+  } catch (err) {
+    console.warn(`prerender: could not fetch school questions (${err.message}) — skipping Class 6–10 pages.`);
+  }
+}
+
 // Each chapter page links to its question pages (how Google finds them besides the sitemap).
 const QUESTION_LINKS_PER_CHAPTER = 60;
 for (const c of practiceChapters) {
@@ -159,6 +175,26 @@ for (const q of questionPages) {
   const route = `/neet-question/${q.slug}`;
   const meta = { ...questionMeta(q), canonical: `${SITE_ORIGIN}${route}` };
   fs.writeFileSync(path.join(dist, "neet-question", `${q.slug}.html`), pageHtml(route, undefined, meta, { question: q }));
+}
+
+// Class 6–10: hub file class-<n>-questions.html plus a same-named folder of
+// question files. cleanUrls tries "<path>.html" first, so the hub URL is served
+// from the file and the folder never shows (directoryListing is off anyway).
+const schoolSummaries = schoolClasses.map(({ chapters, ...c }) => c);
+for (const cl of schoolClasses) {
+  const n = cl.classNum;
+  const mine = schoolPages.filter((q) => q.classNum === n);
+  const hub = {
+    classNum: n, classes: schoolSummaries, chapters: cl.chapters,
+    links: mine.map(({ slug, chapterSlug, question }) => ({ slug, chapterSlug, question: question.slice(0, 140) })),
+  };
+  const route = `/class-${n}-questions`;
+  fs.writeFileSync(path.join(dist, `class-${n}-questions.html`), pageHtml(route, undefined, { ...schoolHubMeta(n, cl.total), canonical: `${SITE_ORIGIN}${route}` }, { school: hub }));
+  fs.mkdirSync(path.join(dist, `class-${n}-questions`), { recursive: true });
+  for (const q of mine) {
+    const qRoute = `${route}/${q.slug}`;
+    fs.writeFileSync(path.join(dist, `class-${n}-questions`, `${q.slug}.html`), pageHtml(qRoute, undefined, { ...questionMeta(q), canonical: `${SITE_ORIGIN}${qRoute}` }, { question: q }));
+  }
 }
 
 // NCERT notes (static content in src/ncert/notes.ts), one file each in ncert-pages/.
@@ -240,6 +276,8 @@ const indexable = [
   ...papers.map((p) => `/neet-question-papers/${p.year}`),
   ...NCERT_NOTES.map((n) => `/ncert-notes/${n.slug}`),
   ...questionPages.map((q) => `/neet-question/${q.slug}`),
+  ...schoolClasses.map((c) => `/class-${c.classNum}-questions`),
+  ...schoolPages.map((q) => `/class-${q.classNum}-questions/${q.slug}`),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -254,7 +292,7 @@ ${indexable
 fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
 
 fs.rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
-console.log(`Prerendered ${practiceChapters.length} chapter practice pages, ${papers.length} question-paper years and ${questionPages.length} one-question pages.`);
+console.log(`Prerendered ${practiceChapters.length} chapter practice pages, ${papers.length} question-paper years, ${questionPages.length} one-question pages and ${schoolPages.length} Class 6–10 question pages (${schoolClasses.map((c) => `C${c.classNum}:${c.total}`).join(" ")}).`);
 if (practiceSummaries.length) {
   const have = new Set(practiceSummaries.map((c) => c.slug));
   const slug = (x) => x.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80);
