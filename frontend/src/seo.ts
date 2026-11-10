@@ -177,6 +177,8 @@ export function metaFor(path: string): PageMeta & { canonical: string } {
   // Chapter pages set their own title once loaded (pages/PracticeChapter.tsx); the build writes them into the HTML.
   if (/^\/neet-question-papers\/\d{4}$/.test(clean)) return { ...PAGE_META["/neet-question-papers"], canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-practice\/[^/]+\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
+  // One-question pages set their own title once loaded (pages/QuestionPage.tsx); the build writes them into the HTML.
+  if (/^\/neet-question\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   const meta =
     PAGE_META[clean] ||
     (isAppRoute

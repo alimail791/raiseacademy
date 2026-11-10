@@ -16,7 +16,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const ssrEntry = path.join(root, "dist-ssr", "entry-server.js");
 
-const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
+const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
 
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
@@ -70,6 +70,32 @@ if (YNEET_API) {
   }
 }
 const paperSummaries = papers.map(({ subjects, ...rest }) => rest);
+
+// One-question pages (/neet-question/<question-words>-<id>), so a student who
+// searches the text of a question lands on its answer. Capped per build
+// (QUESTION_PAGES_LIMIT, default 3000) to keep deploys quick; the API orders
+// them PYQs first and interleaves chapters, so raising the cap later just adds
+// pages. Questions without a page yet still open in the browser (via 404.html,
+// which loads the app), and get a real page on a later deploy.
+const QUESTION_PAGES_LIMIT = Math.max(0, parseInt(process.env.QUESTION_PAGES_LIMIT ?? "3000", 10) || 0);
+let questionPages = [];
+if (YNEET_API && QUESTION_PAGES_LIMIT > 0) {
+  try {
+    const res = await fetch(`${YNEET_API}/public/questions?limit=${QUESTION_PAGES_LIMIT}`);
+    if (!res.ok) throw new Error(`API responded ${res.status}`);
+    questionPages = ((await res.json()).pages || []).filter((q) => /^[a-z0-9-]+$/i.test(q.slug));
+  } catch (err) {
+    console.warn(`prerender: could not fetch question pages (${err.message}) — skipping one-question pages.`);
+  }
+}
+// Each chapter page links to its question pages (how Google finds them besides the sitemap).
+const QUESTION_LINKS_PER_CHAPTER = 60;
+for (const c of practiceChapters) {
+  c.questionLinks = questionPages
+    .filter((q) => q.chapterSlug === c.slug)
+    .slice(0, QUESTION_LINKS_PER_CHAPTER)
+    .map((q) => ({ slug: q.slug, question: q.question.slice(0, 140), pyqYear: q.pyqYear }));
+}
 const practiceFile = (slug) => `${slug.replace("/", "--")}.html`;
 const blogDataScript = (data) =>
   `<script>window.__BLOG_DATA__=${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
@@ -123,6 +149,16 @@ for (const paper of papers) {
   const route = `/neet-question-papers/${paper.year}`;
   const meta = { ...paperMeta(paper), canonical: `${SITE_ORIGIN}${route}` };
   fs.writeFileSync(path.join(dist, "paper-pages", `${paper.year}.html`), pageHtml(route, undefined, meta, { paper, papers: paperSummaries }));
+}
+
+// One file per question in neet-question/. No rewrite needed: with cleanUrls,
+// /neet-question/<slug> is served straight from neet-question/<slug>.html
+// (there is no /neet-question page, so the folder name can't clash).
+fs.mkdirSync(path.join(dist, "neet-question"), { recursive: true });
+for (const q of questionPages) {
+  const route = `/neet-question/${q.slug}`;
+  const meta = { ...questionMeta(q), canonical: `${SITE_ORIGIN}${route}` };
+  fs.writeFileSync(path.join(dist, "neet-question", `${q.slug}.html`), pageHtml(route, undefined, meta, { question: q }));
 }
 
 // NCERT notes (static content in src/ncert/notes.ts), one file each in ncert-pages/.
@@ -203,6 +239,7 @@ const indexable = [
   ...practiceChapters.map((c) => `/neet-practice/${c.slug}`),
   ...papers.map((p) => `/neet-question-papers/${p.year}`),
   ...NCERT_NOTES.map((n) => `/ncert-notes/${n.slug}`),
+  ...questionPages.map((q) => `/neet-question/${q.slug}`),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -217,7 +254,7 @@ ${indexable
 fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
 
 fs.rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
-console.log(`Prerendered ${practiceChapters.length} chapter practice pages and ${papers.length} question-paper years.`);
+console.log(`Prerendered ${practiceChapters.length} chapter practice pages, ${papers.length} question-paper years and ${questionPages.length} one-question pages.`);
 if (practiceSummaries.length) {
   const have = new Set(practiceSummaries.map((c) => c.slug));
   const slug = (x) => x.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80);
