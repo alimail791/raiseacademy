@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { ArrowRight, Check, Timer, Target, TrendingUp } from "lucide-react";
 import { SITE_ORIGIN } from "../seo";
-import { useInitialPracticeData, YNEET_API, chapterMeta, type PracticeChapter as Chapter, type PracticeChapterSummary } from "../practice/practiceData";
+import { useInitialPracticeData, YNEET_API, chapterMeta, shorten, type PracticeChapter as Chapter, type PracticeChapterSummary } from "../practice/practiceData";
 import NotFound from "./NotFound";
 import { NCERT_NOTES } from "../ncert/notes";
 
@@ -121,6 +121,21 @@ const PracticeChapter = () => {
       </ol>
 
       <Cta chapter={c.chapter} total={c.total} big />
+
+      {c.questionLinks && c.questionLinks.length > 0 && (
+        <section className="mt-10">
+          <h2 className="font-display text-xl font-bold">More {c.chapter} questions with answers</h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            {c.questionLinks.map((l) => (
+              <li key={l.slug}>
+                <Link to={`/neet-question/${l.slug}`} className="text-rise-dark hover:underline">
+                  {shorten(l.question, 120)}{l.pyqYear ? ` (NEET ${l.pyqYear})` : ""}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {more.length > 0 && (
         <section className="mt-10">

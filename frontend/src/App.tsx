@@ -24,6 +24,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import Practice from "./pages/Practice";
 import PracticeChapter from "./pages/PracticeChapter";
+import QuestionPage from "./pages/QuestionPage";
 import NeetReadiness from "./pages/NeetReadiness";
 import NeetCollegePredictor from "./pages/NeetCollegePredictor";
 import NeetCollegeReport from "./pages/NeetCollegeReport";
@@ -103,6 +104,7 @@ function App() {
             <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
             <Route path="/neet-practice" element={<Practice />} />
             <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
+            <Route path="/neet-question/:slug" element={<QuestionPage />} />
             <Route path="/neet-question-papers" element={<PapersIndex />} />
             <Route path="/neet-question-papers/:year" element={<PaperYear />} />
             <Route path="/neet-concept-maps" element={<ConceptMaps />} />
@@ -166,6 +168,7 @@ function App() {
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
           <Route path="/neet-practice" element={<Practice />} />
           <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
+          <Route path="/neet-question/:slug" element={<QuestionPage />} />
 
           <Route
             path="/dashboard"
