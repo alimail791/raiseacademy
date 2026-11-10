@@ -16,7 +16,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const ssrEntry = path.join(root, "dist-ssr", "entry-server.js");
 
-const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, schoolHubMeta, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
+const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, schoolHubMeta, cutoffMeta, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
 
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
@@ -104,6 +104,17 @@ if (YNEET_API) {
   }
 }
 
+// NEET cutoff pages (/neet-cutoff/<state>) from the College Predictor's data on
+// the Raise Academy API (same server as the blog). Skipped if it can't be reached.
+let cutoffStates = [];
+try {
+  const res = await fetch(`${API_URL}/predictor/cutoff-pages`);
+  if (!res.ok) throw new Error(`API responded ${res.status}`);
+  cutoffStates = ((await res.json()).states || []).filter((c) => /^[a-z-]+$/.test(c.slug));
+} catch (err) {
+  console.warn(`prerender: could not fetch cutoff pages (${err.message}) — /neet-cutoff pages will load in the browser.`);
+}
+
 // Each chapter page links to its question pages (how Google finds them besides the sitemap).
 const QUESTION_LINKS_PER_CHAPTER = 60;
 for (const c of practiceChapters) {
@@ -142,8 +153,9 @@ const routes = Object.keys(PAGE_META);
 for (const route of routes) {
   const out = route === "/" ? path.join(dist, "index.html") : path.join(dist, `${route.slice(1)}.html`);
   fs.mkdirSync(path.dirname(out), { recursive: true }); // e.g. /embed/qotd → dist/embed/
-  const pData = route === "/neet-practice" && practiceSummaries.length ? { chapters: practiceSummaries }
-    : route === "/neet-question-papers" && paperSummaries.length ? { papers: paperSummaries } : undefined;
+  const pData = (route === "/neet-practice" || route === "/neet-chapter-wise-weightage") && practiceSummaries.length ? { chapters: practiceSummaries }
+    : route === "/neet-question-papers" && paperSummaries.length ? { papers: paperSummaries }
+    : route === "/neet-cutoff" && cutoffStates.length ? { cutoffs: cutoffStates } : undefined;
   fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, undefined, pData));
 }
 
@@ -161,10 +173,24 @@ fs.writeFileSync(
 
 // One file per NEET paper year in paper-pages/.
 fs.mkdirSync(path.join(dist, "paper-pages"), { recursive: true });
+// The year page is an overview (subject links + questions per chapter), so it
+// ships only each question's chapter; the questions live on the subject pages
+// (/neet-question-papers/<year>/<subject>), one file each.
+const SUBJECTS = ["Physics", "Chemistry", "Biology"];
+const paperSubjectRoutes = [];
 for (const paper of papers) {
   const route = `/neet-question-papers/${paper.year}`;
   const meta = { ...paperMeta(paper), canonical: `${SITE_ORIGIN}${route}` };
-  fs.writeFileSync(path.join(dist, "paper-pages", `${paper.year}.html`), pageHtml(route, undefined, meta, { paper, papers: paperSummaries }));
+  const overview = { ...paper, subjects: Object.fromEntries(Object.entries(paper.subjects || {}).map(([s, qs]) => [s, qs.map((q) => ({ id: q.id, chapter: q.chapter }))])) };
+  fs.writeFileSync(path.join(dist, "paper-pages", `${paper.year}.html`), pageHtml(route, undefined, meta, { paper: overview, papers: paperSummaries }));
+  for (const subject of SUBJECTS) {
+    if (!(paper.subjects?.[subject] || []).length) continue;
+    const sRoute = `${route}/${subject.toLowerCase()}`;
+    const sMeta = { ...paperMeta(paper, subject), canonical: `${SITE_ORIGIN}${sRoute}` };
+    const only = { ...paper, subjects: { [subject]: paper.subjects[subject] } };
+    fs.writeFileSync(path.join(dist, "paper-pages", `${paper.year}-${subject.toLowerCase()}.html`), pageHtml(sRoute, undefined, sMeta, { paper: only, papers: paperSummaries }));
+    paperSubjectRoutes.push({ year: paper.year, subject: subject.toLowerCase() });
+  }
 }
 
 // One file per question in neet-question/. No rewrite needed: with cleanUrls,
@@ -195,6 +221,15 @@ for (const cl of schoolClasses) {
     const qRoute = `${route}/${q.slug}`;
     fs.writeFileSync(path.join(dist, `class-${n}-questions`, `${q.slug}.html`), pageHtml(qRoute, undefined, { ...questionMeta(q), canonical: `${SITE_ORIGIN}${qRoute}` }, { question: q }));
   }
+}
+
+// One file per cutoff state in neet-cutoff/ (cleanUrls, like class-<n>-questions/).
+// Each page ships its own full table; other states only as names for the links.
+fs.mkdirSync(path.join(dist, "neet-cutoff"), { recursive: true });
+for (const c of cutoffStates) {
+  const route = `/neet-cutoff/${c.slug}`;
+  const others = cutoffStates.map((o) => (o.slug === c.slug ? o : { ...o, colleges: [], categorySummary: [] }));
+  fs.writeFileSync(path.join(dist, "neet-cutoff", `${c.slug}.html`), pageHtml(route, undefined, { ...cutoffMeta(c), canonical: `${SITE_ORIGIN}${route}` }, { cutoffs: others }));
 }
 
 // NCERT notes (static content in src/ncert/notes.ts), one file each in ncert-pages/.
@@ -254,6 +289,8 @@ fs.writeFileSync(
         { source: "/neet-practice/:subject/:chapter", destination: "/practice-shell.html" },
         ...papers.map((p) => ({ source: `/neet-question-papers/${p.year}`, destination: `/paper-pages/${p.year}.html` })),
         { source: "/neet-question-papers/:year", destination: "/practice-shell.html" },
+        ...paperSubjectRoutes.map((r) => ({ source: `/neet-question-papers/${r.year}/${r.subject}`, destination: `/paper-pages/${r.year}-${r.subject}.html` })),
+        { source: "/neet-question-papers/:year/:subject", destination: "/practice-shell.html" },
         ...NCERT_NOTES.map((n) => ({ source: `/ncert-notes/${n.slug}`, destination: `/ncert-pages/${n.slug}.html` })),
         { source: "/logout", destination: "/app.html" },
         { source: "/dashboard", destination: "/app.html" },
@@ -274,8 +311,10 @@ const indexable = [
   ...blogPosts.map((p) => `/blog/${p.slug}`),
   ...practiceChapters.map((c) => `/neet-practice/${c.slug}`),
   ...papers.map((p) => `/neet-question-papers/${p.year}`),
+  ...paperSubjectRoutes.map((r) => `/neet-question-papers/${r.year}/${r.subject}`),
   ...NCERT_NOTES.map((n) => `/ncert-notes/${n.slug}`),
   ...questionPages.map((q) => `/neet-question/${q.slug}`),
+  ...cutoffStates.map((c) => `/neet-cutoff/${c.slug}`),
   ...schoolClasses.map((c) => `/class-${c.classNum}-questions`),
   ...schoolPages.map((q) => `/class-${q.classNum}-questions/${q.slug}`),
 ];
@@ -301,4 +340,5 @@ if (practiceSummaries.length) {
 }
 if (papers.length) console.log("PAPERS " + papers.map((p) => `${p.year}:${p.total}(P${p.counts.Physics}/C${p.counts.Chemistry}/B${p.counts.Biology})`).join(" "));
 if (practiceChapters.length) console.log("PRACTICE_CHAPTERS " + practiceChapters.map((c) => `${c.subject[0]}:${c.chapter}(${c.total}/${c.pyqCount})`).join(" | "));
+console.log(`Prerendered ${cutoffStates.length} NEET cutoff state pages.`);
 console.log(`Prerendered ${routes.length} pages and ${blogPosts.length} blog posts; sitemap has ${indexable.length} URLs.`);

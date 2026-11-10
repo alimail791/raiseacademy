@@ -125,6 +125,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Free NEET previous year questions for every Physics, Chemistry and Biology chapter, with answers and explanations. No login needed. Timed chapter tests and full mocks free for 30 days on YNeet.",
   },
+  "/neet-cutoff": {
+    title: "NEET Cutoff for Government MBBS — All India Quota & State-wise Closing Ranks | YNeet",
+    description:
+      "NEET closing ranks for every government MBBS college, category-wise: All India Quota and state quota for Tamil Nadu, Karnataka, Kerala, Maharashtra, AP, Telangana, Rajasthan and more. From official counselling data.",
+  },
+  "/neet-chapter-wise-weightage": {
+    title: "NEET Chapter-wise Weightage 2027 — Physics, Chemistry, Biology (Ranked) | YNeet",
+    description:
+      "NEET chapter-wise weightage for Physics, Chemistry and Biology: expected questions and marks per chapter, ranked High, Medium and Low priority from previous year papers. Free, with PYQs for every chapter.",
+  },
   "/blog": {
     title: "NEET Preparation Blog — PYQs, Mock Tests, Cutoffs & Study Plans | YNeet",
     description:
@@ -175,11 +185,12 @@ export function metaFor(path: string): PageMeta & { canonical: string } {
   // pages/BlogPost.tsx); until then they get the blog's tags, still indexable.
   if (/^\/blog\/[^/]+$/.test(clean)) return { ...PAGE_META["/blog"], canonical: `${SITE_ORIGIN}${clean}` };
   // Chapter pages set their own title once loaded (pages/PracticeChapter.tsx); the build writes them into the HTML.
-  if (/^\/neet-question-papers\/\d{4}$/.test(clean)) return { ...PAGE_META["/neet-question-papers"], canonical: `${SITE_ORIGIN}${clean}` };
+  if (/^\/neet-question-papers\/\d{4}(\/(physics|chemistry|biology))?$/.test(clean)) return { ...PAGE_META["/neet-question-papers"], canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-practice\/[^/]+\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   // One-question pages set their own title once loaded (pages/QuestionPage.tsx); the build writes them into the HTML.
   // Class 6–10 Science MCQ hubs and questions set their own tags once loaded (pages/SchoolHub.tsx, QuestionPage.tsx).
   if (/^\/class-(6|7|8|9|10)-questions(\/[^/]+)?$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
+  if (/^\/neet-cutoff\/[a-z-]+$/.test(clean)) return { ...PAGE_META["/neet-cutoff"], canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-question\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   const meta =
     PAGE_META[clean] ||

@@ -15,10 +15,12 @@ type Item = { label: string; to?: string; href?: string; onClick?: () => void };
 const FREE: Item[] = [
   { label: "NEET Readiness Test", to: "/neet-readiness" },
   { label: "NEET College Predictor", to: "/neet-college-predictor" },
+  { label: "NEET cutoff by state", to: "/neet-cutoff" },
   { label: "NEET Score Calculator", to: "/neet-score-calculator" },
   { label: "NEET Question of the Day", to: "/neet-question-of-the-day" },
   { label: "60-Second Sprint", to: "/neet-sprint" },
   { label: "Chapter-wise NEET PYQs", to: "/neet-practice" },
+  { label: "NEET chapter-wise weightage", to: "/neet-chapter-wise-weightage" },
   { label: "NEET question papers by year", to: "/neet-question-papers" },
   { label: "NCERT Biology notes", to: "/ncert-notes" },
   { label: "NEET concept maps", to: "/neet-concept-maps" },

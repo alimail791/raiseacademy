@@ -26,6 +26,8 @@ import Practice from "./pages/Practice";
 import PracticeChapter from "./pages/PracticeChapter";
 import QuestionPage from "./pages/QuestionPage";
 import SchoolHub from "./pages/SchoolHub";
+import NeetWeightage from "./pages/NeetWeightage";
+import { NeetCutoffIndex, NeetCutoffState } from "./pages/NeetCutoff";
 import NeetReadiness from "./pages/NeetReadiness";
 import NeetCollegePredictor from "./pages/NeetCollegePredictor";
 import NeetCollegeReport from "./pages/NeetCollegeReport";
@@ -97,6 +99,8 @@ function App() {
             <Route path="/delete-account" element={<DeleteAccount />} />
             <Route path="/neet-readiness" element={<NeetReadiness />} />
             <Route path="/neet-college-predictor" element={<NeetCollegePredictor />} />
+          <Route path="/neet-cutoff" element={<NeetCutoffIndex />} />
+          <Route path="/neet-cutoff/:state" element={<NeetCutoffState />} />
             <Route path="/neet-registration" element={<NeetRegistration />} />
             <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
             <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />
@@ -104,6 +108,7 @@ function App() {
             <Route path="/neet-sprint" element={<NeetSprint />} />
             <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
             <Route path="/neet-practice" element={<Practice />} />
+            <Route path="/neet-chapter-wise-weightage" element={<NeetWeightage />} />
             <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
             <Route path="/neet-question/:slug" element={<QuestionPage />} />
             {[6, 7, 8, 9, 10].map((n) => [
@@ -112,6 +117,7 @@ function App() {
             ])}
             <Route path="/neet-question-papers" element={<PapersIndex />} />
             <Route path="/neet-question-papers/:year" element={<PaperYear />} />
+          <Route path="/neet-question-papers/:year/:subject" element={<PaperYear />} />
             <Route path="/neet-concept-maps" element={<ConceptMaps />} />
             <Route path="/ncert-notes" element={<NcertIndex />} />
             <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
@@ -154,10 +160,13 @@ function App() {
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/neet-readiness" element={<NeetReadiness />} />
           <Route path="/neet-college-predictor" element={<NeetCollegePredictor />} />
+          <Route path="/neet-cutoff" element={<NeetCutoffIndex />} />
+          <Route path="/neet-cutoff/:state" element={<NeetCutoffState />} />
           <Route path="/neet-college-predictor/report" element={<NeetCollegeReport />} />
           <Route path="/neet-parents" element={<NeetParents />} />
           <Route path="/neet-question-papers" element={<PapersIndex />} />
           <Route path="/neet-question-papers/:year" element={<PaperYear />} />
+          <Route path="/neet-question-papers/:year/:subject" element={<PaperYear />} />
           <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
           <Route path="/brain-teaser" element={<BrainTeaser />} />
           <Route path="/ask-yneet" element={<AskYneet />} />
@@ -172,6 +181,7 @@ function App() {
           <Route path="/ncert-notes" element={<NcertIndex />} />
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
           <Route path="/neet-practice" element={<Practice />} />
+            <Route path="/neet-chapter-wise-weightage" element={<NeetWeightage />} />
           <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
           <Route path="/neet-question/:slug" element={<QuestionPage />} />
             {[6, 7, 8, 9, 10].map((n) => [

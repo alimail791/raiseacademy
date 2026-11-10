@@ -3,14 +3,14 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { ArrowRight, Check, FileText } from "lucide-react";
 import { SITE_ORIGIN } from "../seo";
-import { useInitialPracticeData, YNEET_API, SUBJECTS, paperMeta, type Paper, type PaperSummary } from "../practice/practiceData";
+import { useInitialPracticeData, YNEET_API, SUBJECTS, paperMeta, subjectSlug, type Paper, type PaperSummary } from "../practice/practiceData";
 import NotFound from "./NotFound";
 
 const LETTERS = ["A", "B", "C", "D"];
 
-function setMeta(p: PaperSummary) {
-  const m = paperMeta(p);
-  const url = `${SITE_ORIGIN}/neet-question-papers/${p.year}`;
+function setMeta(p: PaperSummary, subject?: string) {
+  const m = paperMeta(p, subject);
+  const url = `${SITE_ORIGIN}/neet-question-papers/${p.year}${subject ? `/${subjectSlug(subject)}` : ""}`;
   document.title = m.title;
   const set = (sel: string, attr: string, val: string, make: () => HTMLElement) => {
     let el = document.head.querySelector(sel) as HTMLElement | null;
@@ -88,50 +88,59 @@ export const PapersIndex = () => {
 };
 
 export const PaperYear = () => {
-  const { year = "" } = useParams();
+  const { year = "", subject: subjectParam } = useParams();
+  // /neet-question-papers/<year> is the overview; /<year>/<subject> lists that subject's questions.
+  const subject = subjectParam ? SUBJECTS.find((s) => subjectSlug(s) === subjectParam.toLowerCase()) : undefined;
   const initial = useInitialPracticeData();
-  const pre = initial.paper && String(initial.paper.year) === year ? initial.paper : undefined;
+  // Prerendered pages carry only part of a paper (overview: chapters only;
+  // subject page: that subject). Use it only when it covers what this URL shows.
+  const covers = (x: Paper | null | undefined, s?: string) =>
+    !!x && String(x.year) === year && (!s || !!(x.subjects[s] || [])[0]?.question);
+  const pre = covers(initial.paper, subject) ? initial.paper : undefined;
   const [p, setP] = useState<Paper | null | undefined>(pre);
   const [years, setYears] = useState<number[]>((initial.papers || []).map((x) => x.year));
-  const [subject, setSubject] = useState<string>("Physics");
   const [open, setOpen] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    if (!YNEET_API) { if (!pre) setP(null); return; }
+    if (covers(p, subject)) {
+      if (!years.length && YNEET_API) axios.get(`${YNEET_API}/public/papers`).then((r) => setYears((r.data.papers || []).map((x: PaperSummary) => x.year))).catch(() => {});
+      return;
+    }
+    if (!YNEET_API) { setP(null); return; }
     let alive = true;
-    if (!pre) axios.get(`${YNEET_API}/public/papers/${year}`)
-      .then((r) => { if (alive) { setP(r.data.paper); setYears(r.data.years || []); } })
+    setP(undefined);
+    axios.get(`${YNEET_API}/public/papers/${year}`)
+      .then((r) => { if (alive) { setP(r.data.paper); if (r.data.years?.length) setYears(r.data.years); } })
       .catch((e) => alive && setP(e?.response?.status === 404 ? null : undefined));
-    else if (!years.length) axios.get(`${YNEET_API}/public/papers`).then((r) => alive && setYears((r.data.papers || []).map((x: PaperSummary) => x.year))).catch(() => {});
     return () => { alive = false; };
-  }, [year]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [year, subject]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => { if (p) setMeta(p); }, [p]);
+  useEffect(() => { if (p) setMeta(p, subject); }, [p, subject]);
 
-  if (p === null) return <NotFound />;
+  if (p === null || (subjectParam && !subject)) return <NotFound />;
   if (p === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/50">Loading questions…</div>;
 
-  const subjects = SUBJECTS.filter((s) => (p.subjects[s] || []).length);
-  const active = subjects.includes(subject as typeof SUBJECTS[number]) ? subject : subjects[0];
+  const subjects = SUBJECTS.filter((s) => (p.counts[s] || 0) > 0 || (p.subjects[s] || []).length);
+  if (subject && !subjects.includes(subject)) return <NotFound />;
+  if (!subject) return <PaperOverview p={p} years={years} subjects={subjects} />;
+  const active = subject;
   const qs = p.subjects[active] || [];
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
       <nav className="text-sm text-ink/55 dark:text-paper/55">
-        <Link to="/neet-question-papers" className="hover:underline">NEET question papers</Link> › <span>{p.year}</span>
+        <Link to="/neet-question-papers" className="hover:underline">NEET question papers</Link> › <Link to={`/neet-question-papers/${p.year}`} className="hover:underline">{p.year}</Link> › <span>{active}</span>
       </nav>
-      <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">NEET {p.year} Question Paper with Answers</h1>
+      <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">NEET {p.year} {active} Question Paper with Answers</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3">
-        {p.total} NEET {p.year} questions with answers and explanations: Physics {p.counts.Physics || 0}, Chemistry {p.counts.Chemistry || 0}, Biology {p.counts.Biology || 0}. Tap “Show answer” under each question. No login needed.
+        {qs.length} NEET {p.year} {active} questions with the correct answer and an explanation for each, chapter-wise. Tap “Show answer” under each question. No login needed.
       </p>
-      {years.length > 1 && <div className="mt-5"><YearChips years={years} current={p.year} /></div>}
-
-      <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Subject">
+      <div className="mt-6 flex flex-wrap gap-2" aria-label="Subject">
         {subjects.map((s) => (
-          <button key={s} role="tab" aria-selected={s === active} onClick={() => setSubject(s)}
-            className={`min-h-[44px] px-5 rounded-full font-semibold ${s === active ? "bg-ink text-paper dark:bg-gold dark:text-ink" : "border border-ink/20 dark:border-paper/25"}`}>
-            {s} ({p.subjects[s].length})
-          </button>
+          <Link key={s} to={`/neet-question-papers/${p.year}/${subjectSlug(s)}`} aria-current={s === active ? "page" : undefined}
+            className={`min-h-[44px] inline-flex items-center px-5 rounded-full font-semibold ${s === active ? "bg-ink text-paper dark:bg-gold dark:text-ink" : "border border-ink/20 dark:border-paper/25"}`}>
+            {s} ({p.counts[s] || p.subjects[s].length})
+          </Link>
         ))}
       </div>
 
@@ -171,3 +180,57 @@ export const PaperYear = () => {
     </div>
   );
 };
+
+// /neet-question-papers/<year>: subject links and how many questions came from
+// each chapter (shipped without the questions themselves; see prerender.mjs).
+function PaperOverview({ p, years, subjects }: { p: Paper; years: number[]; subjects: string[] }) {
+  return (
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+      <nav className="text-sm text-ink/55 dark:text-paper/55">
+        <Link to="/neet-question-papers" className="hover:underline">NEET question papers</Link> › <span>{p.year}</span>
+      </nav>
+      <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">NEET {p.year} Question Paper with Answers</h1>
+      <p className="text-ink/70 dark:text-paper/70 mt-3">
+        {p.total} NEET {p.year} questions with answers and explanations: Physics {p.counts.Physics || 0}, Chemistry {p.counts.Chemistry || 0}, Biology {p.counts.Biology || 0}. Pick a subject to start. No login needed.
+      </p>
+      {years.length > 1 && <div className="mt-5"><YearChips years={years} current={p.year} /></div>}
+
+      <ul className="mt-8 grid sm:grid-cols-3 gap-3">
+        {subjects.map((s) => (
+          <li key={s}>
+            <Link to={`/neet-question-papers/${p.year}/${subjectSlug(s)}`} className="block p-5 rounded-2xl border border-ink/10 dark:border-paper/15 hover:border-gold h-full">
+              <FileText className="text-gold-dark" />
+              <span className="font-display font-bold text-lg block mt-2">NEET {p.year} {s}</span>
+              <span className="text-sm text-ink/60 dark:text-paper/60">{p.counts[s] || 0} questions with solutions →</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      {subjects.map((s) => {
+        const counts = new Map<string, number>();
+        for (const q of p.subjects[s] || []) if (q.chapter) counts.set(q.chapter, (counts.get(q.chapter) || 0) + 1);
+        const rows = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+        if (!rows.length) return null;
+        return (
+          <section key={s} className="mt-10">
+            <h2 className="font-display text-xl font-bold">NEET {p.year} {s}: questions by chapter</h2>
+            <table className="w-full mt-3 text-sm border-collapse">
+              <tbody>
+                {rows.map(([chapter, n]) => (
+                  <tr key={chapter} className="border-b border-ink/5 dark:border-paper/10">
+                    <td className="py-1.5 pr-3">{chapter}</td><td className="py-1.5 text-right font-semibold">{n}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <Link to={`/neet-question-papers/${p.year}/${subjectSlug(s)}`} className="inline-block mt-3 text-sm font-semibold text-rise-dark underline">Solve NEET {p.year} {s} questions →</Link>
+          </section>
+        );
+      })}
+
+      <p className="mt-10 text-sm">How much is each chapter worth on average? See the <Link to="/neet-chapter-wise-weightage" className="text-rise-dark font-semibold underline">NEET chapter-wise weightage</Link>.</p>
+      <Cta year={p.year} />
+    </div>
+  );
+}
