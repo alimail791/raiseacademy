@@ -25,6 +25,7 @@ import NotFound from "./pages/NotFound";
 import Practice from "./pages/Practice";
 import PracticeChapter from "./pages/PracticeChapter";
 import QuestionPage from "./pages/QuestionPage";
+import SchoolHub from "./pages/SchoolHub";
 import NeetReadiness from "./pages/NeetReadiness";
 import NeetCollegePredictor from "./pages/NeetCollegePredictor";
 import NeetCollegeReport from "./pages/NeetCollegeReport";
@@ -105,6 +106,10 @@ function App() {
             <Route path="/neet-practice" element={<Practice />} />
             <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
             <Route path="/neet-question/:slug" element={<QuestionPage />} />
+            {[6, 7, 8, 9, 10].map((n) => [
+              <Route key={`h${n}`} path={`/class-${n}-questions`} element={<SchoolHub classNum={n} />} />,
+              <Route key={`q${n}`} path={`/class-${n}-questions/:slug`} element={<QuestionPage classNum={n} />} />,
+            ])}
             <Route path="/neet-question-papers" element={<PapersIndex />} />
             <Route path="/neet-question-papers/:year" element={<PaperYear />} />
             <Route path="/neet-concept-maps" element={<ConceptMaps />} />
@@ -169,6 +174,10 @@ function App() {
           <Route path="/neet-practice" element={<Practice />} />
           <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
           <Route path="/neet-question/:slug" element={<QuestionPage />} />
+            {[6, 7, 8, 9, 10].map((n) => [
+              <Route key={`h${n}`} path={`/class-${n}-questions`} element={<SchoolHub classNum={n} />} />,
+              <Route key={`q${n}`} path={`/class-${n}-questions/:slug`} element={<QuestionPage classNum={n} />} />,
+            ])}
 
           <Route
             path="/dashboard"
