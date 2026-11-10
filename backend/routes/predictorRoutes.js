@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  meta, runPredict, sendOtp, verifyOtp, addAlertByToken, reportOrder, reportVerify, getReport,
+  meta, cutoffPages, runPredict, sendOtp, verifyOtp, addAlertByToken, reportOrder, reportVerify, getReport,
   adminImport, adminSummary, adminDelete, adminLeads,
 } from "../controllers/predictorController.js";
 import { protect, adminOnly } from "../middleware/auth.js";
@@ -9,6 +9,7 @@ const router = express.Router();
 
 // Public — NEET College Predictor (www.yneet.in/neet-college-predictor)
 router.get("/meta", meta);
+router.get("/cutoff-pages", cutoffPages); // public cutoff pages (www.yneet.in/neet-cutoff/<state>)
 router.post("/predict", runPredict);
 router.post("/otp/send", sendOtp);
 router.post("/otp/verify", verifyOtp);
