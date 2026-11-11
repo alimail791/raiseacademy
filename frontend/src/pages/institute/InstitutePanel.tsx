@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Upload, Download, UserPlus, Trash2, Mail, LogOut, KeyRound, Users, MessageCircle, X, Gift, Copy } from "lucide-react";
 import instituteApi, { INST_TOKEN, parseCsv } from "../../api/instituteApi";
 import InstituteProgress from "./InstituteProgress";
+import InstituteInsights from "./InstituteInsights";
 import { payWithRazorpay, trackPurchase } from "../../utils/razorpay";
 import { SITE } from "../../utils/siteInfo";
 
@@ -34,7 +35,7 @@ const InstitutePanel = () => {
   const [results, setResults] = useState<Result[] | null>(null);
   const [search, setSearch] = useState("");
   const [pw, setPw] = useState({ open: false, current: "", next: "" });
-  const [tab, setTab] = useState<"progress" | "manage" | null>(null);
+  const [tab, setTab] = useState<"progress" | "insights" | "manage" | null>(null);
   // Login details shown on screen after add / resend / set password, so the
   // institute can share them on WhatsApp even if the email lands in spam.
   const [renewOpen, setRenewOpen] = useState(false);
@@ -322,16 +323,17 @@ const InstitutePanel = () => {
         </div>
       )}
 
-      <div className="flex gap-1 p-1 bg-ink/5 rounded-full w-fit">
-        {([["progress", "📊 Student progress"], ["manage", "👥 Manage students"]] as const).map(([k, label]) => (
+      <div className="flex gap-1 p-1 bg-ink/5 rounded-full w-fit max-w-full overflow-x-auto">
+        {([["progress", "📊 Student progress"], ["insights", "🧠 Academic insights"], ["manage", "👥 Manage students"]] as const).map(([k, label]) => (
           <button key={k} onClick={() => setTab(k)}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${activeTab === k ? "bg-white shadow text-ink" : "text-ink/60 hover:text-ink"}`}>
+            className={`px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors ${activeTab === k ? "bg-white shadow text-ink" : "text-ink/60 hover:text-ink"}`}>
             {label}
           </button>
         ))}
       </div>
 
       {activeTab === "progress" && <InstituteProgress onAddStudents={() => setTab("manage")} />}
+      {activeTab === "insights" && <InstituteInsights onAddStudents={() => setTab("manage")} />}
 
       {activeTab === "manage" && (<>
       <div className="grid sm:grid-cols-3 gap-4">

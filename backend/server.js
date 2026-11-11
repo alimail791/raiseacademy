@@ -12,6 +12,7 @@ import contactRoutes from "./routes/contactRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
 import instituteRoutes from "./routes/instituteRoutes.js";
 import { startParentWhatsAppJob } from "./utils/parentWhatsApp.js";
+import { startInstituteInsightsJob } from "./utils/instituteInsights.js";
 import { startRenewalReminderJob } from "./controllers/instituteBillingController.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import predictorRoutes from "./routes/predictorRoutes.js";
@@ -64,6 +65,7 @@ const PORT = process.env.PORT || 5000;
 connectDB().then(() => {
   app.listen(PORT, () => console.log(`YNeet API running on port ${PORT}`));
   startParentWhatsAppJob(); // weekly WhatsApp progress report to institute students' parents
+  startInstituteInsightsJob(); // Monday 8 am WhatsApp academic-insights summary to institutes
   startRenewalReminderJob(); // monthly institute plans: renewal reminder emails
   seedBundledCutoffs(); // NEET College Predictor: official cutoff files shipped in data/predictor
   applyBlogUpdates(); // one-time SEO updates to existing blog posts (utils/blogUpdates.js)

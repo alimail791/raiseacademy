@@ -36,6 +36,11 @@ const instituteSchema = new mongoose.Schema(
     referralCode: { type: String, unique: true, sparse: true, uppercase: true, trim: true },
     referredBy: { type: mongoose.Schema.Types.ObjectId, ref: "Institute" },
     referralCredits: { type: Number, default: 0, min: 0 },
+
+    // Monday 8 am WhatsApp "academic insights" summary to the institute's phone
+    // (utils/instituteInsightsWhatsApp.js). On by default; the institute can turn it off.
+    weeklyInsights: { type: Boolean, default: true },
+    insightsWaSentAt: { type: Date },
   },
   { timestamps: true }
 );

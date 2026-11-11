@@ -6,7 +6,8 @@ import Student from "../models/Student.js";
 import { sendEmail, otpEmailTemplate } from "../utils/sendEmail.js";
 import Otp from "../models/Otp.js";
 import { syncYneetAccess, yneetPost } from "../utils/yneetSync.js";
-import { normalizePhone } from "../utils/parentWhatsApp.js";
+import { normalizePhone, waConfigured } from "../utils/parentWhatsApp.js";
+import { insightsFor, sendInstituteInsights } from "../utils/instituteInsights.js";
 
 // Standard bulk packs (one year ≈ 8 months of the monthly plan). Per student per
 // year: ₹1,600 / ₹1,400 / ₹1,200 — well below a student buying alone. Admin can
@@ -447,6 +448,44 @@ export const instituteProgressCsv = async (req, res, next) => {
     res.setHeader("Content-Disposition", `attachment; filename="student_progress_${new Date().toISOString().slice(0, 10)}.csv"`);
     res.send("﻿" + cols.join(",") + "\r\n" + rows.join("\r\n") + "\r\n");
   } catch (err) { res.status(502).json({ message: "Couldn't export progress right now." }); }
+};
+
+// ───────────────────────── Academic insights (from YNeet) ─────────────────────────
+// GET /api/institute/insights?days=30
+export const instituteInsights = async (req, res, next) => {
+  try { res.json(await insightsFor(req.institute, req.query.days)); }
+  catch (err) { res.status(502).json({ message: "Couldn't load insights right now. Please try again in a minute." }); }
+};
+
+// GET /api/institute/insights/weekly — Monday WhatsApp summary settings
+export const instituteWeeklyInsights = async (req, res) => {
+  const i = req.institute;
+  res.json({ enabled: i.weeklyInsights !== false, phone: normalizePhone(i.phone), available: waConfigured(), lastSent: i.insightsWaSentAt || null });
+};
+
+// PUT /api/institute/insights/weekly { enabled }
+export const instituteSetWeeklyInsights = async (req, res, next) => {
+  try {
+    await Institute.updateOne({ _id: req.institute._id }, { $set: { weeklyInsights: !!req.body?.enabled } });
+    res.json({ enabled: !!req.body?.enabled });
+  } catch (err) { next(err); }
+};
+
+// POST /api/institute/insights/weekly/send — send this week's summary now (to check it)
+export const instituteSendWeeklyInsights = async (req, res) => {
+  const last = req.institute.insightsWaSentAt;
+  if (last && Date.now() - new Date(last).getTime() < 10 * 60 * 1000) return res.status(429).json({ message: "Already sent a few minutes ago. Please check WhatsApp." });
+  try { res.json(await sendInstituteInsights(req.institute)); }
+  catch (err) { res.status(400).json({ message: err.message }); }
+};
+
+// Admin: same insights for any institute (demos / support)
+export const adminInstituteInsights = async (req, res, next) => {
+  try {
+    const inst = await Institute.findById(req.params.id);
+    if (!inst) return res.status(404).json({ message: "Institute not found" });
+    res.json(await insightsFor(inst, req.query.days));
+  } catch (err) { res.status(502).json({ message: err.message }); }
 };
 
 // Admin: same progress view for any institute (for demos / support)
