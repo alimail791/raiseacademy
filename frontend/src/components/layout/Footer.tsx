@@ -21,6 +21,7 @@ const FREE: Item[] = [
   { label: "60-Second Sprint", to: "/neet-sprint" },
   { label: "Chapter-wise NEET PYQs", to: "/neet-practice" },
   { label: "NEET chapter-wise weightage", to: "/neet-chapter-wise-weightage" },
+  { label: "NEET PYQ books (PDF)", to: "/neet-pyq-books" },
   { label: "NEET question papers by year", to: "/neet-question-papers" },
   { label: "NCERT Biology notes", to: "/ncert-notes" },
   { label: "NEET concept maps", to: "/neet-concept-maps" },

@@ -15,6 +15,7 @@ import { startParentWhatsAppJob } from "./utils/parentWhatsApp.js";
 import { startRenewalReminderJob } from "./controllers/instituteBillingController.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import predictorRoutes from "./routes/predictorRoutes.js";
+import booksRoutes from "./routes/booksRoutes.js";
 import { seedBundledCutoffs } from "./controllers/predictorController.js";
 import { applyBlogUpdates } from "./utils/blogUpdates.js";
 
@@ -44,6 +45,7 @@ app.use("/api/institute/signup", authLimiter);
 app.use("/api/institute/pilot", authLimiter);
 app.use("/api/predictor/alerts", rateLimit({ windowMs: 60 * 60 * 1000, max: 30 }));
 app.use("/api/predictor/otp", rateLimit({ windowMs: 60 * 60 * 1000, max: 20 }));
+app.use("/api/books/order", rateLimit({ windowMs: 60 * 60 * 1000, max: 30 }));
 app.use("/api/predictor/predict", rateLimit({ windowMs: 60 * 1000, max: 30 }));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
@@ -55,6 +57,7 @@ app.use("/api/content", contentRoutes);
 app.use("/api/institute", instituteRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/predictor", predictorRoutes);
+app.use("/api/books", booksRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

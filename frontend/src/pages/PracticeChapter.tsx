@@ -111,6 +111,7 @@ const PracticeChapter = () => {
             </>
           )}
           <Link to="/neet-chapter-wise-weightage" className="inline-block mt-4 text-sm font-semibold text-rise-dark underline">NEET chapter-wise weightage: all chapters ranked →</Link>
+          <Link to="/neet-pyq-books" className="block mt-2 text-sm font-semibold text-rise-dark underline">Free PDF: every {c.chapter} NEET PYQ with solutions →</Link>
         </section>
       )}
 

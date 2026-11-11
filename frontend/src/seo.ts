@@ -135,6 +135,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Free NEET previous year questions for every Physics, Chemistry and Biology chapter, with answers and explanations. No login needed. Timed chapter tests and full mocks free for 30 days on YNeet.",
   },
+  "/neet-pyq-books": {
+    title: "NEET Chapter-wise PYQ Books PDF with Solutions — Physics, Chemistry, Biology | YNeet",
+    description:
+      "NEET previous year questions chapter-wise with answer keys and detailed solutions, in NCERT order with weightage for every chapter. PDF: ₹199 per subject or ₹499 for all three. Free chapter booklets.",
+  },
   "/neet-cutoff": {
     title: "NEET Cutoff for Government MBBS — All India Quota & State-wise Closing Ranks | YNeet",
     description:
