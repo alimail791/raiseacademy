@@ -18,6 +18,8 @@ import blogRoutes from "./routes/blogRoutes.js";
 import predictorRoutes from "./routes/predictorRoutes.js";
 import booksRoutes from "./routes/booksRoutes.js";
 import youtubeShortsRoutes from "./routes/youtubeShortsRoutes.js";
+import instagramReelsRoutes from "./routes/instagramReelsRoutes.js";
+import { startInstagramReelsJob } from "./utils/instagramReels.js";
 import { seedBundledCutoffs } from "./controllers/predictorController.js";
 import { applyBlogUpdates } from "./utils/blogUpdates.js";
 
@@ -61,6 +63,7 @@ app.use("/api/blog", blogRoutes);
 app.use("/api/predictor", predictorRoutes);
 app.use("/api/books", booksRoutes);
 app.use("/api/youtube-shorts", youtubeShortsRoutes);
+app.use("/api/instagram-reels", instagramReelsRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
@@ -69,6 +72,7 @@ const PORT = process.env.PORT || 5000;
 
 connectDB().then(() => {
   app.listen(PORT, () => console.log(`YNeet API running on port ${PORT}`));
+  startInstagramReelsJob(); // daily NEET quiz Reels → Instagram (needs IG_ACCESS_TOKEN)
   startParentWhatsAppJob(); // weekly WhatsApp progress report to institute students' parents
   startRenewalReminderJob(); // monthly institute plans: renewal reminder emails
   startGoogleLeadReminderJob(); // one "finish your sign-up" email to unfinished Google sign-ups
