@@ -9,6 +9,7 @@
 // can't drift from what is actually prerendered.
 
 import fs from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -141,6 +142,8 @@ const blogDataScript = (data) =>
 const practiceDataScript = (data) =>
   `<script>window.__PRACTICE_DATA__=${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
 
+// Content fingerprint of every page written (for honest sitemap <lastmod> dates).
+const contentHash = new Map();
 function pageHtml(route, blogData, metaOverride, practiceData) {
   const m = metaOverride || metaFor(route);
   let html = template;
@@ -155,7 +158,9 @@ function pageHtml(route, blogData, metaOverride, practiceData) {
   // Regional pages (/ta/…): page language + hreflang links to the other versions.
   if (m.lang) html = html.replace(/<html lang="[^"]*"/, `<html lang="${m.lang}"`);
   if (m.alternates?.length) html = html.replace("</head>", `${m.alternates.map((a) => `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}" />`).join("\n")}\n</head>`);
-  html = html.replace('<div id="root"></div>', `<div id="root">${render(route, blogData, practiceData)}</div>`);
+  const body = render(route, blogData, practiceData);
+  contentHash.set(route, createHash("sha1").update(`${m.title}\n${m.description}\n${body}`).digest("hex").slice(0, 16));
+  html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
   if (blogData) html = html.replace("</head>", `${blogDataScript(blogData)}\n</head>`);
   if (practiceData) html = html.replace("</head>", `${practiceDataScript(practiceData)}\n</head>`);
   return html;
@@ -345,7 +350,16 @@ fs.writeFileSync(
   )
 );
 
+// <lastmod> = the day a page's content last changed, not the build date (search
+// engines ignore lastmod when it's always "today"). Previous fingerprints and
+// dates come from the live site's sitemap-lastmod.json; a page keeps its date
+// until its text, title or description changes.
 const today = new Date().toISOString().slice(0, 10);
+let prevLastmod = {};
+try {
+  const r = await fetch(process.env.SITEMAP_LASTMOD_URL || `${SITE_ORIGIN}/sitemap-lastmod.json`, { signal: AbortSignal.timeout(15000) });
+  if (r.ok) prevLastmod = await r.json();
+} catch { /* first build with this: every page gets today */ }
 const indexable = [
   ...routes.filter((r) => !PAGE_META[r].noindex && r !== "/neet-trial"),
   ...blogPosts.map((p) => `/blog/${p.slug}`),
@@ -359,17 +373,28 @@ const indexable = [
   ...schoolClasses.map((c) => `/class-${c.classNum}-questions`),
   ...schoolPages.map((q) => `/class-${q.classNum}-questions/${q.slug}`),
 ];
+const lastmod = {};
+let changed = 0;
+for (const r of indexable) {
+  const h = contentHash.get(r) || "";
+  const prev = prevLastmod[r];
+  const same = prev && h && prev.h === h;
+  lastmod[r] = { h, d: same ? prev.d : today };
+  if (!same) changed++;
+}
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${indexable
   .map((r) => `  <url>
     <loc>${SITE_ORIGIN}${r}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmod[r].d}</lastmod>
   </url>`)
   .join("\n")}
 </urlset>
 `;
 fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
+fs.writeFileSync(path.join(dist, "sitemap-lastmod.json"), JSON.stringify(lastmod));
+console.log(`Sitemap lastmod: ${changed} new or changed pages dated ${today}, ${indexable.length - changed} kept their earlier date.`);
 
 fs.rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
 console.log(`Prerendered ${practiceChapters.length} chapter practice pages, ${papers.length} question-paper years, ${questionPages.length} one-question pages and ${schoolPages.length} Class 6–10 question pages (${schoolClasses.map((c) => `C${c.classNum}:${c.total}`).join(" ")}).`);
