@@ -9,16 +9,19 @@ import YoutubeShort from "../models/YoutubeShort.js";
 const ID_RE = /^[A-Za-z0-9_-]{11}$/;
 const RECHECK_MS = 30 * 60 * 1000;
 
-// The first three, uploaded before the bot reported to this API.
+// 11 Nov 2026 was uploaded three times (test run, scheduled run, music re-run).
+// Keep the music versions; drop the earlier copies from the site.
 const SEED = [
-  { videoId: "nFo6o9QgOoc", subject: "Physics", chapter: "Nuclei", title: "NEET 2023 Physics PYQ: Nuclei | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T03:30:00Z") },
-  { videoId: "ApV-hub2Cog", subject: "Chemistry", chapter: "Redox Reactions", title: "NEET Chemistry MCQ: Redox Reactions | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T07:30:00Z") },
-  { videoId: "JQZevKhRFFo", subject: "Biology", chapter: "Ecosystem", title: "NEET 2026 Biology PYQ: Ecosystem | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T13:30:00Z") },
+  { videoId: "ebG_e1Usq_c", subject: "Physics", chapter: "Nuclei", title: "NEET 2023 Physics PYQ: Nuclei | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T03:30:00Z") },
+  { videoId: "8Q-r3Q3n-wU", subject: "Chemistry", chapter: "Redox Reactions", title: "NEET Chemistry MCQ: Redox Reactions | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T07:30:00Z") },
+  { videoId: "tuKZbkpZOks", subject: "Biology", chapter: "Ecosystem", title: "NEET 2026 Biology PYQ: Ecosystem | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T13:30:00Z") },
 ];
+const REMOVED = ["nFo6o9QgOoc", "ApV-hub2Cog", "JQZevKhRFFo", "bcNaLmzVWzA", "naL4038ngCs", "CyYDZgs--FM"];
 let seeded = false;
 async function seedOnce() {
   if (seeded) return;
   seeded = true;
+  await YoutubeShort.deleteMany({ videoId: { $in: REMOVED } }).catch(() => {});
   for (const s of SEED) await YoutubeShort.updateOne({ videoId: s.videoId }, { $setOnInsert: s }, { upsert: true }).catch(() => {});
 }
 
@@ -65,10 +68,28 @@ export const list = async (req, res, next) => {
       const due = await YoutubeShort.find({ isPublic: false, $or: [{ publishAt: null }, { publishAt: { $lte: now } }], createdAt: { $gte: new Date(Date.now() - 60 * 864e5) } })
         .sort({ createdAt: -1 }).limit(30);
       for (const d of due) if (!d.checkedAt || now - d.checkedAt > RECHECK_MS) await checkPublic(d);
-      const items = await YoutubeShort.find({ isPublic: true }).sort({ publishAt: -1, createdAt: -1 }).limit(200).lean();
+      // Videos deleted or made private on YouTube drop off within a few hours.
+      const stale = await YoutubeShort.find({ isPublic: true, $or: [{ checkedAt: null }, { checkedAt: { $lt: new Date(Date.now() - 6 * 3600e3) } }] }).limit(20);
+      for (const d of stale) await checkPublic(d);
+      const all = await YoutubeShort.find({ isPublic: true }).sort({ createdAt: -1 }).limit(400).lean();
+      // One Short per subject per day: if a day was uploaded twice, show only the newest copy.
+      const seen = new Set();
+      const items = all.filter((x) => { const k = x.date && x.subject ? `${x.date}|${x.subject}` : x.videoId; if (seen.has(k)) return false; seen.add(k); return true; })
+        .sort((a, b) => (new Date(b.publishAt || b.createdAt)) - (new Date(a.publishAt || a.createdAt)) || (b.subject < a.subject ? -1 : 1));
       cache = { at: Date.now(), items: items.map(({ videoId, subject, chapter, title, questionSlug, date, publishAt, thumbnail }) => ({ videoId, subject, chapter, title, questionSlug, date, publishAt, thumbnail })) };
     }
     res.set("Cache-Control", "public, max-age=300");
     res.json({ shorts: cache.items.slice(0, limit), total: cache.items.length });
+  } catch (e) { next(e); }
+};
+
+// GET /api/youtube-shorts/reported?date=YYYY-MM-DD — subjects already uploaded for that day
+// (public or scheduled), so a re-run of the bot doesn't upload the same day twice.
+export const reported = async (req, res, next) => {
+  try {
+    const date = String(req.query.date || "");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return res.status(400).json({ message: "Bad date" });
+    const docs = await YoutubeShort.find({ date }).select("subject videoId -_id").lean();
+    res.json({ date, subjects: [...new Set(docs.map((d) => d.subject))], videos: docs });
   } catch (e) { next(e); }
 };
