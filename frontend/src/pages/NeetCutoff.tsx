@@ -8,6 +8,8 @@ import api from "../api/axios";
 import { SITE_ORIGIN } from "../seo";
 import { useInitialPracticeData, cutoffMeta, cutoffTitleName, type CutoffState } from "../practice/practiceData";
 import NotFound from "./NotFound";
+import { RegionalLinks } from "./RegionalPages";
+import { LANGS, langsForState } from "../i18n/regional";
 
 const fmt = (n: number | undefined) => (n === undefined ? "—" : n.toLocaleString("en-IN"));
 const catLabel = (c: string) => (c === "OPEN" ? "General (Open)" : c);
@@ -32,7 +34,7 @@ function setMeta(title: string, description: string, path: string) {
 
 // Prerendered state pages carry only their own state's full table (other states
 // as names), so anything else is fetched from the API.
-function useCutoffs(slug?: string): CutoffState[] | null | undefined {
+export function useCutoffs(slug?: string): CutoffState[] | null | undefined {
   const initial = useInitialPracticeData();
   const has = (list?: CutoffState[]) => !!list && (slug ? !!list.find((s) => s.slug === slug)?.colleges.length : list.every((s) => s.colleges.length));
   const [states, setStates] = useState<CutoffState[] | null | undefined>(has(initial.cutoffs) ? initial.cutoffs : undefined);
@@ -71,6 +73,7 @@ export const NeetCutoffIndex = () => {
   const states = useCutoffs();
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+      <RegionalLinks path="/neet-cutoff" langs={LANGS} />
       <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">From official counselling data</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Cutoff for Government MBBS: All India Quota & State-wise</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">
@@ -126,6 +129,7 @@ export const NeetCutoffState = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+      <RegionalLinks path={`/neet-cutoff/${c.slug}`} langs={langsForState(c.slug)} />
       <nav className="text-sm text-ink/55 dark:text-paper/55">
         <Link to="/neet-cutoff" className="hover:underline">NEET cutoff</Link> › <span>{name}</span>
       </nav>

@@ -28,6 +28,8 @@ import QuestionPage from "./pages/QuestionPage";
 import SchoolHub from "./pages/SchoolHub";
 import NeetWeightage from "./pages/NeetWeightage";
 import { NeetCutoffIndex, NeetCutoffState } from "./pages/NeetCutoff";
+import { RegionalCutoffIndex, RegionalCutoffState, RegionalWeightage } from "./pages/RegionalPages";
+import { LANGS } from "./i18n/regional";
 import NeetReadiness from "./pages/NeetReadiness";
 import NeetCollegePredictor from "./pages/NeetCollegePredictor";
 import NeetCollegeReport from "./pages/NeetCollegeReport";
@@ -104,6 +106,11 @@ function App() {
             <Route path="/neet-college-predictor" element={<NeetCollegePredictor />} />
           <Route path="/neet-cutoff" element={<NeetCutoffIndex />} />
           <Route path="/neet-cutoff/:state" element={<NeetCutoffState />} />
+          {LANGS.map((l) => [
+            <Route key={`${l}c`} path={`/${l}/neet-cutoff`} element={<RegionalCutoffIndex key={l} lang={l} />} />,
+            <Route key={`${l}s`} path={`/${l}/neet-cutoff/:state`} element={<RegionalCutoffState key={l} lang={l} />} />,
+            <Route key={`${l}w`} path={`/${l}/neet-chapter-wise-weightage`} element={<RegionalWeightage key={l} lang={l} />} />,
+          ])}
             <Route path="/neet-registration" element={<NeetRegistration />} />
             <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
             <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />
@@ -165,6 +172,11 @@ function App() {
           <Route path="/neet-college-predictor" element={<NeetCollegePredictor />} />
           <Route path="/neet-cutoff" element={<NeetCutoffIndex />} />
           <Route path="/neet-cutoff/:state" element={<NeetCutoffState />} />
+          {LANGS.map((l) => [
+            <Route key={`${l}c`} path={`/${l}/neet-cutoff`} element={<RegionalCutoffIndex key={l} lang={l} />} />,
+            <Route key={`${l}s`} path={`/${l}/neet-cutoff/:state`} element={<RegionalCutoffState key={l} lang={l} />} />,
+            <Route key={`${l}w`} path={`/${l}/neet-chapter-wise-weightage`} element={<RegionalWeightage key={l} lang={l} />} />,
+          ])}
           <Route path="/neet-college-predictor/report" element={<NeetCollegeReport />} />
           <Route path="/neet-parents" element={<NeetParents />} />
           <Route path="/neet-question-papers" element={<PapersIndex />} />
