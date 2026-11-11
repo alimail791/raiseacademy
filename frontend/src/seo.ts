@@ -135,6 +135,10 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Free NEET previous year questions for every Physics, Chemistry and Biology chapter, with answers and explanations. No login needed. Timed chapter tests and full mocks free for 30 days on YNeet.",
   },
+  "/neet-quiz-shorts": {
+    title: "Daily NEET Quiz Shorts — 3 NEET PYQs a Day in 25-Second Videos | YNeet",
+    description: "Free daily NEET quiz videos: one Physics, Chemistry and Biology question every day, mostly NEET PYQs, with a 5-second timer, the answer and the explanation.",
+  },
   "/neet-pyq-books": {
     title: "NEET Chapter-wise PYQ Books PDF with Solutions — Physics, Chemistry, Biology | YNeet",
     description:

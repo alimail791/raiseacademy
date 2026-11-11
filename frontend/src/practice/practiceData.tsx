@@ -47,6 +47,7 @@ export type QuestionPageData = PracticeQuestion & {
   related: (QuestionLink & { id: string })[];
   classNum?: number; // set on Class 6–10 pages (/class-<n>-questions/<slug>)
   boardYear?: number | null; // a CBSE Class 12 board PYQ (not a NEET question)
+  short?: { videoId: string; thumbnail?: string; title?: string } | null; // its daily quiz Short on YouTube
 };
 // Class 6–10 hub (/class-<n>-questions): chapters with links to their questions.
 export type SchoolChapter = { subject: string; chapter: string; slug: string; count: number };
@@ -73,6 +74,7 @@ export type PracticeData = {
   question?: QuestionPageData | null;
   school?: SchoolHubData | null;
   cutoffs?: CutoffState[];
+  quizShorts?: import("../components/QuizShorts").QuizShort[];
   cutoff?: CutoffState | null;
 };
 // NEET cutoff pages (/neet-cutoff, /neet-cutoff/<state>), from the College Predictor's data.
@@ -109,7 +111,7 @@ export function PracticeDataProvider({ value, children }: { value?: PracticeData
 
 export function useInitialPracticeData(): PracticeData {
   const ctx = useContext(Ctx);
-  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question || ctx.school || ctx.cutoffs || ctx.cutoff) return ctx;
+  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question || ctx.school || ctx.cutoffs || ctx.cutoff || ctx.quizShorts) return ctx;
   if (typeof window !== "undefined") return (window as any).__PRACTICE_DATA__ || {};
   return {};
 }

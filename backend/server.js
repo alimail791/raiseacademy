@@ -16,6 +16,7 @@ import { startRenewalReminderJob } from "./controllers/instituteBillingControlle
 import blogRoutes from "./routes/blogRoutes.js";
 import predictorRoutes from "./routes/predictorRoutes.js";
 import booksRoutes from "./routes/booksRoutes.js";
+import youtubeShortsRoutes from "./routes/youtubeShortsRoutes.js";
 import { seedBundledCutoffs } from "./controllers/predictorController.js";
 import { applyBlogUpdates } from "./utils/blogUpdates.js";
 
@@ -58,6 +59,7 @@ app.use("/api/institute", instituteRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/predictor", predictorRoutes);
 app.use("/api/books", booksRoutes);
+app.use("/api/youtube-shorts", youtubeShortsRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -115,6 +115,18 @@ try {
   console.warn(`prerender: could not fetch cutoff pages (${err.message}) — /neet-cutoff pages will load in the browser.`);
 }
 
+// Daily NEET quiz Shorts (public YouTube videos the shorts-bot reported):
+// listed on /neet-quiz-shorts and embedded on their question's page.
+let quizShorts = [];
+try {
+  const res = await fetch(`${API_URL}/youtube-shorts?limit=200`);
+  if (!res.ok) throw new Error(`API responded ${res.status}`);
+  quizShorts = (await res.json()).shorts || [];
+} catch (err) {
+  console.warn(`prerender: could not fetch quiz Shorts (${err.message}).`);
+}
+const shortBySlug = new Map(quizShorts.filter((x) => x.questionSlug).map((x) => [x.questionSlug, { videoId: x.videoId, thumbnail: x.thumbnail || "", title: x.title || "" }]));
+
 // Each chapter page links to its question pages (how Google finds them besides the sitemap).
 const QUESTION_LINKS_PER_CHAPTER = 60;
 for (const c of practiceChapters) {
@@ -158,7 +170,8 @@ for (const route of routes) {
   fs.mkdirSync(path.dirname(out), { recursive: true }); // e.g. /embed/qotd → dist/embed/
   const pData = (route === "/neet-practice" || route === "/neet-chapter-wise-weightage") && practiceSummaries.length ? { chapters: practiceSummaries }
     : route === "/neet-question-papers" && paperSummaries.length ? { papers: paperSummaries }
-    : route === "/neet-cutoff" && cutoffStates.length ? { cutoffs: cutoffStates } : undefined;
+    : route === "/neet-cutoff" && cutoffStates.length ? { cutoffs: cutoffStates }
+    : route === "/neet-quiz-shorts" && quizShorts.length ? { quizShorts } : undefined;
   // The English cutoff index and weightage page also list their language versions.
   const alt = route === "/neet-cutoff" || route === "/neet-chapter-wise-weightage" ? { ...metaFor(route), alternates: alternates(route, LANGS, SITE_ORIGIN) } : undefined;
   fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, alt, pData));
@@ -205,7 +218,8 @@ fs.mkdirSync(path.join(dist, "neet-question"), { recursive: true });
 for (const q of questionPages) {
   const route = `/neet-question/${q.slug}`;
   const meta = { ...questionMeta(q), canonical: `${SITE_ORIGIN}${route}` };
-  fs.writeFileSync(path.join(dist, "neet-question", `${q.slug}.html`), pageHtml(route, undefined, meta, { question: q }));
+  const withShort = shortBySlug.has(q.slug) ? { ...q, short: shortBySlug.get(q.slug) } : q;
+  fs.writeFileSync(path.join(dist, "neet-question", `${q.slug}.html`), pageHtml(route, undefined, meta, { question: withShort }));
 }
 
 // Class 6–10: hub file class-<n>-questions.html plus a same-named folder of
@@ -367,5 +381,6 @@ if (practiceSummaries.length) {
 }
 if (papers.length) console.log("PAPERS " + papers.map((p) => `${p.year}:${p.total}(P${p.counts.Physics}/C${p.counts.Chemistry}/B${p.counts.Biology})`).join(" "));
 if (practiceChapters.length) console.log("PRACTICE_CHAPTERS " + practiceChapters.map((c) => `${c.subject[0]}:${c.chapter}(${c.total}/${c.pyqCount})`).join(" | "));
+console.log(`Quiz Shorts: ${quizShorts.length} public (${shortBySlug.size} linked to question pages).`);
 console.log(`Prerendered ${cutoffStates.length} NEET cutoff state pages and ${regionalRoutes.length} regional-language pages.`);
 console.log(`Prerendered ${routes.length} pages and ${blogPosts.length} blog posts; sitemap has ${indexable.length} URLs.`);

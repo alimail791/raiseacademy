@@ -8,6 +8,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { SITE_ORIGIN } from "../seo";
 import { useInitialPracticeData, YNEET_API, questionMeta, questionPath, schoolSubject, shorten, type QuestionPageData } from "../practice/practiceData";
 import NotFound from "./NotFound";
+import { ShortPlayer } from "../components/QuizShorts";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -119,6 +120,14 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
         </Link>
         <p className="text-xs mt-2 text-paper/60">No payment, no card. Register in 2 minutes.</p>
       </div>
+
+      {q.short && (
+        <section className="mb-8">
+          <h2 className="font-display text-xl font-bold">Watch it as a 25-second quiz</h2>
+          <div className="mt-3 max-w-[280px]"><ShortPlayer s={{ videoId: q.short.videoId, thumbnail: q.short.thumbnail, title: q.short.title || "", subject: q.subject, chapter: q.chapter, questionSlug: q.slug, date: "" }} /></div>
+          <Link to="/neet-quiz-shorts" className="inline-block mt-2 text-sm font-semibold text-rise-dark underline">More daily NEET quiz Shorts →</Link>
+        </section>
+      )}
 
       {q.related.length > 0 && (
         <section>

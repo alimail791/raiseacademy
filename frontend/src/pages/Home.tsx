@@ -8,6 +8,7 @@ import SprintSection from "../components/SprintSection";
 import { FeatureGroups, CompareTable, ParentReportSection } from "../components/YNeetSales";
 import { gamesLink } from "../utils/siteInfo";
 import PredictorPromo from "../components/PredictorPromo";
+import QuizShortsSection from "../components/QuizShorts";
 
 
 const Home = () => {
@@ -113,6 +114,9 @@ const Home = () => {
 
       {/* 60-SECOND SPRINT — free speed round, yesterday's questions */}
       <SprintSection />
+
+      {/* DAILY QUIZ SHORTS — YouTube, 3 a day (hidden until one is public) */}
+      <QuizShortsSection />
 
       {/* CONCEPT MAP OF THE WEEK — shows once a map is published */}
       <ConceptMapSection />
