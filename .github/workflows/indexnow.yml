@@ -1,0 +1,46 @@
+# IndexNow for www.yneet.in (scripts/indexnow.mjs): tells Bing, Yandex and the
+# other IndexNow search engines about new and changed pages. Runs daily, and
+# after each push to main (waiting for Railway to finish deploying first).
+name: IndexNow
+
+on:
+  schedule:
+    - cron: "41 3 * * *" # 09:11 IST, after the morning Shorts are published
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "Send every URL again (not just new ones)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # What was sent last time (cache entries are immutable, so each run saves a new one).
+      - uses: actions/cache/restore@v4
+        with:
+          path: .indexnow
+          key: indexnow-${{ github.run_id }}
+          restore-keys: indexnow-
+      - name: Wait for the deploy
+        if: github.event_name == 'push'
+        run: sleep 480
+      - name: Submit
+        run: node scripts/indexnow.mjs --state .indexnow/sent.json ${{ inputs.all && '--all' || '' }}
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: .indexnow
+          key: indexnow-${{ github.run_id }}
