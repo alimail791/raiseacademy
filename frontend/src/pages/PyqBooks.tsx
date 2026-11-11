@@ -2,11 +2,14 @@
 // ₹499) and free chapter booklets. Students confirm their WhatsApp number with the
 // College Predictor's OTP flow (token kept as cp_token); books are paid through
 // Razorpay. PDFs are served by the Raise Academy API (controllers/booksController.js).
+// Inside the Play Store app (app mode) only the free chapter booklets are shown:
+// the app is "consumption only" (no prices, no purchases) under Google Play policy.
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BookOpen, CheckCircle2, Download, Lock, Smartphone } from "lucide-react";
 import api from "../api/axios";
 import { payWithRazorpay, trackPurchase } from "../utils/razorpay";
+import { isAppMode } from "../utils/appMode";
 
 const TOKEN_KEY = "cp_token";
 const ALERT = "pyq-booklets";
@@ -79,8 +82,10 @@ const PyqBooks = () => {
   const [want, setWant] = useState<string[] | null>(null); // purchase waiting for a confirmed number
   const [busy, setBusy] = useState("");
   const [msg, setMsg] = useState("");
+  const [app, setApp] = useState(false);
 
   useEffect(() => {
+    setApp(isAppMode());
     api.get("/books/catalog").then((r) => setCat(r.data)).catch(() => setCat(null));
     try { setToken(localStorage.getItem(TOKEN_KEY) || ""); } catch { /* storage blocked */ }
   }, []);
@@ -116,17 +121,19 @@ const PyqBooks = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">PDF · instant download</p>
-      <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2 leading-tight">NEET Chapter-wise PYQ Books with Solutions</h1>
+      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">PDF · {app ? "free" : "instant download"}</p>
+      <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2 leading-tight">{app ? "Free Chapter-wise NEET PYQ PDFs" : "NEET Chapter-wise PYQ Books with Solutions"}</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl">
-        Every NEET previous year question{totalQs ? ` (${totalQs.toLocaleString("en-IN")} in all)` : ""}, chapter by chapter in NCERT order, with an answer key and a clear solution for each. Each chapter shows its NEET weightage and priority, so you know what to study first.
+        {app
+          ? "Every NEET previous year question of a chapter, with an answer key and a clear solution for each, as a PDF you can save or print."
+          : `Every NEET previous year question${totalQs ? ` (${totalQs.toLocaleString("en-IN")} in all)` : ""}, chapter by chapter in NCERT order, with an answer key and a clear solution for each. Each chapter shows its NEET weightage and priority, so you know what to study first.`}
       </p>
 
       {cat === undefined && <p className="mt-10 text-ink/50">Loading…</p>}
       {cat === null && <p className="mt-10 text-ink/60">Couldn't load the books. Please refresh.</p>}
-      {cat && !books.length && <p className="mt-10 text-ink/60">The books are being prepared. Please check back soon.</p>}
+      {cat && !books.length && !app && <p className="mt-10 text-ink/60">The books are being prepared. Please check back soon.</p>}
 
-      {books.length > 0 && (
+      {books.length > 0 && !app && (
         <>
           <div className="mt-8 grid md:grid-cols-3 gap-4">
             {books.map((b) => {
@@ -169,14 +176,14 @@ const PyqBooks = () => {
         {token ? (
           <p className="text-sm text-ink/65 dark:text-paper/65 flex items-center gap-2"><CheckCircle2 size={16} className="text-rise" /> WhatsApp {phone} confirmed. {owned.length ? "Your books are unlocked above." : ""}</p>
         ) : (
-          <NumberBox onDone={onConfirmed} reason={want ? "We'll send your books to this number's account so you can download them again any time. Then the payment window opens." : "Needed for the free chapter booklets below, and to download books you've bought. Already bought? Confirm the same number to download again."} />
+          <NumberBox onDone={onConfirmed} reason={app ? "Needed for the free chapter PDFs below. We'll also send you NEET tips on WhatsApp now and then." : want ? "We'll send your books to this number's account so you can download them again any time. Then the payment window opens." : "Needed for the free chapter booklets below, and to download books you've bought. Already bought? Confirm the same number to download again."} />
         )}
       </div>
 
       {cat && cat.booklets.length > 0 && (
         <section className="mt-12">
           <h2 className="font-display text-2xl font-bold">Free chapter booklets</h2>
-          <p className="text-ink/70 dark:text-paper/70 mt-1">Any chapter on its own, as a PDF: every NEET PYQ, the answer key and full solutions. Free with your WhatsApp number. It's also a good way to see what the full books are like.</p>
+          <p className="text-ink/70 dark:text-paper/70 mt-1">Any chapter on its own, as a PDF: every NEET PYQ, the answer key and full solutions. Free with your WhatsApp number.{app ? "" : " It's also a good way to see what the full books are like."}</p>
           {SUBJECTS.map((s) => {
             const list = cat.booklets.filter((x) => x.subject === s);
             if (!list.length) return null;
@@ -201,13 +208,13 @@ const PyqBooks = () => {
         </section>
       )}
 
-      <section className="mt-12 space-y-3 text-ink/80 dark:text-paper/80 max-w-3xl">
+      {!app && <section className="mt-12 space-y-3 text-ink/80 dark:text-paper/80 max-w-3xl">
         <h2 className="font-display text-2xl font-bold text-ink dark:text-paper">What's inside</h2>
         <p>Each chapter starts with its NEET weightage (questions and marks per paper) and priority, then every NEET previous year question from that chapter, newest year first, tagged with its year. Attempt them like a test, then use the answer key and the step-by-step solutions at the end of the chapter.</p>
         <p>The books are A4 PDFs that work on a phone, tablet or laptop, and print cleanly. A new edition comes out every month with any newly added questions. Download the latest one any time with the same WhatsApp number.</p>
         <p>Want to practise these as timed tests with instant analysis? Every chapter is also on <Link to="/neet-practice" className="text-rise-dark font-semibold underline">YNeet chapter-wise PYQs</Link>, and the full app is free for 30 days.</p>
         <p className="text-sm text-ink/55 dark:text-paper/55">Coaching centre? We make editions with your institute's name and logo on the cover. <Link to="/institutes" className="underline">Contact us</Link>.</p>
-      </section>
+      </section>}
     </div>
   );
 };

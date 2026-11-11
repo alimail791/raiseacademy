@@ -46,6 +46,7 @@ export type QuestionPageData = PracticeQuestion & {
   chapterSlug: string;
   related: (QuestionLink & { id: string })[];
   classNum?: number; // set on Class 6–10 pages (/class-<n>-questions/<slug>)
+  boardYear?: number | null; // a CBSE Class 12 board PYQ (not a NEET question)
 };
 // Class 6–10 hub (/class-<n>-questions): chapters with links to their questions.
 export type SchoolChapter = { subject: string; chapter: string; slug: string; count: number };
