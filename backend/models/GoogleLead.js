@@ -13,6 +13,7 @@ const googleLeadSchema = new mongoose.Schema(
     completed: { type: Boolean, default: false, index: true },
     studentId: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
     completedAt: { type: Date },
+    reminderSentAt: { type: Date }, // the one "finish your sign-up" email (utils/googleLeadReminder.js)
   },
   { timestamps: true }
 );

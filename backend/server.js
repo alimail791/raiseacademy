@@ -13,6 +13,7 @@ import contentRoutes from "./routes/contentRoutes.js";
 import instituteRoutes from "./routes/instituteRoutes.js";
 import { startParentWhatsAppJob } from "./utils/parentWhatsApp.js";
 import { startRenewalReminderJob } from "./controllers/instituteBillingController.js";
+import { startGoogleLeadReminderJob } from "./utils/googleLeadReminder.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import predictorRoutes from "./routes/predictorRoutes.js";
 import booksRoutes from "./routes/booksRoutes.js";
@@ -70,6 +71,7 @@ connectDB().then(() => {
   app.listen(PORT, () => console.log(`YNeet API running on port ${PORT}`));
   startParentWhatsAppJob(); // weekly WhatsApp progress report to institute students' parents
   startRenewalReminderJob(); // monthly institute plans: renewal reminder emails
+  startGoogleLeadReminderJob(); // one "finish your sign-up" email to unfinished Google sign-ups
   seedBundledCutoffs(); // NEET College Predictor: official cutoff files shipped in data/predictor
   applyBlogUpdates(); // one-time SEO updates to existing blog posts (utils/blogUpdates.js)
 });
