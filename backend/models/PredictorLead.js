@@ -36,6 +36,12 @@ const predictorLeadSchema = new mongoose.Schema(
     // "neet-registration" (photo resizer / registration guide). Use these to
     // send "NEET registration is open" type messages only to people who asked.
     alerts: { type: [String], default: [] },
+
+    // NEET PYQ books bought (subjects: "physics", "chemistry", "biology") and
+    // the order being paid for right now. See controllers/booksController.js.
+    books: { type: [String], default: [] },
+    bookOrder: { orderId: String, items: [String], amount: Number },
+    bookPayments: { type: [{ orderId: String, paymentId: String, items: [String], amount: Number, paidAt: Date }], default: [] },
   },
   { timestamps: true }
 );

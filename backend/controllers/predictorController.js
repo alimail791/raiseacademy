@@ -216,7 +216,7 @@ export async function predict(input) {
 
 const counts = (results) => results.reduce((c, r) => ({ ...c, [r.band]: (c[r.band] || 0) + 1 }), { safe: 0, likely: 0, reach: 0 });
 
-const leadByToken = async (token) => (token ? PredictorLead.findOne({ token: String(token), verified: true }) : null);
+export const leadByToken = async (token) => (token ? PredictorLead.findOne({ token: String(token), verified: true }) : null);
 
 // POST /api/predictor/predict { air, stateRank?, score?, category, stateCategory?, homeState, course, token? }
 export const runPredict = async (req, res, next) => {
@@ -244,7 +244,7 @@ export const runPredict = async (req, res, next) => {
 
 // Free tools (photo resizer, registration guide) reuse this same lead + OTP flow
 // and tag the lead with the alert the student asked for.
-const ALERTS = new Set(["neet-registration"]);
+const ALERTS = new Set(["neet-registration", "pyq-booklets"]);
 const addAlert = (lead, alert) => {
   const a = String(alert || "");
   if (ALERTS.has(a) && !lead.alerts?.includes(a)) lead.alerts = [...(lead.alerts || []), a];
