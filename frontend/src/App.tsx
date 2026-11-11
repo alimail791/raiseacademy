@@ -28,6 +28,7 @@ import QuestionPage from "./pages/QuestionPage";
 import SchoolHub from "./pages/SchoolHub";
 import NeetWeightage from "./pages/NeetWeightage";
 import PyqBooks from "./pages/PyqBooks";
+import NeetQuizShorts from "./pages/NeetQuizShorts";
 import { NeetCutoffIndex, NeetCutoffState } from "./pages/NeetCutoff";
 import { RegionalCutoffIndex, RegionalCutoffState, RegionalWeightage } from "./pages/RegionalPages";
 import { LANGS } from "./i18n/regional";
@@ -121,6 +122,7 @@ function App() {
             <Route path="/neet-practice" element={<Practice />} />
             <Route path="/neet-chapter-wise-weightage" element={<NeetWeightage />} />
             <Route path="/neet-pyq-books" element={<PyqBooks />} />
+            <Route path="/neet-quiz-shorts" element={<NeetQuizShorts />} />
             <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
             <Route path="/neet-question/:slug" element={<QuestionPage />} />
             {[6, 7, 8, 9, 10].map((n) => [
@@ -200,6 +202,7 @@ function App() {
           <Route path="/neet-practice" element={<Practice />} />
             <Route path="/neet-chapter-wise-weightage" element={<NeetWeightage />} />
             <Route path="/neet-pyq-books" element={<PyqBooks />} />
+            <Route path="/neet-quiz-shorts" element={<NeetQuizShorts />} />
           <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
           <Route path="/neet-question/:slug" element={<QuestionPage />} />
             {[6, 7, 8, 9, 10].map((n) => [

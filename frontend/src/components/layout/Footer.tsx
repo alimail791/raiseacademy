@@ -22,6 +22,7 @@ const FREE: Item[] = [
   { label: "Chapter-wise NEET PYQs", to: "/neet-practice" },
   { label: "NEET chapter-wise weightage", to: "/neet-chapter-wise-weightage" },
   { label: "NEET PYQ books (PDF)", to: "/neet-pyq-books" },
+  { label: "Daily NEET quiz Shorts", to: "/neet-quiz-shorts" },
   { label: "NEET question papers by year", to: "/neet-question-papers" },
   { label: "NCERT Biology notes", to: "/ncert-notes" },
   { label: "NEET concept maps", to: "/neet-concept-maps" },
