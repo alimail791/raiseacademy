@@ -71,6 +71,7 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
       <h1 className="font-display text-2xl sm:text-3xl font-bold leading-snug mt-3 whitespace-pre-line">{q.question}</h1>
       <div className="flex flex-wrap items-center gap-2 text-xs font-semibold mt-3">
         {q.pyqYear && <span className="px-2 py-0.5 rounded-full bg-gold/20 text-ink dark:text-paper">NEET {q.pyqYear}</span>}
+        {!q.pyqYear && q.boardYear && <span className="px-2 py-0.5 rounded-full bg-ink/5 dark:bg-paper/10">CBSE {q.boardYear} Board</span>}
         {school && <span className="px-2 py-0.5 rounded-full bg-gold/20 text-ink dark:text-paper">Class {q.classNum}</span>}
         <span className="px-2 py-0.5 rounded-full bg-ink/5 dark:bg-paper/10">{school ? schoolSubject(q.subject) : q.subject}</span>
         <span className="text-ink/50 dark:text-paper/50">{q.chapter}{q.topic ? ` · ${q.topic}` : ""}</span>
