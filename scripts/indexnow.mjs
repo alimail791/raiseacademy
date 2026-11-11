@@ -44,7 +44,16 @@ for (let i = 0; i < toSend.length; i += 10000) {
     body: JSON.stringify({ host: HOST, key: KEY, keyLocation: `${SITE}/${keyFile}`, urlList }),
   });
   // 200 = accepted, 202 = accepted (key check pending); anything else is a problem.
-  if (res.status !== 200 && res.status !== 202) throw new Error(`IndexNow responded ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  if (res.status !== 200 && res.status !== 202) {
+    const body = (await res.text()).slice(0, 300);
+    // A brand-new key is verified by IndexNow in the background (minutes to hours).
+    // Don't record anything as sent; the next run tries everything again.
+    if (res.status === 403 && /SiteVerificationNotCompleted/.test(body)) {
+      console.log("IndexNow is still verifying the site key — nothing recorded; the next run will send these URLs.");
+      process.exit(0);
+    }
+    throw new Error(`IndexNow responded ${res.status}: ${body}`);
+  }
   ok += urlList.length;
 }
 await mkdir(path.dirname(STATE), { recursive: true });
