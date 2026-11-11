@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { ArrowRight } from "lucide-react";
+import { RegionalLinks } from "./RegionalPages";
+import { LANGS } from "../i18n/regional";
 import { useInitialPracticeData, YNEET_API, SUBJECTS, type PracticeChapterSummary } from "../practice/practiceData";
 
 const TOTAL: Record<string, number> = { Physics: 45, Chemistry: 45, Biology: 90 };
@@ -24,6 +26,7 @@ const NeetWeightage = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+      <RegionalLinks path="/neet-chapter-wise-weightage" langs={LANGS} />
       <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free · Updated from PYQs</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Chapter-wise Weightage (Physics, Chemistry, Biology)</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl">

@@ -16,7 +16,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const ssrEntry = path.join(root, "dist-ssr", "entry-server.js");
 
-const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, schoolHubMeta, cutoffMeta, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
+const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, schoolHubMeta, cutoffMeta, LANGS, CUTOFF_STATES, langsForState, regionalCutoffMeta, regionalCutoffIndexMeta, regionalWeightageMeta, alternates, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
 
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
@@ -140,6 +140,9 @@ function pageHtml(route, blogData, metaOverride, practiceData) {
   html = replaceAttr(html, /(<meta property="og:description" content=")[^"]*(")/, m.description);
   html = replaceAttr(html, /(<meta property="og:url" content=")[^"]*(")/, m.canonical);
   html = replaceAttr(html, /(<meta name="twitter:title" content=")[^"]*(")/, m.title);
+  // Regional pages (/ta/…): page language + hreflang links to the other versions.
+  if (m.lang) html = html.replace(/<html lang="[^"]*"/, `<html lang="${m.lang}"`);
+  if (m.alternates?.length) html = html.replace("</head>", `${m.alternates.map((a) => `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}" />`).join("\n")}\n</head>`);
   html = html.replace('<div id="root"></div>', `<div id="root">${render(route, blogData, practiceData)}</div>`);
   if (blogData) html = html.replace("</head>", `${blogDataScript(blogData)}\n</head>`);
   if (practiceData) html = html.replace("</head>", `${practiceDataScript(practiceData)}\n</head>`);
@@ -156,7 +159,9 @@ for (const route of routes) {
   const pData = (route === "/neet-practice" || route === "/neet-chapter-wise-weightage") && practiceSummaries.length ? { chapters: practiceSummaries }
     : route === "/neet-question-papers" && paperSummaries.length ? { papers: paperSummaries }
     : route === "/neet-cutoff" && cutoffStates.length ? { cutoffs: cutoffStates } : undefined;
-  fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, undefined, pData));
+  // The English cutoff index and weightage page also list their language versions.
+  const alt = route === "/neet-cutoff" || route === "/neet-chapter-wise-weightage" ? { ...metaFor(route), alternates: alternates(route, LANGS, SITE_ORIGIN) } : undefined;
+  fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, alt, pData));
 }
 
 // One file per chapter in practice-pages/ (flat, like blog-posts/).
@@ -229,7 +234,28 @@ fs.mkdirSync(path.join(dist, "neet-cutoff"), { recursive: true });
 for (const c of cutoffStates) {
   const route = `/neet-cutoff/${c.slug}`;
   const others = cutoffStates.map((o) => (o.slug === c.slug ? o : { ...o, colleges: [], categorySummary: [] }));
-  fs.writeFileSync(path.join(dist, "neet-cutoff", `${c.slug}.html`), pageHtml(route, undefined, { ...cutoffMeta(c), canonical: `${SITE_ORIGIN}${route}` }, { cutoffs: others }));
+  const langs = langsForState(c.slug);
+  fs.writeFileSync(path.join(dist, "neet-cutoff", `${c.slug}.html`), pageHtml(route, undefined, { ...cutoffMeta(c), canonical: `${SITE_ORIGIN}${route}`, ...(langs.length && { alternates: alternates(route, langs, SITE_ORIGIN) }) }, { cutoffs: others }));
+}
+
+// Tamil / Hindi / Telugu / Kannada versions (/<lang>/neet-cutoff…, /<lang>/neet-chapter-wise-weightage).
+const regionalRoutes = [];
+for (const lang of LANGS) {
+  fs.mkdirSync(path.join(dist, lang, "neet-cutoff"), { recursive: true });
+  const write = (route, file, meta, data) => {
+    fs.writeFileSync(path.join(dist, file), pageHtml(route, undefined, { ...meta, canonical: `${SITE_ORIGIN}${route}`, lang }, data));
+    regionalRoutes.push(route);
+  };
+  if (cutoffStates.length) {
+    write(`/${lang}/neet-cutoff`, `${lang}/neet-cutoff.html`, { ...regionalCutoffIndexMeta(lang), alternates: alternates("/neet-cutoff", LANGS, SITE_ORIGIN) }, { cutoffs: cutoffStates });
+    for (const c of cutoffStates.filter((x) => CUTOFF_STATES[lang].includes(x.slug))) {
+      const others = cutoffStates.map((o) => (o.slug === c.slug ? o : { ...o, colleges: [], categorySummary: [] }));
+      write(`/${lang}/neet-cutoff/${c.slug}`, `${lang}/neet-cutoff/${c.slug}.html`, { ...regionalCutoffMeta(lang, c), alternates: alternates(`/neet-cutoff/${c.slug}`, langsForState(c.slug), SITE_ORIGIN) }, { cutoffs: others });
+    }
+  }
+  if (practiceSummaries.length) {
+    write(`/${lang}/neet-chapter-wise-weightage`, `${lang}/neet-chapter-wise-weightage.html`, { ...regionalWeightageMeta(lang), alternates: alternates("/neet-chapter-wise-weightage", LANGS, SITE_ORIGIN) }, { chapters: practiceSummaries });
+  }
 }
 
 // NCERT notes (static content in src/ncert/notes.ts), one file each in ncert-pages/.
@@ -315,6 +341,7 @@ const indexable = [
   ...NCERT_NOTES.map((n) => `/ncert-notes/${n.slug}`),
   ...questionPages.map((q) => `/neet-question/${q.slug}`),
   ...cutoffStates.map((c) => `/neet-cutoff/${c.slug}`),
+  ...regionalRoutes,
   ...schoolClasses.map((c) => `/class-${c.classNum}-questions`),
   ...schoolPages.map((q) => `/class-${q.classNum}-questions/${q.slug}`),
 ];
@@ -340,5 +367,5 @@ if (practiceSummaries.length) {
 }
 if (papers.length) console.log("PAPERS " + papers.map((p) => `${p.year}:${p.total}(P${p.counts.Physics}/C${p.counts.Chemistry}/B${p.counts.Biology})`).join(" "));
 if (practiceChapters.length) console.log("PRACTICE_CHAPTERS " + practiceChapters.map((c) => `${c.subject[0]}:${c.chapter}(${c.total}/${c.pyqCount})`).join(" | "));
-console.log(`Prerendered ${cutoffStates.length} NEET cutoff state pages.`);
+console.log(`Prerendered ${cutoffStates.length} NEET cutoff state pages and ${regionalRoutes.length} regional-language pages.`);
 console.log(`Prerendered ${routes.length} pages and ${blogPosts.length} blog posts; sitemap has ${indexable.length} URLs.`);
