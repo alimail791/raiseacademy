@@ -29,6 +29,22 @@ const xml = await fetch(`${SITE}/sitemap.xml`).then((r) => r.text());
 const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim()).filter((u) => u.startsWith(SITE));
 if (urls.length < 10) throw new Error(`Sitemap looks wrong (${urls.length} URLs)`);
 
+// What's in the live sitemap, by page type (shows in the run log).
+const TYPES = [
+  ["NEET question pages", /\/neet-question\//], ["Class 6–10 question pages", /\/class-\d+-questions\/./], ["Class 6–10 hubs", /\/class-\d+-questions$/],
+  ["Chapter PYQ pages", /\/neet-practice\/./], ["Year papers", /\/neet-question-papers\/\d{4}$/], ["Subject papers", /\/neet-question-papers\/\d{4}\/[a-z]+$/],
+  ["State cutoffs (English)", /^https:\/\/www\.yneet\.in\/neet-cutoff\/./], ["Regional pages (ta/hi/te/kn)", /\.in\/(ta|hi|te|kn)\//],
+  ["Blog posts", /\/blog\/./], ["NCERT notes", /\/ncert-notes\/./],
+];
+const counts = TYPES.map(([label, re]) => [label, urls.filter((u) => re.test(u)).length]);
+const typed = new Set(urls.filter((u) => TYPES.some(([, re]) => re.test(u))));
+console.log(`Live sitemap: ${urls.length} URLs`);
+for (const [label, n] of counts) console.log(`  ${label}: ${n}`);
+console.log(`  Other pages: ${urls.length - typed.size} — ${urls.filter((u) => !typed.has(u)).map((u) => u.replace("https://www.yneet.in", "") || "/").join(" ")}`);
+const dates = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+const byDate = dates.reduce((a, d) => ((a[d] = (a[d] || 0) + 1), a), {});
+console.log(`  lastmod dates: ${Object.entries(byDate).sort().map(([d, n]) => `${d}: ${n}`).join(", ")}`);
+
 let sent = new Set();
 try { sent = new Set(JSON.parse(await readFile(STATE, "utf8"))); } catch { /* first run */ }
 const fresh = args.includes("--all") ? urls : urls.filter((u) => !sent.has(u));
