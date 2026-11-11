@@ -5,7 +5,8 @@ import crypto from "crypto";
 import Student from "../models/Student.js";
 import Otp from "../models/Otp.js";
 import { isEmailVerifiedFor } from "./otpController.js";
-import { sendEmail, newRegistrationAdminTemplate } from "../utils/sendEmail.js";
+import { sendEmail, newRegistrationAdminTemplate, googleLeadAdminTemplate } from "../utils/sendEmail.js";
+import GoogleLead from "../models/GoogleLead.js";
 import Institute from "../models/Institute.js";
 import { instituteAccessFor } from "../utils/yneetSync.js";
 import { normalizePhone } from "../utils/parentWhatsApp.js";
@@ -171,6 +172,12 @@ export const register = async (req, res, next) => {
       html: newRegistrationAdminTemplate(student),
     }).catch((e) => console.warn("Admin registration-alert email failed:", e.message));
 
+    // They may have tried "Continue with Google" first and then used the form.
+    GoogleLead.updateOne(
+      { email: student.email, completed: false },
+      { $set: { completed: true, studentId: student._id, completedAt: new Date() } }
+    ).catch(() => {});
+
     const token = signToken(student._id, student.currentSessionId);
     res.status(201).json({ token, user: publicUser(student) });
   } catch (err) {
@@ -216,6 +223,28 @@ export const googleAuth = async (req, res, next) => {
     const phone = normalizePhone(req.body.phone);
     const fullName = String(req.body.fullName || g.name || "").trim().slice(0, 80);
     if (!["9", "10", "11", "12", "Dropper"].includes(String(currentClass || "")) || !phone || !fullName) {
+      // Keep their Google name + email as a pending lead, so a student who stops
+      // here can still be followed up. Admin is emailed the first time only.
+      try {
+        const before = await GoogleLead.findOneAndUpdate(
+          { email: g.email },
+          {
+            $set: { name: g.name, ...(referredByCode ? { referredByCode: String(referredByCode).slice(0, 40) } : {}) },
+            $inc: { attempts: 1 },
+          },
+          { upsert: true, new: false, setDefaultsOnInsert: true }
+        );
+        if (!before) {
+          // $inc on insert starts attempts at 1 (default is skipped for $inc'd fields).
+          sendEmail({
+            to: ADMIN_ALERT_EMAIL,
+            subject: `Google sign-up not finished — ${g.name || g.email}`,
+            html: googleLeadAdminTemplate({ email: g.email, name: g.name, referredByCode }),
+          }).catch((e) => console.warn("Google-lead alert email failed:", e.message));
+        }
+      } catch (e) {
+        console.warn("Saving Google lead failed:", e.message);
+      }
       return res.json({ needsDetails: true, email: g.email, fullName: g.name });
     }
 
@@ -240,6 +269,11 @@ export const googleAuth = async (req, res, next) => {
       subject: `New registration (Google) — ${student.fullName}`,
       html: newRegistrationAdminTemplate(student),
     }).catch((e) => console.warn("Admin registration-alert email failed:", e.message));
+
+    GoogleLead.updateOne(
+      { email: g.email },
+      { $set: { completed: true, studentId: student._id, completedAt: new Date() } }
+    ).catch((e) => console.warn("Marking Google lead completed failed:", e.message));
 
     res.status(201).json({ token: signToken(student._id, student.currentSessionId), user: publicUser(student), isNew: true });
   } catch (err) {

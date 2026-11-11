@@ -51,6 +51,23 @@ export const otpEmailTemplate = (code, purpose) => `
   </div>
 `;
 
+// Internal admin notification — someone signed in with Google on the register
+// page but stopped at the "name, class, WhatsApp" step. Sent once per email.
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+export const googleLeadAdminTemplate = (lead) => `
+  <div style="font-family: Arial, sans-serif; max-width: 480px; margin: auto; padding: 24px; border: 1px solid #eee; border-radius: 12px;">
+    <h2 style="color:#14213D;">Google sign-up started — not finished yet</h2>
+    <p style="font-size:14px; color:#333;">This person signed in with Google but hasn't entered their class and WhatsApp number, so no account was created. Worth a follow-up email.</p>
+    <table style="width:100%; font-size:14px; color:#333; border-collapse: collapse;">
+      <tr><td style="padding:4px 0; color:#888;">Name</td><td style="padding:4px 0;">${esc(lead.name) || "—"}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Email</td><td style="padding:4px 0;">${esc(lead.email)}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Referred By</td><td style="padding:4px 0;">${esc(lead.referredByCode) || "—"}</td></tr>
+      <tr><td style="padding:4px 0; color:#888;">Time</td><td style="padding:4px 0;">${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST</td></tr>
+    </table>
+    <p style="color:#888; font-size:12px; margin-top:24px;">Raise Academy / YNeet — automated alert. If they finish later you'll get the normal "New student registered" email.</p>
+  </div>
+`;
+
 // Internal admin notification — sent on every new student registration. Not
 // shown to the student; just an operational heads-up for whoever runs the site.
 export const newRegistrationAdminTemplate = (student) => `
