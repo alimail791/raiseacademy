@@ -12,9 +12,9 @@ const RECHECK_MS = 30 * 60 * 1000;
 // 11 Nov 2026 was uploaded three times (test run, scheduled run, music re-run).
 // Keep the music versions; drop the earlier copies from the site.
 const SEED = [
-  { videoId: "ebG_e1Usq_c", subject: "Physics", chapter: "Nuclei", title: "NEET 2023 Physics PYQ: Nuclei | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T03:30:00Z") },
-  { videoId: "8Q-r3Q3n-wU", subject: "Chemistry", chapter: "Redox Reactions", title: "NEET Chemistry MCQ: Redox Reactions | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T07:30:00Z") },
-  { videoId: "tuKZbkpZOks", subject: "Biology", chapter: "Ecosystem", title: "NEET 2026 Biology PYQ: Ecosystem | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T13:30:00Z") },
+  { videoId: "ebG_e1Usq_c", subject: "Physics", chapter: "Electromagnetic Induction", title: "NEET Physics MCQ: Electromagnetic Induction | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T03:30:00Z") },
+  { videoId: "8Q-r3Q3n-wU", subject: "Chemistry", chapter: "Structure of Atom", title: "NEET Chemistry MCQ: Structure of Atom | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T07:30:00Z") },
+  { videoId: "tuKZbkpZOks", subject: "Biology", chapter: "Reproductive Health", title: "NEET 2022 Biology PYQ: Reproductive Health | 5-second challenge", date: "2026-11-11", publishAt: new Date("2026-11-11T13:30:00Z") },
 ];
 const REMOVED = ["nFo6o9QgOoc", "ApV-hub2Cog", "JQZevKhRFFo", "bcNaLmzVWzA", "naL4038ngCs", "CyYDZgs--FM"];
 let seeded = false;
@@ -22,7 +22,7 @@ async function seedOnce() {
   if (seeded) return;
   seeded = true;
   await YoutubeShort.deleteMany({ videoId: { $in: REMOVED } }).catch(() => {});
-  for (const s of SEED) await YoutubeShort.updateOne({ videoId: s.videoId }, { $setOnInsert: s }, { upsert: true }).catch(() => {});
+  for (const { videoId, ...rest } of SEED) await YoutubeShort.updateOne({ videoId }, { $set: rest, $setOnInsert: { videoId } }, { upsert: true }).catch(() => {});
 }
 
 async function checkPublic(doc) {
