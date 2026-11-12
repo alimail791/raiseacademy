@@ -5,35 +5,14 @@ import { ArrowRight, MessageCircle, Smartphone } from "lucide-react";
 // Set VITE_PLAY_STORE_URL on Railway once the Android app is live on Google Play.
 const PLAY_URL: string = import.meta.env.VITE_PLAY_STORE_URL || "";
 import { SITE, gamesLink } from "../../utils/siteInfo";
+import { PRACTICE, STUDY, TOOLS } from "../../utils/navLinks";
 
-// Footer grouped by what a visitor is looking for: free practice first, then
-// YNeet itself, then parents/institutes, then help. Other Raise Academy sites
-// sit in a small line at the bottom so they don't pull NEET visitors away.
+// Footer: brand strip on top, then six short columns: the three free-feature
+// groups (shared with the header menu), then YNeet, parents/institutes, help.
+// Other Raise Academy sites sit in a small line at the bottom so they don't
+// pull NEET visitors away.
 
-type Item = { label: string; to?: string; href?: string; onClick?: () => void };
-
-const FREE: Item[] = [
-  { label: "NEET Readiness Test", to: "/neet-readiness" },
-  { label: "NEET College Predictor", to: "/neet-college-predictor" },
-  { label: "NEET cutoff by state", to: "/neet-cutoff" },
-  { label: "NEET Score Calculator", to: "/neet-score-calculator" },
-  { label: "NEET Question of the Day", to: "/neet-question-of-the-day" },
-  { label: "60-Second Sprint", to: "/neet-sprint" },
-  { label: "Chapter-wise NEET PYQs", to: "/neet-practice" },
-  { label: "NEET chapter-wise weightage", to: "/neet-chapter-wise-weightage" },
-  { label: "NEET PYQ books (PDF)", to: "/neet-pyq-books" },
-  { label: "Daily NEET quiz Shorts", to: "/neet-quiz-shorts" },
-  { label: "NEET question papers by year", to: "/neet-question-papers" },
-  { label: "NCERT Biology notes", to: "/ncert-notes" },
-  { label: "NEET concept maps", to: "/neet-concept-maps" },
-  { label: "Brain Teaser (Class 6–8)", to: "/brain-teaser" },
-  { label: "Class 6–10 Science MCQs", to: "/class-9-questions" },
-  { label: "Ask YNeet: doubts answered", to: "/ask-yneet" },
-  { label: "Daily NEET puzzles", href: gamesLink("footer") },
-  { label: "NEET 2027 exam date", to: "/neet-2027-exam-date" },
-  { label: "NEET registration guide", to: "/neet-registration" },
-  { label: "NEET photo & signature resizer", to: "/neet-photo-resizer" },
-];
+type Item = { label: string; to?: string; href?: string };
 
 const YNEET: Item[] = [
   { label: "Courses & prices", to: "/courses" },
@@ -53,7 +32,6 @@ const PARENTS: Item[] = [
 
 const HELP: Item[] = [
   { label: "Talk on WhatsApp", href: `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(SITE.whatsappMessage)}` },
-  ...(SITE.whatsappChannel ? [{ label: "Daily NEET Question channel", href: SITE.whatsappChannel }] : []),
   { label: "Help & FAQ", to: "/help" },
   { label: "Contact us", href: "https://pay.yneet.in/contact" },
   { label: "Refund policy", href: "https://pay.yneet.in/refund" },
@@ -84,35 +62,46 @@ function Column({ title, items }: { title: string; items: Item[] }) {
 const Footer = () => {
   return (
     <footer className="bg-ink text-paper/80 mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid grid-cols-2 lg:grid-cols-6 gap-x-6 gap-y-10">
-        <div className="col-span-2">
-          <div className="flex items-center gap-2 mb-3">
-            <img src={SITE.logoUrl} alt={SITE.name} className="h-9 w-9 rounded-lg object-cover" />
-            <span className="font-display font-bold text-lg text-paper">{SITE.name}</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-10">
+        {/* Brand strip */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 pb-10 border-b border-paper/10">
+          <div className="max-w-md">
+            <div className="flex items-center gap-2 mb-3">
+              <img src={SITE.logoUrl} alt={SITE.name} className="h-9 w-9 rounded-lg object-cover" />
+              <span className="font-display font-bold text-lg text-paper">{SITE.name}</span>
+            </div>
+            <p className="text-sm leading-relaxed">
+              NEET mock tests, chapter-wise PYQs, daily quizzes and weekly parent reports, matched to your class. Free for 30 days for Class 9–12 and droppers; free for Class 6–8.
+            </p>
           </div>
-          <p className="text-sm leading-relaxed max-w-sm">
-            NEET mock tests, chapter-wise PYQs, daily quizzes and weekly parent reports, matched to your class. Free for 30 days for Class 9–12 and droppers; free for Class 6–8.
-          </p>
-          <Link to="/register" className="mt-5 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-2.5 rounded-full hover:bg-gold-dark">
-            Start 30 days free <ArrowRight size={16} />
-          </Link>
-          {PLAY_URL && (
-            <a href={PLAY_URL} target="_blank" rel="noopener noreferrer" onClick={() => { try { (window as any).gtag?.("event", "play_store_click", { place: "footer" }); } catch { /* ignore */ } }}
-              className="mt-4 flex w-fit items-center gap-3 rounded-xl border border-paper/25 px-4 py-2 hover:border-gold">
-              <Smartphone size={20} className="text-gold" />
-              <span className="leading-tight"><span className="block text-[11px] text-paper/60">Get the app on</span><span className="font-semibold text-paper">Google Play</span></span>
-            </a>
-          )}
-          {SITE.whatsappChannel && (
-            <a href={SITE.whatsappChannel} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 text-sm hover:text-gold">
-              <MessageCircle size={16} className="text-gold" /> Follow the Daily NEET Question channel
-            </a>
-          )}
+          <div className="flex flex-wrap items-center gap-4">
+            <Link to="/register" className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-2.5 rounded-full hover:bg-gold-dark">
+              Start 30 days free <ArrowRight size={16} />
+            </Link>
+            {PLAY_URL && (
+              <a href={PLAY_URL} target="_blank" rel="noopener noreferrer" onClick={() => { try { (window as any).gtag?.("event", "play_store_click", { place: "footer" }); } catch { /* ignore */ } }}
+                className="flex w-fit items-center gap-3 rounded-xl border border-paper/25 px-4 py-2 hover:border-gold">
+                <Smartphone size={20} className="text-gold" />
+                <span className="leading-tight"><span className="block text-[11px] text-paper/60">Get the app on</span><span className="font-semibold text-paper">Google Play</span></span>
+              </a>
+            )}
+            {SITE.whatsappChannel && (
+              <a href={SITE.whatsappChannel} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-gold">
+                <MessageCircle size={16} className="text-gold" /> Daily NEET Question channel
+              </a>
+            )}
+          </div>
         </div>
-        <Column title="Free NEET practice" items={FREE} />
-        <Column title="YNeet" items={YNEET} />
-        <Column title="Parents & institutes" items={PARENTS} />
-        <Column title="Help" items={HELP} />
+
+        {/* Link columns */}
+        <div className="pt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-10">
+          <Column title={`Free ${PRACTICE.title.toLowerCase()}`} items={PRACTICE.items.map((i) => (i.href ? { ...i, href: gamesLink("footer") } : i))} />
+          <Column title={`Free ${STUDY.title.toLowerCase()}`} items={STUDY.items} />
+          <Column title={TOOLS.title} items={TOOLS.items} />
+          <Column title="YNeet" items={YNEET} />
+          <Column title="Parents & institutes" items={PARENTS} />
+          <Column title="Help" items={HELP} />
+        </div>
       </div>
 
       <div className="border-t border-paper/10">

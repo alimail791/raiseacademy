@@ -3,35 +3,40 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu, X, Sun, Moon, LogOut, LayoutDashboard, ChevronDown } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { SITE, gamesLink } from "../../utils/siteInfo";
+import { PRACTICE, STUDY, TOOLS, FREE_GROUPS, type NavGroup, type NavItem } from "../../utils/navLinks";
 import { goToYneet } from "../../utils/yneet";
 
 const links = [
-  { to: "/", label: "Home" },
   { to: "/courses", label: "Courses" },
-  { to: "/neet-readiness", label: "Readiness Test" },
   { to: "/blog", label: "Blog" },
   { to: "/institutes", label: "For Institutes" },
 ];
 
-// Free tools, no login: a "Free practice" dropdown on computers, a section in the phone menu.
-const FREE_LINKS: { to: string; label: string; short?: string }[] = [
-  { to: "/neet-score-calculator", label: "NEET Score Calculator", short: "Score Calculator" },
-  { to: "/neet-college-predictor", label: "NEET College Predictor", short: "College Predictor" },
-  { to: "/neet-registration", label: "NEET Registration Guide", short: "Registration Guide" },
-  { to: "/neet-photo-resizer", label: "NEET Photo & Signature Resizer", short: "Photo Resizer" },
-  { to: "/neet-question-of-the-day", label: "Question of the Day" },
-  { to: "/neet-sprint", label: "60-Second Sprint" },
-  { to: "/neet-concept-maps", label: "Concept Maps" },
-  { to: "/neet-practice", label: "Chapter-wise PYQs" },
-  { to: "/neet-question-papers", label: "Question papers by year", short: "Past papers" },
-  { to: "/ncert-notes", label: "NCERT Biology notes", short: "NCERT notes" },
-  { to: "/ask-yneet", label: "Ask YNeet: doubts answered", short: "Ask YNeet" },
-  { to: "/brain-teaser", label: "Brain Teaser (Class 6–8)", short: "Brain Teaser" },
+// Header dropdowns: "Free Practice" = practice + study material, "NEET Tools" = exam tools.
+const MENUS: { key: string; label: string; groups: NavGroup[] }[] = [
+  { key: "practice", label: "Free Practice", groups: [PRACTICE, STUDY] },
+  { key: "tools", label: "NEET Tools", groups: [TOOLS] },
 ];
+
+function MenuLink({ item, onClick, compact }: { item: NavItem; onClick?: () => void; compact?: boolean }) {
+  const text = compact ? item.short || item.label : item.label;
+  const cls = compact
+    ? "flex items-center gap-1.5 text-sm font-medium py-1.5"
+    : "flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm text-ink/80 dark:text-paper/80 hover:bg-gold/15";
+  const badge = item.isNew && (
+    <span className="text-[10px] font-bold uppercase tracking-wide bg-gold text-ink px-1.5 py-0.5 rounded">New</span>
+  );
+  return item.to ? (
+    <Link to={item.to} onClick={onClick} className={cls}>{text}{badge}</Link>
+  ) : (
+    <a href={item.href} target="_blank" rel="noopener" onClick={onClick} className={cls}>{text}{badge}</a>
+  );
+}
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [freeOpen, setFreeOpen] = useState(false);
+  const [menu, setMenu] = useState<string | null>(null); // open desktop dropdown
+  const [section, setSection] = useState<string | null>(PRACTICE.title); // open phone-menu section
   const [dark, setDark] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -51,7 +56,43 @@ const Navbar = () => {
         </Link>
 
         <div className="hidden lg:flex items-center gap-6">
-          {links.map((l) => (
+          <NavLink
+            to="/courses"
+            className={({ isActive }) =>
+              `text-sm font-medium transition-colors ${
+                isActive ? "text-gold-dark" : "text-ink/70 dark:text-paper/70 hover:text-ink dark:hover:text-paper"
+              }`
+            }
+          >
+            Courses
+          </NavLink>
+          {MENUS.map((m) => (
+            <div key={m.key} className="relative" onMouseLeave={() => setMenu(null)}>
+              <button
+                onClick={() => setMenu((v) => (v === m.key ? null : m.key))}
+                onMouseEnter={() => setMenu(m.key)}
+                aria-expanded={menu === m.key}
+                className="text-sm font-medium text-ink/70 dark:text-paper/70 hover:text-ink dark:hover:text-paper inline-flex items-center gap-1"
+              >
+                {m.label} <ChevronDown size={14} className={`transition-transform ${menu === m.key ? "rotate-180" : ""}`} />
+              </button>
+              {menu === m.key && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50">
+                  <div className={`rounded-2xl border border-ink/10 bg-paper dark:bg-ink shadow-xl p-3 grid gap-2 ${m.groups.length > 1 ? "w-[30rem] grid-cols-2" : "w-64"}`}>
+                    {m.groups.map((g) => (
+                      <div key={g.title}>
+                        <p className="px-3 pt-1 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-gold-dark">{g.title}</p>
+                        {g.items.map((i) => (
+                          <MenuLink key={i.label} item={i} onClick={() => setMenu(null)} />
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+          {links.filter((l) => l.to !== "/courses").map((l) => (
             <NavLink
               key={l.to}
               to={l.to}
@@ -66,28 +107,6 @@ const Navbar = () => {
               {l.label}
             </NavLink>
           ))}
-          <div className="relative" onMouseLeave={() => setFreeOpen(false)}>
-            <button
-              onClick={() => setFreeOpen((v) => !v)}
-              onMouseEnter={() => setFreeOpen(true)}
-              aria-expanded={freeOpen}
-              className="text-sm font-medium text-ink/70 dark:text-paper/70 hover:text-ink dark:hover:text-paper inline-flex items-center gap-1"
-            >
-              Free Practice <ChevronDown size={14} />
-            </button>
-            {freeOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50">
-                <div className="w-64 rounded-2xl border border-ink/10 bg-paper dark:bg-ink shadow-xl p-2">
-                  {FREE_LINKS.map((l) => (
-                    <Link key={l.to} to={l.to} onClick={() => setFreeOpen(false)}
-                      className="block rounded-xl px-3 py-2 text-sm text-ink/80 dark:text-paper/80 hover:bg-gold/15">
-                      {l.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
           <a
             href={gamesLink("menu")}
             target="_blank"
@@ -161,37 +180,8 @@ const Navbar = () => {
 
       {open && (
         <div className="lg:hidden border-t border-ink/10 bg-paper dark:bg-ink px-4 py-4 space-y-3 max-h-[calc(100vh-4rem)] overflow-y-auto">
-          {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              onClick={() => setOpen(false)}
-              className="block text-sm font-medium py-1.5"
-            >
-              {l.label}
-            </NavLink>
-          ))}
-          <div className="pt-2 border-t border-ink/10">
-            <p className="text-xs font-bold uppercase tracking-wider text-gold-dark pt-2 pb-1">Free practice · no login</p>
-            <div className="grid grid-cols-2 gap-x-4">
-              {FREE_LINKS.map((l) => (
-                <NavLink key={l.to} to={l.to} onClick={() => setOpen(false)} className="block text-sm font-medium py-1.5">
-                  {l.short || l.label}
-                </NavLink>
-              ))}
-            </div>
-          </div>
-          <a
-            href={gamesLink("menu")}
-            target="_blank"
-            rel="noopener"
-            onClick={() => setOpen(false)}
-            className="flex items-center gap-1.5 text-sm font-semibold py-1.5 text-rise-dark dark:text-gold"
-          >
-            Free NEET Games
-            <span className="text-[10px] font-bold uppercase tracking-wide bg-gold text-ink px-1.5 py-0.5 rounded">New</span>
-          </a>
-          <div className="flex gap-3 pt-2">
+          {/* Account actions first: the most important thing on a phone */}
+          <div className="flex gap-3">
             {!user ? (
               <>
                 <Link to="/login" onClick={() => setOpen(false)} className="flex-1 text-center text-sm font-semibold px-4 py-2 rounded-full border border-ink/15">
@@ -202,34 +192,66 @@ const Navbar = () => {
                 </Link>
               </>
             ) : (
-              <div className="flex-1 flex flex-col gap-2">
+              <>
                 <Link
                   to={user.role === "admin" ? "/admin" : "/dashboard"}
                   onClick={() => setOpen(false)}
-                  className="text-center text-sm font-semibold px-4 py-2 rounded-full bg-ink text-paper"
+                  className="flex-1 text-center text-sm font-semibold px-4 py-2 rounded-full bg-ink text-paper"
                 >
                   {user.role === "admin" ? "Admin" : "Dashboard"}
                 </Link>
                 <button
                   onClick={() => { setOpen(false); goToYneet(); }}
-                  className="text-center text-sm font-semibold px-4 py-2 rounded-full bg-gold text-ink"
+                  className="flex-1 text-center text-sm font-semibold px-4 py-2 rounded-full bg-gold text-ink"
                 >
                   {user.role === "admin" ? "YNeet Admin" : "YNeet"}
                 </button>
-                <button
-                  onClick={() => {
-                    setOpen(false);
-                    logout();
-                    navigate("/", { replace: true });
-                  }}
-                  className="flex items-center justify-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full border border-ink/15"
-                >
-                  <LogOut size={16} />
-                  Logout
-                </button>
-              </div>
+              </>
             )}
           </div>
+
+          <div className="grid grid-cols-2 gap-x-4">
+            {[{ to: "/", label: "Home" }, ...links, { to: "/neet-parents", label: "For Parents" }].map((l) => (
+              <NavLink key={l.to} to={l.to} onClick={() => setOpen(false)} className="block text-sm font-medium py-1.5">
+                {l.label}
+              </NavLink>
+            ))}
+          </div>
+
+          <p className="pt-2 border-t border-ink/10 text-xs font-bold uppercase tracking-wider text-ink/50 dark:text-paper/50">Free · no login needed</p>
+          {FREE_GROUPS.map((g) => (
+            <div key={g.title} className="rounded-xl border border-ink/10">
+              <button
+                onClick={() => setSection((v) => (v === g.title ? null : g.title))}
+                aria-expanded={section === g.title}
+                className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold text-gold-dark"
+              >
+                {g.title}
+                <ChevronDown size={16} className={`transition-transform ${section === g.title ? "rotate-180" : ""}`} />
+              </button>
+              {section === g.title && (
+                <div className="grid grid-cols-2 gap-x-4 px-3 pb-2">
+                  {g.items.map((i) => (
+                    <MenuLink key={i.label} item={i} compact onClick={() => setOpen(false)} />
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+
+          {user && (
+            <button
+              onClick={() => {
+                setOpen(false);
+                logout();
+                navigate("/", { replace: true });
+              }}
+              className="w-full flex items-center justify-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full border border-ink/15"
+            >
+              <LogOut size={16} />
+              Logout
+            </button>
+          )}
         </div>
       )}
     </header>
