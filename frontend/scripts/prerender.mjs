@@ -397,7 +397,7 @@ try {
   if (r.ok) prevLastmod = await r.json();
 } catch { /* first build with this: every page gets today */ }
 const indexable = [
-  ...routes.filter((r) => !PAGE_META[r].noindex && r !== "/neet-trial"),
+  ...routes.filter((r) => !PAGE_META[r].noindex),
   ...blogPosts.map((p) => `/blog/${p.slug}`),
   ...practiceChapters.map((c) => `/neet-practice/${c.slug}`),
   ...papers.map((p) => `/neet-question-papers/${p.year}`),

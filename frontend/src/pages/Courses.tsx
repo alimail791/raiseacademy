@@ -232,6 +232,7 @@ const Courses = () => {
       <section className="mt-16" id="pricing">
         <h2 className="font-display text-2xl font-bold">Plans &amp; pricing</h2>
         <p className="text-ink/60 mt-1">Priced by class. One-time payment, no auto-charge. A full year costs about 8 months' price.</p>
+        <p className="web-only text-ink/70 mt-1">From Class 9, every plan starts with the <Link to="/neet-trial" className="text-rise-dark font-semibold underline">free 30-day NEET trial</Link>.</p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
           {plans.map((p) => {
             const free = p.monthly === 0;
