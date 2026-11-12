@@ -28,17 +28,33 @@ function replaceAttr(html, selectorRe, value) {
   return html.replace(selectorRe, (_m, a, b) => `${a}${esc(value)}${b}`);
 }
 
+// Data fetches retry a few times: a deploy that coincides with an API restart
+// should wait it out, not ship without its pages.
+async function fetchRetry(url, tries = 3) {
+  for (let i = 1; ; i++) {
+    try {
+      return await fetch(url, { signal: AbortSignal.timeout(60000) });
+    } catch (err) {
+      if (i >= tries) throw err;
+      await new Promise((r) => setTimeout(r, 5000 * i));
+    }
+  }
+}
+// Sources whose fetch failed this build (see the strict check below).
+const failedSources = [];
+
 // Published blog posts, fetched from the API so each article ships as a real
 // HTML page. If the API can't be reached the build still succeeds: the blog
 // pages then load their content in the browser (see the /blog rewrites below).
 const API_URL = (process.env.VITE_API_URL || "http://localhost:5000/api").replace(/\/$/, "");
 let blogPosts = [];
 try {
-  const res = await fetch(`${API_URL}/blog/export`);
+  const res = await fetchRetry(`${API_URL}/blog/export`);
   if (!res.ok) throw new Error(`API responded ${res.status}`);
   blogPosts = (await res.json()).posts || [];
 } catch (err) {
   console.warn(`prerender: could not fetch blog posts (${err.message}) — blog pages will load in the browser.`);
+  failedSources.push("blog posts");
 }
 const summaries = blogPosts.map(({ bodyHtml, ...rest }) => rest);
 
@@ -50,11 +66,12 @@ const YNEET_API = (process.env.VITE_YNEET_API_URL || "").replace(/\/$/, "");
 let practiceChapters = [];
 if (YNEET_API) {
   try {
-    const res = await fetch(`${YNEET_API}/public/practice?full=1`);
+    const res = await fetchRetry(`${YNEET_API}/public/practice?full=1`);
     if (!res.ok) throw new Error(`API responded ${res.status}`);
     practiceChapters = (await res.json()).chapters || [];
   } catch (err) {
     console.warn(`prerender: could not fetch practice chapters (${err.message}) — chapter pages will load in the browser.`);
+    failedSources.push("practice chapters");
   }
 }
 const practiceSummaries = practiceChapters.map(({ questions, ...rest }) => rest);
@@ -63,11 +80,12 @@ const practiceSummaries = practiceChapters.map(({ questions, ...rest }) => rest)
 let papers = [];
 if (YNEET_API) {
   try {
-    const res = await fetch(`${YNEET_API}/public/papers?full=1`);
+    const res = await fetchRetry(`${YNEET_API}/public/papers?full=1`);
     if (!res.ok) throw new Error(`API responded ${res.status}`);
     papers = (await res.json()).papers || [];
   } catch (err) {
     console.warn(`prerender: could not fetch question papers (${err.message}) — paper pages will load in the browser.`);
+    failedSources.push("question papers");
   }
 }
 const paperSummaries = papers.map(({ subjects, ...rest }) => rest);
@@ -82,11 +100,12 @@ const QUESTION_PAGES_LIMIT = Math.max(0, parseInt(process.env.QUESTION_PAGES_LIM
 let questionPages = [];
 if (YNEET_API && QUESTION_PAGES_LIMIT > 0) {
   try {
-    const res = await fetch(`${YNEET_API}/public/questions?limit=${QUESTION_PAGES_LIMIT}`);
+    const res = await fetchRetry(`${YNEET_API}/public/questions?limit=${QUESTION_PAGES_LIMIT}`);
     if (!res.ok) throw new Error(`API responded ${res.status}`);
     questionPages = ((await res.json()).pages || []).filter((q) => /^[a-z0-9-]+$/i.test(q.slug));
   } catch (err) {
     console.warn(`prerender: could not fetch question pages (${err.message}) — skipping one-question pages.`);
+    failedSources.push("question pages");
   }
 }
 // Class 6–10 Science MCQs: one hub per class (/class-<n>-questions) and one
@@ -95,13 +114,14 @@ let schoolClasses = [];
 let schoolPages = [];
 if (YNEET_API) {
   try {
-    const res = await fetch(`${YNEET_API}/public/school-questions`);
+    const res = await fetchRetry(`${YNEET_API}/public/school-questions`);
     if (!res.ok) throw new Error(`API responded ${res.status}`);
     const body = await res.json();
     schoolClasses = body.classes || [];
     schoolPages = (body.pages || []).filter((q) => /^[a-z0-9-]+$/i.test(q.slug) && /^(6|7|8|9|10)$/.test(String(q.classNum)));
   } catch (err) {
     console.warn(`prerender: could not fetch school questions (${err.message}) — skipping Class 6–10 pages.`);
+    failedSources.push("Class 6–10 questions");
   }
 }
 
@@ -109,18 +129,34 @@ if (YNEET_API) {
 // the Raise Academy API (same server as the blog). Skipped if it can't be reached.
 let cutoffStates = [];
 try {
-  const res = await fetch(`${API_URL}/predictor/cutoff-pages`);
+  const res = await fetchRetry(`${API_URL}/predictor/cutoff-pages`);
   if (!res.ok) throw new Error(`API responded ${res.status}`);
   cutoffStates = ((await res.json()).states || []).filter((c) => /^[a-z-]+$/.test(c.slug));
 } catch (err) {
   console.warn(`prerender: could not fetch cutoff pages (${err.message}) — /neet-cutoff pages will load in the browser.`);
+  failedSources.push("cutoff pages");
+}
+
+// A production build that can't reach the APIs used to deploy anyway: the
+// sitemap dropped from thousands of URLs to ~40 and every practice, paper,
+// question and cutoff page became an empty shell until the next good deploy.
+// When the YNeet API is configured (production), a failed source now fails
+// the build, so Railway keeps the last good deploy live. Local builds without
+// VITE_YNEET_API_URL are unaffected; PRERENDER_ALLOW_PARTIAL=1 overrides.
+const strict = !!YNEET_API && process.env.PRERENDER_ALLOW_PARTIAL !== "1";
+if (strict && (practiceChapters.length === 0 || questionPages.length === 0) && !failedSources.length) {
+  failedSources.push("practice chapters / question pages (empty response)");
+}
+if (strict && failedSources.length) {
+  console.error(`prerender: aborting build — could not load: ${failedSources.join(", ")}. The live site stays on its last good deploy. Set PRERENDER_ALLOW_PARTIAL=1 to build anyway.`);
+  process.exit(1);
 }
 
 // Daily NEET quiz Shorts (public YouTube videos the shorts-bot reported):
 // listed on /neet-quiz-shorts and embedded on their question's page.
 let quizShorts = [];
 try {
-  const res = await fetch(`${API_URL}/youtube-shorts?limit=200`);
+  const res = await fetchRetry(`${API_URL}/youtube-shorts?limit=200`);
   if (!res.ok) throw new Error(`API responded ${res.status}`);
   quizShorts = (await res.json()).shorts || [];
 } catch (err) {
@@ -395,6 +431,24 @@ ${indexable
 fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
 fs.writeFileSync(path.join(dist, "sitemap-lastmod.json"), JSON.stringify(lastmod));
 console.log(`Sitemap lastmod: ${changed} new or changed pages dated ${today}, ${indexable.length - changed} kept their earlier date.`);
+
+// llms.txt for AI search engines: what YNeet is and its main pages, built from
+// the same PAGE_META titles and descriptions (prices included) as the pages,
+// so it can't contradict them.
+{
+  const pick = (r) => PAGE_META[r] && !PAGE_META[r].noindex ? `- [${PAGE_META[r].title}](${SITE_ORIGIN}${r === "/" ? "/" : r}): ${PAGE_META[r].description}` : null;
+  const section = (title, list) => `## ${title}\n\n${list.map(pick).filter(Boolean).join("\n")}\n`;
+  const freeTools = routes.filter((r) => !PAGE_META[r].noindex && /^\/neet-|^\/ncert-|^\/brain-teaser|^\/ask-yneet|^\/blog$/.test(r) && r !== "/neet-trial" && r !== "/neet-parents" && r !== "/neet-pyq-books");
+  const llmsTxt = [
+    `# YNeet\n`,
+    `> ${PAGE_META["/"].description}\n`,
+    `YNeet is an online NEET UG preparation platform by Raise Academy (Chennai, India). Students use the app at https://app.yneet.in; this site (${SITE_ORIGIN}) has plans, prices and free NEET tools.\n`,
+    section("Plans and prices", ["/courses", "/neet-trial", "/neet-parents", "/institutes", "/neet-pyq-books"]),
+    section("About", ["/about", "/help"]),
+    section("Free NEET tools and study material", freeTools),
+  ].join("\n");
+  fs.writeFileSync(path.join(dist, "llms.txt"), llmsTxt);
+}
 
 fs.rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
 console.log(`Prerendered ${practiceChapters.length} chapter practice pages, ${papers.length} question-paper years, ${questionPages.length} one-question pages and ${schoolPages.length} Class 6–10 question pages (${schoolClasses.map((c) => `C${c.classNum}:${c.total}`).join(" ")}).`);
