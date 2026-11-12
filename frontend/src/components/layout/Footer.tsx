@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { OTHER_SITES, siteLink, trackSiteClick } from "../OurOtherSites";
 import { ArrowRight, MessageCircle, Smartphone } from "lucide-react";
 
-// Set VITE_PLAY_STORE_URL on Railway once the Android app is live on Google Play.
-const PLAY_URL: string = import.meta.env.VITE_PLAY_STORE_URL || "";
+// The live Google Play listing; VITE_PLAY_STORE_URL on Railway can override it.
+const PLAY_URL: string = import.meta.env.VITE_PLAY_STORE_URL || "https://play.google.com/store/apps/details?id=in.yneet.app";
 import { SITE, gamesLink } from "../../utils/siteInfo";
 import { PRACTICE, STUDY, TOOLS } from "../../utils/navLinks";
 

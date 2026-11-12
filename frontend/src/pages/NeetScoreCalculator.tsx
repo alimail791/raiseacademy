@@ -269,6 +269,7 @@ export default function NeetScoreCalculator() {
             <p className="font-display text-xl font-bold">{rank.normal != null && rank.normal < 25000 ? "Great score — lock it in with counselling help" : "Want a better score next time?"}</p>
             <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">YNeet's chapter-priority plan shows exactly which chapters cost you marks, with 1,200+ tests and full mocks. 30 days free.</p>
             <Link to="/register" className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">Start free <ArrowRight size={16} /></Link>
+            <p className="web-only text-sm text-ink/70 dark:text-paper/70 mt-3">Repeating NEET? Compare <Link to="/courses" className="text-rise-dark font-semibold underline">YNeet's NEET coaching plans for droppers</Link>.</p>
           </div>
         </div>
       )}

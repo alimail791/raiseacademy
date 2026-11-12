@@ -119,6 +119,7 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
           {school && school <= 8 ? "Start free" : "Start free for 30 days"} <ArrowRight size={16} />
         </Link>
         <p className="text-xs mt-2 text-paper/60">No payment, no card. Register in 2 minutes.</p>
+        {!school && <p className="web-only text-sm mt-3 text-paper/75">For Class 11, 12 and droppers, see what the <Link to="/courses" className="text-gold font-semibold underline">YNeet NEET online course</Link> includes.</p>}
       </div>
 
       {q.short && (

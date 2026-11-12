@@ -4,6 +4,7 @@ import { CompareTable, ParentReportSection } from "../components/YNeetSales";
 import { Link, useLocation } from "react-router-dom";
 import { Microscope, Stethoscope, ArrowRight, CheckCircle2, MessageCircle, Puzzle, Gift } from "lucide-react";
 import { SITE } from "../utils/siteInfo";
+import { SITE_ORIGIN } from "../seo";
 
 // This page gets most of YNeet's Google impressions (searches like "neet
 // online course", "online neet preparation", "neet course"), so it carries
@@ -89,6 +90,48 @@ const faqs = [
   },
 ];
 
+// Structured data for Google and AI search, built from the same `plans`,
+// `courses` and `faqs` arrays the page renders, so prices can't drift.
+const courseJsonLd = () => {
+  const provider = { "@type": "Organization", name: "YNeet", url: `${SITE_ORIGIN}/` };
+  const offersFor = (rows: typeof plans) =>
+    rows.flatMap((p) => [
+      { "@type": "Offer", name: `${p.cls} · 1 month`, category: "Paid", price: p.monthly, priceCurrency: "INR", url: `${SITE_ORIGIN}/courses#pricing` },
+      { "@type": "Offer", name: `${p.cls} · 6 months`, category: "Paid", price: p.six, priceCurrency: "INR", url: `${SITE_ORIGIN}/courses#pricing` },
+      { "@type": "Offer", name: `${p.cls} · 12 months`, category: "Paid", price: p.year, priceCurrency: "INR", url: `${SITE_ORIGIN}/courses#pricing` },
+    ]);
+  const course = (title: string, rows: typeof plans, free = false) => {
+    const c = courses.find((x) => x.title === title)!;
+    return {
+      "@type": "Course",
+      name: `${c.title} — YNeet`,
+      description: c.desc,
+      provider,
+      inLanguage: "en-IN",
+      isAccessibleForFree: free,
+      offers: free
+        ? [{ "@type": "Offer", category: "Free", price: 0, priceCurrency: "INR", url: `${SITE_ORIGIN}/courses` }]
+        : offersFor(rows),
+      hasCourseInstance: { "@type": "CourseInstance", courseMode: "Online" },
+    };
+  };
+  return [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        course("NEET Coaching", plans.filter((p) => p.name === "NEET Full")),
+        course("NEET Foundation", plans.filter((p) => p.name === "NEET Foundation")),
+        course("YNeet Junior", [], true),
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    },
+  ];
+};
+
 const Courses = () => {
   // Links like /courses#pricing (from the homepage badge) jump to that section.
   const { hash } = useLocation();
@@ -98,6 +141,9 @@ const Courses = () => {
   const whatsapp = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(SITE.whatsappMessage)}`;
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+      {courseJsonLd().map((data, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />
+      ))}
       <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Courses</p>
       <h1 className="font-display text-4xl font-bold mt-2 max-w-3xl">
         Online NEET course from Class 6 to Droppers
@@ -186,6 +232,7 @@ const Courses = () => {
       <section className="mt-16" id="pricing">
         <h2 className="font-display text-2xl font-bold">Plans &amp; pricing</h2>
         <p className="text-ink/60 mt-1">Priced by class. One-time payment, no auto-charge. A full year costs about 8 months' price.</p>
+        <p className="web-only text-ink/70 mt-1">From Class 9, every plan starts with the <Link to="/neet-trial" className="text-rise-dark font-semibold underline">free 30-day NEET trial</Link>.</p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
           {plans.map((p) => {
             const free = p.monthly === 0;
