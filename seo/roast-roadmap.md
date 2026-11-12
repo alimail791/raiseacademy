@@ -26,3 +26,18 @@ Checked: the prerendered build of `frontend/` served locally (`serve dist`), plu
 ## Fluff (ignore until rows above ship)
 
 - Large-chunk build warning, minor meta lengths.
+
+## Internal linking (2026-11-12)
+
+`/courses` is the main money page (most of YNeet's Google impressions). Before this change, only the homepage linked to it from page content; the other links were nav and footer. Contextual links were added from 6 page templates, with a different anchor on each:
+
+| Template | Pages it covers | Anchor |
+|---|---|---|
+| `/neet-question/*` (NEET only) | ~3,000 | YNeet NEET online course |
+| `/neet-practice/*` chapter pages | every chapter | full NEET online course for Class 11, 12 and droppers |
+| `/neet-question-papers` and year pages | 1 + every year | NEET course plans for every class |
+| `/neet-college-predictor` | 1 | NEET dropper course on YNeet |
+| `/neet-chapter-wise-weightage` | 1 | how the online NEET course works |
+| `/neet-score-calculator` (after result) | 1 | YNeet's NEET coaching plans for droppers |
+
+All use `web-only`, so they're hidden inside the Play Store app (prices policy). Still orphaned in page content: `/neet-parents` (nav and footer only).

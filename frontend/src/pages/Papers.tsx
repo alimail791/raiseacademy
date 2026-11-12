@@ -44,6 +44,7 @@ function Cta({ year }: { year: number }) {
       <div>
         <p className="font-display text-xl font-bold">Take NEET-style timed mocks with your rank</p>
         <p className="text-paper/75 text-sm mt-1">Full 720-mark mocks, NEET {year} PYQs and instant analysis. Free for 30 days, no card.</p>
+        <p className="web-only text-paper/75 text-sm mt-1">Compare <Link to="/courses" className="text-gold font-semibold underline">NEET course plans for every class</Link>.</p>
       </div>
       <Link to="/register" className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-3 rounded-full hover:bg-gold-dark">Start free <ArrowRight size={16} /></Link>
     </div>

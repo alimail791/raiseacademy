@@ -91,6 +91,7 @@ const NeetWeightage = () => {
         <p className="font-display font-bold text-xl">Get your personal Chapter Priority map</p>
         <p className="text-sm text-paper/75 mt-2">Weightage + your accuracy = the chapters to study next. Free for 30 days.</p>
         <Link to="/register" className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">Start free for 30 days <ArrowRight size={16} /></Link>
+        <p className="web-only text-sm mt-3 text-paper/75">Or see <Link to="/courses" className="text-gold font-semibold underline">how the online NEET course works</Link>, class by class.</p>
       </div>
     </div>
   );

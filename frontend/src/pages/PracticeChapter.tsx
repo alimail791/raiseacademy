@@ -40,6 +40,7 @@ function Cta({ chapter, total, big }: { chapter: string; total: number; big?: bo
         Start free for 30 days <ArrowRight size={16} />
       </Link>
       <p className={`text-xs mt-2 ${big ? "text-paper/60" : "text-ink/55 dark:text-paper/55"}`}>No payment, no card. Register in 2 minutes.</p>
+      <p className={`web-only text-sm mt-3 ${big ? "text-paper/75" : "text-ink/70 dark:text-paper/70"}`}>Chapter tests are part of the <Link to="/courses" className={`font-semibold underline ${big ? "text-gold" : "text-rise-dark"}`}>full NEET online course for Class 11, 12 and droppers</Link>.</p>
     </div>
   );
 }

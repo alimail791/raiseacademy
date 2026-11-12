@@ -395,6 +395,7 @@ const NeetCollegePredictor = () => {
         <p>Closing ranks change every year with seat numbers and competition, so treat this as a guide, not a guarantee. Always check the official seat matrix and rules on mcc.nic.in and your state counselling website before choice filling. YNeet is not connected with MCC or any state counselling authority.</p>
         <p>See last year's closing ranks for every government MBBS college: <Link to="/neet-cutoff" className="text-rise-dark font-semibold underline">NEET cutoff by state</Link>.</p>
         <p>Still preparing? Take the <Link to="/neet-readiness" className="text-rise-dark font-semibold underline">free NEET Readiness Test</Link> or practise <Link to="/neet-practice" className="text-rise-dark font-semibold underline">chapter-wise PYQs</Link>.</p>
+        <p className="web-only">Planning a drop year? See the <Link to="/courses" className="text-rise-dark font-semibold underline">NEET dropper course on YNeet</Link>.</p>
       </section>
     </div>
   );
