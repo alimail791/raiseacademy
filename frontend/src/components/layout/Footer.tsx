@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { OTHER_SITES, siteLink, trackSiteClick } from "../OurOtherSites";
-import { ArrowRight, MessageCircle, Smartphone } from "lucide-react";
+import { ArrowRight, MessageCircle, Smartphone, Youtube } from "lucide-react";
 
 // The live Google Play listing; VITE_PLAY_STORE_URL on Railway can override it.
+const YOUTUBE_URL = "https://www.youtube.com/channel/UCj5krrV4r1n-ru9hWZDKOtA";
 const PLAY_URL: string = import.meta.env.VITE_PLAY_STORE_URL || "https://play.google.com/store/apps/details?id=in.yneet.app";
 import { SITE, gamesLink } from "../../utils/siteInfo";
 import { PRACTICE, STUDY, TOOLS } from "../../utils/navLinks";
@@ -85,6 +86,10 @@ const Footer = () => {
                 <span className="leading-tight"><span className="block text-[11px] text-paper/60">Get the app on</span><span className="font-semibold text-paper">Google Play</span></span>
               </a>
             )}
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" onClick={() => { try { (window as any).gtag?.("event", "youtube_click", { place: "footer" }); } catch { /* ignore */ } }}
+              className="flex items-center gap-2 text-sm hover:text-gold">
+              <Youtube size={18} className="text-gold" /> Daily NEET quiz on YouTube
+            </a>
             {SITE.whatsappChannel && (
               <a href={SITE.whatsappChannel} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-gold">
                 <MessageCircle size={16} className="text-gold" /> Daily NEET Question channel
