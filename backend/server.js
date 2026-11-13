@@ -22,6 +22,7 @@ import instagramReelsRoutes from "./routes/instagramReelsRoutes.js";
 import { startInstagramReelsJob } from "./utils/instagramReels.js";
 import { seedBundledCutoffs } from "./controllers/predictorController.js";
 import { applyBlogUpdates } from "./utils/blogUpdates.js";
+import { addBlogDrafts } from "./utils/blogDrafts.js";
 
 dotenv.config();
 
@@ -78,4 +79,5 @@ connectDB().then(() => {
   startGoogleLeadReminderJob(); // one "finish your sign-up" email to unfinished Google sign-ups
   seedBundledCutoffs(); // NEET College Predictor: official cutoff files shipped in data/predictor
   applyBlogUpdates(); // one-time SEO updates to existing blog posts (utils/blogUpdates.js)
+  addBlogDrafts(); // new blog posts added as drafts for review in the admin dashboard (utils/blogDrafts.js)
 });
