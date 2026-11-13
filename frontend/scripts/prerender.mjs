@@ -432,6 +432,38 @@ fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
 fs.writeFileSync(path.join(dist, "sitemap-lastmod.json"), JSON.stringify(lastmod));
 console.log(`Sitemap lastmod: ${changed} new or changed pages dated ${today}, ${indexable.length - changed} kept their earlier date.`);
 
+// Visible "Updated <date>" lines (src/components/UpdatedOn.tsx): swap the
+// placeholder for the page's real lastmod and add a <meta> the browser app
+// reads, so the date survives the client-side render. Pages without a
+// lastmod lose the line. The placeholder was already in the content hash, so
+// filling it in doesn't change any page's lastmod.
+{
+  const PH = "YN_UPDATED_DATE";
+  const fmt = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  let filled = 0;
+  const walk = (dir) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) { walk(p); continue; }
+      if (!e.name.endsWith(".html")) continue;
+      let html = fs.readFileSync(p, "utf8");
+      if (!html.includes(PH)) continue;
+      const canon = html.match(/<link rel="canonical" href="([^"]*)"/)?.[1] || "";
+      const route = canon.startsWith(SITE_ORIGIN) ? (canon.slice(SITE_ORIGIN.length).replace(/\/$/, "") || "/") : "";
+      const d = lastmod[route]?.d;
+      if (d) {
+        html = html.split(PH).join(fmt(d)).replace("</head>", `<meta name="yn-updated" content="${route}|${d}" />\n</head>`);
+        filled++;
+      } else {
+        html = html.replace(/<p[^>]*data-yn-updated=""[^>]*>Updated (<!-- -->)?YN_UPDATED_DATE<\/p>/g, "");
+      }
+      fs.writeFileSync(p, html);
+    }
+  };
+  walk(dist);
+  console.log(`Updated-date lines filled on ${filled} pages.`);
+}
+
 // llms.txt for AI search engines: what YNeet is and its main pages, built from
 // the same PAGE_META titles and descriptions (prices included) as the pages,
 // so it can't contradict them.

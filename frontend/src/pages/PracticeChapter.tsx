@@ -6,6 +6,7 @@ import { SITE_ORIGIN } from "../seo";
 import { useInitialPracticeData, YNEET_API, chapterMeta, shorten, type PracticeChapter as Chapter, type PracticeChapterSummary } from "../practice/practiceData";
 import NotFound from "./NotFound";
 import { NCERT_NOTES } from "../ncert/notes";
+import UpdatedOn from "../components/UpdatedOn";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -76,6 +77,7 @@ const PracticeChapter = () => {
         <Link to="/neet-practice" className="hover:underline">NEET Practice</Link> › <span>{c.subject}</span> › <span>{c.chapter}</span>
       </nav>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">NEET {c.chapter} PYQs & Practice Questions</h1>
+      <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3">
         {c.questions.length} free NEET {c.subject} questions on <b>{c.chapter}</b>{c.pyqCount > 0 ? <>, starting with previous year questions{yrs ? ` (${yrs})` : ""}</> : null}. Tap “Show answer” to check each one. No login needed.
       </p>

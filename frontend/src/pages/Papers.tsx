@@ -5,6 +5,7 @@ import { ArrowRight, Check, FileText } from "lucide-react";
 import { SITE_ORIGIN } from "../seo";
 import { useInitialPracticeData, YNEET_API, SUBJECTS, paperMeta, subjectSlug, type Paper, type PaperSummary } from "../practice/practiceData";
 import NotFound from "./NotFound";
+import UpdatedOn from "../components/UpdatedOn";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -63,6 +64,7 @@ export const PapersIndex = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
       <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free · No login</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Previous Year Question Papers with Answers</h1>
+      <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">
         NEET question papers year by year, with the correct answer and an explanation for every question. Pick a year to start. Prefer to practise one chapter at a time? See <Link to="/neet-practice" className="text-rise-dark font-semibold underline">chapter-wise PYQs</Link>.
       </p>
@@ -133,6 +135,7 @@ export const PaperYear = () => {
         <Link to="/neet-question-papers" className="hover:underline">NEET question papers</Link> › <Link to={`/neet-question-papers/${p.year}`} className="hover:underline">{p.year}</Link> › <span>{active}</span>
       </nav>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">NEET {p.year} {active} Question Paper with Answers</h1>
+      <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3">
         {qs.length} NEET {p.year} {active} questions with the correct answer and an explanation for each, chapter-wise. Tap “Show answer” under each question. No login needed.
       </p>
@@ -191,6 +194,7 @@ function PaperOverview({ p, years, subjects }: { p: Paper; years: number[]; subj
         <Link to="/neet-question-papers" className="hover:underline">NEET question papers</Link> › <span>{p.year}</span>
       </nav>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">NEET {p.year} Question Paper with Answers</h1>
+      <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3">
         {p.total} NEET {p.year} questions with answers and explanations: Physics {p.counts.Physics || 0}, Chemistry {p.counts.Chemistry || 0}, Biology {p.counts.Biology || 0}. Pick a subject to start. No login needed.
       </p>

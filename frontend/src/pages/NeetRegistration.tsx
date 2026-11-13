@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, XCircle, AlertTriangle, ImagePlus } from "lucide-react";
 import RegistrationAlert from "../components/RegistrationAlert";
+import UpdatedOn from "../components/UpdatedOn";
 
 // NEET registration guide: status, eligibility checker, saved checklist, fees,
 // step-by-step form help. Facts are from the NEET UG 2026 information bulletin;
@@ -96,6 +97,7 @@ export default function NeetRegistration() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
       <p className="text-sm text-ink/55 dark:text-paper/55">Last checked: {LAST_CHECKED}</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-2">NEET {EXAM_YEAR} Registration: Step-by-Step Guide & Checklist</h1>
+      <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">Check your eligibility, get every document ready, and fill the NEET form without mistakes.</p>
 
       {/* Status */}

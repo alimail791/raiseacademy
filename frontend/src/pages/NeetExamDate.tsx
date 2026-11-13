@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import UpdatedOn from "../components/UpdatedOn";
 
 // NEET 2027 exam date & pattern. Facts only from NTA notices; everything not yet
 // announced says so. Update LAST_CHECKED and the facts whenever NTA publishes.
@@ -24,6 +25,7 @@ const NeetExamDate = () => (
   <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
     <p className="text-sm text-ink/55 dark:text-paper/55">Last checked: {LAST_CHECKED}</p>
     <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-2">NEET 2027 Exam Date, Pattern and Marking Scheme</h1>
+    <UpdatedOn />
     <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">What is confirmed for NEET UG 2027, what is not yet, and the exam pattern from the latest NEET.</p>
 
     <div className="mt-8 grid sm:grid-cols-3 gap-4">

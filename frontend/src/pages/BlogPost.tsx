@@ -57,7 +57,9 @@ const BlogPost = () => {
       <article>
         <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-4">{post.title}</h1>
         <p className="text-ink/50 dark:text-paper/50 text-sm mt-3 mb-8">
-          {formatDate(post.publishedAt)} · {readingMinutes(post.bodyHtml)} min read
+          By <Link to="/about" className="font-semibold hover:underline">Akbar Ali</Link>, founder of Raise Academy, Chennai · {formatDate(post.publishedAt)}
+          {post.updatedAt && formatDate(post.updatedAt) !== formatDate(post.publishedAt) && <> · Updated {formatDate(post.updatedAt)}</>}
+          {" "}· {readingMinutes(post.bodyHtml)} min read
         </p>
         {post.coverImageUrl && <img src={post.coverImageUrl} alt="" className="w-full rounded-2xl mb-8" />}
         <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
@@ -95,7 +97,7 @@ const BlogPost = () => {
             datePublished: post.publishedAt || undefined,
             dateModified: post.updatedAt || undefined,
             image: post.coverImageUrl || undefined,
-            author: { "@type": "Organization", name: "YNeet", url: `${SITE_ORIGIN}/` },
+            author: { "@type": "Person", name: "Akbar Ali", jobTitle: "Founder, Raise Academy", url: `${SITE_ORIGIN}/about`, worksFor: { "@type": "Organization", name: "Raise Academy (YNeet)", url: `${SITE_ORIGIN}/` } },
             publisher: { "@type": "Organization", name: "YNeet", url: `${SITE_ORIGIN}/` },
           }).replace(/</g, "\\u003c"),
         }}

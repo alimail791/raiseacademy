@@ -10,6 +10,7 @@ import { useInitialPracticeData, cutoffMeta, cutoffTitleName, type CutoffState }
 import NotFound from "./NotFound";
 import { RegionalLinks } from "./RegionalPages";
 import { LANGS, langsForState } from "../i18n/regional";
+import UpdatedOn from "../components/UpdatedOn";
 
 const fmt = (n: number | undefined) => (n === undefined ? "—" : n.toLocaleString("en-IN"));
 const catLabel = (c: string) => (c === "OPEN" ? "General (Open)" : c);
@@ -76,6 +77,7 @@ export const NeetCutoffIndex = () => {
       <RegionalLinks path="/neet-cutoff" langs={LANGS} />
       <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">From official counselling data</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Cutoff for Government MBBS: All India Quota & State-wise</h1>
+      <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">
         Closing ranks of every government MBBS college in the latest NEET counselling, category-wise, for the 15% All India Quota and each state's 85% quota. Pick your quota.
       </p>
@@ -134,6 +136,7 @@ export const NeetCutoffState = () => {
         <Link to="/neet-cutoff" className="hover:underline">NEET cutoff</Link> › <span>{name}</span>
       </nav>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">{name} NEET Cutoff {c.year} for Government MBBS Colleges</h1>
+      <UpdatedOn />
       <p className="text-ink/75 dark:text-paper/75 mt-3">
         In {name} NEET {c.year} counselling (up to round {c.round}), {c.colleges.length} government MBBS colleges filled seats. Cutoffs here are by {unitOf(c)}.
         {open && <> For the General (Open) category, the last government MBBS seat went at {c.rankType === "SCORE" ? "" : "rank "}<b>{fmt(open.last)}</b>{c.rankType === "SCORE" ? " marks" : ""}</>}
