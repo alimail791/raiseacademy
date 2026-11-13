@@ -154,6 +154,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "NEET chapter-wise weightage for Physics, Chemistry and Biology: expected questions and marks per chapter, ranked High, Medium and Low priority from previous year papers. Free, with PYQs for every chapter.",
   },
+  "/neet-most-missed-chapters": {
+    title: "Most-Missed NEET Chapters — Where Students Lose Marks (Real Data) | YNeet",
+    description:
+      "The NEET Physics, Chemistry and Biology chapters students get wrong most, ranked by real accuracy from YNeet mock tests and practice, plus the most-missed questions with answers. Free, updated regularly.",
+  },
   "/blog": {
     title: "NEET Preparation Blog — PYQs, Mock Tests, Cutoffs & Study Plans | YNeet",
     description:

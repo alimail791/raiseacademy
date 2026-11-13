@@ -76,6 +76,21 @@ export type PracticeData = {
   cutoffs?: CutoffState[];
   quizShorts?: import("../components/QuizShorts").QuizShort[];
   cutoff?: CutoffState | null;
+  missed?: MissedStats | null;
+};
+// Most-missed NEET chapters and questions (/neet-most-missed-chapters): totals
+// from YNeet mock-test and practice answers (GET /public/missed-stats).
+export type MissedChapter = { slug: string; subject: string; chapter: string; answers: number; accuracy: number; expectedQs: number | null };
+export type MissedQuestion = { slug: string; subject: string; chapter: string; chapterSlug: string; question: string; pyqYear: number | null; answers: number; accuracy: number };
+export type MissedStats = {
+  ready: boolean;
+  updatedAt: string;
+  totals: { answers: number; students: number; accuracy: number | null; chapters: number };
+  minChapterAnswers: number;
+  subjectAccuracy: Record<string, { answers: number; accuracy: number } | null>;
+  hardestChapters: MissedChapter[];
+  bySubject: Record<string, MissedChapter[]>;
+  missedQuestions: MissedQuestion[];
 };
 // NEET cutoff pages (/neet-cutoff, /neet-cutoff/<state>), from the College Predictor's data.
 export type CutoffRange = { colleges: number; toughest: number; last: number };
@@ -111,7 +126,7 @@ export function PracticeDataProvider({ value, children }: { value?: PracticeData
 
 export function useInitialPracticeData(): PracticeData {
   const ctx = useContext(Ctx);
-  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question || ctx.school || ctx.cutoffs || ctx.cutoff || ctx.quizShorts) return ctx;
+  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question || ctx.school || ctx.cutoffs || ctx.cutoff || ctx.quizShorts || ctx.missed) return ctx;
   if (typeof window !== "undefined") return (window as any).__PRACTICE_DATA__ || {};
   return {};
 }

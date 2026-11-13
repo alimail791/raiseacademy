@@ -162,6 +162,21 @@ try {
 } catch (err) {
   console.warn(`prerender: could not fetch quiz Shorts (${err.message}).`);
 }
+// Most-missed chapters (/neet-most-missed-chapters): YNeet's own answer
+// stats. Optional source: if it can't be fetched, or there isn't enough data
+// yet, the page still builds but is noindexed and left out of the sitemap.
+let missedStats = null;
+if (YNEET_API) {
+  try {
+    const res = await fetchRetry(`${YNEET_API}/public/missed-stats`);
+    if (!res.ok) throw new Error(`API responded ${res.status}`);
+    missedStats = await res.json();
+  } catch (err) {
+    console.warn(`prerender: could not fetch most-missed stats (${err.message}).`);
+  }
+}
+if (!missedStats?.ready && PAGE_META["/neet-most-missed-chapters"]) PAGE_META["/neet-most-missed-chapters"].noindex = true;
+console.log(`Most-missed page: ${missedStats?.ready ? `${missedStats.totals.chapters} chapters from ${missedStats.totals.answers} answers` : "not enough data yet (noindex)"}.`);
 const shortBySlug = new Map(quizShorts.filter((x) => x.questionSlug).map((x) => [x.questionSlug, { videoId: x.videoId, thumbnail: x.thumbnail || "", title: x.title || "" }]));
 
 // Each chapter page links to its question pages (how Google finds them besides the sitemap).
@@ -212,7 +227,8 @@ for (const route of routes) {
   const pData = (route === "/neet-practice" || route === "/neet-chapter-wise-weightage") && practiceSummaries.length ? { chapters: practiceSummaries }
     : route === "/neet-question-papers" && paperSummaries.length ? { papers: paperSummaries }
     : route === "/neet-cutoff" && cutoffStates.length ? { cutoffs: cutoffStates }
-    : route === "/neet-quiz-shorts" && quizShorts.length ? { quizShorts } : undefined;
+    : route === "/neet-quiz-shorts" && quizShorts.length ? { quizShorts }
+    : route === "/neet-most-missed-chapters" && missedStats ? { missed: missedStats } : undefined;
   // The English cutoff index and weightage page also list their language versions.
   const alt = route === "/neet-cutoff" || route === "/neet-chapter-wise-weightage" ? { ...metaFor(route), alternates: alternates(route, LANGS, SITE_ORIGIN) } : undefined;
   fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, alt, pData));

@@ -85,6 +85,7 @@ const NeetWeightage = () => {
         <h2 className="font-display text-2xl font-bold text-ink dark:text-paper">How this weightage is worked out</h2>
         <p>We start from the average number of questions each chapter gets in recent NEET papers, then blend in the share of each chapter in the previous year questions held in the YNeet question bank. Each subject is scaled so its chapters add up to the real paper: 45 Physics, 45 Chemistry and 90 Biology questions. Numbers are averages, so any one year can be a question or two higher or lower.</p>
         <h2 className="font-display text-2xl font-bold text-ink dark:text-paper pt-2">How to use it</h2>
+        <p>Weightage tells you what NEET asks; our <Link to="/neet-most-missed-chapters" className="text-rise-dark font-semibold underline">most-missed NEET chapters</Link> page shows where students actually lose marks, from real YNeet answers.</p>
         <p>Finish the High-priority chapters first: together they carry most of the marks. Then cover Medium chapters, and revise Low chapters from NCERT before the exam rather than skipping them, as they are often the easiest marks. Tap any chapter to practise its previous year questions free.</p>
         <p>Inside YNeet, the <b>Chapter Priority map</b> goes one step further: it combines this weightage with your own accuracy to show which chapters are costing you the most marks, and builds a day-by-day plan up to exam day.</p>
       </section>

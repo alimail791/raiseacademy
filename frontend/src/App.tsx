@@ -27,6 +27,7 @@ import PracticeChapter from "./pages/PracticeChapter";
 import QuestionPage from "./pages/QuestionPage";
 import SchoolHub from "./pages/SchoolHub";
 import NeetWeightage from "./pages/NeetWeightage";
+import NeetMostMissed from "./pages/NeetMostMissed";
 import PyqBooks from "./pages/PyqBooks";
 import NeetQuizShorts from "./pages/NeetQuizShorts";
 import { NeetCutoffIndex, NeetCutoffState } from "./pages/NeetCutoff";
@@ -121,6 +122,7 @@ function App() {
             <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
             <Route path="/neet-practice" element={<Practice />} />
             <Route path="/neet-chapter-wise-weightage" element={<NeetWeightage />} />
+            <Route path="/neet-most-missed-chapters" element={<NeetMostMissed />} />
             <Route path="/neet-pyq-books" element={<PyqBooks />} />
             <Route path="/neet-quiz-shorts" element={<NeetQuizShorts />} />
             <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />
@@ -201,6 +203,7 @@ function App() {
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
           <Route path="/neet-practice" element={<Practice />} />
             <Route path="/neet-chapter-wise-weightage" element={<NeetWeightage />} />
+            <Route path="/neet-most-missed-chapters" element={<NeetMostMissed />} />
             <Route path="/neet-pyq-books" element={<PyqBooks />} />
             <Route path="/neet-quiz-shorts" element={<NeetQuizShorts />} />
           <Route path="/neet-practice/:subject/:chapter" element={<PracticeChapter />} />

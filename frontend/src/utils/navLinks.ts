@@ -27,6 +27,7 @@ export const STUDY: NavGroup = {
   items: [
     { label: "NCERT Biology notes", short: "NCERT notes", to: "/ncert-notes" },
     { label: "Chapter-wise weightage", short: "Weightage", to: "/neet-chapter-wise-weightage" },
+    { label: "Most-missed chapters", short: "Most-missed", to: "/neet-most-missed-chapters" },
     { label: "Concept maps", to: "/neet-concept-maps" },
     { label: "NEET PYQ books (PDF)", short: "PYQ books", to: "/neet-pyq-books" },
     { label: "Daily quiz Shorts", short: "Quiz Shorts", to: "/neet-quiz-shorts" },
