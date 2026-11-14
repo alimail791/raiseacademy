@@ -4,7 +4,11 @@ import { ArrowRight, MessageCircle, Smartphone, Youtube } from "lucide-react";
 
 // The live Google Play listing; VITE_PLAY_STORE_URL on Railway can override it.
 const YOUTUBE_URL = "https://www.youtube.com/channel/UCj5krrV4r1n-ru9hWZDKOtA";
-const PLAY_URL: string = import.meta.env.VITE_PLAY_STORE_URL || "https://play.google.com/store/apps/details?id=in.yneet.app";
+// The Play Store button shows only when VITE_PLAY_STORE_URL is set (Railway
+// variable on the website service, then redeploy). Left unset while the app is
+// in closed testing: the public listing 404s until it's in production.
+// When live: VITE_PLAY_STORE_URL=https://play.google.com/store/apps/details?id=in.yneet.app
+const PLAY_URL: string = import.meta.env.VITE_PLAY_STORE_URL || "";
 import { SITE, gamesLink } from "../../utils/siteInfo";
 import { PRACTICE, STUDY, TOOLS } from "../../utils/navLinks";
 
