@@ -387,7 +387,11 @@ fs.writeFileSync(
       headers: [
         { source: "assets/**", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
         { source: "**/*.@(jpg|jpeg|png|webp|svg|ico)", headers: [{ key: "Cache-Control", value: "public, max-age=604800" }] },
-        { source: "**/*.html", headers: [{ key: "Cache-Control", value: "no-cache" }] },
+        // HTML: browsers always re-check (max-age=0); Railway's CDN may keep a
+        // copy for an hour (s-maxage) and serve it from a city near the visitor.
+        // The CDN's HTML copies are purged on every deploy, so a new deploy still
+        // shows at once. Pages are static prerendered HTML, the same for everyone.
+        { source: "**/*.html", headers: [{ key: "Cache-Control", value: "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400" }] },
       ],
       // Common misspellings of the free-trial landing page ("trail" for "trial") go to the real page.
       redirects: ["/neet-trail", "/free-trial", "/free-trail", "/trial", "/trail"].map((source) => ({ source, destination: "/neet-trial", type: 301 })),
