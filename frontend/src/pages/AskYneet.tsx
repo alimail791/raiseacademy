@@ -21,7 +21,7 @@ const AskYneet = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Every Friday</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Every Friday</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">Ask YNeet: NEET doubts, answered</h1>
       <p className="mt-3 text-ink/70 leading-relaxed">Real doubts from YNeet students in Physics, Chemistry and Biology, answered by our teachers in simple steps. A new one every Friday.</p>
 
@@ -37,13 +37,13 @@ const AskYneet = () => {
       </div>
 
       {error && <p className="mt-8 text-ink/70">Couldn't load the answers. Please try again later.</p>}
-      {!list && !error && <p className="mt-8 text-ink/50">Loading…</p>}
+      {!list && !error && <p className="mt-8 text-ink/70">Loading…</p>}
       {list && list.length === 0 && <p className="mt-8 text-ink/70">The first Ask YNeet answer comes out this Friday.</p>}
 
       <div className="mt-8 space-y-5">
         {list?.map((d) => (
           <article key={d.id} className="rounded-2xl border border-ink/10 bg-white p-6">
-            <p className="text-xs font-semibold uppercase tracking-wider text-gold-dark">
+            <p className="text-xs font-semibold uppercase tracking-wider text-gold-deep dark:text-gold">
               {d.subject} · {nice(d.featured_on)}{d.cls ? ` · asked by a Class ${d.cls.replace(/th$/, "")} student` : ""}
             </p>
             <h2 className="mt-2 font-display text-xl font-bold">{d.question}</h2>

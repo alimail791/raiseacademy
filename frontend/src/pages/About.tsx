@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Target, Eye, HeartHandshake } from "lucide-react";
 
 const values = [
@@ -10,7 +9,7 @@ const values = [
 const About = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">About Us</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">About Us</p>
       <h1 className="font-display text-4xl font-bold mt-2 max-w-2xl">
         We're completely dedicated to transforming the way you prepare for NEET.
       </h1>
@@ -24,18 +23,14 @@ const About = () => {
 
       <div className="grid sm:grid-cols-3 gap-6 mt-14">
         {values.map((v, i) => (
-          <motion.div
+          <div
             key={v.title}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08 }}
             className="p-6 rounded-2xl bg-ink text-paper"
           >
             <v.icon className="text-gold" size={26} />
             <h3 className="font-display font-semibold text-lg mt-4">{v.title}</h3>
             <p className="text-paper/70 text-sm mt-2 leading-relaxed">{v.desc}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
 

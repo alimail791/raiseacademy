@@ -60,7 +60,7 @@ const Navbar = () => {
             to="/courses"
             className={({ isActive }) =>
               `text-sm font-medium transition-colors ${
-                isActive ? "text-gold-dark" : "text-ink/70 dark:text-paper/70 hover:text-ink dark:hover:text-paper"
+                isActive ? "text-gold-deep dark:text-gold" : "text-ink/70 dark:text-paper/70 hover:text-ink dark:hover:text-paper"
               }`
             }
           >
@@ -81,7 +81,7 @@ const Navbar = () => {
                   <div className={`rounded-2xl border border-ink/10 bg-paper dark:bg-ink shadow-xl p-3 grid gap-2 ${m.groups.length > 1 ? "w-[30rem] grid-cols-2" : "w-64"}`}>
                     {m.groups.map((g) => (
                       <div key={g.title}>
-                        <p className="px-3 pt-1 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-gold-dark">{g.title}</p>
+                        <p className="px-3 pt-1 pb-1.5 text-[11px] font-bold uppercase tracking-wider text-gold-deep dark:text-gold">{g.title}</p>
                         {g.items.map((i) => (
                           <MenuLink key={i.label} item={i} onClick={() => setMenu(null)} />
                         ))}
@@ -99,7 +99,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `text-sm font-medium transition-colors ${
                   isActive
-                    ? "text-gold-dark"
+                    ? "text-gold-deep dark:text-gold"
                     : "text-ink/70 dark:text-paper/70 hover:text-ink dark:hover:text-paper"
                 }`
               }
@@ -218,13 +218,13 @@ const Navbar = () => {
             ))}
           </div>
 
-          <p className="pt-2 border-t border-ink/10 text-xs font-bold uppercase tracking-wider text-ink/50 dark:text-paper/50">Free · no login needed</p>
+          <p className="pt-2 border-t border-ink/10 text-xs font-bold uppercase tracking-wider text-ink/70 dark:text-paper/70">Free · no login needed</p>
           {FREE_GROUPS.map((g) => (
             <div key={g.title} className="rounded-xl border border-ink/10">
               <button
                 onClick={() => setSection((v) => (v === g.title ? null : g.title))}
                 aria-expanded={section === g.title}
-                className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold text-gold-dark"
+                className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold text-gold-deep dark:text-gold"
               >
                 {g.title}
                 <ChevronDown size={16} className={`transition-transform ${section === g.title ? "rotate-180" : ""}`} />

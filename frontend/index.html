@@ -18,12 +18,29 @@
         } catch (e) { return true; }
       })();
     </script>
+    <!--
+      Speed: the gtag.js and Meta Pixel scripts (~400 KB of JavaScript) used to
+      load straight away and compete with the page itself. Their command queues
+      (gtag(), fbq()) are still set up immediately, so no event is lost; only the
+      script download waits until the page has finished loading (or the visitor
+      first taps/scrolls, whichever comes first).
+    -->
+    <script>
+      window.__yneetLater = function (fn) {
+        var done = false, go = function () { if (done) return; done = true; fn(); };
+        var idle = function () { (window.requestIdleCallback || setTimeout)(go, { timeout: 3000 }); };
+        if (document.readyState === "complete") idle(); else window.addEventListener("load", function () { setTimeout(idle, 1500); });
+        ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (ev) { window.addEventListener(ev, go, { once: true, passive: true }); });
+      };
+    </script>
     <!-- Google tag (gtag.js) -->
     <script>
       if (!window.__yneetNoTrack) {
-      var gs = document.createElement("script"); gs.async = true;
-      gs.src = "https://www.googletagmanager.com/gtag/js?id=G-5DK417VC2B";
-      document.head.appendChild(gs);
+      window.__yneetLater(function () {
+        var gs = document.createElement("script"); gs.async = true;
+        gs.src = "https://www.googletagmanager.com/gtag/js?id=G-5DK417VC2B";
+        document.head.appendChild(gs);
+      });
       window.dataLayer = window.dataLayer || [];
       window.gtag = function(){dataLayer.push(arguments);};
       gtag('js', new Date());
@@ -38,8 +55,8 @@
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
       n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      t.src=v;f.__yneetLater(function(){s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)})}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1374244664586903');
       fbq('init', '3217602131769640'); // second dataset, owned by the Instagram ads account
@@ -78,12 +95,6 @@
     <meta name="twitter:description" content="NEET prep built around your class syllabus — mock tests, daily quizzes, practice questions, and more." />
     <meta name="twitter:image" content="https://www.yneet.in/logo.jpeg" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
 
     <!-- Structured data: helps Google understand this is an educational
          organization and can surface a richer search result (logo, sitelinks). -->

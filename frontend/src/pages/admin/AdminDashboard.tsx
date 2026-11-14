@@ -30,14 +30,14 @@ const AdminDashboard = () => {
   return (
     <div>
       <h1 className="font-display text-2xl font-bold">Admin Dashboard</h1>
-      <p className="text-ink/60 text-sm mt-1">Overview of everything happening at YNeet.</p>
+      <p className="text-ink/70 text-sm mt-1">Overview of everything happening at YNeet.</p>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
         {cards.map((c) => (
           <div key={c.label} className="p-6 rounded-2xl border border-ink/10">
             <c.icon className="text-rise-dark" size={22} />
             <p className="font-display text-3xl font-bold mt-3">{c.value}</p>
-            <p className="text-ink/60 text-sm mt-1">{c.label}</p>
+            <p className="text-ink/70 text-sm mt-1">{c.label}</p>
           </div>
         ))}
       </div>

@@ -27,7 +27,7 @@ const InstituteLogin = () => {
   return (
     <div className="max-w-md mx-auto px-4 py-20">
       <h1 className="font-display text-3xl font-bold text-center">Institute Login</h1>
-      <p className="text-center text-ink/60 text-sm mt-2">For schools and coaching centres with a YNeet student pack.</p>
+      <p className="text-center text-ink/70 text-sm mt-2">For schools and coaching centres with a YNeet student pack.</p>
       <form onSubmit={submit} className="mt-8 space-y-4 bg-white p-7 rounded-2xl border border-ink/10">
         <div>
           <label className="text-sm font-medium">Institute email</label>
@@ -46,7 +46,7 @@ const InstituteLogin = () => {
         <div className="text-sm text-center">
           <Link to="/institute/forgot" className="text-rise-dark hover:underline">Forgot password?</Link>
         </div>
-        <p className="text-xs text-ink/50 text-center pt-1">
+        <p className="text-xs text-ink/70 text-center pt-1">
           Want a student pack for your institute?{" "}
           <a className="text-rise-dark hover:underline" target="_blank" rel="noreferrer"
             href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent("Hi YNeet, I'm asking about the institute student pack.")}`}>

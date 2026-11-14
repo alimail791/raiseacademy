@@ -47,9 +47,9 @@ const OurOtherSites = () => (
   <section className="py-16 sm:py-20">
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <div className="max-w-2xl mb-10">
-        <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">More from Raise Academy</p>
+        <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">More from Raise Academy</p>
         <h2 className="font-display text-3xl sm:text-4xl font-bold mt-2">Tools for students, teachers and businesses</h2>
-        <p className="text-ink/60 mt-3">The team behind YNeet also builds these. Free to sign up on each.</p>
+        <p className="text-ink/70 mt-3">The team behind YNeet also builds these. Free to sign up on each.</p>
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {OTHER_SITES.map((s) => (
@@ -63,7 +63,7 @@ const OurOtherSites = () => (
           >
             <div className="flex items-center justify-between">
               <s.icon className="text-rise" size={28} />
-              <span className="text-xs font-semibold text-ink/50 bg-ink/5 px-2.5 py-1 rounded-full">{s.for}</span>
+              <span className="text-xs font-semibold text-ink/70 bg-ink/5 px-2.5 py-1 rounded-full">{s.for}</span>
             </div>
             <h3 className="font-display font-bold text-xl mt-4">{s.name}</h3>
             <p className="text-sm text-rise-dark font-medium">{s.domain}</p>

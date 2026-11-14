@@ -3,8 +3,8 @@
 // in English: that is how students search for them and how counselling lists them.
 import type { CutoffState } from "../practice/practiceData";
 
-export type Lang = "ta" | "hi" | "te" | "kn";
-export const LANGS: Lang[] = ["ta", "hi", "te", "kn"];
+import { LANGS, type Lang } from "./langs";
+export { LANGS, type Lang };
 export const LANG_NAME: Record<Lang, string> = { ta: "தமிழ்", hi: "हिन्दी", te: "తెలుగు", kn: "ಕನ್ನಡ" };
 // Link text shown on the English pages ("read this in …").
 export const READ_IN: Record<Lang, string> = { ta: "தமிழில் படிக்க", hi: "हिंदी में पढ़ें", te: "తెలుగులో చదవండి", kn: "ಕನ್ನಡದಲ್ಲಿ ಓದಿ" };

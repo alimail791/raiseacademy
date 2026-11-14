@@ -33,14 +33,14 @@ function Cta({ chapter, total, big }: { chapter: string; total: number; big?: bo
     <div className={`my-8 rounded-2xl ${big ? "bg-ink text-paper p-7" : "bg-gold/15 border border-gold/40 p-5"}`}>
       <p className={`font-display font-bold ${big ? "text-2xl" : "text-lg"}`}>Practise all {total} {chapter} questions with a timer</p>
       <ul className={`mt-3 grid sm:grid-cols-3 gap-2 text-sm ${big ? "text-paper/80" : "text-ink/75 dark:text-paper/75"}`}>
-        <li className="flex items-center gap-2"><Timer size={16} className="text-gold-dark" /> Timed chapter test</li>
-        <li className="flex items-center gap-2"><Target size={16} className="text-gold-dark" /> Score + weak topics</li>
-        <li className="flex items-center gap-2"><TrendingUp size={16} className="text-gold-dark" /> Full NEET mocks & rank</li>
+        <li className="flex items-center gap-2"><Timer size={16} className="text-gold-deep dark:text-gold" /> Timed chapter test</li>
+        <li className="flex items-center gap-2"><Target size={16} className="text-gold-deep dark:text-gold" /> Score + weak topics</li>
+        <li className="flex items-center gap-2"><TrendingUp size={16} className="text-gold-deep dark:text-gold" /> Full NEET mocks & rank</li>
       </ul>
       <Link to="/register" className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">
         Start free for 30 days <ArrowRight size={16} />
       </Link>
-      <p className={`text-xs mt-2 ${big ? "text-paper/60" : "text-ink/55 dark:text-paper/55"}`}>No payment, no card. Register in 2 minutes.</p>
+      <p className={`text-xs mt-2 ${big ? "text-paper/60" : "text-ink/70 dark:text-paper/70"}`}>No payment, no card. Register in 2 minutes.</p>
       <p className={`web-only text-sm mt-3 ${big ? "text-paper/75" : "text-ink/70 dark:text-paper/70"}`}>Chapter tests are part of the <Link to="/courses" className={`font-semibold underline ${big ? "text-gold" : "text-rise-dark"}`}>full NEET online course for Class 11, 12 and droppers</Link>.</p>
     </div>
   );
@@ -66,14 +66,14 @@ const PracticeChapter = () => {
   useEffect(() => { if (c) setMeta(c); }, [c]);
 
   if (c === null) return <NotFound />;
-  if (c === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/50">Loading questions…</div>;
+  if (c === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/70">Loading questions…</div>;
 
   const more = related.filter((r) => r.subject === c.subject && r.slug !== c.slug).slice(0, 12);
   const yrs = c.pyqYears ? `${c.pyqYears[0]}–${c.pyqYears[1]}` : "";
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <nav className="text-sm text-ink/55 dark:text-paper/55">
+      <nav className="text-sm text-ink/70 dark:text-paper/70">
         <Link to="/neet-practice" className="hover:underline">NEET Practice</Link> › <span>{c.subject}</span> › <span>{c.chapter}</span>
       </nav>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">NEET {c.chapter} PYQs & Practice Questions</h1>
@@ -86,17 +86,17 @@ const PracticeChapter = () => {
         return note ? <p className="text-sm mt-2"><Link to={`/ncert-notes/${note.slug}`} className="font-semibold text-rise-dark underline">Read the short NCERT notes for this chapter first</Link></p> : null;
       })()}
       {c.topics.length > 0 && (
-        <p className="text-sm text-ink/60 dark:text-paper/60 mt-2">Topics: {c.topics.join(" · ")}</p>
+        <p className="text-sm text-ink/70 dark:text-paper/70 mt-2">Topics: {c.topics.join(" · ")}</p>
       )}
 
       {c.weightage && (
         <section className="mt-6 p-5 rounded-2xl border border-gold/40 bg-gold/10">
           <h2 className="font-display text-xl font-bold">{c.chapter} weightage in NEET</h2>
           <dl className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-            <div><dt className="text-xs text-ink/55 dark:text-paper/55">Questions per paper</dt><dd className="font-display text-2xl font-bold">~{c.weightage.expectedQs}</dd></div>
-            <div><dt className="text-xs text-ink/55 dark:text-paper/55">Marks</dt><dd className="font-display text-2xl font-bold">~{c.weightage.marks}</dd></div>
-            <div><dt className="text-xs text-ink/55 dark:text-paper/55">Rank in {c.subject}</dt><dd className="font-display text-2xl font-bold">#{c.weightage.rank}<span className="text-sm font-normal">/{c.weightage.ofChapters}</span></dd></div>
-            <div><dt className="text-xs text-ink/55 dark:text-paper/55">Priority</dt><dd className={`font-display text-2xl font-bold ${c.weightage.priority === "High" ? "text-rise-dark" : ""}`}>{c.weightage.priority}</dd></div>
+            <div><dt className="text-xs text-ink/70 dark:text-paper/70">Questions per paper</dt><dd className="font-display text-2xl font-bold">~{c.weightage.expectedQs}</dd></div>
+            <div><dt className="text-xs text-ink/70 dark:text-paper/70">Marks</dt><dd className="font-display text-2xl font-bold">~{c.weightage.marks}</dd></div>
+            <div><dt className="text-xs text-ink/70 dark:text-paper/70">Rank in {c.subject}</dt><dd className="font-display text-2xl font-bold">#{c.weightage.rank}<span className="text-sm font-normal">/{c.weightage.ofChapters}</span></dd></div>
+            <div><dt className="text-xs text-ink/70 dark:text-paper/70">Priority</dt><dd className={`font-display text-2xl font-bold ${c.weightage.priority === "High" ? "text-rise-dark" : ""}`}>{c.weightage.priority}</dd></div>
           </dl>
           <p className="text-sm text-ink/70 dark:text-paper/70 mt-3">
             {c.chapter} (Class {c.weightage.classLevel.replace(/th/g, "")}) is worth about {c.weightage.expectedQs} of the {c.subject === "Biology" ? 90 : 45} {c.subject} questions in a NEET paper
@@ -108,7 +108,7 @@ const PracticeChapter = () => {
               <h3 className="font-semibold mt-4">Most-asked topics in {c.chapter} PYQs</h3>
               <ul className="mt-2 flex flex-wrap gap-2 text-sm">
                 {c.topTopics.map((t) => (
-                  <li key={t.topic} className="px-3 py-1 rounded-full bg-paper dark:bg-ink border border-ink/10 dark:border-paper/15">{t.topic} <span className="text-ink/50 dark:text-paper/50">· {t.count}</span></li>
+                  <li key={t.topic} className="px-3 py-1 rounded-full bg-paper dark:bg-ink border border-ink/10 dark:border-paper/15">{t.topic} <span className="text-ink/70 dark:text-paper/70">· {t.count}</span></li>
                 ))}
               </ul>
             </>
@@ -123,7 +123,7 @@ const PracticeChapter = () => {
           <Fragment key={q.id}>
             <li className="p-5 rounded-2xl border border-ink/10 dark:border-paper/15">
               <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
-                <span className="text-ink/50 dark:text-paper/50">Q{i + 1}</span>
+                <span className="text-ink/70 dark:text-paper/70">Q{i + 1}</span>
                 {q.pyqYear && <span className="px-2 py-0.5 rounded-full bg-gold/20 text-ink dark:text-paper">NEET {q.pyqYear}</span>}
                 {q.topic && <span className="text-ink/45 dark:text-paper/45">{q.topic}</span>}
               </div>

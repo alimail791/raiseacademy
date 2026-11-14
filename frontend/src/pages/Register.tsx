@@ -144,7 +144,7 @@ const Register = () => {
         <button type="button" onClick={() => setJunior(false)}
           className={`rounded-2xl border-2 p-4 text-left transition-colors ${!junior ? "border-gold bg-gold/10" : "border-ink/10 bg-white hover:border-gold/50"}`}>
           <p className="font-display font-bold">Class 9 – Dropper</p>
-          <p className="text-sm text-ink/60">{isAppMode() ? "30 days free · no payment needed" : "30 days free, then from ₹299/month"}</p>
+          <p className="text-sm text-ink/70">{isAppMode() ? "30 days free · no payment needed" : "30 days free, then from ₹299/month"}</p>
         </button>
       </div>
 
@@ -166,7 +166,7 @@ const Register = () => {
           <div>
             <label className="text-sm font-medium">Parent's WhatsApp number</label>
             <input className={inputClass} inputMode="numeric" value={jr.parentPhone} onChange={(e) => setJr({ ...jr, parentPhone: e.target.value })} placeholder="98765 43210" />
-            <p className="text-xs text-ink/50 mt-1">Parents get a free weekly progress report on WhatsApp.</p>
+            <p className="text-xs text-ink/70 mt-1">Parents get a free weekly progress report on WhatsApp.</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
@@ -216,9 +216,9 @@ const Register = () => {
               onChange={(e) => set("fullName", e.target.value)} placeholder="Riya Kumar" />
           </div>
           <div>
-            <label className="text-sm font-medium">WhatsApp number <span className="text-ink/50 font-normal">(for doubt support)</span></label>
+            <label className="text-sm font-medium">WhatsApp number <span className="text-ink/70 font-normal">(for doubt support)</span></label>
             <div className="mt-1 flex rounded-lg border border-ink/15 focus-within:border-gold overflow-hidden">
-              <span className="px-3 flex items-center bg-ink/5 text-ink/60 text-sm">+91</span>
+              <span className="px-3 flex items-center bg-ink/5 text-ink/70 text-sm">+91</span>
               <input className="flex-1 px-4 py-2.5 outline-none" type="tel" inputMode="numeric" autoComplete="tel-national" maxLength={10}
                 value={form.phone} onChange={(e) => set("phone", e.target.value.replace(/\D/g, "").slice(0, 10))} placeholder="98765 43210" />
             </div>
@@ -235,7 +235,7 @@ const Register = () => {
             </div>
           </div>
           <div>
-            <label className="text-sm font-medium">Email <span className="text-ink/50 font-normal">(you'll log in with this)</span></label>
+            <label className="text-sm font-medium">Email <span className="text-ink/70 font-normal">(you'll log in with this)</span></label>
             <input type="email" inputMode="email" autoComplete="email" className={inputClass} value={form.email}
               onChange={(e) => set("email", e.target.value.trim())} placeholder="name@gmail.com" />
           </div>
@@ -245,7 +245,7 @@ const Register = () => {
               <input className="flex-1 px-4 py-2.5 outline-none" type={showPw ? "text" : "password"} autoComplete="new-password"
                 value={form.password} onChange={(e) => set("password", e.target.value)} placeholder="At least 6 characters" />
               <button type="button" onClick={() => setShowPw((v) => !v)} aria-label={showPw ? "Hide password" : "Show password"}
-                className="px-3 text-ink/50 hover:text-ink">{showPw ? <EyeOff size={18} /> : <Eye size={18} />}</button>
+                className="px-3 text-ink/70 hover:text-ink">{showPw ? <EyeOff size={18} /> : <Eye size={18} />}</button>
             </div>
           </div>
 
@@ -254,8 +254,8 @@ const Register = () => {
             className="w-full bg-gold text-ink font-bold text-lg py-3.5 rounded-full hover:brightness-95 disabled:opacity-60">
             {loading ? "Creating account…" : "Start My Free 30 Days →"}
           </button>
-          <p className="text-center text-xs text-ink/55">Confirm your WhatsApp inside YNeet within 3 days (takes 10 seconds).</p>
-          <p className="text-center text-xs text-ink/55">By signing up you agree to our <Link to="/terms" className="underline">Terms</Link> and <Link to="/privacy" className="underline">Privacy policy</Link>.</p>
+          <p className="text-center text-xs text-ink/70">Confirm your WhatsApp inside YNeet within 3 days (takes 10 seconds).</p>
+          <p className="text-center text-xs text-ink/70">By signing up you agree to our <Link to="/terms" className="underline">Terms</Link> and <Link to="/privacy" className="underline">Privacy policy</Link>.</p>
         </div>
       )}
     </div>

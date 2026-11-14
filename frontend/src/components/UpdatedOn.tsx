@@ -17,7 +17,7 @@ const fmt = (iso: string) =>
 
 const UpdatedOn = ({ className = "" }: { className?: string }) => {
   const { pathname } = useLocation();
-  const cls = `text-sm text-ink/50 dark:text-paper/50 mt-2 ${className}`.trim();
+  const cls = `text-sm text-ink/70 dark:text-paper/70 mt-2 ${className}`.trim();
   if (typeof document === "undefined") {
     return <p className={cls} data-yn-updated="">Updated {UPDATED_PLACEHOLDER}</p>;
   }

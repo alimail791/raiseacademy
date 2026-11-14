@@ -13,18 +13,22 @@ export default {
         gold: {
           DEFAULT: "#F2A93B",
           dark: "#D98E1F",
+          // Gold for small text on white / cream: #D98E1F only reaches 2.7:1 there.
+          deep: "#9A5B00",
           light: "#FCE3B6",
         },
         rise: {
           DEFAULT: "#12A594",
-          dark: "#0C8577",
+          // Was #0C8577 (4.3:1 on the page background); this passes 4.5:1 for small text.
+          dark: "#0A7468",
           light: "#D6F3EF",
         },
         paper: "#FBFAF7",
       },
       fontFamily: {
-        display: ["'Space Grotesk'", "sans-serif"],
-        body: ["'Inter'", "sans-serif"],
+        // "… Fallback" = metric-matched local font while the real one loads (src/fonts.css).
+        display: ["'Space Grotesk'", "'Space Grotesk Fallback'", "sans-serif"],
+        body: ["'Inter'", "'Inter Fallback'", "sans-serif"],
       },
       backgroundImage: {
         "rise-line": "linear-gradient(135deg, #14213D 0%, #1F3059 60%, #12A594 100%)",

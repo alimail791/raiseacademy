@@ -42,7 +42,7 @@ export default function Help() {
       <div className="text-center mb-10">
         <p className="uppercase tracking-widest text-gold text-sm font-semibold mb-2">Help</p>
         <h1 className="font-display text-3xl sm:text-4xl font-bold mb-3">Frequently Asked Questions</h1>
-        <p className="text-ink/60">Can't find what you need? Message us directly below.</p>
+        <p className="text-ink/70">Can't find what you need? Message us directly below.</p>
       </div>
 
       <div className="bg-rise-line text-paper rounded-2xl p-6 mb-8 flex items-center justify-between flex-wrap gap-4">

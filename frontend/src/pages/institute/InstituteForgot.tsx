@@ -45,7 +45,7 @@ const InstituteForgot = () => {
       <h1 className="font-display text-3xl font-bold text-center">Reset Institute Password</h1>
       {step === "email" ? (
         <form onSubmit={sendCode} className="mt-8 space-y-4 bg-white p-7 rounded-2xl border border-ink/10">
-          <p className="text-sm text-ink/60">Enter your institute's login email. We'll email you a 6-digit code.</p>
+          <p className="text-sm text-ink/70">Enter your institute's login email. We'll email you a 6-digit code.</p>
           <div>
             <label className="text-sm font-medium">Institute email</label>
             <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className={input} />
@@ -57,7 +57,7 @@ const InstituteForgot = () => {
         </form>
       ) : (
         <form onSubmit={reset} className="mt-8 space-y-4 bg-white p-7 rounded-2xl border border-ink/10">
-          <p className="text-sm text-ink/60">Check <b>{email}</b> for the 6-digit code (also check Spam). It is valid for 10 minutes.</p>
+          <p className="text-sm text-ink/70">Check <b>{email}</b> for the 6-digit code (also check Spam). It is valid for 10 minutes.</p>
           <div>
             <label className="text-sm font-medium">6-digit code</label>
             <input required inputMode="numeric" maxLength={6} value={code} onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))} className={`${input} tracking-[0.4em] text-lg`} />

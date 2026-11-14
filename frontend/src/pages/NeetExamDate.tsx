@@ -23,7 +23,7 @@ const FAQS = [
 
 const NeetExamDate = () => (
   <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-    <p className="text-sm text-ink/55 dark:text-paper/55">Last checked: {LAST_CHECKED}</p>
+    <p className="text-sm text-ink/70 dark:text-paper/70">Last checked: {LAST_CHECKED}</p>
     <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-2">NEET 2027 Exam Date, Pattern and Marking Scheme</h1>
     <UpdatedOn />
     <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">What is confirmed for NEET UG 2027, what is not yet, and the exam pattern from the latest NEET.</p>
@@ -35,17 +35,17 @@ const NeetExamDate = () => (
         <p className="text-sm text-paper/70 mt-1">Likely early May 2027</p>
       </div>
       <div className="rounded-2xl border border-ink/10 dark:border-paper/15 p-5">
-        <p className="text-sm text-ink/60 dark:text-paper/60">Registration</p>
+        <p className="text-sm text-ink/70 dark:text-paper/70">Registration</p>
         <p className="font-display text-2xl font-bold mt-1">Not announced yet</p>
-        <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">Official site: neet.nta.nic.in</p>
+        <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">Official site: neet.nta.nic.in</p>
       </div>
       <div className="rounded-2xl border border-ink/10 dark:border-paper/15 p-5">
-        <p className="text-sm text-ink/60 dark:text-paper/60">Mode</p>
+        <p className="text-sm text-ink/70 dark:text-paper/70">Mode</p>
         <p className="font-display text-2xl font-bold mt-1">To be confirmed</p>
-        <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">NEET 2026 was pen and paper</p>
+        <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">NEET 2026 was pen and paper</p>
       </div>
     </div>
-    <p className="text-sm text-ink/60 dark:text-paper/60 mt-3">You may see exact dates on other websites. Until NTA publishes the NEET 2027 information bulletin, treat them as unofficial.</p>
+    <p className="text-sm text-ink/70 dark:text-paper/70 mt-3">You may see exact dates on other websites. Until NTA publishes the NEET 2027 information bulletin, treat them as unofficial.</p>
 
     <h2 className="font-display text-2xl font-bold mt-10">NEET exam pattern (as in NEET 2026)</h2>
     <div className="mt-4 overflow-x-auto rounded-2xl border border-ink/10 dark:border-paper/15">

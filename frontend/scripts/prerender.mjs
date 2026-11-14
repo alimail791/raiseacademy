@@ -17,7 +17,11 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const ssrEntry = path.join(root, "dist-ssr", "entry-server.js");
 
-const { render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, schoolHubMeta, cutoffMeta, LANGS, CUTOFF_STATES, langsForState, regionalCutoffMeta, regionalCutoffIndexMeta, regionalWeightageMeta, alternates, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
+const { preloadAllPages, render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, schoolHubMeta, cutoffMeta, LANGS, CUTOFF_STATES, langsForState, regionalCutoffMeta, regionalCutoffIndexMeta, regionalWeightageMeta, alternates, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
+
+// Pages are code-split (src/lazyPage.tsx): load them all so renderToString
+// renders every page synchronously instead of a Suspense fallback.
+await preloadAllPages();
 
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
@@ -377,6 +381,14 @@ fs.writeFileSync(
       cleanUrls: true,
       trailingSlash: false,
       directoryListing: false,
+      // Speed: Vite's files in /assets have a content hash in their name, so a
+      // changed file always gets a new URL: browsers may keep them for a year.
+      // HTML must always be re-checked so visitors get the new deploy.
+      headers: [
+        { source: "assets/**", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
+        { source: "**/*.@(jpg|jpeg|png|webp|svg|ico)", headers: [{ key: "Cache-Control", value: "public, max-age=604800" }] },
+        { source: "**/*.html", headers: [{ key: "Cache-Control", value: "no-cache" }] },
+      ],
       // Common misspellings of the free-trial landing page ("trail" for "trial") go to the real page.
       redirects: ["/neet-trail", "/free-trial", "/free-trail", "/trial", "/trail"].map((source) => ({ source, destination: "/neet-trial", type: 301 })),
       rewrites: [

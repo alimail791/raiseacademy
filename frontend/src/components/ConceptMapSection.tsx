@@ -22,7 +22,7 @@ const ConceptMapSection = () => {
     <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-14 pb-2">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Concept Map Monday · Free</p>
+          <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Concept Map Monday · Free</p>
           <h2 className="font-display text-2xl sm:text-3xl font-bold mt-1">This week's concept map: {map.data.title}</h2>
         </div>
         <Link to={`/neet-concept-maps?map=${map.id}`} className="inline-flex items-center gap-1 font-semibold text-rise-dark">

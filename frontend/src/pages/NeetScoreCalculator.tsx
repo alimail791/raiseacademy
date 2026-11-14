@@ -153,7 +153,7 @@ export default function NeetScoreCalculator() {
             <div className="mt-3">
               <textarea value={respText} onChange={(e) => onType(e.target.value)} rows={5} className="cp-in font-mono text-sm"
                 placeholder="Your answers in order, Q1 to Q180. Use 1-4 (or A-D) and - for questions you skipped. Spaces are ignored. Example: 3 1 - 4 2 2 ..." />
-              <p className="text-xs text-ink/60 dark:text-paper/60 mt-1">Tip: type in groups of 5 with a space, e.g. "31-42 2134- ...", so it's easy to check.</p>
+              <p className="text-xs text-ink/70 dark:text-paper/70 mt-1">Tip: type in groups of 5 with a space, e.g. "31-42 2134- ...", so it's easy to check.</p>
             </div>
           ) : (
             <div className="mt-3 space-y-2">
@@ -162,14 +162,14 @@ export default function NeetScoreCalculator() {
                 return (
                   <div key={s.name} className="rounded-2xl border border-ink/10 dark:border-paper/15 overflow-hidden">
                     <button onClick={() => setOpenSec(openSec === si ? -1 : si)} className="w-full flex justify-between items-center p-4 font-semibold">
-                      <span>{s.name} <span className="text-ink/50 dark:text-paper/50 font-normal">Q{s.from}–{s.to}</span></span>
+                      <span>{s.name} <span className="text-ink/70 dark:text-paper/70 font-normal">Q{s.from}–{s.to}</span></span>
                       <span className="text-sm">{done}/{s.to - s.from + 1} {openSec === si ? "▴" : "▾"}</span>
                     </button>
                     {openSec === si && (
                       <div className="px-3 pb-3 grid grid-cols-1 sm:grid-cols-2 gap-x-6">
                         {Array.from({ length: s.to - s.from + 1 }, (_, i) => s.from - 1 + i).map((q) => (
                           <div key={q} className="flex items-center gap-2 py-1 border-b border-ink/5 dark:border-paper/5">
-                            <span className="w-10 text-sm text-ink/60 dark:text-paper/60">Q{q + 1}</span>
+                            <span className="w-10 text-sm text-ink/70 dark:text-paper/70">Q{q + 1}</span>
                             {OPT.map((o, oi) => (
                               <button key={o} onClick={() => setAnswer(q, oi + 1)} aria-label={`Q${q + 1} option ${o}`}
                                 className={`w-9 h-9 rounded-full text-sm font-semibold border ${resp[q] === oi + 1 ? "bg-ink text-paper border-ink" : "border-ink/20 dark:border-paper/25"}`}>{o}</button>
@@ -181,7 +181,7 @@ export default function NeetScoreCalculator() {
                   </div>
                 );
               })}
-              <p className="text-xs text-ink/60 dark:text-paper/60">Tap an option again to clear it. Your answers are saved in this browser.</p>
+              <p className="text-xs text-ink/70 dark:text-paper/70">Tap an option again to clear it. Your answers are saved in this browser.</p>
             </div>
           )}
         </>
@@ -192,7 +192,7 @@ export default function NeetScoreCalculator() {
             <span className="font-semibold">Section</span><span className="font-semibold">Correct</span><span className="font-semibold">Wrong</span>
             {counts.map((c, i) => (
               <div key={c.name} className="contents">
-                <span>{c.name} <span className="text-ink/50 dark:text-paper/50">/ {c.total}</span></span>
+                <span>{c.name} <span className="text-ink/70 dark:text-paper/70">/ {c.total}</span></span>
                 {(["correct", "wrong"] as const).map((f) => (
                   <input key={f} inputMode="numeric" className="cp-in !mt-0 !px-3" value={c[f]}
                     onChange={(e) => { const v = e.target.value.replace(/\D/g, "").slice(0, 2); setCounts((cs) => cs.map((x, j) => (j === i ? { ...x, [f]: v } : x))); setResult(null); }} />
@@ -208,7 +208,7 @@ export default function NeetScoreCalculator() {
         className="mt-6 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-7 py-3.5 rounded-full disabled:opacity-50">
         <Calculator size={18} /> Calculate my score
       </button>
-      {mode === "key" && !key && <p className="text-sm text-ink/60 dark:text-paper/60 mt-2">Add an answer key first (step 1).</p>}
+      {mode === "key" && !key && <p className="text-sm text-ink/70 dark:text-paper/70 mt-2">Add an answer key first (step 1).</p>}
 
       {/* Result */}
       {result && rank && (
@@ -249,7 +249,7 @@ export default function NeetScoreCalculator() {
                 </div>
               </div>
             )}
-            <p className="text-xs text-ink/55 dark:text-paper/55 mt-3">Estimate from official Re-NEET 2026 and NEET 2025 results. Your real rank comes with the NTA result.</p>
+            <p className="text-xs text-ink/70 dark:text-paper/70 mt-3">Estimate from official Re-NEET 2026 and NEET 2025 results. Your real rank comes with the NTA result.</p>
           </div>
 
           {rank.normal != null && (

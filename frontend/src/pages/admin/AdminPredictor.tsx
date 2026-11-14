@@ -64,13 +64,13 @@ const AdminPredictor = () => {
     <div className="space-y-8">
       <div>
         <h1 className="font-display text-2xl font-bold">NEET College Predictor</h1>
-        <p className="text-sm text-ink/60 mt-1">Public page: <a className="underline" href="/neet-college-predictor" target="_blank" rel="noreferrer">/neet-college-predictor</a></p>
+        <p className="text-sm text-ink/70 mt-1">Public page: <a className="underline" href="/neet-college-predictor" target="_blank" rel="noreferrer">/neet-college-predictor</a></p>
       </div>
 
       {sum && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[["Leads", sum.leads.total], ["WhatsApp confirmed", sum.leads.verified], ["Reports sold", sum.leads.paid], ["Report revenue", `₹${sum.leads.revenue.toLocaleString("en-IN")}`]].map(([k, v]) => (
-            <div key={k as string} className="rounded-xl border border-ink/10 bg-white p-4"><p className="text-xs text-ink/55">{k}</p><p className="text-2xl font-bold">{v}</p></div>
+            <div key={k as string} className="rounded-xl border border-ink/10 bg-white p-4"><p className="text-xs text-ink/70">{k}</p><p className="text-2xl font-bold">{v}</p></div>
           ))}
         </div>
       )}
@@ -78,9 +78,9 @@ const AdminPredictor = () => {
       {/* Data loaded */}
       <section className="rounded-2xl border border-ink/10 bg-white p-5">
         <h2 className="font-display text-lg font-bold">Data loaded</h2>
-        <p className="text-xs text-ink/55 mt-1">The predictor always uses the latest year and highest round loaded for each quota.</p>
+        <p className="text-xs text-ink/70 mt-1">The predictor always uses the latest year and highest round loaded for each quota.</p>
         <table className="w-full text-sm mt-3">
-          <thead><tr className="text-left text-xs text-ink/55 border-b"><th className="py-1">Quota</th><th>Year</th><th>Round</th><th>Course</th><th>Rows</th><th /></tr></thead>
+          <thead><tr className="text-left text-xs text-ink/70 border-b"><th className="py-1">Quota</th><th>Year</th><th>Round</th><th>Course</th><th>Rows</th><th /></tr></thead>
           <tbody>
             {Object.entries(quotas).map(([code, name]) => {
               const rows = sum?.datasets.filter((d) => d.quota === code) || [];
@@ -130,7 +130,7 @@ const AdminPredictor = () => {
         </div>
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <input type="file" accept=".csv,text/csv" onChange={(e) => pick(e.target.files?.[0])} />
-          {fileName && <span className="text-xs text-ink/55">{fileName} · {(csv.length / 1024).toFixed(0)} KB</span>}
+          {fileName && <span className="text-xs text-ink/70">{fileName} · {(csv.length / 1024).toFixed(0)} KB</span>}
           <button disabled={busy || !csv} onClick={() => send(true)} className="px-4 py-2 rounded-lg border font-semibold disabled:opacity-50">Check file</button>
           <button disabled={busy || !preview} onClick={() => send(false)} className="px-4 py-2 rounded-lg bg-ink text-paper font-semibold disabled:opacity-50">Import (replaces this quota/year/round)</button>
         </div>
@@ -140,7 +140,7 @@ const AdminPredictor = () => {
             <p className="mt-1">Courses: {preview.courses.join(", ")} · Categories: {preview.categories.join(", ")}</p>
             {preview.seatTypes.length > 0 && <p className="mt-1">Seat types: {preview.seatTypes.join(", ")}</p>}
             <table className="w-full text-xs mt-3">
-              <thead><tr className="text-left text-ink/55"><th>College</th><th>Seat type</th><th>Category</th><th>Open</th><th>Close</th><th>Open to all</th></tr></thead>
+              <thead><tr className="text-left text-ink/70"><th>College</th><th>Seat type</th><th>Category</th><th>Open</th><th>Close</th><th>Open to all</th></tr></thead>
               <tbody>{preview.sample.map((r, i) => <tr key={i}><td>{r.college}</td><td>{r.seatType}</td><td>{r.category}</td><td>{r.openingRank}</td><td>{r.closingRank}</td><td>{r.openToAll ? "yes" : "no"}</td></tr>)}</tbody>
             </table>
           </div>
@@ -155,7 +155,7 @@ const AdminPredictor = () => {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm mt-3">
-            <thead><tr className="text-left text-xs text-ink/55 border-b"><th className="py-1">Date</th><th>Name</th><th>WhatsApp</th><th>AIR</th><th>Cat.</th><th>State</th><th>Course</th><th>Searches</th><th>Paid</th></tr></thead>
+            <thead><tr className="text-left text-xs text-ink/70 border-b"><th className="py-1">Date</th><th>Name</th><th>WhatsApp</th><th>AIR</th><th>Cat.</th><th>State</th><th>Course</th><th>Searches</th><th>Paid</th></tr></thead>
             <tbody>
               {leads.slice(0, 100).map((l) => (
                 <tr key={l._id} className="border-b border-ink/5">

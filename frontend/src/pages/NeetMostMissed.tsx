@@ -27,7 +27,7 @@ const ChapterTable = ({ rows, showSubject }: { rows: MissedChapter[]; showSubjec
       <tbody>
         {rows.map((c, i) => (
           <tr key={c.slug} className="border-b border-ink/5 dark:border-paper/10">
-            <td className="py-2 pr-2 text-ink/50 dark:text-paper/50">{i + 1}</td>
+            <td className="py-2 pr-2 text-ink/70 dark:text-paper/70">{i + 1}</td>
             <td className="py-2 pr-2"><Link to={`/neet-practice/${c.slug}`} className="text-rise-dark font-semibold hover:underline">{c.chapter}</Link></td>
             {showSubject && <td className="py-2 pr-2">{c.subject}</td>}
             <td className="py-2 pr-2 text-right font-semibold">{c.accuracy}%</td>
@@ -79,11 +79,11 @@ const NeetMostMissed = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free · YNeet student data</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free · YNeet student data</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">Most-Missed NEET Chapters: Where Students Lose Marks</h1>
       <UpdatedOn />
 
-      {data === undefined && <p className="mt-10 text-ink/50">Loading the numbers…</p>}
+      {data === undefined && <p className="mt-10 text-ink/70">Loading the numbers…</p>}
 
       {data !== undefined && !data?.ready && (
         <div className="mt-6 max-w-3xl space-y-3 text-ink/80 dark:text-paper/80">
@@ -105,9 +105,9 @@ const NeetMostMissed = () => {
               const a = data.subjectAccuracy?.[s];
               return a ? (
                 <div key={s} className="p-4 rounded-2xl bg-gold/15 border border-gold/40">
-                  <p className="text-sm text-ink/60 dark:text-paper/60">{s} accuracy</p>
+                  <p className="text-sm text-ink/70 dark:text-paper/70">{s} accuracy</p>
                   <p className="font-display text-3xl font-bold">{a.accuracy}%</p>
-                  <p className="text-xs text-ink/50 dark:text-paper/50">{n(a.answers)} answers</p>
+                  <p className="text-xs text-ink/70 dark:text-paper/70">{n(a.answers)} answers</p>
                 </div>
               ) : null;
             })}
@@ -115,7 +115,7 @@ const NeetMostMissed = () => {
 
           <section className="mt-10">
             <h2 className="font-display text-2xl font-bold">Top {data.hardestChapters.length} most-missed NEET chapters</h2>
-            <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">Lowest accuracy first. Weightage = expected questions in a NEET paper.</p>
+            <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">Lowest accuracy first. Weightage = expected questions in a NEET paper.</p>
             <ChapterTable rows={data.hardestChapters} showSubject />
           </section>
 
@@ -129,12 +129,12 @@ const NeetMostMissed = () => {
           {data.missedQuestions.length > 0 && (
             <section className="mt-10">
               <h2 className="font-display text-2xl font-bold">Most-missed NEET questions</h2>
-              <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">Tap a question to try it, with the answer and explanation.</p>
+              <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">Tap a question to try it, with the answer and explanation.</p>
               <ol className="mt-3 space-y-3">
                 {data.missedQuestions.map((q) => (
                   <li key={q.slug} className="p-4 rounded-xl border border-ink/10 dark:border-paper/15">
                     <Link to={`/neet-question/${q.slug}`} className="font-semibold text-rise-dark hover:underline">{q.question}{q.question.length >= 160 ? "…" : ""}</Link>
-                    <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">
+                    <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">
                       {q.subject} · <Link to={`/neet-practice/${q.chapterSlug}`} className="hover:underline">{q.chapter}</Link>
                       {q.pyqYear && <> · NEET {q.pyqYear}</>} · <b>{q.accuracy}%</b> correct of {n(q.answers)} answers
                     </p>

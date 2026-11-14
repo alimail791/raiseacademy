@@ -128,7 +128,7 @@ const AdminInstitutes = () => {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="font-display text-2xl font-bold">Institutes</h1>
-          <p className="text-sm text-ink/60">Bulk student packs — yearly or custom months. {list.length} institutes · {totalUsed}/{totalSeats} seats used · {inr(revenue)} received</p>
+          <p className="text-sm text-ink/70">Bulk student packs — yearly or custom months. {list.length} institutes · {totalUsed}/{totalSeats} seats used · {inr(revenue)} received</p>
         </div>
         <button onClick={() => setShowForm(!showForm)} className="flex items-center gap-2 text-sm font-semibold bg-gold text-ink px-4 py-2 rounded-full"><Plus size={16} /> New institute</button>
       </div>
@@ -169,17 +169,17 @@ const AdminInstitutes = () => {
       )}
 
       <div className="mt-6 space-y-3">
-        {loading && <p className="text-ink/50 text-sm">Loading…</p>}
-        {!loading && list.length === 0 && <p className="text-ink/50 text-sm">No institutes yet. Create one after the payment arrives.</p>}
+        {loading && <p className="text-ink/70 text-sm">Loading…</p>}
+        {!loading && list.length === 0 && <p className="text-ink/70 text-sm">No institutes yet. Create one after the payment arrives.</p>}
         {list.map((i) => (
           <div key={i.id} className="bg-white rounded-2xl border border-ink/10 p-4">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="font-semibold">{i.name} <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${i.live ? "bg-rise/15 text-rise-dark" : "bg-red-100 text-red-700"}`}>{i.status === "suspended" ? "Suspended" : i.live ? "Active" : "Expired"}</span>
-                  <span className={`ml-1.5 text-xs px-2 py-0.5 rounded-full ${i.billing === "pilot" ? "bg-gold/20 text-gold-dark" : i.billing === "monthly" ? "bg-purple-100 text-purple-800" : "bg-ink/5 text-ink/60"}`}>{i.billing === "pilot" ? "Free pilot" : i.billing === "monthly" ? "Monthly · online" : "Yearly"}</span></p>
-                <p className="text-sm text-ink/60">{[i.contactName, i.email, i.phone, i.city].filter(Boolean).join(" · ")}</p>
+                  <span className={`ml-1.5 text-xs px-2 py-0.5 rounded-full ${i.billing === "pilot" ? "bg-gold/20 text-gold-deep dark:text-gold" : i.billing === "monthly" ? "bg-purple-100 text-purple-800" : "bg-ink/5 text-ink/70"}`}>{i.billing === "pilot" ? "Free pilot" : i.billing === "monthly" ? "Monthly · online" : "Yearly"}</span></p>
+                <p className="text-sm text-ink/70">{[i.contactName, i.email, i.phone, i.city].filter(Boolean).join(" · ")}</p>
                 <p className="text-sm mt-1"><b>{i.seatsUsed}/{i.seats}</b> seats · valid till <b>{fmt(i.endDate)}</b> · {inr(i.amountPaid)}{i.paymentRef ? ` · ref ${i.paymentRef}` : ""}</p>
-                <p className="text-xs text-ink/50 mt-0.5">Referral code {i.referralCode || "—"} · <button className="underline" onClick={() => { const v = window.prompt(`40% discount credits for ${i.name} (use one when you bill their next renewal offline):`, String(i.referralCredits || 0)); if (v !== null) update(i, { referralCredits: Number(v) || 0 }, "Credits updated"); }}>{i.referralCredits || 0} × 40% credit{(i.referralCredits || 0) === 1 ? "" : "s"}</button></p>
+                <p className="text-xs text-ink/70 mt-0.5">Referral code {i.referralCode || "—"} · <button className="underline" onClick={() => { const v = window.prompt(`40% discount credits for ${i.name} (use one when you bill their next renewal offline):`, String(i.referralCredits || 0)); if (v !== null) update(i, { referralCredits: Number(v) || 0 }, "Credits updated"); }}>{i.referralCredits || 0} × 40% credit{(i.referralCredits || 0) === 1 ? "" : "s"}</button></p>
               </div>
               <div className="flex flex-wrap gap-1">
                 <button onClick={() => toggleStudents(i)} title="Students" className="p-2 rounded-lg hover:bg-ink/5"><Users size={16} /></button>
@@ -197,9 +197,9 @@ const AdminInstitutes = () => {
             </div>
             {open === i.id && (
               <div className="mt-3 border-t border-ink/10 pt-3 text-sm">
-                {students.length === 0 ? <p className="text-ink/50">No students added yet.</p> : (
+                {students.length === 0 ? <p className="text-ink/70">No students added yet.</p> : (
                   <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1">
-                    {students.map((s) => <li key={s.id}>{s.fullName} <span className="text-ink/50">· {s.email} · {s.currentClass || "—"}</span></li>)}
+                    {students.map((s) => <li key={s.id}>{s.fullName} <span className="text-ink/70">· {s.email} · {s.currentClass || "—"}</span></li>)}
                   </ul>
                 )}
               </div>

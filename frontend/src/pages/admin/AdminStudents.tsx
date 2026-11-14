@@ -85,10 +85,10 @@ const AdminStudents = () => {
           </thead>
           <tbody>
             {loading && (
-              <tr><td colSpan={COLS} className="px-4 py-6 text-center text-ink/50">Loading…</td></tr>
+              <tr><td colSpan={COLS} className="px-4 py-6 text-center text-ink/70">Loading…</td></tr>
             )}
             {!loading && students.length === 0 && (
-              <tr><td colSpan={COLS} className="px-4 py-6 text-center text-ink/50">No registrations yet.</td></tr>
+              <tr><td colSpan={COLS} className="px-4 py-6 text-center text-ink/70">No registrations yet.</td></tr>
             )}
             {students.map((s) => (
               <tr key={s._id} className="border-t border-ink/10">

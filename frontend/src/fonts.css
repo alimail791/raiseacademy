@@ -1,0 +1,41 @@
+/* Self-hosted fonts (were loaded from Google Fonts, a render-blocking request
+   to two other domains). One variable file per family covers every weight.
+   Latin only: the few other characters (₹, accented letters) use the fallback
+   font, which is how they already looked for the first moments of each visit.
+
+   "… Fallback" faces are Arial/Roboto scaled to the same metrics, so text
+   doesn't jump when the real font arrives (was the page's only layout shift).
+   Numbers computed from the font files (size-adjust = average glyph width
+   ratio vs Arial/Liberation Sans). */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("./assets/fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 700;
+  src: url("./assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial"), local("Roboto"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 107.34%;
+  ascent-override: 90.25%;
+  descent-override: 22.47%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Space Grotesk Fallback";
+  src: local("Arial"), local("Roboto"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 110.99%;
+  ascent-override: 88.66%;
+  descent-override: 26.31%;
+  line-gap-override: 0%;
+}

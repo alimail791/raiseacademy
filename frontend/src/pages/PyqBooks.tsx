@@ -54,7 +54,7 @@ function NumberBox({ onDone, reason }: { onDone: (token: string) => void; reason
   };
   return (
     <div id="number" className="rounded-2xl border border-gold/50 bg-gold/10 p-5 scroll-mt-24">
-      <p className="font-display text-lg font-bold flex items-center gap-2"><Smartphone size={20} className="text-gold-dark" /> Confirm your WhatsApp number</p>
+      <p className="font-display text-lg font-bold flex items-center gap-2"><Smartphone size={20} className="text-gold-deep dark:text-gold" /> Confirm your WhatsApp number</p>
       <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">{reason}</p>
       {!sent ? (
         <div className="mt-3 grid sm:grid-cols-[1fr_1fr_auto] gap-2">
@@ -66,7 +66,7 @@ function NumberBox({ onDone, reason }: { onDone: (token: string) => void; reason
         <div className="mt-3 grid sm:grid-cols-[1fr_auto] gap-2">
           <input inputMode="numeric" value={code} onChange={(e) => setCode(e.target.value)} placeholder="6-digit code from WhatsApp" className="cp-in !mt-0" />
           <button onClick={verify} disabled={busy || code.length < 6} className="bg-ink text-paper font-semibold px-5 py-3 rounded-xl disabled:opacity-50">{busy ? "Checking..." : "Confirm"}</button>
-          <p className="text-xs text-ink/60 dark:text-paper/60 sm:col-span-2">Code sent on WhatsApp to {phone}. <button className="underline" onClick={() => { setSent(false); setCode(""); }}>Change number</button></p>
+          <p className="text-xs text-ink/70 dark:text-paper/70 sm:col-span-2">Code sent on WhatsApp to {phone}. <button className="underline" onClick={() => { setSent(false); setCode(""); }}>Change number</button></p>
         </div>
       )}
       {err && <p className="text-sm text-red-600 mt-2">{err}</p>}
@@ -121,7 +121,7 @@ const PyqBooks = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">PDF · {app ? "free" : "instant download"}</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">PDF · {app ? "free" : "instant download"}</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2 leading-tight">{app ? "Free Chapter-wise NEET PYQ PDFs" : "NEET Chapter-wise PYQ Books with Solutions"}</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl">
         {app
@@ -129,9 +129,9 @@ const PyqBooks = () => {
           : `Every NEET previous year question${totalQs ? ` (${totalQs.toLocaleString("en-IN")} in all)` : ""}, chapter by chapter in NCERT order, with an answer key and a clear solution for each. Each chapter shows its NEET weightage and priority, so you know what to study first.`}
       </p>
 
-      {cat === undefined && <p className="mt-10 text-ink/50">Loading…</p>}
-      {cat === null && <p className="mt-10 text-ink/60">Couldn't load the books. Please refresh.</p>}
-      {cat && !books.length && !app && <p className="mt-10 text-ink/60">The books are being prepared. Please check back soon.</p>}
+      {cat === undefined && <p className="mt-10 text-ink/70">Loading…</p>}
+      {cat === null && <p className="mt-10 text-ink/70">Couldn't load the books. Please refresh.</p>}
+      {cat && !books.length && !app && <p className="mt-10 text-ink/70">The books are being prepared. Please check back soon.</p>}
 
       {books.length > 0 && !app && (
         <>
@@ -140,7 +140,7 @@ const PyqBooks = () => {
               const has = owned.includes(b.subject);
               return (
                 <div key={b.subject} className="rounded-2xl border border-ink/10 dark:border-paper/15 p-5 flex flex-col">
-                  <BookOpen className="text-gold-dark" />
+                  <BookOpen className="text-gold-deep dark:text-gold" />
                   <h2 className="font-display text-xl font-bold mt-2">NEET {LABEL[b.subject]} PYQs</h2>
                   <p className="text-sm text-ink/65 dark:text-paper/65 mt-1">{b.chapters} chapter{b.chapters === 1 ? "" : "s"} · {b.questions.toLocaleString("en-IN")} questions · {mb(b.bytes)}</p>
                   <div className="mt-auto pt-4">
@@ -193,11 +193,11 @@ const PyqBooks = () => {
                 <ul className="mt-2 grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
                   {list.map((x) => (
                     <li key={x.file} className="flex items-center justify-between gap-3 border-b border-ink/5 dark:border-paper/10 py-1.5">
-                      <span>{x.chapter} <span className="text-ink/50 dark:text-paper/50">· {x.questions} PYQs</span></span>
+                      <span>{x.chapter} <span className="text-ink/70 dark:text-paper/70">· {x.questions} PYQs</span></span>
                       {token ? (
                         <a href={downloadUrl(x.file, token)} onClick={() => track("pyq_booklet_download", { chapter: x.chapter })} className="shrink-0 inline-flex items-center gap-1 text-rise-dark font-semibold"><Download size={14} /> PDF</a>
                       ) : (
-                        <button onClick={() => document.getElementById("number")?.scrollIntoView({ behavior: "smooth" })} className="shrink-0 inline-flex items-center gap-1 text-ink/60 dark:text-paper/60"><Lock size={13} /> Free</button>
+                        <button onClick={() => document.getElementById("number")?.scrollIntoView({ behavior: "smooth" })} className="shrink-0 inline-flex items-center gap-1 text-ink/70 dark:text-paper/70"><Lock size={13} /> Free</button>
                       )}
                     </li>
                   ))}
@@ -213,7 +213,7 @@ const PyqBooks = () => {
         <p>Each chapter starts with its NEET weightage (questions and marks per paper) and priority, then every NEET previous year question from that chapter, newest year first, tagged with its year. Attempt them like a test, then use the answer key and the step-by-step solutions at the end of the chapter.</p>
         <p>The books are A4 PDFs that work on a phone, tablet or laptop, and print cleanly. A new edition comes out every month with any newly added questions. Download the latest one any time with the same WhatsApp number.</p>
         <p>Want to practise these as timed tests with instant analysis? Every chapter is also on <Link to="/neet-practice" className="text-rise-dark font-semibold underline">YNeet chapter-wise PYQs</Link>, and the full app is free for 30 days.</p>
-        <p className="text-sm text-ink/55 dark:text-paper/55">Coaching centre? We make editions with your institute's name and logo on the cover. <Link to="/institutes" className="underline">Contact us</Link>.</p>
+        <p className="text-sm text-ink/70 dark:text-paper/70">Coaching centre? We make editions with your institute's name and logo on the cover. <Link to="/institutes" className="underline">Contact us</Link>.</p>
       </section>}
     </div>
   );

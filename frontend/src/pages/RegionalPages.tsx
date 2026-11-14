@@ -73,11 +73,11 @@ export const RegionalCutoffIndex = ({ lang }: { lang: Lang }) => {
   return (
     <div lang={lang} className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
       <LangBar lang={lang} enPath="/neet-cutoff" langs={LANGS} />
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">{s.idxEyebrow}</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">{s.idxEyebrow}</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2 leading-tight">{s.idxH1}</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">{s.idxIntro}</p>
-      {states === undefined && <p className="mt-8 text-ink/50">{s.loading}</p>}
-      {states === null && <p className="mt-8 text-ink/60">{s.loadError}</p>}
+      {states === undefined && <p className="mt-8 text-ink/70">{s.loading}</p>}
+      {states === null && <p className="mt-8 text-ink/70">{s.loadError}</p>}
       {mine.length > 0 && (
         <div className="mt-8 overflow-x-auto">
           <table className="w-full text-sm border-collapse">
@@ -90,7 +90,7 @@ export const RegionalCutoffIndex = ({ lang }: { lang: Lang }) => {
                     <td className="py-2 pr-3"><Link to={`/${lang}/neet-cutoff/${c.slug}`} className="font-semibold text-rise-dark hover:underline">{s.idxLink(stateName(lang, c), c.year)}</Link></td>
                     <td className="py-2 pr-3">{c.colleges.length}</td>
                     <td className="py-2 pr-3">{fmtNum(open?.last)}</td>
-                    <td className="py-2 text-ink/60 dark:text-paper/60">{s.unit[c.rankType]}</td>
+                    <td className="py-2 text-ink/70 dark:text-paper/70">{s.unit[c.rankType]}</td>
                   </tr>
                 );
               })}
@@ -121,7 +121,7 @@ export const RegionalCutoffState = ({ lang }: { lang: Lang }) => {
   useEffect(() => { if (c) { const m = regionalCutoffMeta(lang, c); setMeta(lang, m.title, m.description, `/${lang}/neet-cutoff/${c.slug}`); } }, [c, lang]);
 
   if (!allowed) return <NotFound />;
-  if (states === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/50">{s.loading}</div>;
+  if (states === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/70">{s.loading}</div>;
   if (!c) return <NotFound />;
 
   const name = stateName(lang, c);
@@ -135,7 +135,7 @@ export const RegionalCutoffState = ({ lang }: { lang: Lang }) => {
   return (
     <div lang={lang} className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
       <LangBar lang={lang} enPath={`/neet-cutoff/${c.slug}`} langs={langsForState(c.slug)} />
-      <nav className="text-sm text-ink/55 dark:text-paper/55"><Link to={`/${lang}/neet-cutoff`} className="hover:underline">{s.crumb}</Link> › <span>{name}</span></nav>
+      <nav className="text-sm text-ink/70 dark:text-paper/70"><Link to={`/${lang}/neet-cutoff`} className="hover:underline">{s.crumb}</Link> › <span>{name}</span></nav>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">{s.h1(name, c.year)}</h1>
       <p className="text-ink/75 dark:text-paper/75 mt-3 leading-relaxed">
         {s.intro(name, c.year, c.round, c.colleges.length, s.unit[c.rankType])}
@@ -158,7 +158,7 @@ export const RegionalCutoffState = ({ lang }: { lang: Lang }) => {
           </tbody>
         </table>
       </div>
-      <p className="text-xs text-ink/55 dark:text-paper/55 mt-2">{c.rankType === "SCORE" ? s.noteScore : s.noteRank} {s.noteExcluded}</p>
+      <p className="text-xs text-ink/70 dark:text-paper/70 mt-2">{c.rankType === "SCORE" ? s.noteScore : s.noteRank} {s.noteExcluded}</p>
 
       <h2 className="font-display text-2xl font-bold mt-10">{s.collegesH2(name, word, c.year)}</h2>
       <div className="mt-3 overflow-x-auto">
@@ -223,17 +223,17 @@ export const RegionalWeightage = ({ lang }: { lang: Lang }) => {
   return (
     <div lang={lang} className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
       <LangBar lang={lang} enPath="/neet-chapter-wise-weightage" langs={LANGS} />
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">{s.wEyebrow}</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">{s.wEyebrow}</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2 leading-tight">{s.wH1}</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl leading-relaxed">{s.wIntro}</p>
-      {chapters === null && <p className="mt-10 text-ink/50">{s.loading}</p>}
+      {chapters === null && <p className="mt-10 text-ink/70">{s.loading}</p>}
 
       {top.length > 0 && (
         <section className="mt-8 p-5 rounded-2xl bg-gold/15 border border-gold/40">
           <h2 className="font-display text-xl font-bold">{s.wTop}</h2>
           <ul className="mt-3 grid sm:grid-cols-3 gap-2 text-sm">
             {top.map((c) => (
-              <li key={c.slug}><Link to={`/neet-practice/${c.slug}`} lang="en" className="font-semibold text-rise-dark hover:underline">{c.chapter}</Link> <span className="text-ink/60 dark:text-paper/60">· {s.subject[c.subject]} · ~{c.weightage!.expectedQs} {s.wQs}</span></li>
+              <li key={c.slug}><Link to={`/neet-practice/${c.slug}`} lang="en" className="font-semibold text-rise-dark hover:underline">{c.chapter}</Link> <span className="text-ink/70 dark:text-paper/70">· {s.subject[c.subject]} · ~{c.weightage!.expectedQs} {s.wQs}</span></li>
             ))}
           </ul>
         </section>
@@ -245,7 +245,7 @@ export const RegionalWeightage = ({ lang }: { lang: Lang }) => {
         return (
           <section key={subject} className="mt-10">
             <h2 className="font-display text-2xl font-bold">{s.wSubjectH2(s.subject[subject])}</h2>
-            <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">{s.wSubjectSub(TOTAL[subject], TOTAL[subject] * 4)}</p>
+            <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">{s.wSubjectSub(TOTAL[subject], TOTAL[subject] * 4)}</p>
             <div className="mt-3 overflow-x-auto">
               <table className="w-full text-sm border-collapse">
                 <thead><tr className="text-left border-b border-ink/15 dark:border-paper/20">
@@ -254,12 +254,12 @@ export const RegionalWeightage = ({ lang }: { lang: Lang }) => {
                 <tbody>
                   {list.map((c) => (
                     <tr key={c.slug} className="border-b border-ink/5 dark:border-paper/10">
-                      <td className="py-2 pr-2 text-ink/50 dark:text-paper/50">{c.weightage!.rank}</td>
+                      <td className="py-2 pr-2 text-ink/70 dark:text-paper/70">{c.weightage!.rank}</td>
                       <td className="py-2 pr-2" lang="en"><Link to={`/neet-practice/${c.slug}`} className="text-rise-dark font-semibold hover:underline">{c.chapter}</Link></td>
                       <td className="py-2 pr-2">{c.weightage!.classLevel.replace(/th/g, "")}</td>
                       <td className="py-2 pr-2 text-right">~{c.weightage!.expectedQs}</td>
                       <td className="py-2 pr-2 text-right">~{c.weightage!.marks}</td>
-                      <td className={`py-2 font-semibold ${c.weightage!.priority === "High" ? "text-rise-dark" : c.weightage!.priority === "Low" ? "text-ink/50 dark:text-paper/50" : ""}`}>{s.priority[c.weightage!.priority]}</td>
+                      <td className={`py-2 font-semibold ${c.weightage!.priority === "High" ? "text-rise-dark" : c.weightage!.priority === "Low" ? "text-ink/70 dark:text-paper/70" : ""}`}>{s.priority[c.weightage!.priority]}</td>
                     </tr>
                   ))}
                 </tbody>

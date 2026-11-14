@@ -12,7 +12,7 @@ const Logout = () => {
     if (isFramed()) tellYneetApp({ type: "yneet-logged-out" });
     window.location.replace(isAppMode() ? "/login?app=1" : "/");
   }, []);
-  return <p className="max-w-md mx-auto px-4 py-20 text-center text-ink/60">Signing you out…</p>;
+  return <p className="max-w-md mx-auto px-4 py-20 text-center text-ink/70">Signing you out…</p>;
 };
 
 export default Logout;

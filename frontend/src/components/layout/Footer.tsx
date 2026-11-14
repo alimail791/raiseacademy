@@ -44,7 +44,7 @@ const HELP: Item[] = [
 function Column({ title, items }: { title: string; items: Item[] }) {
   return (
     <div>
-      <h4 className="font-display font-semibold text-paper mb-3">{title}</h4>
+      <h2 className="font-display font-semibold text-base text-paper mb-3">{title}</h2>
       <ul className="space-y-2 text-sm">
         {items.map((i) => (
           <li key={i.label}>

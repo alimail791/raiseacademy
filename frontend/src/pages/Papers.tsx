@@ -62,23 +62,23 @@ export const PapersIndex = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free · No login</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free · No login</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Previous Year Question Papers with Answers</h1>
       <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">
         NEET question papers year by year, with the correct answer and an explanation for every question. Pick a year to start. Prefer to practise one chapter at a time? See <Link to="/neet-practice" className="text-rise-dark font-semibold underline">chapter-wise PYQs</Link>.
       </p>
-      {papers === null && <p className="mt-8 text-ink/50">Loading papers…</p>}
-      {papers !== null && papers.length === 0 && <p className="mt-8 text-ink/60">Papers are being prepared. Meanwhile, try the <Link to="/neet-practice" className="underline font-semibold">chapter-wise PYQs</Link>.</p>}
+      {papers === null && <p className="mt-8 text-ink/70">Loading papers…</p>}
+      {papers !== null && papers.length === 0 && <p className="mt-8 text-ink/70">Papers are being prepared. Meanwhile, try the <Link to="/neet-practice" className="underline font-semibold">chapter-wise PYQs</Link>.</p>}
       {papers && papers.length > 0 && (
         <ul className="mt-8 grid sm:grid-cols-2 gap-3">
           {papers.map((p) => (
             <li key={p.year}>
               <Link to={`/neet-question-papers/${p.year}`} className="flex items-start gap-3 p-5 rounded-2xl border border-ink/10 dark:border-paper/15 hover:border-gold h-full">
-                <FileText className="text-gold-dark shrink-0" />
+                <FileText className="text-gold-deep dark:text-gold shrink-0" />
                 <span>
                   <span className="font-display font-bold text-lg block">NEET {p.year} Question Paper</span>
-                  <span className="text-sm text-ink/60 dark:text-paper/60">{p.total} questions · Physics {p.counts.Physics || 0} · Chemistry {p.counts.Chemistry || 0} · Biology {p.counts.Biology || 0}</span>
+                  <span className="text-sm text-ink/70 dark:text-paper/70">{p.total} questions · Physics {p.counts.Physics || 0} · Chemistry {p.counts.Chemistry || 0} · Biology {p.counts.Biology || 0}</span>
                 </span>
               </Link>
             </li>
@@ -121,7 +121,7 @@ export const PaperYear = () => {
   useEffect(() => { if (p) setMeta(p, subject); }, [p, subject]);
 
   if (p === null || (subjectParam && !subject)) return <NotFound />;
-  if (p === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/50">Loading questions…</div>;
+  if (p === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/70">Loading questions…</div>;
 
   const subjects = SUBJECTS.filter((s) => (p.counts[s] || 0) > 0 || (p.subjects[s] || []).length);
   if (subject && !subjects.includes(subject)) return <NotFound />;
@@ -131,7 +131,7 @@ export const PaperYear = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <nav className="text-sm text-ink/55 dark:text-paper/55">
+      <nav className="text-sm text-ink/70 dark:text-paper/70">
         <Link to="/neet-question-papers" className="hover:underline">NEET question papers</Link> › <Link to={`/neet-question-papers/${p.year}`} className="hover:underline">{p.year}</Link> › <span>{active}</span>
       </nav>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">NEET {p.year} {active} Question Paper with Answers</h1>
@@ -152,7 +152,7 @@ export const PaperYear = () => {
         {qs.map((q, i) => (
           <Fragment key={q.id}>
             <li className="p-5 rounded-2xl border border-ink/10 dark:border-paper/15">
-              <div className="flex flex-wrap gap-2 text-xs font-semibold text-ink/50 dark:text-paper/50">
+              <div className="flex flex-wrap gap-2 text-xs font-semibold text-ink/70 dark:text-paper/70">
                 <span>Q{i + 1}</span>{q.chapter && <span>· {q.chapter}</span>}
               </div>
               <p className="mt-2 font-medium whitespace-pre-line">{q.question}</p>
@@ -180,7 +180,7 @@ export const PaperYear = () => {
         ))}
       </ol>
       <Cta year={p.year} />
-      <p className="text-sm text-ink/60 dark:text-paper/60">More free practice: <Link to="/neet-practice" className="underline font-semibold">chapter-wise PYQs</Link> · <Link to="/neet-question-of-the-day" className="underline font-semibold">NEET Question of the Day</Link> · <Link to="/neet-readiness" className="underline font-semibold">Readiness Test</Link></p>
+      <p className="text-sm text-ink/70 dark:text-paper/70">More free practice: <Link to="/neet-practice" className="underline font-semibold">chapter-wise PYQs</Link> · <Link to="/neet-question-of-the-day" className="underline font-semibold">NEET Question of the Day</Link> · <Link to="/neet-readiness" className="underline font-semibold">Readiness Test</Link></p>
     </div>
   );
 };
@@ -190,7 +190,7 @@ export const PaperYear = () => {
 function PaperOverview({ p, years, subjects }: { p: Paper; years: number[]; subjects: string[] }) {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <nav className="text-sm text-ink/55 dark:text-paper/55">
+      <nav className="text-sm text-ink/70 dark:text-paper/70">
         <Link to="/neet-question-papers" className="hover:underline">NEET question papers</Link> › <span>{p.year}</span>
       </nav>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">NEET {p.year} Question Paper with Answers</h1>
@@ -204,9 +204,9 @@ function PaperOverview({ p, years, subjects }: { p: Paper; years: number[]; subj
         {subjects.map((s) => (
           <li key={s}>
             <Link to={`/neet-question-papers/${p.year}/${subjectSlug(s)}`} className="block p-5 rounded-2xl border border-ink/10 dark:border-paper/15 hover:border-gold h-full">
-              <FileText className="text-gold-dark" />
+              <FileText className="text-gold-deep dark:text-gold" />
               <span className="font-display font-bold text-lg block mt-2">NEET {p.year} {s}</span>
-              <span className="text-sm text-ink/60 dark:text-paper/60">{p.counts[s] || 0} questions with solutions →</span>
+              <span className="text-sm text-ink/70 dark:text-paper/70">{p.counts[s] || 0} questions with solutions →</span>
             </Link>
           </li>
         ))}

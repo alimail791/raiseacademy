@@ -47,6 +47,6 @@ export function AppLeave() {
   useEffect(() => {
     if (isFramed()) tellYneetApp({ type: "yneet-explore" });
   }, [pathname]);
-  if (isFramed()) return <p className="py-20 text-center text-ink/50">Opening YNeet…</p>;
+  if (isFramed()) return <p className="py-20 text-center text-ink/70">Opening YNeet…</p>;
   return <Navigate to="/login" replace />;
 }

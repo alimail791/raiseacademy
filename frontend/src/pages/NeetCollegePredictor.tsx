@@ -212,7 +212,7 @@ const NeetCollegePredictor = () => {
         <label className="block">
           <span className="text-sm font-semibold">NEET score {homeQuota?.rankType === "SCORE" || form.homeState === "TN"
             ? <span className="font-normal text-rise-dark">(needed for {homeQuota?.name || "Tamil Nadu"} colleges)</span>
-            : <span className="font-normal text-ink/50 dark:text-paper/50">(adds Tamil Nadu management seats)</span>}</span>
+            : <span className="font-normal text-ink/70 dark:text-paper/70">(adds Tamil Nadu management seats)</span>}</span>
           <input inputMode="numeric" value={form.score} onChange={set("score")} placeholder="out of 720" className="cp-in" />
         </label>
         <label className="block">
@@ -263,7 +263,7 @@ const NeetCollegePredictor = () => {
           {error && <p className="text-red-600 text-sm">{error}</p>}
         </div>
         {quotas.length > 0 && (
-          <p className="sm:col-span-2 text-xs text-ink/55 dark:text-paper/55">
+          <p className="sm:col-span-2 text-xs text-ink/70 dark:text-paper/70">
             Data loaded: {live.length ? live.map((q) => `${q.name} ${q.year} (round ${q.round})`).join(" · ") : "being updated, check back soon"}.
           </p>
         )}
@@ -293,7 +293,7 @@ const NeetCollegePredictor = () => {
               {res.preview?.[0] && (
                 <p className="text-sm text-ink/70 dark:text-paper/70">Your best match includes <b className="text-ink dark:text-paper">{res.preview[0].college}</b> ({res.preview[0].quotaName}).</p>
               )}
-              <p className="font-display text-2xl font-bold mt-2 flex items-center gap-2"><Lock size={22} className="text-gold-dark" /> See the full list free</p>
+              <p className="font-display text-2xl font-bold mt-2 flex items-center gap-2"><Lock size={22} className="text-gold-deep dark:text-gold" /> See the full list free</p>
               <p className="text-sm text-ink/65 dark:text-paper/65 mt-1">Confirm your WhatsApp number to unlock every college, closing rank and chance. We'll also send counselling round dates and alerts. No spam.</p>
               <div className="mt-4 grid sm:grid-cols-3 gap-3">
                 <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className="cp-in !mt-0" />
@@ -309,7 +309,7 @@ const NeetCollegePredictor = () => {
                   </div>
                 )}
               </div>
-              {otpSent && <p className="text-xs mt-2 text-ink/60 dark:text-paper/60">Code sent on WhatsApp to {phone}. <button className="underline" onClick={() => { setOtpSent(false); setCode(""); }}>Change number</button></p>}
+              {otpSent && <p className="text-xs mt-2 text-ink/70 dark:text-paper/70">Code sent on WhatsApp to {phone}. <button className="underline" onClick={() => { setOtpSent(false); setCode(""); }}>Change number</button></p>}
               {gateErr && <p className="text-sm text-red-600 mt-2">{gateErr}</p>}
             </div>
           ) : (
@@ -329,14 +329,14 @@ const NeetCollegePredictor = () => {
                   <li key={i} className="p-4 rounded-2xl border border-ink/10 dark:border-paper/15 flex flex-col sm:flex-row sm:items-center gap-3">
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold">{r.college}</p>
-                      <p className="text-xs text-ink/55 dark:text-paper/55 mt-0.5">
+                      <p className="text-xs text-ink/70 dark:text-paper/70 mt-0.5">
                         {[r.quotaName, r.seatType, r.collegeType, r.collegeState, r.annualFee && !isAppMode() ? `₹${r.annualFee.toLocaleString("en-IN")}/yr` : ""].filter(Boolean).join(" · ")} · {r.category === "OPEN" ? "Open" : r.category} {r.quota === "TN" && r.seatType !== "Management Quota" && r.category !== "OPEN" ? "community" : "seat"}
                       </p>
                     </div>
                     <div className="text-sm sm:text-right shrink-0">
-                      <p className="text-ink/55 dark:text-paper/55 text-xs">{cutoffLabel(r)} {r.year}</p>
+                      <p className="text-ink/70 dark:text-paper/70 text-xs">{cutoffLabel(r)} {r.year}</p>
                       <p className="font-bold">{cutoffValue(r, r.closingRank)}</p>
-                      {laterBetter(r) && <p className="text-xs text-ink/55 dark:text-paper/55">Later rounds: {cutoffValue(r, r.strayClosingRank)}</p>}
+                      {laterBetter(r) && <p className="text-xs text-ink/70 dark:text-paper/70">Later rounds: {cutoffValue(r, r.strayClosingRank)}</p>}
                     </div>
                     <span className={`shrink-0 self-start sm:self-center text-xs font-bold px-3 py-1 rounded-full border ${BAND[r.band].cls}`}>{BAND[r.band].label}</span>
                   </li>
@@ -359,7 +359,7 @@ const NeetCollegePredictor = () => {
                     {paying ? "Opening payment…" : <>Get my report for ₹{price} <ArrowRight size={16} /></>}
                   </button>
                 )}
-                <p className="text-xs text-ink/55 dark:text-paper/55 mt-2 flex items-center gap-1"><ShieldCheck size={14} /> One-time payment via Razorpay (UPI, cards, net banking).</p>
+                <p className="text-xs text-ink/70 dark:text-paper/70 mt-2 flex items-center gap-1"><ShieldCheck size={14} /> One-time payment via Razorpay (UPI, cards, net banking).</p>
               </div>
               )}
             </>

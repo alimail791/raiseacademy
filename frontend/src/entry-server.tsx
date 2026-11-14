@@ -10,6 +10,7 @@ import { BlogDataProvider, type BlogData } from "./blog/blogData";
 import { PracticeDataProvider, type PracticeData } from "./practice/practiceData";
 
 export { PAGE_META, metaFor, SITE_ORIGIN } from "./seo";
+export { preloadAllPages } from "./lazyPage";
 export { chapterMeta, paperMeta, questionMeta, schoolHubMeta, cutoffMeta } from "./practice/practiceData";
 export { LANGS, CUTOFF_STATES, langsForState, regionalCutoffMeta, regionalCutoffIndexMeta, regionalWeightageMeta, alternates } from "./i18n/regional";
 export { NCERT_NOTES, ncertMeta } from "./ncert/notes";

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { page } from "./lazyPage";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { isAppMode, isFramed } from "./utils/appMode";
 import Navbar from "./components/layout/Navbar";
@@ -9,64 +10,70 @@ import ProtectedRoute from "./components/layout/ProtectedRoute";
 import usePageMeta from "./usePageMeta";
 
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Courses from "./pages/Courses";
-import Help from "./pages/Help";
-import NeetTrial from "./pages/NeetTrial";
-import Institutes from "./pages/Institutes";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
+const About = page(() => import("./pages/About"));
+const Courses = page(() => import("./pages/Courses"));
+const Help = page(() => import("./pages/Help"));
+const NeetTrial = page(() => import("./pages/NeetTrial"));
+const Institutes = page(() => import("./pages/Institutes"));
+const Blog = page(() => import("./pages/Blog"));
+const BlogPost = page(() => import("./pages/BlogPost"));
 
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import ForgotPassword from "./pages/ForgotPassword";
-import Dashboard from "./pages/Dashboard";
+const Login = page(() => import("./pages/Login"));
+const Register = page(() => import("./pages/Register"));
+const ForgotPassword = page(() => import("./pages/ForgotPassword"));
+const Dashboard = page(() => import("./pages/Dashboard"));
 import NotFound from "./pages/NotFound";
-import Practice from "./pages/Practice";
-import PracticeChapter from "./pages/PracticeChapter";
-import QuestionPage from "./pages/QuestionPage";
-import SchoolHub from "./pages/SchoolHub";
-import NeetWeightage from "./pages/NeetWeightage";
-import NeetMostMissed from "./pages/NeetMostMissed";
-import PyqBooks from "./pages/PyqBooks";
-import NeetQuizShorts from "./pages/NeetQuizShorts";
-import { NeetCutoffIndex, NeetCutoffState } from "./pages/NeetCutoff";
-import { RegionalCutoffIndex, RegionalCutoffState, RegionalWeightage } from "./pages/RegionalPages";
-import { LANGS } from "./i18n/regional";
-import NeetReadiness from "./pages/NeetReadiness";
-import NeetCollegePredictor from "./pages/NeetCollegePredictor";
-import NeetCollegeReport from "./pages/NeetCollegeReport";
-import AdminPredictor from "./pages/admin/AdminPredictor";
-import NeetParents from "./pages/NeetParents";
-import { PapersIndex, PaperYear } from "./pages/Papers";
-import QuestionOfTheDay from "./pages/QuestionOfTheDay";
-import NeetExamDate from "./pages/NeetExamDate";
-import NeetRegistration from "./pages/NeetRegistration";
-import NeetPhotoResizer from "./pages/NeetPhotoResizer";
-import NeetScoreCalculator from "./pages/NeetScoreCalculator";
-import { NcertIndex, NcertChapter } from "./pages/NcertNotes";
-import QotdEmbed from "./pages/QotdEmbed";
-import { PredictorEmbed, CutoffEmbed } from "./pages/WidgetEmbeds";
-import QotdWidget from "./pages/QotdWidget";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import BrainTeaser from "./pages/BrainTeaser";
-import AskYneet from "./pages/AskYneet";
-import ConceptMaps from "./pages/ConceptMaps";
-import NeetSprint from "./pages/NeetSprint";
-import NeetShorts from "./pages/NeetShorts";
+const Practice = page(() => import("./pages/Practice"));
+const PracticeChapter = page(() => import("./pages/PracticeChapter"));
+const QuestionPage = page(() => import("./pages/QuestionPage"));
+const SchoolHub = page(() => import("./pages/SchoolHub"));
+const NeetWeightage = page(() => import("./pages/NeetWeightage"));
+const NeetMostMissed = page(() => import("./pages/NeetMostMissed"));
+const PyqBooks = page(() => import("./pages/PyqBooks"));
+const NeetQuizShorts = page(() => import("./pages/NeetQuizShorts"));
+const NeetCutoffIndex = page(() => import("./pages/NeetCutoff"), "NeetCutoffIndex");
+const NeetCutoffState = page(() => import("./pages/NeetCutoff"), "NeetCutoffState");
+const RegionalCutoffIndex = page(() => import("./pages/RegionalPages"), "RegionalCutoffIndex");
+const RegionalCutoffState = page(() => import("./pages/RegionalPages"), "RegionalCutoffState");
+const RegionalWeightage = page(() => import("./pages/RegionalPages"), "RegionalWeightage");
+import { LANGS } from "./i18n/langs";
+const NeetReadiness = page(() => import("./pages/NeetReadiness"));
+const NeetCollegePredictor = page(() => import("./pages/NeetCollegePredictor"));
+const NeetCollegeReport = page(() => import("./pages/NeetCollegeReport"));
+const AdminPredictor = page(() => import("./pages/admin/AdminPredictor"));
+const NeetParents = page(() => import("./pages/NeetParents"));
+const PapersIndex = page(() => import("./pages/Papers"), "PapersIndex");
+const PaperYear = page(() => import("./pages/Papers"), "PaperYear");
+const QuestionOfTheDay = page(() => import("./pages/QuestionOfTheDay"));
+const NeetExamDate = page(() => import("./pages/NeetExamDate"));
+const NeetRegistration = page(() => import("./pages/NeetRegistration"));
+const NeetPhotoResizer = page(() => import("./pages/NeetPhotoResizer"));
+const NeetScoreCalculator = page(() => import("./pages/NeetScoreCalculator"));
+const NcertIndex = page(() => import("./pages/NcertNotes"), "NcertIndex");
+const NcertChapter = page(() => import("./pages/NcertNotes"), "NcertChapter");
+const QotdEmbed = page(() => import("./pages/QotdEmbed"));
+const PredictorEmbed = page(() => import("./pages/WidgetEmbeds"), "PredictorEmbed");
+const CutoffEmbed = page(() => import("./pages/WidgetEmbeds"), "CutoffEmbed");
+const QotdWidget = page(() => import("./pages/QotdWidget"));
+const Privacy = page(() => import("./pages/Privacy"));
+const Terms = page(() => import("./pages/Terms"));
+const BrainTeaser = page(() => import("./pages/BrainTeaser"));
+const AskYneet = page(() => import("./pages/AskYneet"));
+const ConceptMaps = page(() => import("./pages/ConceptMaps"));
+const NeetSprint = page(() => import("./pages/NeetSprint"));
+const NeetShorts = page(() => import("./pages/NeetShorts"));
 import { AppPriceGuard, AppLeave } from "./components/AppPriceGuard";
-import Logout from "./pages/Logout";
-import DeleteAccount from "./pages/DeleteAccount";
+const Logout = page(() => import("./pages/Logout"));
+const DeleteAccount = page(() => import("./pages/DeleteAccount"));
 
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminStudents from "./pages/admin/AdminStudents";
-import AdminInstitutes from "./pages/admin/AdminInstitutes";
-import AdminBlog from "./pages/admin/AdminBlog";
-import InstituteLogin from "./pages/institute/InstituteLogin";
-import InstitutePanel from "./pages/institute/InstitutePanel";
-import InstituteForgot from "./pages/institute/InstituteForgot";
+const AdminLayout = page(() => import("./pages/admin/AdminLayout"));
+const AdminDashboard = page(() => import("./pages/admin/AdminDashboard"));
+const AdminStudents = page(() => import("./pages/admin/AdminStudents"));
+const AdminInstitutes = page(() => import("./pages/admin/AdminInstitutes"));
+const AdminBlog = page(() => import("./pages/admin/AdminBlog"));
+const InstituteLogin = page(() => import("./pages/institute/InstituteLogin"));
+const InstitutePanel = page(() => import("./pages/institute/InstitutePanel"));
+const InstituteForgot = page(() => import("./pages/institute/InstituteForgot"));
 
 function App() {
   usePageMeta();
@@ -78,12 +85,14 @@ function App() {
   // Boxes other websites show in an <iframe>: no header, footer or chat button.
   if (pathname.startsWith("/embed/")) {
     return (
-      <Routes>
+      <Suspense fallback={<div className="min-h-[60vh]" />}>
+<Routes>
         <Route path="/embed/qotd" element={<QotdEmbed />} />
         <Route path="/embed/predictor" element={<PredictorEmbed />} />
         <Route path="/embed/cutoff" element={<CutoffEmbed />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+</Suspense>
     );
   }
   if (appMode) {
@@ -97,7 +106,8 @@ function App() {
         <AppPriceGuard />
         {!framed && <header className="py-5 text-center font-display text-2xl font-bold">YNeet</header>}
         <main className="flex-1">
-          <Routes>
+          <Suspense fallback={<div className="min-h-[60vh]" />}>
+<Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -149,6 +159,7 @@ function App() {
             <Route path="/help" element={<Help />} />
             <Route path="*" element={<AppLeave />} />
           </Routes>
+</Suspense>
         </main>
         <WhatsAppButton />
       </div>
@@ -159,7 +170,8 @@ function App() {
       <TrialBar />
       <Navbar />
       <main className="flex-1">
-        <Routes>
+        <Suspense fallback={<div className="min-h-[60vh]" />}>
+<Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
@@ -242,6 +254,7 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+</Suspense>
       </main>
       <Footer />
       <WhatsAppButton />

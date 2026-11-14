@@ -28,12 +28,12 @@ const BrainTeaser = () => {
   const t = data?.current;
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Every Wednesday · Class 6–8 Science</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Every Wednesday · Class 6–8 Science</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">Brain Teaser of the week</h1>
       <p className="mt-3 text-ink/70">Read the clues, pick an answer. The answer comes out the next day at 7 PM.</p>
 
       {error && <p className="mt-8 text-ink/70">Couldn't load this week's teaser. Please try again later.</p>}
-      {!data && !error && <p className="mt-8 text-ink/50">Loading…</p>}
+      {!data && !error && <p className="mt-8 text-ink/70">Loading…</p>}
       {data && !t && <p className="mt-8 text-ink/70">The first Brain Teaser arrives on Wednesday.</p>}
 
       {t && (
@@ -58,7 +58,7 @@ const BrainTeaser = () => {
                 className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink text-paper font-semibold px-5 py-3 hover:bg-ink/90">
                 Lock my answer, free <ArrowRight size={16} />
               </Link>
-              <p className="mt-3 text-sm text-ink/60">Already have an account? <Link to="/login" className="underline">Log in</Link></p>
+              <p className="mt-3 text-sm text-ink/70">Already have an account? <Link to="/login" className="underline">Log in</Link></p>
             </div>
           )}
         </div>
@@ -72,7 +72,7 @@ const BrainTeaser = () => {
             <ol className="mt-2 list-decimal pl-6 text-ink/75 space-y-1">{data.previous.clues.map((c, i) => <li key={i}>{c}</li>)}</ol>
             <p className="mt-3 font-semibold text-rise-dark">Answer: {data.previous.options[data.previous.answer]}</p>
             {data.previous.explanation && <p className="mt-1 text-sm text-ink/70">{data.previous.explanation}</p>}
-            {!!data.previous.players && <p className="mt-2 text-xs text-ink/50">{data.previous.correctPct}% of {data.previous.players} students got it right.</p>}
+            {!!data.previous.players && <p className="mt-2 text-xs text-ink/70">{data.previous.correctPct}% of {data.previous.players} students got it right.</p>}
           </div>
         </div>
       )}

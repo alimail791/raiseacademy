@@ -17,12 +17,12 @@ const Blog = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-14">
       <h1 className="font-display text-4xl font-bold">YNeet Blog</h1>
-      <p className="text-ink/60 dark:text-paper/60 mt-3 text-lg">
+      <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">
         NEET preparation guides: previous year questions, mock test strategy, cutoffs and study plans.
       </p>
 
       <div className="mt-10 space-y-5">
-        {posts === null && <p className="text-ink/50">Loading articles…</p>}
+        {posts === null && <p className="text-ink/70">Loading articles…</p>}
         {posts !== null && posts.length === 0 && (
           <div className="p-6 rounded-2xl border border-ink/10">
             New articles are on the way. Meanwhile,{" "}

@@ -95,7 +95,7 @@ export default function NeetRegistration() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <p className="text-sm text-ink/55 dark:text-paper/55">Last checked: {LAST_CHECKED}</p>
+      <p className="text-sm text-ink/70 dark:text-paper/70">Last checked: {LAST_CHECKED}</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-2">NEET {EXAM_YEAR} Registration: Step-by-Step Guide & Checklist</h1>
       <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">Check your eligibility, get every document ready, and fill the NEET form without mistakes.</p>
@@ -108,7 +108,7 @@ export default function NeetRegistration() {
           <p className="text-sm text-paper/70 mt-1">Likely early February {EXAM_YEAR}. Official site: neet.nta.nic.in</p>
         </div>
         <div className="rounded-2xl border border-ink/10 dark:border-paper/15 p-5">
-          <p className="text-sm text-ink/60 dark:text-paper/60 mb-2">Last year (NEET 2026)</p>
+          <p className="text-sm text-ink/70 dark:text-paper/70 mb-2">Last year (NEET 2026)</p>
           {LAST_YEAR.map(([k, v]) => (
             <div key={k} className="flex justify-between text-sm py-0.5"><span className="text-ink/70 dark:text-paper/70">{k}</span><b>{v}</b></div>
           ))}
@@ -169,13 +169,13 @@ export default function NeetRegistration() {
         <span className="text-sm font-semibold">{doneCount}/{CHECKLIST.length} ready</span>
       </div>
       <div className="mt-2 h-2 rounded-full bg-ink/10 dark:bg-paper/10 overflow-hidden"><div className="h-full bg-rise" style={{ width: `${(doneCount / CHECKLIST.length) * 100}%` }} /></div>
-      <p className="text-xs text-ink/55 dark:text-paper/55 mt-2">Your ticks are saved on this device.</p>
+      <p className="text-xs text-ink/70 dark:text-paper/70 mt-2">Your ticks are saved on this device.</p>
       <div className="mt-4 space-y-2">
         {CHECKLIST.map((c) => (
           <label key={c.id} className={`flex gap-3 items-start rounded-xl border p-3 cursor-pointer ${done[c.id] ? "border-rise/40 bg-rise/5" : "border-ink/10 dark:border-paper/15"}`}>
             <input type="checkbox" className="mt-1" checked={!!done[c.id]} onChange={() => toggle(c.id)} />
             <span className="flex-1">
-              <span className={`font-semibold ${done[c.id] ? "line-through text-ink/50 dark:text-paper/50" : ""}`}>{c.label}</span>
+              <span className={`font-semibold ${done[c.id] ? "line-through text-ink/70 dark:text-paper/70" : ""}`}>{c.label}</span>
               {c.note && <span className="block text-sm text-ink/65 dark:text-paper/65 mt-0.5">{c.note}</span>}
               {c.resizer && !done[c.id] && (
                 <Link to="/neet-photo-resizer" className="inline-flex items-center gap-1 text-sm font-semibold text-rise-dark mt-1"><ImagePlus size={14} /> Resize it free</Link>
@@ -201,7 +201,7 @@ export default function NeetRegistration() {
           <tbody>{FEES.map(([c, f]) => <tr key={c} className="border-t border-ink/10 dark:border-paper/10"><td className="p-3">{c}</td><td className="p-3 font-semibold">{f}</td></tr>)}</tbody>
         </table>
       </div>
-      <p className="text-sm text-ink/60 dark:text-paper/60 mt-2">Plus bank processing charges and GST, if any. NEET {EXAM_YEAR} fees will be confirmed in the information bulletin.</p>
+      <p className="text-sm text-ink/70 dark:text-paper/70 mt-2">Plus bank processing charges and GST, if any. NEET {EXAM_YEAR} fees will be confirmed in the information bulletin.</p>
 
       {/* Steps */}
       <h2 className="font-display text-2xl font-bold mt-12">How to fill the NEET form, step by step</h2>

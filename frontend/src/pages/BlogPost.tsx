@@ -49,14 +49,14 @@ const BlogPost = () => {
   }, [post]);
 
   if (post === null) return <NotFound />;
-  if (post === undefined) return <div className="max-w-3xl mx-auto px-4 sm:px-6 py-20 text-ink/50">Loading article…</div>;
+  if (post === undefined) return <div className="max-w-3xl mx-auto px-4 sm:px-6 py-20 text-ink/70">Loading article…</div>;
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
       <Link to="/blog" className="text-sm font-semibold text-rise-dark">← All articles</Link>
       <article>
         <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-4">{post.title}</h1>
-        <p className="text-ink/50 dark:text-paper/50 text-sm mt-3 mb-8">
+        <p className="text-ink/70 dark:text-paper/70 text-sm mt-3 mb-8">
           By <Link to="/about" className="font-semibold hover:underline">Akbar Ali</Link>, founder of Raise Academy, Chennai · {formatDate(post.publishedAt)}
           {post.updatedAt && formatDate(post.updatedAt) !== formatDate(post.publishedAt) && <> · Updated {formatDate(post.updatedAt)}</>}
           {" "}· {readingMinutes(post.bodyHtml)} min read

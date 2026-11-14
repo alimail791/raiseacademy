@@ -123,16 +123,16 @@ const QuestionOfTheDay = () => {
   const t = data?.today;
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free · New every day</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free · New every day</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Question of the Day</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3">One NEET-level question every day, mostly from previous NEET papers, with the answer and explanation. Answer it, then come back tomorrow for the next one.</p>
 
-      {error && <p className="mt-8 text-ink/60">Couldn't load today's question. Please try again in a minute, or practise <Link to="/neet-practice" className="underline font-semibold">chapter-wise PYQs</Link>.</p>}
-      {!data && !error && <p className="mt-8 text-ink/50">Loading today's question…</p>}
+      {error && <p className="mt-8 text-ink/70">Couldn't load today's question. Please try again in a minute, or practise <Link to="/neet-practice" className="underline font-semibold">chapter-wise PYQs</Link>.</p>}
+      {!data && !error && <p className="mt-8 text-ink/70">Loading today's question…</p>}
 
       {t && (
         <section className="mt-8">
-          <p className="text-sm font-semibold text-ink/60 dark:text-paper/60 mb-2">Today · {nice(t.date)}</p>
+          <p className="text-sm font-semibold text-ink/70 dark:text-paper/70 mb-2">Today · {nice(t.date)}</p>
           <Question q={t} />
           <div className="mt-4 flex flex-wrap gap-3">
             <a href={`https://wa.me/?text=${encodeURIComponent(`Can you solve today's NEET question? ${t.question.slice(0, 120)}… ${PAGE}`)}`} target="_blank" rel="noopener noreferrer"
@@ -157,7 +157,7 @@ const QuestionOfTheDay = () => {
       {data?.yesterday && (
         <section>
           <h2 className="font-display text-2xl font-bold">Yesterday's question</h2>
-          <p className="text-sm text-ink/60 dark:text-paper/60 mb-3">{nice(data.yesterday.date)} · answer shown</p>
+          <p className="text-sm text-ink/70 dark:text-paper/70 mb-3">{nice(data.yesterday.date)} · answer shown</p>
           <Question q={data.yesterday} reveal />
         </section>
       )}
@@ -165,7 +165,7 @@ const QuestionOfTheDay = () => {
       {t && data?.yesterday && (
         <details className="mt-10 rounded-2xl border border-ink/10 dark:border-paper/15 p-5">
           <summary className="cursor-pointer font-display text-lg font-bold">Share kit: WhatsApp Channel posts</summary>
-          <p className="text-sm text-ink/60 dark:text-paper/60 mt-2">Post at 7 AM: first yesterday's answer, then today's question with a poll (options A, B, C, D) and the image.</p>
+          <p className="text-sm text-ink/70 dark:text-paper/70 mt-2">Post at 7 AM: first yesterday's answer, then today's question with a poll (options A, B, C, D) and the image.</p>
           <div className="mt-4 flex flex-wrap gap-3">
             <button onClick={() => copy("answer", answerPost(data.yesterday!))} className="inline-flex items-center gap-2 border border-ink/20 dark:border-paper/25 font-semibold px-4 py-2.5 rounded-full">
               <Copy size={16} /> {copied === "answer" ? "Copied!" : "1. Copy answer post"}

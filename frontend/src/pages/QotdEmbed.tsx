@@ -37,8 +37,8 @@ const QotdEmbed = () => {
           {q && <span className="text-xs text-paper/70">#{q.number} · {q.subject}</span>}
         </div>
         <div className="p-4">
-          {failed && <p className="text-sm text-ink/60">Today's question couldn't load. <a href={link("/neet-question-of-the-day")} target="_blank" rel="noopener" className="underline font-semibold">Open it on YNeet</a>.</p>}
-          {!q && !failed && <p className="text-sm text-ink/50">Loading today's question…</p>}
+          {failed && <p className="text-sm text-ink/70">Today's question couldn't load. <a href={link("/neet-question-of-the-day")} target="_blank" rel="noopener" className="underline font-semibold">Open it on YNeet</a>.</p>}
+          {!q && !failed && <p className="text-sm text-ink/70">Loading today's question…</p>}
           {q && (
             <>
               <p className="font-semibold leading-snug whitespace-pre-line">{q.question}</p>
@@ -69,7 +69,7 @@ const QotdEmbed = () => {
           )}
         </div>
         <div className="border-t border-ink/10 px-4 py-2.5 flex items-center justify-between gap-2 text-xs">
-          <span className="text-ink/55">New question every day</span>
+          <span className="text-ink/70">New question every day</span>
           <a href={link("/neet-question-of-the-day")} target="_blank" rel="noopener" className="font-bold text-ink hover:text-gold-dark">by YNeet ↗</a>
         </div>
       </div>

@@ -65,11 +65,11 @@ const NeetSprint = () => {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free · No login</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free · No login</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET 60-Second Sprint</h1>
 
       {error && <p className="mt-8 text-ink/70">Couldn't load the Sprint. Please try again later.</p>}
-      {!data && !error && <p className="mt-8 text-ink/50">Loading…</p>}
+      {!data && !error && <p className="mt-8 text-ink/70">Loading…</p>}
 
       {data && phase === "intro" && (
         <div className="mt-6 space-y-5">
@@ -91,7 +91,7 @@ const NeetSprint = () => {
         return (
           <div className="mt-6">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-ink/60">Question {i + 1} of 5 · {q.subject}</span>
+              <span className="text-sm font-semibold text-ink/70">Question {i + 1} of 5 · {q.subject}</span>
               <span className={`min-w-[64px] text-center rounded-full px-4 py-2 font-bold text-lg ${left <= 10000 ? "bg-gold text-ink" : "bg-[#3b2fc9] text-white"}`}>{Math.ceil(left / 1000)}s</span>
             </div>
             <div className="mt-3 h-2 rounded-full bg-ink/10 overflow-hidden"><div className="h-2 bg-gold transition-all" style={{ width: `${(left / LIMIT) * 100}%` }} /></div>
@@ -130,7 +130,7 @@ const NeetSprint = () => {
               const ok = mine === q.answer;
               return (
                 <div key={q.id} className="rounded-2xl border border-ink/10 bg-white p-5">
-                  <p className="text-xs text-ink/50">{q.subject} · {q.chapter}</p>
+                  <p className="text-xs text-ink/70">{q.subject} · {q.chapter}</p>
                   <p className="font-semibold mt-1">{i + 1}. {q.text}</p>
                   <p className={`mt-2 text-sm font-semibold ${ok ? "text-rise-dark" : "text-red-700"}`}>
                     {mine === undefined ? "Not answered" : ok ? `✓ ${q.options[mine]}` : `✗ You chose ${q.options[mine]}`}

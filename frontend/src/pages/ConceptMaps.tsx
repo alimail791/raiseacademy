@@ -35,19 +35,19 @@ const ConceptMaps = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Concept Map Monday · Free</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Concept Map Monday · Free</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Concept Maps</h1>
       <p className="mt-3 text-ink/70 leading-relaxed">A whole NCERT chapter on one page, for quick revision before a test. A new map every Monday. No login needed.</p>
 
       {error && <p className="mt-8 text-ink/70">Couldn't load the concept maps. Please try again later.</p>}
-      {!list && !error && <p className="mt-8 text-ink/50">Loading…</p>}
+      {!list && !error && <p className="mt-8 text-ink/70">Loading…</p>}
       {list && list.length === 0 && <p className="mt-8 text-ink/70">The first concept map comes out on Monday.</p>}
 
       {map && (
         <section className="mt-8">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <h2 className="font-display text-2xl font-bold">{map.data.title}</h2>
-            <span className="text-sm text-ink/55">{map.group} · {nice(map.publish_on)}</span>
+            <span className="text-sm text-ink/70">{map.group} · {nice(map.publish_on)}</span>
           </div>
           <div className="mt-4"><ConceptMapView map={map.data} subject={map.subject} chapter={map.chapter} /></div>
           <div className="mt-5 rounded-2xl bg-ink text-paper p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -72,7 +72,7 @@ const ConceptMaps = () => {
                 <button onClick={() => open(m.id)}
                   className={`w-full text-left rounded-2xl border p-4 hover:border-gold ${map?.id === m.id ? "border-gold bg-gold/10" : "border-ink/10 bg-white"}`}>
                   <span className="block font-semibold">{m.title}</span>
-                  <span className="block text-sm text-ink/60">{m.subject} · {m.group} · {nice(m.publish_on)}</span>
+                  <span className="block text-sm text-ink/70">{m.subject} · {m.group} · {nice(m.publish_on)}</span>
                 </button>
               </li>
             ))}

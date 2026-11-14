@@ -19,7 +19,7 @@ const A = ({ href, children }: { href: string; children: React.ReactNode }) => (
 const Terms = () => (
   <div className="max-w-3xl mx-auto px-4 sm:px-6 py-14">
     <h1 className="font-display text-3xl font-bold">Terms of Service</h1>
-    <p className="mt-2 text-sm text-ink/60">Last updated: {UPDATED}</p>
+    <p className="mt-2 text-sm text-ink/70">Last updated: {UPDATED}</p>
     <p className="mt-6 text-ink/75 leading-relaxed">
       These terms apply when you use YNeet at www.yneet.in, app.yneet.in or the YNeet Android app. YNeet is run by
       Raise Academy, Muthapudupet, Avadi, Chennai, Tamil Nadu ("we", "us"). By creating an account or using YNeet you

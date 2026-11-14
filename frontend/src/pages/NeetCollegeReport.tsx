@@ -63,7 +63,7 @@ const NeetCollegeReport = () => {
     } finally { setBusy(false); }
   };
 
-  if (state === "loading") return <div className="max-w-3xl mx-auto px-4 py-16 text-center text-ink/60 dark:text-paper/60">Loading your report…</div>;
+  if (state === "loading") return <div className="max-w-3xl mx-auto px-4 py-16 text-center text-ink/70 dark:text-paper/70">Loading your report…</div>;
   if (state === "nolead" || state === "error") {
     return (
       <div className="max-w-xl mx-auto px-4 py-16 text-center">
@@ -95,10 +95,10 @@ const NeetCollegeReport = () => {
         <div>
           <p className="text-sm font-semibold text-rise-dark">YNeet · NEET College Predictor</p>
           <h1 className="font-display text-3xl sm:text-4xl font-bold mt-1">Choice-filling report{s.name ? ` for ${s.name}` : ""}</h1>
-          <p className="text-sm text-ink/60 dark:text-paper/60 mt-2">
+          <p className="text-sm text-ink/70 dark:text-paper/70 mt-2">
             AIR {fmt(s.air)}{s.stateRank ? ` · ${s.homeStateName} rank ${fmt(s.stateRank)}` : ""}{s.score ? ` · Score ${s.score}` : ""} · {s.category} · {s.course}{s.homeStateName ? ` · Home state ${s.homeStateName}` : ""}
           </p>
-          <p className="text-xs text-ink/50 dark:text-paper/50 mt-1">Based on {d.used.map((u) => `${u.name} ${u.year} round ${u.round}`).join(", ")} · made {new Date(d.generatedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p>
+          <p className="text-xs text-ink/70 dark:text-paper/70 mt-1">Based on {d.used.map((u) => `${u.name} ${u.year} round ${u.round}`).join(", ")} · made {new Date(d.generatedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p>
         </div>
         <button onClick={() => window.print()} className="no-print shrink-0 inline-flex items-center gap-2 border border-ink/20 dark:border-paper/20 font-semibold px-4 py-2 rounded-full"><Printer size={16} /> Save PDF</button>
       </div>
@@ -123,11 +123,11 @@ const NeetCollegeReport = () => {
 
       {d.sections.map((sec) => (
         <section key={sec.quota} className="mt-10 break-inside-avoid-page">
-          <h2 className="font-display text-2xl font-bold">{sec.name} <span className="text-base font-normal text-ink/50 dark:text-paper/50">({sec.items.length})</span></h2>
+          <h2 className="font-display text-2xl font-bold">{sec.name} <span className="text-base font-normal text-ink/70 dark:text-paper/70">({sec.items.length})</span></h2>
           <div className="mt-3 overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs text-ink/55 dark:text-paper/55 border-b border-ink/10 dark:border-paper/15">
+                <tr className="text-left text-xs text-ink/70 dark:text-paper/70 border-b border-ink/10 dark:border-paper/15">
                   <th className="py-2 pr-2">#</th><th className="py-2 pr-2">College</th><th className="py-2 pr-2">Seat</th>
                   <th className="py-2 pr-2 text-right">{sec.items[0]?.rankType === "SCORE" ? "Lowest mark" : "Closing rank"}</th><th className="py-2 pr-2">Chance</th>
                 </tr>
@@ -137,15 +137,15 @@ const NeetCollegeReport = () => {
                   n++;
                   return (
                     <tr key={i} className="border-b border-ink/5 dark:border-paper/10 align-top">
-                      <td className="py-2 pr-2 text-ink/50 dark:text-paper/50">{i + 1}</td>
+                      <td className="py-2 pr-2 text-ink/70 dark:text-paper/70">{i + 1}</td>
                       <td className="py-2 pr-2">
                         <p className="font-semibold">{r.college}</p>
-                        <p className="text-xs text-ink/50 dark:text-paper/50">{[r.collegeType, r.collegeState, r.annualFee ? `₹${fmt(r.annualFee)}/yr` : ""].filter(Boolean).join(" · ")}</p>
+                        <p className="text-xs text-ink/70 dark:text-paper/70">{[r.collegeType, r.collegeState, r.annualFee ? `₹${fmt(r.annualFee)}/yr` : ""].filter(Boolean).join(" · ")}</p>
                       </td>
                       <td className="py-2 pr-2 text-xs">{[r.seatType, r.category].filter(Boolean).join(" · ")}</td>
                       <td className="py-2 pr-2 text-right font-semibold">
                         {cutoffValue(r, r.closingRank)}
-                        {r.strayOnly ? <p className="text-xs font-normal text-ink/50 dark:text-paper/50">later rounds only</p> : laterBetter(r) ? <p className="text-xs font-normal text-ink/50 dark:text-paper/50">later: {cutoffValue(r, r.strayClosingRank)}</p> : null}
+                        {r.strayOnly ? <p className="text-xs font-normal text-ink/70 dark:text-paper/70">later rounds only</p> : laterBetter(r) ? <p className="text-xs font-normal text-ink/70 dark:text-paper/70">later: {cutoffValue(r, r.strayClosingRank)}</p> : null}
                       </td>
                       <td className="py-2 pr-2"><span className={`text-xs font-bold px-2 py-0.5 rounded-full border whitespace-nowrap ${BAND[r.band].cls}`}>{BAND[r.band].label}</span></td>
                     </tr>
@@ -158,7 +158,7 @@ const NeetCollegeReport = () => {
       ))}
       {n === 0 && <p className="mt-8">No college in the loaded data closed near your rank last year.</p>}
 
-      <p className="mt-10 text-xs text-ink/55 dark:text-paper/55">
+      <p className="mt-10 text-xs text-ink/70 dark:text-paper/70">
         Built from last year's official counselling allotments. Closing ranks change every year, so this is a guide, not a guarantee. YNeet is not connected with MCC or any state counselling authority. Questions? Message us on WhatsApp from www.yneet.in.
       </p>
       <div className="no-print mt-8 rounded-3xl border border-ink/10 dark:border-paper/15 p-6">

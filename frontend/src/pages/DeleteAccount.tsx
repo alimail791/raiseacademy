@@ -40,7 +40,7 @@ const DeleteAccount = () => (
       Records of payments you made (date, plan and amount), for as long as Indian tax law requires. Nothing else.
     </p>
 
-    <p className="mt-8 text-sm text-ink/60">
+    <p className="mt-8 text-sm text-ink/70">
       See our <Link to="/privacy" className="underline">privacy policy</Link> for more.
     </p>
   </div>

@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { CompareTable, ParentReportSection } from "../components/YNeetSales";
 import { Link, useLocation } from "react-router-dom";
@@ -144,7 +143,7 @@ const Courses = () => {
       {courseJsonLd().map((data, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />
       ))}
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Courses</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Courses</p>
       <h1 className="font-display text-4xl font-bold mt-2 max-w-3xl">
         Online NEET course from Class 6 to Droppers
       </h1>
@@ -163,19 +162,15 @@ const Courses = () => {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
         {courses.map((c, i) => (
-          <motion.div
+          <div
             key={c.title}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.06 }}
             className="rounded-2xl border border-ink/10 p-6 flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all bg-white"
           >
             <div className="h-12 w-12 rounded-xl bg-rise-light flex items-center justify-center">
               <c.icon className="text-rise-dark" size={24} />
             </div>
             <h2 className="font-display font-bold text-xl mt-4">{c.title}</h2>
-            <p className="text-gold-dark text-sm font-semibold mt-1">{c.tag}</p>
+            <p className="text-gold-deep dark:text-gold text-sm font-semibold mt-1">{c.tag}</p>
             <p className="text-ink/70 text-sm leading-relaxed mt-3">{c.desc}</p>
 
             <ul className="mt-4 space-y-1.5 text-sm text-ink/70 flex-1">
@@ -190,14 +185,14 @@ const Courses = () => {
             >
               Enroll in {c.title} <ArrowRight size={16} />
             </Link>
-          </motion.div>
+          </div>
         ))}
       </div>
 
       <section className="mt-16 grid lg:grid-cols-2 gap-10">
         <div>
           <h2 className="font-display text-2xl font-bold">What's included in NEET Full</h2>
-          <p className="text-ink/60 mt-1 text-sm">For Class 11, 12 and droppers. NEET Foundation (Class 9–10) has its own Foundation tests, Shorts, the daily quiz, puzzles, the mistake notebook and doubt support.</p>
+          <p className="text-ink/70 mt-1 text-sm">For Class 11, 12 and droppers. NEET Foundation (Class 9–10) has its own Foundation tests, Shorts, the daily quiz, puzzles, the mistake notebook and doubt support.</p>
           <ul className="mt-5 space-y-3">
             {included.map((p) => (
               <li key={p} className="flex items-start gap-3 text-ink/80">
@@ -231,7 +226,7 @@ const Courses = () => {
 
       <section className="mt-16" id="pricing">
         <h2 className="font-display text-2xl font-bold">Plans &amp; pricing</h2>
-        <p className="text-ink/60 mt-1">Priced by class. One-time payment, no auto-charge. A full year costs about 8 months' price.</p>
+        <p className="text-ink/70 mt-1">Priced by class. One-time payment, no auto-charge. A full year costs about 8 months' price.</p>
         <p className="web-only text-ink/70 mt-1">From Class 9, every plan starts with the <Link to="/neet-trial" className="text-rise-dark font-semibold underline">free 30-day NEET trial</Link>.</p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
           {plans.map((p) => {
@@ -240,17 +235,17 @@ const Courses = () => {
               <div key={p.cls} className={`relative rounded-2xl p-6 flex flex-col bg-white ${free ? "border-2 border-rise ring-4 ring-rise/10" : p.popular ? "border-2 border-gold" : "border border-ink/10"}`}>
                 {free && <span className="absolute -top-3 left-5 bg-rise text-white text-xs font-bold px-3 py-1 rounded-full">FREE FOREVER</span>}
                 {p.popular && <span className="absolute -top-3 left-5 bg-gold text-ink text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</span>}
-                <p className="text-sm font-semibold text-gold-dark">{p.cls}</p>
+                <p className="text-sm font-semibold text-gold-deep dark:text-gold">{p.cls}</p>
                 <p className="font-display font-bold text-lg">{p.name}</p>
                 {free ? (
                   <>
                     <p className="font-display text-4xl font-bold text-rise-dark mt-3">₹0</p>
-                    <p className="text-sm text-ink/60">No payment, ever</p>
+                    <p className="text-sm text-ink/70">No payment, ever</p>
                   </>
                 ) : (
                   <>
-                    <p className="font-display text-4xl font-bold mt-3">{inr(p.monthly)}<span className="text-base font-body text-ink/50"> /month</span></p>
-                    <p className="text-sm text-ink/60">or <b className="text-ink">{inr(p.year!)}</b> for a full year · {inr(p.six!)} for 6 months</p>
+                    <p className="font-display text-4xl font-bold mt-3">{inr(p.monthly)}<span className="text-base font-body text-ink/70"> /month</span></p>
+                    <p className="text-sm text-ink/70">or <b className="text-ink">{inr(p.year!)}</b> for a full year · {inr(p.six!)} for 6 months</p>
                     <p className="text-xs font-semibold text-rise-dark mt-1">Save {inr(p.monthly * 12 - p.year!)} with the yearly plan</p>
                   </>
                 )}
@@ -272,7 +267,7 @@ const Courses = () => {
         <ol className="grid sm:grid-cols-3 gap-6 mt-6">
           {steps.map((s, i) => (
             <li key={s.title} className="rounded-2xl border border-ink/10 bg-white p-6">
-              <p className="text-gold-dark font-display font-bold text-lg">{i + 1}. {s.title}</p>
+              <p className="text-gold-deep dark:text-gold font-display font-bold text-lg">{i + 1}. {s.title}</p>
               <p className="text-ink/70 text-sm mt-2 leading-relaxed">{s.desc}</p>
             </li>
           ))}
@@ -295,12 +290,12 @@ const Courses = () => {
             Give every student YNeet from ₹1,200 per student per year, with a live progress panel and
             weekly parent reports. Class 6–8 students are free and don't use a seat.
           </p>
-          <p className="mt-3 inline-block rounded-lg bg-gold/20 px-3 py-1.5 text-xs font-semibold text-gold-dark">
+          <p className="mt-3 inline-block rounded-lg bg-gold/20 px-3 py-1.5 text-xs font-semibold text-gold-deep dark:text-gold">
             Try it free for 14 days with 5 students. No payment needed.
           </p>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
             <Link to="/institutes#pilot" className="inline-flex items-center gap-1.5 text-sm font-semibold text-rise-dark hover:text-rise">Start the free pilot <ArrowRight size={16} /></Link>
-            <Link to="/institutes" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/60 hover:text-ink">See institute plans <ArrowRight size={16} /></Link>
+            <Link to="/institutes" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/70 hover:text-ink">See institute plans <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>

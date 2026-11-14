@@ -37,7 +37,7 @@ export function ShortCard({ s }: { s: QuizShort }) {
   return (
     <div className="min-w-0">
       <ShortPlayer s={s} />
-      <p className="text-xs text-ink/55 dark:text-paper/55 mt-2">{s.subject}{s.chapter ? ` · ${s.chapter}` : ""}</p>
+      <p className="text-xs text-ink/70 dark:text-paper/70 mt-2">{s.subject}{s.chapter ? ` · ${s.chapter}` : ""}</p>
       {s.questionSlug && (
         <Link to={`/neet-question/${s.questionSlug}`} className="text-sm font-semibold text-rise-dark hover:underline">Answer & explanation →</Link>
       )}
@@ -59,7 +59,7 @@ export default function QuizShortsSection() {
   if (!shorts || !shorts.length) return null;
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm text-center">New every day</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm text-center">New every day</p>
       <h2 className="font-display text-2xl sm:text-3xl font-bold text-center mt-1">Daily NEET Quiz Shorts</h2>
       <p className="text-center text-ink/70 dark:text-paper/70 mt-2">One Physics, Chemistry and Biology question every day. Can you answer in 5 seconds?</p>
       <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">

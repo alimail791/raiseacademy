@@ -12,7 +12,7 @@ const Dashboard = () => {
       <h1 className="font-display text-3xl font-bold">
         Welcome back, {user.fullName.split(" ")[0]} 👋
       </h1>
-      <p className="text-ink/60 mt-1">
+      <p className="text-ink/70 mt-1">
         {user.course}
         {user.currentClass ? ` · ${user.currentClass === "Dropper" ? "Dropper / Repeater" : `Class ${user.currentClass}`}` : ""}
       </p>
@@ -21,7 +21,7 @@ const Dashboard = () => {
         <div className="p-6 rounded-2xl border border-ink/10">
           <BookOpen className="text-rise-dark" size={22} />
           <p className="font-display text-3xl font-bold mt-3">{user.board}</p>
-          <p className="text-ink/60 text-sm mt-1">Board</p>
+          <p className="text-ink/70 text-sm mt-1">Board</p>
         </div>
         <button
           onClick={goToYneet}

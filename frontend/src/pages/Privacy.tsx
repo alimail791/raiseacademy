@@ -15,7 +15,7 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
 const Privacy = () => (
   <div className="max-w-3xl mx-auto px-4 sm:px-6 py-14">
     <h1 className="font-display text-3xl font-bold">Privacy policy</h1>
-    <p className="mt-2 text-sm text-ink/60">Last updated: {UPDATED}</p>
+    <p className="mt-2 text-sm text-ink/70">Last updated: {UPDATED}</p>
     <p className="mt-6 text-ink/75 leading-relaxed">
       This policy explains what YNeet (run by Raise Academy, Avadi, Chennai) collects when you use www.yneet.in,
       app.yneet.in and the YNeet Android app, why we collect it, and how you can see or delete it.

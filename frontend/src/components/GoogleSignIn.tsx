@@ -103,9 +103,9 @@ export default function GoogleSignIn({ text = "continue_with", referredByCode, o
           </div>
         </div>
         <div>
-          <label className="text-sm font-medium">WhatsApp number <span className="text-ink/50 font-normal">(for doubt support)</span></label>
+          <label className="text-sm font-medium">WhatsApp number <span className="text-ink/70 font-normal">(for doubt support)</span></label>
           <div className="mt-1 flex rounded-lg border border-ink/15 bg-white focus-within:border-gold overflow-hidden">
-            <span className="px-3 flex items-center bg-ink/5 text-ink/60 text-sm">+91</span>
+            <span className="px-3 flex items-center bg-ink/5 text-ink/70 text-sm">+91</span>
             <input className="flex-1 px-4 py-2.5 outline-none" type="tel" inputMode="numeric" maxLength={10} placeholder="98765 43210"
               value={details.phone} onChange={(e) => setDetails({ ...details, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })} />
           </div>
@@ -114,7 +114,7 @@ export default function GoogleSignIn({ text = "continue_with", referredByCode, o
           className="w-full bg-gold text-ink font-bold text-lg py-3.5 rounded-full hover:brightness-95 disabled:opacity-60">
           {loading ? "Creating account…" : "Start My Free 30 Days →"}
         </button>
-        <p className="text-center text-xs text-ink/55">✓ 30 days free · ✓ No payment or card · ✓ No auto-charge</p>
+        <p className="text-center text-xs text-ink/70">✓ 30 days free · ✓ No payment or card · ✓ No auto-charge</p>
       </div>
     );
   }
@@ -122,7 +122,7 @@ export default function GoogleSignIn({ text = "continue_with", referredByCode, o
   return (
     <div>
       <div ref={box} className="flex justify-center min-h-[44px]" />
-      {loading && <p className="text-center text-xs text-ink/55 mt-2">Signing you in…</p>}
+      {loading && <p className="text-center text-xs text-ink/70 mt-2">Signing you in…</p>}
     </div>
   );
 }

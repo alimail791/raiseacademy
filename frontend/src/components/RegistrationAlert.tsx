@@ -84,7 +84,7 @@ export default function RegistrationAlert({ source, compact = false }: { source:
   return (
     <div className={`rounded-2xl border border-gold/50 bg-gold/10 ${compact ? "p-4" : "p-6"}`}>
       <div className="flex gap-3 items-start">
-        <BellRing className="text-gold-dark shrink-0 mt-1" size={22} />
+        <BellRing className="text-gold-deep dark:text-gold shrink-0 mt-1" size={22} />
         <div className="flex-1">
           <p className="font-display text-lg font-bold">Get NEET 2027 registration alerts on WhatsApp</p>
           <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">A message when registration opens, a reminder before the last date, and the correction-window dates. Free, no spam.</p>
@@ -111,7 +111,7 @@ export default function RegistrationAlert({ source, compact = false }: { source:
               <button onClick={verify} disabled={busy || code.length < 6} className="bg-ink text-paper font-semibold px-5 py-3 rounded-xl disabled:opacity-50">
                 {busy ? "Checking..." : "Confirm"}
               </button>
-              <p className="text-xs text-ink/60 dark:text-paper/60 sm:col-span-2">Code sent on WhatsApp to {phone}. <button className="underline" onClick={() => { setOtpSent(false); setCode(""); }}>Change number</button></p>
+              <p className="text-xs text-ink/70 dark:text-paper/70 sm:col-span-2">Code sent on WhatsApp to {phone}. <button className="underline" onClick={() => { setOtpSent(false); setCode(""); }}>Change number</button></p>
             </div>
           )}
           {err && <p className="text-sm text-red-600 mt-2">{err}</p>}

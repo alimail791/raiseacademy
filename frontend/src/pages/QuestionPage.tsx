@@ -53,7 +53,7 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
   useEffect(() => { if (q) setMeta(q); }, [q]);
 
   if (q === null) return <NotFound />;
-  if (q === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/50">Loading question…</div>;
+  if (q === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/70">Loading question…</div>;
 
   const school = q.classNum;
   const hub = school ? `/class-${q.classNum}-questions` : "";
@@ -61,7 +61,7 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-      <nav className="text-sm text-ink/55 dark:text-paper/55">
+      <nav className="text-sm text-ink/70 dark:text-paper/70">
         {school
           ? <Link to={hub} className="hover:underline">Class {q.classNum} Science MCQs</Link>
           : <Link to="/neet-practice" className="hover:underline">NEET Practice</Link>}
@@ -75,7 +75,7 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
         {!q.pyqYear && q.boardYear && <span className="px-2 py-0.5 rounded-full bg-ink/5 dark:bg-paper/10">CBSE {q.boardYear} Board</span>}
         {school && <span className="px-2 py-0.5 rounded-full bg-gold/20 text-ink dark:text-paper">Class {q.classNum}</span>}
         <span className="px-2 py-0.5 rounded-full bg-ink/5 dark:bg-paper/10">{school ? schoolSubject(q.subject) : q.subject}</span>
-        <span className="text-ink/50 dark:text-paper/50">{q.chapter}{q.topic ? ` · ${q.topic}` : ""}</span>
+        <span className="text-ink/70 dark:text-paper/70">{q.chapter}{q.topic ? ` · ${q.topic}` : ""}</span>
       </div>
 
       <ul className="mt-6 space-y-2">
@@ -94,7 +94,7 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
       <details className="mt-5 p-5 rounded-2xl bg-rise/5 border border-rise/20" onToggle={(e) => setShown((e.target as HTMLDetailsElement).open)}>
         <summary className="cursor-pointer font-semibold text-rise-dark">Show answer & explanation</summary>
         <h2 className="mt-3 font-bold">Answer: ({LETTERS[q.answer - 1]}) {q.options[q.answer - 1]}</h2>
-        <h3 className="mt-3 text-sm font-semibold text-ink/60 dark:text-paper/60">Explanation</h3>
+        <h3 className="mt-3 text-sm font-semibold text-ink/70 dark:text-paper/70">Explanation</h3>
         <p className="mt-1 text-ink/80 dark:text-paper/80 whitespace-pre-line">{q.explanation}</p>
       </details>
 

@@ -43,7 +43,7 @@ function usePracticeLink(n?: NcertNote) {
 
 export const NcertIndex = () => (
   <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-    <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free · No login</p>
+    <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free · No login</p>
     <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NCERT Biology Notes for NEET</h1>
     <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">
       Short, chapter-wise NCERT notes: the points NEET asks most, a quick table and the common traps. Read one in 10 minutes, then test yourself on the chapter's previous year questions.
@@ -55,7 +55,7 @@ export const NcertIndex = () => (
           {NCERT_NOTES.filter((n) => n.cls === cls).map((n) => (
             <li key={n.slug}>
               <Link to={`/ncert-notes/${n.slug}`} className="flex items-start gap-3 p-4 rounded-xl border border-ink/10 dark:border-paper/15 hover:border-gold h-full">
-                <BookOpen className="text-gold-dark shrink-0 mt-0.5" size={20} />
+                <BookOpen className="text-gold-deep dark:text-gold shrink-0 mt-0.5" size={20} />
                 <span className="font-semibold">{n.chapter}</span>
               </Link>
             </li>
@@ -63,7 +63,7 @@ export const NcertIndex = () => (
         </ul>
       </section>
     ))}
-    <p className="mt-10 text-sm text-ink/60 dark:text-paper/60">More chapters are being added. Meanwhile, every chapter has free <Link to="/neet-practice" className="underline font-semibold">NEET PYQs with answers</Link>.</p>
+    <p className="mt-10 text-sm text-ink/70 dark:text-paper/70">More chapters are being added. Meanwhile, every chapter has free <Link to="/neet-practice" className="underline font-semibold">NEET PYQs with answers</Link>.</p>
   </div>
 );
 
@@ -80,7 +80,7 @@ export const NcertChapter = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 flex flex-wrap gap-10">
       <article className="min-w-0" style={{ flex: "999 1 560px" }}>
-        <nav className="text-sm text-ink/55 dark:text-paper/55">
+        <nav className="text-sm text-ink/70 dark:text-paper/70">
           <Link to="/ncert-notes" className="hover:underline">NCERT notes</Link> › <span>Class {n.cls} {n.subject}</span>
         </nav>
         <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">{n.chapter}: NCERT Notes for NEET</h1>
@@ -112,7 +112,7 @@ export const NcertChapter = () => {
         )}
 
         <section className="mt-8 rounded-2xl bg-gold/15 border border-gold/40 p-5">
-          <h2 className="font-display text-xl font-bold flex items-center gap-2"><AlertTriangle size={20} className="text-gold-dark" /> Common NEET traps</h2>
+          <h2 className="font-display text-xl font-bold flex items-center gap-2"><AlertTriangle size={20} className="text-gold-deep dark:text-gold" /> Common NEET traps</h2>
           <ul className="mt-3 space-y-2 list-disc pl-5">
             {n.traps.map((t) => <li key={t}>{t}</li>)}
           </ul>
@@ -125,7 +125,7 @@ export const NcertChapter = () => {
           </div>
           <Link to={practiceHref} className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-3 rounded-full hover:bg-gold-dark">Practise PYQs <ArrowRight size={16} /></Link>
         </div>
-        <p className="text-xs text-ink/50 dark:text-paper/50 mt-4">Based on the NCERT Class {n.cls} {n.subject} textbook. Always read the NCERT chapter itself too: NEET questions follow its exact lines.</p>
+        <p className="text-xs text-ink/70 dark:text-paper/70 mt-4">Based on the NCERT Class {n.cls} {n.subject} textbook. Always read the NCERT chapter itself too: NEET questions follow its exact lines.</p>
       </article>
 
       <aside className="flex flex-col gap-4" style={{ flex: "1 1 260px" }}>

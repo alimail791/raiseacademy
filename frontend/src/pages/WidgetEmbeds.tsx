@@ -57,7 +57,7 @@ export const PredictorEmbed = () => {
 
   return (
     <Frame title="NEET College Predictor" tag="Free"
-      footer={<><span className="text-ink/55">From last year's official closing ranks</span><a href={link("/neet-college-predictor")} target="_blank" rel="noopener" className="font-bold text-ink hover:text-gold-dark">by YNeet ↗</a></>}>
+      footer={<><span className="text-ink/70">From last year's official closing ranks</span><a href={link("/neet-college-predictor")} target="_blank" rel="noopener" className="font-bold text-ink hover:text-gold-dark">by YNeet ↗</a></>}>
       <p className="text-sm text-ink/70">See the MBBS and BDS colleges you can get with your NEET rank: All India Quota plus your state quota.</p>
       <form onSubmit={go} className="mt-3 space-y-3">
         <label className="block text-sm font-semibold">NEET All India Rank
@@ -110,9 +110,9 @@ export const CutoffEmbed = () => {
 
   return (
     <Frame title={c ? `${name} NEET cutoff ${c.year}` : "NEET cutoff"} tag="Govt MBBS"
-      footer={<><span className="text-ink/55">Official counselling data</span><a href={link(`/neet-cutoff/${slug}`)} target="_blank" rel="noopener" className="font-bold text-ink hover:text-gold-dark">by YNeet ↗</a></>}>
-      {c === undefined && <p className="text-sm text-ink/50">Loading cutoffs…</p>}
-      {c === null && <p className="text-sm text-ink/60">Couldn't load the cutoffs. <a href={link("/neet-cutoff")} target="_blank" rel="noopener" className="underline font-semibold">See them on YNeet</a>.</p>}
+      footer={<><span className="text-ink/70">Official counselling data</span><a href={link(`/neet-cutoff/${slug}`)} target="_blank" rel="noopener" className="font-bold text-ink hover:text-gold-dark">by YNeet ↗</a></>}>
+      {c === undefined && <p className="text-sm text-ink/70">Loading cutoffs…</p>}
+      {c === null && <p className="text-sm text-ink/70">Couldn't load the cutoffs. <a href={link("/neet-cutoff")} target="_blank" rel="noopener" className="underline font-semibold">See them on YNeet</a>.</p>}
       {c && (
         <>
           {open && <p className="text-sm text-ink/70">General category: last government MBBS seat at {unit === "marks" ? <><b>{fmt(open.last)}</b> marks</> : <>rank <b>{fmt(open.last)}</b></>}.</p>}

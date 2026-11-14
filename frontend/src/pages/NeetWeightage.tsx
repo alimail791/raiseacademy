@@ -28,21 +28,21 @@ const NeetWeightage = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
       <RegionalLinks path="/neet-chapter-wise-weightage" langs={LANGS} />
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free · Updated from PYQs</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free · Updated from PYQs</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Chapter-wise Weightage (Physics, Chemistry, Biology)</h1>
       <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl">
         How many questions each NCERT chapter is worth in a NEET paper, ranked from most to least important. A NEET paper has 180 questions: 45 Physics, 45 Chemistry and 90 Biology (Botany + Zoology), 4 marks each.
       </p>
 
-      {chapters === null && <p className="mt-10 text-ink/50">Loading chapters…</p>}
+      {chapters === null && <p className="mt-10 text-ink/70">Loading chapters…</p>}
 
       {top.length > 0 && (
         <section className="mt-8 p-5 rounded-2xl bg-gold/15 border border-gold/40">
           <h2 className="font-display text-xl font-bold">Highest-weightage chapters</h2>
           <ul className="mt-3 grid sm:grid-cols-3 gap-2 text-sm">
             {top.map((c) => (
-              <li key={c.slug}><Link to={`/neet-practice/${c.slug}`} className="font-semibold text-rise-dark hover:underline">{c.chapter}</Link> <span className="text-ink/60 dark:text-paper/60">· {c.subject} · ~{c.weightage!.expectedQs} Qs</span></li>
+              <li key={c.slug}><Link to={`/neet-practice/${c.slug}`} className="font-semibold text-rise-dark hover:underline">{c.chapter}</Link> <span className="text-ink/70 dark:text-paper/70">· {c.subject} · ~{c.weightage!.expectedQs} Qs</span></li>
             ))}
           </ul>
         </section>
@@ -54,7 +54,7 @@ const NeetWeightage = () => {
         return (
           <section key={subject} className="mt-10">
             <h2 className="font-display text-2xl font-bold">NEET {subject} chapter-wise weightage</h2>
-            <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">{TOTAL[subject]} questions · {TOTAL[subject] * 4} marks</p>
+            <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">{TOTAL[subject]} questions · {TOTAL[subject] * 4} marks</p>
             <div className="mt-3 overflow-x-auto">
               <table className="w-full text-sm border-collapse">
                 <thead>
@@ -66,12 +66,12 @@ const NeetWeightage = () => {
                 <tbody>
                   {list.map((c) => (
                     <tr key={c.slug} className="border-b border-ink/5 dark:border-paper/10">
-                      <td className="py-2 pr-2 text-ink/50 dark:text-paper/50">{c.weightage!.rank}</td>
+                      <td className="py-2 pr-2 text-ink/70 dark:text-paper/70">{c.weightage!.rank}</td>
                       <td className="py-2 pr-2"><Link to={`/neet-practice/${c.slug}`} className="text-rise-dark font-semibold hover:underline">{c.chapter}</Link></td>
                       <td className="py-2 pr-2">{c.weightage!.classLevel.replace(/th/g, "")}</td>
                       <td className="py-2 pr-2 text-right">~{c.weightage!.expectedQs}</td>
                       <td className="py-2 pr-2 text-right">~{c.weightage!.marks}</td>
-                      <td className={`py-2 font-semibold ${c.weightage!.priority === "High" ? "text-rise-dark" : c.weightage!.priority === "Low" ? "text-ink/50 dark:text-paper/50" : ""}`}>{c.weightage!.priority}</td>
+                      <td className={`py-2 font-semibold ${c.weightage!.priority === "High" ? "text-rise-dark" : c.weightage!.priority === "Low" ? "text-ink/70 dark:text-paper/70" : ""}`}>{c.weightage!.priority}</td>
                     </tr>
                   ))}
                 </tbody>

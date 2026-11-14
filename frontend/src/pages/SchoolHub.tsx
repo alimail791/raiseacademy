@@ -47,7 +47,7 @@ const SchoolHub = ({ classNum }: { classNum: number }) => {
   useEffect(() => { if (d) setMeta(d); }, [d]);
 
   if (d === null) return <NotFound />;
-  if (d === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/50">Loading questions…</div>;
+  if (d === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/70">Loading questions…</div>;
 
   const total = d.classes.find((c) => c.classNum === classNum)?.total || d.links.length;
   const free = classNum <= 8;
@@ -75,7 +75,7 @@ const SchoolHub = ({ classNum }: { classNum: number }) => {
             <h2 className="font-display text-2xl font-bold">{schoolSubject(subject)}</h2>
             {chs.map((c) => (
               <div key={c.slug} id={c.slug} className="mt-6 scroll-mt-24">
-                <h3 className="font-semibold text-lg">{c.chapter} <span className="text-sm font-normal text-ink/50 dark:text-paper/50">({c.count} questions)</span></h3>
+                <h3 className="font-semibold text-lg">{c.chapter} <span className="text-sm font-normal text-ink/70 dark:text-paper/70">({c.count} questions)</span></h3>
                 <ul className="mt-2 space-y-1.5 text-sm">
                   {d.links.filter((l) => l.chapterSlug === c.slug).map((l) => (
                     <li key={l.slug}>

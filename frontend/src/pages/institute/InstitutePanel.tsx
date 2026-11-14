@@ -252,7 +252,7 @@ const InstitutePanel = () => {
       <div className="bg-white rounded-2xl border border-ink/10 px-5 py-4 flex flex-wrap items-center justify-between gap-3">
         <div className="text-sm">
           <span className="font-semibold">{inst.billing === "pilot" ? "Free pilot" : inst.billing === "monthly" ? "Monthly plan" : "Yearly pack"}</span>
-          <span className="text-ink/60"> · {inst.seats} students · {inst.live ? `valid till ${fmt(inst.endDate)}` : `ended ${fmt(inst.endDate)}`}</span>
+          <span className="text-ink/70"> · {inst.seats} students · {inst.live ? `valid till ${fmt(inst.endDate)}` : `ended ${fmt(inst.endDate)}`}</span>
           {inst.live && inst.billing !== "yearly" && Math.ceil((new Date(inst.endDate).getTime() - Date.now()) / 86400000) <= 5 && <span className="ml-2 text-xs font-semibold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">Ends soon</span>}
         </div>
         {inst.billing === "monthly" && <button onClick={() => { setRenewMonths(1); setRenewOpen(true); }} className="text-sm font-semibold bg-gold text-ink px-4 py-2 rounded-full hover:bg-gold-dark">Renew / change plan</button>}
@@ -265,7 +265,7 @@ const InstitutePanel = () => {
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="font-display text-xl font-bold">Renew your plan</h3>
-                <p className="text-sm text-ink/60">{inst.live ? `Adds ${renewMonths} month${renewMonths > 1 ? "s" : ""} after ${fmt(inst.endDate)}.` : "Starts today."} You can also change your plan size.</p>
+                <p className="text-sm text-ink/70">{inst.live ? `Adds ${renewMonths} month${renewMonths > 1 ? "s" : ""} after ${fmt(inst.endDate)}.` : "Starts today."} You can also change your plan size.</p>
               </div>
               <button disabled={paying} onClick={() => setRenewOpen(false)} className="p-1 rounded hover:bg-ink/5"><X size={18} /></button>
             </div>
@@ -286,16 +286,16 @@ const InstitutePanel = () => {
                 return (
                   <button key={p.seats} disabled={paying || tooSmall} onClick={() => renew(p.seats)}
                     className={`text-left p-4 rounded-xl border-2 ${current ? "border-gold bg-gold-light/40" : "border-ink/10"} ${tooSmall ? "opacity-40 cursor-not-allowed" : "hover:border-gold"}`}>
-                    <p className="text-sm font-semibold text-ink/60">{p.seats} students{current && " · current"}</p>
+                    <p className="text-sm font-semibold text-ink/70">{p.seats} students{current && " · current"}</p>
                     <p className="font-display text-2xl font-bold mt-1">{inr(pay)}{credit && <span className="block text-sm font-medium text-ink/40 line-through">{inr(list)}</span>}</p>
-                    <p className="text-xs text-ink/50">{inr(p.price)} × {renewMonths} month{renewMonths > 1 ? "s" : ""}</p>
+                    <p className="text-xs text-ink/70">{inr(p.price)} × {renewMonths} month{renewMonths > 1 ? "s" : ""}</p>
                     {credit && <p className="text-xs font-semibold text-rise-dark">Referral: 40% off one month</p>}
-                    <p className="text-xs text-ink/50 mt-1">{tooSmall ? `You have ${inst.seatsUsed} students` : paying ? "Opening payment…" : "Pay & renew"}</p>
+                    <p className="text-xs text-ink/70 mt-1">{tooSmall ? `You have ${inst.seatsUsed} students` : paying ? "Opening payment…" : "Pay & renew"}</p>
                   </button>
                 );
               })}
             </div>
-            <p className="text-xs text-ink/50">Secure payment by UPI, card or net banking via Razorpay. A receipt is emailed to {inst.email}.</p>
+            <p className="text-xs text-ink/70">Secure payment by UPI, card or net banking via Razorpay. A receipt is emailed to {inst.email}.</p>
           </div>
         </div>
       )}
@@ -303,11 +303,11 @@ const InstitutePanel = () => {
       {referral && (
         <div className="rounded-2xl border border-gold/50 bg-gold-light/30 px-5 py-4 flex flex-wrap items-center gap-4 justify-between">
           <div className="flex items-start gap-3 min-w-[240px] flex-1">
-            <Gift className="text-gold-dark shrink-0 mt-0.5" size={22} />
+            <Gift className="text-gold-deep dark:text-gold shrink-0 mt-0.5" size={22} />
             <div className="text-sm">
               <p className="font-semibold">Refer &amp; earn 40% off</p>
               <p className="text-ink/70">Another coaching centre buys YNeet with your link → you get <b>40% off your next purchase</b>. Refer more, save on more renewals.</p>
-              <p className="text-xs text-ink/60 mt-1">
+              <p className="text-xs text-ink/70 mt-1">
                 Your code <b className="text-ink">{referral.code}</b> · {referral.referred.length} joined · <b className="text-rise-dark">{referral.credits} discount{referral.credits === 1 ? "" : "s"} available</b>
                 {referral.referred.length > 0 && <> · {referral.referred.slice(0, 3).map((r) => r.name).join(", ")}{referral.referred.length > 3 ? "…" : ""}</>}
               </p>
@@ -325,7 +325,7 @@ const InstitutePanel = () => {
       <div className="flex gap-1 p-1 bg-ink/5 rounded-full w-fit">
         {([["progress", "📊 Student progress"], ["manage", "👥 Manage students"]] as const).map(([k, label]) => (
           <button key={k} onClick={() => setTab(k)}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${activeTab === k ? "bg-white shadow text-ink" : "text-ink/60 hover:text-ink"}`}>
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${activeTab === k ? "bg-white shadow text-ink" : "text-ink/70 hover:text-ink"}`}>
             {label}
           </button>
         ))}
@@ -338,12 +338,12 @@ const InstitutePanel = () => {
         <div className="bg-white rounded-2xl border border-ink/10 p-5 sm:col-span-2">
           <div className="flex justify-between text-sm"><span className="font-semibold">Seats used</span><span>{inst.seatsUsed} of {inst.seats}</span></div>
           <div className="mt-3 h-3 rounded-full bg-ink/10 overflow-hidden"><div className="h-full bg-gold" style={{ width: `${pct}%` }} /></div>
-          <p className="mt-2 text-sm text-ink/60">{inst.seatsLeft} seat{inst.seatsLeft === 1 ? "" : "s"} left. Removing a student frees their seat. <b className="text-rise-dark">Class 6–8 students are free — they don't use a seat.</b></p>
+          <p className="mt-2 text-sm text-ink/70">{inst.seatsLeft} seat{inst.seatsLeft === 1 ? "" : "s"} left. Removing a student frees their seat. <b className="text-rise-dark">Class 6–8 students are free — they don't use a seat.</b></p>
         </div>
         <div className="bg-white rounded-2xl border border-ink/10 p-5">
           <p className="text-sm font-semibold">Valid till</p>
           <p className="font-display text-2xl font-bold mt-1">{fmt(inst.endDate)}</p>
-          <p className="text-sm text-ink/60">{inst.live ? `${daysLeft} days left` : "Not active"}</p>
+          <p className="text-sm text-ink/70">{inst.live ? `${daysLeft} days left` : "Not active"}</p>
         </div>
       </div>
 
@@ -362,18 +362,18 @@ const InstitutePanel = () => {
                 <option value="">Class</option>{CLASSES.map((c) => <option key={c} value={c}>{c === "Dropper" ? c : `Class ${c}`}</option>)}
               </select>
             </div>
-            <p className="text-xs font-semibold text-ink/60 pt-1">Parent (optional) — gets a weekly progress report</p>
+            <p className="text-xs font-semibold text-ink/70 pt-1">Parent (optional) — gets a weekly progress report</p>
             <div className="grid grid-cols-2 gap-3">
               <input type="email" placeholder="Parent email" className={input} value={form.parentEmail} onChange={(e) => setForm({ ...form, parentEmail: e.target.value })} />
               <input type="tel" placeholder="Parent WhatsApp no." className={input} value={form.parentPhone} onChange={(e) => setForm({ ...form, parentPhone: e.target.value })} />
             </div>
             <button disabled={busy} className="w-full bg-gold text-ink font-semibold py-2.5 rounded-full hover:bg-gold-dark disabled:opacity-60">{busy ? "Adding..." : "Add student"}</button>
-            <p className="text-xs text-ink/50">The student gets their login by email. If they already have a YNeet account, it's linked and they keep their password.</p>
+            <p className="text-xs text-ink/70">The student gets their login by email. If they already have a YNeet account, it's linked and they keep their password.</p>
           </form>
 
           <div className="bg-white rounded-2xl border border-ink/10 p-5 space-y-3">
             <h2 className="font-semibold flex items-center gap-2"><Upload size={18} /> Add many (CSV / Excel)</h2>
-            <p className="text-sm text-ink/60">Columns: <b>fullName, email, phone, gender, class</b>, and optional <b>parentEmail, parentPhone</b> for weekly parent reports. In Excel use File → Save As → CSV.</p>
+            <p className="text-sm text-ink/70">Columns: <b>fullName, email, phone, gender, class</b>, and optional <b>parentEmail, parentPhone</b> for weekly parent reports. In Excel use File → Save As → CSV.</p>
             <div className="flex flex-wrap gap-2">
               <label className="cursor-pointer flex items-center gap-1.5 text-sm font-semibold bg-ink text-paper px-4 py-2 rounded-full">
                 <Upload size={15} /> Choose CSV<input type="file" accept=".csv,text/csv" className="hidden" onChange={onCsv} />
@@ -398,16 +398,16 @@ const InstitutePanel = () => {
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="font-semibold">Student login details</p>
-              <p className="text-ink/60 text-xs mt-0.5">Emails can land in spam, so share these on WhatsApp too. Shown only now — note them down if needed.</p>
+              <p className="text-ink/70 text-xs mt-0.5">Emails can land in spam, so share these on WhatsApp too. Shown only now — note them down if needed.</p>
             </div>
-            <button onClick={() => setLogins([])} className="text-xs text-ink/50 hover:text-ink">Clear</button>
+            <button onClick={() => setLogins([])} className="text-xs text-ink/70 hover:text-ink">Clear</button>
           </div>
           <ul className="mt-3 divide-y divide-ink/5">
             {logins.map((x) => (
               <li key={x.email} className="py-2.5 flex flex-wrap items-center gap-x-4 gap-y-2 justify-between">
                 <div>
-                  <p className="font-medium">{x.name} <span className="text-ink/50 font-normal">· {x.email}</span></p>
-                  <p className="text-xs text-ink/60">Password: <code className="bg-ink/5 px-1.5 py-0.5 rounded text-ink">{x.password}</code>{x.emailed === false && <span className="text-red-700"> · email not sent</span>}</p>
+                  <p className="font-medium">{x.name} <span className="text-ink/70 font-normal">· {x.email}</span></p>
+                  <p className="text-xs text-ink/70">Password: <code className="bg-ink/5 px-1.5 py-0.5 rounded text-ink">{x.password}</code>{x.emailed === false && <span className="text-red-700"> · email not sent</span>}</p>
                 </div>
                 <div className="flex gap-2">
                   <button onClick={() => copyLogin(x)} className="text-xs font-semibold px-3 py-1.5 rounded-full border border-ink/15 hover:bg-ink/5">Copy</button>
@@ -437,7 +437,7 @@ const InstitutePanel = () => {
               <tr><th className="px-4 py-2.5">Name</th><th className="px-4 py-2.5">Email</th><th className="px-4 py-2.5">Phone</th><th className="px-4 py-2.5">Class</th><th className="px-4 py-2.5">Parent (weekly report)</th><th className="px-4 py-2.5">Joined</th><th className="px-4 py-2.5"></th></tr>
             </thead>
             <tbody>
-              {shown.length === 0 && <tr><td colSpan={7} className="px-4 py-6 text-center text-ink/50">{students.length ? "No match." : "No students yet. Add your first student above."}</td></tr>}
+              {shown.length === 0 && <tr><td colSpan={7} className="px-4 py-6 text-center text-ink/70">{students.length ? "No match." : "No students yet. Add your first student above."}</td></tr>}
               {shown.map((s) => (
                 <tr key={s.id} className="border-t border-ink/5">
                   <td className="px-4 py-2.5 font-medium">{s.fullName}</td>
@@ -471,7 +471,7 @@ const InstitutePanel = () => {
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="font-semibold flex items-center gap-2"><Users size={18} /> Parent of {parentFor.student.fullName}</h3>
-                <p className="text-xs text-ink/60 mt-1">Every week the parent gets the progress report: days studied, tests, scores and chapters to practise.</p>
+                <p className="text-xs text-ink/70 mt-1">Every week the parent gets the progress report: days studied, tests, scores and chapters to practise.</p>
               </div>
               <button type="button" onClick={() => setParentFor(null)} className="p-1 rounded hover:bg-ink/5"><X size={18} /></button>
             </div>

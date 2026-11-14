@@ -52,9 +52,9 @@ const FeaturedShortsSection = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
             <div className="max-w-2xl">
-              <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">YNeet Shorts</p>
+              <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">YNeet Shorts</p>
               <h2 className="font-display text-3xl sm:text-4xl font-bold mt-2">One NEET concept in 3–5 minutes.</h2>
-              <p className="text-ink/60 mt-2">Made by teachers, with a quick check after every video. English now, Tamil and Hindi coming soon.</p>
+              <p className="text-ink/70 mt-2">Made by teachers, with a quick check after every video. English now, Tamil and Hindi coming soon.</p>
             </div>
             <Link to="/register" className="inline-flex items-center gap-2 bg-ink text-paper font-semibold px-6 py-3 rounded-full hover:bg-ink/90 transition-colors">
               Watch all Shorts free <ArrowRight size={18} />
@@ -77,14 +77,14 @@ const FeaturedShortsSection = () => {
                     {s.language !== "English" && <span className="absolute top-2 left-2 bg-gold text-ink text-xs font-semibold px-2 py-0.5 rounded-full">{s.language}</span>}
                   </button>
                   <div className="p-3">
-                    <p className="text-xs text-ink/50">{s.subject} · {s.chapter}</p>
+                    <p className="text-xs text-ink/70">{s.subject} · {s.chapter}</p>
                     <p className="font-semibold leading-snug mt-0.5 line-clamp-2">{s.title}</p>
                     <div className="flex items-center justify-between gap-2 mt-2">
                       <span className="text-sm text-ink/70 truncate">by {c?.name || s.creatorName}</span>
                       <span className="flex items-center gap-1.5 shrink-0">
                         {c?.youtubeUrl && <a href={c.youtubeUrl} target="_blank" rel="noopener noreferrer" aria-label={`${c.name} on YouTube`} className="text-red-600 hover:opacity-80"><Youtube size={18} /></a>}
                         {c?.instagramUrl && <a href={c.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label={`${c.name} on Instagram`} className="text-pink-600 hover:opacity-80"><Instagram size={18} /></a>}
-                        <button onClick={() => share(s)} aria-label="Share" className="text-ink/50 hover:text-ink"><Share2 size={17} /></button>
+                        <button onClick={() => share(s)} aria-label="Share" className="text-ink/70 hover:text-ink"><Share2 size={17} /></button>
                       </span>
                     </div>
                   </div>
@@ -123,7 +123,7 @@ const FeaturedShortsSection = () => {
             <div className="bg-white rounded-2xl mt-3 p-4 flex items-center justify-between gap-3">
               <div className="min-w-0">
                 <p className="font-semibold truncate">{playing.title}</p>
-                <p className="text-sm text-ink/60">by {playing.creator?.name || playing.creatorName}</p>
+                <p className="text-sm text-ink/70">by {playing.creator?.name || playing.creatorName}</p>
               </div>
               <Link to="/register" className="shrink-0 bg-rise text-white text-sm font-semibold px-4 py-2 rounded-full">Try YNeet free</Link>
             </div>

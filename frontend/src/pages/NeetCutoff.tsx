@@ -75,14 +75,14 @@ export const NeetCutoffIndex = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
       <RegionalLinks path="/neet-cutoff" langs={LANGS} />
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">From official counselling data</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">From official counselling data</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Cutoff for Government MBBS: All India Quota & State-wise</h1>
       <UpdatedOn />
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">
         Closing ranks of every government MBBS college in the latest NEET counselling, category-wise, for the 15% All India Quota and each state's 85% quota. Pick your quota.
       </p>
-      {states === undefined && <p className="mt-8 text-ink/50">Loading…</p>}
-      {states === null && <p className="mt-8 text-ink/60">Couldn't load the cutoffs. Try the <Link to="/neet-college-predictor" className="underline font-semibold">College Predictor</Link>.</p>}
+      {states === undefined && <p className="mt-8 text-ink/70">Loading…</p>}
+      {states === null && <p className="mt-8 text-ink/70">Couldn't load the cutoffs. Try the <Link to="/neet-college-predictor" className="underline font-semibold">College Predictor</Link>.</p>}
       {states && states.length > 0 && (
         <div className="mt-8 overflow-x-auto">
           <table className="w-full text-sm border-collapse">
@@ -99,7 +99,7 @@ export const NeetCutoffIndex = () => {
                     <td className="py-2 pr-3"><Link to={`/neet-cutoff/${s.slug}`} className="font-semibold text-rise-dark hover:underline">{cutoffTitleName(s)} cutoff {s.year}</Link></td>
                     <td className="py-2 pr-3">{s.colleges.length}</td>
                     <td className="py-2 pr-3">{fmt(open?.last)}</td>
-                    <td className="py-2 text-ink/60 dark:text-paper/60">{unitOf(s)}</td>
+                    <td className="py-2 text-ink/70 dark:text-paper/70">{unitOf(s)}</td>
                   </tr>
                 );
               })}
@@ -121,7 +121,7 @@ export const NeetCutoffState = () => {
     if (c) { const m = cutoffMeta(c); setMeta(m.title, m.description, `/neet-cutoff/${c.slug}`); }
   }, [c]);
 
-  if (states === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/50">Loading…</div>;
+  if (states === undefined) return <div className="max-w-3xl mx-auto px-4 py-20 text-ink/70">Loading…</div>;
   if (!c) return <NotFound />;
 
   const open = c.categorySummary.find((x) => x.category === "OPEN");
@@ -132,7 +132,7 @@ export const NeetCutoffState = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
       <RegionalLinks path={`/neet-cutoff/${c.slug}`} langs={langsForState(c.slug)} />
-      <nav className="text-sm text-ink/55 dark:text-paper/55">
+      <nav className="text-sm text-ink/70 dark:text-paper/70">
         <Link to="/neet-cutoff" className="hover:underline">NEET cutoff</Link> › <span>{name}</span>
       </nav>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-3">{name} NEET Cutoff {c.year} for Government MBBS Colleges</h1>
@@ -163,7 +163,7 @@ export const NeetCutoffState = () => {
           </tbody>
         </table>
       </div>
-      <p className="text-xs text-ink/55 dark:text-paper/55 mt-2">{higherIsHarder ? "Higher marks = more competitive." : "Lower rank = more competitive."} Seats reserved for special groups (PwD, domicile-only, minority, management/NRI) are not included.</p>
+      <p className="text-xs text-ink/70 dark:text-paper/70 mt-2">{higherIsHarder ? "Higher marks = more competitive." : "Lower rank = more competitive."} Seats reserved for special groups (PwD, domicile-only, minority, management/NRI) are not included.</p>
 
       <h2 className="font-display text-2xl font-bold mt-10">{name} government MBBS colleges: {valueWord(c)} {c.year}</h2>
       <div className="mt-3 overflow-x-auto">
@@ -177,7 +177,7 @@ export const NeetCutoffState = () => {
           <tbody>
             {c.colleges.map((col) => (
               <tr key={col.college} className="border-b border-ink/5 dark:border-paper/10">
-                <td className="py-2 pr-3">{col.college}{col.type && !/^government$/i.test(col.type) ? <span className="text-xs text-ink/50 dark:text-paper/50"> · {col.type}</span> : null}</td>
+                <td className="py-2 pr-3">{col.college}{col.type && !/^government$/i.test(col.type) ? <span className="text-xs text-ink/70 dark:text-paper/70"> · {col.type}</span> : null}</td>
                 {c.categories.map((cat) => <td key={cat} className="py-2 pr-3 text-right">{fmt(col.closing[cat])}</td>)}
               </tr>
             ))}

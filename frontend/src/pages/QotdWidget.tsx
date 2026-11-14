@@ -80,7 +80,7 @@ function WidgetCard({ w }: { w: Widget }) {
           </button>
         </div>
         <div style={{ flex: "0 1 460px" }} className="min-w-0 w-full">
-          <p className="text-sm font-semibold text-ink/60 dark:text-paper/60">Live preview</p>
+          <p className="text-sm font-semibold text-ink/70 dark:text-paper/70">Live preview</p>
           <iframe key={opt} src={w.src(opt).replace("https://www.yneet.in", "")} title={`${w.title} preview`} className="mt-2 w-full rounded-2xl border border-ink/10" style={{ height: w.height, maxWidth: 460 }} loading="lazy" />
         </div>
       </div>
@@ -90,7 +90,7 @@ function WidgetCard({ w }: { w: Widget }) {
 
 const QotdWidget = () => (
   <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-    <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free for coaching centres, schools and blogs</p>
+    <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free for coaching centres, schools and blogs</p>
     <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">Free NEET widgets for your website</h1>
     <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl">
       Give NEET students on your website something useful: a daily question, a college predictor or the latest government MBBS cutoffs. Copy one code, paste it once and it keeps itself up to date. No sign-up, no cost, no ads.
@@ -110,7 +110,7 @@ const QotdWidget = () => (
           </li>
         ))}
       </ul>
-      <p className="mt-6 text-sm text-ink/60 dark:text-paper/60">
+      <p className="mt-6 text-sm text-ink/70 dark:text-paper/70">
         Need help adding one? <a href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent("Hi YNeet, I'd like help adding a free NEET widget to my website.")}`} target="_blank" rel="noopener noreferrer" className="underline font-semibold">Message us on WhatsApp</a>.
         Running a coaching centre? See <Link to="/institutes" className="underline font-semibold">YNeet for institutes</Link>.
       </p>

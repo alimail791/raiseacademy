@@ -73,3 +73,18 @@ html.in-app a[href^="/neet-question-widget"],
 html.in-app .web-only {
   display: none !important;
 }
+
+/* Home hero: decorative bars grow in with CSS (was framer-motion). The text
+   around them is not animated, so it shows as soon as the HTML arrives. */
+.hero-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: hero-bar 1s ease-out both;
+}
+@keyframes hero-bar {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-bar { animation: none; }
+}

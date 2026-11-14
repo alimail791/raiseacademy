@@ -230,7 +230,7 @@ export default function NeetPhotoResizer() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
-      <p className="text-sm text-ink/55 dark:text-paper/55">Specs last checked: {LAST_CHECKED}</p>
+      <p className="text-sm text-ink/70 dark:text-paper/70">Specs last checked: {LAST_CHECKED}</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight mt-2">NEET Photo & Signature Resizer</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">Crop and resize your NEET passport photo, postcard photo, signature and thumb impressions to the right KB size, ready to upload. Free, no login.</p>
       <p className="mt-3 inline-flex items-center gap-2 text-sm text-rise-dark font-semibold"><ShieldCheck size={16} /> Your photo stays on your phone — nothing is uploaded to our server.</p>
@@ -250,7 +250,7 @@ export default function NeetPhotoResizer() {
         <div>
           <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => onFile(e.target.files?.[0])} />
           {!img ? (
-            <button onClick={() => fileRef.current?.click()} className="w-full aspect-[4/5] rounded-2xl border-2 border-dashed border-ink/20 dark:border-paper/25 flex flex-col items-center justify-center gap-3 text-ink/60 dark:text-paper/60">
+            <button onClick={() => fileRef.current?.click()} className="w-full aspect-[4/5] rounded-2xl border-2 border-dashed border-ink/20 dark:border-paper/25 flex flex-col items-center justify-center gap-3 text-ink/70 dark:text-paper/70">
               <ImagePlus size={40} />
               <span className="font-semibold">Choose or take a photo</span>
               <span className="text-xs">JPG or PNG from your phone or computer</span>
@@ -261,7 +261,7 @@ export default function NeetPhotoResizer() {
                 <canvas ref={preview} onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp}
                   className="max-w-full max-h-[420px] border border-ink/20 touch-none cursor-move bg-white" style={{ aspectRatio: `${ow} / ${oh}` }} />
               </div>
-              <p className="text-xs text-ink/55 dark:text-paper/55 mt-2 text-center">Drag the photo to position it. Use zoom to crop closer.</p>
+              <p className="text-xs text-ink/70 dark:text-paper/70 mt-2 text-center">Drag the photo to position it. Use zoom to crop closer.</p>
               <label className="block mt-3 text-sm font-semibold">Zoom
                 <input type="range" min={1} max={4} step={0.01} value={zoom} onChange={(e) => { const z = +e.target.value; setZoom(z); setOff((o) => clampOff(o, z)); }} className="w-full" />
               </label>
@@ -312,7 +312,7 @@ export default function NeetPhotoResizer() {
                 className="mt-4 inline-flex items-center gap-2 bg-ink text-paper font-semibold px-6 py-3 rounded-full">
                 <Download size={16} /> Download JPG
               </a>
-              <p className="text-xs text-ink/60 dark:text-paper/60 mt-3">Always check the image looks clear before uploading it to the NEET form.</p>
+              <p className="text-xs text-ink/70 dark:text-paper/70 mt-3">Always check the image looks clear before uploading it to the NEET form.</p>
             </div>
           )}
         </div>

@@ -113,7 +113,7 @@ function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => voi
     <div className="space-y-5">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <h1 className="font-display text-2xl font-bold">{post ? "Edit post" : "New post"}</h1>
-        <button onClick={onDone} className="text-sm font-semibold text-ink/60 hover:text-ink">← All posts</button>
+        <button onClick={onDone} className="text-sm font-semibold text-ink/70 hover:text-ink">← All posts</button>
       </div>
 
       <div className="p-4 rounded-2xl border border-ink/10 flex items-center justify-between gap-3 flex-wrap">
@@ -133,13 +133,13 @@ function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => voi
       <label className="block">
         <span className="text-sm font-semibold">URL slug</span>
         <input className={`${field} mt-1.5`} maxLength={80} value={d.slug} onChange={(e) => { set("slug", e.target.value); setSlugTouched(true); }} placeholder="filled in from the title" />
-        <span className="text-xs text-ink/50">The post's web address: yneet.in/blog/<em>your-slug</em>. Use lowercase words and dashes.</span>
+        <span className="text-xs text-ink/70">The post's web address: yneet.in/blog/<em>your-slug</em>. Use lowercase words and dashes.</span>
       </label>
       <label className="block">
         <span className="text-sm font-semibold">Google description</span>
         <textarea className={`${field} mt-1.5`} rows={2} maxLength={300} value={d.metaDescription} onChange={(e) => set("metaDescription", e.target.value)}
           placeholder="One or two sentences shown under the title in Google results." />
-        <span className={`text-xs ${metaLen > 160 ? "text-red-600" : "text-ink/50"}`}>{metaLen} / 160 characters{metaLen > 160 ? " (Google may cut it off)" : ""}</span>
+        <span className={`text-xs ${metaLen > 160 ? "text-red-600" : "text-ink/70"}`}>{metaLen} / 160 characters{metaLen > 160 ? " (Google may cut it off)" : ""}</span>
       </label>
       <label className="block">
         <span className="text-sm font-semibold">Cover image address (optional)</span>
@@ -164,7 +164,7 @@ function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => voi
           <textarea className="w-full min-h-[420px] p-4 rounded-b-xl border border-ink/15 font-mono text-[13px]" spellCheck={false}
             value={d.bodyHtml} onChange={(e) => set("bodyHtml", e.target.value)} />
         )}
-        <p className="text-xs text-ink/50 mt-1.5">Paste from Word, Google Docs or a web page and the formatting comes with it. Images must be web links (https://…), not pasted pictures.</p>
+        <p className="text-xs text-ink/70 mt-1.5">Paste from Word, Google Docs or a web page and the formatting comes with it. Images must be web links (https://…), not pasted pictures.</p>
       </div>
 
       <div className="flex flex-wrap gap-3 items-center">
@@ -208,15 +208,15 @@ const AdminBlog = () => {
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div>
           <h1 className="font-display text-2xl font-bold">Blog</h1>
-          <p className="text-ink/60 text-sm mt-1">Articles shown at yneet.in/blog.</p>
+          <p className="text-ink/70 text-sm mt-1">Articles shown at yneet.in/blog.</p>
         </div>
         <div className="flex gap-3 items-center">
-          <a href="/blog" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink/60 hover:text-ink">View blog ↗</a>
+          <a href="/blog" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink/70 hover:text-ink">View blog ↗</a>
           <button onClick={() => setEditing("new")} className="bg-ink text-paper font-semibold px-5 py-2.5 rounded-full">+ New post</button>
         </div>
       </div>
 
-      {posts === null && <p className="mt-8 text-ink/50">Loading…</p>}
+      {posts === null && <p className="mt-8 text-ink/70">Loading…</p>}
       {posts?.length === 0 && (
         <div className="mt-8 p-6 rounded-2xl border border-ink/10 text-ink/70">
           No posts yet. Click <strong>New post</strong>. You can type the article, paste it, or import a ready-made .html article file.
@@ -238,11 +238,11 @@ const AdminBlog = () => {
                     <div className="text-xs text-ink/45">/blog/{p.slug}</div>
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${p.status === "published" ? "bg-rise-light text-rise-dark" : "bg-ink/5 text-ink/60"}`}>
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${p.status === "published" ? "bg-rise-light text-rise-dark" : "bg-ink/5 text-ink/70"}`}>
                       {p.status === "published" ? "Published" : "Draft"}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-ink/50">{formatDate(p.publishedAt || p.updatedAt)}</td>
+                  <td className="px-4 py-3 text-ink/70">{formatDate(p.publishedAt || p.updatedAt)}</td>
                   <td className="px-4 py-3 text-right whitespace-nowrap">
                     {p.status === "published" && <a href={`/blog/${p.slug}`} target="_blank" rel="noopener noreferrer" className="font-semibold text-rise-dark mr-4">View</a>}
                     <button onClick={() => open(p.id)} className="font-semibold text-rise-dark">Edit</button>

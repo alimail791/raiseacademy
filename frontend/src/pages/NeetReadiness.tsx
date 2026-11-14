@@ -181,7 +181,7 @@ const NeetReadiness = () => {
     const last = i === qs.length - 1;
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8">
-        <div className="flex items-center justify-between text-sm text-ink/60 dark:text-paper/60">
+        <div className="flex items-center justify-between text-sm text-ink/70 dark:text-paper/70">
           <span>Question {i + 1} of {qs.length} · <b className="text-ink dark:text-paper">{q.subject}</b></span>
           <span className="inline-flex items-center gap-1"><Clock size={14} /> {Math.floor(secs / 60)}:{String(secs % 60).padStart(2, "0")}</span>
         </div>
@@ -206,7 +206,7 @@ const NeetReadiness = () => {
 
         <div className="mt-5 flex items-center gap-3">
           {i > 0 && <button onClick={() => setI(i - 1)} className="px-5 py-3 rounded-full border border-ink/20 dark:border-paper/20 font-semibold">Back</button>}
-          {picked === undefined && !last && <button onClick={() => setI(i + 1)} className="px-5 py-3 rounded-full text-ink/60 dark:text-paper/60 font-semibold">Skip</button>}
+          {picked === undefined && !last && <button onClick={() => setI(i + 1)} className="px-5 py-3 rounded-full text-ink/70 dark:text-paper/70 font-semibold">Skip</button>}
           <button onClick={() => (last ? finish() : setI(i + 1))}
             className="ml-auto inline-flex items-center gap-2 bg-ink text-paper dark:bg-gold dark:text-ink px-6 py-3 rounded-full font-bold">
             {last ? "See my score" : "Next"} <ArrowRight size={16} />
@@ -260,13 +260,13 @@ const NeetReadiness = () => {
 
       {weakChapters.length > 0 && (
         <section>
-          <h2 className="font-display text-2xl font-bold flex items-center gap-2"><Target size={22} className="text-gold-dark" /> Chapters to work on</h2>
-          <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">You missed or skipped a question from each of these. Each has free PYQs with answers.</p>
+          <h2 className="font-display text-2xl font-bold flex items-center gap-2"><Target size={22} className="text-gold-deep dark:text-gold" /> Chapters to work on</h2>
+          <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">You missed or skipped a question from each of these. Each has free PYQs with answers.</p>
           <ul className="mt-4 grid sm:grid-cols-2 gap-2">
             {weakChapters.map((q) => (
               <li key={q.slug}>
                 <Link to={`/neet-practice/${q.slug}`} className="flex items-center justify-between gap-2 p-3 rounded-xl border border-ink/10 dark:border-paper/15 hover:border-gold">
-                  <span><span className="text-xs text-ink/50 dark:text-paper/50">{q.subject}</span><br /><b>{q.chapter}</b></span>
+                  <span><span className="text-xs text-ink/70 dark:text-paper/70">{q.subject}</span><br /><b>{q.chapter}</b></span>
                   <ArrowRight size={16} className="text-rise-dark shrink-0" />
                 </Link>
               </li>
@@ -285,7 +285,7 @@ const NeetReadiness = () => {
               const mine = ans[q.id];
               return (
                 <li key={q.id} className="p-4 rounded-2xl border border-ink/10 dark:border-paper/15">
-                  <p className="text-xs font-semibold text-ink/50 dark:text-paper/50">Q{n + 1} · {q.subject} · {q.chapter}</p>
+                  <p className="text-xs font-semibold text-ink/70 dark:text-paper/70">Q{n + 1} · {q.subject} · {q.chapter}</p>
                   <p className="mt-1 font-medium whitespace-pre-line">{q.question}</p>
                   <ul className="mt-2 space-y-1 text-sm">
                     {q.options.map((o, k) => {
@@ -299,7 +299,7 @@ const NeetReadiness = () => {
                       );
                     })}
                   </ul>
-                  {mine === undefined && <p className="text-xs mt-1 text-ink/50 dark:text-paper/50">Skipped</p>}
+                  {mine === undefined && <p className="text-xs mt-1 text-ink/70 dark:text-paper/70">Skipped</p>}
                   {q.explanation && <p className="mt-2 text-sm text-ink/70 dark:text-paper/70 whitespace-pre-line">{q.explanation}</p>}
                 </li>
               );

@@ -15,7 +15,7 @@ const Practice = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-      <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">Free · No login</p>
+      <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free · No login</p>
       <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">NEET Chapter-wise PYQs & Practice Questions</h1>
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl">
         Free NEET previous year questions for every Physics, Chemistry and Biology chapter, with answers and explanations. Pick a chapter and start practising — no sign-up needed.
@@ -27,8 +27,8 @@ const Practice = () => {
 
       <p className="mt-4 text-sm">Not sure where to start? <Link to="/neet-readiness" className="text-rise-dark font-semibold underline">Take the free 15-question NEET Readiness Test</Link> to find your weak chapters, or practise a <Link to="/neet-question-papers" className="text-rise-dark font-semibold underline">full year's NEET paper</Link>.</p>
 
-      {chapters === null && <p className="mt-10 text-ink/50">Loading chapters…</p>}
-      {chapters !== null && chapters.length === 0 && <p className="mt-10 text-ink/50">Chapters are being prepared. Meanwhile, <Link to="/neet-trial" className="underline font-semibold">try YNeet free for 30 days</Link>.</p>}
+      {chapters === null && <p className="mt-10 text-ink/70">Loading chapters…</p>}
+      {chapters !== null && chapters.length === 0 && <p className="mt-10 text-ink/70">Chapters are being prepared. Meanwhile, <Link to="/neet-trial" className="underline font-semibold">try YNeet free for 30 days</Link>.</p>}
       {SUBJECTS.map((s) => {
         const list = (chapters || []).filter((c) => c.subject === s);
         if (!list.length) return null;
@@ -39,10 +39,10 @@ const Practice = () => {
               {list.map((c) => (
                 <li key={c.slug}>
                   <Link to={`/neet-practice/${c.slug}`} className="flex items-start gap-3 p-4 rounded-xl border border-ink/10 dark:border-paper/15 hover:border-gold transition-colors h-full">
-                    <BookOpen size={18} className="text-gold-dark mt-0.5 shrink-0" />
+                    <BookOpen size={18} className="text-gold-deep dark:text-gold mt-0.5 shrink-0" />
                     <span>
                       <span className="font-semibold block">{c.chapter}</span>
-                      <span className="text-xs text-ink/55 dark:text-paper/55">{c.pyqCount > 0 ? `${c.pyqCount} PYQs` : `${c.total} questions`}{c.pyqYears ? ` · ${c.pyqYears[0]}–${c.pyqYears[1]}` : ""}</span>
+                      <span className="text-xs text-ink/70 dark:text-paper/70">{c.pyqCount > 0 ? `${c.pyqCount} PYQs` : `${c.total} questions`}{c.pyqYears ? ` · ${c.pyqYears[0]}–${c.pyqYears[1]}` : ""}</span>
                     </span>
                   </Link>
                 </li>

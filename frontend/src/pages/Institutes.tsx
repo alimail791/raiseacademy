@@ -106,7 +106,7 @@ const Institutes = () => {
     <div>
       {refName && (
         <div className="bg-gold-light/60 border-b border-gold/40">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 text-sm flex items-center gap-2"><Gift size={16} className="text-gold-dark" /> You were invited by <b>{refName}</b>. Pick a plan below to get started.</div>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 text-sm flex items-center gap-2"><Gift size={16} className="text-gold-deep dark:text-gold" /> You were invited by <b>{refName}</b>. Pick a plan below to get started.</div>
         </div>
       )}
 
@@ -133,7 +133,7 @@ const Institutes = () => {
             <div key={b.title} className="p-6 rounded-2xl border border-ink/10 bg-white">
               <b.icon className="text-rise" size={26} />
               <h3 className="font-display font-semibold text-lg mt-3">{b.title}</h3>
-              <p className="text-ink/60 text-sm mt-1.5">{b.desc}</p>
+              <p className="text-ink/70 text-sm mt-1.5">{b.desc}</p>
             </div>
           ))}
         </div>
@@ -160,7 +160,7 @@ const Institutes = () => {
       {/* COMPARISON — against what a centre does today, not other apps */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
         <h2 className="font-display text-2xl sm:text-3xl font-bold">YNeet vs what most centres do today</h2>
-        <p className="text-ink/60 mt-2 max-w-3xl">Keep your teachers and your classes. YNeet takes over the test-making, checking and reporting, so your teachers spend their time teaching.</p>
+        <p className="text-ink/70 mt-2 max-w-3xl">Keep your teachers and your classes. YNeet takes over the test-making, checking and reporting, so your teachers spend their time teaching.</p>
         <div className="mt-6 overflow-x-auto rounded-2xl border border-ink/10 bg-white">
           <table className="w-full min-w-[640px] text-sm">
             <thead>
@@ -183,7 +183,7 @@ const Institutes = () => {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-ink/50 mt-2">Test software and ERP features vary by provider.</p>
+        <p className="text-xs text-ink/70 mt-2">Test software and ERP features vary by provider.</p>
         <p className="mt-6 rounded-xl bg-gold/10 border border-gold/30 p-4 text-sm">
           <b>Free for your website:</b> show a new NEET question every day on your centre's site, with answers and explanations. <Link to="/neet-question-widget" className="font-semibold text-rise-dark underline">Get the free widget</Link>
         </p>
@@ -193,7 +193,7 @@ const Institutes = () => {
       <section id="pilot" className="max-w-6xl mx-auto px-4 sm:px-6 py-8 scroll-mt-20">
         <div className="rounded-2xl border-2 border-gold bg-gold/10 p-6 sm:p-8 flex flex-wrap items-center justify-between gap-5">
           <div className="max-w-2xl">
-            <p className="text-gold-dark font-semibold uppercase tracking-widest text-xs">Free pilot</p>
+            <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-xs">Free pilot</p>
             <h2 className="font-display text-2xl font-bold mt-1">Try YNeet free for 14 days with 5 students</h2>
             <p className="text-ink/70 mt-2">No payment, no card. Your panel is ready in a minute — add 5 students, watch their scores and weak chapters, and see the difference before you pay. Choose a plan any time; your remaining pilot days are kept.</p>
           </div>
@@ -205,13 +205,13 @@ const Institutes = () => {
       <section id="plans" className="bg-ink/[0.03] py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h2 className="font-display text-2xl sm:text-3xl font-bold">Monthly plans — start today</h2>
-          <p className="text-ink/60 mt-2">Pay online for 1 to 12 months at a time — your panel is ready instantly. Renew from your panel anytime. No GST.</p>
+          <p className="text-ink/70 mt-2">Pay online for 1 to 12 months at a time — your panel is ready instantly. Renew from your panel anytime. No GST.</p>
           <div className="mt-8 grid md:grid-cols-3 gap-5">
             {MONTHLY.map((p, i) => (
               <div key={p.seats} className={`relative p-6 rounded-2xl border bg-white flex flex-col ${i === 1 ? "border-gold shadow-lg" : "border-ink/10"}`}>
                 {i === 1 && <span className="absolute -top-3 right-5 bg-gold text-ink text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>}
-                <p className="font-semibold text-ink/60">{p.seats} students</p>
-                <p className="font-display text-4xl font-bold mt-2">{inr(p.price)}<span className="text-base font-medium text-ink/50"> / month</span></p>
+                <p className="font-semibold text-ink/70">{p.seats} students</p>
+                <p className="font-display text-4xl font-bold mt-2">{inr(p.price)}<span className="text-base font-medium text-ink/70"> / month</span></p>
                 <p className="text-sm text-rise-dark font-medium mt-1">≈ {inr(Math.round(p.price / p.seats))} per student</p>
                 <ul className="mt-5 space-y-2 text-sm text-ink/70 flex-1">
                   {["Every YNeet feature for each student, including Shorts", "Institute panel with live progress", "Weekly parent reports", "Swap students anytime", "Class 6–8 students free"].map((t) => (
@@ -222,22 +222,22 @@ const Institutes = () => {
               </div>
             ))}
           </div>
-          <p className="mt-4 text-sm text-ink/50 flex items-center gap-1.5"><ShieldCheck size={15} /> Secure payment by UPI, card or net banking via Razorpay. Already a YNeet institute? <Link to="/institute/login" className="text-rise-dark underline">Log in</Link> to renew.</p>
+          <p className="mt-4 text-sm text-ink/70 flex items-center gap-1.5"><ShieldCheck size={15} /> Secure payment by UPI, card or net banking via Razorpay. Already a YNeet institute? <Link to="/institute/login" className="text-rise-dark underline">Log in</Link> to renew.</p>
         </div>
       </section>
 
       {/* YEARLY */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <h2 className="font-display text-2xl sm:text-3xl font-bold">Yearly packs — best value</h2>
-        <p className="text-ink/60 mt-2">One year for your whole batch — about 8 months' price. Payment by bank transfer, UPI or cheque — talk to us on WhatsApp.</p>
+        <p className="text-ink/70 mt-2">One year for your whole batch — about 8 months' price. Payment by bank transfer, UPI or cheque — talk to us on WhatsApp.</p>
         <div className="mt-8 grid md:grid-cols-3 gap-5">
           {YEARLY.map((p) => (
             <div key={p.seats} className="p-6 rounded-2xl border border-ink/10 bg-white">
-              <p className="font-semibold text-ink/60">{p.seats} students · 1 year</p>
+              <p className="font-semibold text-ink/70">{p.seats} students · 1 year</p>
               <p className="font-display text-3xl font-bold mt-2">{inr(p.price)}</p>
               <p className="text-sm text-rise-dark font-medium mt-1">{inr(Math.round(p.price / p.seats))} per student per year</p>
               {(() => { const m = MONTHLY.find((x) => x.seats === p.seats); return m && m.price * 12 > p.price
-                ? <p className="text-xs font-semibold text-ink/60 mt-1">Save {inr(m.price * 12 - p.price)} vs 12 monthly payments</p> : null; })()}
+                ? <p className="text-xs font-semibold text-ink/70 mt-1">Save {inr(m.price * 12 - p.price)} vs 12 monthly payments</p> : null; })()}
               <a href={waLink(`Hi YNeet, I'm interested in the yearly pack for ${p.seats} students.`)} target="_blank" rel="noopener noreferrer"
                 className="mt-5 inline-flex items-center gap-2 border border-ink/20 font-semibold px-5 py-2.5 rounded-full hover:border-gold"><MessageCircle size={16} /> Enquire on WhatsApp</a>
             </div>
@@ -252,7 +252,7 @@ const Institutes = () => {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="font-display text-xl font-bold">Free pilot · 5 students · 14 days</h3>
-                <p className="text-sm text-ink/60">Create your institute account. No payment needed.</p>
+                <p className="text-sm text-ink/70">Create your institute account. No payment needed.</p>
               </div>
               <button type="button" disabled={busy} onClick={() => setPilot(false)} className="p-1 rounded hover:bg-ink/5"><X size={20} /></button>
             </div>
@@ -267,7 +267,7 @@ const Institutes = () => {
               <div><label className="text-xs font-medium">Create a password *</label><input required minLength={6} type="password" className={input} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} /></div>
             </div>
             <button disabled={busy} className="w-full bg-gold text-ink font-semibold py-3 rounded-full hover:bg-gold-dark disabled:opacity-60">{busy ? "Please wait…" : "Start free pilot"}</button>
-            <p className="text-xs text-ink/50 text-center">One free pilot per institute. Class 6–8 students are always free and don't use a seat.</p>
+            <p className="text-xs text-ink/70 text-center">One free pilot per institute. Class 6–8 students are always free and don't use a seat.</p>
           </form>
         </div>
       )}
@@ -279,7 +279,7 @@ const Institutes = () => {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="font-display text-xl font-bold">{plan.seats} students · {inr(plan.price)} / month</h3>
-                <p className="text-sm text-ink/60">Create your institute account, then pay securely.</p>
+                <p className="text-sm text-ink/70">Create your institute account, then pay securely.</p>
               </div>
               <button type="button" disabled={busy} onClick={() => setPlan(null)} className="p-1 rounded hover:bg-ink/5"><X size={20} /></button>
             </div>
@@ -303,10 +303,10 @@ const Institutes = () => {
                 </div>
               </div>
               <div className="flex flex-wrap gap-1.5 mt-2">{[1, 3, 6, 12].map((m) => <button type="button" key={m} onClick={() => setMonths(m)} className={`text-xs px-2.5 py-1 rounded-full border ${months === m ? "bg-ink text-paper border-ink" : "border-ink/15"}`}>{m === 12 ? "12 months" : `${m} month${m > 1 ? "s" : ""}`}</button>)}</div>
-              <p className="text-xs text-ink/60 mt-2">{inr(plan.price)} × {months} = <b className="text-ink">{inr(plan.price * months)}</b></p>
+              <p className="text-xs text-ink/70 mt-2">{inr(plan.price)} × {months} = <b className="text-ink">{inr(plan.price * months)}</b></p>
             </div>
             <button disabled={busy} className="w-full bg-gold text-ink font-semibold py-3 rounded-full hover:bg-gold-dark disabled:opacity-60">{busy ? "Please wait…" : `Pay ${inr(plan.price * months)} & start`}</button>
-            <p className="text-xs text-ink/50 text-center">{months}-month plan from today. Renew anytime from your panel — early renewals add on after your current end date.</p>
+            <p className="text-xs text-ink/70 text-center">{months}-month plan from today. Renew anytime from your panel — early renewals add on after your current end date.</p>
           </form>
         </div>
       )}

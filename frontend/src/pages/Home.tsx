@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowRight, Gift } from "lucide-react";
 import Counter from "../components/Counter";
 import FeaturedShortsSection from "../components/FeaturedShortsSection";
@@ -19,54 +18,36 @@ const Home = () => {
         <div className="absolute inset-0 opacity-[0.15]" aria-hidden="true">
           <svg viewBox="0 0 800 400" className="w-full h-full" preserveAspectRatio="xMidYMax slice">
             {[0, 1, 2, 3, 4, 5].map((i) => (
-              <motion.rect
+              <rect
                 key={i}
                 x={i * 130 + 20}
+                y={400 - (60 + i * 40)}
                 width={70}
+                height={60 + i * 40}
                 fill="#F2A93B"
-                initial={{ height: 0, y: 400 }}
-                animate={{ height: 60 + i * 40, y: 400 - (60 + i * 40) }}
-                transition={{ duration: 1, delay: i * 0.1, ease: "easeOut" }}
+                className="hero-bar"
+                style={{ animationDelay: `${i * 0.1}s` }}
               />
             ))}
           </svg>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-24 sm:py-32">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-5"
-          >
+          <p className="mb-5">
             <Link to="/register" className="inline-flex items-center gap-2 bg-gold text-ink text-sm sm:text-base font-bold px-4 py-2 rounded-full shadow-lg shadow-gold/30 hover:scale-[1.03] transition-transform">
               <Gift size={18} /> <span className="sm:hidden">30 DAYS FREE · Class 9–Dropper</span><span className="hidden sm:inline">30-DAY FREE TRIAL · Class 9 to Dropper</span> <span className="hidden sm:inline font-medium">· no payment needed</span>
             </Link>
             <Link to="/register?junior=1" className="hidden ml-0 sm:ml-2 mt-2 sm:mt-0 sm:inline-flex items-center gap-2 bg-white text-rise-dark text-sm sm:text-base font-bold px-4 py-2 rounded-full hover:scale-[1.03] transition-transform">
               FREE for Class 6–8 <span className="font-medium">· tests, puzzles, quiz &amp; Shorts</span>
             </Link>
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="font-display text-4xl sm:text-6xl font-bold leading-[1.1] max-w-3xl"
-          >
+          </p>
+          <h1 className="font-display text-4xl sm:text-6xl font-bold leading-[1.1] max-w-3xl">
             NEET mock tests &amp; practice that <span className="text-gold">show you what to fix.</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mt-6 max-w-xl text-paper/80 text-lg"
-          >
+          </h1>
+          <p className="mt-6 max-w-xl text-paper/80 text-lg">
             1,200+ NEET tests, PYQs and daily quizzes, with your weak chapters after every test. <b className="text-gold">Free for 30 days</b>, no card needed.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mt-9 flex flex-wrap gap-4"
-          >
+          </p>
+          <div className="mt-9 flex flex-wrap gap-4">
             <Link
               to="/register"
               className="inline-flex items-center gap-2 bg-gold text-ink font-bold text-lg px-7 py-3.5 rounded-full hover:bg-gold-dark transition-colors"
@@ -85,7 +66,7 @@ const Home = () => {
             >
               Check your NEET score free <ArrowRight size={18} />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -105,7 +86,7 @@ const Home = () => {
       {/* NEET READINESS — shareable 15-question score check */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-14 pb-2">
         <Link to="/neet-readiness" className="block rounded-3xl bg-rise-line text-paper p-7 sm:p-9 hover:opacity-95">
-          <p className="text-gold font-bold uppercase tracking-wider text-sm">Free · 5 minutes · No login</p>
+          <p className="text-gold-light font-bold uppercase tracking-wider text-sm">Free · 5 minutes · No login</p>
           <p className="font-display text-2xl sm:text-3xl font-bold mt-2">What's your NEET Readiness Score?</p>
           <p className="text-paper/80 mt-2">15 NEET-level questions with NEET marking. Get your score out of 100, your weak chapters and a score card to share.</p>
           <span className="mt-4 inline-block bg-gold text-ink font-bold px-6 py-3 rounded-full">Check my score →</span>
@@ -139,9 +120,9 @@ const Home = () => {
             { cls: "Dropper", price: "₹499/mo", note: "or ₹3,999 a year", to: "/register" },
           ].map((p) => (
             <Link key={p.cls} to={p.to} className={`rounded-2xl p-5 bg-white dark:bg-ink-light hover:border-gold ${p.top ? "border-2 border-gold" : "border border-ink/10 dark:border-paper/15"}`}>
-              <p className="text-sm font-semibold text-gold-dark">{p.cls}</p>
+              <p className="text-sm font-semibold text-gold-deep dark:text-gold">{p.cls}</p>
               <p className="font-display text-2xl font-bold mt-1">{p.price}</p>
-              <p className="text-sm text-ink/60 dark:text-paper/60 mt-1">{p.note}</p>
+              <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">{p.note}</p>
             </Link>
           ))}
         </div>
@@ -152,7 +133,7 @@ const Home = () => {
       <section className="py-16 sm:py-20 bg-gold/10 border-y border-gold/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <p className="text-gold-dark font-semibold uppercase tracking-widest text-sm">New · YNeet Daily</p>
+            <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">New · YNeet Daily</p>
             <h2 className="font-display text-3xl sm:text-4xl font-bold mt-2">
               5 free puzzles every day, for every class.
             </h2>
@@ -167,7 +148,7 @@ const Home = () => {
               href={gamesLink("home")}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-2 mt-7 bg-rise text-white font-semibold px-7 py-3 rounded-full hover:bg-rise-dark transition-colors"
+              className="inline-flex items-center gap-2 mt-7 bg-rise-dark text-white font-semibold px-7 py-3 rounded-full hover:bg-ink transition-colors"
             >
               Play today's puzzles <ArrowRight size={18} />
             </a>
@@ -190,7 +171,7 @@ const Home = () => {
                 </span>
                 <span className="min-w-0">
                   <span className="block font-semibold">{g.name}</span>
-                  <span className="block text-sm text-ink/60">{g.desc}</span>
+                  <span className="block text-sm text-ink/70">{g.desc}</span>
                 </span>
               </li>
             ))}
@@ -202,10 +183,10 @@ const Home = () => {
       <FeaturedShortsSection />
 
       {/* CTA */}
-      <section className="bg-rise text-white py-16">
+      <section className="bg-rise-dark text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="font-display text-3xl font-bold">Ready to raise your rank?</h2>
-          <p className="mt-3 text-white/85">Enroll now and get 30 days of full access free.</p>
+          <p className="mt-3 text-white/90">Enroll now and get 30 days of full access free.</p>
           <Link
             to="/register"
             className="inline-flex items-center gap-2 mt-7 bg-white text-rise-dark font-semibold px-7 py-3 rounded-full hover:bg-paper transition-colors"

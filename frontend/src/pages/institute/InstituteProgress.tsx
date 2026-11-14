@@ -25,7 +25,7 @@ const ago = (d?: string | null) => {
   return days <= 0 ? "Today" : days === 1 ? "Yesterday" : `${days} days ago`;
 };
 const status = (p: Progress) => {
-  if (!p.joined) return { label: "Not started", cls: "bg-ink/10 text-ink/60" };
+  if (!p.joined) return { label: "Not started", cls: "bg-ink/10 text-ink/70" };
   const d = p.activeDays7 || 0;
   if (d === 0) return { label: "Inactive", cls: "bg-red-100 text-red-700" };
   if (d <= 2) return { label: "Low", cls: "bg-amber-100 text-amber-800" };
@@ -40,9 +40,9 @@ const waLink = (phone: string, name: string) => {
 
 const Tile = ({ label, value, sub, tone = "" }: { label: string; value: string | number; sub?: string; tone?: string }) => (
   <div className="bg-white rounded-2xl border border-ink/10 p-4">
-    <p className="text-xs font-semibold text-ink/50 uppercase tracking-wide">{label}</p>
+    <p className="text-xs font-semibold text-ink/70 uppercase tracking-wide">{label}</p>
     <p className={`font-display text-2xl sm:text-3xl font-bold mt-1 ${tone}`}>{value}</p>
-    {sub && <p className="text-xs text-ink/50 mt-0.5">{sub}</p>}
+    {sub && <p className="text-xs text-ink/70 mt-0.5">{sub}</p>}
   </div>
 );
 
@@ -119,7 +119,7 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
   if (!rows.length || !summary) return (
     <div className="bg-white rounded-2xl border border-ink/10 p-8 text-center">
       <p className="font-semibold">No students yet</p>
-      <p className="text-sm text-ink/60 mt-1">Add your students and their test scores, practice and weak chapters will show up here.</p>
+      <p className="text-sm text-ink/70 mt-1">Add your students and their test scores, practice and weak chapters will show up here.</p>
       <button onClick={onAddStudents} className="mt-4 inline-flex items-center gap-1.5 bg-gold text-ink font-semibold px-5 py-2 rounded-full"><UserPlus size={16} /> Add students</button>
     </div>
   );
@@ -138,8 +138,8 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
 
       {summary.topWeakChapters.length > 0 && (
         <div className="bg-white rounded-2xl border border-ink/10 p-5">
-          <h3 className="font-semibold">Weakest chapters across your students <span className="text-ink/50 font-normal text-sm">(last 30 days)</span></h3>
-          <p className="text-sm text-ink/60">Most wrong answers in YNeet tests. Good topics to revise in class.</p>
+          <h3 className="font-semibold">Weakest chapters across your students <span className="text-ink/70 font-normal text-sm">(last 30 days)</span></h3>
+          <p className="text-sm text-ink/70">Most wrong answers in YNeet tests. Good topics to revise in class.</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {summary.topWeakChapters.map((w, i) => (
               <span key={i} className="text-sm px-3 py-1.5 rounded-full bg-red-50 text-red-800 border border-red-100">
@@ -170,7 +170,7 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm whitespace-nowrap">
-            <thead className="bg-ink/5 text-left text-xs uppercase tracking-wide text-ink/60">
+            <thead className="bg-ink/5 text-left text-xs uppercase tracking-wide text-ink/70">
               <tr>
                 <th className="px-4 py-2.5">Student</th><th className="px-3 py-2.5">Status</th><th className="px-3 py-2.5 hidden sm:table-cell">Days active (7d)</th>
                 <th className="px-3 py-2.5 hidden md:table-cell">Tests 7d / 30d</th><th className="px-3 py-2.5">Avg score</th><th className="px-3 py-2.5">Latest mock</th>
@@ -178,12 +178,12 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
               </tr>
             </thead>
             <tbody>
-              {shown.length === 0 && <tr><td colSpan={8} className="px-4 py-6 text-center text-ink/50">No students match.</td></tr>}
+              {shown.length === 0 && <tr><td colSpan={8} className="px-4 py-6 text-center text-ink/70">No students match.</td></tr>}
               {shown.map((r) => {
                 const p = r.progress, st = status(p), d7 = p.activeDays7 || 0;
                 return (
                   <tr key={r.id} onClick={() => openStudent(r)} className="border-t border-ink/5 hover:bg-gold-light/30 cursor-pointer">
-                    <td className="px-4 py-2.5"><div className="font-medium">{r.fullName}</div><div className="text-xs text-ink/50">{r.currentClass ? (r.currentClass === "Dropper" ? "Dropper" : `Class ${r.currentClass}`) : ""}</div></td>
+                    <td className="px-4 py-2.5"><div className="font-medium">{r.fullName}</div><div className="text-xs text-ink/70">{r.currentClass ? (r.currentClass === "Dropper" ? "Dropper" : `Class ${r.currentClass}`) : ""}</div></td>
                     <td className="px-3 py-2.5">
                       <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${st.cls}`}>{st.label}</span>
                       {st.label !== "Active" && r.phone && (
@@ -213,7 +213,7 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
             </tbody>
           </table>
         </div>
-        <p className="px-4 py-3 text-xs text-ink/50 border-t border-ink/5">Tap a student for full test history, weak chapters and subject scores. "Active" = practised on 3+ of the last 7 days.</p>
+        <p className="px-4 py-3 text-xs text-ink/70 border-t border-ink/5">Tap a student for full test history, weak chapters and subject scores. "Active" = practised on 3+ of the last 7 days.</p>
       </div>
 
       {open && (
@@ -222,8 +222,8 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="font-display text-xl font-bold">{open.fullName}</h3>
-                <p className="text-sm text-ink/60">{open.email} · {open.phone}</p>
-                <p className="text-xs text-ink/50 mt-1">
+                <p className="text-sm text-ink/70">{open.email} · {open.phone}</p>
+                <p className="text-xs text-ink/70 mt-1">
                   Parent: {open.parentEmail || open.parentPhone ? [open.parentEmail, open.parentPhone].filter(Boolean).join(" · ") + " — weekly report on" : "not added (add in Manage students)"}
                 </p>
                 <button onClick={() => shareWithParent(open)} className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#25D366] text-white">
@@ -249,7 +249,7 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
                 </div>
                 {detail.subjectAvg && detail.subjectAvg.fullMocks > 0 && (
                   <div className="bg-white rounded-2xl border border-ink/10 p-4">
-                    <p className="font-semibold text-sm">Average in full mocks <span className="text-ink/50 font-normal">({detail.subjectAvg.fullMocks} mocks)</span></p>
+                    <p className="font-semibold text-sm">Average in full mocks <span className="text-ink/70 font-normal">({detail.subjectAvg.fullMocks} mocks)</span></p>
                     {([["Physics", detail.subjectAvg.physics], ["Chemistry", detail.subjectAvg.chemistry], ["Biology", detail.subjectAvg.biology]] as const).map(([name, v]) => {
                       const max = name === "Biology" ? 360 : 180;
                       return (
@@ -259,23 +259,23 @@ const InstituteProgress = ({ onAddStudents }: { onAddStudents: () => void }) => 
                         </div>
                       );
                     })}
-                    {detail.targetScore ? <p className="text-xs text-ink/50 mt-3">Student's target: {detail.targetScore}/720</p> : null}
+                    {detail.targetScore ? <p className="text-xs text-ink/70 mt-3">Student's target: {detail.targetScore}/720</p> : null}
                   </div>
                 )}
                 {detail.weakChapters && detail.weakChapters.length > 0 && (
                   <div className="bg-white rounded-2xl border border-ink/10 p-4">
-                    <p className="font-semibold text-sm">Weak chapters <span className="text-ink/50 font-normal">(last 90 days)</span></p>
+                    <p className="font-semibold text-sm">Weak chapters <span className="text-ink/70 font-normal">(last 90 days)</span></p>
                     <ul className="mt-2 text-sm space-y-1">
-                      {detail.weakChapters.map((w, i) => <li key={i} className="flex justify-between"><span>{w.chapter} <span className="text-ink/50">· {w.subject}</span></span><span className="text-red-700">{w.wrong} wrong</span></li>)}
+                      {detail.weakChapters.map((w, i) => <li key={i} className="flex justify-between"><span>{w.chapter} <span className="text-ink/70">· {w.subject}</span></span><span className="text-red-700">{w.wrong} wrong</span></li>)}
                     </ul>
                   </div>
                 )}
                 <div className="bg-white rounded-2xl border border-ink/10">
                   <p className="font-semibold text-sm p-4 pb-2">Recent tests</p>
-                  {(!detail.tests || !detail.tests.length) ? <p className="px-4 pb-4 text-sm text-ink/50">No tests taken yet.</p> : (
+                  {(!detail.tests || !detail.tests.length) ? <p className="px-4 pb-4 text-sm text-ink/70">No tests taken yet.</p> : (
                     <div className="overflow-x-auto">
                       <table className="w-full text-sm whitespace-nowrap">
-                        <thead className="bg-ink/5 text-left text-xs text-ink/60"><tr><th className="px-4 py-2">Date</th><th className="px-3 py-2">Test</th><th className="px-3 py-2">Score</th><th className="px-3 py-2">P · C · B</th><th className="px-3 py-2">Accuracy</th></tr></thead>
+                        <thead className="bg-ink/5 text-left text-xs text-ink/70"><tr><th className="px-4 py-2">Date</th><th className="px-3 py-2">Test</th><th className="px-3 py-2">Score</th><th className="px-3 py-2">P · C · B</th><th className="px-3 py-2">Accuracy</th></tr></thead>
                         <tbody>
                           {detail.tests.map((t, i) => (
                             <tr key={i} className="border-t border-ink/5">

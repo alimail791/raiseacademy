@@ -77,7 +77,7 @@ const ForgotPassword = () => {
 
         {step === 2 && (
           <form onSubmit={verifyOtp} className="space-y-4">
-            <p className="text-sm text-ink/60">Enter the 6-digit code sent to {email}</p>
+            <p className="text-sm text-ink/70">Enter the 6-digit code sent to {email}</p>
             <input
               required
               maxLength={6}
