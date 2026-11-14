@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import api from "../api/axios";
@@ -12,6 +12,9 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  // Set after mount (not during render) so the prerendered HTML still hydrates cleanly.
+  const [expired, setExpired] = useState(false);
+  useEffect(() => { setExpired(new URLSearchParams(window.location.search).get("expired") === "1"); }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -38,6 +41,9 @@ const Login = () => {
   return (
     <div className="max-w-md mx-auto px-4 py-20">
       <h1 className="font-display text-3xl font-bold text-center">Student Login</h1>
+      {expired && (
+        <p role="status" className="mt-3 text-center text-sm bg-gold/15 text-ink rounded-lg px-3 py-2">Your login expired. Please sign in again.</p>
+      )}
       <form onSubmit={handleSubmit} className="mt-8 space-y-4 bg-white p-7 rounded-2xl border border-ink/10">
         <GoogleSignIn text="continue_with" onDone={(d) => {
           login(d.token, d.user);
