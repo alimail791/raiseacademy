@@ -115,7 +115,16 @@ export async function tick() {
 export function startInstagramReelsJob() {
   // Say in the logs whether Instagram is connected, and as which account.
   if (igConfigured()) setTimeout(() => getAuth()
-    .then((a) => console.log(`Instagram: connected as @${a.username || "?"} (id ${a.userId}, ${fbToken(a.token) ? "Facebook" : "Instagram"} token)`))
+    .then(async (a) => {
+      let exp = "";
+      if (fbToken(a.token)) {
+        try {
+          const d = (await ig(`/debug_token?input_token=${encodeURIComponent(a.token)}`, { token: a.token })).data || {};
+          exp = `, ${d.type || "?"} token, expires ${d.expires_at ? new Date(d.expires_at * 1000).toISOString() : "never"}, scopes ${(d.scopes || []).join(" ")}`;
+        } catch (e) { exp = `, expiry unknown (${e.message})`; }
+      }
+      console.log(`Instagram: connected as @${a.username || "?"} (id ${a.userId}, ${fbToken(a.token) ? "Facebook" : "Instagram"} token${exp})`);
+    })
     .catch((e) => console.warn(`Instagram: NOT connected — ${e.message}`)), 15 * 1000);
   setTimeout(tick, 30 * 1000);
   setInterval(tick, TICK_MS);
