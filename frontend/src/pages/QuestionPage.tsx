@@ -9,6 +9,7 @@ import { SITE_ORIGIN } from "../seo";
 import { useInitialPracticeData, YNEET_API, questionMeta, questionPath, schoolSubject, shorten, type QuestionPageData } from "../practice/practiceData";
 import NotFound from "./NotFound";
 import { ShortPlayer } from "../components/QuizShorts";
+import { StickySignupBar, track } from "../components/SignupNudge";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -115,10 +116,11 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
             <p className="text-sm text-paper/75 mt-2">Chapter tests, full NEET mocks, your score and weak topics — 70,000+ questions on YNeet.</p>
           </>
         )}
-        <Link to="/register" className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">
+        <Link to={school && school <= 8 ? "/register?junior=1&from=question_page" : "/register?from=question_page"} onClick={() => track("signup_nudge_click", { place: "question_page" })} className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">
           {school && school <= 8 ? "Start free" : "Start free for 30 days"} <ArrowRight size={16} />
         </Link>
-        <p className="text-xs mt-2 text-paper/60">No payment, no card. Register in 2 minutes.</p>
+        <p className="text-xs mt-2 text-paper/60">No payment, no card. Sign up in 30 seconds.</p>
+        {!school && <StickySignupBar text={`Free ${q.chapter} test + score`} place="question_page_bar" />}
         {!school && <p className="web-only text-sm mt-3 text-paper/75">For Class 11, 12 and droppers, see what the <Link to="/courses" className="text-gold font-semibold underline">YNeet NEET online course</Link> includes.</p>}
       </div>
 
