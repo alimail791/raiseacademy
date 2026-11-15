@@ -49,9 +49,16 @@ export async function getAuth() {
   }
   if (!a.userId) {
     if (fbToken(a.token)) {
-      // A system-user token's /me is the system user, not Instagram: the account id must be given.
-      if (!process.env.IG_USER_ID) throw new Error("IG_USER_ID is required with a system-user (EAA…) token");
-      a.userId = process.env.IG_USER_ID;
+      // A system-user token's /me is the system user, not Instagram. Use IG_USER_ID if given,
+      // else find the Instagram account through the Pages the token can see.
+      a.userId = process.env.IG_USER_ID || "";
+      if (!a.userId) {
+        const pages = await ig(`/me/accounts?fields=name,instagram_business_account{id,username}&limit=50`, { token: a.token }).catch((e) => { throw new Error(`Couldn't list Pages to find the Instagram account (${e.message}); set IG_USER_ID`); });
+        const hit = (pages.data || []).find((p) => p.instagram_business_account?.id);
+        if (!hit) throw new Error(`No Instagram account linked to the ${pages.data?.length || 0} Page(s) this token can see; link Instagram to the Page or set IG_USER_ID`);
+        a.userId = hit.instagram_business_account.id;
+        a.username = hit.instagram_business_account.username || "";
+      }
       try { a.username = (await ig(`/${a.userId}?fields=username`, { token: a.token })).username || ""; } catch { /* optional */ }
     } else {
       const me = await ig(`/me?fields=user_id,username`, { token: a.token });
@@ -106,6 +113,10 @@ export async function tick() {
 }
 
 export function startInstagramReelsJob() {
+  // Say in the logs whether Instagram is connected, and as which account.
+  if (igConfigured()) setTimeout(() => getAuth()
+    .then((a) => console.log(`Instagram: connected as @${a.username || "?"} (id ${a.userId}, ${fbToken(a.token) ? "Facebook" : "Instagram"} token)`))
+    .catch((e) => console.warn(`Instagram: NOT connected — ${e.message}`)), 15 * 1000);
   setTimeout(tick, 30 * 1000);
   setInterval(tick, TICK_MS);
 }
