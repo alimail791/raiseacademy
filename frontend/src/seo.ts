@@ -49,6 +49,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "How ready are you for NEET? Take a free 15-question test (Physics, Chemistry, Biology) with NEET marking, get your readiness score out of 100, your weak chapters and a shareable score card. No login.",
   },
+  "/yt": {
+    title: "Try 15 More NEET Questions Like Our YouTube Quiz — Free | YNeet",
+    description: "Got our YouTube NEET quiz right? Take 15 more real NEET questions with NEET marking and see your score and weak chapters in 5 minutes. Free.",
+    noindex: true,
+  },
   "/neet-parents": {
     title: "NEET Preparation with a Weekly Report for Parents | YNeet",
     description:

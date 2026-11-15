@@ -116,6 +116,7 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/delete-account" element={<DeleteAccount />} />
             <Route path="/neet-readiness" element={<NeetReadiness />} />
+            <Route path="/yt" element={<NeetReadiness key="yt" source="yt" />} />
             <Route path="/neet-college-predictor" element={<NeetCollegePredictor />} />
           <Route path="/neet-cutoff" element={<NeetCutoffIndex />} />
           <Route path="/neet-cutoff/:state" element={<NeetCutoffState />} />
@@ -187,6 +188,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/neet-readiness" element={<NeetReadiness />} />
+            <Route path="/yt" element={<NeetReadiness key="yt" source="yt" />} />
           <Route path="/neet-college-predictor" element={<NeetCollegePredictor />} />
           <Route path="/neet-cutoff" element={<NeetCutoffIndex />} />
           <Route path="/neet-cutoff/:state" element={<NeetCutoffState />} />
