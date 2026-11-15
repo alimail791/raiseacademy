@@ -3,12 +3,16 @@ import InstaReel from "../models/InstaReel.js";
 import IgAuth from "../models/IgAuth.js";
 
 // Posts the daily NEET quiz Reels to Instagram (Instagram API with Instagram Login).
-// Needs one Railway variable: IG_ACCESS_TOKEN (long-lived token of the Instagram
-// professional account). Optional: IG_USER_ID, PUBLIC_API_URL.
+// Needs one Railway variable: IG_ACCESS_TOKEN. Two kinds of token work:
+//   "IG…"  Instagram Login token (60 days; refreshed weekly) → graph.instagram.com
+//   "EAA…" system-user token from Meta's login configuration (never expires) →
+//          graph.facebook.com; also needs IG_USER_ID (the Instagram account's id).
+// Optional: IG_USER_ID, PUBLIC_API_URL.
 // Every 5 minutes: refresh the token weekly, then post any Reel whose time has come:
 // create a container from the public video URL, wait until Instagram has processed it, publish.
 
-const GRAPH = (process.env.IG_GRAPH_URL || "https://graph.instagram.com/v21.0").replace(/\/$/, "");
+const fbToken = (t) => /^EAA/.test(t || "");
+const graphFor = (t) => (process.env.IG_GRAPH_URL || (fbToken(t) ? "https://graph.facebook.com/v21.0" : "https://graph.instagram.com/v21.0")).replace(/\/$/, "");
 const TICK_MS = 5 * 60 * 1000;
 const MAX_ATTEMPTS = 3;
 const LATE_MS = 3 * 3600 * 1000; // older than this when first seen (e.g. before Instagram was connected) → skip, don't flood
@@ -19,7 +23,7 @@ export const videoUrl = (r) => `${publicBase()}/instagram-reels/video/${r._id}.m
 export const igConfigured = () => !!process.env.IG_ACCESS_TOKEN;
 
 async function ig(path, { method = "GET", token, body } = {}) {
-  const url = new URL(path.startsWith("http") ? path : `${GRAPH}${path}`);
+  const url = new URL(path.startsWith("http") ? path : `${graphFor(token)}${path}`);
   if (method === "GET") url.searchParams.set("access_token", token);
   const res = await fetch(url, {
     method,
@@ -37,15 +41,23 @@ export async function getAuth() {
   if (!env) return null;
   let a = await IgAuth.findById("ig");
   if (!a || a.fromEnv !== env) a = await IgAuth.findOneAndUpdate({ _id: "ig" }, { token: env, fromEnv: env, userId: "", username: "", refreshedAt: new Date() }, { upsert: true, new: true });
-  if (Date.now() - new Date(a.refreshedAt || 0) > 7 * 864e5) {
+  if (!fbToken(a.token) && Date.now() - new Date(a.refreshedAt || 0) > 7 * 864e5) {
     try {
-      const r = await ig(`${GRAPH.replace(/\/v[0-9.]+$/, "")}/refresh_access_token?grant_type=ig_refresh_token`, { token: a.token });
+      const r = await ig(`${graphFor(a.token).replace(/\/v[0-9.]+$/, "")}/refresh_access_token?grant_type=ig_refresh_token`, { token: a.token });
       if (r.access_token) { a.token = r.access_token; a.refreshedAt = new Date(); await a.save(); console.log("Instagram: token refreshed"); }
     } catch (e) { console.warn(`Instagram: token refresh failed — ${e.message}`); }
   }
   if (!a.userId) {
-    const me = await ig(`/me?fields=user_id,username`, { token: a.token });
-    a.userId = process.env.IG_USER_ID || me.user_id || me.id; a.username = me.username || ""; await a.save();
+    if (fbToken(a.token)) {
+      // A system-user token's /me is the system user, not Instagram: the account id must be given.
+      if (!process.env.IG_USER_ID) throw new Error("IG_USER_ID is required with a system-user (EAA…) token");
+      a.userId = process.env.IG_USER_ID;
+      try { a.username = (await ig(`/${a.userId}?fields=username`, { token: a.token })).username || ""; } catch { /* optional */ }
+    } else {
+      const me = await ig(`/me?fields=user_id,username`, { token: a.token });
+      a.userId = process.env.IG_USER_ID || me.user_id || me.id; a.username = me.username || "";
+    }
+    await a.save();
   }
   return a;
 }
