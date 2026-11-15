@@ -5,6 +5,7 @@ import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import { goToYneet } from "../utils/yneet";
 import GoogleSignIn, { OrDivider } from "../components/GoogleSignIn";
+import WhatsAppSignup from "../components/WhatsAppSignup";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -44,7 +45,12 @@ const Login = () => {
       {expired && (
         <p role="status" className="mt-3 text-center text-sm bg-gold/15 text-ink rounded-lg px-3 py-2">Your login expired. Please sign in again.</p>
       )}
-      <form onSubmit={handleSubmit} className="mt-8 space-y-4 bg-white p-7 rounded-2xl border border-ink/10">
+      <div className="mt-8 bg-white p-6 rounded-2xl border-2 border-[#25D366]/50">
+        <p className="font-display font-bold">Log in with WhatsApp</p>
+        <p className="text-sm text-ink/70 mb-3">We'll send a code to your WhatsApp number. No password needed.</p>
+        <WhatsAppSignup mode="login" place="login_page" onDone={(d) => { if (d.user.role === "admin") navigate("/admin"); else setTimeout(goToYneet, d.isNew ? 800 : 0); }} />
+      </div>
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4 bg-white p-7 rounded-2xl border border-ink/10">
         <GoogleSignIn text="continue_with" onDone={(d) => {
           login(d.token, d.user);
           toast.success(d.isNew ? "Welcome to YNeet!" : `Welcome back, ${d.user.fullName.split(" ")[0]}!`);

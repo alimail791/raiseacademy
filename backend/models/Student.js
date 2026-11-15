@@ -53,6 +53,9 @@ const studentSchema = new mongoose.Schema(
     parentPhone: { type: String, trim: true },
     lastParentWaSent: { type: Date },
 
+    // Set when the student proved this WhatsApp number with an OTP (WhatsApp sign-up/login).
+    // YNeet reads it via /auth/me and skips its own 3-day verification step.
+    phoneVerifiedAt: { type: Date },
     isEmailVerified: { type: Boolean, default: true }, // verified via OTP before creation
     role: { type: String, enum: ["student", "admin"], default: "student" },
 

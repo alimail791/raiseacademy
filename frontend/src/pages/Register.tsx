@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
@@ -7,6 +7,8 @@ import { useAuth } from "../context/AuthContext";
 import { goToYneet } from "../utils/yneet";
 import { isAppMode } from "../utils/appMode";
 import GoogleSignIn, { OrDivider } from "../components/GoogleSignIn";
+import WhatsAppSignup from "../components/WhatsAppSignup";
+import { isInAppBrowser } from "../components/SignupNudge";
 
 const boards = ["CBSE", "Tamil Nadu State Board"];
 // Class 9–Dropper. Course (Foundation/Coaching), board and NEET year are worked
@@ -67,6 +69,10 @@ const Register = () => {
   const [junior, setJunior] = useState(searchParams.get("junior") === "1");
   const [jr, setJr] = useState({ currentClass: "", parentPhone: "", board: "CBSE", parentOk: false });
   const [loading, setLoading] = useState(false);
+  // Open the WhatsApp form straight away for in-app browsers (Instagram, YouTube…)
+  // where Google sign-in is blocked, or when a link asks for it (?wa=1).
+  const [waOpen, setWaOpen] = useState(searchParams.get("wa") === "1");
+  useEffect(() => { if (isInAppBrowser()) setWaOpen(true); }, []);
   const { login } = useAuth();
 
   const set = (key: keyof FormState, value: string) => setForm((f) => ({ ...f, [key]: value }));
@@ -147,6 +153,16 @@ const Register = () => {
           <p className="text-sm text-ink/70">{isAppMode() ? "30 days free · no payment needed" : "30 days free, then from ₹299/month"}</p>
         </button>
       </div>
+
+      {/* Fastest path: WhatsApp number + OTP, no email or password (any class). */}
+      <div className="mt-6 bg-white p-6 rounded-2xl border-2 border-[#25D366]/50">
+        <p className="font-display font-bold text-lg">Fastest: sign up with WhatsApp</p>
+        <p className="text-sm text-ink/70 mb-3">Just your name, class and WhatsApp number. No email, no password.</p>
+        {waOpen
+          ? <WhatsAppSignup place="register_page" referredByCode={referredByCode} />
+          : <button type="button" onClick={() => setWaOpen(true)} className="w-full bg-[#25D366] text-white font-bold py-3 rounded-full">Sign up with WhatsApp</button>}
+      </div>
+      <OrDivider label="or fill in the form" />
 
       {junior && (
         <div className="mt-8 bg-white p-7 rounded-2xl border border-ink/10 space-y-4">

@@ -41,6 +41,7 @@ const publicUser = (u) => ({
   referredByCode: u.referredByCode,
   parentEmail: u.parentEmail,
   classChangedAt: u.classChangedAt || null,
+  phoneVerified: !!u.phoneVerifiedAt,
 });
 
 // PATCH internal — called by the YNeet backend (server-to-server, shared secret)
@@ -423,4 +424,110 @@ export const parentContactInternal = async (req, res) => {
     }
     res.json({ ok: true, parentPhone: s.parentPhone || null });
   } catch (e) { res.status(500).json({ message: e.message }); }
+};
+
+// ───────── Sign up / log in with WhatsApp (no email, no password) ─────────
+// For students who can't use Google (e.g. inside the Instagram/YouTube in-app
+// browser) or don't want to type an email + password. The number is proved with
+// a WhatsApp OTP, so YNeet doesn't ask them to verify again.
+
+const WA_KEY = (phone) => `wa:${phone}`;
+const WA_EMAIL_DOMAIN = "wa.yneet.in"; // placeholder email; the student can add a real one later
+
+// POST /api/auth/wa/send { phone }
+export const waSendOtp = async (req, res, next) => {
+  try {
+    const phone = normalizePhone(req.body?.phone);
+    if (!phone) return res.status(400).json({ message: "Enter a valid 10-digit WhatsApp number" });
+    const key = WA_KEY(phone);
+    const last = await Otp.findOne({ email: key, purpose: "wa-auth" }).sort({ createdAt: -1 });
+    if (last && Date.now() - new Date(last.createdAt).getTime() < 30 * 1000) {
+      return res.status(429).json({ message: "Please wait 30 seconds before asking for another code" });
+    }
+    const { waConfigured } = await import("../utils/parentWhatsApp.js");
+    const code = crypto.randomInt(100000, 999999).toString();
+    await Otp.deleteMany({ email: key, purpose: "wa-auth" });
+    await Otp.create({ email: key, purpose: "wa-auth", codeHash: await bcrypt.hash(code, 8), expiresAt: new Date(Date.now() + 10 * 60 * 1000) });
+    if (!waConfigured()) {
+      // Local dev without WhatsApp credentials: log the code instead.
+      console.log(`[wa-auth] code for ${phone}: ${code}`);
+      return res.json({ sent: true, dev: true });
+    }
+    const { sendWhatsAppOtp } = await import("../utils/whatsappOtp.js");
+    await sendWhatsAppOtp(phone, code);
+    res.json({ sent: true });
+  } catch (err) {
+    console.warn("WhatsApp sign-in OTP failed:", err.message);
+    res.status(502).json({ message: "Couldn't send the WhatsApp code. Please try again, or sign up with email." });
+  }
+};
+
+// POST /api/auth/wa/verify { phone, code, fullName?, currentClass?, parentOk?, referredByCode? }
+// Existing account on this number → logged in. Otherwise a new account is created
+// from fullName + currentClass (sent by the sign-up form); without them → 404.
+export const waVerifyOtp = async (req, res, next) => {
+  try {
+    const phone = normalizePhone(req.body?.phone);
+    const code = String(req.body?.code || "").trim();
+    if (!phone || !code) return res.status(400).json({ message: "Enter the 6-digit code" });
+    const otp = await Otp.findOne({ email: WA_KEY(phone), purpose: "wa-auth" }).sort({ createdAt: -1 });
+    if (!otp) return res.status(400).json({ message: "Ask for a code first" });
+    if (otp.expiresAt < new Date()) return res.status(400).json({ message: "Code expired. Ask for a new one." });
+    if (otp.attempts >= 5) return res.status(429).json({ message: "Too many tries. Ask for a new code." });
+    if (!(await bcrypt.compare(code, otp.codeHash))) {
+      otp.attempts += 1;
+      await otp.save();
+      return res.status(400).json({ message: "Wrong code" });
+    }
+
+    // Prefer the account created with WhatsApp, then the newest one using this number.
+    const existing =
+      (await Student.findOne({ email: `${phone}@${WA_EMAIL_DOMAIN}` })) ||
+      (await Student.findOne({ $or: [{ phone }, { phone: `91${phone}` }, { phone: `+91${phone}` }] }).sort({ createdAt: -1 }));
+    if (existing) {
+      await Otp.deleteMany({ email: WA_KEY(phone), purpose: "wa-auth" });
+      const sid = newSessionId();
+      await Student.updateOne({ _id: existing._id }, { $set: { currentSessionId: sid, ...(existing.phoneVerifiedAt ? {} : { phoneVerifiedAt: new Date() }) } });
+      existing.currentSessionId = sid;
+      existing.phoneVerifiedAt = existing.phoneVerifiedAt || new Date();
+      return res.json({ token: signToken(existing._id, sid), user: publicUser(existing), isNew: false });
+    }
+
+    const fullName = String(req.body?.fullName || "").trim().slice(0, 80);
+    const currentClass = String(req.body?.currentClass || "");
+    if (!fullName || !CLASS_ORDER.includes(currentClass)) {
+      // Code stays valid (10 min) so the page can ask for name + class and retry.
+      return res.status(404).json({ message: "No account on this number yet. Sign up first.", needsDetails: true });
+    }
+    const junior = ["6", "7", "8"].includes(currentClass);
+    if (junior && !req.body?.parentOk) {
+      return res.status(400).json({ message: "For Class 6–8, a parent needs to sign up with their WhatsApp number" });
+    }
+
+    const student = await Student.create({
+      fullName,
+      phone,
+      email: `${phone}@${WA_EMAIL_DOMAIN}`,
+      password: await bcrypt.hash(crypto.randomBytes(24).toString("hex"), 10),
+      board: "CBSE",
+      course: courseForClass(currentClass),
+      currentClass,
+      neetExamYear: neetYearForClass(currentClass),
+      ...(junior ? { parentPhone: phone } : {}),
+      phoneVerifiedAt: new Date(),
+      currentSessionId: newSessionId(),
+      referredByCode: req.body?.referredByCode ? String(req.body.referredByCode).slice(0, 40) : undefined,
+    });
+    await Otp.deleteMany({ email: WA_KEY(phone), purpose: "wa-auth" });
+
+    sendEmail({
+      to: ADMIN_ALERT_EMAIL,
+      subject: `New registration (WhatsApp) — ${student.fullName}`,
+      html: newRegistrationAdminTemplate(student),
+    }).catch((e) => console.warn("Admin registration-alert email failed:", e.message));
+
+    res.status(201).json({ token: signToken(student._id, student.currentSessionId), user: publicUser(student), isNew: true });
+  } catch (err) {
+    next(err);
+  }
 };

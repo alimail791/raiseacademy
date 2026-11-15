@@ -9,7 +9,7 @@ import { SITE_ORIGIN } from "../seo";
 import { useInitialPracticeData, YNEET_API, questionMeta, questionPath, schoolSubject, shorten, type QuestionPageData } from "../practice/practiceData";
 import NotFound from "./NotFound";
 import { ShortPlayer } from "../components/QuizShorts";
-import { StickySignupBar, track } from "../components/SignupNudge";
+import { QuickSignup, StickySignupBar, track } from "../components/SignupNudge";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -99,6 +99,27 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
         <p className="mt-1 text-ink/80 dark:text-paper/80 whitespace-pre-line">{q.explanation}</p>
       </details>
 
+      {/* Sign-up hook right after the answer: the moment the student is most engaged. */}
+      {shown && (
+        <div className="mt-5 p-5 rounded-2xl bg-gold/15 border border-gold/40">
+          {school && school <= 8 ? (
+            <>
+              <p className="font-display font-bold text-lg">Try the full Class {school} {q.chapter} test, free</p>
+              <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">Free for Class 6–8. A parent signs up with their WhatsApp number in 1 minute.</p>
+              <Link to="/register?junior=1&wa=1&from=question_answer" onClick={() => track("signup_nudge_click", { place: "question_answer_junior" })}
+                className="mt-3 inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-6 py-3 rounded-full">Sign up free with WhatsApp <ArrowRight size={16} /></Link>
+            </>
+          ) : (
+            <>
+              <p className="font-display font-bold text-lg">Got it? Practise every {q.chapter} question with a timer</p>
+              <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">Chapter tests, your score and weak topics. 30 days free, no payment.</p>
+              <QuickSignup place="question_answer" />
+              {!school && <p className="text-sm mt-3"><Link to="/neet-readiness" onClick={() => track("signup_nudge_click", { place: "question_answer", kind: "readiness" })} className="font-semibold text-rise-dark underline">Or try 15 more questions like this and get your NEET score →</Link></p>}
+            </>
+          )}
+        </div>
+      )}
+
       <div className="my-8 rounded-2xl bg-ink text-paper p-6">
         {school && school <= 8 ? (
           <>
@@ -120,7 +141,7 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
           {school && school <= 8 ? "Start free" : "Start free for 30 days"} <ArrowRight size={16} />
         </Link>
         <p className="text-xs mt-2 text-paper/60">No payment, no card. Sign up in 30 seconds.</p>
-        {!school && <StickySignupBar text={`Free ${q.chapter} test + score`} place="question_page_bar" />}
+        <StickySignupBar text={school && school <= 8 ? `Free Class ${school} tests, sign up` : `Free ${q.chapter} test + score`} place="question_page_bar" to={school && school <= 8 ? "/register?junior=1&wa=1&from=question_page_bar" : undefined} />
         {!school && <p className="web-only text-sm mt-3 text-paper/75">For Class 11, 12 and droppers, see what the <Link to="/courses" className="text-gold font-semibold underline">YNeet NEET online course</Link> includes.</p>}
       </div>
 
