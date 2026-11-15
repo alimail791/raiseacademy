@@ -96,7 +96,7 @@ const SchoolHub = ({ classNum }: { classNum: number }) => {
             ? "YNeet is free for Class 6–8: chapter tests on your school syllabus, daily puzzles and a weekly Brain Teaser."
             : `Timed chapter tests on your Class ${classNum} syllabus, your score and weak topics, and an early start on NEET.`}
         </p>
-        <Link to="/register" className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">
+        <Link to={free ? "/register?junior=1&from=school_hub" : "/register?from=school_hub"} className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">
           {free ? "Start free" : "Start free for 30 days"} <ArrowRight size={16} />
         </Link>
       </div>

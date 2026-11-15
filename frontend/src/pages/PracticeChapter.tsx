@@ -7,6 +7,7 @@ import { useInitialPracticeData, YNEET_API, chapterMeta, shorten, type PracticeC
 import NotFound from "./NotFound";
 import { NCERT_NOTES } from "../ncert/notes";
 import UpdatedOn from "../components/UpdatedOn";
+import { QuickSignup, StickySignupBar, RevealNudgeSheet, useRevealNudge, track } from "../components/SignupNudge";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -37,10 +38,16 @@ function Cta({ chapter, total, big }: { chapter: string; total: number; big?: bo
         <li className="flex items-center gap-2"><Target size={16} className="text-gold-deep dark:text-gold" /> Score + weak topics</li>
         <li className="flex items-center gap-2"><TrendingUp size={16} className="text-gold-deep dark:text-gold" /> Full NEET mocks & rank</li>
       </ul>
-      <Link to="/register" className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">
-        Start free for 30 days <ArrowRight size={16} />
-      </Link>
-      <p className={`text-xs mt-2 ${big ? "text-paper/60" : "text-ink/70 dark:text-paper/70"}`}>No payment, no card. Register in 2 minutes.</p>
+      {big ? (
+        <div className="mt-4 rounded-2xl bg-paper text-ink p-4">
+          <QuickSignup place="practice_chapter_end" />
+        </div>
+      ) : (
+        <Link to="/register?from=practice_chapter_mid" onClick={() => track("signup_nudge_click", { place: "practice_chapter_mid" })} className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">
+          Start free for 30 days <ArrowRight size={16} />
+        </Link>
+      )}
+      <p className={`text-xs mt-2 ${big ? "text-paper/60" : "text-ink/70 dark:text-paper/70"}`}>No payment, no card. Sign up in 30 seconds.</p>
       <p className={`web-only text-sm mt-3 ${big ? "text-paper/75" : "text-ink/70 dark:text-paper/70"}`}>Chapter tests are part of the <Link to="/courses" className={`font-semibold underline ${big ? "text-gold" : "text-rise-dark"}`}>full NEET online course for Class 11, 12 and droppers</Link>.</p>
     </div>
   );
@@ -54,6 +61,7 @@ const PracticeChapter = () => {
   const [c, setC] = useState<Chapter | null | undefined>(pre);
   const [related, setRelated] = useState<PracticeChapterSummary[]>(initial.chapters || []);
   const [open, setOpen] = useState<Record<string, boolean>>({});
+  const nudge = useRevealNudge(5);
 
   useEffect(() => {
     if (!YNEET_API) { if (!pre) setC(null); return; }
@@ -139,7 +147,11 @@ const PracticeChapter = () => {
                   );
                 })}
               </ul>
-              <details className="mt-3" onToggle={(e) => setOpen((s) => ({ ...s, [q.id]: (e.target as HTMLDetailsElement).open }))}>
+              <details className="mt-3" onToggle={(e) => {
+                const isOpen = (e.target as HTMLDetailsElement).open;
+                if (isOpen && !open[q.id]) nudge.onReveal();
+                setOpen((s) => ({ ...s, [q.id]: isOpen }));
+              }}>
                 <summary className="cursor-pointer text-sm font-semibold text-rise-dark">Show answer</summary>
                 <div className="mt-2 text-sm">
                   <p><b>Answer: {LETTERS[q.answer - 1]}</b> — {q.options[q.answer - 1]}</p>
@@ -153,6 +165,8 @@ const PracticeChapter = () => {
       </ol>
 
       <Cta chapter={c.chapter} total={c.total} big />
+      <RevealNudgeSheet open={nudge.open} onClose={nudge.close} title={`Take the full ${c.chapter} test, free`} place="practice_chapter" />
+      <StickySignupBar text={`Free ${c.chapter} test + score`} place="practice_chapter_bar" />
 
       {c.questionLinks && c.questionLinks.length > 0 && (
         <section className="mt-10">
