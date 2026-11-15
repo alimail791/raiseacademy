@@ -115,6 +115,149 @@ const DRAFTS = [
 <p><strong>Practise it:</strong> take a full NEET mock on YNeet, mark your guesses and check the result. <a href="/register">Start free for 30 days</a>, or work out your expected marks with the <a href="/neet-score-calculator">NEET score calculator</a>.</p>
 `,
   },
+  {
+    slug: "neet-2027-six-month-study-plan",
+    title: "NEET 2027: A 6-Month Study Plan From November to May",
+    metaDescription:
+      "About six months are left for NEET 2027. Split them into three phases: finish and fix the syllabus (Nov–Jan), revise with weekly mocks (Feb–Mar), then full exam practice (Apr–May). Month-by-month plan with a daily timetable.",
+    bodyHtml: `
+<p><strong>Quick answer:</strong> with about six months left for NEET 2027, split the time into three phases. <strong>November to January:</strong> finish the syllabus and test each chapter. <strong>February and March:</strong> revise weak chapters and take one full mock a week. <strong>April to the exam:</strong> full exam practice, two or three mocks a week, and NCERT revision only. Biology is half the paper, so give it the most time.</p>
+
+<h2>Why six months is enough</h2>
+<p>NEET has 180 questions in 3 hours: 90 from Biology, 45 from Physics and 45 from Chemistry, for 720 marks. Most questions come from NCERT Class 11 and 12. You don't need new books or new topics in the last six months. You need to finish what's left, find your weak chapters and fix them, and practise enough full papers that 3 hours feels normal. Check the <a href="/neet-2027-exam-date">NEET 2027 exam date page</a> for the latest schedule.</p>
+
+<h2>The 3-phase plan at a glance</h2>
+<table>
+<thead><tr><th>Phase</th><th>Months</th><th>Main goal</th><th>Full mocks</th></tr></thead>
+<tbody>
+<tr><td>1. Finish and fix</td><td>November – January</td><td>Complete the syllabus; a chapter test after every chapter</td><td>1 every 2 weeks</td></tr>
+<tr><td>2. Revise</td><td>February – March</td><td>Second reading of NCERT; work on weak chapters</td><td>1 every week</td></tr>
+<tr><td>3. Exam practice</td><td>April – exam</td><td>Full papers in exam timing; revision only</td><td>2–3 every week</td></tr>
+</tbody>
+</table>
+
+<h2>Phase 1: November to January — finish and fix</h2>
+<ul>
+<li><strong>List what's left.</strong> Write down every chapter you haven't finished and put the high-weightage ones first. The <a href="/neet-chapter-wise-weightage">chapter-wise weightage</a> page shows which chapters carry the most questions.</li>
+<li><strong>Test each chapter as you finish it.</strong> 30–45 questions from that chapter, the same day or the next. If you score below 60%, re-read it before moving on.</li>
+<li><strong>Start full mocks.</strong> One every two weeks is enough now. The goal is to get used to 3 hours, not to score high.</li>
+<li><strong>Class 12 students:</strong> board preparation and NEET overlap heavily in Biology and Chemistry. Study the NCERT chapter once for both, then add NEET MCQs on top.</li>
+</ul>
+
+<h2>Phase 2: February and March — revise</h2>
+<ul>
+<li><strong>Second reading of NCERT Biology</strong>, line by line, including diagrams, tables and examples. This is where most marks are won.</li>
+<li><strong>One full mock every week</strong>, on the same day and at the exam time (2:00–5:00 pm) if you can.</li>
+<li><strong>Fix the chapters each mock exposes.</strong> Keep a list of weak chapters and clear two or three every week.</li>
+<li><strong>Physics:</strong> make a one-page formula sheet per chapter and practise numericals daily, even 15–20 questions.</li>
+</ul>
+
+<h2>Phase 3: April to the exam — exam practice</h2>
+<ul>
+<li><strong>Two or three full mocks a week</strong>, plus previous year papers under exam conditions.</li>
+<li><strong>No new topics.</strong> If a chapter is still weak in April, learn its most-asked parts and move on.</li>
+<li><strong>Revise from your own notes</strong>: formula sheets, the silly-mistakes notebook and NCERT highlights.</li>
+<li><strong>Last 10 days:</strong> lighter mocks, enough sleep, and the exam-day routine (wake-up time, meals, travel to the centre).</li>
+</ul>
+
+<h2>A sample daily timetable (dropper)</h2>
+<table>
+<thead><tr><th>Time</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td>6:30 – 9:30 am</td><td>Biology: NCERT reading + 50 MCQs</td></tr>
+<tr><td>10:00 am – 1:00 pm</td><td>Physics: concepts + numericals</td></tr>
+<tr><td>2:00 – 5:00 pm</td><td>Chemistry (or a full mock on mock day)</td></tr>
+<tr><td>6:00 – 8:00 pm</td><td>Revise the day's weak spots; mock analysis</td></tr>
+<tr><td>9:00 – 9:30 pm</td><td>Quick revision of today's notes</td></tr>
+</tbody>
+</table>
+<p><strong>Class 12 students</strong> can use the same order with shorter blocks: about 3–4 hours on school days and 7–8 on weekends.</p>
+
+<h2>Mistakes that waste these six months</h2>
+<ul>
+<li>Switching books or courses every few weeks.</li>
+<li>Taking mocks without analysing them.</li>
+<li>Skipping Physics because it feels hard; even 100–120 marks in Physics changes your rank a lot.</li>
+<li>Studying only favourite chapters. The <a href="/neet-most-missed-chapters">most-missed NEET chapters</a> are where extra practice pays off.</li>
+</ul>
+
+<h2>Common questions</h2>
+<h3>Is 6 months enough to prepare for NEET 2027?</h3>
+<p>Yes, if you have studied the Class 11 and 12 syllabus once. Use the first three months to finish and fix, and the last three to revise and practise full papers.</p>
+<h3>How many hours a day should I study for NEET?</h3>
+<p>Droppers: about 8–10 focused hours. Class 12 students: 3–4 hours on school days and more on weekends. Consistency matters more than long single days.</p>
+<h3>Should I focus more on Biology?</h3>
+<p>Biology is 360 of the 720 marks, so it deserves the most time. But don't drop Physics or Chemistry; each is 180 marks.</p>
+<h3>When should I start full mock tests?</h3>
+<p>Now. One every two weeks until January, then weekly, then two or three a week from April. See <a href="/blog/how-many-mock-tests-before-neet-2027">how many mock tests to take</a>.</p>
+
+<p><strong>Start today:</strong> take the free 15-question <a href="/neet-readiness">NEET Readiness Test</a> to see where you stand, then <a href="/register">try YNeet free for 30 days</a> for chapter tests, full NEET mocks and a chapter priority study plan.</p>
+`,
+  },
+  {
+    slug: "how-to-read-ncert-biology-for-neet",
+    title: "How to Read NCERT Biology for NEET: A Line-by-Line Method",
+    metaDescription:
+      "Biology is 360 of 720 NEET marks, and most questions come straight from NCERT lines, diagrams and tables. Read each chapter three times with a different goal each time, then test it with MCQs the same day.",
+    bodyHtml: `
+<p><strong>Quick answer:</strong> Biology is <strong>90 of the 180 NEET questions (360 of 720 marks)</strong>, and most questions are built from NCERT lines, diagrams and tables. Read each NCERT Biology chapter <strong>three times, with a different goal each time</strong>: understand it, then mark every fact line by line, then study the diagrams and tables. Test the chapter with MCQs the same day and trace every wrong answer back to the NCERT line.</p>
+
+<h2>Why NCERT Biology matters so much</h2>
+<p>NEET Biology questions are often a single NCERT sentence turned into a question: an example, an exception, a number or a label from a figure. Reference books help with practice, but the answer is usually in NCERT. Students who score 330+ in Biology typically know NCERT so well they can tell which line a question came from.</p>
+
+<h2>The 3-reading method</h2>
+<table>
+<thead><tr><th>Reading</th><th>Goal</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td>1st</td><td>Understand</td><td>Read the chapter like a story. No highlighting. Note anything you don't understand.</td></tr>
+<tr><td>2nd</td><td>Mark facts</td><td>Line by line. Highlight names, numbers, examples, exceptions and "only", "not", "except" statements.</td></tr>
+<tr><td>3rd</td><td>Visuals</td><td>Every diagram, label, table and figure caption. Redraw key diagrams once from memory.</td></tr>
+</tbody>
+</table>
+
+<h2>Step by step for one chapter</h2>
+<ol>
+<li><strong>Read the chapter once</strong> to understand it (45–60 minutes).</li>
+<li><strong>Read it again, line by line</strong>, highlighting facts. Write tricky points in the margin, not in a separate notebook.</li>
+<li><strong>Go through every diagram and table.</strong> Cover the labels and try to name them.</li>
+<li><strong>Take 40–50 MCQs on the chapter</strong> the same day, including <a href="/neet-practice">previous year questions</a>.</li>
+<li><strong>For every wrong answer, find the NCERT line</strong> it came from and mark it with a star. These starred lines are your revision list.</li>
+<li><strong>Revise the starred lines</strong> after 3 days, 1 week and 1 month.</li>
+</ol>
+
+<h2>What to look for when reading line by line</h2>
+<ul>
+<li><strong>Examples:</strong> organisms, plants and diseases named in the text are frequently asked.</li>
+<li><strong>Exceptions:</strong> lines with "except", "only", "not" or "unlike".</li>
+<li><strong>Numbers:</strong> chromosome numbers, ATP counts, percentages and dates.</li>
+<li><strong>Tables:</strong> comparison tables are often turned into match-the-column questions.</li>
+<li><strong>Figure captions and labels:</strong> diagram-based questions are common in Botany and Zoology.</li>
+</ul>
+
+<h2>Which chapters to read first</h2>
+<p>Start with the chapters that carry the most questions. Genetics and evolution, human physiology, plant physiology, reproduction, ecology and biotechnology together make up a large share of the Biology paper. The <a href="/neet-chapter-wise-weightage">chapter-wise weightage</a> page has the full list, and the <a href="/neet-most-missed-chapters">most-missed chapters</a> page shows where students lose the most marks.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+<li><strong>Reading once and moving to guides.</strong> One reading leaves most of the small facts unread.</li>
+<li><strong>Highlighting everything.</strong> If the whole page is yellow, nothing stands out. Highlight facts, not sentences.</li>
+<li><strong>Skipping diagrams and boxes.</strong> These are question sources too.</li>
+<li><strong>Reading without testing.</strong> MCQs show what you only think you know.</li>
+</ul>
+
+<h2>Common questions</h2>
+<h3>Is NCERT enough for NEET Biology?</h3>
+<p>For theory, NCERT covers most of what is asked. Add MCQ practice and previous year questions to learn how the facts are tested.</p>
+<h3>How many times should I read NCERT Biology for NEET?</h3>
+<p>At least three focused readings per chapter before the exam, plus regular revision of the lines you got wrong in MCQs.</p>
+<h3>Should I make separate notes for NCERT Biology?</h3>
+<p>Short margin notes and a list of starred lines work better than rewriting the book. Save time for MCQs.</p>
+<h3>How long does one NCERT Biology chapter take?</h3>
+<p>About 3–4 hours for the three readings and the MCQ test, spread over one or two days.</p>
+
+<p><strong>Practise it:</strong> YNeet has chapter-wise NCERT Biology MCQs with explanations and a chapter priority study plan. <a href="/register">Start free for 30 days</a>, or take the 15-question <a href="/neet-readiness">NEET Readiness Test</a> first.</p>
+`,
+  },
 ];
 
 export async function addBlogDrafts() {
