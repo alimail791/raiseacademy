@@ -13,8 +13,10 @@ export const upload = async (req, res, next) => {
     if (!Buffer.isBuffer(req.body) || req.body.length < 10000 || req.body.subarray(4, 8).toString() !== "ftyp") return res.status(400).json({ message: "Body must be an MP4" });
     let m = {};
     try { m = JSON.parse(Buffer.from(req.get("x-reel-meta") || "", "base64").toString("utf8") || "{}"); } catch { /* keep {} */ }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(m.date || "")) || !SUBJECTS.includes(m.subject)) return res.status(400).json({ message: "Bad date or subject" });
-    const key = `${m.date}|${m.subject}`;
+    // One-off Reels (promos etc.): { custom: true, caption, publishAt? } — each gets its own key.
+    if (m.custom) { m.date = new Date().toISOString().slice(0, 10); m.subject = "Custom"; }
+    else if (!/^\d{4}-\d{2}-\d{2}$/.test(String(m.date || "")) || !SUBJECTS.includes(m.subject)) return res.status(400).json({ message: "Bad date or subject" });
+    const key = m.custom ? `custom|${Date.now()}` : `${m.date}|${m.subject}`;
     const existing = await InstaReel.findOne({ key });
     if (existing && existing.status !== "pending") return res.json({ ok: true, key, status: existing.status, note: "Already handled; not replaced" });
     const fileId = await new Promise((resolve, reject) => {
