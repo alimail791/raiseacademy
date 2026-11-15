@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { ArrowRight, X } from "lucide-react";
 import GoogleSignIn, { googleSignInEnabled, OrDivider } from "./GoogleSignIn";
 import { useAuth } from "../context/AuthContext";
+import WhatsAppSignup from "./WhatsAppSignup";
 import { goToYneet } from "../utils/yneet";
 
 // Sign-up nudges for free SEO pages (chapter PYQs etc.). Visitors read the free
@@ -23,17 +24,19 @@ export const isInAppBrowser = () => {
   return /FBAN|FBAV|Instagram|WhatsApp|Line\/|Snapchat|; wv\)|GSA\//i.test(ua);
 };
 
-// One-tap Google sign-up right on the page (no trip to /register), with a
-// fallback link to the phone + email form.
-export function QuickSignup({ place, dark }: { place: string; dark?: boolean }) {
+// One-tap Google sign-up right on the page (no trip to /register), plus
+// WhatsApp-number sign-up (OTP, no email/password). In in-app browsers, where
+// Google sign-in is blocked, WhatsApp is the only option shown.
+export function QuickSignup({ place }: { place: string; dark?: boolean }) {
   const { login } = useAuth();
   const [inApp, setInApp] = useState(false);
   const [google, setGoogle] = useState(false);
+  const [wa, setWa] = useState(false);
   useEffect(() => { setInApp(isInAppBrowser()); setGoogle(googleSignInEnabled()); }, []);
 
   const showGoogle = google && !inApp;
   return (
-    <div className="mt-4 max-w-sm">
+    <div className="mt-4 max-w-sm text-ink">
       {showGoogle && (
         <>
           <div className="bg-white rounded-full">
@@ -44,20 +47,28 @@ export function QuickSignup({ place, dark }: { place: string; dark?: boolean }) 
               setTimeout(goToYneet, d.isNew ? 800 : 0);
             }} />
           </div>
-          <div className={dark ? "text-paper/70" : ""}><OrDivider label="or use phone + email" /></div>
+          <OrDivider label="or" />
         </>
       )}
+      {wa ? (
+        <div className="rounded-2xl bg-white border border-ink/10 p-4">
+          <WhatsAppSignup place={place} />
+        </div>
+      ) : (
+        <button onClick={() => { setWa(true); track("signup_nudge_click", { place, kind: "whatsapp" }); }}
+          className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold px-6 py-3 rounded-full">
+          Sign up with WhatsApp <ArrowRight size={16} />
+        </button>
+      )}
       <Link to={`/register?from=${encodeURIComponent(place)}`} onClick={() => track("signup_nudge_click", { place, kind: "register_link" })}
-        className={`inline-flex items-center gap-2 font-semibold px-6 py-3 rounded-full ${showGoogle ? (dark ? "border border-paper/40 text-paper" : "border border-ink/20") : "bg-gold text-ink hover:bg-gold-dark"}`}>
-        {showGoogle ? "Register with phone" : "Start free for 30 days"} <ArrowRight size={16} />
-      </Link>
+        className="block mt-3 text-sm underline opacity-70">Or sign up with email</Link>
     </div>
   );
 }
 
 // Thin bar fixed to the bottom of the screen on phones, shown once the visitor
 // has scrolled into the content. Dismissable for the session.
-export function StickySignupBar({ text, place }: { text: string; place: string }) {
+export function StickySignupBar({ text, place, to }: { text: string; place: string; to?: string }) {
   const [show, setShow] = useState(false);
   const [closed, setClosed] = useState(false);
   useEffect(() => {
@@ -75,7 +86,7 @@ export function StickySignupBar({ text, place }: { text: string; place: string }
   return (
     <div className="sm:hidden fixed inset-x-0 bottom-0 z-40 bg-ink text-paper px-3 py-2.5 pr-20 shadow-[0_-4px_16px_rgba(0,0,0,0.2)] flex items-center gap-2">
       <button aria-label="Close" onClick={() => { setClosed(true); try { sessionStorage.setItem("nudge_bar_closed", "1"); } catch { /* ignore */ } }} className="p-1 text-paper/60"><X size={16} /></button>
-      <Link to={`/register?from=${encodeURIComponent(place)}`} onClick={() => track("signup_nudge_click", { place, kind: "sticky_bar" })}
+      <Link to={to || `/register?wa=1&from=${encodeURIComponent(place)}`} onClick={() => track("signup_nudge_click", { place, kind: "sticky_bar" })}
         className="flex-1 flex items-center justify-between gap-2 bg-gold text-ink font-semibold text-sm px-4 py-2.5 rounded-full">
         <span className="truncate">{text}</span> <ArrowRight size={16} className="shrink-0" />
       </Link>
@@ -104,14 +115,14 @@ export function RevealNudgeSheet({ open, onClose, title, place }: { open: boolea
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-ink/50" onClick={onClose}>
-      <div role="dialog" aria-modal="true" className="w-full sm:max-w-md bg-paper dark:bg-ink text-ink dark:text-paper rounded-t-3xl sm:rounded-3xl p-6 pb-8" onClick={(e) => e.stopPropagation()}>
+      <div role="dialog" aria-modal="true" className="w-full sm:max-w-md bg-paper text-ink rounded-t-3xl sm:rounded-3xl p-6 pb-8" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-start justify-between gap-3">
           <p className="font-display text-xl font-bold">{title}</p>
-          <button aria-label="Close" onClick={() => { track("signup_nudge_dismiss", { place }); onClose(); }} className="p-1 text-ink/50 dark:text-paper/50"><X size={20} /></button>
+          <button aria-label="Close" onClick={() => { track("signup_nudge_dismiss", { place }); onClose(); }} className="p-1 text-ink/50"><X size={20} /></button>
         </div>
-        <p className="text-sm text-ink/70 dark:text-paper/70 mt-2">You're on a roll. Sign up free to get a timed test on this chapter, your score and your weak topics. 30 days free, no payment.</p>
+        <p className="text-sm text-ink/70 mt-2">You're on a roll. Sign up free to get a timed test on this chapter, your score and your weak topics. 30 days free, no payment.</p>
         <QuickSignup place={`${place}_sheet`} />
-        <button onClick={() => { track("signup_nudge_dismiss", { place }); onClose(); }} className="mt-4 text-sm text-ink/60 dark:text-paper/60 underline">Keep reading answers</button>
+        <button onClick={() => { track("signup_nudge_dismiss", { place }); onClose(); }} className="mt-4 text-sm text-ink/60 underline">Keep reading answers</button>
       </div>
     </div>
   );

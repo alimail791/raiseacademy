@@ -41,6 +41,7 @@ app.use(morgan("dev"));
 
 // Basic rate limiting for auth/otp endpoints to slow down abuse
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 50 });
+app.use("/api/auth/wa/send", rateLimit({ windowMs: 60 * 60 * 1000, max: 10 })); // each send costs a WhatsApp message
 app.use("/api/auth", authLimiter);
 app.use("/api/otp", authLimiter);
 app.use("/api/institute/login", authLimiter);
