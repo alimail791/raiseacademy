@@ -4,6 +4,7 @@ import axios from "axios";
 import { ArrowRight, Check, Clock, Share2, Download, Target, X, RotateCcw } from "lucide-react";
 import { YNEET_API } from "../practice/practiceData";
 import { gamesLink, SITE } from "../utils/siteInfo";
+import { QuickSignup, StickySignupBar } from "../components/SignupNudge";
 
 // Free "NEET Readiness Score" quiz — 15 questions, no login. Built to be shared:
 // the result screen makes a score card for WhatsApp/Instagram status, and every
@@ -19,8 +20,11 @@ const LETTERS = ["A", "B", "C", "D"];
 const SUBJECTS = ["Physics", "Chemistry", "Biology"] as const;
 const PAGE_URL = "www.yneet.in/neet-readiness";
 
+// /yt is the same quiz for visitors from our YouTube quiz Shorts (link in every
+// description / pinned comment). Events carry from=yt so GA4 can split them.
+let SOURCE = "site";
 const track = (event: string, params: Record<string, unknown> = {}) => {
-  try { (window as any).gtag?.("event", event, params); } catch { /* analytics only */ }
+  try { (window as any).gtag?.("event", event, { from: SOURCE, ...params }); } catch { /* analytics only */ }
 };
 
 // NEET marking: +4 right, −1 wrong, 0 skipped. Score = share of the maximum, out of 100.
@@ -77,7 +81,10 @@ async function makeCard(score: number, label: string, subj: Record<string, { rig
   return new Promise((r) => c.toBlob((b) => r(b), "image/png"));
 }
 
-const NeetReadiness = () => {
+const NeetReadiness = ({ source = "site" }: { source?: "site" | "yt" }) => {
+  SOURCE = source;
+  const yt = source === "yt";
+  useEffect(() => { if (yt) track("yt_landing_view"); }, [yt]);
   const [stage, setStage] = useState<"intro" | "quiz" | "result">("intro");
   const [qs, setQs] = useState<Q[]>([]);
   const [loading, setLoading] = useState(false);
@@ -140,9 +147,10 @@ const NeetReadiness = () => {
   if (stage === "intro") {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-        <span className="inline-block text-xs font-bold uppercase tracking-wider bg-gold/20 text-ink dark:text-paper px-3 py-1 rounded-full">Free · No login · 5 minutes</span>
-        <h1 className="font-display text-3xl sm:text-5xl font-bold leading-tight mt-4">What's your NEET Readiness Score?</h1>
-        <p className="text-lg text-ink/70 dark:text-paper/70 mt-4">
+        <span className="inline-block text-xs font-bold uppercase tracking-wider bg-gold/20 text-ink dark:text-paper px-3 py-1 rounded-full">{yt ? "From our YouTube quiz · Free · 5 minutes" : "Free · No login · 5 minutes"}</span>
+        <h1 className="font-display text-3xl sm:text-5xl font-bold leading-tight mt-4">{yt ? "Got the Short right? Try 15 more like it" : "What's your NEET Readiness Score?"}</h1>
+        {yt && <p className="text-lg font-semibold mt-3">Real NEET questions, NEET marking. See your score and weak chapters in 5 minutes.</p>}
+        <p className={`text-lg text-ink/70 dark:text-paper/70 mt-4 ${yt ? "hidden" : ""}`}>
           15 real NEET-level questions from Physics, Chemistry and Biology, marked the NEET way (+4 / −1). Get your score out of 100, see your weak chapters, and share your score card with friends.
         </p>
         <button onClick={start} disabled={loading}
@@ -252,11 +260,9 @@ const NeetReadiness = () => {
       <div className="my-8 rounded-2xl bg-gold/15 border border-gold/40 p-6">
         <p className="font-display text-xl font-bold">Raise this score with 30 days of free practice</p>
         <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">Timed chapter tests for your weak chapters, 1,200+ NEET tests, full mocks with rank, and a mistake notebook. Free for 30 days. No payment, no card.</p>
-        <Link to="/register" onClick={() => track("readiness_register_click")}
-          className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">
-          Start free for 30 days <ArrowRight size={16} />
-        </Link>
+        <QuickSignup place={yt ? "yt_result" : "readiness_result"} />
       </div>
+      <StickySignupBar text="Fix these weak chapters, 30 days free" place={yt ? "yt_result_bar" : "readiness_result_bar"} />
 
       {weakChapters.length > 0 && (
         <section>
