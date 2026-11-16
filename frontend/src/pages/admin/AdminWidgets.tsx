@@ -6,6 +6,54 @@ import api from "../../api/axios";
 // from the widgets page. Each one is a lead for YNeet institute plans.
 
 type Partner = { _id: string; createdAt: string; name: string; slug: string; phone: string; city: string; kind: string; views: number; hidden: boolean };
+type Site = { _id: string; host: string; widget: string; page: string; by: string; views: number; firstSeen: string; lastSeen: string };
+type Stats = { totalSites: number; perWidget: Record<string, { sites: number; active30d: number; views: number }>; sites: Site[] };
+const NAMES: Record<string, string> = { qotd: "Question of the Day", predictor: "College Predictor", cutoff: "Cutoffs", weightage: "Weightage", pyq: "Chapter PYQs" };
+const day = (d: string) => new Date(d).toLocaleDateString("en-IN");
+
+function SitesUsingWidgets() {
+  const [st, setSt] = useState<Stats | null>(null);
+  useEffect(() => { api.get("/widgets/admin/sites").then((r) => setSt(r.data)).catch(() => setSt({ totalSites: 0, perWidget: {}, sites: [] })); }, []);
+  if (!st) return <p className="mt-6 text-ink/60">Loading sites…</p>;
+  return (
+    <section className="mb-12">
+      <h1 className="font-display text-2xl font-bold">Sites using widgets</h1>
+      <p className="text-sm text-ink/60 mt-1">{st.totalSites} website{st.totalSites === 1 ? "" : "s"} show at least one widget. A site is counted the first time a visitor loads a widget there.</p>
+      <div className="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-3">
+        {Object.keys(NAMES).map((w) => {
+          const x = st.perWidget[w] || { sites: 0, active30d: 0, views: 0 };
+          return (
+            <div key={w} className="rounded-xl border border-ink/10 p-3">
+              <p className="text-xs text-ink/60">{NAMES[w]}</p>
+              <p className="text-2xl font-bold">{x.sites}</p>
+              <p className="text-xs text-ink/60">{x.active30d} active (30 days) · {x.views.toLocaleString("en-IN")} loads</p>
+            </div>
+          );
+        })}
+      </div>
+      {st.sites.length > 0 && (
+        <div className="mt-5 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead><tr className="text-left border-b border-ink/15"><th className="py-2 pr-3">Website</th><th className="py-2 pr-3">Widget</th><th className="py-2 pr-3">Shared by</th><th className="py-2 pr-3">Loads</th><th className="py-2 pr-3">First seen</th><th className="py-2">Last seen</th></tr></thead>
+            <tbody>
+              {st.sites.map((x) => (
+                <tr key={x._id} className="border-b border-ink/5">
+                  <td className="py-2 pr-3"><a href={`https://${x.host}${x.page || ""}`} target="_blank" rel="noopener" className="underline">{x.host}</a></td>
+                  <td className="py-2 pr-3">{NAMES[x.widget] || x.widget}</td>
+                  <td className="py-2 pr-3">{x.by}</td>
+                  <td className="py-2 pr-3">{x.views}</td>
+                  <td className="py-2 pr-3 whitespace-nowrap">{day(x.firstSeen)}</td>
+                  <td className="py-2 whitespace-nowrap">{day(x.lastSeen)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+}
+
 const errMsg = (e: any) => e?.response?.data?.message || "Something went wrong.";
 
 const AdminWidgets = () => {
@@ -26,6 +74,7 @@ const AdminWidgets = () => {
 
   return (
     <div>
+      <SitesUsingWidgets />
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <h1 className="font-display text-2xl font-bold">Widget partners</h1>
         <button onClick={csv} disabled={!list?.length} className="bg-gold text-ink font-semibold px-4 py-2 rounded-full disabled:opacity-50">Download CSV</button>

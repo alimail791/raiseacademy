@@ -53,6 +53,7 @@ app.use("/api/institute/pilot", authLimiter);
 app.use("/api/predictor/alerts", rateLimit({ windowMs: 60 * 60 * 1000, max: 30 }));
 app.use("/api/predictor/otp", rateLimit({ windowMs: 60 * 60 * 1000, max: 20 }));
 app.use("/api/books/order", rateLimit({ windowMs: 60 * 60 * 1000, max: 30 }));
+app.use("/api/widgets/ping", rateLimit({ windowMs: 60 * 60 * 1000, max: 120 }));
 app.use("/api/widgets/partners", rateLimit({ windowMs: 60 * 60 * 1000, max: 10, skip: (req) => req.method !== "POST" }));
 app.use("/api/predictor/predict", rateLimit({ windowMs: 60 * 1000, max: 30 }));
 

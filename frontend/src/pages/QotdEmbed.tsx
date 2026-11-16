@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { YNEET_API } from "../practice/practiceData";
-import { ByLine } from "./WidgetEmbeds";
+import { ByLine, usePing } from "./WidgetEmbeds";
 
 // The NEET Question of the Day box that other websites (coaching centres, schools,
 // blogs) show in an <iframe>. No site header or footer: just the question.
@@ -19,6 +19,7 @@ const QotdEmbed = () => {
   const [failed, setFailed] = useState(false);
   const [picked, setPicked] = useState<number | null>(null);
   const [site, setSite] = useState("direct");
+  usePing("qotd");
 
   useEffect(() => {
     setSite(hostSite());
