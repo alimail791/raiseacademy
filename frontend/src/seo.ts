@@ -135,6 +135,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: "Top NEET chapters by weightage for Physics, Chemistry and Biology, by YNeet.",
     noindex: true,
   },
+  "/embed/pyq": {
+    title: "NEET Chapter PYQs — YNeet",
+    description: "Today's NEET previous year questions from one chapter, by YNeet.",
+    noindex: true,
+  },
   "/embed/qotd": {
     title: "NEET Question of the Day — YNeet",
     description: "Today's NEET question with answer and explanation, by YNeet.",

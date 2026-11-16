@@ -55,6 +55,7 @@ const QotdEmbed = page(() => import("./pages/QotdEmbed"));
 const PredictorEmbed = page(() => import("./pages/WidgetEmbeds"), "PredictorEmbed");
 const CutoffEmbed = page(() => import("./pages/WidgetEmbeds"), "CutoffEmbed");
 const WeightageEmbed = page(() => import("./pages/WidgetEmbeds"), "WeightageEmbed");
+const PyqEmbed = page(() => import("./pages/WidgetEmbeds"), "PyqEmbed");
 const QotdWidget = page(() => import("./pages/QotdWidget"));
 const Privacy = page(() => import("./pages/Privacy"));
 const Terms = page(() => import("./pages/Terms"));
@@ -93,6 +94,7 @@ function App() {
         <Route path="/embed/predictor" element={<PredictorEmbed />} />
         <Route path="/embed/cutoff" element={<CutoffEmbed />} />
         <Route path="/embed/weightage" element={<WeightageEmbed />} />
+        <Route path="/embed/pyq" element={<PyqEmbed />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 </Suspense>
