@@ -10,7 +10,10 @@ import axios from "axios";
 import { YNEET_API, SUBJECTS, type CutoffState, type PracticeChapterSummary } from "../practice/practiceData";
 import { NEET_YEAR, OFFICIAL, daysToNeet, neetDateLabel } from "../utils/neetDate";
 
+// ?src=<name> (e.g. chrome-extension) overrides the referrer for UTM tags,
+// for hosts that have no web address of their own.
 function hostSite() {
+  try { const src = new URLSearchParams(window.location.search).get("src"); if (src && /^[a-z0-9-]{2,30}$/.test(src)) return src; } catch { /* ignore */ }
   try { return document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "direct"; } catch { return "direct"; }
 }
 function useLink(campaign: string) {
