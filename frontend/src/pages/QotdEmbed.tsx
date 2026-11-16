@@ -11,6 +11,7 @@ type Q = { number: number; subject: string; chapter: string; slug: string; quest
 const LETTERS = ["A", "B", "C", "D"];
 
 function hostSite() {
+  try { const src = new URLSearchParams(window.location.search).get("src"); if (src && /^[a-z0-9-]{2,30}$/.test(src)) return src; } catch { /* ignore */ }
   try { return document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "direct"; } catch { return "direct"; }
 }
 

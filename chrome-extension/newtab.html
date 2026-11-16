@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>New Tab · YNeet</title>
+  <link rel="stylesheet" href="newtab.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <a class="brand" href="https://www.yneet.in/?utm_source=chrome-extension&amp;utm_medium=extension&amp;utm_campaign=newtab">
+        <img src="icons/icon48.png" alt="" width="32" height="32" /> <span>YNeet</span>
+      </a>
+      <span id="greeting"></span>
+    </header>
+
+    <form id="search" role="search">
+      <input id="q" type="search" placeholder="Search the web" autocomplete="off" aria-label="Search the web" />
+    </form>
+
+    <section class="grid">
+      <div class="card countdown">
+        <p class="label" id="cd-label">NEET countdown</p>
+        <p class="days" id="cd-days">–</p>
+        <p class="sub" id="cd-sub"></p>
+        <p class="date" id="cd-date"></p>
+        <p class="target"><b>This week:</b> <span id="cd-target"></span></p>
+      </div>
+
+      <div class="card qotd">
+        <iframe id="qotd" title="NEET Question of the Day" loading="eager"></iframe>
+        <p class="offline" id="offline" hidden>You're offline. Today's question will appear when you're back online.</p>
+      </div>
+    </section>
+
+    <nav class="links" id="links"></nav>
+    <footer>Free NEET tools by <a href="https://www.yneet.in/neet-tools?utm_source=chrome-extension&amp;utm_medium=extension&amp;utm_campaign=newtab">YNeet</a></footer>
+  </main>
+  <script src="newtab.js"></script>
+</body>
+</html>
