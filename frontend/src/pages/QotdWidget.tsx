@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { YNEET_API, SUBJECTS, SCHOOL_CLASSES } from "../practice/practiceData";
 import { Link } from "react-router-dom";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, Send } from "lucide-react";
+import api from "../api/axios";
 import { SITE } from "../utils/siteInfo";
 
 // /neet-question-widget: free widgets for coaching centres, schools and blogs —
@@ -46,8 +47,26 @@ const WIDGETS: Widget[] = [
   },
 ];
 
-const codeFor = (w: Widget, opt: string) =>
-  `<iframe src="${w.src(opt)}" title="${w.title}" width="100%" height="${w.height}" style="border:0;max-width:460px;width:100%" loading="lazy"></iframe>
+// Adds ?by=<institute> so the box says "Shared by <institute>".
+const withBy = (url: string, by: string) => (by.trim() ? `${url}${url.includes("?") ? "&" : "?"}by=${encodeURIComponent(by.trim())}` : url);
+
+// WhatsApp message the owner forwards to whoever looks after the website.
+function sendToWebPerson(id: string, title: string) {
+  const text = `Please add this free NEET widget (${title}) to our website. It takes 2 minutes: copy the code from ${"https://www.yneet.in/neet-question-widget#" + id} and paste it into a Custom HTML / Embed block.`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+  try { (window as any).gtag?.("event", "widget_send_whatsapp", { widget: id }); } catch { /* analytics only */ }
+}
+
+function SendButton({ id, title }: { id: string; title: string }) {
+  return (
+    <button onClick={() => sendToWebPerson(id, title)} className="mt-3 ml-2 inline-flex items-center gap-2 border border-ink/20 dark:border-paper/25 font-semibold px-5 py-3 rounded-full hover:border-gold">
+      <Send size={18} /> Send to my website person
+    </button>
+  );
+}
+
+const codeFor = (w: Widget, opt: string, by: string) =>
+  `<iframe src="${withBy(w.src(opt), by)}" title="${w.title}" width="100%" height="${w.height}" style="border:0;max-width:460px;width:100%" loading="lazy"></iframe>
 <p style="font-size:13px;margin:4px 0 0">${w.credit(opt)}</p>`;
 
 const STEPS = [
@@ -58,10 +77,10 @@ const STEPS = [
   ["Any other site", "Paste the code into the page's HTML where you want the box to appear."],
 ];
 
-function WidgetCard({ w }: { w: Widget }) {
+function WidgetCard({ w, by }: { w: Widget; by: string }) {
   const [opt, setOpt] = useState(w.id === "cutoff" ? "tamil-nadu" : w.id === "weightage" ? "Biology" : "");
   const [copied, setCopied] = useState(false);
-  const code = codeFor(w, opt);
+  const code = codeFor(w, opt, by);
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(code);
@@ -93,10 +112,11 @@ function WidgetCard({ w }: { w: Widget }) {
           <button onClick={copy} className="mt-3 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-3 rounded-full hover:bg-gold-dark">
             {copied ? <><Check size={18} /> Copied</> : <><Copy size={18} /> Copy code</>}
           </button>
+          <SendButton id={w.id} title={w.title} />
         </div>
         <div style={{ flex: "0 1 460px" }} className="min-w-0 w-full">
           <p className="text-sm font-semibold text-ink/70 dark:text-paper/70">Live preview</p>
-          <iframe key={opt} src={w.src(opt).replace("https://www.yneet.in", "")} title={`${w.title} preview`} className="mt-2 w-full rounded-2xl border border-ink/10" style={{ height: w.height, maxWidth: 460 }} loading="lazy" />
+          <iframe key={opt + by} src={withBy(w.src(opt), by).replace("https://www.yneet.in", "")} title={`${w.title} preview`} className="mt-2 w-full rounded-2xl border border-ink/10" style={{ height: w.height, maxWidth: 460 }} loading="lazy" />
         </div>
       </div>
     </section>
@@ -109,7 +129,7 @@ function WidgetCard({ w }: { w: Widget }) {
 type PickChapter = { slug: string; subject: string; chapter: string; count: number };
 const PYQ_HEIGHT = 640;
 
-function PyqWidgetCard() {
+function PyqWidgetCard({ by }: { by: string }) {
   const [level, setLevel] = useState("neet"); // "neet" or "6".."10"
   const [chapters, setChapters] = useState<PickChapter[] | null>(null);
   const [slug, setSlug] = useState("");
@@ -133,7 +153,7 @@ function PyqWidgetCard() {
 
   const ch = chapters?.find((c) => c.slug === slug);
   const school = level !== "neet";
-  const src = school ? `https://www.yneet.in/embed/pyq?class=${level}&chapter=${slug}` : `https://www.yneet.in/embed/pyq?chapter=${slug}`;
+  const src = withBy(school ? `https://www.yneet.in/embed/pyq?class=${level}&chapter=${slug}` : `https://www.yneet.in/embed/pyq?chapter=${slug}`, by);
   const page = school ? `https://www.yneet.in/class-${level}-questions#${slug}` : `https://www.yneet.in/neet-practice/${slug}`;
   const anchor = ch ? (school ? `Class ${level} ${ch.chapter} MCQs` : `${ch.chapter} NEET PYQs`) : "";
   const code = ch
@@ -183,6 +203,7 @@ function PyqWidgetCard() {
           <button onClick={copy} disabled={!code} className="mt-3 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-3 rounded-full hover:bg-gold-dark disabled:opacity-50">
             {copied ? <><Check size={18} /> Copied</> : <><Copy size={18} /> Copy code</>}
           </button>
+          <SendButton id="pyq" title="Chapter-wise NEET PYQs" />
         </div>
         <div style={{ flex: "0 1 460px" }} className="min-w-0 w-full">
           <p className="text-sm font-semibold text-ink/70 dark:text-paper/70">Live preview</p>
@@ -193,7 +214,83 @@ function PyqWidgetCard() {
   );
 }
 
-const QotdWidget = () => (
+const KINDS: [string, string][] = [["coaching", "Coaching centre"], ["school", "School"], ["teacher", "Tutor / teacher"], ["other", "Other"]];
+
+// "No website?" — the institute gets www.yneet.in/i/<slug> with all the boxes
+// carrying its name, to share on WhatsApp, Instagram and Google Business.
+function OwnPageForm({ by }: { by: string }) {
+  const [f, setF] = useState({ name: "", phone: "", city: "", kind: "coaching", cutoffState: "all-india-quota" });
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+  const [made, setMade] = useState<{ slug: string; name: string } | null>(null);
+  const [copied, setCopied] = useState(false);
+  useEffect(() => { if (by && !f.name) setF((x) => ({ ...x, name: by })); }, [by]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErr(""); setBusy(true);
+    try {
+      const r = await api.post("/widgets/partners", f);
+      setMade(r.data);
+      try { (window as any).gtag?.("event", "widget_partner_page", { kind: f.kind }); } catch { /* analytics only */ }
+    } catch (e: any) {
+      setErr(e?.response?.data?.message || "Couldn't create the page. Please try again.");
+    } finally { setBusy(false); }
+  };
+  const url = made ? `https://www.yneet.in/i/${made.slug}` : "";
+  const share = `Free NEET tools for our students from ${made?.name}: daily NEET question, college predictor, cutoffs, chapter weightage and PYQs. ${url}`;
+  const input = "block w-full mt-1 px-3 py-2.5 rounded-xl border border-ink/20 dark:border-paper/25 bg-transparent";
+
+  if (made) return (
+    <div className="mt-5 rounded-2xl border border-gold/50 bg-gold/10 p-5 max-w-2xl">
+      <p className="font-bold text-lg">Your page is ready</p>
+      <a href={url} target="_blank" rel="noopener" className="block mt-2 font-semibold underline break-all">{url}</a>
+      <p className="mt-2 text-sm text-ink/70 dark:text-paper/70">Put it in your WhatsApp status and groups, your Instagram bio and your Google Business profile.</p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <a href={`https://wa.me/?text=${encodeURIComponent(share)}`} target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-3 rounded-full hover:bg-gold-dark"><Send size={18} /> Share on WhatsApp</a>
+        <button onClick={async () => { try { await navigator.clipboard.writeText(url); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* blocked */ } }}
+          className="inline-flex items-center gap-2 border border-ink/20 dark:border-paper/25 font-semibold px-5 py-3 rounded-full hover:border-gold">
+          {copied ? <><Check size={18} /> Copied</> : <><Copy size={18} /> Copy link</>}
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <form onSubmit={submit} className="mt-5 grid sm:grid-cols-2 gap-3 max-w-2xl">
+      <label className="block text-sm font-semibold sm:col-span-2">Institute / school name
+        <input value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} maxLength={60} placeholder="e.g. Sri Vidya NEET Academy" className={input} />
+      </label>
+      <label className="block text-sm font-semibold">WhatsApp number
+        <input inputMode="numeric" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value.replace(/[^\d+ ]/g, "") })} maxLength={14} placeholder="10-digit number" className={input} />
+      </label>
+      <label className="block text-sm font-semibold">City / town
+        <input value={f.city} onChange={(e) => setF({ ...f, city: e.target.value })} maxLength={40} placeholder="e.g. Salem" className={input} />
+      </label>
+      <label className="block text-sm font-semibold">You are a
+        <select value={f.kind} onChange={(e) => setF({ ...f, kind: e.target.value })} className={input}>
+          {KINDS.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+        </select>
+      </label>
+      <label className="block text-sm font-semibold">Cutoffs to show
+        <select value={f.cutoffState} onChange={(e) => setF({ ...f, cutoffState: e.target.value })} className={input}>
+          {CUTOFF_STATES.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+        </select>
+      </label>
+      {err && <p className="text-sm text-red-600 sm:col-span-2">{err}</p>}
+      <div className="sm:col-span-2">
+        <button type="submit" disabled={busy} className="bg-gold text-ink font-bold px-6 py-3 rounded-full hover:bg-gold-dark disabled:opacity-60">{busy ? "Creating…" : "Create my free page"}</button>
+        <p className="mt-2 text-xs text-ink/60 dark:text-paper/60">We use your number only to send your page link and YNeet updates for institutes. Reply STOP any time.</p>
+      </div>
+    </form>
+  );
+}
+
+const QotdWidget = () => {
+  const [typed, setTyped] = useState("");
+  const [by, setBy] = useState(""); // follows `typed` after a pause, so previews don't reload on every key
+  useEffect(() => { const t = setTimeout(() => setBy(typed), 600); return () => clearTimeout(t); }, [typed]);
+  return (
   <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
     <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free for coaching centres, schools and blogs</p>
     <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">Free NEET widgets for your website</h1>
@@ -203,10 +300,26 @@ const QotdWidget = () => (
     <nav className="mt-6 flex flex-wrap gap-2 text-sm">
       {WIDGETS.map((w) => <a key={w.id} href={`#${w.id}`} className="px-4 py-2 rounded-full border border-ink/15 dark:border-paper/20 hover:border-gold font-semibold">{w.title}</a>)}
       <a href="#pyq" className="px-4 py-2 rounded-full border border-ink/15 dark:border-paper/20 hover:border-gold font-semibold">Chapter-wise NEET PYQs</a>
+      <a href="#no-website" className="px-4 py-2 rounded-full border border-gold bg-gold/15 font-semibold">No website? Get a free page</a>
     </nav>
 
-    {WIDGETS.map((w) => <WidgetCard key={w.id} w={w} />)}
-    <PyqWidgetCard />
+    <div className="mt-8 rounded-2xl border border-ink/10 dark:border-paper/15 p-5 max-w-2xl">
+      <label className="block text-sm font-semibold">Your institute or school name <span className="font-normal text-ink/60 dark:text-paper/60">(optional)</span>
+        <input value={typed} onChange={(e) => setTyped(e.target.value.slice(0, 60))} placeholder="e.g. Sri Vidya NEET Academy" className="block w-full mt-1 px-3 py-2.5 rounded-xl border border-ink/20 dark:border-paper/25 bg-transparent" />
+      </label>
+      <p className="mt-2 text-xs text-ink/60 dark:text-paper/60">Every box below will say "Shared by {typed.trim() || "your institute"}" so students see it as your free tool.</p>
+    </div>
+
+    {WIDGETS.map((w) => <WidgetCard key={w.id} w={w} by={by} />)}
+    <PyqWidgetCard by={by} />
+
+    <section id="no-website" className="mt-16 scroll-mt-24">
+      <h2 className="font-display text-2xl font-bold">No website? Get a free NEET tools page</h2>
+      <p className="text-ink/70 dark:text-paper/70 mt-2 max-w-3xl">
+        We'll make a page with all these tools under your institute's name, like www.yneet.in/i/your-institute. Share it in your WhatsApp groups, status, Instagram bio and Google Business profile. Free, no ads.
+      </p>
+      <OwnPageForm by={by} />
+    </section>
 
     <section className="mt-16">
       <h2 className="font-display text-2xl font-bold">How to add a widget to your website</h2>
@@ -216,6 +329,9 @@ const QotdWidget = () => (
             <b>{k}:</b> <span className="text-ink/75 dark:text-paper/75">{v}</span>
           </li>
         ))}
+        <li className="rounded-xl border border-ink/10 dark:border-paper/15 p-4">
+          <b>WordPress plugin:</b> <span className="text-ink/75 dark:text-paper/75">or <a href="/downloads/yneet-neet-widgets.zip" className="underline font-semibold">download the YNeet NEET Widgets plugin</a>, upload it under Plugins → Add New → Upload, and put a shortcode like <code>[yneet_widget type="predictor"]</code> on any page.</span>
+        </li>
       </ul>
       <p className="mt-6 text-sm text-ink/70 dark:text-paper/70">
         Need help adding one? <a href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent("Hi YNeet, I'd like help adding a free NEET widget to my website.")}`} target="_blank" rel="noopener noreferrer" className="underline font-semibold">Message us on WhatsApp</a>.
@@ -223,6 +339,7 @@ const QotdWidget = () => (
       </p>
     </section>
   </div>
-);
+  );
+};
 
 export default QotdWidget;

@@ -41,6 +41,8 @@ const NeetReadiness = page(() => import("./pages/NeetReadiness"));
 const NeetCollegePredictor = page(() => import("./pages/NeetCollegePredictor"));
 const NeetCollegeReport = page(() => import("./pages/NeetCollegeReport"));
 const AdminPredictor = page(() => import("./pages/admin/AdminPredictor"));
+const AdminWidgets = page(() => import("./pages/admin/AdminWidgets"));
+const PartnerPage = page(() => import("./pages/PartnerPage"));
 const NeetParents = page(() => import("./pages/NeetParents"));
 const PapersIndex = page(() => import("./pages/Papers"), "PapersIndex");
 const PaperYear = page(() => import("./pages/Papers"), "PaperYear");
@@ -219,6 +221,7 @@ function App() {
           <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
           <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />
           <Route path="/neet-question-widget" element={<QotdWidget />} />
+          <Route path="/i/:slug" element={<PartnerPage />} />
           <Route path="/neet-tools" element={<NeetTools />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
@@ -255,6 +258,7 @@ function App() {
             <Route path="institutes" element={<AdminInstitutes />} />
             <Route path="blog" element={<AdminBlog />} />
             <Route path="predictor" element={<AdminPredictor />} />
+            <Route path="widgets" element={<AdminWidgets />} />
           </Route>
 
           <Route path="/institute/login" element={<InstituteLogin />} />

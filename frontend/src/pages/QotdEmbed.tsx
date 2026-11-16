@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { YNEET_API } from "../practice/practiceData";
+import { ByLine } from "./WidgetEmbeds";
 
 // The NEET Question of the Day box that other websites (coaching centres, schools,
 // blogs) show in an <iframe>. No site header or footer: just the question.
@@ -36,6 +37,7 @@ const QotdEmbed = () => {
           <span className="text-xs font-bold uppercase tracking-wider text-gold">NEET Question of the Day</span>
           {q && <span className="text-xs text-paper/70">#{q.number} · {q.subject}</span>}
         </div>
+        <ByLine />
         <div className="p-4">
           {failed && <p className="text-sm text-ink/70">Today's question couldn't load. <a href={link("/neet-question-of-the-day")} target="_blank" rel="noopener" className="underline font-semibold">Open it on YNeet</a>.</p>}
           {!q && !failed && <p className="text-sm text-ink/70">Loading today's question…</p>}

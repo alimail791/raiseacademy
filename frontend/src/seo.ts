@@ -118,7 +118,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   "/neet-question-widget": {
     title: "Free NEET Widgets for Your Website — Question of the Day, College Predictor, Cutoffs | YNeet",
-    description: "Free NEET widgets for coaching centre, school and blog websites: a daily NEET question, a NEET college predictor and state-wise government MBBS cutoffs. Copy one code, no sign-up.",
+    description: "Free NEET widgets for coaching centre, school and blog websites: a daily NEET question, college predictor, government MBBS cutoffs, chapter weightage and PYQs. Copy one code, or get a free page if you have no website.",
   },
   "/embed/predictor": {
     title: "NEET College Predictor — YNeet",
@@ -235,6 +235,8 @@ export function metaFor(path: string): PageMeta & { canonical: string } {
   if (/^\/class-(6|7|8|9|10)-questions(\/[^/]+)?$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/(ta|hi|te|kn)\/(neet-cutoff(\/[a-z-]+)?|neet-chapter-wise-weightage)$/.test(clean)) return { ...PAGE_META["/neet-cutoff"], canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-cutoff\/[a-z-]+$/.test(clean)) return { ...PAGE_META["/neet-cutoff"], canonical: `${SITE_ORIGIN}${clean}` };
+  // Institutes' free tools pages (pages/PartnerPage.tsx) — shared on WhatsApp, not indexed.
+  if (/^\/i\/[^/]+$/.test(clean)) return { title: "Free NEET Tools — YNeet", description: "Free NEET tools: daily question, college predictor, cutoffs and chapter weightage.", noindex: true, canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-question\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   const meta =
     PAGE_META[clean] ||

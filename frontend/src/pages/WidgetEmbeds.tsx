@@ -18,6 +18,21 @@ function useLink(campaign: string) {
   return (path: string) => `https://www.yneet.in${path}${path.includes("?") ? "&" : "?"}utm_source=${encodeURIComponent(site)}&utm_medium=widget&utm_campaign=${campaign}`;
 }
 
+// ?by=<Institute name>: the box says "Shared by <name>" so a coaching centre
+// or school can put it on its site (or its /i/ page) as its own free tool.
+export function readBy() {
+  try { return (new URLSearchParams(window.location.search).get("by") || "").replace(/[<>"`\\]/g, "").replace(/\s+/g, " ").trim().slice(0, 60); } catch { return ""; }
+}
+export function useBy() {
+  const [by, setBy] = useState("");
+  useEffect(() => { setBy(readBy()); }, []);
+  return by;
+}
+export function ByLine() {
+  const by = useBy();
+  return by ? <p className="bg-gold/15 text-ink text-xs font-semibold px-4 py-1.5 truncate">Shared by {by}</p> : null;
+}
+
 function Frame({ title, tag, children, footer }: { title: string; tag?: string; children: React.ReactNode; footer: React.ReactNode }) {
   return (
     <div className="font-body text-ink bg-white min-h-screen p-3">
@@ -26,6 +41,7 @@ function Frame({ title, tag, children, footer }: { title: string; tag?: string; 
           <span className="text-xs font-bold uppercase tracking-wider text-gold">{title}</span>
           {tag && <span className="text-xs text-paper/70">{tag}</span>}
         </div>
+        <ByLine />
         <div className="p-4">{children}</div>
         <div className="border-t border-ink/10 px-4 py-2.5 flex items-center justify-between gap-2 text-xs">{footer}</div>
       </div>
