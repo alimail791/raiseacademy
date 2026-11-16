@@ -1,11 +1,13 @@
 // Boxes other websites (coaching centres, schools, blogs) show in an <iframe>:
 //   /embed/predictor            NEET College Predictor: rank + category + state → opens the predictor
 //   /embed/cutoff?state=<slug>  top government MBBS cutoffs for one quota
+//   /embed/weightage?subject=<Physics|Chemistry|Biology>  top NEET chapters by weightage
 // No site header or footer. Every link opens www.yneet.in in a new tab and
 // carries the host site in its UTM tags (same as the Question of the Day box).
 import { useEffect, useState } from "react";
 import api from "../api/axios";
-import type { CutoffState } from "../practice/practiceData";
+import axios from "axios";
+import { YNEET_API, SUBJECTS, type CutoffState, type PracticeChapterSummary } from "../practice/practiceData";
 
 function hostSite() {
   try { return document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "direct"; } catch { return "direct"; }
@@ -125,6 +127,61 @@ export const CutoffEmbed = () => {
             </tbody>
           </table>
           <a href={link(`/neet-cutoff/${slug}`)} target="_blank" rel="noopener" className="inline-block mt-3 text-sm font-semibold text-rise-dark underline">All {c.colleges.length} colleges, every category ↗</a>
+        </>
+      )}
+    </Frame>
+  );
+};
+
+const W_ROWS = 10;
+
+export const WeightageEmbed = () => {
+  const link = useLink("weightage_embed");
+  const [subject, setSubject] = useState("Biology");
+  const [chapters, setChapters] = useState<PracticeChapterSummary[] | null | undefined>(undefined);
+
+  useEffect(() => {
+    const q = (new URLSearchParams(window.location.search).get("subject") || "").toLowerCase();
+    const pick = SUBJECTS.find((x) => x.toLowerCase() === q);
+    if (pick) setSubject(pick);
+    if (!YNEET_API) { setChapters(null); return; }
+    axios.get(`${YNEET_API}/public/practice`)
+      .then((r) => setChapters(r.data.chapters || []))
+      .catch(() => setChapters(null));
+  }, []);
+
+  const list = (chapters || [])
+    .filter((c) => c.subject === subject && c.weightage)
+    .sort((a, b) => b.weightage!.expectedQs - a.weightage!.expectedQs)
+    .slice(0, W_ROWS);
+
+  return (
+    <Frame title={`NEET ${subject} weightage`} tag="Top chapters"
+      footer={<><span className="text-ink/70">From NEET previous year papers</span><a href={link("/neet-chapter-wise-weightage")} target="_blank" rel="noopener" className="font-bold text-ink hover:text-gold-dark">by YNeet ↗</a></>}>
+      <div className="flex gap-1.5 mb-3" role="tablist">
+        {SUBJECTS.map((x) => (
+          <button key={x} role="tab" aria-selected={x === subject} onClick={() => setSubject(x)}
+            className={`flex-1 text-xs font-semibold px-2 py-2 rounded-full border min-h-[36px] ${x === subject ? "bg-ink text-paper border-ink" : "border-ink/20 text-ink/75"}`}>{x}</button>
+        ))}
+      </div>
+      {chapters === undefined && <p className="text-sm text-ink/70">Loading chapters…</p>}
+      {(chapters === null || (chapters && !list.length)) && <p className="text-sm text-ink/70">Couldn't load the weightage. <a href={link("/neet-chapter-wise-weightage")} target="_blank" rel="noopener" className="underline font-semibold">See it on YNeet</a>.</p>}
+      {list.length > 0 && (
+        <>
+          <p className="text-sm text-ink/70">The {subject} chapters that carry the most questions in a NEET paper.</p>
+          <table className="w-full mt-3 text-sm border-collapse">
+            <thead><tr className="text-left border-b border-ink/15"><th className="py-1.5 pr-2">Chapter</th><th className="py-1.5 pr-2 text-right">Qs</th><th className="py-1.5 text-right">Priority</th></tr></thead>
+            <tbody>
+              {list.map((c) => (
+                <tr key={c.slug} className="border-b border-ink/5">
+                  <td className="py-1.5 pr-2"><a href={link(`/neet-practice/${c.slug}`)} target="_blank" rel="noopener" className="hover:underline">{c.chapter}</a></td>
+                  <td className="py-1.5 pr-2 text-right">~{c.weightage!.expectedQs}</td>
+                  <td className={`py-1.5 text-right font-semibold ${c.weightage!.priority === "High" ? "text-rise-dark" : "text-ink/70"}`}>{c.weightage!.priority}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <a href={link("/neet-chapter-wise-weightage")} target="_blank" rel="noopener" className="inline-block mt-3 text-sm font-semibold text-rise-dark underline">Every chapter, all 3 subjects ↗</a>
         </>
       )}
     </Frame>
