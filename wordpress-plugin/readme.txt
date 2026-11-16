@@ -1,8 +1,8 @@
 === YNeet NEET Widgets ===
-Contributors: yneet
+Contributors: alimail791
 Tags: neet, education, quiz, coaching, school
 Requires at least: 5.0
-Tested up to: 6.7
+Tested up to: 7.1
 Requires PHP: 7.0
 Stable tag: 1.1.0
 License: GPLv2 or later
