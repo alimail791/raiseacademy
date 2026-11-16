@@ -56,8 +56,14 @@ function SitesUsingWidgets() {
 
 // The two WhatsApp jobs to partners run by themselves once their templates are
 // approved and set on Railway (see backend/utils/partnerWhatsApp.js).
+type WaStatus = { whatsapp: boolean; daily: string | null; weekly: string | null; lang: string; nextDaily: string; nextWeekly: string };
+const ist = (iso: string) => new Date(iso).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
+
 function WhatsAppJobs() {
   const [out, setOut] = useState("");
+  const [st, setSt] = useState<WaStatus | null>(null);
+  useEffect(() => { api.get("/widgets/admin/wa-status").then((r) => setSt(r.data)).catch(() => {}); }, []);
+  const tag = (name: string | null) => name ? <span className="text-green-700">✓ {name}</span> : <span className="text-red-600">not set</span>;
   const run = async (job: "weekly" | "daily", dry: boolean) => {
     if (!dry && !window.confirm(`Send the ${job} WhatsApp message to partners now?`)) return;
     try { const r = await api.post(`/widgets/admin/run-${job}${dry ? "?dry=1" : ""}`); setOut(`${job}${dry ? " (test)" : ""}: ${JSON.stringify(r.data)}`); }
@@ -67,6 +73,14 @@ function WhatsAppJobs() {
   return (
     <div className="mt-3 rounded-xl border border-ink/10 p-3 text-sm">
       <p><b>WhatsApp to partners:</b> daily status-image reminder (7:30 am) and Monday stats (11:30 am). They send automatically once WA_PARTNER_DAILY_TEMPLATE / WA_PARTNER_WEEKLY_TEMPLATE are set on Railway.</p>
+      {st && (
+        <ul className="mt-2 text-xs space-y-0.5">
+          <li>WhatsApp API (WA_TOKEN + phone id): {st.whatsapp ? <span className="text-green-700">✓ connected</span> : <span className="text-red-600">not set</span>}</li>
+          <li>Daily template: {tag(st.daily)} · next run {ist(st.nextDaily)}</li>
+          <li>Weekly template: {tag(st.weekly)} · next run {ist(st.nextWeekly)}</li>
+          <li className="text-ink/60">Template language: {st.lang}. Names must match approved templates in Meta exactly.</li>
+        </ul>
+      )}
       <div className="mt-2 flex flex-wrap gap-2">
         <button className={b} onClick={() => run("weekly", true)}>Weekly: who would get it?</button>
         <button className={b} onClick={() => run("weekly", false)}>Send weekly now</button>

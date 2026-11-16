@@ -1,7 +1,7 @@
 import express from "express";
 import { createPartner, getPartner, adminListPartners, adminUpdatePartner, ping, adminSites, directoryCities, directoryCity } from "../controllers/widgetController.js";
 import { protect, adminOnly } from "../middleware/auth.js";
-import { stopDaily, sendWeeklyPartnerReports, sendDailyPartnerReminders } from "../utils/partnerWhatsApp.js";
+import { stopDaily, sendWeeklyPartnerReports, sendDailyPartnerReminders, partnerWaStatus } from "../utils/partnerWhatsApp.js";
 
 const router = express.Router();
 
@@ -18,6 +18,7 @@ router.get("/admin/partners", protect, adminOnly, adminListPartners);
 router.put("/admin/partners/:id", protect, adminOnly, adminUpdatePartner);
 router.get("/admin/sites", protect, adminOnly, adminSites);
 // Run the WhatsApp jobs now (normally automatic): ?dry=1 only counts who would get one
+router.get("/admin/wa-status", protect, adminOnly, (req, res) => res.json(partnerWaStatus()));
 router.post("/admin/run-weekly", protect, adminOnly, async (req, res, next) => { try { res.json(await sendWeeklyPartnerReports({ dry: req.query.dry === "1" })); } catch (e) { next(e); } });
 router.post("/admin/run-daily", protect, adminOnly, async (req, res, next) => { try { res.json(await sendDailyPartnerReminders({ dry: req.query.dry === "1" })); } catch (e) { next(e); } });
 

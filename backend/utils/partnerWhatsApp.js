@@ -58,7 +58,7 @@ export async function sendWeeklyPartnerReports({ dry = false } = {}) {
   const template = process.env.WA_PARTNER_WEEKLY_TEMPLATE;
   if (!dry && (!template || !waConfigured())) return { skipped: "WA_PARTNER_WEEKLY_TEMPLATE / WhatsApp not set" };
   const partners = await WidgetPartner.find({ hidden: false });
-  let sent = 0, failed = 0, quiet = 0;
+  let sent = 0, failed = 0, quiet = 0, error;
   for (const p of partners) {
     const loads = await siteLoads(p);
     const opens = Math.max(0, p.views - (p.reportViews || 0)) + Math.max(0, loads - (p.reportLoads || 0));
@@ -71,13 +71,14 @@ export async function sendWeeklyPartnerReports({ dry = false } = {}) {
         await new Promise((r) => setTimeout(r, 300));
       } catch (e) {
         failed++;
+        error = error || `${p.slug}: ${e.message}`;
         console.warn(`Partner weekly WhatsApp to ${p.slug} failed:`, e.message);
         continue; // try again next week with the same totals
       }
     }
     if (!dry) { p.reportViews = p.views; p.reportLoads = loads; p.lastReportAt = new Date(); await p.save(); }
   }
-  const out = { sent, failed, quiet, partners: partners.length, dry };
+  const out = { sent, failed, quiet, partners: partners.length, dry, ...(error ? { error } : {}) };
   console.log("Partner weekly WhatsApp:", JSON.stringify(out));
   return out;
 }
@@ -88,7 +89,7 @@ export async function sendDailyPartnerReminders({ dry = false } = {}) {
   if (!dry && (!template || !waConfigured())) return { skipped: "WA_PARTNER_DAILY_TEMPLATE / WhatsApp not set" };
   const partners = await WidgetPartner.find({ hidden: false, dailyOptOut: { $ne: true } }).select("name slug phone").lean();
   if (dry) return { wouldSend: partners.length, dry };
-  let sent = 0, failed = 0;
+  let sent = 0, failed = 0, error;
   for (const p of partners) {
     try {
       await sendPartnerTemplate(template, p.phone, [p.name, `${SITE}/i/${p.slug}/status`]);
@@ -96,11 +97,25 @@ export async function sendDailyPartnerReminders({ dry = false } = {}) {
       await new Promise((r) => setTimeout(r, 300));
     } catch (e) {
       failed++;
+      error = error || `${p.slug}: ${e.message}`;
       console.warn(`Partner daily WhatsApp to ${p.slug} failed:`, e.message);
     }
   }
   console.log(`Partner daily WhatsApp: ${sent} sent, ${failed} failed.`);
-  return { sent, failed };
+  return { sent, failed, ...(error ? { error } : {}) };
+}
+
+// Admin page: which templates are set (names only, never the token) and when the jobs next run.
+export function partnerWaStatus() {
+  const at = (ms) => new Date(Date.now() + ms).toISOString();
+  return {
+    whatsapp: waConfigured(),
+    daily: process.env.WA_PARTNER_DAILY_TEMPLATE || null,
+    weekly: process.env.WA_PARTNER_WEEKLY_TEMPLATE || null,
+    lang: process.env.WA_TEMPLATE_LANG || "en",
+    nextDaily: at(msUntil(DAILY_AT)),
+    nextWeekly: at(msUntil(WEEKLY_AT, 1)),
+  };
 }
 
 // POST /api/widgets/partners/:slug/stop-daily  { phone }  — the status page's "Stop daily messages" button.
