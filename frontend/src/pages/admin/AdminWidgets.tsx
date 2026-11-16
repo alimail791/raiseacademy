@@ -8,7 +8,7 @@ import api from "../../api/axios";
 type Partner = { _id: string; createdAt: string; name: string; slug: string; phone: string; city: string; kind: string; views: number; hidden: boolean };
 type Site = { _id: string; host: string; widget: string; page: string; by: string; views: number; firstSeen: string; lastSeen: string };
 type Stats = { totalSites: number; perWidget: Record<string, { sites: number; active30d: number; views: number }>; sites: Site[] };
-const NAMES: Record<string, string> = { qotd: "Question of the Day", predictor: "College Predictor", cutoff: "Cutoffs", weightage: "Weightage", pyq: "Chapter PYQs" };
+const NAMES: Record<string, string> = { countdown: "Countdown", qotd: "Question of the Day", predictor: "College Predictor", cutoff: "Cutoffs", weightage: "Weightage", pyq: "Chapter PYQs" };
 const day = (d: string) => new Date(d).toLocaleDateString("en-IN");
 
 function SitesUsingWidgets() {
@@ -19,7 +19,7 @@ function SitesUsingWidgets() {
     <section className="mb-12">
       <h1 className="font-display text-2xl font-bold">Sites using widgets</h1>
       <p className="text-sm text-ink/60 mt-1">{st.totalSites} website{st.totalSites === 1 ? "" : "s"} show at least one widget. A site is counted the first time a visitor loads a widget there.</p>
-      <div className="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-3">
+      <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {Object.keys(NAMES).map((w) => {
           const x = st.perWidget[w] || { sites: 0, active30d: 0, views: 0 };
           return (
@@ -54,6 +54,30 @@ function SitesUsingWidgets() {
   );
 }
 
+// The two WhatsApp jobs to partners run by themselves once their templates are
+// approved and set on Railway (see backend/utils/partnerWhatsApp.js).
+function WhatsAppJobs() {
+  const [out, setOut] = useState("");
+  const run = async (job: "weekly" | "daily", dry: boolean) => {
+    if (!dry && !window.confirm(`Send the ${job} WhatsApp message to partners now?`)) return;
+    try { const r = await api.post(`/widgets/admin/run-${job}${dry ? "?dry=1" : ""}`); setOut(`${job}${dry ? " (test)" : ""}: ${JSON.stringify(r.data)}`); }
+    catch (e: any) { setOut(e?.response?.data?.message || "Failed"); }
+  };
+  const b = "text-xs border border-ink/20 px-3 py-1.5 rounded-full hover:border-gold";
+  return (
+    <div className="mt-3 rounded-xl border border-ink/10 p-3 text-sm">
+      <p><b>WhatsApp to partners:</b> daily status-image reminder (7:30 am) and Monday stats (11:30 am). They send automatically once WA_PARTNER_DAILY_TEMPLATE / WA_PARTNER_WEEKLY_TEMPLATE are set on Railway.</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        <button className={b} onClick={() => run("weekly", true)}>Weekly: who would get it?</button>
+        <button className={b} onClick={() => run("weekly", false)}>Send weekly now</button>
+        <button className={b} onClick={() => run("daily", true)}>Daily: who would get it?</button>
+        <button className={b} onClick={() => run("daily", false)}>Send daily now</button>
+      </div>
+      {out && <p className="mt-2 text-xs text-ink/70 break-all">{out}</p>}
+    </div>
+  );
+}
+
 const errMsg = (e: any) => e?.response?.data?.message || "Something went wrong.";
 
 const AdminWidgets = () => {
@@ -79,6 +103,7 @@ const AdminWidgets = () => {
         <h1 className="font-display text-2xl font-bold">Widget partners</h1>
         <button onClick={csv} disabled={!list?.length} className="bg-gold text-ink font-semibold px-4 py-2 rounded-full disabled:opacity-50">Download CSV</button>
       </div>
+      <WhatsAppJobs />
       <p className="text-sm text-ink/60 mt-1">Institutes and schools that made a free tools page at /i/… from the <a href="/neet-question-widget" className="underline">widgets page</a>.</p>
       {list === null && <p className="mt-6 text-ink/60">Loading…</p>}
       {list && !list.length && <p className="mt-6 text-ink/60">None yet.</p>}

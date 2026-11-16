@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import api from "../api/axios";
 import axios from "axios";
 import { YNEET_API, SUBJECTS, type CutoffState, type PracticeChapterSummary } from "../practice/practiceData";
+import { NEET_YEAR, OFFICIAL, daysToNeet, neetDateLabel } from "../utils/neetDate";
 
 function hostSite() {
   try { return document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : "direct"; } catch { return "direct"; }
@@ -298,6 +299,41 @@ export const PyqEmbed = () => {
               </a>
             </div>
           )}
+        </>
+      )}
+    </Frame>
+  );
+};
+
+// /embed/countdown — days left to NEET, with a weekly target so it's useful,
+// not just a number. Counts in India time; see utils/neetDate.ts for the date.
+const TARGETS = [
+  [150, "Finish NCERT Biology once, chapter by chapter, with PYQs after each chapter."],
+  [90, "Close your high-weightage chapters first and take one full mock test every week."],
+  [45, "Two full mock tests a week. Revise only your mistakes and the top-weightage chapters."],
+  [15, "Revision only: formula sheets, NCERT lines, and the questions you got wrong."],
+  [0, "Sleep well, revise lightly, and trust your preparation. All the best!"],
+] as const;
+
+export const CountdownEmbed = () => {
+  const link = useLink("countdown_embed");
+  usePing("countdown");
+  const [days, setDays] = useState<number | null>(null);
+  useEffect(() => { setDays(daysToNeet()); }, []);
+  const tip = days === null ? "" : (TARGETS.find(([d]) => days > d) || TARGETS[TARGETS.length - 1])[1];
+
+  return (
+    <Frame title={`NEET ${NEET_YEAR} countdown`} tag={OFFICIAL ? "Official date" : "Expected date"}
+      footer={<><span className="text-ink/70">{OFFICIAL ? "Date from NTA" : "Updated when NTA announces"}</span><a href={link("/neet-2027-exam-date")} target="_blank" rel="noopener" className="font-bold text-ink hover:text-gold-dark">by YNeet ↗</a></>}>
+      {days === null ? <p className="text-sm text-ink/70">Loading…</p> : (
+        <>
+          <div className="text-center">
+            <p className="font-display text-6xl font-bold leading-none">{Math.max(days, 0)}</p>
+            <p className="mt-1 text-sm font-semibold">{days > 0 ? `day${days === 1 ? "" : "s"} to NEET ${NEET_YEAR}` : days === 0 ? "NEET is today!" : "NEET is over"}</p>
+            <p className="text-xs text-ink/60 mt-1">{OFFICIAL ? "" : "Expected "}{neetDateLabel()}</p>
+          </div>
+          {days >= 0 && <p className="mt-4 text-sm rounded-xl bg-gold/15 border border-gold/40 p-3"><b>This week:</b> {tip}</p>}
+          <a href={link("/neet-chapter-wise-weightage")} target="_blank" rel="noopener" className="mt-3 block text-center bg-gold text-ink font-bold px-4 py-2.5 rounded-full min-h-[44px]">See which chapters matter most ↗</a>
         </>
       )}
     </Frame>

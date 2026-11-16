@@ -14,6 +14,7 @@ import instituteRoutes from "./routes/instituteRoutes.js";
 import { startParentWhatsAppJob } from "./utils/parentWhatsApp.js";
 import { startRenewalReminderJob } from "./controllers/instituteBillingController.js";
 import { startGoogleLeadReminderJob } from "./utils/googleLeadReminder.js";
+import { startPartnerWhatsAppJobs } from "./utils/partnerWhatsApp.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import predictorRoutes from "./routes/predictorRoutes.js";
 import booksRoutes from "./routes/booksRoutes.js";
@@ -54,7 +55,7 @@ app.use("/api/predictor/alerts", rateLimit({ windowMs: 60 * 60 * 1000, max: 30 }
 app.use("/api/predictor/otp", rateLimit({ windowMs: 60 * 60 * 1000, max: 20 }));
 app.use("/api/books/order", rateLimit({ windowMs: 60 * 60 * 1000, max: 30 }));
 app.use("/api/widgets/ping", rateLimit({ windowMs: 60 * 60 * 1000, max: 120 }));
-app.use("/api/widgets/partners", rateLimit({ windowMs: 60 * 60 * 1000, max: 10, skip: (req) => req.method !== "POST" }));
+app.use("/api/widgets/partners", rateLimit({ windowMs: 60 * 60 * 1000, max: 10, skip: (req) => req.method !== "POST" })); // also covers stop-daily
 app.use("/api/predictor/predict", rateLimit({ windowMs: 60 * 1000, max: 30 }));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
@@ -82,6 +83,7 @@ connectDB().then(() => {
   startParentWhatsAppJob(); // weekly WhatsApp progress report to institute students' parents
   startRenewalReminderJob(); // monthly institute plans: renewal reminder emails
   startGoogleLeadReminderJob(); // one "finish your sign-up" email to unfinished Google sign-ups
+  startPartnerWhatsAppJobs(); // widget partners: daily status-image reminder + Monday stats (need WA_PARTNER_* templates)
   seedBundledCutoffs(); // NEET College Predictor: official cutoff files shipped in data/predictor
   applyBlogUpdates(); // one-time SEO updates to existing blog posts (utils/blogUpdates.js)
   addBlogDrafts(); // new blog posts added as drafts for review in the admin dashboard (utils/blogDrafts.js)

@@ -12,6 +12,7 @@ type Partner = { name: string; slug: string; city: string; kind: string; cutoffS
 const BOXES = (p: Partner): { title: string; src: string; height: number }[] => {
   const by = `by=${encodeURIComponent(p.name)}`;
   return [
+    { title: "NEET countdown", src: `/embed/countdown?${by}`, height: 400 },
     { title: "NEET Question of the Day", src: `/embed/qotd?${by}`, height: 560 },
     { title: "NEET College Predictor", src: `/embed/predictor?${by}`, height: 480 },
     { title: "Government MBBS cutoffs", src: `/embed/cutoff?state=${p.cutoffState || "all-india-quota"}&${by}`, height: 680 },
@@ -58,6 +59,7 @@ const PartnerPage = () => {
       </div>
 
       <p className="mt-10 text-sm text-ink/60 dark:text-paper/60 text-center">
+        For {p.name}: <a href={`/i/${p.slug}/poster`} className="underline">print poster</a> · <a href={`/i/${p.slug}/status`} className="underline">today's status image</a>.<br />
         Tools by <a href="/" className="underline font-semibold">YNeet</a>. Run a coaching centre or school? <a href="/neet-question-widget#no-website" className="underline font-semibold">Get your own free page</a>.
       </p>
     </div>

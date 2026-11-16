@@ -43,6 +43,10 @@ const NeetCollegeReport = page(() => import("./pages/NeetCollegeReport"));
 const AdminPredictor = page(() => import("./pages/admin/AdminPredictor"));
 const AdminWidgets = page(() => import("./pages/admin/AdminWidgets"));
 const PartnerPage = page(() => import("./pages/PartnerPage"));
+const NeetCoachingIndex = page(() => import("./pages/NeetCoaching"), "NeetCoachingIndex");
+const NeetCoachingCity = page(() => import("./pages/NeetCoaching"), "NeetCoachingCity");
+const PartnerPoster = page(() => import("./pages/PartnerExtras"), "PartnerPoster");
+const PartnerStatus = page(() => import("./pages/PartnerExtras"), "PartnerStatus");
 const NeetParents = page(() => import("./pages/NeetParents"));
 const PapersIndex = page(() => import("./pages/Papers"), "PapersIndex");
 const PaperYear = page(() => import("./pages/Papers"), "PaperYear");
@@ -58,6 +62,7 @@ const PredictorEmbed = page(() => import("./pages/WidgetEmbeds"), "PredictorEmbe
 const CutoffEmbed = page(() => import("./pages/WidgetEmbeds"), "CutoffEmbed");
 const WeightageEmbed = page(() => import("./pages/WidgetEmbeds"), "WeightageEmbed");
 const PyqEmbed = page(() => import("./pages/WidgetEmbeds"), "PyqEmbed");
+const CountdownEmbed = page(() => import("./pages/WidgetEmbeds"), "CountdownEmbed");
 const QotdWidget = page(() => import("./pages/QotdWidget"));
 const Privacy = page(() => import("./pages/Privacy"));
 const Terms = page(() => import("./pages/Terms"));
@@ -88,6 +93,17 @@ function App() {
   const [appMode, setAppMode] = useState(false);
   useEffect(() => { setAppMode(isAppMode()); }, []);
   // Boxes other websites show in an <iframe>: no header, footer or chat button.
+  // Institute poster / status image: no menu, so they print and screenshot cleanly.
+  if (/^\/i\/[^/]+\/(poster|status)\/?$/.test(pathname)) {
+    return (
+      <Suspense fallback={<div className="min-h-[60vh]" />}>
+        <Routes>
+          <Route path="/i/:slug/poster" element={<PartnerPoster />} />
+          <Route path="/i/:slug/status" element={<PartnerStatus />} />
+        </Routes>
+      </Suspense>
+    );
+  }
   if (pathname.startsWith("/embed/")) {
     return (
       <Suspense fallback={<div className="min-h-[60vh]" />}>
@@ -97,6 +113,7 @@ function App() {
         <Route path="/embed/cutoff" element={<CutoffEmbed />} />
         <Route path="/embed/weightage" element={<WeightageEmbed />} />
         <Route path="/embed/pyq" element={<PyqEmbed />} />
+        <Route path="/embed/countdown" element={<CountdownEmbed />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 </Suspense>
@@ -222,6 +239,8 @@ function App() {
           <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />
           <Route path="/neet-question-widget" element={<QotdWidget />} />
           <Route path="/i/:slug" element={<PartnerPage />} />
+          <Route path="/neet-coaching" element={<NeetCoachingIndex />} />
+          <Route path="/neet-coaching/:city" element={<NeetCoachingCity />} />
           <Route path="/neet-tools" element={<NeetTools />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />

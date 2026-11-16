@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 const widgetSiteSchema = new mongoose.Schema(
   {
     host: { type: String, required: true }, // e.g. srividya.in (no www.)
-    widget: { type: String, required: true, enum: ["qotd", "predictor", "cutoff", "weightage", "pyq"] },
+    widget: { type: String, required: true, enum: ["qotd", "predictor", "cutoff", "weightage", "pyq", "countdown"] },
     page: { type: String, default: "" }, // last page URL seen (path only)
     by: { type: String, default: "" }, // "Shared by" name, if they set one
     views: { type: Number, default: 0 },

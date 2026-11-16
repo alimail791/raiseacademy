@@ -120,6 +120,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "Free NEET Widgets for Your Website — Question of the Day, College Predictor, Cutoffs | YNeet",
     description: "Free NEET widgets for coaching centre, school and blog websites: a daily NEET question, college predictor, government MBBS cutoffs, chapter weightage and PYQs. Copy one code, or get a free page if you have no website.",
   },
+  // Noindex until enough institutes are listed; pages/NeetCoaching.tsx switches it on in the browser.
+  "/neet-coaching": {
+    title: "NEET Coaching Centres by City — Free NEET Tools from Local Institutes | YNeet",
+    description: "Find NEET coaching centres and schools near you, city by city. Each offers free NEET tools for students.",
+    noindex: true,
+  },
   "/embed/predictor": {
     title: "NEET College Predictor — YNeet",
     description: "Free NEET college predictor box by YNeet.",
@@ -138,6 +144,11 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/embed/pyq": {
     title: "NEET Chapter PYQs — YNeet",
     description: "Today's NEET previous year questions from one chapter, by YNeet.",
+    noindex: true,
+  },
+  "/embed/countdown": {
+    title: "NEET Countdown — YNeet",
+    description: "Days left to NEET, by YNeet.",
     noindex: true,
   },
   "/embed/qotd": {
@@ -236,7 +247,8 @@ export function metaFor(path: string): PageMeta & { canonical: string } {
   if (/^\/(ta|hi|te|kn)\/(neet-cutoff(\/[a-z-]+)?|neet-chapter-wise-weightage)$/.test(clean)) return { ...PAGE_META["/neet-cutoff"], canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-cutoff\/[a-z-]+$/.test(clean)) return { ...PAGE_META["/neet-cutoff"], canonical: `${SITE_ORIGIN}${clean}` };
   // Institutes' free tools pages (pages/PartnerPage.tsx) — shared on WhatsApp, not indexed.
-  if (/^\/i\/[^/]+$/.test(clean)) return { title: "Free NEET Tools — YNeet", description: "Free NEET tools: daily question, college predictor, cutoffs and chapter weightage.", noindex: true, canonical: `${SITE_ORIGIN}${clean}` };
+  if (/^\/neet-coaching\/[a-z0-9-]+$/.test(clean)) return { ...PAGE_META["/neet-coaching"], canonical: `${SITE_ORIGIN}${clean}` };
+  if (/^\/i\/[^/]+(\/(poster|status))?$/.test(clean)) return { title: "Free NEET Tools — YNeet", description: "Free NEET tools: daily question, college predictor, cutoffs and chapter weightage.", noindex: true, canonical: `${SITE_ORIGIN}${clean}` };
   if (/^\/neet-question\/[^/]+$/.test(clean)) return { ...PAGE_META["/neet-practice"], canonical: `${SITE_ORIGIN}${clean}` };
   const meta =
     PAGE_META[clean] ||
