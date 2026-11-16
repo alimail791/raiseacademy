@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { YNEET_API, SUBJECTS, SCHOOL_CLASSES } from "../practice/practiceData";
 import { Link } from "react-router-dom";
 import { Copy, Check } from "lucide-react";
 import { SITE } from "../utils/siteInfo";
@@ -101,18 +103,110 @@ function WidgetCard({ w }: { w: Widget }) {
   );
 }
 
+// Chapter PYQ box: the institute picks NEET or a school class, then a chapter.
+// The credit link points at that chapter's own page, so every site that adds
+// the box links to a different, specific yneet.in page.
+type PickChapter = { slug: string; subject: string; chapter: string; count: number };
+const PYQ_HEIGHT = 640;
+
+function PyqWidgetCard() {
+  const [level, setLevel] = useState("neet"); // "neet" or "6".."10"
+  const [chapters, setChapters] = useState<PickChapter[] | null>(null);
+  const [slug, setSlug] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!YNEET_API) { setChapters([]); return; }
+    let alive = true;
+    setChapters(null);
+    const req = level === "neet"
+      ? axios.get(`${YNEET_API}/public/practice`).then((r) => (r.data.chapters || []).filter((c: any) => c.total >= 5).map((c: any) => ({ slug: c.slug, subject: c.subject, chapter: c.chapter, count: c.pyqCount || c.total })))
+      : axios.get(`${YNEET_API}/public/school-questions?class=${level}`).then((r) => (r.data.class?.chapters || []).map((c: any) => ({ slug: c.slug, subject: c.subject, chapter: c.chapter, count: c.count })));
+    req.then((list: PickChapter[]) => {
+      if (!alive) return;
+      const sorted = SUBJECTS.flatMap((s) => list.filter((c) => c.subject === s));
+      setChapters(sorted);
+      setSlug(sorted[0]?.slug || "");
+    }).catch(() => alive && setChapters([]));
+    return () => { alive = false; };
+  }, [level]);
+
+  const ch = chapters?.find((c) => c.slug === slug);
+  const school = level !== "neet";
+  const src = school ? `https://www.yneet.in/embed/pyq?class=${level}&chapter=${slug}` : `https://www.yneet.in/embed/pyq?chapter=${slug}`;
+  const page = school ? `https://www.yneet.in/class-${level}-questions#${slug}` : `https://www.yneet.in/neet-practice/${slug}`;
+  const anchor = ch ? (school ? `Class ${level} ${ch.chapter} MCQs` : `${ch.chapter} NEET PYQs`) : "";
+  const code = ch
+    ? `<iframe src="${src}" title="${anchor}" width="100%" height="${PYQ_HEIGHT}" style="border:0;max-width:460px;width:100%" loading="lazy"></iframe>
+<p style="font-size:13px;margin:4px 0 0"><a href="${page}">${anchor}</a> by <a href="https://www.yneet.in">YNeet</a></p>`
+    : "";
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true); setTimeout(() => setCopied(false), 2000);
+      try { (window as any).gtag?.("event", "widget_code_copy", { widget: "pyq", chapter: slug, level }); } catch { /* analytics only */ }
+    } catch { /* clipboard blocked */ }
+  };
+  const sel = "block w-full mt-1 px-3 py-2.5 rounded-xl border border-ink/20 dark:border-paper/25 bg-transparent";
+
+  return (
+    <section id="pyq" className="mt-14 scroll-mt-24">
+      <h2 className="font-display text-2xl font-bold">Chapter-wise NEET PYQs</h2>
+      <p className="text-ink/70 dark:text-paper/70 mt-2 max-w-3xl">
+        5 previous year NEET questions from the chapter you pick, with answers and explanations. A new set every day, so students come back. Put a Biology chapter on your Biology page, a Physics chapter on your Physics page. Schools can pick a Class 6–10 Science chapter instead.
+      </p>
+      <div className="mt-5 flex flex-wrap gap-10">
+        <div style={{ flex: "1 1 340px" }} className="min-w-0">
+          <div className="grid sm:grid-cols-2 gap-3 mb-3">
+            <label className="block text-sm font-semibold">Level
+              <select value={level} onChange={(e) => setLevel(e.target.value)} className={sel}>
+                <option value="neet">NEET (Class 11–12, droppers)</option>
+                {SCHOOL_CLASSES.map((n) => <option key={n} value={String(n)}>Class {n} Science</option>)}
+              </select>
+            </label>
+            <label className="block text-sm font-semibold">Chapter
+              <select value={slug} onChange={(e) => setSlug(e.target.value)} className={sel} disabled={!chapters?.length}>
+                {chapters === null && <option>Loading chapters…</option>}
+                {SUBJECTS.map((s) => {
+                  const list = (chapters || []).filter((c) => c.subject === s);
+                  return list.length ? (
+                    <optgroup key={s} label={s}>
+                      {list.map((c) => <option key={c.slug} value={c.slug}>{c.chapter} ({c.count})</option>)}
+                    </optgroup>
+                  ) : null;
+                })}
+              </select>
+            </label>
+          </div>
+          {chapters && !chapters.length && <p className="text-sm text-ink/70 dark:text-paper/70 mb-3">Couldn't load the chapter list. Please refresh the page.</p>}
+          {code && <pre className="p-4 rounded-2xl bg-ink text-paper text-xs leading-relaxed whitespace-pre-wrap break-all">{code}</pre>}
+          <button onClick={copy} disabled={!code} className="mt-3 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-3 rounded-full hover:bg-gold-dark disabled:opacity-50">
+            {copied ? <><Check size={18} /> Copied</> : <><Copy size={18} /> Copy code</>}
+          </button>
+        </div>
+        <div style={{ flex: "0 1 460px" }} className="min-w-0 w-full">
+          <p className="text-sm font-semibold text-ink/70 dark:text-paper/70">Live preview</p>
+          {ch && <iframe key={src} src={src.replace("https://www.yneet.in", "")} title={`${anchor} preview`} className="mt-2 w-full rounded-2xl border border-ink/10" style={{ height: PYQ_HEIGHT, maxWidth: 460 }} loading="lazy" />}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const QotdWidget = () => (
   <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
     <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free for coaching centres, schools and blogs</p>
     <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">Free NEET widgets for your website</h1>
     <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl">
-      Give NEET students on your website something useful: a daily question, a college predictor, the latest government MBBS cutoffs or the chapter-wise weightage. Copy one code, paste it once and it keeps itself up to date. No sign-up, no cost, no ads.
+      Give NEET students on your website something useful: a daily question, a college predictor, the latest government MBBS cutoffs, the chapter-wise weightage or daily PYQs from any chapter. Copy one code, paste it once and it keeps itself up to date. No sign-up, no cost, no ads.
     </p>
     <nav className="mt-6 flex flex-wrap gap-2 text-sm">
       {WIDGETS.map((w) => <a key={w.id} href={`#${w.id}`} className="px-4 py-2 rounded-full border border-ink/15 dark:border-paper/20 hover:border-gold font-semibold">{w.title}</a>)}
+      <a href="#pyq" className="px-4 py-2 rounded-full border border-ink/15 dark:border-paper/20 hover:border-gold font-semibold">Chapter-wise NEET PYQs</a>
     </nav>
 
     {WIDGETS.map((w) => <WidgetCard key={w.id} w={w} />)}
+    <PyqWidgetCard />
 
     <section className="mt-16">
       <h2 className="font-display text-2xl font-bold">How to add a widget to your website</h2>

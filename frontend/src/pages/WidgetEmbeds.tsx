@@ -187,3 +187,90 @@ export const WeightageEmbed = () => {
     </Frame>
   );
 };
+
+// /embed/pyq?chapter=<subject/chapter>           5 NEET PYQs from one chapter
+// /embed/pyq?class=<6-10>&chapter=<chapterSlug>  5 Class 6–10 Science MCQs from one chapter
+// The API picks a new set of 5 each day (rotating through the chapter), never the full chapter,
+// so the box sends students to the chapter page on yneet.in for the rest.
+type WQ = { id: string; question: string; options: string[]; answer: number; explanation: string; pyqYear: number | null };
+const LETTERS = ["A", "B", "C", "D"];
+
+export const PyqEmbed = () => {
+  const link = useLink("pyq_embed");
+  const [info, setInfo] = useState<{ title: string; page: string; total: number; school: boolean } | null>(null);
+  const [qs, setQs] = useState<WQ[] | null | undefined>(undefined);
+  const [i, setI] = useState(0);
+  const [picked, setPicked] = useState<Record<number, number>>({});
+
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    const chapter = (p.get("chapter") || "").toLowerCase().replace(/[^a-z0-9/-]/g, "");
+    const cls = Number(p.get("class") || 0);
+    if (!YNEET_API || !chapter) { setQs(null); return; }
+
+    const url = cls >= 6 && cls <= 10
+      ? `${YNEET_API}/public/school-questions/daily?class=${cls}&chapter=${encodeURIComponent(chapter)}`
+      : `${YNEET_API}/public/practice/${chapter}/daily`;
+    axios.get(url).then((r) => {
+      const c = r.data.chapter;
+      const list: WQ[] = r.data.questions || [];
+      if (!c || !list.length) { setQs(null); return; }
+      setInfo(c.classNum
+        ? { title: `Class ${c.classNum} · ${c.chapter}`, page: `/class-${c.classNum}-questions#${c.slug}`, total: c.total, school: true }
+        : { title: `${c.subject} · ${c.chapter}`, page: `/neet-practice/${c.slug}`, total: c.pyqCount || c.total, school: false });
+      setQs(list);
+    }).catch(() => setQs(null));
+  }, []);
+
+  const q = qs?.[i];
+  const ans = picked[i];
+  const shown = ans !== undefined;
+  const score = qs ? qs.reduce((s, x, k) => s + (picked[k] === x.answer ? 1 : 0), 0) : 0;
+  const done = qs && Object.keys(picked).length === qs.length;
+  const label = info?.school ? "questions" : "PYQs";
+
+  return (
+    <Frame title={info ? info.title : "NEET chapter PYQs"} tag={qs ? `${Math.min(i + 1, qs.length)} / ${qs.length}` : undefined}
+      footer={<><span className="text-ink/70">New questions every day</span><a href={link(info?.page || "/neet-practice")} target="_blank" rel="noopener" className="font-bold text-ink hover:text-gold-dark">by YNeet ↗</a></>}>
+      {qs === undefined && <p className="text-sm text-ink/70">Loading questions…</p>}
+      {qs === null && <p className="text-sm text-ink/70">Couldn't load the questions. <a href={link("/neet-practice")} target="_blank" rel="noopener" className="underline font-semibold">Practise free on YNeet</a>.</p>}
+      {q && (
+        <>
+          {q.pyqYear && <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-gold/20 text-gold-deep px-2 py-0.5 rounded">NEET {q.pyqYear}</span>}
+          <p className="font-semibold leading-snug whitespace-pre-line mt-2">{q.question}</p>
+          <div className="mt-3 space-y-2">
+            {q.options.map((o, k) => {
+              const right = shown && q.answer === k + 1;
+              const wrong = shown && ans === k + 1 && !right;
+              return (
+                <button key={k} disabled={shown} onClick={() => setPicked((p) => ({ ...p, [i]: k + 1 }))}
+                  className={`w-full text-left text-sm flex gap-2 px-3 py-2.5 rounded-xl border min-h-[44px] ${right ? "border-rise bg-rise/10 font-semibold" : wrong ? "border-red-400 bg-red-50" : "border-ink/15 hover:border-gold"}`}>
+                  <b>{LETTERS[k]}.</b> <span className="whitespace-pre-line">{o}</span>
+                </button>
+              );
+            })}
+          </div>
+          {shown && (
+            <div className="mt-3 text-sm">
+              <p className={`font-bold ${ans === q.answer ? "text-rise-dark" : "text-red-600"}`}>
+                {ans === q.answer ? "Correct!" : `Not quite. The answer is ${LETTERS[q.answer - 1]}.`}
+              </p>
+              {q.explanation && <p className="mt-1 text-ink/75 line-clamp-4">{q.explanation}</p>}
+              {i < qs!.length - 1 && (
+                <button onClick={() => setI(i + 1)} className="mt-3 w-full bg-ink text-paper font-semibold px-5 py-2.5 rounded-full min-h-[44px]">Next question →</button>
+              )}
+            </div>
+          )}
+          {done && info && (
+            <div className="mt-4 rounded-xl bg-gold/15 border border-gold/40 p-3 text-sm">
+              <p className="font-bold">You scored {score} / {qs!.length}.</p>
+              <a href={link(info.page)} target="_blank" rel="noopener" className="mt-2 block text-center bg-gold text-ink font-bold px-4 py-2.5 rounded-full">
+                More {label} on this chapter, free on YNeet ↗
+              </a>
+            </div>
+          )}
+        </>
+      )}
+    </Frame>
+  );
+};
