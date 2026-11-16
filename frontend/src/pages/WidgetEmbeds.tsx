@@ -28,6 +28,15 @@ export function useBy() {
   useEffect(() => { setBy(readBy()); }, []);
   return by;
 }
+// Tells our server which website this box is on (Admin → Widget partners →
+// "Sites using widgets"). Once per load; never blocks the box.
+export function usePing(widget: string) {
+  useEffect(() => {
+    if (!document.referrer || window.parent === window) return;
+    api.post("/widgets/ping", { widget, ref: document.referrer, by: readBy() }).catch(() => {});
+  }, [widget]);
+}
+
 export function ByLine() {
   const by = useBy();
   return by ? <p className="bg-gold/15 text-ink text-xs font-semibold px-4 py-1.5 truncate">Shared by {by}</p> : null;
@@ -59,6 +68,7 @@ const CATS: [string, string][] = [["OPEN", "General / UR"], ["EWS", "EWS"], ["OB
 
 export const PredictorEmbed = () => {
   const link = useLink("predictor_embed");
+  usePing("predictor");
   const [air, setAir] = useState("");
   const [category, setCategory] = useState("OPEN");
   const [state, setState] = useState("");
@@ -110,6 +120,7 @@ const ROWS = 10;
 
 export const CutoffEmbed = () => {
   const link = useLink("cutoff_embed");
+  usePing("cutoff");
   const [slug, setSlug] = useState("");
   const [c, setC] = useState<CutoffState | null | undefined>(undefined);
 
@@ -153,6 +164,7 @@ const W_ROWS = 10;
 
 export const WeightageEmbed = () => {
   const link = useLink("weightage_embed");
+  usePing("weightage");
   const [subject, setSubject] = useState("Biology");
   const [chapters, setChapters] = useState<PracticeChapterSummary[] | null | undefined>(undefined);
 
@@ -213,6 +225,7 @@ const LETTERS = ["A", "B", "C", "D"];
 
 export const PyqEmbed = () => {
   const link = useLink("pyq_embed");
+  usePing("pyq");
   const [info, setInfo] = useState<{ title: string; page: string; total: number; school: boolean } | null>(null);
   const [qs, setQs] = useState<WQ[] | null | undefined>(undefined);
   const [i, setI] = useState(0);

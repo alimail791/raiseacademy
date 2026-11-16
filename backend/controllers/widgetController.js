@@ -1,4 +1,5 @@
 import WidgetPartner from "../models/WidgetPartner.js";
+import WidgetSite from "../models/WidgetSite.js";
 
 // Free NEET tools pages for institutes: www.yneet.in/i/<slug>.
 // See models/WidgetPartner.js.
@@ -64,6 +65,47 @@ export const adminUpdatePartner = async (req, res, next) => {
     const p = await WidgetPartner.findByIdAndUpdate(req.params.id, { hidden: !!req.body.hidden }, { new: true });
     if (!p) return res.status(404).json({ message: "Not found" });
     res.json({ partner: p });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// ---- Which websites show which widget ----------------------------------
+
+const WIDGETS = ["qotd", "predictor", "cutoff", "weightage", "pyq"];
+// Our own sites, previews and local testing don't count.
+const IGNORE = /(^|\.)(yneet\.in|raiseacademy\.in|localhost|127\.0\.0\.1|railway\.app|googleusercontent\.com|translate\.goog)$/;
+
+// POST /api/widgets/ping  { widget, ref, by }  — sent by each box when it loads
+export const ping = async (req, res) => {
+  res.status(204).end(); // never make the widget wait
+  try {
+    const widget = String(req.body?.widget || "");
+    if (!WIDGETS.includes(widget)) return;
+    let u;
+    try { u = new URL(String(req.body?.ref || "")); } catch { return; }
+    if (!/^https?:$/.test(u.protocol)) return;
+    const host = u.hostname.toLowerCase().replace(/^www\./, "").slice(0, 100);
+    if (!host || !host.includes(".") || IGNORE.test(host)) return;
+    const by = clean(req.body?.by, 60);
+    await WidgetSite.updateOne(
+      { host, widget },
+      { $inc: { views: 1 }, $set: { lastSeen: new Date(), page: u.pathname.slice(0, 200), ...(by && { by }) }, $setOnInsert: { firstSeen: new Date() } },
+      { upsert: true }
+    );
+  } catch { /* counting only */ }
+};
+
+// GET /api/widgets/admin/sites
+export const adminSites = async (req, res, next) => {
+  try {
+    const sites = await WidgetSite.find().sort({ lastSeen: -1 }).limit(5000).lean();
+    const since = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    const perWidget = Object.fromEntries(WIDGETS.map((w) => {
+      const list = sites.filter((s) => s.widget === w);
+      return [w, { sites: list.length, active30d: list.filter((s) => new Date(s.lastSeen).getTime() > since).length, views: list.reduce((n, s) => n + s.views, 0) }];
+    }));
+    res.json({ totalSites: new Set(sites.map((s) => s.host)).size, perWidget, sites });
   } catch (err) {
     next(err);
   }
