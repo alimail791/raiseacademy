@@ -16,20 +16,26 @@ export const createPartner = async (req, res, next) => {
     const city = clean(req.body.city, 40);
     const kind = KINDS.includes(req.body.kind) ? req.body.kind : "coaching";
     const cutoffState = /^[a-z-]{2,30}$/.test(req.body.cutoffState || "") ? req.body.cutoffState : "all-india-quota";
-    const website = clean(req.body.website, 120);
+    const website = clean(req.body.website, 120).replace(/^(?!https?:\/\/)(?=\S)/, "https://");
+    const listed = req.body.listed !== false;
 
     if (name.length < 3) return res.status(400).json({ message: "Enter your institute's name" });
     if (!/^[6-9]\d{9}$/.test(phone)) return res.status(400).json({ message: "Enter a 10-digit WhatsApp number" });
 
     // Same number + same name again → give back the page they already made.
     const existing = await WidgetPartner.findOne({ phone, name });
-    if (existing) return res.json({ slug: existing.slug, name: existing.name });
+    if (existing) {
+      // Same institute again: update the details they may have changed.
+      Object.assign(existing, { city, citySlug: slugify(city), kind, cutoffState, listed, ...(website && { website }) });
+      await existing.save();
+      return res.json({ slug: existing.slug, name: existing.name });
+    }
 
     const base = slugify(city ? `${name} ${city}` : name) || "institute";
     let slug = base;
     for (let n = 2; await WidgetPartner.exists({ slug }); n++) slug = `${base}-${n}`;
 
-    const p = await WidgetPartner.create({ name, slug, phone, city, kind, cutoffState, website });
+    const p = await WidgetPartner.create({ name, slug, phone, city, citySlug: slugify(city), kind, cutoffState, website, listed });
     res.status(201).json({ slug: p.slug, name: p.name });
   } catch (err) {
     next(err);
@@ -41,7 +47,7 @@ export const getPartner = async (req, res, next) => {
   try {
     const slug = String(req.params.slug || "").toLowerCase();
     const p = await WidgetPartner.findOneAndUpdate({ slug, hidden: false }, { $inc: { views: 1 } }, { new: true })
-      .select("name slug city kind cutoffState").lean();
+      .select("name slug city citySlug kind cutoffState").lean();
     if (!p) return res.status(404).json({ message: "Page not found" });
     res.json({ partner: p });
   } catch (err) {
@@ -72,7 +78,7 @@ export const adminUpdatePartner = async (req, res, next) => {
 
 // ---- Which websites show which widget ----------------------------------
 
-const WIDGETS = ["qotd", "predictor", "cutoff", "weightage", "pyq"];
+const WIDGETS = ["qotd", "predictor", "cutoff", "weightage", "pyq", "countdown"];
 // Our own sites, previews and local testing don't count.
 const IGNORE = /(^|\.)(yneet\.in|raiseacademy\.in|localhost|127\.0\.0\.1|railway\.app|googleusercontent\.com|translate\.goog)$/;
 
@@ -106,6 +112,37 @@ export const adminSites = async (req, res, next) => {
       return [w, { sites: list.length, active30d: list.filter((s) => new Date(s.lastSeen).getTime() > since).length, views: list.reduce((n, s) => n + s.views, 0) }];
     }));
     res.json({ totalSites: new Set(sites.map((s) => s.host)).size, perWidget, sites });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// ---- NEET coaching directory (www.yneet.in/neet-coaching[/<city>]) ----
+
+const LISTED = { hidden: false, listed: true, citySlug: { $ne: "" }, kind: { $in: ["coaching", "school", "teacher"] } };
+
+// GET /api/widgets/directory  → cities with how many institutes each
+export const directoryCities = async (req, res, next) => {
+  try {
+    const rows = await WidgetPartner.aggregate([
+      { $match: LISTED },
+      { $group: { _id: "$citySlug", city: { $first: "$city" }, count: { $sum: 1 } } },
+      { $sort: { count: -1, city: 1 } },
+    ]);
+    res.json({ cities: rows.map((r) => ({ slug: r._id, city: r.city, count: r.count })) });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// GET /api/widgets/directory/:city  → institutes in one city
+export const directoryCity = async (req, res, next) => {
+  try {
+    const citySlug = slugify(String(req.params.city || ""));
+    const list = await WidgetPartner.find({ ...LISTED, citySlug }).sort({ views: -1, createdAt: 1 })
+      .select("name slug city kind website").lean();
+    if (!list.length) return res.status(404).json({ message: "No institutes listed in this city yet" });
+    res.json({ city: list[0].city, slug: citySlug, institutes: list.map(({ _id, ...x }) => x) });
   } catch (err) {
     next(err);
   }

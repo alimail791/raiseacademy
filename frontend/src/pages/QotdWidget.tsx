@@ -28,6 +28,12 @@ const WIDGETS: Widget[] = [
     credit: () => `Daily <a href="https://www.yneet.in/neet-question-of-the-day">NEET Question of the Day</a> by <a href="https://www.yneet.in">YNeet</a>`,
   },
   {
+    id: "countdown", title: "NEET Countdown", height: 400,
+    blurb: "Days left to NEET with a target for this week that changes as the exam gets closer. Counts in India time and updates itself every day.",
+    src: () => "https://www.yneet.in/embed/countdown",
+    credit: () => `<a href="https://www.yneet.in/neet-2027-exam-date">NEET 2027 countdown</a> by <a href="https://www.yneet.in">YNeet</a>`,
+  },
+  {
     id: "predictor", title: "NEET College Predictor", height: 480,
     blurb: "Students enter their NEET rank, category and home state and see the MBBS and BDS colleges they can get, from last year's official closing ranks.",
     src: () => "https://www.yneet.in/embed/predictor",
@@ -219,7 +225,7 @@ const KINDS: [string, string][] = [["coaching", "Coaching centre"], ["school", "
 // "No website?" — the institute gets www.yneet.in/i/<slug> with all the boxes
 // carrying its name, to share on WhatsApp, Instagram and Google Business.
 function OwnPageForm({ by }: { by: string }) {
-  const [f, setF] = useState({ name: "", phone: "", city: "", kind: "coaching", cutoffState: "all-india-quota" });
+  const [f, setF] = useState({ name: "", phone: "", city: "", kind: "coaching", cutoffState: "all-india-quota", website: "", listed: true });
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [made, setMade] = useState<{ slug: string; name: string } | null>(null);
@@ -253,6 +259,11 @@ function OwnPageForm({ by }: { by: string }) {
           {copied ? <><Check size={18} /> Copied</> : <><Copy size={18} /> Copy link</>}
         </button>
       </div>
+      <div className="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
+        <a href={`/i/${made.slug}/poster`} target="_blank" rel="noopener" className="rounded-xl border border-ink/15 dark:border-paper/20 p-3 hover:border-gold"><b>🖨️ Notice-board poster</b><br />A4 poster with a QR code to your page.</a>
+        <a href={`/i/${made.slug}/status`} target="_blank" rel="noopener" className="rounded-xl border border-ink/15 dark:border-paper/20 p-3 hover:border-gold"><b>📱 Daily WhatsApp status</b><br />Today's NEET question as an image with your name. New every morning.</a>
+      </div>
+      {f.city && f.listed && <p className="mt-4 text-sm">You're also listed in <a href={`/neet-coaching/${f.city.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`} className="underline font-semibold">NEET coaching in {f.city}</a>.</p>}
     </div>
   );
 
@@ -276,6 +287,13 @@ function OwnPageForm({ by }: { by: string }) {
         <select value={f.cutoffState} onChange={(e) => setF({ ...f, cutoffState: e.target.value })} className={input}>
           {CUTOFF_STATES.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
         </select>
+      </label>
+      <label className="block text-sm font-semibold sm:col-span-2">Website <span className="font-normal text-ink/60 dark:text-paper/60">(optional)</span>
+        <input value={f.website} onChange={(e) => setF({ ...f, website: e.target.value })} maxLength={120} placeholder="e.g. www.srividya.in" className={input} />
+      </label>
+      <label className="flex gap-2 items-start text-sm sm:col-span-2">
+        <input type="checkbox" checked={f.listed} onChange={(e) => setF({ ...f, listed: e.target.checked })} className="mt-1" />
+        <span>List my institute free in YNeet's <a href="/neet-coaching" target="_blank" rel="noopener" className="underline">NEET coaching directory</a> for my city (with a link to my website)</span>
       </label>
       {err && <p className="text-sm text-red-600 sm:col-span-2">{err}</p>}
       <div className="sm:col-span-2">
@@ -316,7 +334,7 @@ const QotdWidget = () => {
     <section id="no-website" className="mt-16 scroll-mt-24">
       <h2 className="font-display text-2xl font-bold">No website? Get a free NEET tools page</h2>
       <p className="text-ink/70 dark:text-paper/70 mt-2 max-w-3xl">
-        We'll make a page with all these tools under your institute's name, like www.yneet.in/i/your-institute. Share it in your WhatsApp groups, status, Instagram bio and Google Business profile. Free, no ads.
+        We'll make a page with all these tools under your institute's name, like www.yneet.in/i/your-institute, plus a notice-board poster, a daily WhatsApp status image and a free listing in our NEET coaching directory. Already added a widget to your website? Fill this in too to get listed. Free, no ads.
       </p>
       <OwnPageForm by={by} />
     </section>
