@@ -36,6 +36,12 @@ const WIDGETS: Widget[] = [
     src: (state) => `https://www.yneet.in/embed/cutoff?state=${state}`,
     credit: (state) => `<a href="https://www.yneet.in/neet-cutoff/${state}">${stateName(state)} NEET cutoff</a> by <a href="https://www.yneet.in">YNeet</a>`,
   },
+  {
+    id: "weightage", title: "NEET Chapter-wise Weightage", height: 600,
+    blurb: "The 10 chapters that carry the most questions in a NEET paper, with Physics, Chemistry and Biology tabs. Students tap a chapter to practise its previous year questions free.",
+    src: (subject) => `https://www.yneet.in/embed/weightage?subject=${subject}`,
+    credit: (subject) => `<a href="https://www.yneet.in/neet-chapter-wise-weightage">NEET ${subject} chapter-wise weightage</a> by <a href="https://www.yneet.in">YNeet</a>`,
+  },
 ];
 
 const codeFor = (w: Widget, opt: string) =>
@@ -51,7 +57,7 @@ const STEPS = [
 ];
 
 function WidgetCard({ w }: { w: Widget }) {
-  const [opt, setOpt] = useState(w.id === "cutoff" ? "tamil-nadu" : "");
+  const [opt, setOpt] = useState(w.id === "cutoff" ? "tamil-nadu" : w.id === "weightage" ? "Biology" : "");
   const [copied, setCopied] = useState(false);
   const code = codeFor(w, opt);
   const copy = async () => {
@@ -74,6 +80,13 @@ function WidgetCard({ w }: { w: Widget }) {
               </select>
             </label>
           )}
+          {w.id === "weightage" && (
+            <label className="block text-sm font-semibold mb-3">Subject shown first
+              <select value={opt} onChange={(e) => setOpt(e.target.value)} className="block w-full mt-1 px-3 py-2.5 rounded-xl border border-ink/20 dark:border-paper/25 bg-transparent">
+                {["Biology", "Physics", "Chemistry"].map((v) => <option key={v} value={v}>{v}</option>)}
+              </select>
+            </label>
+          )}
           <pre className="p-4 rounded-2xl bg-ink text-paper text-xs leading-relaxed whitespace-pre-wrap break-all">{code}</pre>
           <button onClick={copy} className="mt-3 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-5 py-3 rounded-full hover:bg-gold-dark">
             {copied ? <><Check size={18} /> Copied</> : <><Copy size={18} /> Copy code</>}
@@ -93,7 +106,7 @@ const QotdWidget = () => (
     <p className="text-gold-deep dark:text-gold font-semibold uppercase tracking-widest text-sm">Free for coaching centres, schools and blogs</p>
     <h1 className="font-display text-3xl sm:text-4xl font-bold mt-2">Free NEET widgets for your website</h1>
     <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl">
-      Give NEET students on your website something useful: a daily question, a college predictor or the latest government MBBS cutoffs. Copy one code, paste it once and it keeps itself up to date. No sign-up, no cost, no ads.
+      Give NEET students on your website something useful: a daily question, a college predictor, the latest government MBBS cutoffs or the chapter-wise weightage. Copy one code, paste it once and it keeps itself up to date. No sign-up, no cost, no ads.
     </p>
     <nav className="mt-6 flex flex-wrap gap-2 text-sm">
       {WIDGETS.map((w) => <a key={w.id} href={`#${w.id}`} className="px-4 py-2 rounded-full border border-ink/15 dark:border-paper/20 hover:border-gold font-semibold">{w.title}</a>)}

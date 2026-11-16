@@ -130,6 +130,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: "Government MBBS NEET cutoffs by YNeet.",
     noindex: true,
   },
+  "/embed/weightage": {
+    title: "NEET Chapter-wise Weightage — YNeet",
+    description: "Top NEET chapters by weightage for Physics, Chemistry and Biology, by YNeet.",
+    noindex: true,
+  },
   "/embed/qotd": {
     title: "NEET Question of the Day — YNeet",
     description: "Today's NEET question with answer and explanation, by YNeet.",
