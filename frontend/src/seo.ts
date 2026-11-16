@@ -112,6 +112,10 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Free NEET photo and signature resizer: crop and compress your passport photo, 4×6 postcard photo, signature and thumb impressions to the exact KB size for the NEET form. Works on your phone, nothing is uploaded.",
   },
+  "/neet-tools": {
+    title: "Free NEET Tools — College Predictor, Score Calculator, PYQs, Weightage & More | YNeet",
+    description: "All of YNeet's free NEET tools in one place: readiness test, college predictor, score calculator, chapter-wise PYQs, question papers, chapter weightage, NCERT notes, cutoffs and NEET 2027 exam help. No login.",
+  },
   "/neet-question-widget": {
     title: "Free NEET Widgets for Your Website — Question of the Day, College Predictor, Cutoffs | YNeet",
     description: "Free NEET widgets for coaching centre, school and blog websites: a daily NEET question, a NEET college predictor and state-wise government MBBS cutoffs. Copy one code, no sign-up.",

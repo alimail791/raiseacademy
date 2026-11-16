@@ -62,6 +62,7 @@ const AskYneet = page(() => import("./pages/AskYneet"));
 const ConceptMaps = page(() => import("./pages/ConceptMaps"));
 const NeetSprint = page(() => import("./pages/NeetSprint"));
 const NeetShorts = page(() => import("./pages/NeetShorts"));
+const NeetTools = page(() => import("./pages/NeetTools"));
 import { AppPriceGuard, AppLeave } from "./components/AppPriceGuard";
 const Logout = page(() => import("./pages/Logout"));
 const DeleteAccount = page(() => import("./pages/DeleteAccount"));
@@ -156,6 +157,7 @@ function App() {
             <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
             <Route path="/neet-trial" element={<NeetTrial />} />
             <Route path="/neet-parents" element={<NeetParents />} />
+            <Route path="/neet-tools" element={<NeetTools />} />
             <Route path="/about" element={<About />} />
             <Route path="/help" element={<Help />} />
             <Route path="*" element={<AppLeave />} />
@@ -213,6 +215,7 @@ function App() {
           <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
           <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />
           <Route path="/neet-question-widget" element={<QotdWidget />} />
+          <Route path="/neet-tools" element={<NeetTools />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
           <Route path="/neet-practice" element={<Practice />} />

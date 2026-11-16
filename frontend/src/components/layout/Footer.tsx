@@ -25,6 +25,7 @@ const YNEET: Item[] = [
   { label: "Student login", to: "/login" },
   { label: "Pay online", href: "https://pay.yneet.in" },
   { label: "Blog", to: "/blog" },
+  { label: "All free NEET tools", to: "/neet-tools" },
   { label: "About us", to: "/about" },
 ];
 
