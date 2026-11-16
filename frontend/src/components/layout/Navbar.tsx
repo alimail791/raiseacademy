@@ -87,6 +87,9 @@ const Navbar = () => {
                         ))}
                       </div>
                     ))}
+                    <Link to="/neet-tools" onClick={() => setMenu(null)} className={`${m.groups.length > 1 ? "col-span-2" : ""} mx-3 mt-1 pt-2 border-t border-ink/10 text-sm font-semibold text-rise-dark dark:text-gold hover:underline`}>
+                      See all free NEET tools →
+                    </Link>
                   </div>
                 </div>
               )}
@@ -238,6 +241,9 @@ const Navbar = () => {
               )}
             </div>
           ))}
+          <Link to="/neet-tools" onClick={() => setOpen(false)} className="block text-sm font-semibold text-rise-dark dark:text-gold py-1">
+            See all free NEET tools →
+          </Link>
 
           {user && (
             <button

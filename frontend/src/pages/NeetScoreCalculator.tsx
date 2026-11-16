@@ -5,6 +5,7 @@ import {
   NEET_SECTIONS, TOTAL_QS, PUBLISHED_KEYS, parseKeyText, parseResponses, scoreResponses, scoreCounts,
   estimateRank, fmtRank, QUALIFY_GENERAL, QUALIFY_RESERVED, type AnswerKey, type ScoreResult,
 } from "../score/scoring";
+import { QuickSignup } from "../components/SignupNudge";
 
 // NEET answer-key score calculator → expected rank → College Predictor.
 // Works fully in the browser. Official keys go into PUBLISHED_KEYS (score/scoring.ts)
@@ -268,7 +269,7 @@ export default function NeetScoreCalculator() {
           <div className="rounded-2xl bg-gold/15 border border-gold/40 p-6">
             <p className="font-display text-xl font-bold">{rank.normal != null && rank.normal < 25000 ? "Great score — lock it in with counselling help" : "Want a better score next time?"}</p>
             <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">YNeet's chapter-priority plan shows exactly which chapters cost you marks, with 1,200+ tests and full mocks. 30 days free.</p>
-            <Link to="/register" className="mt-4 inline-flex items-center gap-2 bg-gold text-ink font-semibold px-6 py-3 rounded-full hover:bg-gold-dark">Start free <ArrowRight size={16} /></Link>
+            <QuickSignup place="score_calc_result" />
             <p className="web-only text-sm text-ink/70 dark:text-paper/70 mt-3">Repeating NEET? Compare <Link to="/courses" className="text-rise-dark font-semibold underline">YNeet's NEET coaching plans for droppers</Link>.</p>
           </div>
         </div>

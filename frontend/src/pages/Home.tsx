@@ -102,6 +102,26 @@ const Home = () => {
       {/* CONCEPT MAP OF THE WEEK — shows once a map is published */}
       <ConceptMapSection />
 
+      {/* FREE TOOLS — short list; the full list lives on /neet-tools */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold text-center">More free NEET tools, no login</h2>
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
+          {[
+            { label: "Chapter-wise PYQs", to: "/neet-practice" },
+            { label: "Question papers by year", to: "/neet-question-papers" },
+            { label: "Chapter-wise weightage", to: "/neet-chapter-wise-weightage" },
+            { label: "Cutoff by state", to: "/neet-cutoff" },
+            { label: "Score calculator", to: "/neet-score-calculator" },
+            { label: "NCERT Biology notes", to: "/ncert-notes" },
+          ].map((t) => (
+            <Link key={t.to} to={t.to} className="rounded-full border border-ink/15 dark:border-paper/20 px-4 py-2 text-sm font-semibold hover:border-gold">
+              {t.label}
+            </Link>
+          ))}
+        </div>
+        <p className="text-center mt-5"><Link to="/neet-tools" className="font-semibold text-rise-dark dark:text-gold underline">See all free NEET tools</Link></p>
+      </section>
+
       <FeatureGroups heading="Everything you need for NEET, in one place" />
 
       <div className="border-t border-ink/10"><CompareTable /></div>
