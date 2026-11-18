@@ -2,6 +2,9 @@
 // player came from, so sign-ups from this website show up separately in its stats.
 export const gamesLink = (spot: string) => `https://play.yneet.in/play?s=website_${spot}`;
 
+// YNeet new-tab extension on the Chrome Web Store (source: chrome-extension/ in this repo).
+export const CHROME_EXTENSION_URL = "https://chromewebstore.google.com/detail/hghipbkakkaebanhaglpibgomnkkeonm?utm_source=yneet.in";
+
 export const SITE = {
   name: "YNeet",
   logoUrl: "/logo.jpeg",
