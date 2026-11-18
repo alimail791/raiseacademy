@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { gamesLink } from "../utils/siteInfo";
+import { gamesLink, CHROME_EXTENSION_URL } from "../utils/siteInfo";
 
 // /neet-tools: one public page that lists every free YNeet page, with a line on
 // what each one does. Gives visitors (and Google) a single place to find all the
@@ -27,6 +27,7 @@ const GROUPS: Group[] = [
       { name: "Chapter-wise NEET PYQs", to: "/neet-practice", desc: "Previous year NEET questions sorted by chapter, for Physics, Chemistry and Biology." },
       { name: "NEET question papers by year", to: "/neet-question-papers", desc: "Full NEET papers year by year, with the answer to every question." },
       { name: "NEET Question of the Day", to: "/neet-question-of-the-day", desc: "One NEET-level question every day, with the answer and explanation." },
+      { name: "NEET new tab for Chrome", href: CHROME_EXTENSION_URL, desc: "Free Chrome extension: every new tab shows the NEET countdown and today's NEET question." },
       { name: "Daily NEET puzzles", href: gamesLink("tools_page"), desc: "5 puzzles a day from NCERT: BioWord, Pinpoint NEET, Pathway Zip and more." },
       { name: "Class 6–10 Science MCQs", to: "/class-9-questions", desc: "Science questions for Class 6 to 10, for an early NEET foundation." },
       { name: "Brain Teaser (Class 6–8)", to: "/brain-teaser", desc: "A new science riddle every Wednesday from the NCERT syllabus." },

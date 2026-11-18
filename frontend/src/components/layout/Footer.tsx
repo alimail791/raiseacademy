@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { OTHER_SITES, siteLink, trackSiteClick } from "../OurOtherSites";
-import { ArrowRight, MessageCircle, Smartphone, Youtube } from "lucide-react";
+import { ArrowRight, Chrome, MessageCircle, Smartphone, Youtube } from "lucide-react";
 
 // The live Google Play listing; VITE_PLAY_STORE_URL on Railway can override it.
 const YOUTUBE_URL = "https://www.youtube.com/channel/UCj5krrV4r1n-ru9hWZDKOtA";
@@ -9,7 +9,7 @@ const YOUTUBE_URL = "https://www.youtube.com/channel/UCj5krrV4r1n-ru9hWZDKOtA";
 // in closed testing: the public listing 404s until it's in production.
 // When live: VITE_PLAY_STORE_URL=https://play.google.com/store/apps/details?id=in.yneet.app
 const PLAY_URL: string = import.meta.env.VITE_PLAY_STORE_URL || "";
-import { SITE, gamesLink } from "../../utils/siteInfo";
+import { SITE, gamesLink, CHROME_EXTENSION_URL } from "../../utils/siteInfo";
 import { PRACTICE, STUDY, TOOLS } from "../../utils/navLinks";
 
 // Footer: brand strip on top, then six short columns: the three free-feature
@@ -91,6 +91,10 @@ const Footer = () => {
                 <span className="leading-tight"><span className="block text-[11px] text-paper/60">Get the app on</span><span className="font-semibold text-paper">Google Play</span></span>
               </a>
             )}
+            <a href={CHROME_EXTENSION_URL} target="_blank" rel="noopener noreferrer" onClick={() => { try { (window as any).gtag?.("event", "chrome_extension_click", { place: "footer" }); } catch { /* ignore */ } }}
+              className="flex items-center gap-2 text-sm hover:text-gold">
+              <Chrome size={18} className="text-gold" /> NEET countdown on every Chrome tab
+            </a>
             <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" onClick={() => { try { (window as any).gtag?.("event", "youtube_click", { place: "footer" }); } catch { /* ignore */ } }}
               className="flex items-center gap-2 text-sm hover:text-gold">
               <Youtube size={18} className="text-gold" /> Daily NEET quiz on YouTube
