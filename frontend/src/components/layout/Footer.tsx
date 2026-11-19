@@ -120,7 +120,23 @@ const Footer = () => {
 
       <div className="border-t border-paper/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 pr-20 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-paper/55">
-          <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
+          <span className="flex items-center gap-3">
+            <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
+            <a
+              href="https://www.saashub.com/yneet-in?utm_source=badge&utm_campaign=badge&utm_content=yneet-in&badge_variant=color&badge_kind=approved"
+              target="_blank"
+              rel="noopener"
+              className="shrink-0 opacity-80 hover:opacity-100"
+            >
+              <img
+                src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1"
+                alt="YNeet.in on SaaSHub"
+                width={110}
+                loading="lazy"
+                className="h-auto"
+              />
+            </a>
+          </span>
           <span>
             More from Raise Academy:{" "}
             {OTHER_SITES.map((o, i) => (
