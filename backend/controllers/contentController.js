@@ -117,3 +117,33 @@ export const deleteStudent = async (req, res, next) => {
     res.json({ ok: true });
   } catch (err) { next(err); }
 };
+
+// GET /api/content/signup-sources?days=30 (admin) — new accounts by where they
+// came from (channel), which button they used (place) and method, plus the
+// latest sign-ups. Source is recorded from 19 Nov 2026 (utils/signupSource.js).
+export const signupSources = async (req, res, next) => {
+  try {
+    const days = Math.min(Math.max(parseInt(req.query.days, 10) || 30, 1), 365);
+    const since = new Date(Date.now() - days * 864e5);
+    const match = { createdAt: { $gte: since }, role: { $ne: "admin" } };
+    const group = (field, fallback) => Student.aggregate([
+      { $match: match },
+      { $group: { _id: { $ifNull: [`$signup.${field}`, fallback] }, count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+    ]);
+    const [total, byChannel, byPlace, byMethod, byDay, latest] = await Promise.all([
+      Student.countDocuments(match),
+      group("channel", "Not recorded (before tracking)"),
+      group("place", "Not recorded"),
+      group("method", "Not recorded"),
+      Student.aggregate([
+        { $match: match },
+        { $group: { _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt", timezone: "Asia/Kolkata" } }, count: { $sum: 1 } } },
+        { $sort: { _id: 1 } },
+      ]),
+      Student.find(match).sort({ createdAt: -1 }).limit(25).select("fullName currentClass createdAt signup").lean(),
+    ]);
+    const rows = (a) => a.map((x) => ({ name: x._id || "—", count: x.count }));
+    res.json({ days, total, byChannel: rows(byChannel), byPlace: rows(byPlace), byMethod: rows(byMethod), byDay: rows(byDay), latest });
+  } catch (e) { next(e); }
+};

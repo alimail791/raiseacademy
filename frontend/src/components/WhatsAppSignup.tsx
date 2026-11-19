@@ -1,6 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../api/axios";
+import { signupAttribution } from "../utils/attribution";
 import { useAuth } from "../context/AuthContext";
 import { goToYneet } from "../utils/yneet";
 
@@ -57,6 +58,7 @@ export default function WhatsAppSignup({ mode = "signup", place, referredByCode,
         phone: f.phone.replace(/\D/g, "").slice(-10), code: code.trim(),
         ...(needDetails ? { fullName: f.fullName.trim(), currentClass: f.currentClass, parentOk: f.parentOk } : {}),
         referredByCode,
+        signup: signupAttribution(place),
       });
       const d = r.data;
       login(d.token, d.user);

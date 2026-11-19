@@ -314,6 +314,7 @@ export const instituteAddStudents = async (req, res, next) => {
           currentClass: cls, password: await bcrypt.hash(password, 10), instituteId: inst._id,
           currentSessionId: crypto.randomBytes(16).toString("hex"),
           ...(parentEmail && { parentEmail }), ...(parentPhone && { parentPhone }),
+          signup: { method: "institute", channel: "Added by an institute", place: "institute_bulk" },
         });
         if (!isJuniorClass(cls)) used++;
         await syncYneetAccess(s._id, inst);

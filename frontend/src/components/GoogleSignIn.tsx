@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import api from "../api/axios";
+import { signupAttribution } from "../utils/attribution";
 
 // "Continue with Google" for Class 9–Dropper (Register and Login pages).
 // Google gives us a verified name + email in one tap. A brand-new student is then
@@ -31,11 +32,13 @@ export const googleSignInEnabled = () => !!CLIENT_ID && typeof window !== "undef
 type Props = {
   text?: "signup_with" | "continue_with" | "signin_with";
   referredByCode?: string;
+  // Which button/form this is, saved on new accounts (e.g. "question_page_gate").
+  place?: string;
   // Called after login/registration succeeds with the API's { token, user, isNew }.
   onDone: (data: { token: string; user: any; isNew: boolean }) => void;
 };
 
-export default function GoogleSignIn({ text = "continue_with", referredByCode, onDone }: Props) {
+export default function GoogleSignIn({ text = "continue_with", referredByCode, place, onDone }: Props) {
   const box = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const [pending, setPending] = useState<{ credential: string; email: string; fullName: string } | null>(null);
@@ -45,7 +48,7 @@ export default function GoogleSignIn({ text = "continue_with", referredByCode, o
   const send = async (credential: string, extra: Record<string, string> = {}) => {
     setLoading(true);
     try {
-      const res = await api.post("/auth/google", { credential, referredByCode, ...extra });
+      const res = await api.post("/auth/google", { credential, referredByCode, signup: signupAttribution(place), ...extra });
       if (res.data.needsDetails) {
         setPending({ credential, email: res.data.email, fullName: res.data.fullName || "" });
         setDetails((d) => ({ ...d, fullName: d.fullName || res.data.fullName || "" }));

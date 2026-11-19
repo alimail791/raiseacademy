@@ -9,6 +9,7 @@ import { isAppMode } from "../utils/appMode";
 import GoogleSignIn, { OrDivider } from "../components/GoogleSignIn";
 import WhatsAppSignup from "../components/WhatsAppSignup";
 import { isInAppBrowser } from "../components/SignupNudge";
+import { signupAttribution } from "../utils/attribution";
 
 const boards = ["CBSE", "Tamil Nadu State Board"];
 // Class 9–Dropper. Course (Foundation/Coaching), board and NEET year are worked
@@ -57,6 +58,8 @@ const Register = () => {
   const [showPw, setShowPw] = useState(false);
   const [searchParams] = useSearchParams();
   const referredByCode = searchParams.get("ref") || undefined;
+  // Which button sent them here (?from=question_page etc.), saved on the new account.
+  const from = searchParams.get("from") || "register_page";
   // Name and phone can arrive pre-filled from YNeet Daily (play.yneet.in), where the
   // student has already verified this number on WhatsApp.
   const [form, setForm] = useState<FormState>(() => ({
@@ -105,6 +108,7 @@ const Register = () => {
         parentPhone: jr.parentPhone.replace(/\D/g, "").slice(-10),
         phone: form.phone.replace(/\D/g, "").slice(-10) || undefined,
         referredByCode,
+        signup: signupAttribution(from),
       });
       login(res.data.token, res.data.user);
       toast.success("Welcome to YNeet!");
@@ -119,7 +123,7 @@ const Register = () => {
   const submit = async () => {
     setLoading(true);
     try {
-      const payload = { ...form, fullName: form.fullName.trim(), referredByCode };
+      const payload = { ...form, fullName: form.fullName.trim(), referredByCode, signup: signupAttribution(from) };
       const res = await api.post("/auth/register", payload);
       login(res.data.token, res.data.user);
       toast.success("Welcome to YNeet!");
@@ -159,7 +163,7 @@ const Register = () => {
         <p className="font-display font-bold text-lg">Fastest: sign up with WhatsApp</p>
         <p className="text-sm text-ink/70 mb-3">Just your name, class and WhatsApp number. No email, no password.</p>
         {waOpen
-          ? <WhatsAppSignup place="register_page" referredByCode={referredByCode} />
+          ? <WhatsAppSignup place={from} referredByCode={referredByCode} />
           : <button type="button" onClick={() => setWaOpen(true)} className="w-full bg-[#25D366] text-white font-bold py-3 rounded-full">Sign up with WhatsApp</button>}
       </div>
       <OrDivider label="or fill in the form" />
@@ -218,7 +222,7 @@ const Register = () => {
 
       {!junior && (
         <div className="mt-8 bg-white p-7 rounded-2xl border border-ink/10 space-y-4">
-          <GoogleSignIn text="signup_with" referredByCode={referredByCode} onDone={(d) => {
+          <GoogleSignIn text="signup_with" referredByCode={referredByCode} place={from} onDone={(d) => {
             login(d.token, d.user);
             toast.success(d.isNew ? "Welcome to YNeet!" : `Welcome back, ${d.user.fullName.split(" ")[0]}!`);
             if (d.isNew) trackSignUpThen(goToYneet, "trial_30d", "YNeet free trial", "google");

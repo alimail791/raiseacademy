@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Users, GraduationCap, Stethoscope, Sparkles } from "lucide-react";
 import api from "../../api/axios";
+import SignupSources from "./SignupSources";
 
 const AdminDashboard = () => {
   const [counts, setCounts] = useState({ total: 0, schoolTuition: 0, neetCoaching: 0, yneetSubscribed: 0 });
@@ -41,6 +42,7 @@ const AdminDashboard = () => {
           </div>
         ))}
       </div>
+      <SignupSources />
     </div>
   );
 };

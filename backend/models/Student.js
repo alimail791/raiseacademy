@@ -57,6 +57,20 @@ const studentSchema = new mongoose.Schema(
     // YNeet reads it via /auth/me and skips its own 3-day verification step.
     phoneVerifiedAt: { type: Date },
     isEmailVerified: { type: Boolean, default: true }, // verified via OTP before creation
+    // Where this sign-up came from (utils/signupSource.js). Accounts made before
+    // 19 Nov 2026 have none.
+    signup: {
+      method: { type: String }, // email | google | whatsapp | institute
+      channel: { type: String, index: true }, // e.g. "Google search", "YouTube", "Widgets on partner sites"
+      place: { type: String }, // which button/form, e.g. "question_page_gate"
+      page: { type: String }, // page they signed up on
+      landing: { type: String }, // first page of their first visit
+      referrer: { type: String }, // site that sent that first visit
+      utmSource: { type: String },
+      utmMedium: { type: String },
+      utmCampaign: { type: String },
+      inApp: { type: Boolean },
+    },
     role: { type: String, enum: ["student", "admin"], default: "student" },
 
     progress: { type: Number, default: 0 }, // 0-100, simple course progress %

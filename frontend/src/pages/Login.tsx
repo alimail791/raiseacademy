@@ -51,7 +51,7 @@ const Login = () => {
         <WhatsAppSignup mode="login" place="login_page" onDone={(d) => { if (d.user.role === "admin") navigate("/admin"); else setTimeout(goToYneet, d.isNew ? 800 : 0); }} />
       </div>
       <form onSubmit={handleSubmit} className="mt-6 space-y-4 bg-white p-7 rounded-2xl border border-ink/10">
-        <GoogleSignIn text="continue_with" onDone={(d) => {
+        <GoogleSignIn text="continue_with" place="login_page" onDone={(d) => {
           login(d.token, d.user);
           toast.success(d.isNew ? "Welcome to YNeet!" : `Welcome back, ${d.user.fullName.split(" ")[0]}!`);
           if (d.isNew) { try { (window as any).gtag?.("event", "sign_up", { method: "google", plan: "trial_30d" }); } catch { /* analytics only */ } }

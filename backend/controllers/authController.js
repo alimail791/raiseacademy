@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { signupInfo } from "../utils/signupSource.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
@@ -160,6 +161,7 @@ export const register = async (req, res, next) => {
       neetExamYear: emptyToUndefined(neetExamYear) ?? neetYearForClass(currentClass),
       currentSessionId: newSessionId(),
       referredByCode: emptyToUndefined(referredByCode),
+      signup: signupInfo(req.body.signup, "email", { referred: !!referredByCode }),
     });
 
     // Clean up used OTPs
@@ -263,6 +265,7 @@ export const googleAuth = async (req, res, next) => {
       neetExamYear: neetYearForClass(currentClass),
       currentSessionId: newSessionId(),
       referredByCode: referredByCode || undefined,
+      signup: signupInfo(req.body.signup, "google", { referred: !!referredByCode }),
     });
 
     sendEmail({
@@ -517,6 +520,7 @@ export const waVerifyOtp = async (req, res, next) => {
       phoneVerifiedAt: new Date(),
       currentSessionId: newSessionId(),
       referredByCode: req.body?.referredByCode ? String(req.body.referredByCode).slice(0, 40) : undefined,
+      signup: signupInfo(req.body?.signup, "whatsapp", { referred: !!req.body?.referredByCode }),
     });
     await Otp.deleteMany({ email: WA_KEY(phone), purpose: "wa-auth" });
 

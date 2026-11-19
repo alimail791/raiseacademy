@@ -40,7 +40,7 @@ export function QuickSignup({ place }: { place: string; dark?: boolean }) {
       {showGoogle && (
         <>
           <div className="bg-white rounded-full">
-            <GoogleSignIn text="signup_with" onDone={(d) => {
+            <GoogleSignIn text="signup_with" place={place} onDone={(d) => {
               login(d.token, d.user);
               toast.success(d.isNew ? "Welcome to YNeet!" : `Welcome back, ${d.user.fullName.split(" ")[0]}!`);
               if (d.isNew) track("sign_up", { method: "google", plan: "trial_30d", place });
