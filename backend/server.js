@@ -22,7 +22,8 @@ import youtubeShortsRoutes from "./routes/youtubeShortsRoutes.js";
 import instagramReelsRoutes from "./routes/instagramReelsRoutes.js";
 import widgetRoutes from "./routes/widgetRoutes.js";
 import { startInstagramReelsJob } from "./utils/instagramReels.js";
-import { seedBundledCutoffs } from "./controllers/predictorController.js";
+import { seedBundledCutoffs, cutoffPagesCache } from "./controllers/predictorController.js";
+import { shortsCache } from "./controllers/youtubeShortsController.js";
 import { applyBlogUpdates } from "./utils/blogUpdates.js";
 import { addBlogDrafts } from "./utils/blogDrafts.js";
 
@@ -87,4 +88,9 @@ connectDB().then(() => {
   seedBundledCutoffs(); // NEET College Predictor: official cutoff files shipped in data/predictor
   applyBlogUpdates(); // one-time SEO updates to existing blog posts (utils/blogUpdates.js)
   addBlogDrafts(); // new blog posts added as drafts for review in the admin dashboard (utils/blogDrafts.js)
+  // Slow public lists (cutoff pages ~6s, Shorts ~3s): build them now and keep them
+  // fresh in the background so no visitor waits for a rebuild.
+  const warm = () => { cutoffPagesCache.warm(); shortsCache.warm(); };
+  warm();
+  setInterval(warm, 30 * 60 * 1000).unref();
 });

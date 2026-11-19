@@ -1,4 +1,5 @@
 import YoutubeShort from "../models/YoutubeShort.js";
+import { swrCache } from "../utils/swrCache.js";
 
 // Daily NEET quiz Shorts (YNeet repo, shorts-bot) for www.yneet.in.
 // POST /api/youtube-shorts (x-upload-key = BOOKS_UPLOAD_KEY) — the bot reports an upload.
@@ -52,34 +53,37 @@ export const report = async (req, res, next) => {
       publishAt: b.publishAt ? new Date(b.publishAt) : null,
     };
     await YoutubeShort.updateOne({ videoId: b.videoId }, { $set: doc, $setOnInsert: { videoId: b.videoId, isPublic: false } }, { upsert: true });
-    cache = null;
+    shortsCache.invalidate();
     res.json({ ok: true });
   } catch (e) { next(e); }
 };
 
-let cache = null;
+// Re-checking videos with YouTube can take seconds, so the list is served from a
+// stale-while-revalidate cache (warmed at startup); visitors never wait for it.
+export const shortsCache = swrCache(async () => {
+  await seedOnce();
+  const now = new Date();
+  // Re-check recent ones that are due but not yet known to be public.
+  const due = await YoutubeShort.find({ isPublic: false, $or: [{ publishAt: null }, { publishAt: { $lte: now } }], createdAt: { $gte: new Date(Date.now() - 60 * 864e5) } })
+    .sort({ createdAt: -1 }).limit(30);
+  // Videos deleted or made private on YouTube drop off within a few hours.
+  const stale = await YoutubeShort.find({ isPublic: true, $or: [{ checkedAt: null }, { checkedAt: { $lt: new Date(Date.now() - 6 * 3600e3) } }] }).limit(20);
+  const toCheck = [...due.filter((d) => !d.checkedAt || now - d.checkedAt > RECHECK_MS), ...stale];
+  await Promise.all(toCheck.map(checkPublic));
+  const all = await YoutubeShort.find({ isPublic: true }).sort({ createdAt: -1 }).limit(400).lean();
+  // One Short per subject per day: if a day was uploaded twice, show only the newest copy.
+  const seen = new Set();
+  const items = all.filter((x) => { const k = x.date && x.subject ? `${x.date}|${x.subject}` : x.videoId; if (seen.has(k)) return false; seen.add(k); return true; })
+    .sort((a, b) => (new Date(b.publishAt || b.createdAt)) - (new Date(a.publishAt || a.createdAt)) || (b.subject < a.subject ? -1 : 1));
+  return items.map(({ videoId, subject, chapter, title, questionSlug, date, publishAt, thumbnail }) => ({ videoId, subject, chapter, title, questionSlug, date, publishAt, thumbnail }));
+}, 5 * 60 * 1000);
+
 export const list = async (req, res, next) => {
   try {
-    await seedOnce();
     const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 12, 1), 200);
-    if (!cache || Date.now() - cache.at > 5 * 60 * 1000) {
-      const now = new Date();
-      // Re-check recent ones that are due but not yet known to be public.
-      const due = await YoutubeShort.find({ isPublic: false, $or: [{ publishAt: null }, { publishAt: { $lte: now } }], createdAt: { $gte: new Date(Date.now() - 60 * 864e5) } })
-        .sort({ createdAt: -1 }).limit(30);
-      for (const d of due) if (!d.checkedAt || now - d.checkedAt > RECHECK_MS) await checkPublic(d);
-      // Videos deleted or made private on YouTube drop off within a few hours.
-      const stale = await YoutubeShort.find({ isPublic: true, $or: [{ checkedAt: null }, { checkedAt: { $lt: new Date(Date.now() - 6 * 3600e3) } }] }).limit(20);
-      for (const d of stale) await checkPublic(d);
-      const all = await YoutubeShort.find({ isPublic: true }).sort({ createdAt: -1 }).limit(400).lean();
-      // One Short per subject per day: if a day was uploaded twice, show only the newest copy.
-      const seen = new Set();
-      const items = all.filter((x) => { const k = x.date && x.subject ? `${x.date}|${x.subject}` : x.videoId; if (seen.has(k)) return false; seen.add(k); return true; })
-        .sort((a, b) => (new Date(b.publishAt || b.createdAt)) - (new Date(a.publishAt || a.createdAt)) || (b.subject < a.subject ? -1 : 1));
-      cache = { at: Date.now(), items: items.map(({ videoId, subject, chapter, title, questionSlug, date, publishAt, thumbnail }) => ({ videoId, subject, chapter, title, questionSlug, date, publishAt, thumbnail })) };
-    }
+    const items = await shortsCache.get();
     res.set("Cache-Control", "public, max-age=300");
-    res.json({ shorts: cache.items.slice(0, limit), total: cache.items.length });
+    res.json({ shorts: items.slice(0, limit), total: items.length });
   } catch (e) { next(e); }
 };
 

@@ -4,6 +4,7 @@ import CollegeCutoff from "../models/CollegeCutoff.js";
 import PredictorLead from "../models/PredictorLead.js";
 import { buildCutoffRows } from "../utils/cutoffImport.js";
 import { summariseQuota } from "../utils/cutoffPages.js";
+import { swrCache } from "../utils/swrCache.js";
 import { sendWhatsAppOtp } from "../utils/whatsappOtp.js";
 import { normalizePhone, waConfigured } from "../utils/parentWhatsApp.js";
 import { yneetPost } from "../utils/yneetSync.js";
@@ -85,29 +86,31 @@ export async function latestDatasets(force = false) {
   datasetCache = { at: Date.now(), value: out };
   return out;
 }
-const clearCache = () => { datasetCache = { at: 0, value: null }; };
+// New cutoff data: rebuild the dataset now and the public cutoff pages in the background.
+const clearCache = () => { datasetCache = { at: 0, value: null }; cutoffPagesCache.invalidate(); };
 
 // GET /api/predictor/cutoff-pages — every live quota's cutoff summary for the
 // public /neet-cutoff/<state> pages on www.yneet.in (fetched at website build time).
-let cutoffPagesCache = { at: 0, value: null };
+// Building this takes ~6s, so it is served from a stale-while-revalidate cache
+// (warmed at startup) instead of making a visitor wait for the rebuild.
+export const cutoffPagesCache = swrCache(async () => {
+  const sets = await latestDatasets();
+  const codes = Object.keys(QUOTAS).filter((code) => sets[code]);
+  const summaries = await Promise.all(codes.map(async (code) => {
+    const d = sets[code];
+    const rows = await CollegeCutoff.find({ quota: code, year: d.year, round: d.round }).lean();
+    return summariseQuota({ quota: code, name: QUOTAS[code], year: d.year, round: d.round, rankType: d.rankType }, rows);
+  }));
+  return summaries.filter(Boolean);
+}, 60 * 60 * 1000);
+
 export const cutoffPages = async (req, res, next) => {
   try {
-    if (!cutoffPagesCache.value || Date.now() - cutoffPagesCache.at > 30 * 60 * 1000) {
-      const sets = await latestDatasets();
-      const states = [];
-      for (const code of Object.keys(QUOTAS)) {
-        const d = sets[code];
-        if (!d) continue;
-        const rows = await CollegeCutoff.find({ quota: code, year: d.year, round: d.round }).lean();
-        const s = summariseQuota({ quota: code, name: QUOTAS[code], year: d.year, round: d.round, rankType: d.rankType }, rows);
-        if (s) states.push(s);
-      }
-      cutoffPagesCache = { at: Date.now(), value: states };
-    }
+    const states = await cutoffPagesCache.get();
     res.set("Cache-Control", "public, max-age=1800");
     // ?state=<slug>: just that quota (the cutoff widget on other websites).
     const one = String(req.query.state || "").toLowerCase();
-    res.json({ states: one ? cutoffPagesCache.value.filter((c) => c.slug === one) : cutoffPagesCache.value });
+    res.json({ states: one ? states.filter((c) => c.slug === one) : states });
   } catch (e) { next(e); }
 };
 

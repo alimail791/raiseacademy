@@ -1,7 +1,7 @@
 // One NEET question per page (/neet-question/<question-words>-<id>), for
 // people who search the text of a question. Built as real HTML at deploy time
 // by scripts/prerender.mjs; pages added after a deploy load from the YNeet API.
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { ArrowRight, Check } from "lucide-react";
@@ -9,7 +9,7 @@ import { SITE_ORIGIN } from "../seo";
 import { useInitialPracticeData, YNEET_API, questionMeta, questionPath, schoolSubject, shorten, type QuestionPageData } from "../practice/practiceData";
 import NotFound from "./NotFound";
 import { ShortPlayer } from "../components/QuizShorts";
-import { QuickSignup, StickySignupBar, track } from "../components/SignupNudge";
+import { QuickSignup, StickySignupBar, track, useAnswerGate, AnswerGateSheet } from "../components/SignupNudge";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -38,6 +38,8 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
   const pre = initial.question && initial.question.slug === slug ? initial.question : undefined;
   const [q, setQ] = useState<QuestionPageData | null | undefined>(pre);
   const [shown, setShown] = useState(false);
+  const answerRef = useRef<HTMLDetailsElement>(null);
+  const gate = useAnswerGate("question_page");
 
   useEffect(() => {
     setShown(false);
@@ -92,8 +94,14 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
       </ul>
 
       {/* The answer is in the HTML (inside <details>) so Google reads it; students see it on tap. */}
-      <details className="mt-5 p-5 rounded-2xl bg-rise/5 border border-rise/20" onToggle={(e) => setShown((e.target as HTMLDetailsElement).open)}>
-        <summary className="cursor-pointer font-semibold text-rise-dark">Show answer & explanation</summary>
+      {/* After the free answers, signed-out NEET / Class 9–10 visitors get a sign-up sheet first (soft: "Not now" still opens it). */}
+      <details key={slug} ref={answerRef} className="mt-5 p-5 rounded-2xl bg-rise/5 border border-rise/20" onToggle={(e) => setShown((e.target as HTMLDetailsElement).open)}>
+        <summary className="cursor-pointer font-semibold text-rise-dark" onClick={(e) => {
+          const d = answerRef.current;
+          if (!d || d.open || (school && school <= 8)) return; // closing, or a free Class 6–8 page
+          e.preventDefault();
+          gate.ask(() => { if (answerRef.current) answerRef.current.open = true; });
+        }}>Show answer & explanation</summary>
         <h2 className="mt-3 font-bold">Answer: ({LETTERS[q.answer - 1]}) {q.options[q.answer - 1]}</h2>
         <h3 className="mt-3 text-sm font-semibold text-ink/70 dark:text-paper/70">Explanation</h3>
         <p className="mt-1 text-ink/80 dark:text-paper/80 whitespace-pre-line">{q.explanation}</p>
@@ -144,6 +152,8 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
         <StickySignupBar text={school && school <= 8 ? `Free Class ${school} tests, sign up` : `Free ${q.chapter} test + score`} place="question_page_bar" to={school && school <= 8 ? "/register?junior=1&wa=1&from=question_page_bar" : undefined} />
         {!school && <p className="web-only text-sm mt-3 text-paper/75">For Class 11, 12 and droppers, see what the <Link to="/courses" className="text-gold font-semibold underline">YNeet NEET online course</Link> includes.</p>}
       </div>
+
+      <AnswerGateSheet open={gate.open} onSkip={gate.skip} onClose={gate.close} chapter={q.chapter} place="question_page" />
 
       {q.short && (
         <section className="mb-8">

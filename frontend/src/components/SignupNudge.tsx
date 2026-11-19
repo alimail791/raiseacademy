@@ -127,3 +127,55 @@ export function RevealNudgeSheet({ open, onClose, title, place }: { open: boolea
     </div>
   );
 }
+
+// ── Soft answer gate (question pages) ──
+// Each visitor gets FREE_ANSWERS answers. After that, a signed-out visitor who
+// taps "Show answer" sees a sign-up sheet first; "Not now" still shows the
+// answer, so nobody is locked out. The answer stays in the page HTML
+// (Google reads it), so this changes nothing for search.
+export const FREE_ANSWERS = 3;
+const GATE_KEY = "yn_free_answers_used";
+
+const readUsed = () => { try { return parseInt(localStorage.getItem(GATE_KEY) || "0", 10) || 0; } catch { return 0; } };
+const writeUsed = (n: number) => { try { localStorage.setItem(GATE_KEY, String(n)); } catch { /* private mode */ } };
+
+// Call ask(reveal) when the visitor wants the answer: it reveals at once while
+// free answers are left (or the visitor is signed in), otherwise opens the sheet.
+export function useAnswerGate(place: string) {
+  const { user, loading } = useAuth();
+  const [pending, setPending] = useState<null | (() => void)>(null);
+  const ask = (reveal: () => void) => {
+    if (user || loading) { reveal(); return; }
+    const used = readUsed();
+    if (used < FREE_ANSWERS) {
+      writeUsed(used + 1);
+      if (used + 1 === FREE_ANSWERS) track("free_answers_used_up", { place });
+      reveal();
+      return;
+    }
+    track("signup_nudge_view", { place, kind: "answer_gate" });
+    setPending(() => reveal);
+  };
+  const skip = () => { track("signup_nudge_dismiss", { place, kind: "answer_gate" }); const r = pending; setPending(null); r?.(); };
+  return { ask, open: !!pending, skip, close: () => setPending(null) };
+}
+
+export function AnswerGateSheet({ open, onSkip, onClose, chapter, place }: { open: boolean; onSkip: () => void; onClose: () => void; chapter: string; place: string }) {
+  const { user } = useAuth();
+  // Signed up from the sheet: show the answer they asked for.
+  useEffect(() => { if (open && user) onSkip(); }, [open, user]); // eslint-disable-line react-hooks/exhaustive-deps
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-ink/50" onClick={onClose}>
+      <div role="dialog" aria-modal="true" className="w-full sm:max-w-md bg-paper text-ink rounded-t-3xl sm:rounded-3xl p-6 pb-8" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-start justify-between gap-3">
+          <p className="font-display text-xl font-bold">You've used your {FREE_ANSWERS} free answers</p>
+          <button aria-label="Close" onClick={onClose} className="p-1 text-ink/50"><X size={20} /></button>
+        </div>
+        <p className="text-sm text-ink/70 mt-2">Sign up free to see every answer and explanation, plus timed {chapter} tests, your score and weak topics. Takes 10 seconds. No payment.</p>
+        <QuickSignup place={`${place}_gate`} />
+        <button onClick={onSkip} className="mt-4 text-sm text-ink/60 underline">Not now, just show this answer</button>
+      </div>
+    </div>
+  );
+}
