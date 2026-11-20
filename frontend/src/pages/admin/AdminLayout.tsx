@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LayoutDashboard, Users, LogOut, ExternalLink, School, PenSquare, GraduationCap, LayoutGrid } from "lucide-react";
+import { LayoutDashboard, Users, LogOut, ExternalLink, School, PenSquare, GraduationCap, LayoutGrid, Flag } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { goToYneet } from "../../utils/yneet";
 
@@ -10,6 +10,7 @@ const links = [
   { to: "/admin/blog", label: "Blog", icon: PenSquare },
   { to: "/admin/predictor", label: "College Predictor", icon: GraduationCap },
   { to: "/admin/widgets", label: "Widget partners", icon: LayoutGrid },
+  { to: "/admin/question-reports", label: "Question reports", icon: Flag },
 ];
 
 const AdminLayout = () => {

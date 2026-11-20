@@ -42,6 +42,7 @@ const NeetCollegePredictor = page(() => import("./pages/NeetCollegePredictor"));
 const NeetCollegeReport = page(() => import("./pages/NeetCollegeReport"));
 const AdminPredictor = page(() => import("./pages/admin/AdminPredictor"));
 const AdminWidgets = page(() => import("./pages/admin/AdminWidgets"));
+const AdminQuestionReports = page(() => import("./pages/admin/AdminQuestionReports"));
 const PartnerPage = page(() => import("./pages/PartnerPage"));
 const NeetCoachingIndex = page(() => import("./pages/NeetCoaching"), "NeetCoachingIndex");
 const NeetCoachingCity = page(() => import("./pages/NeetCoaching"), "NeetCoachingCity");
@@ -284,6 +285,7 @@ function App() {
             <Route path="blog" element={<AdminBlog />} />
             <Route path="predictor" element={<AdminPredictor />} />
             <Route path="widgets" element={<AdminWidgets />} />
+            <Route path="question-reports" element={<AdminQuestionReports />} />
           </Route>
 
           <Route path="/institute/login" element={<InstituteLogin />} />
