@@ -59,7 +59,7 @@ app.use("/api/predictor/otp", rateLimit({ windowMs: 60 * 60 * 1000, max: 20 }));
 app.use("/api/books/order", rateLimit({ windowMs: 60 * 60 * 1000, max: 30 }));
 app.use("/api/widgets/ping", rateLimit({ windowMs: 60 * 60 * 1000, max: 120 }));
 app.use("/api/widgets/partners", rateLimit({ windowMs: 60 * 60 * 1000, max: 10, skip: (req) => req.method !== "POST" })); // also covers stop-daily
-app.use("/api/question-reports", rateLimit({ windowMs: 60 * 60 * 1000, max: 20, skip: (req) => req.method !== "POST" }));
+app.use("/api/question-reports", rateLimit({ windowMs: 60 * 60 * 1000, max: 20, skip: (req) => req.method !== "POST" || (!!process.env.INTERNAL_SERVICE_KEY && req.headers["x-internal-key"] === process.env.INTERNAL_SERVICE_KEY) }));
 app.use("/api/predictor/predict", rateLimit({ windowMs: 60 * 1000, max: 30 }));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));

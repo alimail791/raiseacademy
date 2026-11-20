@@ -16,21 +16,24 @@ const cut = (s, n) => String(s || "").trim().slice(0, n);
 export const createReport = async (req, res, next) => {
   try {
     const b = req.body || {};
+    const trusted = !!process.env.INTERNAL_SERVICE_KEY && req.headers["x-internal-key"] === process.env.INTERNAL_SERVICE_KEY;
     const reason = String(b.reason || "");
     if (!REASONS[reason]) return res.status(400).json({ message: "Please pick what is wrong." });
     if (!b.questionId && !b.slug) return res.status(400).json({ message: "Missing question." });
     const doc = await QuestionReport.create({
       questionId: cut(b.questionId, 80), slug: cut(b.slug, 200), page: cut(b.page, 300),
       questionText: cut(b.questionText, 300), reason, note: cut(b.note, 1000), phone: cut(b.phone, 20).replace(/[^\d+]/g, ""),
+      // Only the YNeet API (with the internal key) can mark a report as from the app.
+      ...(trusted ? { source: "app", studentName: cut(b.studentName, 80) } : {}),
     });
-    const url = doc.page ? `https://www.yneet.in${doc.page.startsWith("/") ? doc.page : `/${doc.page}`}` : "";
+    const url = doc.source === "app" ? "" : doc.page ? `https://www.yneet.in${doc.page.startsWith("/") ? doc.page : `/${doc.page}`}` : "";
     sendEmail({
       to: ADMIN_ALERT_EMAIL,
       subject: `Question error reported: ${REASONS[reason]}`,
       html: `<p><strong>${esc(REASONS[reason])}</strong></p>
 <p>${esc(doc.questionText)}</p>
 ${doc.note ? `<p>Note: ${esc(doc.note)}</p>` : ""}
-<p>Question id: ${esc(doc.questionId)}${url ? `<br>Page: <a href="${esc(url)}">${esc(url)}</a>` : ""}${doc.phone ? `<br>WhatsApp: ${esc(doc.phone)}` : ""}</p>`,
+<p>From: ${doc.source === "app" ? `YNeet app (${esc(doc.page)})${doc.studentName ? ` · ${esc(doc.studentName)}` : ""}` : "website"}<br>Question id: ${esc(doc.questionId)}${url ? `<br>Page: <a href="${esc(url)}">${esc(url)}</a>` : ""}${doc.phone ? `<br>WhatsApp: ${esc(doc.phone)}` : ""}</p>`,
     }).catch((e) => console.error("question report email failed:", e.message));
     res.status(201).json({ message: "Thanks! We'll check this question and fix it." });
   } catch (e) { next(e); }

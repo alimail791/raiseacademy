@@ -6,7 +6,7 @@ import api from "../../api/axios";
 // (www.yneet.in/neet-question/<slug> and chapter practice pages).
 // Fix the question in the YNeet admin panel, then mark the report fixed here.
 
-type Report = { _id: string; createdAt: string; questionId: string; slug: string; page: string; questionText: string; reason: string; note: string; phone: string; resolved: boolean };
+type Report = { _id: string; createdAt: string; questionId: string; slug: string; page: string; questionText: string; reason: string; note: string; phone: string; resolved: boolean; source?: string; studentName?: string };
 const REASONS: Record<string, string> = {
   wrong_answer: "Wrong answer",
   wrong_explanation: "Wrong / unclear explanation",
@@ -55,12 +55,13 @@ export default function AdminQuestionReports() {
             <div className="flex flex-wrap items-center gap-2 text-xs">
               <span className="rounded-full bg-red-100 text-red-700 px-2 py-0.5 font-semibold">{REASONS[r.reason] || r.reason}</span>
               <span className="text-ink/50">{when(r.createdAt)}</span>
+              <span className="rounded-full bg-ink/5 px-2 py-0.5">{r.source === "app" ? `App${r.studentName ? ` · ${r.studentName}` : ""}` : "Website"}</span>
               {r.questionId && <span className="text-ink/50">ID: <code>{r.questionId}</code></span>}
             </div>
             <p className="mt-2 text-sm">{r.questionText || <span className="text-ink/50">(no question text)</span>}</p>
             {r.note && <p className="mt-2 text-sm bg-gold/15 rounded-lg p-2"><b>Student's note:</b> {r.note}</p>}
             <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
-              {r.page && <a href={r.page} target="_blank" rel="noreferrer" className="underline text-rise-dark">Open page</a>}
+              {r.page && r.source !== "app" && <a href={r.page} target="_blank" rel="noreferrer" className="underline text-rise-dark">Open page</a>}
               {r.phone && <a href={`https://wa.me/${r.phone.replace(/\D/g, "").replace(/^(\d{10})$/, "91$1")}?text=${encodeURIComponent("Hi! Thanks for reporting the mistake in a YNeet question. We've fixed it.")}`} target="_blank" rel="noreferrer" className="underline text-rise-dark">WhatsApp {r.phone}</a>}
               <button onClick={() => setResolved(r._id, !r.resolved)} className={`ml-auto px-4 py-1.5 rounded-full font-semibold ${r.resolved ? "border border-ink/20" : "bg-gold text-ink"}`}>
                 {r.resolved ? "Reopen" : "Mark fixed"}

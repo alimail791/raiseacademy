@@ -11,6 +11,8 @@ const questionReportSchema = new mongoose.Schema(
     reason: { type: String, enum: ["wrong_answer", "wrong_explanation", "question_error", "options_error", "other"], required: true },
     note: { type: String, trim: true, default: "" },
     phone: { type: String, trim: true, default: "" }, // optional, to tell the student when it's fixed
+    source: { type: String, trim: true, default: "website" }, // "website" | "app" (app.yneet.in, sent by the YNeet API)
+    studentName: { type: String, trim: true, default: "" },
     resolved: { type: Boolean, default: false },
   },
   { timestamps: true }
