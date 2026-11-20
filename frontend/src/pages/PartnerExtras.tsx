@@ -224,6 +224,10 @@ export const PartnerStatus = () => {
         <button onClick={async () => { try { await navigator.clipboard.writeText(caption); } catch { /* blocked */ } }} className="border border-ink/20 font-semibold px-5 py-3 rounded-full">Copy caption with link</button>
       </div>
       <p className="mt-3 text-xs text-ink/60">On a phone: tap Share → WhatsApp → My status. Add the caption so students can tap the link.</p>
+      <a href={`/neet-share?by=${encodeURIComponent(p.name)}`} className="mt-6 block rounded-2xl border border-gold/50 bg-gold/10 p-4 text-sm">
+        <b>New: share our free Rank Predictor and Compare Colleges tools</b>
+        <span className="block text-ink/70 mt-1">Status images with your institute's name on them →</span>
+      </a>
       <details className="mt-8 text-sm text-ink/70">
         <summary className="cursor-pointer">Stop the daily WhatsApp reminder</summary>
         <form onSubmit={stop} className="mt-3 flex gap-2">

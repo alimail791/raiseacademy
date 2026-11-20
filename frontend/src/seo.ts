@@ -102,6 +102,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Free NEET score calculator: match your responses with the NEET answer key (+4/−1), get your score out of 720 for Physics, Chemistry, Botany and Zoology, your expected All India Rank and the MBBS colleges it can get you.",
   },
+  "/neet-share": {
+    title: "Share YNeet's free NEET tools — WhatsApp status images | YNeet",
+    description: "Ready-made WhatsApp status and Instagram story images for YNeet's free NEET Rank Predictor and Compare Colleges tools.",
+    noindex: true,
+  },
   "/neet-rank-predictor": {
     title: "NEET Rank Predictor 2027 — Expected All India Rank from Marks (Free) | YNeet",
     description:
