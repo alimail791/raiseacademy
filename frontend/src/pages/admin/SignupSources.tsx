@@ -76,8 +76,20 @@ export default function SignupSources() {
           </div>
 
           {r.latest.length > 0 && (
-            <div className="mt-6 overflow-x-auto">
+            <div className="mt-6">
               <h3 className="font-semibold mb-2">Latest sign-ups</h3>
+              <ul className="sm:hidden divide-y divide-ink/10 border-y border-ink/10">
+                {r.latest.map((s) => (
+                  <li key={s._id} className="py-3 text-sm">
+                    <div className="flex justify-between gap-3"><b className="truncate">{s.fullName}</b><span className="text-ink/60 whitespace-nowrap">{when(s.createdAt)}</span></div>
+                    <div className="text-ink/70 mt-0.5">{s.currentClass || "—"} · {s.signup?.channel || "Not recorded"}</div>
+                    {(s.signup?.place || s.signup?.landing) && (
+                      <div className="text-ink/50 text-xs mt-0.5 truncate">{s.signup?.place ? nice(s.signup.place) : ""}{s.signup?.method ? ` · ${method(s.signup.method)}` : ""}{s.signup?.landing ? ` · ${s.signup.landing}` : ""}</div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              <div className="hidden sm:block overflow-x-auto">
               <table className="w-full text-sm">
                 <thead><tr className="text-left border-b border-ink/15"><th className="py-2 pr-3">When</th><th className="py-2 pr-3">Name</th><th className="py-2 pr-3">Class</th><th className="py-2 pr-3">Came from</th><th className="py-2 pr-3">Signed up using</th><th className="py-2">First page</th></tr></thead>
                 <tbody>
@@ -93,6 +105,7 @@ export default function SignupSources() {
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
           )}
         </>

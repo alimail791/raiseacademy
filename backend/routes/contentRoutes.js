@@ -7,7 +7,7 @@ import {
   createGalleryItem,
   deleteGalleryItem,
   listStudents,
-  exportStudentsCsv, signupSources,
+  exportStudentsCsv, signupSources, trialsEnding,
   deleteStudent,
 } from "../controllers/contentController.js";
 import { protect, adminOnly } from "../middleware/auth.js";
@@ -26,6 +26,7 @@ router.delete("/gallery/:id", protect, adminOnly, deleteGalleryItem);
 router.get("/students", protect, adminOnly, listStudents);
 router.get("/students/export", protect, adminOnly, exportStudentsCsv);
 router.get("/signup-sources", protect, adminOnly, signupSources);
+router.get("/trials-ending", protect, adminOnly, trialsEnding);
 router.delete("/students/:id", protect, adminOnly, deleteStudent);
 
 export default router;

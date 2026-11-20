@@ -10,6 +10,23 @@
 const clip = (v, n = 120) => (typeof v === "string" ? v.trim().slice(0, n) : "");
 const host = (v) => clip(v, 200).replace(/^https?:\/\//, "").replace(/^www\./, "").split(/[/?#]/)[0].toLowerCase();
 
+// AI assistants that link to us. ChatGPT adds utm_source=chatgpt.com to links
+// in its answers, so these are AI-search visits, not a campaign we ran.
+const AI = [
+  [/chatgpt|openai/, "AI search: ChatGPT"],
+  [/perplexity/, "AI search: Perplexity"],
+  [/gemini|bard/, "AI search: Gemini"],
+  [/copilot|bing\.com\/chat/, "AI search: Copilot"],
+  [/claude/, "AI search: Claude"],
+];
+export const aiChannel = (v = "") => (AI.find(([re]) => re.test(String(v).toLowerCase())) || [])[1] || "";
+
+// Display name for a channel saved earlier (e.g. "Campaign: chatgpt.com" → "AI search: ChatGPT").
+export const relabelChannel = (c) => {
+  if (typeof c !== "string" || !c.startsWith("Campaign: ")) return c;
+  return aiChannel(c.slice(10)) || c;
+};
+
 export function channelOf(s, { referred = false } = {}) {
   if (referred) return "Referral (friend's link)";
   const u = (s.utmSource || "").toLowerCase();
@@ -18,6 +35,7 @@ export function channelOf(s, { referred = false } = {}) {
   const l = s.landing || "";
   if (m === "widget") return "Widgets on partner sites";
   if (u) {
+    if (aiChannel(u)) return aiChannel(u);
     if (u.includes("chrome")) return "Chrome extension";
     if (u.includes("raiseacademy")) return "raiseacademy.in";
     if (/youtube|^yt/.test(u)) return "YouTube";
@@ -32,7 +50,7 @@ export function channelOf(s, { referred = false } = {}) {
   if (/facebook\.com|fb\.com/.test(r)) return "Facebook";
   if (/(^|\.)google\./.test(r)) return "Google search";
   if (/bing\.com|duckduckgo|yahoo\.|yandex/.test(r)) return "Bing / other search";
-  if (/chatgpt|openai|perplexity|gemini|copilot|claude\.ai/.test(r)) return "AI chat (ChatGPT etc.)";
+  if (aiChannel(r)) return aiChannel(r);
   if (/play\.yneet\.in/.test(r)) return "YNeet Daily puzzles";
   if (/raiseacademy/.test(r)) return "raiseacademy.in";
   if (r && !/yneet\.in$/.test(r)) return `Other site: ${r.slice(0, 40)}`;

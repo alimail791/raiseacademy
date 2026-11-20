@@ -1,6 +1,7 @@
 import Testimonial from "../models/Testimonial.js";
 import GalleryItem from "../models/GalleryItem.js";
 import Student from "../models/Student.js";
+import { relabelChannel } from "../utils/signupSource.js";
 
 // ---------- Testimonials ----------
 export const getTestimonials = async (req, res, next) => {
@@ -144,6 +145,40 @@ export const signupSources = async (req, res, next) => {
       Student.find(match).sort({ createdAt: -1 }).limit(25).select("fullName currentClass createdAt signup").lean(),
     ]);
     const rows = (a) => a.map((x) => ({ name: x._id || "—", count: x.count }));
-    res.json({ days, total, byChannel: rows(byChannel), byPlace: rows(byPlace), byMethod: rows(byMethod), byDay: rows(byDay), latest });
+    // Older records may hold "Campaign: chatgpt.com"; show them under the AI-search name.
+    const merged = {};
+    for (const r of rows(byChannel)) { const n = relabelChannel(r.name); merged[n] = (merged[n] || 0) + r.count; }
+    const channels = Object.entries(merged).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+    for (const s of latest) if (s.signup?.channel) s.signup.channel = relabelChannel(s.signup.channel);
+    res.json({ days, total, byChannel: channels, byPlace: rows(byPlace), byMethod: rows(byMethod), byDay: rows(byDay), latest });
+  } catch (e) { next(e); }
+};
+
+// GET /api/content/trials-ending?days=7 (admin) — YNeet free trials ending soon,
+// so Akbar can WhatsApp them before the trial runs out. Trial data lives in the
+// YNeet database; class and a fallback phone come from the Raise student record.
+export const trialsEnding = async (req, res, next) => {
+  try {
+    const days = Math.min(Math.max(parseInt(req.query.days, 10) || 7, 1), 60);
+    const base = process.env.YNEET_API_URL, key = process.env.INTERNAL_SERVICE_KEY;
+    if (!base || !key) return res.status(503).json({ message: "YNeet connection isn't set up" });
+    const r = await fetch(`${base.replace(/\/$/, "")}/internal/trials-ending`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-internal-key": key },
+      body: JSON.stringify({ days }),
+    }).catch(() => null);
+    if (!r || !r.ok) return res.status(502).json({ message: "Couldn't reach YNeet right now" });
+    const data = await r.json();
+    const list = Array.isArray(data.trials) ? data.trials : [];
+    const ids = list.map((t) => t.userId).filter((id) => /^[a-f0-9]{24}$/i.test(id));
+    const students = await Student.find({ _id: { $in: ids }, role: { $ne: "admin" } }).select("fullName phone currentClass").lean();
+    const byId = Object.fromEntries(students.map((s) => [String(s._id), s]));
+    const trials = list
+      .filter((t) => byId[t.userId])
+      .map((t) => {
+        const s = byId[t.userId];
+        return { userId: t.userId, name: s.fullName || t.name, phone: t.phone || s.phone || "", currentClass: s.currentClass || "", endDate: t.endDate };
+      });
+    res.json({ days, count: trials.length, trials });
   } catch (e) { next(e); }
 };
