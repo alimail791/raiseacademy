@@ -59,6 +59,7 @@ const NeetScoreCalculator = page(() => import("./pages/NeetScoreCalculator"));
 const NeetRankPredictor = page(() => import("./pages/NeetRankPredictor"));
 const NeetCompareColleges = page(() => import("./pages/NeetCompareColleges"));
 const NeetSharePromos = page(() => import("./pages/NeetSharePromos"));
+const Advertise = page(() => import("./pages/Advertise"));
 const NcertIndex = page(() => import("./pages/NcertNotes"), "NcertIndex");
 const NcertChapter = page(() => import("./pages/NcertNotes"), "NcertChapter");
 const QotdEmbed = page(() => import("./pages/QotdEmbed"));
@@ -251,6 +252,7 @@ function App() {
           <Route path="/neet-coaching/:city" element={<NeetCoachingCity />} />
           <Route path="/neet-tools" element={<NeetTools />} />
           <Route path="/neet-share" element={<NeetSharePromos />} />
+          <Route path="/advertise" element={<Advertise />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
           <Route path="/neet-practice" element={<Practice />} />
