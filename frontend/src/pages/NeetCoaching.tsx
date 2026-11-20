@@ -119,6 +119,7 @@ export const NeetCoachingCity = () => {
       </ul>
       <p className="mt-6 text-xs text-ink/60 dark:text-paper/60">Institutes list themselves here. YNeet doesn't rank or endorse them.</p>
       <GetListed />
+      <p className="mt-4 text-sm"><Link to="/advertise#packages" className="underline font-semibold">Want the top spot in {d.city}? Get featured →</Link></p>
     </div>
   );
 };

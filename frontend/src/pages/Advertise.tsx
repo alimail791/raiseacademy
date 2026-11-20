@@ -4,9 +4,9 @@ import { BookOpen, Building2, CheckCircle2, GraduationCap, Home, MessageCircle, 
 import api from "../api/axios";
 import { SITE } from "../utils/siteInfo";
 
-// /advertise — PROTOTYPE (noindex, not linked from any menu yet).
+// /advertise — live (footer → Parents & institutes; coaching city pages).
 // Ad packages for NEET-related businesses: coaching centres, book publishers,
-// hostels/PGs, counselling services. Prices below are a first draft to review.
+// hostels/PGs, counselling services. Prices are Akbar's to change in PACKS.
 // Enquiries go to POST /api/contact (source: "advertise") + an admin email.
 
 type Pack = { key: string; icon: typeof Megaphone; name: string; price: string; per: string; where: string; points: string[]; best?: boolean };

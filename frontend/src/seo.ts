@@ -105,7 +105,6 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/advertise": {
     title: "Advertise on YNeet — Reach NEET Aspirants and Parents | YNeet",
     description: "Advertising packages for NEET coaching centres, book publishers, hostels and counselling services on YNeet's free NEET tools, question pages and daily quiz Shorts.",
-    noindex: true, // prototype: remove when the page goes live
   },
   "/neet-share": {
     title: "Share YNeet's free NEET tools — WhatsApp status images | YNeet",
