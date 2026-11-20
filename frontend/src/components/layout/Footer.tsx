@@ -4,6 +4,7 @@ import { ArrowRight, Chrome, MessageCircle, Smartphone, Youtube } from "lucide-r
 
 // The live Google Play listing; VITE_PLAY_STORE_URL on Railway can override it.
 const YOUTUBE_URL = "https://www.youtube.com/channel/UCj5krrV4r1n-ru9hWZDKOtA";
+const INSTAGRAM_URL = "https://www.instagram.com/_yneet_/";
 // The Play Store button shows only when VITE_PLAY_STORE_URL is set (Railway
 // variable on the website service, then redeploy). Left unset while the app is
 // in closed testing: the public listing 404s until it's in production.
@@ -13,7 +14,7 @@ import { SITE, gamesLink, CHROME_EXTENSION_URL } from "../../utils/siteInfo";
 import { PRACTICE, STUDY, TOOLS } from "../../utils/navLinks";
 
 // Footer: brand strip on top, then six short columns: the three free-feature
-// groups (shared with the header menu), then YNeet, parents/institutes, help.
+// groups (shared with the header menu), then YNeet, community, parents/institutes, help.
 // Other Raise Academy sites sit in a small line at the bottom so they don't
 // pull NEET visitors away.
 
@@ -29,8 +30,18 @@ const YNEET: Item[] = [
   { label: "About us", to: "/about" },
 ];
 
+const COMMUNITY: Item[] = [
+  { label: "Daily NEET Question (WhatsApp)", href: SITE.whatsappChannel },
+  { label: "Daily NEET quiz on YouTube", href: YOUTUBE_URL },
+  { label: "YNeet on Instagram", href: INSTAGRAM_URL },
+  { label: "YNeet Shorts videos", to: "/neet-shorts" },
+  { label: "NEET news & blog", to: "/blog" },
+  { label: "Chrome extension", href: CHROME_EXTENSION_URL },
+];
+
 const PARENTS: Item[] = [
   { label: "For parents", to: "/neet-parents" },
+  { label: "NEET coaching near you", to: "/neet-coaching" },
   { label: "For coaching institutes", to: "/institutes" },
   { label: "Institute login", to: "/institute/login" },
   { label: "Free NEET widgets for your website", to: "/neet-question-widget" },
@@ -108,11 +119,12 @@ const Footer = () => {
         </div>
 
         {/* Link columns */}
-        <div className="pt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-10">
+        <div className="pt-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-x-6 gap-y-10">
           <Column title={`Free ${PRACTICE.title.toLowerCase()}`} items={PRACTICE.items.map((i) => (i.href ? { ...i, href: gamesLink("footer") } : i))} />
           <Column title={`Free ${STUDY.title.toLowerCase()}`} items={STUDY.items} />
           <Column title={TOOLS.title} items={TOOLS.items} />
           <Column title="YNeet" items={YNEET} />
+          <Column title="Community" items={COMMUNITY.filter((i) => i.to || i.href)} />
           <Column title="Parents & institutes" items={PARENTS} />
           <Column title="Help" items={HELP} />
         </div>
