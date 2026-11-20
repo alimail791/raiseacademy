@@ -55,6 +55,8 @@ const NeetExamDate = page(() => import("./pages/NeetExamDate"));
 const NeetRegistration = page(() => import("./pages/NeetRegistration"));
 const NeetPhotoResizer = page(() => import("./pages/NeetPhotoResizer"));
 const NeetScoreCalculator = page(() => import("./pages/NeetScoreCalculator"));
+const NeetRankPredictor = page(() => import("./pages/NeetRankPredictor"));
+const NeetCompareColleges = page(() => import("./pages/NeetCompareColleges"));
 const NcertIndex = page(() => import("./pages/NcertNotes"), "NcertIndex");
 const NcertChapter = page(() => import("./pages/NcertNotes"), "NcertChapter");
 const QotdEmbed = page(() => import("./pages/QotdEmbed"));
@@ -152,6 +154,8 @@ function App() {
             <Route path="/neet-registration" element={<NeetRegistration />} />
             <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
             <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />
+            <Route path="/neet-rank-predictor" element={<NeetRankPredictor />} />
+            <Route path="/neet-compare-colleges" element={<NeetCompareColleges />} />
             <Route path="/neet-college-predictor/report" element={<NeetCollegeReport />} />
             <Route path="/neet-sprint" element={<NeetSprint />} />
             <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
@@ -237,6 +241,8 @@ function App() {
           <Route path="/neet-registration" element={<NeetRegistration />} />
           <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
           <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />
+          <Route path="/neet-rank-predictor" element={<NeetRankPredictor />} />
+          <Route path="/neet-compare-colleges" element={<NeetCompareColleges />} />
           <Route path="/neet-question-widget" element={<QotdWidget />} />
           <Route path="/i/:slug" element={<PartnerPage />} />
           <Route path="/neet-coaching" element={<NeetCoachingIndex />} />

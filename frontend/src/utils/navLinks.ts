@@ -40,6 +40,8 @@ export const TOOLS: NavGroup = {
   title: "NEET 2027 tools",
   items: [
     { label: "College Predictor", to: "/neet-college-predictor" },
+    { label: "Rank Predictor", to: "/neet-rank-predictor", isNew: true },
+    { label: "Compare Colleges", to: "/neet-compare-colleges", isNew: true },
     { label: "Cutoff by state", to: "/neet-cutoff" },
     { label: "Score Calculator", to: "/neet-score-calculator" },
     { label: "NEET 2027 exam date", short: "Exam date", to: "/neet-2027-exam-date" },

@@ -23,6 +23,8 @@ import instagramReelsRoutes from "./routes/instagramReelsRoutes.js";
 import widgetRoutes from "./routes/widgetRoutes.js";
 import { startInstagramReelsJob } from "./utils/instagramReels.js";
 import { seedBundledCutoffs, cutoffPagesCache } from "./controllers/predictorController.js";
+import { warmCompare } from "./controllers/compareController.js";
+import questionReportRoutes from "./routes/questionReportRoutes.js";
 import { shortsCache } from "./controllers/youtubeShortsController.js";
 import { applyBlogUpdates } from "./utils/blogUpdates.js";
 import { addBlogDrafts } from "./utils/blogDrafts.js";
@@ -57,6 +59,7 @@ app.use("/api/predictor/otp", rateLimit({ windowMs: 60 * 60 * 1000, max: 20 }));
 app.use("/api/books/order", rateLimit({ windowMs: 60 * 60 * 1000, max: 30 }));
 app.use("/api/widgets/ping", rateLimit({ windowMs: 60 * 60 * 1000, max: 120 }));
 app.use("/api/widgets/partners", rateLimit({ windowMs: 60 * 60 * 1000, max: 10, skip: (req) => req.method !== "POST" })); // also covers stop-daily
+app.use("/api/question-reports", rateLimit({ windowMs: 60 * 60 * 1000, max: 20, skip: (req) => req.method !== "POST" }));
 app.use("/api/predictor/predict", rateLimit({ windowMs: 60 * 1000, max: 30 }));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
@@ -72,6 +75,7 @@ app.use("/api/books", booksRoutes);
 app.use("/api/youtube-shorts", youtubeShortsRoutes);
 app.use("/api/instagram-reels", instagramReelsRoutes);
 app.use("/api/widgets", widgetRoutes);
+app.use("/api/question-reports", questionReportRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
@@ -90,7 +94,7 @@ connectDB().then(() => {
   addBlogDrafts(); // new blog posts added as drafts for review in the admin dashboard (utils/blogDrafts.js)
   // Slow public lists (cutoff pages ~6s, Shorts ~3s): build them now and keep them
   // fresh in the background so no visitor waits for a rebuild.
-  const warm = () => { cutoffPagesCache.warm(); shortsCache.warm(); };
+  const warm = () => { cutoffPagesCache.warm(); shortsCache.warm(); warmCompare(); };
   warm();
   setInterval(warm, 30 * 60 * 1000).unref();
 });

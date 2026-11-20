@@ -3,6 +3,7 @@ import {
   meta, cutoffPages, runPredict, sendOtp, verifyOtp, addAlertByToken, reportOrder, reportVerify, getReport,
   adminImport, adminSummary, adminDelete, adminLeads,
 } from "../controllers/predictorController.js";
+import { searchColleges, compareColleges } from "../controllers/compareController.js";
 import { protect, adminOnly } from "../middleware/auth.js";
 
 const router = express.Router();
@@ -17,6 +18,8 @@ router.post("/alerts", addAlertByToken);
 router.post("/report/order", reportOrder);
 router.post("/report/verify", reportVerify);
 router.get("/report", getReport);
+router.get("/colleges", searchColleges); // Compare Colleges search
+router.get("/compare", compareColleges); // Compare Colleges (up to 3)
 
 // Admin — cutoff data + leads
 router.post("/admin/import", protect, adminOnly, adminImport);

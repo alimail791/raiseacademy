@@ -17,6 +17,8 @@ const GROUPS: Group[] = [
       { name: "NEET Readiness Test", to: "/neet-readiness", desc: "15 NEET-level questions with NEET marking. Get your score out of 100 and your weak chapters." },
       { name: "NEET College Predictor", to: "/neet-college-predictor", desc: "Enter your rank and category to see MBBS and BDS colleges under All India and state quota." },
       { name: "NEET Score Calculator", to: "/neet-score-calculator", desc: "Match your answers with the answer key (+4/−1) and get your expected rank." },
+      { name: "NEET Rank Predictor", to: "/neet-rank-predictor", desc: "Your marks → expected All India Rank, or the marks you need for a target rank." },
+      { name: "Compare Colleges", to: "/neet-compare-colleges", desc: "Up to 3 MBBS or BDS colleges side by side: fees and closing ranks by quota and category." },
       { name: "60-Second Sprint", to: "/neet-sprint", desc: "5 quick Physics, Chemistry and Biology questions against the clock." },
     ],
   },

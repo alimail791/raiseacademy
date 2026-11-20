@@ -54,7 +54,7 @@ export const APP_MODE_PATHS = ["/login", "/register", "/forgot-password", "/logo
 // frame, for students who haven't logged in yet. Everything here is free; prices,
 // plans and payment links are hidden in app mode (see AppPriceGuard).
 export const APP_FREE_PATHS = [
-  "/neet-readiness", "/neet-college-predictor", "/neet-sprint", "/neet-question-of-the-day", "/neet-practice",
+  "/neet-readiness", "/neet-college-predictor", "/neet-rank-predictor", "/neet-compare-colleges", "/neet-sprint", "/neet-question-of-the-day", "/neet-practice",
   "/neet-question-papers", "/neet-concept-maps", "/ncert-notes", "/neet-shorts", "/ask-yneet",
   "/blog", "/brain-teaser", "/neet-2027-exam-date", "/neet-trial", "/neet-parents", "/about", "/help",
 ];

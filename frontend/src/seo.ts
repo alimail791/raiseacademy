@@ -102,6 +102,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Free NEET score calculator: match your responses with the NEET answer key (+4/−1), get your score out of 720 for Physics, Chemistry, Botany and Zoology, your expected All India Rank and the MBBS colleges it can get you.",
   },
+  "/neet-rank-predictor": {
+    title: "NEET Rank Predictor 2027 — Expected All India Rank from Marks (Free) | YNeet",
+    description:
+      "Free NEET rank predictor: enter your marks out of 720 to see your expected All India Rank, or a target rank to see the marks you need. Based on official NEET marks-vs-rank data, with a full marks vs rank table.",
+  },
+  "/neet-compare-colleges": {
+    title: "Compare NEET Medical Colleges — MBBS & BDS Closing Ranks Side by Side (Free) | YNeet",
+    description:
+      "Compare up to 3 MBBS or BDS colleges side by side: state, type, fees and last year's NEET closing rank under All India Quota and state quota for your category. Free, no login.",
+  },
   "/neet-registration": {
     title: "NEET 2027 Registration: Dates, Eligibility, Fees, Documents & Step-by-Step Guide | YNeet",
     description:

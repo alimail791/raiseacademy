@@ -8,6 +8,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { SITE_ORIGIN } from "../seo";
 import { useInitialPracticeData, YNEET_API, questionMeta, questionPath, schoolSubject, shorten, type QuestionPageData } from "../practice/practiceData";
 import NotFound from "./NotFound";
+import ReportQuestion from "../components/ReportQuestion";
 import { ShortPlayer } from "../components/QuizShorts";
 import { QuickSignup, StickySignupBar, track, useAnswerGate, AnswerGateSheet } from "../components/SignupNudge";
 
@@ -105,6 +106,7 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
         <h2 className="mt-3 font-bold">Answer: ({LETTERS[q.answer - 1]}) {q.options[q.answer - 1]}</h2>
         <h3 className="mt-3 text-sm font-semibold text-ink/70 dark:text-paper/70">Explanation</h3>
         <p className="mt-1 text-ink/80 dark:text-paper/80 whitespace-pre-line">{q.explanation}</p>
+        {shown && <ReportQuestion questionId={q.id} slug={q.slug} questionText={q.question} place="question_page" />}
       </details>
 
       {/* Sign-up hook right after the answer: the moment the student is most engaged. */}

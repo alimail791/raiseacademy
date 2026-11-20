@@ -7,6 +7,7 @@ import { useInitialPracticeData, YNEET_API, chapterMeta, shorten, type PracticeC
 import NotFound from "./NotFound";
 import { NCERT_NOTES } from "../ncert/notes";
 import UpdatedOn from "../components/UpdatedOn";
+import ReportQuestion from "../components/ReportQuestion";
 import { QuickSignup, StickySignupBar, RevealNudgeSheet, useRevealNudge, track } from "../components/SignupNudge";
 
 const LETTERS = ["A", "B", "C", "D"];
@@ -156,6 +157,7 @@ const PracticeChapter = () => {
                 <div className="mt-2 text-sm">
                   <p><b>Answer: {LETTERS[q.answer - 1]}</b> — {q.options[q.answer - 1]}</p>
                   {q.explanation && <p className="mt-1 text-ink/75 dark:text-paper/75 whitespace-pre-line">{q.explanation}</p>}
+                  {open[q.id] && <ReportQuestion questionId={q.id} questionText={q.question} place="practice_chapter" />}
                 </div>
               </details>
             </li>
