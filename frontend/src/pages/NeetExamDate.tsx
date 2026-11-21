@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import UpdatedOn from "../components/UpdatedOn";
+import { NEET_STEPS } from "./NeetEvents";
 
 // NEET 2027 exam date & pattern. Facts only from NTA notices; everything not yet
 // announced says so. Update LAST_CHECKED and the facts whenever NTA publishes.
-const LAST_CHECKED = "29 October 2026";
+const LAST_CHECKED = "21 November 2026";
 
 const PATTERN = [
   ["Physics", "45", "180"],
@@ -14,8 +15,9 @@ const PATTERN = [
 ];
 
 const FAQS = [
-  ["When is NEET 2027?", "NTA has not officially announced the NEET UG 2027 date yet. Recent NEET exams were held on the first Sunday of May (4 May 2025, 3 May 2026), so early May 2027 is likely. We will update this page when the official notice is out."],
-  ["Will NEET 2027 be computer-based (CBT)?", "Not confirmed. A move to computer-based testing has been discussed, but no final decision has been announced. NEET 2026 was a pen-and-paper (OMR) exam."],
+  ["When is NEET 2027?", "NTA has not officially announced the NEET UG 2027 date yet, and NTA's exam calendar up to March 2027 does not list it. Recent NEET exams were scheduled for the first Sunday of May (4 May 2025, 3 May 2026), so May 2027 is likely. We will update this page when the official notice is out."],
+  ["Will NEET 2027 be computer-based (CBT)?", "Not decided yet. In May 2026 the Education Ministry said NEET would move to computer-based testing, but as of November 2026 NTA has not confirmed the mode. The government task force's deadline was extended to January 2027, and NTA is enrolling exam centres for both computer-based and pen-and-paper exams."],
+  ["What happened in NEET 2026?", "The exam on 3 May 2026 was cancelled on 12 May after a paper leak. NTA held a re-exam on 21 June 2026 (pen and paper) and declared the result on 16 July 2026."],
   ["Is there an attempt limit for NEET 2027?", "No attempt limit has been announced. Proposals have been discussed, but nothing is confirmed."],
   ["Is there negative marking in NEET?", "Yes. Each correct answer gets +4, each wrong answer −1, and an unanswered question 0. Marking more than one option counts as wrong."],
   ["How many questions are there in NEET?", "In NEET 2026 there were 180 compulsory questions: 45 Physics, 45 Chemistry and 90 Biology, for 720 marks in 3 hours."],
@@ -41,8 +43,8 @@ const NeetExamDate = () => (
       </div>
       <div className="rounded-2xl border border-ink/10 dark:border-paper/15 p-5">
         <p className="text-sm text-ink/70 dark:text-paper/70">Mode</p>
-        <p className="font-display text-2xl font-bold mt-1">To be confirmed</p>
-        <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">NEET 2026 was pen and paper</p>
+        <p className="font-display text-2xl font-bold mt-1">Not decided yet</p>
+        <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">CBT or pen and paper: decision expected after January 2027</p>
       </div>
     </div>
     <p className="text-sm text-ink/70 dark:text-paper/70 mt-3">You may see exact dates on other websites. Until NTA publishes the NEET 2027 information bulletin, treat them as unofficial.</p>
@@ -81,6 +83,14 @@ const NeetExamDate = () => (
       <li><Link to="/neet-registration" className="font-semibold text-rise-dark underline">NEET registration guide & document checklist</Link></li>
       <li><Link to="/neet-photo-resizer" className="font-semibold text-rise-dark underline">NEET photo & signature resizer</Link></li>
     </ul>
+
+    <h2 className="font-display text-2xl font-bold mt-10">NEET 2027 step by step</h2>
+    <ul className="mt-4 grid sm:grid-cols-2 gap-2 text-sm">
+      {NEET_STEPS.map((s) => (
+        <li key={s.to}><Link to={s.to} className="block rounded-xl border border-ink/10 dark:border-paper/15 p-3 font-semibold hover:border-gold">{s.label}</Link></li>
+      ))}
+    </ul>
+    <p className="text-sm mt-3">Class 12 student? See the <Link to="/cbse-board-exam-2027" className="font-semibold text-rise-dark underline">CBSE board exam 2027 dates</Link>.</p>
 
     <h2 className="font-display text-2xl font-bold mt-10">Frequently asked questions</h2>
     <div className="mt-4 space-y-3">

@@ -10,6 +10,7 @@ import { useInitialPracticeData, YNEET_API, questionMeta, questionPath, schoolSu
 import NotFound from "./NotFound";
 import ReportQuestion from "../components/ReportQuestion";
 import { ShortPlayer } from "../components/QuizShorts";
+import { NCERT_NOTES } from "../ncert/notes";
 import { QuickSignup, StickySignupBar, track, useAnswerGate, AnswerGateSheet } from "../components/SignupNudge";
 
 const LETTERS = ["A", "B", "C", "D"];
@@ -157,6 +158,8 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
 
       <AnswerGateSheet open={gate.open} onSkip={gate.skip} onClose={gate.close} chapter={q.chapter} place="question_page" />
 
+      {!school && <ChapterFacts q={q} />}
+
       {q.short && (
         <section className="mb-8">
           <h2 className="font-display text-xl font-bold">Watch it as a 25-second quiz</h2>
@@ -185,5 +188,31 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
     </div>
   );
 };
+
+// "About this chapter": the chapter's NEET weightage, PYQ years, common topics
+// and NCERT notes, so each question page carries real chapter-specific text.
+function ChapterFacts({ q }: { q: QuestionPageData }) {
+  const c = q.chapterInfo;
+  const note = NCERT_NOTES.find((n) => n.subject === q.subject && n.chapter.toLowerCase() === q.chapter.toLowerCase());
+  if (!c && !note) return null;
+  const w = c?.weightage;
+  const yrs = c?.pyqYears ? (c.pyqYears[0] === c.pyqYears[1] ? `${c.pyqYears[0]}` : `${c.pyqYears[0]}–${c.pyqYears[1]}`) : "";
+  return (
+    <section className="mb-8 p-5 rounded-2xl border border-ink/10 dark:border-paper/15">
+      <h2 className="font-display text-xl font-bold">About {q.chapter} in NEET</h2>
+      <ul className="mt-3 space-y-1.5 text-sm text-ink/80 dark:text-paper/80 list-disc pl-5">
+        {w && <li>NEET asks about <b>{w.expectedQs} question{w.expectedQs === 1 ? "" : "s"} ({w.marks} marks)</b> from {q.chapter} in a paper. It ranks #{w.rank} of {w.ofChapters} {q.subject} chapters, a <b>{w.priority.toLowerCase()} priority</b> chapter{w.yearsUsed ? `, asked in ${w.yearsAppeared} of the last ${w.yearsUsed} years` : ""}.</li>}
+        {c && c.pyqCount > 0 && <li>YNeet has <b>{c.pyqCount} previous-year NEET questions</b> from this chapter{yrs ? ` (${yrs})` : ""}, out of {c.total} practice questions.</li>}
+        {c && c.classes.length > 0 && <li>NCERT: {c.classes.map((k) => `Class ${k}`).join(" and ")} {q.subject}.</li>}
+        {c && c.topTopics.length > 0 && <li>Most-asked topics: {c.topTopics.map((t) => t.topic).join(", ")}.</li>}
+      </ul>
+      <p className="mt-3 text-sm flex flex-wrap gap-x-4 gap-y-1">
+        <Link to={`/neet-practice/${q.chapterSlug}`} className="font-semibold text-rise-dark underline">All {q.chapter} PYQs{c?.pagesInChapter ? ` (${c.pagesInChapter} with answers)` : ""}</Link>
+        {note && <Link to={`/ncert-notes/${note.slug}`} className="font-semibold text-rise-dark underline">{q.chapter} NCERT notes</Link>}
+        <Link to="/neet-chapter-wise-weightage" className="font-semibold text-rise-dark underline">Chapter-wise weightage</Link>
+      </p>
+    </section>
+  );
+}
 
 export default QuestionPage;

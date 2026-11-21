@@ -183,14 +183,42 @@ if (!missedStats?.ready && PAGE_META["/neet-most-missed-chapters"]) PAGE_META["/
 console.log(`Most-missed page: ${missedStats?.ready ? `${missedStats.totals.chapters} chapters from ${missedStats.totals.answers} answers` : "not enough data yet (noindex)"}.`);
 const shortBySlug = new Map(quizShorts.filter((x) => x.questionSlug).map((x) => [x.questionSlug, { videoId: x.videoId, thumbnail: x.thumbnail || "", title: x.title || "" }]));
 
-// Each chapter page links to its question pages (how Google finds them besides the sitemap).
-const QUESTION_LINKS_PER_CHAPTER = 60;
+// Each chapter page links to its question pages (how Google finds them besides
+// the sitemap). It used to list only the first 60, so later questions in a big
+// chapter were reachable only through a long chain of "More questions" links
+// and Google left most of them "Discovered – currently not indexed".
+const QUESTION_LINKS_PER_CHAPTER = 400;
+const pagesByChapter = new Map();
+for (const q of questionPages) {
+  if (!pagesByChapter.has(q.chapterSlug)) pagesByChapter.set(q.chapterSlug, []);
+  pagesByChapter.get(q.chapterSlug).push(q);
+}
 for (const c of practiceChapters) {
-  c.questionLinks = questionPages
-    .filter((q) => q.chapterSlug === c.slug)
+  c.questionLinks = (pagesByChapter.get(c.slug) || [])
     .slice(0, QUESTION_LINKS_PER_CHAPTER)
     .map((q) => ({ slug: q.slug, question: q.question.slice(0, 140), pyqYear: q.pyqYear }));
 }
+// "More questions" on each question page: the next 4 in the chapter plus 4
+// spread evenly across it, all pages that exist in this build. Every question
+// is then a couple of clicks from its chapter page instead of dozens.
+const linkOf = ({ id, slug, question, pyqYear }) => ({ id, slug, question: question.slice(0, 140), pyqYear });
+for (const list of pagesByChapter.values()) {
+  const n = list.length;
+  list.forEach((q, i) => {
+    const pick = new Set();
+    for (let k = 1; k <= 4 && pick.size < Math.min(4, n - 1); k++) pick.add((i + k) % n);
+    const stride = Math.max(1, Math.floor(n / 5));
+    for (let k = 1; k <= 4; k++) { const j = (i + k * stride + 2) % n; if (j !== i) pick.add(j); }
+    q.related = [...pick].slice(0, 8).map((j) => linkOf(list[j]));
+  });
+}
+// Chapter facts shown on each question page (weightage, PYQ years, topics):
+// real, chapter-specific text instead of only the question and its answer.
+const chapterInfoBySlug = new Map(practiceChapters.map((c) => [c.slug, {
+  total: c.total, pyqCount: c.pyqCount, pyqYears: c.pyqYears, classes: c.classes,
+  topTopics: (c.topTopics || []).slice(0, 5), weightage: c.weightage || null,
+  pagesInChapter: (pagesByChapter.get(c.slug) || []).length,
+}]));
 const practiceFile = (slug) => `${slug.replace("/", "--")}.html`;
 const blogDataScript = (data) =>
   `<script>window.__BLOG_DATA__=${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
@@ -279,7 +307,7 @@ fs.mkdirSync(path.join(dist, "neet-question"), { recursive: true });
 for (const q of questionPages) {
   const route = `/neet-question/${q.slug}`;
   const meta = { ...questionMeta(q), canonical: `${SITE_ORIGIN}${route}` };
-  const withShort = shortBySlug.has(q.slug) ? { ...q, short: shortBySlug.get(q.slug) } : q;
+  const withShort = { ...q, chapterInfo: chapterInfoBySlug.get(q.chapterSlug) || null, ...(shortBySlug.has(q.slug) ? { short: shortBySlug.get(q.slug) } : {}) };
   fs.writeFileSync(path.join(dist, "neet-question", `${q.slug}.html`), pageHtml(route, undefined, meta, { question: withShort }));
 }
 
@@ -452,9 +480,12 @@ for (const r of indexable) {
   lastmod[r] = { h, d: same ? prev.d : today };
   if (!same) changed++;
 }
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+// Split sitemaps, one per kind of page, listed in sitemap.xml (a sitemap
+// index; robots.txt and Search Console keep using that one URL). Search
+// Console then shows how many of each kind Google has indexed.
+const urlset = (list) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${indexable
+${list
   .map((r) => `  <url>
     <loc>${SITE_ORIGIN}${r}</loc>
     <lastmod>${lastmod[r].d}</lastmod>
@@ -462,7 +493,29 @@ ${indexable
   .join("\n")}
 </urlset>
 `;
+const sitemapGroups = [
+  ["sitemap-neet-questions.xml", indexable.filter((r) => r.startsWith("/neet-question/"))],
+  ["sitemap-class-questions.xml", indexable.filter((r) => /^\/class-\d+-questions\/./.test(r))],
+  ["sitemap-practice.xml", indexable.filter((r) => /^\/(neet-practice|neet-question-papers|ncert-notes)\//.test(r))],
+  ["sitemap-blog.xml", indexable.filter((r) => r.startsWith("/blog/"))],
+];
+const grouped = new Set(sitemapGroups.flatMap(([, list]) => list));
+sitemapGroups.unshift(["sitemap-pages.xml", indexable.filter((r) => !grouped.has(r))]);
+const newestOf = (list) => list.reduce((d, r) => (lastmod[r].d > d ? lastmod[r].d : d), "");
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapGroups
+  .filter(([, list]) => list.length)
+  .map(([file, list]) => `  <sitemap>
+    <loc>${SITE_ORIGIN}/${file}</loc>
+    <lastmod>${newestOf(list)}</lastmod>
+  </sitemap>`)
+  .join("\n")}
+</sitemapindex>
+`;
+for (const [file, list] of sitemapGroups) if (list.length) fs.writeFileSync(path.join(dist, file), urlset(list));
 fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
+console.log(`Sitemaps: ${sitemapGroups.map(([f, l]) => `${f} ${l.length}`).join(", ")}.`);
 fs.writeFileSync(path.join(dist, "sitemap-lastmod.json"), JSON.stringify(lastmod));
 console.log(`Sitemap lastmod: ${changed} new or changed pages dated ${today}, ${indexable.length - changed} kept their earlier date.`);
 

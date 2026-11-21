@@ -53,6 +53,11 @@ const PapersIndex = page(() => import("./pages/Papers"), "PapersIndex");
 const PaperYear = page(() => import("./pages/Papers"), "PaperYear");
 const QuestionOfTheDay = page(() => import("./pages/QuestionOfTheDay"));
 const NeetExamDate = page(() => import("./pages/NeetExamDate"));
+const NeetAdmitCard = page(() => import("./pages/NeetEvents"), "NeetAdmitCard");
+const NeetAnswerKey = page(() => import("./pages/NeetEvents"), "NeetAnswerKey");
+const NeetResult = page(() => import("./pages/NeetEvents"), "NeetResult");
+const NeetCounselling = page(() => import("./pages/NeetEvents"), "NeetCounselling");
+const CbseBoards = page(() => import("./pages/NeetEvents"), "CbseBoards");
 const NeetRegistration = page(() => import("./pages/NeetRegistration"));
 const NeetPhotoResizer = page(() => import("./pages/NeetPhotoResizer"));
 const NeetScoreCalculator = page(() => import("./pages/NeetScoreCalculator"));
@@ -189,6 +194,11 @@ function App() {
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/brain-teaser" element={<BrainTeaser />} />
             <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
+            <Route path="/neet-2027-admit-card" element={<NeetAdmitCard />} />
+            <Route path="/neet-2027-answer-key" element={<NeetAnswerKey />} />
+            <Route path="/neet-2027-result" element={<NeetResult />} />
+            <Route path="/neet-counselling-2027" element={<NeetCounselling />} />
+            <Route path="/cbse-board-exam-2027" element={<CbseBoards />} />
             <Route path="/neet-trial" element={<NeetTrial />} />
             <Route path="/neet-parents" element={<NeetParents />} />
             <Route path="/neet-tools" element={<NeetTools />} />
@@ -245,6 +255,11 @@ function App() {
           <Route path="/neet-sprint" element={<NeetSprint />} />
           <Route path="/neet-shorts" element={<NeetShorts />} />
           <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
+          <Route path="/neet-2027-admit-card" element={<NeetAdmitCard />} />
+          <Route path="/neet-2027-answer-key" element={<NeetAnswerKey />} />
+          <Route path="/neet-2027-result" element={<NeetResult />} />
+          <Route path="/neet-counselling-2027" element={<NeetCounselling />} />
+          <Route path="/cbse-board-exam-2027" element={<CbseBoards />} />
           <Route path="/neet-registration" element={<NeetRegistration />} />
           <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
           <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />

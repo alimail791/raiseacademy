@@ -48,6 +48,11 @@ export type QuestionPageData = PracticeQuestion & {
   classNum?: number; // set on Class 6–10 pages (/class-<n>-questions/<slug>)
   boardYear?: number | null; // a CBSE Class 12 board PYQ (not a NEET question)
   short?: { videoId: string; thumbnail?: string; title?: string } | null; // its daily quiz Short on YouTube
+  // Facts about the question's chapter (added at build time; absent on pages loaded later).
+  chapterInfo?: {
+    total: number; pyqCount: number; pyqYears: [number, number] | null; classes: string[];
+    topTopics: { topic: string; count: number }[]; weightage: ChapterWeightage | null; pagesInChapter: number;
+  } | null;
 };
 // Class 6–10 hub (/class-<n>-questions): chapters with links to their questions.
 export type SchoolChapter = { subject: string; chapter: string; slug: string; count: number };

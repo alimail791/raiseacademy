@@ -95,7 +95,27 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   "/neet-2027-exam-date": {
     title: "NEET 2027 Exam Date, Pattern & Marking Scheme — What's Confirmed | YNeet",
-    description: "NEET UG 2027 exam date status, registration, CBT and attempt-limit news, and the exam pattern: 180 questions, 720 marks, +4/−1, 3 hours. Checked against NTA notices.",
+    description: "NEET UG 2027 exam date and mode (CBT or pen-and-paper) status, what happened in NEET 2026, and the exam pattern: 180 questions, 720 marks, +4/−1, 3 hours. Checked against NTA notices.",
+  },
+  "/neet-2027-admit-card": {
+    title: "NEET 2027 Admit Card — Release Date, Download Steps & What to Carry | YNeet",
+    description: "NEET UG 2027 admit card status, last year's city slip and admit card dates, how to download it from neet.nta.nic.in, details to check and what to carry on exam day.",
+  },
+  "/neet-2027-answer-key": {
+    title: "NEET 2027 Answer Key — Release Date, Challenge Process & Score Calculator | YNeet",
+    description: "NEET UG 2027 answer key status, last year's provisional key and objection dates, how to challenge an answer, and a free calculator for your marks out of 720.",
+  },
+  "/neet-2027-result": {
+    title: "NEET 2027 Result — Date, Scorecard, Qualifying Percentile & Next Steps | YNeet",
+    description: "NEET UG 2027 result status, last year's result date, what the scorecard shows, qualifying percentiles by category, and what to do next for counselling.",
+  },
+  "/neet-counselling-2027": {
+    title: "NEET Counselling 2027 — MCC & State Quota Schedule, Rounds, Documents | YNeet",
+    description: "How NEET UG counselling works: MCC's 15% All India Quota and state 85% quota, rounds, choice filling, documents, and last year's MCC dates. With free cutoff and college tools.",
+  },
+  "/cbse-board-exam-2027": {
+    title: "CBSE Board Exam 2027 Dates — Class 10 & 12 Date Sheet, and NEET Prep | YNeet",
+    description: "CBSE 2027 board exams start on 16 February 2027: Class 10 until 9 March, Class 12 until 9 April. How Class 12 PCB students can prepare for boards and NEET together.",
   },
   "/neet-score-calculator": {
     title: "NEET Score Calculator 2027 — Calculate Marks from Answer Key + Expected Rank (Free) | YNeet",

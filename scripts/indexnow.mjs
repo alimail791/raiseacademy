@@ -25,7 +25,12 @@ const KEY = keyFile.replace(/\.txt$/, "");
 const live = await fetch(`${SITE}/${keyFile}`).then((r) => (r.ok ? r.text() : "")).catch(() => "");
 if (live.trim() !== KEY) { console.log(`Key file not live yet at ${SITE}/${keyFile} — skipping this run.`); process.exit(0); }
 
-const xml = await fetch(`${SITE}/sitemap.xml`).then((r) => r.text());
+// sitemap.xml is a sitemap index (one file per kind of page): read each file it lists.
+let xml = await fetch(`${SITE}/sitemap.xml`).then((r) => r.text());
+if (/<sitemapindex/.test(xml)) {
+  const parts = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim()).filter((u) => u.startsWith(SITE));
+  xml = (await Promise.all(parts.map((u) => fetch(u).then((r) => (r.ok ? r.text() : ""))))).join("\n");
+}
 const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim()).filter((u) => u.startsWith(SITE));
 if (urls.length < 10) throw new Error(`Sitemap looks wrong (${urls.length} URLs)`);
 
