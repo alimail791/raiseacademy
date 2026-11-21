@@ -36,6 +36,10 @@ const instituteSchema = new mongoose.Schema(
     referralCode: { type: String, unique: true, sparse: true, uppercase: true, trim: true },
     referredBy: { type: mongoose.Schema.Types.ObjectId, ref: "Institute" },
     referralCredits: { type: Number, default: 0, min: 0 },
+
+    // YNeet sales partner who introduced this institute (www.yneet.in/partner).
+    // Earns 20% of the first payment and 10% of every later one.
+    salesPartner: { type: mongoose.Schema.Types.ObjectId, ref: "SalesPartner" },
   },
   { timestamps: true }
 );

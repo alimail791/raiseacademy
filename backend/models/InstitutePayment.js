@@ -13,6 +13,7 @@ const institutePaymentSchema = new mongoose.Schema(
     referralDiscount: { type: Boolean, default: false }, // 40% credit applied to this order
     referrerId: { type: mongoose.Schema.Types.ObjectId, ref: "Institute" }, // for "new": who referred
     instituteId: { type: mongoose.Schema.Types.ObjectId, ref: "Institute" },
+    salesPartnerId: { type: mongoose.Schema.Types.ObjectId, ref: "SalesPartner" }, // for "new": partner code used
     // Sign-up details held until payment succeeds (password already hashed).
     signup: {
       name: String, contactName: String, email: String, phone: String, city: String, board: String, passwordHash: String,

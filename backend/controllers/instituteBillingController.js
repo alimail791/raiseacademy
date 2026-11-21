@@ -5,6 +5,7 @@ import InstitutePayment from "../models/InstitutePayment.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import { yneetPost } from "../utils/yneetSync.js";
 import { MONTHLY_PLANS, PACKS, instituteView, resyncAll, signInstituteToken, seatFilter } from "./instituteController.js";
+import { findPartnerByCode, recordPartnerCommission } from "./salesPartnerController.js";
 
 // Monthly institute plans, paid online. Razorpay keys live in the YNeet backend;
 // we ask it to create orders and to verify payments (utils/yneetSync.yneetPost).
@@ -122,12 +123,14 @@ export const signupOrder = async (req, res, next) => {
     if (await Institute.findOne({ email })) return res.status(409).json({ message: "An institute account with this email already exists. Log in to renew or change your plan." });
 
     const referrer = await findReferrer(b.ref, email, phone);
+    const partner = await findPartnerByCode(b.sp);
     const months = monthsOf(b.months);
     const { amount } = priceFor(plan, months, false);
     const order = await createOrder(amount, `inst_new_${Date.now()}`, { kind: "new", seats: String(plan.seats), months: String(months), email, ...(referrer && { ref: referrer.referralCode }) });
     await InstitutePayment.create({
       orderId: order.orderId, kind: "new", seats: plan.seats, months, amount, listPrice: amount,
       ...(referrer && { referrerId: referrer._id }),
+      ...(partner && { salesPartnerId: partner._id }),
       signup: {
         name: b.name.trim(), contactName: String(b.contactName || "").trim(), email, phone,
         city: String(b.city || "").trim(), board: ["CBSE", "Tamil Nadu State Board"].includes(b.board) ? b.board : "CBSE",
@@ -164,9 +167,11 @@ export const signupVerify = async (req, res, next) => {
         password: s.passwordHash, seats: pay.seats, amountPaid: pay.amount, paymentRef: `Razorpay ${paymentId}`,
         startDate: start, endDate: addMonths(start, pay.months || 1), billing: "monthly",
         ...(pay.referrerId && { referredBy: pay.referrerId }),
+        ...(pay.salesPartnerId && { salesPartner: pay.salesPartnerId }),
       });
       await ensureReferralCode(inst).catch(() => {});
       await creditReferrer(pay.referrerId, inst);
+      await recordPartnerCommission(inst, pay.amount, { key: `rzp:${paymentId}`, source: paymentId });
     }
     pay.status = "paid"; pay.paymentId = paymentId; pay.paidAt = new Date(); pay.instituteId = inst._id;
     await pay.save();
@@ -210,6 +215,7 @@ export const pilotSignup = async (req, res, next) => {
     if (samePhone.length) return res.status(409).json({ message: "This phone number has already been used for a YNeet institute. Log in, or WhatsApp us if you need help." });
 
     const referrer = await findReferrer(b.ref, email, phone);
+    const partner = await findPartnerByCode(b.sp);
     const start = new Date();
     const end = new Date(start.getTime() + PILOT.days * 864e5);
     const inst = await Institute.create({
@@ -219,6 +225,7 @@ export const pilotSignup = async (req, res, next) => {
       seats: PILOT.seats, amountPaid: 0, paymentRef: "Free pilot",
       startDate: start, endDate: end, billing: "pilot",
       ...(referrer && { referredBy: referrer._id }),
+      ...(partner && { salesPartner: partner._id }),
     });
     await ensureReferralCode(inst).catch(() => {});
 
@@ -230,7 +237,7 @@ export const pilotSignup = async (req, res, next) => {
         <p><b>Login email:</b> ${esc(inst.email)}<br/>Use the password you chose at sign-up.</p>
         <p>When you're happy, choose a plan from the panel — your pilot days are kept.</p>`),
     }).catch((e) => console.warn("Pilot welcome email failed:", e.message));
-    notifyAdmin(`New institute pilot: ${inst.name}`, [["Institute", inst.name], ["Contact", `${inst.contactName || ""} ${inst.phone || ""}`], ["Email", inst.email], ["City", inst.city || ""], ["Pilot", `${PILOT.seats} students × ${PILOT.days} days`], ["Ends", fmtDate(end)], ["Referred by", referrer ? referrer.name : "—"]]);
+    notifyAdmin(`New institute pilot: ${inst.name}`, [["Institute", inst.name], ["Contact", `${inst.contactName || ""} ${inst.phone || ""}`], ["Email", inst.email], ["City", inst.city || ""], ["Pilot", `${PILOT.seats} students × ${PILOT.days} days`], ["Ends", fmtDate(end)], ["Referred by", referrer ? referrer.name : "—"], ["Sales partner", partner ? `${partner.name} (${partner.code})` : "—"]]);
 
     res.status(201).json({ token: signInstituteToken(inst), institute: instituteView(inst, 0) });
   } catch (err) { next(err); }
@@ -285,6 +292,7 @@ export const renewVerify = async (req, res, next) => {
       if (wasPilot) inst.billing = "monthly";
       await inst.save();
       if (wasPilot && inst.referredBy) creditReferrer(inst.referredBy, inst).catch(() => {});
+      await recordPartnerCommission(inst, pay.amount, { key: `rzp:${paymentId}`, source: paymentId });
       pay.status = "paid"; pay.paymentId = paymentId; pay.paidAt = new Date();
       await pay.save();
       resyncAll(inst).catch(() => {});

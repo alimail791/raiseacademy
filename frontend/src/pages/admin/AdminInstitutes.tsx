@@ -6,7 +6,7 @@ import api from "../../api/axios";
 interface Institute {
   id: string; name: string; contactName?: string; email: string; phone?: string; city?: string; board?: string;
   seats: number; seatsUsed: number; seatsLeft: number; amountPaid: number; paymentRef?: string;
-  startDate: string; endDate: string; status: string; live: boolean; notes?: string; billing?: "yearly" | "monthly" | "pilot"; referralCode?: string; referralCredits?: number;
+  startDate: string; endDate: string; status: string; live: boolean; notes?: string; billing?: "yearly" | "monthly" | "pilot"; referralCode?: string; referralCredits?: number; salesPartner?: { name: string; code: string } | null;
 }
 interface Pack { seats: number; price: number; }
 interface Student { id: string; fullName: string; email: string; phone: string; currentClass?: string; }
@@ -14,7 +14,7 @@ interface Student { id: string; fullName: string; email: string; phone: string; 
 const fmt = (d: string) => new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 const inr = (n: number) => `₹${(n || 0).toLocaleString("en-IN")}`;
 const input = "w-full rounded-lg border border-ink/15 px-3 py-2 text-sm focus:border-gold outline-none bg-white";
-const blank = { referralCode: "", pack: "20", name: "", contactName: "", email: "", phone: "", city: "", board: "CBSE", seats: "20", amountPaid: "31999", paymentRef: "", startDate: new Date().toISOString().slice(0, 10), months: "12", billing: "yearly", notes: "" };
+const blank = { salesPartnerCode: "", referralCode: "", pack: "20", name: "", contactName: "", email: "", phone: "", city: "", board: "CBSE", seats: "20", amountPaid: "31999", paymentRef: "", startDate: new Date().toISOString().slice(0, 10), months: "12", billing: "yearly", notes: "" };
 
 const AdminInstitutes = () => {
   const [list, setList] = useState<Institute[]>([]);
@@ -160,6 +160,7 @@ const AdminInstitutes = () => {
             <select className={input} value={form.billing} onChange={(e) => setForm({ ...form, billing: e.target.value })}><option value="yearly">Offline (admin renews)</option><option value="monthly">Online — institute renews via Razorpay</option></select></div>
           <div><label className="text-xs font-medium">Start date (valid {Number(form.months) === 12 ? "1 year" : `${form.months || 0} months`})</label><input type="date" className={input} value={form.startDate} onChange={(e) => setForm({ ...form, startDate: e.target.value })} /></div>
           <div><label className="text-xs font-medium">Referred by (code, optional)</label><input className={input} value={form.referralCode} onChange={(e) => setForm({ ...form, referralCode: e.target.value.toUpperCase() })} placeholder="e.g. SUNX7K2P" /></div>
+          <div><label className="text-xs font-medium">Sales partner code (optional)</label><input className={input} value={form.salesPartnerCode} onChange={(e) => setForm({ ...form, salesPartnerCode: e.target.value.toUpperCase() })} placeholder="e.g. YNRAVI42" /></div>
           <div className="sm:col-span-2"><label className="text-xs font-medium">Notes</label><input className={input} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} /></div>
           <div className="sm:col-span-2 lg:col-span-3 flex gap-2">
             <button disabled={saving} className="bg-ink text-paper text-sm font-semibold px-5 py-2 rounded-full disabled:opacity-60">{saving ? "Creating..." : "Create & email login"}</button>
@@ -179,7 +180,8 @@ const AdminInstitutes = () => {
                   <span className={`ml-1.5 text-xs px-2 py-0.5 rounded-full ${i.billing === "pilot" ? "bg-gold/20 text-gold-deep dark:text-gold" : i.billing === "monthly" ? "bg-purple-100 text-purple-800" : "bg-ink/5 text-ink/70"}`}>{i.billing === "pilot" ? "Free pilot" : i.billing === "monthly" ? "Monthly · online" : "Yearly"}</span></p>
                 <p className="text-sm text-ink/70">{[i.contactName, i.email, i.phone, i.city].filter(Boolean).join(" · ")}</p>
                 <p className="text-sm mt-1"><b>{i.seatsUsed}/{i.seats}</b> seats · valid till <b>{fmt(i.endDate)}</b> · {inr(i.amountPaid)}{i.paymentRef ? ` · ref ${i.paymentRef}` : ""}</p>
-                <p className="text-xs text-ink/70 mt-0.5">Referral code {i.referralCode || "—"} · <button className="underline" onClick={() => { const v = window.prompt(`40% discount credits for ${i.name} (use one when you bill their next renewal offline):`, String(i.referralCredits || 0)); if (v !== null) update(i, { referralCredits: Number(v) || 0 }, "Credits updated"); }}>{i.referralCredits || 0} × 40% credit{(i.referralCredits || 0) === 1 ? "" : "s"}</button></p>
+                <p className="text-xs text-ink/70 mt-0.5">Referral code {i.referralCode || "—"} · <button className="underline" onClick={() => { const v = window.prompt(`40% discount credits for ${i.name} (use one when you bill their next renewal offline):`, String(i.referralCredits || 0)); if (v !== null) update(i, { referralCredits: Number(v) || 0 }, "Credits updated"); }}>{i.referralCredits || 0} × 40% credit{(i.referralCredits || 0) === 1 ? "" : "s"}</button>
+                  {" · "}Sales partner <button className="underline" onClick={() => { const v = window.prompt(`Sales partner code for ${i.name} (blank = none). If they have already paid, the partner gets the 20% first-payment commission on ${inr(i.amountPaid)}:`, i.salesPartner?.code || ""); if (v !== null) update(i, { salesPartnerCode: v.trim().toUpperCase() }, "Partner saved"); }}>{i.salesPartner ? `${i.salesPartner.name} (${i.salesPartner.code})` : "none"}</button></p>
               </div>
               <div className="flex flex-wrap gap-1">
                 <button onClick={() => toggleStudents(i)} title="Students" className="p-2 rounded-lg hover:bg-ink/5"><Users size={16} /></button>

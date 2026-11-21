@@ -60,6 +60,10 @@ const NeetRankPredictor = page(() => import("./pages/NeetRankPredictor"));
 const NeetCompareColleges = page(() => import("./pages/NeetCompareColleges"));
 const NeetSharePromos = page(() => import("./pages/NeetSharePromos"));
 const Advertise = page(() => import("./pages/Advertise"));
+const SalesPartner = page(() => import("./pages/SalesPartner"));
+const PartnerLogin = page(() => import("./pages/partner/PartnerLogin"));
+const PartnerDashboard = page(() => import("./pages/partner/PartnerDashboard"));
+const AdminSalesPartners = page(() => import("./pages/admin/AdminSalesPartners"));
 const NcertIndex = page(() => import("./pages/NcertNotes"), "NcertIndex");
 const NcertChapter = page(() => import("./pages/NcertNotes"), "NcertChapter");
 const QotdEmbed = page(() => import("./pages/QotdEmbed"));
@@ -253,6 +257,9 @@ function App() {
           <Route path="/neet-tools" element={<NeetTools />} />
           <Route path="/neet-share" element={<NeetSharePromos />} />
           <Route path="/advertise" element={<Advertise />} />
+          <Route path="/partner" element={<SalesPartner />} />
+          <Route path="/partner/login" element={<PartnerLogin />} />
+          <Route path="/partner/dashboard" element={<PartnerDashboard />} />
           <Route path="/ncert-notes" element={<NcertIndex />} />
           <Route path="/ncert-notes/:slug" element={<NcertChapter />} />
           <Route path="/neet-practice" element={<Practice />} />
@@ -290,6 +297,7 @@ function App() {
             <Route path="predictor" element={<AdminPredictor />} />
             <Route path="widgets" element={<AdminWidgets />} />
             <Route path="question-reports" element={<AdminQuestionReports />} />
+            <Route path="sales-partners" element={<AdminSalesPartners />} />
           </Route>
 
           <Route path="/institute/login" element={<InstituteLogin />} />

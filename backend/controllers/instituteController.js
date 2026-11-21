@@ -44,6 +44,22 @@ export const instituteView = (i, seatsUsed) => ({
   billing: i.billing || "yearly", referralCode: i.referralCode || "", referralCredits: i.referralCredits || 0,
 });
 
+// Sales partner (www.yneet.in/partner) set or changed by admin. If the institute
+// has already paid and the partner has no commission on it yet, the partner gets
+// the first-payment commission on what was received so far.
+async function assignSalesPartner(inst, code) {
+  const { findPartnerByCode, recordPartnerCommission } = await import("./salesPartnerController.js");
+  const c = String(code || "").trim().toUpperCase();
+  if (!c) { inst.salesPartner = undefined; await inst.save(); return { ok: true }; }
+  const partner = await findPartnerByCode(c);
+  if (!partner) return { ok: false, message: `No active sales partner with code ${c}` };
+  if (String(inst.salesPartner || "") === String(partner._id)) return { ok: true };
+  inst.salesPartner = partner._id;
+  await inst.save();
+  if ((inst.amountPaid || 0) > 0) await recordPartnerCommission(inst, inst.amountPaid, { key: `assign:${inst._id}:${partner._id}`, source: "admin", note: "Partner added by admin" });
+  return { ok: true };
+}
+
 const studentView = (s) => ({
   id: s._id, fullName: s.fullName, email: s.email, phone: s.phone, gender: s.gender,
   currentClass: s.currentClass, course: s.course, createdAt: s.createdAt,
@@ -68,14 +84,21 @@ export const adminListInstitutes = async (req, res, next) => {
     const list = await Institute.find().sort({ createdAt: -1 });
     const counts = await Student.aggregate([{ $match: { instituteId: { $ne: null }, currentClass: { $nin: JUNIOR_STORED } } }, { $group: { _id: "$instituteId", n: { $sum: 1 } } }]);
     const used = Object.fromEntries(counts.map((c) => [String(c._id), c.n]));
-    res.json({ packs: PACKS, monthlyPlans: MONTHLY_PLANS, institutes: list.map((i) => instituteView(i, used[String(i._id)] || 0)) });
+    const SalesPartner = (await import("../models/SalesPartner.js")).default;
+    const sp = await SalesPartner.find({ _id: { $in: list.map((i) => i.salesPartner).filter(Boolean) } }).select("name code");
+    const spById = Object.fromEntries(sp.map((p) => [String(p._id), { name: p.name, code: p.code }]));
+    res.json({ packs: PACKS, monthlyPlans: MONTHLY_PLANS, institutes: list.map((i) => ({ ...instituteView(i, used[String(i._id)] || 0), salesPartner: i.salesPartner ? spById[String(i.salesPartner)] || null : null })) });
   } catch (err) { next(err); }
 };
 
 export const adminCreateInstitute = async (req, res, next) => {
   try {
-    const { name, contactName, email, phone, city, board, seats, amountPaid, paymentRef, startDate, notes, referralCode, months, billing } = req.body;
+    const { name, contactName, email, phone, city, board, seats, amountPaid, paymentRef, startDate, notes, referralCode, months, billing, salesPartnerCode } = req.body;
     if (!name || !email || !seats) return res.status(400).json({ message: "Name, email and seats are required" });
+    if (salesPartnerCode) {
+      const { findPartnerByCode } = await import("./salesPartnerController.js");
+      if (!(await findPartnerByCode(salesPartnerCode))) return res.status(400).json({ message: `No active sales partner with code ${String(salesPartnerCode).toUpperCase()}` });
+    }
     if (await Institute.findOne({ email: String(email).toLowerCase() })) return res.status(409).json({ message: "An institute with this email already exists" });
 
     const start = startDate ? new Date(startDate) : new Date();
@@ -102,6 +125,7 @@ export const adminCreateInstitute = async (req, res, next) => {
         await creditReferrer(ref._id, inst);
       }
     }
+    if (salesPartnerCode) await assignSalesPartner(inst, salesPartnerCode);
 
     let emailed = true;
     await sendEmail({
@@ -130,6 +154,7 @@ export const adminUpdateInstitute = async (req, res, next) => {
     if (b.seats !== undefined && Number(b.seats) < used) return res.status(400).json({ message: `This institute already uses ${used} seats. Remove students first or keep at least ${used} seats.` });
     for (const k of ["name", "contactName", "phone", "city", "board", "paymentRef", "notes", "status"]) if (b[k] !== undefined) inst[k] = b[k];
     if (b.seats !== undefined) inst.seats = Number(b.seats);
+    const paidBefore = inst.amountPaid || 0;
     if (b.amountPaid !== undefined) inst.amountPaid = Number(b.amountPaid) || 0;
     if (b.referralCredits !== undefined) inst.referralCredits = Math.max(0, Number(b.referralCredits) || 0);
     if (b.endDate) inst.endDate = new Date(b.endDate);
@@ -152,6 +177,17 @@ export const adminUpdateInstitute = async (req, res, next) => {
       inst.status = "active";
     }
     await inst.save();
+    // Offline payment recorded (amount received went up): the sales partner, if
+    // any, earns commission on the new money.
+    const added = (inst.amountPaid || 0) - paidBefore;
+    if (added > 0 && inst.salesPartner && b.salesPartnerCode === undefined) {
+      const { recordPartnerCommission } = await import("./salesPartnerController.js");
+      await recordPartnerCommission(inst, added, { key: `admin:${inst._id}:${Date.now()}`, source: "admin", note: b.paymentRef || inst.paymentRef || "" });
+    }
+    if (b.salesPartnerCode !== undefined) {
+      const r = await assignSalesPartner(inst, b.salesPartnerCode);
+      if (!r.ok) return res.status(400).json({ message: r.message });
+    }
     resyncAll(inst).catch(() => {});
     res.json({ institute: instituteView(inst, used) });
   } catch (err) { next(err); }

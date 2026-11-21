@@ -67,6 +67,15 @@ const Institutes = () => {
     if (!code) return;
     api.get("/institute/referral/check", { params: { code } }).then((r) => { if (r.data.valid) { setRef(code); setRefName(r.data.name); } }).catch(() => {});
   }, [params]);
+  // Sales partner: /institutes?sp=CODE (www.yneet.in/partner). Kept for the visit too.
+  const [sp, setSp] = useState("");
+  const [spName, setSpName] = useState("");
+  useEffect(() => {
+    let code = (params.get("sp") || "").trim().toUpperCase();
+    try { if (code) sessionStorage.setItem("yneet_sp", code); else code = sessionStorage.getItem("yneet_sp") || ""; } catch { /* ignore */ }
+    if (!code) return;
+    api.get("/sales-partners/check", { params: { code } }).then((r) => { if (r.data.valid) { setSp(code); setSpName(r.data.name); } }).catch(() => {});
+  }, [params]);
 
   const waLink = (msg: string) => `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 
@@ -74,7 +83,7 @@ const Institutes = () => {
     e.preventDefault();
     setBusy(true);
     try {
-      const { data } = await api.post("/institute/pilot", { ...form, ref });
+      const { data } = await api.post("/institute/pilot", { ...form, ref, sp });
       localStorage.setItem(INST_TOKEN, data.token);
       try { (window as any).gtag?.("event", "generate_lead", { lead_type: "institute_pilot" }); } catch { /* analytics only */ }
       toast.success("Your free pilot is ready — add up to 5 students.");
@@ -89,7 +98,7 @@ const Institutes = () => {
     if (!plan) return;
     setBusy(true);
     try {
-      const { data } = await api.post("/institute/signup/order", { ...form, seats: plan.seats, months, ref });
+      const { data } = await api.post("/institute/signup/order", { ...form, seats: plan.seats, months, ref, sp });
       const paid = await payWithRazorpay({ keyId: data.keyId, orderId: data.orderId, amount: data.amount, description: `Institute plan · ${plan.seats} students · ${months} month${months > 1 ? "s" : ""}`, prefill: data.prefill });
       const { data: done } = await api.post("/institute/signup/verify", paid);
       localStorage.setItem(INST_TOKEN, done.token);
@@ -104,6 +113,11 @@ const Institutes = () => {
 
   return (
     <div>
+      {spName && !refName && (
+        <div className="bg-gold-light/60 border-b border-gold/40">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 text-sm flex items-center gap-2"><Gift size={16} className="text-gold-deep dark:text-gold" /> Introduced by <b>{spName}</b>, YNeet Partner. Start with the free 14-day pilot below.</div>
+        </div>
+      )}
       {refName && (
         <div className="bg-gold-light/60 border-b border-gold/40">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 text-sm flex items-center gap-2"><Gift size={16} className="text-gold-deep dark:text-gold" /> You were invited by <b>{refName}</b>. Pick a plan below to get started.</div>

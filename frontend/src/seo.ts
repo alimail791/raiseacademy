@@ -106,6 +106,10 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "Advertise on YNeet — Reach NEET Aspirants and Parents | YNeet",
     description: "Advertising packages for NEET coaching centres, book publishers, hostels and counselling services on YNeet's free NEET tools, question pages and daily quiz Shorts.",
   },
+  "/partner": {
+    title: "YNeet Partner Program — Earn Commission Bringing NEET Coaching Institutes | YNeet",
+    description: "Join the YNeet Partner Program free. Introduce NEET coaching centres to YNeet and earn 20% of their first payment, 10% of every renewal and a ₹5,000 bonus. No fee, no targets.",
+  },
   "/neet-share": {
     title: "Share YNeet's free NEET tools — WhatsApp status images | YNeet",
     description: "Ready-made WhatsApp status and Instagram story images for YNeet's free NEET Rank Predictor and Compare Colleges tools.",

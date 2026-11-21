@@ -25,6 +25,7 @@ import { startInstagramReelsJob } from "./utils/instagramReels.js";
 import { seedBundledCutoffs, cutoffPagesCache } from "./controllers/predictorController.js";
 import { warmCompare } from "./controllers/compareController.js";
 import questionReportRoutes from "./routes/questionReportRoutes.js";
+import salesPartnerRoutes from "./routes/salesPartnerRoutes.js";
 import { shortsCache } from "./controllers/youtubeShortsController.js";
 import { applyBlogUpdates } from "./utils/blogUpdates.js";
 import { addBlogDrafts } from "./utils/blogDrafts.js";
@@ -60,6 +61,9 @@ app.use("/api/books/order", rateLimit({ windowMs: 60 * 60 * 1000, max: 30 }));
 app.use("/api/widgets/ping", rateLimit({ windowMs: 60 * 60 * 1000, max: 120 }));
 app.use("/api/widgets/partners", rateLimit({ windowMs: 60 * 60 * 1000, max: 10, skip: (req) => req.method !== "POST" })); // also covers stop-daily
 app.use("/api/question-reports", rateLimit({ windowMs: 60 * 60 * 1000, max: 20, skip: (req) => req.method !== "POST" || (!!process.env.INTERNAL_SERVICE_KEY && req.headers["x-internal-key"] === process.env.INTERNAL_SERVICE_KEY) }));
+app.use("/api/sales-partners/signup", rateLimit({ windowMs: 60 * 60 * 1000, max: 10 }));
+app.use("/api/sales-partners/login", authLimiter);
+app.use("/api/sales-partners/forgot", rateLimit({ windowMs: 60 * 60 * 1000, max: 5 }));
 app.use("/api/predictor/predict", rateLimit({ windowMs: 60 * 1000, max: 30 }));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
@@ -76,6 +80,7 @@ app.use("/api/youtube-shorts", youtubeShortsRoutes);
 app.use("/api/instagram-reels", instagramReelsRoutes);
 app.use("/api/widgets", widgetRoutes);
 app.use("/api/question-reports", questionReportRoutes);
+app.use("/api/sales-partners", salesPartnerRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
