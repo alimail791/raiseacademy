@@ -28,14 +28,17 @@ export const relabelChannel = (c) => {
 };
 
 export function channelOf(s, { referred = false } = {}) {
-  if (referred) return "Referral (friend's link)";
   const u = (s.utmSource || "").toLowerCase();
+  // Score cards shared from the app's mock test analysis carry the student's referral code.
+  if (referred) return u === "score_card" ? "Referral: mock score card" : "Referral (friend's link)";
   const m = (s.utmMedium || "").toLowerCase();
   const r = s.referrer || "";
   const l = s.landing || "";
   if (m === "widget") return "Widgets on partner sites";
   if (u) {
     if (aiChannel(u)) return aiChannel(u);
+    if (u === "readiness_share") return "Readiness Test shares";
+    if (u === "score_card") return "Mock score card shares";
     if (u.includes("chrome")) return "Chrome extension";
     if (u.includes("raiseacademy")) return "raiseacademy.in";
     if (/youtube|^yt/.test(u)) return "YouTube";

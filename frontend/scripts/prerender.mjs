@@ -422,7 +422,11 @@ fs.writeFileSync(
         { source: "**/*.html", headers: [{ key: "Cache-Control", value: "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400" }] },
       ],
       // Common misspellings of the free-trial landing page ("trail" for "trial") go to the real page.
-      redirects: ["/neet-trail", "/free-trial", "/free-trail", "/trial", "/trail"].map((source) => ({ source, destination: "/neet-trial", type: 301 })),
+      redirects: [
+        ...["/neet-trail", "/free-trial", "/free-trail", "/trial", "/trail"].map((source) => ({ source, destination: "/neet-trial", type: 301 })),
+        // Short referral link printed on the app's score-card images: yneet.in/r/<code>.
+        { source: "/r/:code", destination: "/register?ref=:code&utm_source=score_card&utm_medium=image", type: 302 },
+      ],
       rewrites: [
         ...blogPosts.map((p) => ({ source: `/blog/${p.slug}`, destination: `/blog-posts/${p.slug}.html` })),
         { source: "/blog/:slug", destination: "/blog-shell.html" },

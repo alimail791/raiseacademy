@@ -127,7 +127,7 @@ const NeetReadiness = ({ source = "site" }: { source?: "site" | "yt" }) => {
   const result = useMemo(() => scoreOf(qs, ans), [qs, ans]);
   const b = band(result.score);
   const weak = qs.filter((q) => ans[q.id] !== q.answer);
-  const shareText = `I scored ${result.score}/100 on the NEET Readiness Test (${b.label}). 15 questions, 5 minutes, free. Check yours: https://${PAGE_URL}`;
+  const shareText = `I scored ${result.score}/100 on the NEET Readiness Test (${b.label}). 15 questions, 5 minutes, free. Check yours: https://${PAGE_URL}?utm_source=readiness_share&utm_medium=share`;
 
   const shareCard = async () => {
     track("readiness_share", { method: "card" });
