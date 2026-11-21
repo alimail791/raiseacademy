@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useInitialPracticeData } from "../practice/practiceData";
 import { ShortCard, useQuizShorts } from "../components/QuizShorts";
 
@@ -13,6 +14,7 @@ const NeetQuizShorts = () => {
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg max-w-3xl">
         Three NEET questions every day, one each from Physics, Chemistry and Biology, mostly from previous NEET papers. Read the question, answer before the 5-second timer ends, then see the answer and the explanation.
       </p>
+      <p className="mt-4"><Link to="/neet-daily-quiz" className="font-semibold text-rise-dark underline">Solve today's three questions with answers and explanations →</Link></p>
       {shorts === null && <p className="mt-10 text-ink/70">Loading…</p>}
       {shorts && !shorts.length && <p className="mt-10 text-ink/70">The first quiz Shorts are on their way. Check back soon.</p>}
       {shorts && shorts.length > 0 && (

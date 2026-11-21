@@ -83,6 +83,7 @@ export type PracticeData = {
   quizShorts?: import("../components/QuizShorts").QuizShort[];
   cutoff?: CutoffState | null;
   missed?: MissedStats | null;
+  dailyQuiz?: import("../pages/NeetDailyQuiz").DailyQuizData;
 };
 // Most-missed NEET chapters and questions (/neet-most-missed-chapters): totals
 // from YNeet mock-test and practice answers (GET /public/missed-stats).
@@ -141,7 +142,7 @@ export function PracticeDataProvider({ value, children }: { value?: PracticeData
 
 export function useInitialPracticeData(): PracticeData {
   const ctx = useContext(Ctx);
-  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question || ctx.school || ctx.cutoffs || ctx.cutoff || ctx.quizShorts || ctx.missed) return ctx;
+  if (ctx.chapters || ctx.chapter || ctx.papers || ctx.paper || ctx.question || ctx.school || ctx.cutoffs || ctx.cutoff || ctx.quizShorts || ctx.missed || ctx.dailyQuiz) return ctx;
   if (typeof window !== "undefined") return (window as any).__PRACTICE_DATA__ || {};
   return {};
 }

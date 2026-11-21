@@ -140,6 +140,10 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Free NEET rank predictor: enter your marks out of 720 to see your expected All India Rank, or a target rank to see the marks you need. Based on official NEET marks-vs-rank data, with a full marks vs rank table.",
   },
+  "/neet-daily-quiz": {
+    title: "NEET Daily Quiz — Today's Physics, Chemistry & Biology Questions with Answers | YNeet",
+    description: "Three NEET questions every day, one each from Physics, Chemistry and Biology, mostly from previous NEET papers, with answers, explanations and the quiz video. Free, no login.",
+  },
   "/neet-percentile-calculator": {
     title: "NEET Percentile Calculator 2027 — Marks or Rank to Percentile (Free) | YNeet",
     description:

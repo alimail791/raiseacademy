@@ -14,6 +14,7 @@ export { preloadAllPages } from "./lazyPage";
 export { chapterMeta, paperMeta, questionMeta, schoolHubMeta, cutoffMeta } from "./practice/practiceData";
 export { LANGS, CUTOFF_STATES, langsForState, regionalCutoffMeta, regionalCutoffIndexMeta, regionalWeightageMeta, alternates } from "./i18n/regional";
 export { NCERT_NOTES, ncertMeta } from "./ncert/notes";
+export { groupByDate, dailyQuizMeta } from "./pages/NeetDailyQuiz";
 
 export function render(url: string, blogData?: BlogData, practiceData?: PracticeData) {
   return renderToString(

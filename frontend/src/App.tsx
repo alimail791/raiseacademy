@@ -86,6 +86,7 @@ const ConceptMaps = page(() => import("./pages/ConceptMaps"));
 const NeetSprint = page(() => import("./pages/NeetSprint"));
 const NeetShorts = page(() => import("./pages/NeetShorts"));
 const NeetTools = page(() => import("./pages/NeetTools"));
+const NeetDailyQuiz = page(() => import("./pages/NeetDailyQuiz"));
 const NeetPercentileCalculator = page(() => import("./pages/NeetPercentileCalculator"));
 const NeetPhysicsFormulas = page(() => import("./pages/NeetFormulaSheet"), "NeetPhysicsFormulas");
 const NeetChemistryFormulas = page(() => import("./pages/NeetFormulaSheet"), "NeetChemistryFormulas");
@@ -177,6 +178,8 @@ function App() {
             <Route path="/neet-college-predictor/report" element={<NeetCollegeReport />} />
             <Route path="/neet-sprint" element={<NeetSprint />} />
             <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
+            <Route path="/neet-daily-quiz" element={<NeetDailyQuiz />} />
+            <Route path="/neet-daily-quiz/:date" element={<NeetDailyQuiz />} />
             <Route path="/neet-practice" element={<Practice />} />
             <Route path="/neet-chapter-wise-weightage" element={<NeetWeightage />} />
             <Route path="/neet-most-missed-chapters" element={<NeetMostMissed />} />
@@ -255,6 +258,8 @@ function App() {
           <Route path="/neet-question-papers/:year" element={<PaperYear />} />
           <Route path="/neet-question-papers/:year/:subject" element={<PaperYear />} />
           <Route path="/neet-question-of-the-day" element={<QuestionOfTheDay />} />
+          <Route path="/neet-daily-quiz" element={<NeetDailyQuiz />} />
+          <Route path="/neet-daily-quiz/:date" element={<NeetDailyQuiz />} />
           <Route path="/brain-teaser" element={<BrainTeaser />} />
           <Route path="/ask-yneet" element={<AskYneet />} />
           <Route path="/neet-concept-maps" element={<ConceptMaps />} />

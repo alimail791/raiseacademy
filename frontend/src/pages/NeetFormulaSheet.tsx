@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Printer } from "lucide-react";
+import toast from "react-hot-toast";
+import { ArrowRight, Download, Printer } from "lucide-react";
+import api from "../api/axios";
 import { PHYSICS, CHEMISTRY, type FormulaSheet } from "../formulas/formulaData";
 import { track } from "../components/SignupNudge";
 
@@ -8,6 +11,78 @@ import { track } from "../components/SignupNudge";
 // and AI search can read it. Data lives in formulas/formulaData.ts.
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+
+// PDF download, free after the student confirms a WhatsApp number (same OTP and
+// lead list as the College Predictor, tagged formula_<subject> in the lead's
+// utm). A number already confirmed on the predictor skips the step.
+const TOKEN_KEY = "cp_token";
+const pdfUrl = (subject: string) => `/downloads/yneet-neet-${subject.toLowerCase()}-formula-sheet.pdf`;
+
+function PdfGate({ subject }: { subject: string }) {
+  const [open, setOpen] = useState(false);
+  const [ok, setOk] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [code, setCode] = useState("");
+  const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  useEffect(() => { try { if (localStorage.getItem(TOKEN_KEY)) setOk(true); } catch { /* storage blocked */ } }, []);
+
+  const unlocked = (tok: string) => {
+    try { localStorage.setItem(TOKEN_KEY, tok); } catch { /* storage blocked */ }
+    setOk(true);
+    track("formula_pdf_unlock", { subject });
+  };
+  const send = async () => {
+    setBusy(true);
+    try {
+      const r = await api.post("/predictor/otp/send", { phone, name, utm: `formula_${subject.toLowerCase()}` });
+      if (r.data.verified && r.data.token) unlocked(r.data.token);
+      else { setSent(true); toast.success("Code sent on WhatsApp"); }
+    } catch (e: any) { toast.error(e?.response?.data?.message || "Couldn't send the code. Try again."); }
+    finally { setBusy(false); }
+  };
+  const verify = async () => {
+    setBusy(true);
+    try { const r = await api.post("/predictor/otp/verify", { phone, code }); unlocked(r.data.token); }
+    catch (e: any) { toast.error(e?.response?.data?.message || "That code didn't work."); }
+    finally { setBusy(false); }
+  };
+
+  if (ok) {
+    return (
+      <a href={pdfUrl(subject)} download onClick={() => track("formula_pdf_download", { subject })}
+        className="inline-flex items-center gap-2 bg-gold text-ink font-bold px-5 py-2.5 rounded-full hover:bg-gold-dark">
+        <Download size={16} /> Download PDF
+      </a>
+    );
+  }
+  if (!open) {
+    return (
+      <button type="button" onClick={() => { setOpen(true); track("formula_pdf_open", { subject }); }}
+        className="inline-flex items-center gap-2 bg-gold text-ink font-bold px-5 py-2.5 rounded-full hover:bg-gold-dark">
+        <Download size={16} /> Get the free PDF
+      </button>
+    );
+  }
+  return (
+    <div className="w-full rounded-2xl border border-gold/50 bg-gold/10 p-4">
+      <p className="font-semibold">Get the {subject} formula sheet PDF on this phone</p>
+      <p className="text-sm text-ink/70 dark:text-paper/70 mt-1">Confirm your WhatsApp number and the download starts. We'll also send NEET exam dates and alerts. No spam.</p>
+      <div className="mt-3 grid sm:grid-cols-2 gap-2">
+        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className="cp-in !mt-0" disabled={sent} />
+        <input inputMode="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="WhatsApp number" className="cp-in !mt-0" disabled={sent} />
+        {sent && <input inputMode="numeric" value={code} onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="6-digit code" className="cp-in !mt-0" />}
+        <button type="button" onClick={sent ? verify : send} disabled={busy || (sent ? code.length !== 6 : phone.replace(/\D/g, "").length < 10)}
+          className="inline-flex justify-center items-center gap-2 bg-[#25D366] text-white font-bold px-5 py-3 rounded-full disabled:opacity-50">
+          {sent ? "Confirm and download" : "Send code on WhatsApp"}
+        </button>
+      </div>
+      {sent && <p className="text-xs mt-2 text-ink/70 dark:text-paper/70">Code sent on WhatsApp to {phone}. <button type="button" className="underline" onClick={() => { setSent(false); setCode(""); }}>Change number</button></p>}
+    </div>
+  );
+}
 
 function Sheet({ sheet }: { sheet: FormulaSheet }) {
   const other = sheet.subject === "Physics" ? CHEMISTRY : PHYSICS;
@@ -19,9 +94,10 @@ function Sheet({ sheet }: { sheet: FormulaSheet }) {
       <p className="text-ink/70 dark:text-paper/70 mt-3 text-lg">{sheet.intro}</p>
 
       <div className="mt-5 flex flex-wrap gap-3 print:hidden">
+        <PdfGate subject={sheet.subject} />
         <button type="button" onClick={() => { track("formula_sheet_print", { subject: sheet.subject }); window.print(); }}
           className="inline-flex items-center gap-2 border border-ink/20 dark:border-paper/25 font-semibold px-4 py-2.5 rounded-full">
-          <Printer size={16} /> Print / save as PDF
+          <Printer size={16} /> Print
         </button>
         <Link to={other.path} className="inline-flex items-center gap-2 border border-ink/20 dark:border-paper/25 font-semibold px-4 py-2.5 rounded-full">
           {other.title} <ArrowRight size={16} />

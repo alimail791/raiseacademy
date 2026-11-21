@@ -12,6 +12,7 @@ export const PRACTICE: NavGroup = {
   items: [
     { label: "NEET Readiness Test", short: "Readiness Test", to: "/neet-readiness" },
     { label: "Question of the Day", to: "/neet-question-of-the-day" },
+    { label: "Daily NEET Quiz (3 a day)", short: "Daily Quiz", to: "/neet-daily-quiz", isNew: true },
     { label: "60-Second Sprint", to: "/neet-sprint" },
     { label: "Chapter-wise PYQs", to: "/neet-practice" },
     { label: "Question papers by year", short: "Past papers", to: "/neet-question-papers" },

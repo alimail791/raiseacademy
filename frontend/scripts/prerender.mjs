@@ -17,7 +17,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const ssrEntry = path.join(root, "dist-ssr", "entry-server.js");
 
-const { preloadAllPages, render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, schoolHubMeta, cutoffMeta, LANGS, CUTOFF_STATES, langsForState, regionalCutoffMeta, regionalCutoffIndexMeta, regionalWeightageMeta, alternates, NCERT_NOTES, ncertMeta } = await import(pathToFileURL(ssrEntry).href);
+const { preloadAllPages, render, metaFor, PAGE_META, SITE_ORIGIN, chapterMeta, paperMeta, questionMeta, schoolHubMeta, cutoffMeta, LANGS, CUTOFF_STATES, langsForState, regionalCutoffMeta, regionalCutoffIndexMeta, regionalWeightageMeta, alternates, NCERT_NOTES, ncertMeta, groupByDate, dailyQuizMeta } = await import(pathToFileURL(ssrEntry).href);
 
 // Pages are code-split (src/lazyPage.tsx): load them all so renderToString
 // renders every page synchronously instead of a Suspense fallback.
@@ -219,6 +219,31 @@ const chapterInfoBySlug = new Map(practiceChapters.map((c) => [c.slug, {
   topTopics: (c.topTopics || []).slice(0, 5), weightage: c.weightage || null,
   pagesInChapter: (pagesByChapter.get(c.slug) || []).length,
 }]));
+// NEET Daily Quiz (/neet-daily-quiz, /neet-daily-quiz/<date>): the day's three
+// quiz Shorts with their full questions, from the question pages above (or the
+// API for questions without a page). The last 60 days are built; older days and
+// days after this deploy load in the browser.
+const QUIZ_DAYS_LIMIT = 60;
+const quizDays = [...groupByDate(quizShorts).entries()].slice(0, QUIZ_DAYS_LIMIT);
+const quizDates = [...groupByDate(quizShorts).keys()];
+const qBySlug = new Map(questionPages.map((q) => [q.slug, q]));
+const missingSlugs = [...new Set(quizDays.flatMap(([, list]) => list.map((x) => x.questionSlug)).filter((sl) => sl && !qBySlug.has(sl)))];
+if (YNEET_API) {
+  for (const sl of missingSlugs) {
+    try {
+      const r = await fetchRetry(`${YNEET_API}/public/questions/${encodeURIComponent(sl)}`, 2);
+      if (r.ok) { const q = (await r.json()).question; if (q) qBySlug.set(sl, q); }
+    } catch { /* that question loads in the browser */ }
+  }
+}
+const quizQuestion = (sl) => {
+  const q = sl && qBySlug.get(sl);
+  if (!q) return null;
+  const { slug, subject, chapter, chapterSlug, question, options, answer, explanation, pyqYear, related } = q;
+  return { id: q.id, topic: q.topic || "", slug, subject, chapter, chapterSlug, question, options, answer, explanation, pyqYear, related: (related || []).slice(0, 3) };
+};
+const dailyQuizzes = quizDays.map(([date, list]) => ({ date, items: list.map((x) => ({ short: x, question: quizQuestion(x.questionSlug) })), dates: quizDates }));
+
 const practiceFile = (slug) => `${slug.replace("/", "--")}.html`;
 const blogDataScript = (data) =>
   `<script>window.__BLOG_DATA__=${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
@@ -260,10 +285,12 @@ for (const route of routes) {
     : route === "/neet-question-papers" && paperSummaries.length ? { papers: paperSummaries }
     : route === "/neet-cutoff" && cutoffStates.length ? { cutoffs: cutoffStates }
     : route === "/neet-quiz-shorts" && quizShorts.length ? { quizShorts }
+    : route === "/neet-daily-quiz" && dailyQuizzes.length ? { dailyQuiz: dailyQuizzes[0] }
     : route === "/neet-most-missed-chapters" && missedStats ? { missed: missedStats } : undefined;
   // The English cutoff index and weightage page also list their language versions.
   const alt = route === "/neet-cutoff" || route === "/neet-chapter-wise-weightage" ? { ...metaFor(route), alternates: alternates(route, LANGS, SITE_ORIGIN) } : undefined;
-  fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, alt, pData));
+  const dq = route === "/neet-daily-quiz" && dailyQuizzes.length ? { ...metaFor(route), ...dailyQuizMeta(dailyQuizzes[0], true) } : undefined;
+  fs.writeFileSync(out, pageHtml(route, route === "/blog" ? { posts: summaries } : undefined, alt || dq, pData));
 }
 
 // One file per chapter in practice-pages/ (flat, like blog-posts/).
@@ -309,6 +336,13 @@ for (const q of questionPages) {
   const meta = { ...questionMeta(q), canonical: `${SITE_ORIGIN}${route}` };
   const withShort = { ...q, chapterInfo: chapterInfoBySlug.get(q.chapterSlug) || null, ...(shortBySlug.has(q.slug) ? { short: shortBySlug.get(q.slug) } : {}) };
   fs.writeFileSync(path.join(dist, "neet-question", `${q.slug}.html`), pageHtml(route, undefined, meta, { question: withShort }));
+}
+
+// One file per daily quiz day in neet-daily-quiz/ (rewritten below).
+fs.mkdirSync(path.join(dist, "neet-daily-quiz"), { recursive: true });
+for (const dq of dailyQuizzes) {
+  const route = `/neet-daily-quiz/${dq.date}`;
+  fs.writeFileSync(path.join(dist, "neet-daily-quiz", `${dq.date}.html`), pageHtml(route, undefined, { ...dailyQuizMeta(dq, false), canonical: `${SITE_ORIGIN}${route}` }, { dailyQuiz: dq }));
 }
 
 // Class 6–10: hub file class-<n>-questions.html plus a same-named folder of
@@ -436,6 +470,8 @@ fs.writeFileSync(
         { source: "/neet-question-papers/:year", destination: "/practice-shell.html" },
         ...paperSubjectRoutes.map((r) => ({ source: `/neet-question-papers/${r.year}/${r.subject}`, destination: `/paper-pages/${r.year}-${r.subject}.html` })),
         { source: "/neet-question-papers/:year/:subject", destination: "/practice-shell.html" },
+        ...dailyQuizzes.map((d) => ({ source: `/neet-daily-quiz/${d.date}`, destination: `/neet-daily-quiz/${d.date}.html` })),
+        { source: "/neet-daily-quiz/:date", destination: "/practice-shell.html" },
         ...NCERT_NOTES.map((n) => ({ source: `/ncert-notes/${n.slug}`, destination: `/ncert-pages/${n.slug}.html` })),
         { source: "/logout", destination: "/app.html" },
         { source: "/dashboard", destination: "/app.html" },
@@ -474,6 +510,7 @@ const indexable = [
   ...regionalRoutes,
   ...schoolClasses.map((c) => `/class-${c.classNum}-questions`),
   ...schoolPages.map((q) => `/class-${q.classNum}-questions/${q.slug}`),
+  ...dailyQuizzes.map((d) => `/neet-daily-quiz/${d.date}`),
 ];
 const lastmod = {};
 let changed = 0;
@@ -502,6 +539,7 @@ const sitemapGroups = [
   ["sitemap-class-questions.xml", indexable.filter((r) => /^\/class-\d+-questions\/./.test(r))],
   ["sitemap-practice.xml", indexable.filter((r) => /^\/(neet-practice|neet-question-papers|ncert-notes)\//.test(r))],
   ["sitemap-blog.xml", indexable.filter((r) => r.startsWith("/blog/"))],
+  ["sitemap-daily-quiz.xml", indexable.filter((r) => r.startsWith("/neet-daily-quiz/"))],
 ];
 const grouped = new Set(sitemapGroups.flatMap(([, list]) => list));
 sitemapGroups.unshift(["sitemap-pages.xml", indexable.filter((r) => !grouped.has(r))]);
@@ -583,6 +621,7 @@ if (practiceSummaries.length) {
 }
 if (papers.length) console.log("PAPERS " + papers.map((p) => `${p.year}:${p.total}(P${p.counts.Physics}/C${p.counts.Chemistry}/B${p.counts.Biology})`).join(" "));
 if (practiceChapters.length) console.log("PRACTICE_CHAPTERS " + practiceChapters.map((c) => `${c.subject[0]}:${c.chapter}(${c.total}/${c.pyqCount})`).join(" | "));
+console.log(`Daily quiz pages: ${dailyQuizzes.length}.`);
 console.log(`Quiz Shorts: ${quizShorts.length} public (${shortBySlug.size} linked to question pages).`);
 console.log(`Prerendered ${cutoffStates.length} NEET cutoff state pages and ${regionalRoutes.length} regional-language pages.`);
 console.log(`Prerendered ${routes.length} pages and ${blogPosts.length} blog posts; sitemap has ${indexable.length} URLs.`);

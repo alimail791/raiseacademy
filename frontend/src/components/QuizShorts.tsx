@@ -65,7 +65,7 @@ export default function QuizShortsSection() {
       <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
         {shorts.slice(0, 6).map((s) => <ShortCard key={s.videoId} s={s} />)}
       </div>
-      <div className="text-center mt-6"><Link to="/neet-quiz-shorts" className="font-semibold text-rise-dark underline">All quiz Shorts →</Link></div>
+      <div className="text-center mt-6"><Link to="/neet-daily-quiz" className="font-semibold text-rise-dark underline">Solve today's quiz with answers →</Link> · <Link to="/neet-quiz-shorts" className="font-semibold text-rise-dark underline">All quiz Shorts →</Link></div>
     </section>
   );
 }

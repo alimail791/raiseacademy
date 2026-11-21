@@ -25,12 +25,12 @@ const QUALIFY: [string, number][] = [
   ["PwD (OBC, SC, ST)", 40],
 ];
 
-const TABLE_PCT = [99.99, 99.9, 99.5, 99, 98, 97, 95, 90, 85, 80, 70, 60, 50];
+const TABLE_PCT = [99.99, 99.9, 99.5, 99, 98, 97, 95, 90];
 
 const FAQS: [string, string][] = [
   ["What is NEET percentile?", "Your NEET percentile is the percentage of candidates who scored the same as you or less. A 99 percentile means you scored equal to or more than 99% of everyone who took the exam. It is not the same as percentage marks."],
   ["How does NTA calculate NEET percentile?", "Percentile = 100 × (number of candidates with a raw score equal to or less than yours) ÷ (total candidates who appeared). NTA calculates it to 7 decimal places so that very few students share the same percentile."],
-  ["What percentile do I need to qualify NEET?", "50th percentile for General and EWS, 40th for OBC-NCL, SC and ST, 45th for PwD (General/EWS) and 40th for PwD in reserved categories. In marks, the General cut-off was 144 in NEET 2025."],
+  ["What percentile do I need to qualify NEET?", "50th percentile for General and EWS, 40th for OBC-NCL, SC and ST, 45th for PwD (General/EWS) and 40th for PwD in reserved categories. In marks, the General cut-off moves a lot with the paper: 144 in NEET 2025 and 213 in NEET 2026."],
   ["Is 90 percentile good in NEET?", "90 percentile is roughly a rank of 2.2 lakh, which is well above the qualifying mark but usually not enough for a government MBBS seat. For a government seat under All India Quota you generally need around 98.9 percentile or more (a rank within about 25,000), depending on category and state."],
   ["How accurate is this calculator?", "It is an estimate. It assumes about 22 lakh candidates and uses the official marks-vs-rank data of the latest NEET. The exact percentile depends on how many students appear in NEET 2027 and how hard the paper is."],
 ];
@@ -107,7 +107,7 @@ export default function NeetPercentileCalculator() {
           {"below" in result ? (
             <>
               <p className="font-display text-xl font-bold">Below the qualifying range</p>
-              <p className="mt-2 text-ink/75 dark:text-paper/75">{Math.round(num)}/720 is likely below the 50th percentile (about 144 marks for General in NEET 2025). Reserved categories qualify at the 40th percentile, around 113 marks.</p>
+              <p className="mt-2 text-ink/75 dark:text-paper/75">{Math.round(num)}/720 is likely below the 50th percentile. The General qualifying mark was 144 in NEET 2025 and 213 in NEET 2026; reserved categories (40th percentile) needed 113 and 177.</p>
             </>
           ) : (
             <>
@@ -118,7 +118,7 @@ export default function NeetPercentileCalculator() {
                 <div className="rounded-xl bg-white/70 dark:bg-ink-light p-3"><p className="text-ink/60 dark:text-paper/60">Marks (out of 720)</p><p className="font-bold text-lg">{result.marks != null ? `~${result.marks}` : "below 140"}</p></div>
               </div>
               <p className="mt-4 text-sm text-ink/75 dark:text-paper/75">
-                {result.pct >= 50 ? "Qualifies NEET in every category." : result.pct >= 40 ? "Qualifies NEET for OBC-NCL, SC, ST and reserved PwD categories, but not General." : "Below the qualifying percentile for every category."}
+                {result.pct >= 70 ? "Comfortably above the qualifying percentile in every category." : "Close to the qualifying line. Below about 70 percentile the estimate is rough: the General qualifying mark was 144 in NEET 2025 but 213 in NEET 2026, so check against the official cutoff."}
                 {" "}See which colleges this rank can get with the <Link to="/neet-college-predictor" className="font-semibold underline">College Predictor</Link>.
               </p>
             </>
@@ -144,7 +144,7 @@ export default function NeetPercentileCalculator() {
       </div>
 
       <h2 className="font-display text-2xl font-bold mt-12">NEET percentile vs rank vs marks</h2>
-      <p className="text-ink/70 dark:text-paper/70 mt-2 text-sm">Approximate, for about 22 lakh candidates and a normal-difficulty paper.</p>
+      <p className="text-ink/70 dark:text-paper/70 mt-2 text-sm">Approximate, for about 22 lakh candidates and a normal-difficulty paper. Below 90 percentile, marks swing a lot from year to year (the 50th percentile was 144 marks in NEET 2025 and 213 in NEET 2026).</p>
       <div className="mt-4 overflow-x-auto rounded-2xl border border-ink/10 dark:border-paper/15">
         <table className="w-full text-sm">
           <thead className="bg-ink/[0.04] dark:bg-paper/5 text-left"><tr><th className="p-3">Percentile</th><th className="p-3">All India Rank</th><th className="p-3">Marks</th></tr></thead>

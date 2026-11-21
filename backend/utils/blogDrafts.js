@@ -258,6 +258,125 @@ const DRAFTS = [
 <p><strong>Practise it:</strong> YNeet has chapter-wise NCERT Biology MCQs with explanations and a chapter priority study plan. <a href="/register">Start free for 30 days</a>, or take the 15-question <a href="/neet-readiness">NEET Readiness Test</a> first.</p>
 `,
   },
+  {
+    slug: "how-to-prepare-for-neet-without-coaching",
+    title: "How to Prepare for NEET 2027 Without Coaching: A Self-Study Plan",
+    metaDescription:
+      "You can crack NEET without coaching if you get three things right: NCERT line by line, previous year questions chapter by chapter, and regular timed mocks you analyse. Free resources and a weekly plan.",
+    bodyHtml: `
+<p><strong>Quick answer:</strong> yes, you can prepare for NEET 2027 without coaching. Self-study works when you replace what coaching gives you (a syllabus order, practice questions, tests and doubt help) with a fixed weekly routine: <strong>NCERT line by line</strong>, <strong>previous year questions (PYQs) for every chapter</strong>, <strong>timed mock tests you analyse properly</strong>, and a way to clear doubts quickly.</p>
+
+<h2>What coaching actually gives you, and the free replacement</h2>
+<table>
+<thead><tr><th>What coaching gives</th><th>Self-study replacement</th></tr></thead>
+<tbody>
+<tr><td>A syllabus order and timetable</td><td>Follow the NCERT chapter order and plan by <a href="/neet-chapter-wise-weightage">chapter-wise weightage</a>: high-weightage chapters first</td></tr>
+<tr><td>Daily practice sheets</td><td><a href="/neet-practice">Chapter-wise NEET PYQs</a> with answers and explanations</td></tr>
+<tr><td>Weekly tests</td><td>Chapter tests after each chapter, then full mocks</td></tr>
+<tr><td>Formula and short notes</td><td>The <a href="/neet-physics-formula-sheet">Physics</a> and <a href="/neet-chemistry-formula-sheet">Chemistry</a> formula sheets and <a href="/ncert-notes">NCERT Biology notes</a></td></tr>
+<tr><td>Doubt clearing</td><td>A teacher you can message, a study partner, or <a href="/ask-yneet">Ask YNeet</a></td></tr>
+<tr><td>Competition and rank</td><td>Full mocks with an All India-style rank</td></tr>
+</tbody>
+</table>
+
+<h2>Know the exam you're preparing for</h2>
+<p>NEET (UG) has <strong>180 compulsory questions in 3 hours</strong>: 45 Physics, 45 Chemistry and 90 Biology (45 Botany, 45 Zoology). Each correct answer is +4, each wrong answer −1, so the paper is out of <strong>720</strong>. Biology is half the marks, and almost all of it comes straight from NCERT. That is why self-study can work: the core material is a set of books you already have.</p>
+
+<h2>A weekly self-study routine</h2>
+<table>
+<thead><tr><th>Day</th><th>Main work (4–5 hours)</th><th>Short task (1 hour)</th></tr></thead>
+<tbody>
+<tr><td>Monday</td><td>Biology: read one NCERT chapter line by line</td><td>30 PYQs from that chapter</td></tr>
+<tr><td>Tuesday</td><td>Physics: one topic, theory + solved examples</td><td>Formula revision, 20 numericals</td></tr>
+<tr><td>Wednesday</td><td>Chemistry: one Physical or Organic topic</td><td>30 PYQs</td></tr>
+<tr><td>Thursday</td><td>Biology: second chapter</td><td>30 PYQs</td></tr>
+<tr><td>Friday</td><td>Physics or Chemistry: weakest topic of the week</td><td>Inorganic NCERT reading</td></tr>
+<tr><td>Saturday</td><td>Chapter tests for the week's chapters (timed)</td><td>Write every mistake in a mistake notebook</td></tr>
+<tr><td>Sunday</td><td>Full mock every 2 weeks; otherwise revision of the mistake notebook</td><td>Plan next week</td></tr>
+</tbody>
+</table>
+<p>Class 12 students can halve the hours during school and board exams; droppers can follow it as written.</p>
+
+<h2>Five rules that make self-study work</h2>
+<ol>
+<li><strong>NCERT first, extra books later.</strong> Finish NCERT and its PYQs for a chapter before opening any reference book.</li>
+<li><strong>Every chapter ends with a test.</strong> Reading without testing feels productive but doesn't show what you don't know.</li>
+<li><strong>Keep a mistake notebook.</strong> Write the question, your wrong answer and the reason. Read it before every mock.</li>
+<li><strong>Don't sit on doubts.</strong> If a doubt stays open for more than a day, ask someone or move on and mark it.</li>
+<li><strong>Measure, don't guess.</strong> Your mock scores and chapter accuracy tell you what to study next, not how confident a chapter feels.</li>
+</ol>
+
+<h2>When self-study isn't enough</h2>
+<p>Be honest with yourself after two or three months. If you can't stick to a routine on your own, your mock scores aren't moving, or doubts are piling up, you need more structure: a study partner, a teacher for one subject, or a test series with analysis. Coaching isn't the only option, but some structure is.</p>
+
+<h2>FAQs</h2>
+<h3>Can I crack NEET without coaching?</h3>
+<p>Yes. Many students qualify and get government MBBS seats with self-study. It needs a fixed routine, NCERT-based study, plenty of PYQs and regular timed mocks.</p>
+<h3>How many hours should I study for NEET without coaching?</h3>
+<p>About 6–8 focused hours a day for droppers, and 3–4 hours on school days for Class 12, more on weekends and holidays.</p>
+<h3>Which books are enough for NEET self-study?</h3>
+<p>NCERT Class 11 and 12 for all three subjects, plus previous year NEET questions. Add one reference book for Physics numericals and Physical Chemistry if you need more practice.</p>
+<h3>Is online preparation enough for NEET?</h3>
+<p>Online tests and videos can replace most of what a classroom gives, as long as you still read NCERT properly and take timed tests.</p>
+
+<p><strong>Start today:</strong> take the free 15-question <a href="/neet-readiness">NEET Readiness Test</a> to see where you stand, then practise your weakest chapter's <a href="/neet-practice">PYQs</a>. For timed chapter tests, full mocks with rank and a mistake notebook, <a href="/register">try YNeet free for 30 days</a>.</p>
+`,
+  },
+  {
+    slug: "how-to-improve-neet-physics-score",
+    title: "How to Improve Your NEET Physics Score: 7 Fixes That Work",
+    metaDescription:
+      "Most students lose NEET Physics marks to weak formula recall, slow calculation and wrong guesses, not hard questions. Seven fixes, which chapters to start with, and a 30-day Physics plan.",
+    bodyHtml: `
+<p><strong>Quick answer:</strong> to improve your NEET Physics score, stop trying to finish more theory and start fixing how you lose marks: <strong>learn formulas with their conditions</strong>, <strong>practise previous year questions chapter by chapter under a timer</strong>, <strong>do the high-weightage chapters first</strong>, and <strong>guess less</strong>. Physics has 45 questions (180 marks), so every 5 extra correct answers add 20 marks or more.</p>
+
+<h2>Where NEET Physics marks are lost</h2>
+<table>
+<thead><tr><th>Problem</th><th>What it looks like</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>Formula recall</td><td>You know the chapter but can't remember the exact formula in the exam</td><td>Daily formula revision from a <a href="/neet-physics-formula-sheet">formula sheet</a></td></tr>
+<tr><td>Wrong formula for the situation</td><td>Using v² = u² + 2as when acceleration isn't constant</td><td>Learn each formula's conditions, not just the formula</td></tr>
+<tr><td>Slow calculation</td><td>Running out of time in the last 30 minutes</td><td>Approximation and options-elimination practice</td></tr>
+<tr><td>Concept gaps</td><td>Can't start the question at all</td><td>NCERT theory + solved examples for that topic</td></tr>
+<tr><td>Bad guesses</td><td>Many wrong answers, each costing −1</td><td>Guess only when you can rule out two options</td></tr>
+</tbody>
+</table>
+
+<h2>7 fixes that work</h2>
+<ol>
+<li><strong>Revise formulas every day for 15 minutes.</strong> Cover the formula, say it, then check. Do one chapter a day and cycle through the syllabus.</li>
+<li><strong>Write the condition next to every formula.</strong> "Constant acceleration only", "for a thin lens", "point charge". Most Physics traps test the condition.</li>
+<li><strong>Solve chapter-wise PYQs before anything else.</strong> NEET repeats ideas from earlier papers. Do the <a href="/neet-practice">previous year questions</a> of a chapter right after studying it.</li>
+<li><strong>Time every practice set.</strong> Aim for about a minute per question. Untimed practice builds understanding, not exam speed.</li>
+<li><strong>Start with high-weightage chapters.</strong> Check the <a href="/neet-chapter-wise-weightage">chapter-wise weightage</a> and prioritise the chapters that get the most questions.</li>
+<li><strong>Use the options.</strong> Check units and dimensions, plug in extreme values (θ = 0°, 90°) and eliminate options before calculating.</li>
+<li><strong>Analyse every mock by chapter.</strong> Note which chapters cost you marks and spend the next week on the worst two.</li>
+</ol>
+
+<h2>A 30-day Physics improvement plan</h2>
+<table>
+<thead><tr><th>Week</th><th>Focus</th><th>Daily target</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Mechanics: kinematics, laws of motion, work–energy, rotation</td><td>15 min formulas + 30 timed PYQs</td></tr>
+<tr><td>2</td><td>Electrostatics, current electricity, magnetism</td><td>15 min formulas + 30 timed PYQs</td></tr>
+<tr><td>3</td><td>Optics, modern physics, semiconductors</td><td>15 min formulas + 30 timed PYQs</td></tr>
+<tr><td>4</td><td>Weakest chapters from your tests + 2 full mocks</td><td>Mistake notebook + 45-question Physics sets</td></tr>
+</tbody>
+</table>
+
+<h2>FAQs</h2>
+<h3>How many questions come from Physics in NEET?</h3>
+<p>45 compulsory questions, worth 180 of the 720 marks.</p>
+<h3>Is NCERT enough for NEET Physics?</h3>
+<p>NCERT covers the concepts, but you need far more numerical practice than its exercises give. Use previous year questions and timed chapter tests on top of it.</p>
+<h3>How can I solve NEET Physics questions faster?</h3>
+<p>Know formulas without thinking, practise under a timer, and use the options: checking units and eliminating options often saves the full calculation.</p>
+<h3>Should I skip Physics in NEET?</h3>
+<p>No. Even 20–25 correct Physics answers add 80–100 marks. Attempt the questions you're sure about and the ones where you can eliminate two options, and skip the rest.</p>
+
+<p><strong>Practise it:</strong> start with the <a href="/neet-physics-formula-sheet">NEET Physics formula sheet</a> and the Physics chapters in <a href="/neet-practice">chapter-wise PYQs</a>. For timed Physics chapter tests and full mocks with analysis, <a href="/register">try YNeet free for 30 days</a>.</p>
+`,
+  },
 ];
 
 export async function addBlogDrafts() {

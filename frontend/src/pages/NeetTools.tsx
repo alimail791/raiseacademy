@@ -29,6 +29,7 @@ const GROUPS: Group[] = [
     tools: [
       { name: "Chapter-wise NEET PYQs", to: "/neet-practice", desc: "Previous year NEET questions sorted by chapter, for Physics, Chemistry and Biology." },
       { name: "NEET question papers by year", to: "/neet-question-papers", desc: "Full NEET papers year by year, with the answer to every question." },
+      { name: "NEET Daily Quiz", to: "/neet-daily-quiz", desc: "Today's Physics, Chemistry and Biology questions with answers, explanations and the quiz videos." },
       { name: "NEET Question of the Day", to: "/neet-question-of-the-day", desc: "One NEET-level question every day, with the answer and explanation." },
       { name: "NEET new tab for Chrome", href: CHROME_EXTENSION_URL, desc: "Free Chrome extension: every new tab shows the NEET countdown and today's NEET question." },
       { name: "Daily NEET puzzles", href: gamesLink("tools_page"), desc: "5 puzzles a day from NCERT: BioWord, Pinpoint NEET, Pathway Zip and more." },
