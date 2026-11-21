@@ -2,6 +2,35 @@
 <html lang="en">
   <head>
     <!--
+      Old copy of a page after a deploy: its HTML can point at JS/CSS files in
+      /assets that the new deploy no longer has (404 → blank page). When one of
+      them fails to load, reload once to fetch the current page. At most once a
+      minute, so a real outage can't cause a reload loop.
+    -->
+    <script>
+      (function () {
+        var KEY = "yneet_asset_reload";
+        function reload() {
+          try {
+            var last = +sessionStorage.getItem(KEY) || 0;
+            if (Date.now() - last < 60000) return;
+            sessionStorage.setItem(KEY, String(Date.now()));
+          } catch (e) { return; }
+          location.reload();
+        }
+        window.addEventListener("error", function (e) {
+          var t = e.target;
+          var url = t && (t.src || t.href);
+          if (url && (t.tagName === "SCRIPT" || t.tagName === "LINK") && url.indexOf("/assets/") !== -1) reload();
+        }, true);
+        window.addEventListener("vite:preloadError", function (e) { e.preventDefault(); reload(); });
+        window.addEventListener("unhandledrejection", function (e) {
+          var m = String((e.reason && e.reason.message) || e.reason || "");
+          if (/dynamically imported module|Importing a module script failed|error loading dynamically imported/i.test(m)) reload();
+        });
+      })();
+    </script>
+    <!--
       Analytics and ad pixels load on the website only. Inside the YNeet Android app
       (Play Store, ?app=1 / framed / android-app referrer) nothing is loaded: the app is
       in Google Play's Families programme (Class 6-8 students), which doesn't allow
