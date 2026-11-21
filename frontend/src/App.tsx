@@ -86,6 +86,9 @@ const ConceptMaps = page(() => import("./pages/ConceptMaps"));
 const NeetSprint = page(() => import("./pages/NeetSprint"));
 const NeetShorts = page(() => import("./pages/NeetShorts"));
 const NeetTools = page(() => import("./pages/NeetTools"));
+const NeetPercentileCalculator = page(() => import("./pages/NeetPercentileCalculator"));
+const NeetPhysicsFormulas = page(() => import("./pages/NeetFormulaSheet"), "NeetPhysicsFormulas");
+const NeetChemistryFormulas = page(() => import("./pages/NeetFormulaSheet"), "NeetChemistryFormulas");
 import { AppPriceGuard, AppLeave } from "./components/AppPriceGuard";
 const Logout = page(() => import("./pages/Logout"));
 const DeleteAccount = page(() => import("./pages/DeleteAccount"));
@@ -167,6 +170,9 @@ function App() {
             <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
             <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />
             <Route path="/neet-rank-predictor" element={<NeetRankPredictor />} />
+            <Route path="/neet-percentile-calculator" element={<NeetPercentileCalculator />} />
+            <Route path="/neet-physics-formula-sheet" element={<NeetPhysicsFormulas />} />
+            <Route path="/neet-chemistry-formula-sheet" element={<NeetChemistryFormulas />} />
             <Route path="/neet-compare-colleges" element={<NeetCompareColleges />} />
             <Route path="/neet-college-predictor/report" element={<NeetCollegeReport />} />
             <Route path="/neet-sprint" element={<NeetSprint />} />
@@ -264,6 +270,9 @@ function App() {
           <Route path="/neet-photo-resizer" element={<NeetPhotoResizer />} />
           <Route path="/neet-score-calculator" element={<NeetScoreCalculator />} />
           <Route path="/neet-rank-predictor" element={<NeetRankPredictor />} />
+          <Route path="/neet-percentile-calculator" element={<NeetPercentileCalculator />} />
+            <Route path="/neet-physics-formula-sheet" element={<NeetPhysicsFormulas />} />
+            <Route path="/neet-chemistry-formula-sheet" element={<NeetChemistryFormulas />} />
           <Route path="/neet-compare-colleges" element={<NeetCompareColleges />} />
           <Route path="/neet-question-widget" element={<QotdWidget />} />
           <Route path="/i/:slug" element={<PartnerPage />} />

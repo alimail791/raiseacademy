@@ -140,6 +140,21 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Free NEET rank predictor: enter your marks out of 720 to see your expected All India Rank, or a target rank to see the marks you need. Based on official NEET marks-vs-rank data, with a full marks vs rank table.",
   },
+  "/neet-percentile-calculator": {
+    title: "NEET Percentile Calculator 2027 — Marks or Rank to Percentile (Free) | YNeet",
+    description:
+      "Free NEET percentile calculator: convert your marks out of 720 or All India Rank to a NEET percentile, or a percentile to the rank and marks it means. NTA's formula, qualifying percentile by category and a percentile vs rank vs marks table.",
+  },
+  "/neet-physics-formula-sheet": {
+    title: "NEET Physics Formula Sheet — All Chapters, Class 11 & 12 (Free) | YNeet",
+    description:
+      "Every important NEET Physics formula, chapter by chapter: kinematics, laws of motion, rotation, gravitation, thermodynamics, waves, electrostatics, current electricity, magnetism, optics, modern physics and semiconductors. Free, printable.",
+  },
+  "/neet-chemistry-formula-sheet": {
+    title: "NEET Chemistry Formula Sheet — Physical, Inorganic & Organic (Free) | YNeet",
+    description:
+      "Every important NEET Chemistry formula, chapter by chapter: mole concept, atomic structure, bonding, thermodynamics, equilibrium and pH, redox, solutions, electrochemistry, chemical kinetics, coordination compounds and organic analysis. Free, printable.",
+  },
   "/neet-compare-colleges": {
     title: "Compare NEET Medical Colleges — MBBS & BDS Closing Ranks Side by Side (Free) | YNeet",
     description:
