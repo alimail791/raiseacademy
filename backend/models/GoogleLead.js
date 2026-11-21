@@ -14,6 +14,9 @@ const googleLeadSchema = new mongoose.Schema(
     studentId: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
     completedAt: { type: Date },
     reminderSentAt: { type: Date }, // the one "finish your sign-up" email (utils/googleLeadReminder.js)
+    // What they did on the details form (POST /api/auth/google/step), to see where people stop.
+    lastStep: { type: String, default: "" },
+    steps: [{ _id: false, step: String, at: Date }],
   },
   { timestamps: true }
 );

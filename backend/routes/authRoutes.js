@@ -3,6 +3,7 @@ import {
   register,
   login,
   googleAuth,
+  googleLeadStep,
   getMe,
   resetPassword,
   setYneetSubscriptionFlag,
@@ -20,6 +21,11 @@ const router = express.Router();
 router.post("/register", register);
 router.post("/login", login);
 router.post("/google", googleAuth);
+router.post("/google/step", express.text({ type: "text/plain" }), (req, _res, next) => {
+  // sendBeacon posts text/plain; parse it as JSON.
+  if (typeof req.body === "string") { try { req.body = JSON.parse(req.body); } catch { req.body = {}; } }
+  next();
+}, googleLeadStep);
 router.post("/wa/send", waSendOtp);
 router.post("/wa/verify", waVerifyOtp);
 router.get("/me", protect, getMe);

@@ -285,6 +285,31 @@ export const googleAuth = async (req, res, next) => {
   }
 };
 
+// POST /api/auth/google/step { email, step }
+// Funnel tracking for the Google details form (class + WhatsApp step): records
+// what an unfinished Google lead did — form shown, class picked, typed number,
+// pressed submit, got blocked by a check, left the page. Only updates an existing,
+// unfinished lead, and only with known step names. Also printed to the Railway logs.
+const GOOGLE_STEPS = new Set([
+  "form_shown", "form_restored", "name_edited", "class_picked", "phone_typing", "phone_autofilled",
+  "submit_click", "blocked_name", "blocked_class", "blocked_phone", "submit_error", "left_page",
+]);
+export const googleLeadStep = async (req, res) => {
+  const email = String(req.body?.email || "").toLowerCase().trim().slice(0, 120);
+  const step = String(req.body?.step || "").slice(0, 40);
+  if (!email || !GOOGLE_STEPS.has(step)) return res.status(204).end();
+  console.log(`[google-signup] ${email} → ${step}`);
+  try {
+    await GoogleLead.updateOne(
+      { email, completed: false },
+      { $set: { lastStep: step }, $push: { steps: { $each: [{ step, at: new Date() }], $slice: -50 } } }
+    );
+  } catch (e) {
+    console.warn("Saving Google lead step failed:", e.message);
+  }
+  res.status(204).end();
+};
+
 // POST /api/auth/login
 export const login = async (req, res, next) => {
   try {
