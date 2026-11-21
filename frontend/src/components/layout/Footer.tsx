@@ -27,6 +27,12 @@ const YNEET: Item[] = [
   { label: "Pay online", href: "https://pay.yneet.in" },
   { label: "Blog", to: "/blog" },
   { label: "All free NEET tools", to: "/neet-tools" },
+  { label: "Free NEET mock tests", to: "/free-neet-mock-test" },
+  { label: "Chapter-wise test series", to: "/neet-chapter-wise-test-series" },
+  { label: "NEET previous year questions", to: "/neet-previous-year-questions" },
+  { label: "NEET Biology practice", to: "/neet-biology-practice-questions" },
+  { label: "Online practice platform", to: "/neet-online-practice-platform" },
+  { label: "Analyse your preparation", to: "/neet-preparation-analysis" },
   { label: "About us", to: "/about" },
 ];
 

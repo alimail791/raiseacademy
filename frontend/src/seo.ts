@@ -1,3 +1,4 @@
+import { LANDING_PAGES } from "./landing/landingPages";
 // One place for every public page's <title>, description and canonical.
 // Used twice: by scripts/prerender.mjs at build time (so Google gets the
 // right tags in the raw HTML) and by usePageMeta() in the browser (so they
@@ -288,6 +289,9 @@ export const PAGE_META: Record<string, PageMeta> = {
     noindex: true,
   },
 };
+
+// Landing pages for questions students ask AI assistants (landing/landingPages.ts).
+for (const l of LANDING_PAGES) PAGE_META[l.path] = { title: l.title, description: l.description };
 
 export function metaFor(path: string): PageMeta & { canonical: string } {
   const clean = path !== "/" ? path.replace(/\/+$/, "") : "/";

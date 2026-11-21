@@ -86,6 +86,8 @@ const ConceptMaps = page(() => import("./pages/ConceptMaps"));
 const NeetSprint = page(() => import("./pages/NeetSprint"));
 const NeetShorts = page(() => import("./pages/NeetShorts"));
 const NeetTools = page(() => import("./pages/NeetTools"));
+const YneetLanding = page(() => import("./pages/YneetLanding"));
+import { LANDING_PAGES } from "./landing/landingPages";
 const NeetDailyQuiz = page(() => import("./pages/NeetDailyQuiz"));
 const NeetPercentileCalculator = page(() => import("./pages/NeetPercentileCalculator"));
 const NeetPhysicsFormulas = page(() => import("./pages/NeetFormulaSheet"), "NeetPhysicsFormulas");
@@ -283,6 +285,7 @@ function App() {
           <Route path="/i/:slug" element={<PartnerPage />} />
           <Route path="/neet-coaching" element={<NeetCoachingIndex />} />
           <Route path="/neet-coaching/:city" element={<NeetCoachingCity />} />
+          {LANDING_PAGES.map((l) => <Route key={l.path} path={l.path} element={<YneetLanding />} />)}
           <Route path="/neet-tools" element={<NeetTools />} />
           <Route path="/neet-share" element={<NeetSharePromos />} />
           <Route path="/advertise" element={<Advertise />} />
