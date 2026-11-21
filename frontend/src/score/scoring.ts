@@ -119,6 +119,20 @@ function rankOn(curve: [number, number][], marks: number) {
   return null; // below the qualifying range
 }
 
+// All India Rank → approximate marks on the Re-NEET 2026 curve (inverse of rankOn).
+export function marksForRank(rank: number): number | null {
+  const c = CURVE_2026;
+  if (rank <= c[0][1]) return c[0][0];
+  for (let i = 0; i < c.length - 1; i++) {
+    const [m1, r1] = c[i], [m2, r2] = c[i + 1];
+    if (rank >= r1 && rank <= r2) {
+      const f = (Math.log(rank) - Math.log(r1)) / (Math.log(r2) - Math.log(r1));
+      return Math.round(m1 - f * (m1 - m2));
+    }
+  }
+  return null;
+}
+
 export function estimateRank(marks: number) {
   return { normal: rankOn(CURVE_2026, marks), tough: rankOn(CURVE_2025, marks) };
 }

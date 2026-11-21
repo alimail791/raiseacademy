@@ -3,6 +3,7 @@
 // the YNeet API at build time, renders real HTML for Google, and embeds the
 // data as window.__PRACTICE_DATA__ so the browser shows it without a reload.
 import { createContext, useContext, type ReactNode } from "react";
+import { marksForRank } from "../score/scoring";
 
 export type PracticeQuestion = {
   id: string;
@@ -117,9 +118,18 @@ export function cutoffMeta(c: CutoffState) {
   const open = c.categorySummary.find((x) => x.category === "OPEN");
   const unit = c.rankType === "SCORE" ? "marks" : c.rankType === "STATE" ? "state rank" : "AIR";
   const fig = open ? ` General category closed at ${unit} ${open.last.toLocaleString("en-IN")} for the last government seat.` : "";
+  // Search Console (Nov 2026): these pages sat at positions 5–7 with ~1% CTR.
+  // People search "<state> neet cut off 2026 for mbbs government college" and
+  // want a number, so the title leads with the General closing mark when the
+  // list is by marks or All India Rank (AIR converted to approximate marks).
+  // State-rank lists can't be converted, so they keep the plain title.
+  const marks = open ? (c.rankType === "SCORE" ? open.last : c.rankType === "AIR" ? marksForRank(open.last) : null) : null;
+  const approx = c.rankType === "AIR" ? "about " : "";
+  const withMarks = marks ? `${cutoffTitleName(c)} NEET Cutoff ${c.year}: Govt MBBS at ${c.rankType === "AIR" ? "~" : ""}${marks} Marks (General)` : "";
+  const fig2 = marks && c.rankType === "AIR" ? ` General category closed at AIR ${open!.last.toLocaleString("en-IN")} (${approx}${marks} marks) for the last government seat.` : fig;
   return {
-    title: `${cutoffTitleName(c)} NEET Cutoff ${c.year} for Government MBBS (Category-wise) | YNeet`,
-    description: `${cutoffTitleName(c)} NEET ${c.year} closing ranks for every government MBBS college, category-wise.${fig} Plus private MBBS and BDS ranges. Free college predictor.`,
+    title: withMarks && withMarks.length <= 70 ? withMarks : `${cutoffTitleName(c)} NEET Cutoff ${c.year} for Government MBBS (Category-wise) | YNeet`,
+    description: `${cutoffTitleName(c)} NEET ${c.year} closing ranks for every government MBBS college, category-wise.${fig2} Plus private MBBS and BDS ranges. Free college predictor.`,
   };
 }
 

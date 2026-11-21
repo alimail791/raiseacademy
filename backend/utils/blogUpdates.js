@@ -39,6 +39,33 @@ const CUTOFF_FAQ = `
 <p>Take the free <a href="/neet-readiness">NEET Readiness Test</a> or a full mock test on YNeet, then compare your score with the table above.</p>
 </div>`;
 
+
+// Safe score for government MBBS, from YNeet's own 2026 MCC All India Quota
+// data (backend/data/predictor/mcc_aiq_2026.csv): closing ranks of government,
+// AIIMS, JIPMER and ESIC MBBS seats, main rounds (not stray), converted to marks
+// with the Re-NEET 2026 marks-vs-rank curve (frontend/src/score/scoring.ts).
+// Search Console (Nov 2026): this post got 3,800+ impressions at position ~5
+// for "safe score for neet 2027 <category>" but almost no clicks, because it
+// had no safe-score number.
+const SAFE_SCORE = `
+<div class="yn-safe-score-2027">
+<h2>NEET 2027 safe score for government MBBS (by category)</h2>
+<p>Qualifying marks only make you eligible. To get a <strong>government MBBS seat through the 15% All India Quota</strong>, aim for the "safe target" below. These numbers come from the closing ranks of every government MBBS college (including AIIMS, JIPMER and ESIC) in MCC counselling 2026, converted to marks using the NEET 2026 (re-exam) marks-vs-rank data.</p>
+<table>
+<thead><tr><th>Category</th><th>Last AIQ govt MBBS seat, 2026</th><th>Half of AIQ govt colleges, 2026</th><th>Safe target for 2027</th></tr></thead>
+<tbody>
+<tr><td>General</td><td>AIR 25,655 (about 558 marks)</td><td>about 580 marks</td><td><strong>600+</strong></td></tr>
+<tr><td>EWS</td><td>AIR 29,743 (about 551 marks)</td><td>about 570 marks</td><td><strong>590+</strong></td></tr>
+<tr><td>OBC</td><td>AIR 25,768 (about 558 marks)</td><td>about 578 marks</td><td><strong>600+</strong></td></tr>
+<tr><td>SC</td><td>AIR 1,20,870 (about 471 marks)</td><td>about 503 marks</td><td><strong>520+</strong></td></tr>
+<tr><td>ST</td><td>AIR 1,32,111 (about 463 marks)</td><td>about 492 marks</td><td><strong>510+</strong></td></tr>
+</tbody>
+</table>
+<p><strong>How to read this:</strong> the "safe target" is the score that would have got a seat in about three out of four AIQ government colleges in 2026. Ranks are exact; marks are estimates (the marks-vs-rank curve is official at 500 and 600 marks and estimated in between). A tougher paper lowers the marks needed for the same rank: in NEET 2025, AIR 25,000 was about 530 marks.</p>
+<p><strong>State quota is often easier.</strong> 85% of government seats go through your state's counselling, where the closing rank can be much higher (easier) than AIQ, especially for SC, ST and OBC. Check your state: <a href="/neet-cutoff">NEET cutoff by state</a>.</p>
+<p><a href="/neet-college-predictor">See the exact colleges your score can get →</a> · <a href="/neet-rank-predictor">Convert your marks to an All India Rank →</a></p>
+</div>`;
+
 const UPDATES = [
   {
     slug: "neet-cutoff-2027",
@@ -48,6 +75,21 @@ const UPDATES = [
       "Expected NEET 2027 qualifying marks for General, OBC, SC, ST & EWS, with official 2026 and 2025 cutoffs, passing marks and safe score for MBBS. Updated Nov 2026.",
     before: CUTOFF_SUMMARY,
     after: CUTOFF_FAQ,
+  },
+  {
+    slug: "neet-cutoff-2027",
+    marker: "yn-safe-score-2027",
+    title: "NEET 2027 Safe Score & Cutoff: Govt MBBS Marks by Category (600+ General)",
+    metaDescription:
+      "NEET 2027 safe score for government MBBS: about 600+ General/OBC, 590+ EWS, 520+ SC, 510+ ST, from 2026 AIQ closing ranks. Plus expected qualifying marks 145–215 (General).",
+    // Placed right after the quick-answer summary, not at the very top.
+    afterMarker: "yn-summary-2027",
+    before: SAFE_SCORE,
+    after: "",
+    replace: [[
+      /<h3>What is a safe score for NEET 2027\?<\/h3>\s*<p>[\s\S]*?<\/p>/,
+      "<h3>What is a safe score for NEET 2027?</h3>\n<p>For a government MBBS seat through the All India Quota, aim for about 600+ (General and OBC), 590+ (EWS), 520+ (SC) and 510+ (ST). These are based on 2026 AIQ closing ranks; state quota seats often need less. See the safe score table above and check exact colleges in the <a href=\"/neet-college-predictor\">YNeet NEET College Predictor</a>.</p>",
+    ]],
   },
 ];
 
@@ -91,7 +133,15 @@ export async function applyBlogUpdates() {
       if ((post.bodyHtml || "").includes(u.marker)) continue;
       post.title = u.title;
       post.metaDescription = u.metaDescription;
-      post.bodyHtml = sanitizeHtml(`${u.before}\n${post.bodyHtml || ""}\n${u.after}`);
+      let body = post.bodyHtml || "";
+      for (const [re, to] of u.replace || []) body = body.replace(re, to);
+      // afterMarker: insert `before` right after that earlier block (it has no nested <div>).
+      const at = u.afterMarker ? body.indexOf(`class="${u.afterMarker}"`) : -1;
+      const end = at >= 0 ? body.indexOf("</div>", at) : -1;
+      body = end >= 0
+        ? `${body.slice(0, end + 6)}\n${u.before}\n${body.slice(end + 6)}${u.after ? `\n${u.after}` : ""}`
+        : `${u.before}\n${body}${u.after ? `\n${u.after}` : ""}`;
+      post.bodyHtml = sanitizeHtml(body);
       await post.save();
       console.log(`blogUpdates: updated ${u.slug}`);
     } catch (err) {
