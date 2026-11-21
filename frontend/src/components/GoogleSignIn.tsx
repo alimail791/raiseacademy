@@ -27,6 +27,44 @@ function loadGsi(): Promise<void> {
   return scriptPromise;
 }
 
+// Saved while the details form is open, so switching apps (e.g. to copy the
+// WhatsApp number) or a page reload doesn't throw the student back to step one.
+// Google's credential is valid for ~1 hour, so we keep it for 50 minutes.
+const PENDING_KEY = "yn_google_pending";
+const PENDING_MS = 50 * 60 * 1000;
+type Pending = { credential: string; email: string; fullName: string };
+const savePending = (p: Pending | null) => {
+  try { p ? sessionStorage.setItem(PENDING_KEY, JSON.stringify({ ...p, at: Date.now() })) : sessionStorage.removeItem(PENDING_KEY); } catch { /* ignore */ }
+};
+const loadPending = (): Pending | null => {
+  try {
+    const p = JSON.parse(sessionStorage.getItem(PENDING_KEY) || "null");
+    if (p && p.credential && p.email && Date.now() - p.at < PENDING_MS) return { credential: p.credential, email: p.email, fullName: p.fullName || "" };
+  } catch { /* ignore */ }
+  return null;
+};
+
+// Funnel tracking for the details form: Railway logs + the GoogleLead record
+// (POST /api/auth/google/step) and a GA4 event. sendBeacon survives the page closing.
+const STEP_URL = `${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/auth/google/step`;
+const trackStep = (email: string, step: string) => {
+  try { (window as any).gtag?.("event", "google_signup_step", { step }); } catch { /* analytics only */ }
+  try {
+    const body = JSON.stringify({ email, step });
+    if (navigator.sendBeacon?.(STEP_URL, new Blob([body], { type: "text/plain" }))) return;
+    fetch(STEP_URL, { method: "POST", body, headers: { "Content-Type": "text/plain" }, keepalive: true }).catch(() => {});
+  } catch { /* tracking only */ }
+};
+
+// Phones often autofill or paste "+91 98765 43210" or "098765 43210"; keep the 10-digit number.
+const cleanPhone = (v: string) => {
+  let d = v.replace(/\D/g, "");
+  if (d.length === 12 && d.startsWith("91")) d = d.slice(2);
+  else if (d.length === 11 && d.startsWith("0")) d = d.slice(1);
+  else if (d.length > 10) d = d.slice(-10);
+  return d;
+};
+
 export const googleSignInEnabled = () => !!CLIENT_ID && typeof window !== "undefined";
 
 type Props = {
@@ -41,7 +79,13 @@ type Props = {
 export default function GoogleSignIn({ text = "continue_with", referredByCode, place, onDone }: Props) {
   const box = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
-  const [pending, setPending] = useState<{ credential: string; email: string; fullName: string } | null>(null);
+  const [pending, setPending] = useState<Pending | null>(null);
+  const done = useRef(new Set<string>());
+  const once = (email: string, step: string) => {
+    if (done.current.has(step)) return;
+    done.current.add(step);
+    trackStep(email, step);
+  };
   const [details, setDetails] = useState({ fullName: "", phone: "", currentClass: "" });
   const [loading, setLoading] = useState(false);
 
@@ -50,20 +94,50 @@ export default function GoogleSignIn({ text = "continue_with", referredByCode, p
     try {
       const res = await api.post("/auth/google", { credential, referredByCode, signup: signupAttribution(place), ...extra });
       if (res.data.needsDetails) {
-        setPending({ credential, email: res.data.email, fullName: res.data.fullName || "" });
+        const p = { credential, email: res.data.email, fullName: res.data.fullName || "" };
+        setPending(p);
+        savePending(p);
+        once(p.email, "form_shown");
         setDetails((d) => ({ ...d, fullName: d.fullName || res.data.fullName || "" }));
         try { (window as any).gtag?.("event", "reg_start", { method: "google" }); } catch { /* analytics only */ }
         return;
       }
+      savePending(null);
       onDone(res.data);
     } catch (err: any) {
+      if (pending) {
+        trackStep(pending.email, "submit_error");
+        if (err?.response?.status === 401) {
+          // The Google credential expired (left the form open too long): start again.
+          savePending(null);
+          setPending(null);
+          toast.error("Your Google sign-in timed out. Tap Continue with Google once more.");
+          return;
+        }
+      }
       toast.error(err?.response?.data?.message || "Google sign-in failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => { setEnabled(googleSignInEnabled()); }, []);
+  useEffect(() => {
+    setEnabled(googleSignInEnabled());
+    const p = loadPending();
+    if (p) {
+      setPending(p);
+      setDetails((d) => ({ ...d, fullName: d.fullName || p.fullName }));
+      once(p.email, "form_restored");
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Left the page with the form still open (closed tab, went back, switched away for good).
+  useEffect(() => {
+    if (!pending) return;
+    const onHide = () => trackStep(pending.email, "left_page");
+    window.addEventListener("pagehide", onHide);
+    return () => window.removeEventListener("pagehide", onHide);
+  }, [pending]);
 
   useEffect(() => {
     if (!enabled || pending) return;
@@ -81,9 +155,10 @@ export default function GoogleSignIn({ text = "continue_with", referredByCode, p
 
   if (pending) {
     const finish = () => {
-      if (!details.fullName.trim()) return toast.error("Enter your name");
-      if (!details.currentClass) return toast.error("Choose your class");
-      if (!/^[6-9]\d{9}$/.test(details.phone)) return toast.error("Enter your 10-digit WhatsApp number");
+      trackStep(pending.email, "submit_click");
+      if (!details.fullName.trim()) { trackStep(pending.email, "blocked_name"); return toast.error("Enter your name"); }
+      if (!details.currentClass) { trackStep(pending.email, "blocked_class"); return toast.error("Choose your class"); }
+      if (!/^[6-9]\d{9}$/.test(details.phone)) { trackStep(pending.email, "blocked_phone"); return toast.error("Enter your 10-digit WhatsApp number (starts with 6, 7, 8 or 9)"); }
       send(pending.credential, { fullName: details.fullName.trim(), phone: details.phone, currentClass: details.currentClass });
     };
     return (
@@ -92,13 +167,13 @@ export default function GoogleSignIn({ text = "continue_with", referredByCode, p
         <div>
           <label className="text-sm font-medium">Your name</label>
           <input className="mt-1 w-full rounded-lg border border-ink/15 px-4 py-2.5 bg-white focus:border-gold outline-none"
-            value={details.fullName} onChange={(e) => setDetails({ ...details, fullName: e.target.value })} />
+            value={details.fullName} onChange={(e) => { once(pending.email, "name_edited"); setDetails({ ...details, fullName: e.target.value }); }} />
         </div>
         <div>
           <label className="text-sm font-medium">Class</label>
           <div className="mt-1 grid grid-cols-3 gap-2">
             {CLASSES.map((c) => (
-              <button type="button" key={c} onClick={() => setDetails({ ...details, currentClass: c })}
+              <button type="button" key={c} onClick={() => { once(pending.email, "class_picked"); setDetails({ ...details, currentClass: c }); }}
                 className={`py-2.5 rounded-lg border font-semibold text-sm ${details.currentClass === c ? "bg-gold text-ink border-gold" : "bg-white border-ink/15 hover:border-gold"}`}>
                 {c === "Dropper" ? "Dropper" : `Class ${c}`}
               </button>
@@ -107,10 +182,15 @@ export default function GoogleSignIn({ text = "continue_with", referredByCode, p
         </div>
         <div>
           <label className="text-sm font-medium">WhatsApp number <span className="text-ink/70 font-normal">(for doubt support)</span></label>
+          <p className="text-xs text-ink/70 mt-0.5">Only for test reminders and doubt replies. No spam calls.</p>
           <div className="mt-1 flex rounded-lg border border-ink/15 bg-white focus-within:border-gold overflow-hidden">
             <span className="px-3 flex items-center bg-ink/5 text-ink/70 text-sm">+91</span>
-            <input className="flex-1 px-4 py-2.5 outline-none" type="tel" inputMode="numeric" maxLength={10} placeholder="98765 43210"
-              value={details.phone} onChange={(e) => setDetails({ ...details, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })} />
+            <input className="flex-1 px-4 py-2.5 outline-none" type="tel" inputMode="numeric" autoComplete="tel-national" maxLength={16} placeholder="98765 43210"
+              value={details.phone} onChange={(e) => {
+                const raw = e.target.value;
+                once(pending.email, raw.length - details.phone.length > 1 ? "phone_autofilled" : "phone_typing");
+                setDetails({ ...details, phone: cleanPhone(raw) });
+              }} />
           </div>
         </div>
         <button type="button" onClick={finish} disabled={loading}
