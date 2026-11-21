@@ -411,6 +411,8 @@ fs.writeFileSync(
         { source: "/admin/**", destination: "/app.html" },
         { source: "/institute", destination: "/app.html" },
         { source: "/institute/**", destination: "/app.html" },
+        { source: "/partner/login", destination: "/app.html" },
+        { source: "/partner/dashboard", destination: "/app.html" },
       ],
     },
     null,
