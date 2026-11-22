@@ -10,7 +10,7 @@ type Draft = { title: string; slug: string; metaDescription: string; coverImageU
 const EMPTY: Draft = { title: "", slug: "", metaDescription: "", coverImageUrl: "", bodyHtml: "" };
 const errMsg = (e: any) => e?.response?.data?.message || "Something went wrong. Please try again.";
 
-// Reads a ready-made article file: title, slug and description come from its
+// Reads a ready-made article file: title, slug, description and cover image come from its
 // "POST SETTINGS" comment (or its <h1>), the body from its <article>.
 function parseArticleFile(text: string): Partial<Draft> {
   const doc = new DOMParser().parseFromString(text, "text/html");
@@ -25,7 +25,7 @@ function parseArticleFile(text: string): Partial<Draft> {
   const heading = h1?.textContent?.trim() || "";
   h1?.remove();
   const title = settings["title"] || heading || doc.title;
-  return { title, slug: settings["url slug"] || slugify(title), metaDescription: settings["meta description"] || "", bodyHtml: root.innerHTML.trim() };
+  return { title, slug: settings["url slug"] || slugify(title), metaDescription: settings["meta description"] || "", coverImageUrl: settings["cover image"] || "", bodyHtml: root.innerHTML.trim() };
 }
 
 // Many ready-made article files at once: each becomes a scheduled post that
@@ -151,7 +151,7 @@ function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => voi
     if (!file) return;
     file.text().then((text) => {
       const p = parseArticleFile(text);
-      setD((x) => ({ ...x, ...p, coverImageUrl: x.coverImageUrl }));
+      setD((x) => ({ ...x, ...p, coverImageUrl: p.coverImageUrl || x.coverImageUrl }));
       setSlugTouched(true);
       if (htmlMode) setHtmlMode(false);
       setTimeout(() => loadBody(p.bodyHtml || ""), 0);

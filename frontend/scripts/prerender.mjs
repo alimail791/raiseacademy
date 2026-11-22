@@ -267,6 +267,12 @@ function pageHtml(route, blogData, metaOverride, practiceData) {
   html = replaceAttr(html, /(<meta property="og:description" content=")[^"]*(")/, m.description);
   html = replaceAttr(html, /(<meta property="og:url" content=")[^"]*(")/, m.canonical);
   html = replaceAttr(html, /(<meta name="twitter:title" content=")[^"]*(")/, m.title);
+  // Blog posts with a cover: share previews (WhatsApp, LinkedIn, X) show the cover, large.
+  if (m.image) {
+    html = replaceAttr(html, /(<meta property="og:image" content=")[^"]*(")/, m.image);
+    html = replaceAttr(html, /(<meta name="twitter:image" content=")[^"]*(")/, m.image);
+    html = replaceAttr(html, /(<meta name="twitter:card" content=")[^"]*(")/, "summary_large_image");
+  }
   // Regional pages (/ta/…): page language + hreflang links to the other versions.
   if (m.lang) html = html.replace(/<html lang="[^"]*"/, `<html lang="${m.lang}"`);
   if (m.alternates?.length) html = html.replace("</head>", `${m.alternates.map((a) => `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}" />`).join("\n")}\n</head>`);
@@ -414,7 +420,7 @@ for (const n of NCERT_NOTES) {
 fs.mkdirSync(path.join(dist, "blog-posts"), { recursive: true });
 for (const post of blogPosts) {
   const route = `/blog/${post.slug}`;
-  const meta = { title: `${post.title} | YNeet`, description: post.metaDescription || post.excerpt, canonical: `${SITE_ORIGIN}${route}` };
+  const meta = { title: `${post.title} | YNeet`, description: post.metaDescription || post.excerpt, canonical: `${SITE_ORIGIN}${route}`, image: post.coverImageUrl || undefined };
   fs.writeFileSync(path.join(dist, "blog-posts", `${post.slug}.html`), pageHtml(route, { post, posts: summaries }, meta));
 }
 // Articles published after this build: an indexable shell that loads the
