@@ -9,6 +9,7 @@
 //     skipped and the post still shows (the page loads it in the browser),
 //     until the next deploy of the website.
 import BlogPost from "../models/BlogPost.js";
+import { sendShareEmail } from "./blogShare.js";
 
 const SITE = "https://www.yneet.in";
 const INDEXNOW_KEY = "9ff4c670a3bb00e77127363f9fea3aa9"; // = frontend/public/<key>.txt
@@ -41,7 +42,7 @@ async function pingIndexNow(slugs) {
 
 async function rebuildWebsite() {
   const token = process.env.FRONTEND_DEPLOY_TOKEN;
-  if (!token) return console.log("[blog] FRONTEND_DEPLOY_TOKEN not set; the website picks up the new post on its next deploy.");
+  if (!token) { console.log("[blog] FRONTEND_DEPLOY_TOKEN not set; the website picks up the new post on its next deploy."); return false; }
   try {
     const res = await fetch("https://backboard.railway.com/graphql/v2", {
       method: "POST",
@@ -52,21 +53,34 @@ async function rebuildWebsite() {
       }),
     });
     const data = await res.json().catch(() => ({}));
-    if (!res.ok || data.errors) console.error("[blog] website rebuild failed:", JSON.stringify(data.errors || data).slice(0, 300));
-    else console.log("[blog] website rebuild started:", data.data?.serviceInstanceDeployV2);
+    if (!res.ok || data.errors) { console.error("[blog] website rebuild failed:", JSON.stringify(data.errors || data).slice(0, 300)); return false; }
+    console.log("[blog] website rebuild started:", data.data?.serviceInstanceDeployV2);
+    return true;
   } catch (err) {
     console.error("[blog] website rebuild failed:", err.message);
+    return false;
   }
+}
+
+// Everything that happens when posts go live (scheduled or published by hand):
+// IndexNow now; a website rebuild; then, once the rebuilt pages (with the
+// cover as the share image) are up, IndexNow again and the share email.
+// Without a rebuild the share email goes out right away.
+export async function onPublished(slugs) {
+  if (!slugs.length || !live()) return;
+  await pingIndexNow(slugs);
+  const rebuilding = await rebuildWebsite();
+  const after = async () => {
+    if (rebuilding) await pingIndexNow(slugs);
+    for (const s of slugs) await sendShareEmail(s);
+  };
+  if (rebuilding) setTimeout(() => after().catch((e) => console.error("[blog] after-publish failed:", e.message)), 12 * 60 * 1000).unref();
+  else await after();
 }
 
 async function run() {
   try {
-    const slugs = await publishDuePosts();
-    if (!slugs.length || !live()) return;
-    await pingIndexNow(slugs);
-    await rebuildWebsite();
-    // The rebuilt site has the post's real HTML page; tell IndexNow again once it's up.
-    setTimeout(() => pingIndexNow(slugs), 12 * 60 * 1000).unref();
+    await onPublished(await publishDuePosts());
   } catch (err) {
     console.error("[blog] scheduled publish failed:", err.message);
   }

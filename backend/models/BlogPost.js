@@ -10,6 +10,7 @@ const blogPostSchema = new mongoose.Schema(
     bodyHtml: { type: String, default: "" },
     status: { type: String, enum: ["draft", "scheduled", "published"], default: "draft", index: true },
     publishedAt: { type: Date, default: null }, // for "scheduled": when it goes live
+    shareEmailSentAt: { type: Date, default: null }, // utils/blogShare.js: "share today's article" email sent
   },
   { timestamps: true }
 );

@@ -1,5 +1,9 @@
 import BlogPost from "../models/BlogPost.js";
 import { sanitizeHtml, slugify, excerptFrom } from "../utils/blogHtml.js";
+import { onPublished } from "../utils/blogSchedule.js";
+
+// Fire-and-forget: a slow IndexNow / rebuild / email never delays the admin's save.
+const afterPublish = (slug) => onPublished([slug]).catch((e) => console.error("[blog] after-publish failed:", e.message));
 
 const summary = (p) => ({
   id: p._id, slug: p.slug, title: p.title, metaDescription: p.metaDescription, coverImageUrl: p.coverImageUrl,
@@ -72,6 +76,7 @@ export const adminCreate = async (req, res, next) => {
     const publish = req.body.status === "published";
     const post = await BlogPost.create({ ...fields, status: publish ? "published" : "draft", publishedAt: publish ? new Date() : null });
     res.status(201).json({ post: full(post) });
+    if (publish) afterPublish(post.slug);
   } catch (err) { next(err); }
 };
 
@@ -109,6 +114,7 @@ export const adminUpdate = async (req, res, next) => {
     if (!post) return res.status(404).json({ message: "Post not found" });
     const { error, fields } = await clean(req.body || {}, post._id);
     if (error) return res.status(400).json({ message: error });
+    const wasPublished = post.status === "published";
     Object.assign(post, fields);
     if (req.body.status === "published") {
       // A scheduled post published by hand goes live now, not on its future date.
@@ -119,6 +125,7 @@ export const adminUpdate = async (req, res, next) => {
     // status "scheduled" (or none) on a scheduled post: save the edits, keep the date.
     await post.save();
     res.json({ post: full(post) });
+    if (!wasPublished && post.status === "published") afterPublish(post.slug);
   } catch (err) { next(err); }
 };
 
