@@ -121,11 +121,14 @@ const BlogPost = () => {
   );
 };
 
-// FAQ rich results: any post body with a <div class="yn-faq"> block of
+// FAQ rich results: any post body with a <div class="yn-faq"> block, or an
+// <h2> like "Frequently asked questions" / "FAQs", followed by
 // <h3>question</h3><p>answer</p> pairs gets FAQPage markup. Plain string
 // parsing so it works the same in the build-time render and the browser.
 function faqFromHtml(html: string): { q: string; a: string }[] {
-  const block = html.match(/<div class="yn-faq">([\s\S]*?)<\/div>/);
+  const block =
+    html.match(/<div class="yn-faq">([\s\S]*?)<\/div>/) ||
+    html.match(/<h2[^>]*>[^<]*(?:frequently asked|FAQ|common questions)[^<]*<\/h2>([\s\S]*?)(?=<h2[\s>]|<div|$)/i);
   if (!block) return [];
   const text = (s: string) => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
   const out: { q: string; a: string }[] = [];

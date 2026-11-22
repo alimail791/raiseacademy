@@ -28,6 +28,79 @@ function parseArticleFile(text: string): Partial<Draft> {
   return { title, slug: settings["url slug"] || slugify(title), metaDescription: settings["meta description"] || "", bodyHtml: root.innerHTML.trim() };
 }
 
+// Many ready-made article files at once: each becomes a scheduled post that
+// goes live on its own date (backend utils/blogSchedule.js publishes it).
+function BulkImport({ onDone }: { onDone: () => void }) {
+  const tomorrow = new Date(Date.now() + 330 * 60000 + 86400000).toISOString().slice(0, 10);
+  const [files, setFiles] = useState<File[]>([]);
+  const [start, setStart] = useState(tomorrow);
+  const [time, setTime] = useState("09:00");
+  const [every, setEvery] = useState("1");
+  const [busy, setBusy] = useState(false);
+  const [results, setResults] = useState<{ title: string; ok: boolean; when?: string; message?: string }[] | null>(null);
+
+  const run = async () => {
+    if (!files.length) return toast.error("Pick the article files first.");
+    if (!start) return toast.error("Pick the date for the first post.");
+    setBusy(true);
+    setResults(null);
+    try {
+      // Name order (01-…, 02-…), whatever order the phone hands them over in.
+      const sorted = [...files].sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+      const posts = await Promise.all(sorted.map(async (f) => parseArticleFile(await f.text())));
+      const all: NonNullable<typeof results> = [];
+      // Small batches keep each request well under the API's 2 MB body limit.
+      for (let i = 0; i < posts.length; i += 5) {
+        const done = all.filter((r) => r.ok).length; // skipped files take no day
+        const res = await api.post("/blog/admin/posts/bulk", { posts: posts.slice(i, i + 5), startDate: start, time, everyDays: every, offset: done });
+        all.push(...res.data.results);
+      }
+      setResults(all);
+      const n = all.filter((r) => r.ok).length;
+      toast.success(`${n} article${n === 1 ? "" : "s"} scheduled`);
+      onDone();
+    } catch (e) {
+      toast.error(errMsg(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const field = "px-3 py-2 rounded-xl border border-ink/15 bg-white dark:bg-ink-light";
+  return (
+    <div className="mt-6 p-5 rounded-2xl border border-ink/10 space-y-3">
+      <div>
+        <h2 className="font-semibold">Import many articles and publish one a day</h2>
+        <p className="text-sm text-ink/70 mt-1">Pick several ready-made .html article files. Each is saved as a scheduled post and goes live by itself on its date (files go in name order: 01-…, 02-…).</p>
+      </div>
+      <div className="flex flex-wrap gap-3 items-end text-sm">
+        <label>Article files<br /><input type="file" multiple accept=".html,.htm,text/html" onChange={(e) => setFiles(Array.from(e.target.files || []))} /></label>
+        <label>First post on<br /><input type="date" className={field} value={start} onChange={(e) => setStart(e.target.value)} /></label>
+        <label>at (India time)<br /><input type="time" className={field} value={time} onChange={(e) => setTime(e.target.value)} /></label>
+        <label>then one every<br />
+          <select className={field} value={every} onChange={(e) => setEvery(e.target.value)}>
+            <option value="1">day</option><option value="2">2 days</option><option value="3">3 days</option><option value="7">week</option>
+          </select>
+        </label>
+        <button disabled={busy} onClick={run} className="bg-ink text-paper font-semibold px-5 py-2.5 rounded-full disabled:opacity-60">
+          {busy ? "Scheduling…" : `Schedule ${files.length || ""} article${files.length === 1 ? "" : "s"}`}
+        </button>
+      </div>
+      {results && (
+        <ul className="text-sm space-y-1">
+          {results.map((r, i) => (
+            <li key={i}>
+              {r.ok
+                ? <>✅ {new Date(r.when!).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}: {r.title}</>
+                : <>⚠️ Skipped: {r.title} ({r.message})</>}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => void }) {
   const [d, setD] = useState<Draft>(post ? { title: post.title, slug: post.slug, metaDescription: post.metaDescription, coverImageUrl: post.coverImageUrl, bodyHtml: post.bodyHtml } : EMPTY);
   const [slugTouched, setSlugTouched] = useState(!!post);
@@ -36,6 +109,7 @@ function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => voi
   const [confirmDelete, setConfirmDelete] = useState("");
   const visual = useRef<HTMLDivElement>(null);
   const live = post?.status === "published";
+  const scheduled = post?.status === "scheduled";
 
   // The visual editor is uncontrolled: set its HTML only when the body is
   // replaced from outside (loading, importing, leaving HTML view).
@@ -85,13 +159,13 @@ function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => voi
     });
   };
 
-  const save = async (status: "published" | "draft") => {
+  const save = async (status: "published" | "draft" | "scheduled") => {
     const body = { ...d, slug: d.slug || slugify(d.title), bodyHtml: readBody(), status };
     setSaving(true);
     try {
       const res = post ? await api.put(`/blog/admin/posts/${post.id}`, body) : await api.post("/blog/admin/posts", body);
       const saved: BlogPostFull = res.data.post;
-      toast.success(status === "published" ? `Published at yneet.in/blog/${saved.slug}` : live ? "Post unpublished" : "Draft saved");
+      toast.success(status === "published" ? `Published at yneet.in/blog/${saved.slug}` : status === "scheduled" ? "Changes saved. Still scheduled." : live || scheduled ? "Post moved to drafts" : "Draft saved");
       onDone();
     } catch (e) {
       toast.error(errMsg(e));
@@ -167,6 +241,16 @@ function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => voi
         <p className="text-xs text-ink/70 mt-1.5">Paste from Word, Google Docs or a web page and the formatting comes with it. Images must be web links (https://…), not pasted pictures.</p>
       </div>
 
+      {scheduled && post?.publishedAt && (
+        <p className="text-sm text-ink/70">Scheduled: goes live on its own on <strong>{new Date(post.publishedAt).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "long", year: "numeric", hour: "numeric", minute: "2-digit" })}</strong>.</p>
+      )}
+      {scheduled ? (
+      <div className="flex flex-wrap gap-3 items-center">
+        <button disabled={saving} onClick={() => save("scheduled")} className="bg-gold text-ink font-semibold px-5 py-2.5 rounded-full disabled:opacity-60">Save changes</button>
+        <button disabled={saving} onClick={() => save("published")} className="border border-ink/20 font-semibold px-5 py-2.5 rounded-full disabled:opacity-60">Publish now</button>
+        <button disabled={saving} onClick={() => save("draft")} className="border border-ink/20 font-semibold px-5 py-2.5 rounded-full disabled:opacity-60">Unschedule (keep as draft)</button>
+      </div>
+      ) : (
       <div className="flex flex-wrap gap-3 items-center">
         <button disabled={saving} onClick={() => save("published")} className="bg-gold text-ink font-semibold px-5 py-2.5 rounded-full disabled:opacity-60">
           {live ? "Update post" : "Publish"}
@@ -175,6 +259,7 @@ function Editor({ post, onDone }: { post: BlogPostFull | null; onDone: () => voi
         {live && <button disabled={saving} onClick={() => save("draft")} className="border border-ink/20 font-semibold px-5 py-2.5 rounded-full disabled:opacity-60">Unpublish</button>}
         {live && <a href={`/blog/${post!.slug}`} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-rise-dark">View post ↗</a>}
       </div>
+      )}
 
       {post && (
         <details className="pt-2">
@@ -216,6 +301,8 @@ const AdminBlog = () => {
         </div>
       </div>
 
+      <BulkImport onDone={load} />
+
       {posts === null && <p className="mt-8 text-ink/70">Loading…</p>}
       {posts?.length === 0 && (
         <div className="mt-8 p-6 rounded-2xl border border-ink/10 text-ink/70">
@@ -238,8 +325,8 @@ const AdminBlog = () => {
                     <div className="text-xs text-ink/45">/blog/{p.slug}</div>
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${p.status === "published" ? "bg-rise-light text-rise-dark" : "bg-ink/5 text-ink/70"}`}>
-                      {p.status === "published" ? "Published" : "Draft"}
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${p.status === "published" ? "bg-rise-light text-rise-dark" : p.status === "scheduled" ? "bg-gold/20 text-ink" : "bg-ink/5 text-ink/70"}`}>
+                      {p.status === "published" ? "Published" : p.status === "scheduled" ? "Scheduled" : "Draft"}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-ink/70">{formatDate(p.publishedAt || p.updatedAt)}</td>

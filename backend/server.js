@@ -29,6 +29,7 @@ import salesPartnerRoutes from "./routes/salesPartnerRoutes.js";
 import { shortsCache } from "./controllers/youtubeShortsController.js";
 import { applyBlogUpdates } from "./utils/blogUpdates.js";
 import { addBlogDrafts } from "./utils/blogDrafts.js";
+import { startBlogScheduleJob } from "./utils/blogSchedule.js";
 
 dotenv.config();
 
@@ -97,6 +98,7 @@ connectDB().then(() => {
   seedBundledCutoffs(); // NEET College Predictor: official cutoff files shipped in data/predictor
   applyBlogUpdates(); // one-time SEO updates to existing blog posts (utils/blogUpdates.js)
   addBlogDrafts(); // new blog posts added as drafts for review in the admin dashboard (utils/blogDrafts.js)
+  startBlogScheduleJob(); // scheduled blog posts go live on their date (utils/blogSchedule.js)
   // Slow public lists (cutoff pages ~6s, Shorts ~3s): build them now and keep them
   // fresh in the background so no visitor waits for a rebuild.
   const warm = () => { cutoffPagesCache.warm(); shortsCache.warm(); warmCompare(); };

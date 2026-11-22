@@ -61,6 +61,10 @@ try {
   failedSources.push("blog posts");
 }
 const summaries = blogPosts.map(({ bodyHtml, ...rest }) => rest);
+// "Read the guide" links (src/components/BlogGuides.tsx) show only published
+// posts: the same list is set here for the render and written into every page (so in-app navigation to a tool page has it too).
+const guideSlugs = failedSources.includes("blog posts") ? null : blogPosts.map((p) => p.slug);
+globalThis.__YN_BLOG_SLUGS__ = guideSlugs;
 
 // Free chapter practice pages (/neet-practice/<subject>/<chapter>): 10 free
 // questions per NEET chapter from the YNeet API, rendered as real HTML so Google
@@ -271,6 +275,7 @@ function pageHtml(route, blogData, metaOverride, practiceData) {
   html = html.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
   if (blogData) html = html.replace("</head>", `${blogDataScript(blogData)}\n</head>`);
   if (practiceData) html = html.replace("</head>", `${practiceDataScript(practiceData)}\n</head>`);
+  if (guideSlugs) html = html.replace("</head>", `<script>window.__YN_BLOG_SLUGS__=${JSON.stringify(guideSlugs)}</script>\n</head>`);
   return html;
 }
 

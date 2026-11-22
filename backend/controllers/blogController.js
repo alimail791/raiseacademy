@@ -75,6 +75,34 @@ export const adminCreate = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
+// Bulk import: many ready-made article files at once (read in the browser by
+// AdminBlog.tsx). Each becomes a "scheduled" post, one every `everyDays` days
+// from `startDate` at `time` (India time); utils/blogSchedule.js publishes
+// them when due. Posts whose slug already exists are skipped, never replaced.
+export const adminBulk = async (req, res, next) => {
+  try {
+    const b = req.body || {};
+    const items = Array.isArray(b.posts) ? b.posts.slice(0, 100) : [];
+    const everyDays = Math.min(30, Math.max(1, parseInt(b.everyDays, 10) || 1));
+    const offset = Math.max(0, parseInt(b.offset, 10) || 0); // posts already scheduled by earlier batches of this import
+    const m = String(b.startDate || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    const t = String(b.time || "09:00").match(/^(\d{2}):(\d{2})$/) || [null, "09", "00"];
+    if (!m) return res.status(400).json({ message: "Pick a start date." });
+    const first = Date.UTC(+m[1], +m[2] - 1, +m[3], +t[1], +t[2]) - 330 * 60 * 1000; // India time → UTC
+    const results = [];
+    let n = 0;
+    for (const it of items) {
+      const { error, fields } = await clean(it);
+      if (error) { results.push({ title: String(it.title || "(no title)").slice(0, 200), ok: false, message: error }); continue; }
+      const when = new Date(first + (offset + n) * everyDays * 86400000); // skipped files take no day
+      await BlogPost.create({ ...fields, status: "scheduled", publishedAt: when });
+      n += 1;
+      results.push({ title: fields.title, ok: true, slug: fields.slug, when });
+    }
+    res.json({ scheduled: n, results });
+  } catch (err) { next(err); }
+};
+
 export const adminUpdate = async (req, res, next) => {
   try {
     const post = await BlogPost.findById(req.params.id).catch(() => null);
@@ -82,8 +110,13 @@ export const adminUpdate = async (req, res, next) => {
     const { error, fields } = await clean(req.body || {}, post._id);
     if (error) return res.status(400).json({ message: error });
     Object.assign(post, fields);
-    if (req.body.status === "published") { post.status = "published"; post.publishedAt = post.publishedAt || new Date(); }
+    if (req.body.status === "published") {
+      // A scheduled post published by hand goes live now, not on its future date.
+      post.publishedAt = post.status === "scheduled" ? new Date() : post.publishedAt || new Date();
+      post.status = "published";
+    }
     if (req.body.status === "draft") post.status = "draft";
+    // status "scheduled" (or none) on a scheduled post: save the edits, keep the date.
     await post.save();
     res.json({ post: full(post) });
   } catch (err) { next(err); }

@@ -8,8 +8,8 @@ const blogPostSchema = new mongoose.Schema(
     metaDescription: { type: String, default: "", maxlength: 300 },
     coverImageUrl: { type: String, default: "" },
     bodyHtml: { type: String, default: "" },
-    status: { type: String, enum: ["draft", "published"], default: "draft", index: true },
-    publishedAt: { type: Date, default: null },
+    status: { type: String, enum: ["draft", "scheduled", "published"], default: "draft", index: true },
+    publishedAt: { type: Date, default: null }, // for "scheduled": when it goes live
   },
   { timestamps: true }
 );

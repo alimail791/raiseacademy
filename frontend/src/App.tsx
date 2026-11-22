@@ -88,6 +88,7 @@ const NeetShorts = page(() => import("./pages/NeetShorts"));
 const NeetTools = page(() => import("./pages/NeetTools"));
 const YneetLanding = page(() => import("./pages/YneetLanding"));
 import { LANDING_PAGES } from "./landing/landingPages";
+import BlogGuides from "./components/BlogGuides";
 const NeetDailyQuiz = page(() => import("./pages/NeetDailyQuiz"));
 const NeetPercentileCalculator = page(() => import("./pages/NeetPercentileCalculator"));
 const NeetPhysicsFormulas = page(() => import("./pages/NeetFormulaSheet"), "NeetPhysicsFormulas");
@@ -340,6 +341,7 @@ function App() {
         </Routes>
 </Suspense>
       </main>
+      <BlogGuides path={pathname} />
       <Footer />
       <WhatsAppButton />
     </div>

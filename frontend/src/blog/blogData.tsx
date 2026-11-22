@@ -13,7 +13,7 @@ export type BlogSummary = {
   title: string;
   metaDescription: string;
   coverImageUrl: string;
-  status: "draft" | "published";
+  status: "draft" | "scheduled" | "published";
   publishedAt: string | null;
   updatedAt: string;
   excerpt: string;
