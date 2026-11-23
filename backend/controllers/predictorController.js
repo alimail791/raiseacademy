@@ -473,6 +473,7 @@ const BUNDLED = [
   { file: "jh_2026.csv", quota: "JH", year: 2026, round: 2, rankType: "STATE", source: "JCECEB 2026 MBBS/BDS state quota rounds 1–2 (CML rank)" },
   { file: "wb_2026.csv", quota: "WB", year: 2026, round: 4, rankType: "AIR", source: "WBMCC 2026 MBBS/BDS rounds 1–3 (retained seats) + online stray round" },
   { file: "ap_2026.csv", quota: "AP", year: 2026, round: 3, rankType: "AIR", source: "Dr NTR UHS 2026 MBBS CQ + MQ, BDS MQ (phase III)" },
+  { file: "up_2025.csv", quota: "UP", year: 2025, round: 2, rankType: "AIR", source: "DGME UP 2025 govt MBBS rounds 1 + 2 (published closing ranks; interim until 2026 PDFs)" },
 ];
 export async function seedBundledCutoffs() {
   const { readFile } = await import("fs/promises");

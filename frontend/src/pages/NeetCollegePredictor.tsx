@@ -53,6 +53,7 @@ const STATE_GROUPS: Record<string, { key: string; label: string }[]> = {
     { key: "RJ_TSP", label: "I am a Scheduled Area (TSP) resident" },
   ],
   BR: [{ key: "FEMALE", label: "I am a female candidate (includes women's reserved seats)" }],
+  UP: [{ key: "FEMALE", label: "I am a female candidate (includes girls' seat lists)" }],
   MH: [
     { key: "FEMALE", label: "I am a female candidate (includes women's reserved seats)" },
     { key: "MH_HILLY", label: "I am a Hilly Area candidate" },

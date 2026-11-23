@@ -1,0 +1,411 @@
+college,category,r1,r2
+"King George's Medical University (KGMU), Lucknow",UROP,2738,4013
+"King George's Medical University (KGMU), Lucknow",BCOP,5019,5207
+"King George's Medical University (KGMU), Lucknow",SCOP,38846,44991
+"King George's Medical University (KGMU), Lucknow",STOP,87700,
+"King George's Medical University (KGMU), Lucknow",URGL,2566,3295
+"King George's Medical University (KGMU), Lucknow",BCGL,4345,
+"King George's Medical University (KGMU), Lucknow",SCGL,24069,40494
+"King George's Medical University (KGMU), Lucknow",STGL,57335,
+"Motilal Nehru Medical College, Prayagraj",UROP,8635,10751
+"Motilal Nehru Medical College, Prayagraj",EWOP,10535,11257
+"Motilal Nehru Medical College, Prayagraj",BCOP,10928,11941
+"Motilal Nehru Medical College, Prayagraj",SCOP,92465,94946
+"Motilal Nehru Medical College, Prayagraj",STOP,203904,
+"Motilal Nehru Medical College, Prayagraj",URGL,7985,9670
+"Motilal Nehru Medical College, Prayagraj",EWGL,11462,
+"Motilal Nehru Medical College, Prayagraj",BCGL,10410,11643
+"Motilal Nehru Medical College, Prayagraj",SCGL,79098,106696
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",UROP,6537,8750
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",EWOP,8404,
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",BCOP,9014,9342
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",SCOP,69805,79098
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",STOP,159146,
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",URGL,6162,8255
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",EWGL,8205,12584
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",BCGL,7334,10054
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",SCGL,69840,74223
+"Ganesh Shankar Vidyarthi Memorial Medical College, Kanpur",STGL,123697,
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",UROP,4110,6243
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",EWOP,6068,
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",BCOP,6088,6509
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",SCOP,54334,59488
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",STOP,95842,
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",URGL,3685,5777
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",EWGL,5448,7439
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",BCGL,6143,6495
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",SCGL,48726,69177
+"Dr. Ram Manohar Lohia Institute of Medical Sciences, Lucknow",STGL,121243,
+"Government Institute of Medical Sciences, Greater Noida",UROP,7774,9125
+"Government Institute of Medical Sciences, Greater Noida",EWOP,11257,13386
+"Government Institute of Medical Sciences, Greater Noida",BCOP,12796,13404
+"Government Institute of Medical Sciences, Greater Noida",SCOP,91046,92641
+"Government Institute of Medical Sciences, Greater Noida",STOP,245496,
+"Government Institute of Medical Sciences, Greater Noida",URGL,7533,9732
+"Government Institute of Medical Sciences, Greater Noida",EWGL,12158,
+"Government Institute of Medical Sciences, Greater Noida",BCGL,11683,
+"Government Institute of Medical Sciences, Greater Noida",SCGL,85055,9510
+"ESIC Medical College and Hospital, Noida",UROP,11743,
+"ESIC Medical College and Hospital, Noida",EWOP,16680,
+"ESIC Medical College and Hospital, Noida",BCOP,15683,
+"ESIC Medical College and Hospital, Noida",SCOP,112489,
+"ESIC Medical College and Hospital, Noida",URGL,8517,
+"ESIC Medical College and Hospital, Noida",BCGL,14491,
+"Baba Raghav Das Medical College, Gorakhpur",UROP,10481,12275
+"Baba Raghav Das Medical College, Gorakhpur",EWOP,12195,12403
+"Baba Raghav Das Medical College, Gorakhpur",BCOP,13054,13148
+"Baba Raghav Das Medical College, Gorakhpur",SCOP,102777,92656
+"Baba Raghav Das Medical College, Gorakhpur",STOP,225495,
+"Baba Raghav Das Medical College, Gorakhpur",URGL,9757,12729
+"Baba Raghav Das Medical College, Gorakhpur",EWGL,13468,
+"Baba Raghav Das Medical College, Gorakhpur",BCGL,12167,13255
+"Baba Raghav Das Medical College, Gorakhpur",SCGL,101033,111767
+"Maharani Laxmibai Medical College, Jhansi",UROP,11919,14229
+"Maharani Laxmibai Medical College, Jhansi",EWOP,14577,15500
+"Maharani Laxmibai Medical College, Jhansi",BCOP,14391,15330
+"Maharani Laxmibai Medical College, Jhansi",SCOP,108116,115190
+"Maharani Laxmibai Medical College, Jhansi",STOP,296075,
+"Maharani Laxmibai Medical College, Jhansi",URGL,10869,13629
+"Maharani Laxmibai Medical College, Jhansi",EWGL,14710,
+"Maharani Laxmibai Medical College, Jhansi",BCGL,14602,15130
+"Maharani Laxmibai Medical College, Jhansi",SCGL,99753,110515
+"Maharani Laxmibai Medical College, Jhansi",STGL,317250,
+"Sarojini Naidu Medical College, Agra",UROP,9660,12460
+"Sarojini Naidu Medical College, Agra",EWOP,13975,14322
+"Sarojini Naidu Medical College, Agra",BCOP,13633,14583
+"Sarojini Naidu Medical College, Agra",SCOP,96885,102514
+"Sarojini Naidu Medical College, Agra",STOP,278496,194557
+"Sarojini Naidu Medical College, Agra",URGL,8829,11068
+"Sarojini Naidu Medical College, Agra",EWGL,12513,
+"Sarojini Naidu Medical College, Agra",BCGL,12868,14103
+"Sarojini Naidu Medical College, Agra",SCGL,89589,
+"Sarojini Naidu Medical College, Agra",STGL,248252,
+"Lala Lajpat Rai Memorial Medical College, Meerut",UROP,8657,9541
+"Lala Lajpat Rai Memorial Medical College, Meerut",EWOP,11697,12057
+"Lala Lajpat Rai Memorial Medical College, Meerut",BCOP,12656,12822
+"Lala Lajpat Rai Memorial Medical College, Meerut",SCOP,92434,94064
+"Lala Lajpat Rai Memorial Medical College, Meerut",STOP,247793,
+"Lala Lajpat Rai Memorial Medical College, Meerut",URGL,7449,9849
+"Lala Lajpat Rai Memorial Medical College, Meerut",EWGL,11098,
+"Lala Lajpat Rai Memorial Medical College, Meerut",BCGL,10920,
+"Lala Lajpat Rai Memorial Medical College, Meerut",SCGL,78729,
+"Autonomous State Medical College, Ayodhya",UROP,15619,17661
+"Autonomous State Medical College, Ayodhya",EWOP,17068,18035
+"Autonomous State Medical College, Ayodhya",BCOP,17341,18136
+"Autonomous State Medical College, Ayodhya",SCOP,139443,141996
+"Autonomous State Medical College, Ayodhya",STOP,352920,
+"Autonomous State Medical College, Ayodhya",URGL,14417,17409
+"Autonomous State Medical College, Ayodhya",EWGL,16645,18257
+"Autonomous State Medical College, Ayodhya",BCGL,16303,18530
+"Autonomous State Medical College, Ayodhya",SCGL,129207,149492
+"Autonomous State Medical College, Ayodhya",STGL,442591,
+"Government Medical College, Ambedkar Nagar",UROP,15533,18079
+"Government Medical College, Ambedkar Nagar",BCOP,16874,19628
+"Government Medical College, Ambedkar Nagar",SCOP,148612,150145
+"Government Medical College, Ambedkar Nagar",STOP,443605,
+"Government Medical College, Ambedkar Nagar",URGL,14168,
+"Government Medical College, Ambedkar Nagar",BCGL,16301,20479
+"Government Medical College, Ambedkar Nagar",SCGL,140304,146075
+"Government Medical College, Ambedkar Nagar",STGL,350516,
+"Government Medical College, Saharanpur",UROP,14334,16947
+"Government Medical College, Saharanpur",BCOP,15984,17889
+"Government Medical College, Saharanpur",SCOP,139550,138833
+"Government Medical College, Saharanpur",STOP,447924,
+"Government Medical College, Saharanpur",URGL,13629,15907
+"Government Medical College, Saharanpur",BCGL,14958,17045
+"Government Medical College, Saharanpur",SCGL,132619,124699
+"Government Medical College, Saharanpur",STGL,404291,
+"Government Medical College, Kannauj",UROP,13929,16514
+"Government Medical College, Kannauj",BCOP,16020,17430
+"Government Medical College, Kannauj",SCOP,131543,135736
+"Government Medical College, Kannauj",STOP,372655,
+"Government Medical College, Kannauj",URGL,13560,16670
+"Government Medical College, Kannauj",BCGL,15530,17214
+"Government Medical College, Kannauj",SCGL,121362,129542
+"Government Medical College, Kannauj",STGL,275492,
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",UROP,13489,14985
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",EWOP,15687,16145
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",BCOP,14957,15530
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",SCOP,115157,117344
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",STOP,321240,
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",URGL,12373,15005
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",EWGL,16084,17424
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",BCGL,14861,15361
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",SCGL,111767,117636
+"Uttar Pradesh University of Medical Sciences, Saifai (Etawah)",STGL,283923,
+"Autonomous State Medical College, Firozabad",UROP,17842,18873
+"Autonomous State Medical College, Firozabad",EWOP,18653,20967
+"Autonomous State Medical College, Firozabad",BCOP,20020,22772
+"Autonomous State Medical College, Firozabad",SCOP,148051,138087
+"Autonomous State Medical College, Firozabad",STOP,504815,
+"Autonomous State Medical College, Firozabad",URGL,16748,18480
+"Autonomous State Medical College, Firozabad",EWGL,18257,19524
+"Autonomous State Medical College, Firozabad",BCGL,19053,19769
+"Autonomous State Medical College, Firozabad",SCGL,135954,149244
+"Government Medical College, Banda",UROP,17378,18578
+"Government Medical College, Banda",BCOP,18922,19369
+"Government Medical College, Banda",SCOP,151000,
+"Government Medical College, Banda",STOP,399031,
+"Government Medical College, Banda",URGL,17150,20269
+"Government Medical College, Banda",BCGL,18530,19585
+"Government Medical College, Banda",SCGL,148705,
+"Government Medical College, Banda",STGL,443202,
+"Government Medical College, Badaun",UROP,17356,19567
+"Government Medical College, Badaun",EWOP,18035,21083
+"Government Medical College, Badaun",BCOP,18939,22144
+"Government Medical College, Badaun",SCOP,151328,156196
+"Government Medical College, Badaun",STOP,407503,
+"Government Medical College, Badaun",URGL,16745,18562
+"Government Medical College, Badaun",EWGL,17424,23013
+"Government Medical College, Badaun",BCGL,18016,22502
+"Government Medical College, Badaun",SCGL,140980,147304
+"Government Medical College, Jalaun",UROP,15909,18460
+"Government Medical College, Jalaun",BCOP,17794,21207
+"Government Medical College, Jalaun",SCOP,155060,158626
+"Government Medical College, Jalaun",STOP,453902,
+"Government Medical College, Jalaun",URGL,14848,17449
+"Government Medical College, Jalaun",BCGL,16412,19723
+"Government Medical College, Jalaun",SCGL,149492,159434
+"Government Medical College, Jalaun",STGL,414514,
+"Government Medical College, Azamgarh",UROP,15768,16485
+"Government Medical College, Azamgarh",BCOP,16671,16707
+"Government Medical College, Azamgarh",SCOP,129751,
+"Government Medical College, Azamgarh",STOP,397094,
+"Government Medical College, Azamgarh",URGL,15906,17361
+"Government Medical College, Azamgarh",BCGL,16540,17436
+"Government Medical College, Azamgarh",SCGL,121164,122943
+"Autonomous State Medical College, Basti",UROP,19797,20003
+"Autonomous State Medical College, Basti",EWOP,22295,25020
+"Autonomous State Medical College, Basti",BCOP,21392,21641
+"Autonomous State Medical College, Basti",SCOP,162213,167519
+"Autonomous State Medical College, Basti",STOP,447660,
+"Autonomous State Medical College, Basti",URGL,20030,22987
+"Autonomous State Medical College, Basti",EWGL,21936,
+"Autonomous State Medical College, Basti",BCGL,22273,21830
+"Autonomous State Medical College, Basti",SCGL,156146,
+"Autonomous State Medical College, Shahjahanpur",UROP,19397,21749
+"Autonomous State Medical College, Shahjahanpur",EWOP,21276,22482
+"Autonomous State Medical College, Shahjahanpur",BCOP,21201,23644
+"Autonomous State Medical College, Shahjahanpur",SCOP,158068,162337
+"Autonomous State Medical College, Shahjahanpur",URGL,18569,22613
+"Autonomous State Medical College, Shahjahanpur",EWGL,21663,24309
+"Autonomous State Medical College, Shahjahanpur",BCGL,20626,22788
+"Autonomous State Medical College, Shahjahanpur",SCGL,155412,160497
+"Autonomous State Medical College, Bahraich",UROP,19190,21575
+"Autonomous State Medical College, Bahraich",EWOP,21486,22456
+"Autonomous State Medical College, Bahraich",BCOP,21564,23852
+"Autonomous State Medical College, Bahraich",SCOP,162926,167299
+"Autonomous State Medical College, Bahraich",STOP,458412,
+"Autonomous State Medical College, Bahraich",URGL,19714,22097
+"Autonomous State Medical College, Bahraich",EWGL,20478,
+"Autonomous State Medical College, Bahraich",BCGL,21520,21729
+"Autonomous State Medical College, Bahraich",SCGL,156374,157901
+"Autonomous State Medical College, Bulandshahr",UROP,18118,16527
+"Autonomous State Medical College, Bulandshahr",EWOP,19003,18394
+"Autonomous State Medical College, Bulandshahr",BCOP,21970,
+"Autonomous State Medical College, Bulandshahr",SCOP,147015,134624
+"Autonomous State Medical College, Bulandshahr",URGL,16657,18646
+"Autonomous State Medical College, Bulandshahr",EWGL,19570,
+"Autonomous State Medical College, Bulandshahr",BCGL,20291,18063
+"Autonomous State Medical College, Bulandshahr",SCGL,137338,
+"Autonomous State Medical College, Bijnor",UROP,22281,23430
+"Autonomous State Medical College, Bijnor",EWOP,27373,28204
+"Autonomous State Medical College, Bijnor",BCOP,25058,25690
+"Autonomous State Medical College, Bijnor",SCOP,172194,148620
+"Autonomous State Medical College, Bijnor",STOP,517725,
+"Autonomous State Medical College, Bijnor",URGL,20309,
+"Autonomous State Medical College, Bijnor",EWGL,24699,
+"Autonomous State Medical College, Bijnor",BCGL,23697,25933
+"Autonomous State Medical College, Bijnor",SCGL,159559,140980
+"Autonomous State Medical College, Fatehpur",UROP,22269,24127
+"Autonomous State Medical College, Fatehpur",EWOP,24817,26073
+"Autonomous State Medical College, Fatehpur",BCOP,23908,25202
+"Autonomous State Medical College, Fatehpur",SCOP,168823,167805
+"Autonomous State Medical College, Fatehpur",STOP,334436,
+"Autonomous State Medical College, Fatehpur",URGL,21342,20961
+"Autonomous State Medical College, Fatehpur",EWGL,24068,25429
+"Autonomous State Medical College, Fatehpur",BCGL,23805,24302
+"Autonomous State Medical College, Fatehpur",SCGL,159799,
+"Autonomous State Medical College, Etah",UROP,20989,22907
+"Autonomous State Medical College, Etah",EWOP,23271,24218
+"Autonomous State Medical College, Etah",BCOP,23289,24660
+"Autonomous State Medical College, Etah",SCOP,165003,160726
+"Autonomous State Medical College, Etah",STOP,470599,
+"Autonomous State Medical College, Etah",URGL,18781,22899
+"Autonomous State Medical College, Etah",EWGL,23013,24152
+"Autonomous State Medical College, Etah",BCGL,41423*,23901
+"Autonomous State Medical College, Etah",SCGL,157338,156646
+"Autonomous State Medical College, Etah",STGL,512145,
+"Autonomous State Medical College, Deoria",UROP,20046,18237
+"Autonomous State Medical College, Deoria",EWOP,22482,22176
+"Autonomous State Medical College, Deoria",BCOP,22416,19357
+"Autonomous State Medical College, Deoria",SCOP,164449,167366
+"Autonomous State Medical College, Deoria",STOP,474051,
+"Autonomous State Medical College, Deoria",URGL,19707,16753
+"Autonomous State Medical College, Deoria",EWGL,20439,
+"Autonomous State Medical College, Deoria",BCGL,21686,
+"Autonomous State Medical College, Deoria",SCGL,154653,170196
+"Autonomous State Medical College, Siddharth Nagar",UROP,19981,21486
+"Autonomous State Medical College, Siddharth Nagar",EWOP,22057,22760
+"Autonomous State Medical College, Siddharth Nagar",BCOP,22526,23168
+"Autonomous State Medical College, Siddharth Nagar",SCOP,166943,169228
+"Autonomous State Medical College, Siddharth Nagar",URGL,21332,23156
+"Autonomous State Medical College, Siddharth Nagar",EWGL,22398,
+"Autonomous State Medical College, Siddharth Nagar",BCGL,22445,23645
+"Autonomous State Medical College, Siddharth Nagar",SCGL,158329,169585
+"Autonomous State Medical College, Siddharth Nagar",STGL,474633,
+"Autonomous State Medical College, Jaunpur",UROP,25020,24123
+"Autonomous State Medical College, Jaunpur",EWOP,27183,28766
+"Autonomous State Medical College, Jaunpur",BCOP,26938,
+"Autonomous State Medical College, Jaunpur",SCOP,176109,172514
+"Autonomous State Medical College, Jaunpur",STOP,503057,
+"Autonomous State Medical College, Jaunpur",URGL,24838,26678
+"Autonomous State Medical College, Jaunpur",EWGL,26828,
+"Autonomous State Medical College, Jaunpur",BCGL,26327,25325
+"Autonomous State Medical College, Jaunpur",SCGL,167901,
+"Autonomous State Medical College, Sultanpur",UROP,24978,
+"Autonomous State Medical College, Sultanpur",EWOP,28550,
+"Autonomous State Medical College, Sultanpur",BCOP,28035,27314
+"Autonomous State Medical College, Sultanpur",SCOP,178131,177253
+"Autonomous State Medical College, Sultanpur",URGL,25755,21591
+"Autonomous State Medical College, Sultanpur",EWGL,27442,27704
+"Autonomous State Medical College, Sultanpur",BCGL,27745,29938
+"Autonomous State Medical College, Sultanpur",SCGL,176662,
+"Autonomous State Medical College, Mirzapur",UROP,24802,25916
+"Autonomous State Medical College, Mirzapur",EWOP,26753,27674
+"Autonomous State Medical College, Mirzapur",BCOP,26706,27745
+"Autonomous State Medical College, Mirzapur",SCOP,176828,175127
+"Autonomous State Medical College, Mirzapur",STOP,486052,
+"Autonomous State Medical College, Mirzapur",URGL,23156,26078
+"Autonomous State Medical College, Mirzapur",EWGL,25211,26954
+"Autonomous State Medical College, Mirzapur",BCGL,26128,27164
+"Autonomous State Medical College, Mirzapur",SCGL,175326,
+"Autonomous State Medical College, Mirzapur",STGL,439084,
+"Autonomous State Medical College, Pratapgarh",UROP,24698,26504
+"Autonomous State Medical College, Pratapgarh",EWOP,26832,27373
+"Autonomous State Medical College, Pratapgarh",BCOP,25839,28279
+"Autonomous State Medical College, Pratapgarh",SCOP,172828,179649
+"Autonomous State Medical College, Pratapgarh",URGL,23142,24763
+"Autonomous State Medical College, Pratapgarh",EWGL,26955,
+"Autonomous State Medical College, Pratapgarh",BCGL,25587,27189
+"Autonomous State Medical College, Pratapgarh",SCGL,172822,177960
+"Autonomous State Medical College, Hardoi",UROP,22843,24604
+"Autonomous State Medical College, Hardoi",EWOP,24962,26824
+"Autonomous State Medical College, Hardoi",BCOP,24461,25932
+"Autonomous State Medical College, Hardoi",SCOP,168262,172585
+"Autonomous State Medical College, Hardoi",STOP,447649,
+"Autonomous State Medical College, Hardoi",URGL,22613,23609
+"Autonomous State Medical College, Hardoi",EWGL,24309,26753
+"Autonomous State Medical College, Hardoi",BCGL,24072,25484
+"Autonomous State Medical College, Hardoi",SCGL,162973,162437
+"Autonomous State Medical College, Gonda",UROP,26814,25541
+"Autonomous State Medical College, Gonda",EWOP,29403,
+"Autonomous State Medical College, Gonda",BCOP,28912,29233
+"Autonomous State Medical College, Gonda",SCOP,182566,
+"Autonomous State Medical College, Gonda",STOP,403862,
+"Autonomous State Medical College, Gonda",URGL,27278,28611
+"Autonomous State Medical College, Gonda",EWGL,29256,
+"Autonomous State Medical College, Gonda",BCGL,28990,29381
+"Autonomous State Medical College, Gonda",SCGL,179473,177450
+"Autonomous State Medical College, Gonda",STGL,392674,
+"Autonomous State Medical College, Kushinagar",UROP,26498,29268
+"Autonomous State Medical College, Kushinagar",EWOP,28806,29871
+"Autonomous State Medical College, Kushinagar",BCOP,29233,30859
+"Autonomous State Medical College, Kushinagar",SCOP,182050,182066
+"Autonomous State Medical College, Kushinagar",STOP,492890,
+"Autonomous State Medical College, Kushinagar",URGL,26268,29739
+"Autonomous State Medical College, Kushinagar",EWGL,28620,
+"Autonomous State Medical College, Kushinagar",BCGL,29199,29804
+"Autonomous State Medical College, Kushinagar",SCGL,176830,183954
+"Autonomous State Medical College, Pilibhit",UROP,25749,26190
+"Autonomous State Medical College, Pilibhit",EWOP,27520,
+"Autonomous State Medical College, Pilibhit",BCOP,27937,28912
+"Autonomous State Medical College, Pilibhit",SCOP,175720,172317
+"Autonomous State Medical College, Pilibhit",STOP,512057,
+"Autonomous State Medical College, Pilibhit",URGL,25170,24780
+"Autonomous State Medical College, Pilibhit",EWGL,28106,
+"Autonomous State Medical College, Pilibhit",BCGL,26870,29003
+"Autonomous State Medical College, Pilibhit",SCGL,172715,175780
+"Autonomous State Medical College, Ghazipur",UROP,25685,26622
+"Autonomous State Medical College, Ghazipur",EWOP,27318,27382
+"Autonomous State Medical College, Ghazipur",BCOP,27470,28584
+"Autonomous State Medical College, Ghazipur",SCOP,177960,179817
+"Autonomous State Medical College, Ghazipur",STOP,492510,
+"Autonomous State Medical College, Ghazipur",URGL,25140,28074
+"Autonomous State Medical College, Ghazipur",EWGL,26954,30601
+"Autonomous State Medical College, Ghazipur",BCGL,27414,27280
+"Autonomous State Medical College, Ghazipur",SCGL,171648,148613
+"Autonomous State Medical College, Ghazipur",STGL,463015,
+"Autonomous State Medical College, Kanpur Dehat",UROP,25411,26739
+"Autonomous State Medical College, Kanpur Dehat",EWOP,28861,30623
+"Autonomous State Medical College, Kanpur Dehat",BCOP,27871,28709
+"Autonomous State Medical College, Kanpur Dehat",SCOP,172144,172388
+"Autonomous State Medical College, Kanpur Dehat",STOP,436749,
+"Autonomous State Medical College, Kanpur Dehat",URGL,23941,27179
+"Autonomous State Medical College, Kanpur Dehat",EWGL,28014,
+"Autonomous State Medical College, Kanpur Dehat",BCGL,27477,29266
+"Autonomous State Medical College, Kanpur Dehat",SCGL,164901,160635
+"Autonomous State Medical College, Kanpur Dehat",STGL,348085,
+"Autonomous State Medical College, Chandauli",UROP,28759,29939
+"Autonomous State Medical College, Chandauli",EWOP,31400,31324
+"Autonomous State Medical College, Chandauli",BCOP,31120,31597
+"Autonomous State Medical College, Chandauli",SCOP,185273,185713
+"Autonomous State Medical College, Chandauli",STOP,531087,
+"Autonomous State Medical College, Chandauli",URGL,28432,29883
+"Autonomous State Medical College, Chandauli",EWGL,,
+"Autonomous State Medical College, Chandauli",BCGL,30077,31098
+"Autonomous State Medical College, Chandauli",SCGL,185268,
+"Autonomous State Medical College, Kaushambi",UROP,28399,29595
+"Autonomous State Medical College, Kaushambi",EWOP,31285,30806
+"Autonomous State Medical College, Kaushambi",BCOP,30755,31416
+"Autonomous State Medical College, Kaushambi",SCOP,185073,182490
+"Autonomous State Medical College, Kaushambi",STOP,536133,
+"Autonomous State Medical College, Kaushambi",URGL,28040,28077
+"Autonomous State Medical College, Kaushambi",EWGL,29429,
+"Autonomous State Medical College, Kaushambi",BCGL,29645,31535
+"Autonomous State Medical College, Kaushambi",SCGL,182620,180989
+"Autonomous State Medical College, Lalitpur",UROP,28309,29546
+"Autonomous State Medical College, Lalitpur",EWOP,30623,31664
+"Autonomous State Medical College, Lalitpur",BCOP,30431,31537
+"Autonomous State Medical College, Lalitpur",SCOP,182490,166221
+"Autonomous State Medical College, Lalitpur",STOP,523448,
+"Autonomous State Medical College, Lalitpur",URGL,27127,24653
+"Autonomous State Medical College, Lalitpur",EWGL,29894,31243
+"Autonomous State Medical College, Lalitpur",BCGL,29746,31606
+"Autonomous State Medical College, Lalitpur",SCGL,179322,183074
+"Autonomous State Medical College, Lalitpur",STGL,523499,
+"Autonomous State Medical College, Auraiya",UROP,27426,28835
+"Autonomous State Medical College, Auraiya",EWOP,31324,30659
+"Autonomous State Medical College, Auraiya",BCOP,30419,31157
+"Autonomous State Medical College, Auraiya",SCOP,180905,178230
+"Autonomous State Medical College, Auraiya",STOP,534437,
+"Autonomous State Medical College, Auraiya",URGL,26630,25733
+"Autonomous State Medical College, Auraiya",EWGL,31567,
+"Autonomous State Medical College, Auraiya",BCGL,29197,30323
+"Autonomous State Medical College, Auraiya",SCGL,179603,172715
+"Autonomous State Medical College, Lakhimpur Kheri",UROP,28184,28882
+"Autonomous State Medical College, Lakhimpur Kheri",EWOP,29759,30881
+"Autonomous State Medical College, Lakhimpur Kheri",BCOP,30692,30813
+"Autonomous State Medical College, Lakhimpur Kheri",SCOP,184028,169402
+"Autonomous State Medical College, Lakhimpur Kheri",STOP,530761,
+"Autonomous State Medical College, Lakhimpur Kheri",URGL,28156,28718
+"Autonomous State Medical College, Lakhimpur Kheri",EWGL,29413,
+"Autonomous State Medical College, Lakhimpur Kheri",BCGL,31031,29637
+"Autonomous State Medical College, Lakhimpur Kheri",SCGL,182696,
+"Autonomous State Medical College, Amethi",UROP,30563,
+"Autonomous State Medical College, Amethi",EWOP,31858,
+"Autonomous State Medical College, Amethi",BCOP,31936,
+"Autonomous State Medical College, Amethi",SCOP,186522,
+"Autonomous State Medical College, Amethi",URGL,30600,
+"Autonomous State Medical College, Amethi",EWGL,30909,
+"Autonomous State Medical College, Amethi",BCGL,31618,
+"Autonomous State Medical College, Amethi",SCGL,186111,
+"Autonomous State Medical College, Sonbhadra",UROP,29381,30507
+"Autonomous State Medical College, Sonbhadra",EWOP,31194,31747
+"Autonomous State Medical College, Sonbhadra",BCOP,31316,31837
+"Autonomous State Medical College, Sonbhadra",SCOP,185682,186160
+"Autonomous State Medical College, Sonbhadra",URGL,28882,30393
+"Autonomous State Medical College, Sonbhadra",EWGL,30659,32066
+"Autonomous State Medical College, Sonbhadra",BCGL,31135,31783
+"Autonomous State Medical College, Sonbhadra",SCGL,183074,187007
+"Autonomous State Medical College, Sonbhadra",STGL,536379,
