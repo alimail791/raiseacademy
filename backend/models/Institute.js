@@ -40,6 +40,10 @@ const instituteSchema = new mongoose.Schema(
     // YNeet sales partner who introduced this institute (www.yneet.in/partner).
     // Earns 20% of the first payment and 10% of every later one.
     salesPartner: { type: mongoose.Schema.Types.ObjectId, ref: "SalesPartner" },
+
+    // Sunday ("YYYY-MM-DD") whose All-India NEET Mock report was last emailed,
+    // so the Monday report never goes out twice (utils/allIndiaInstitutes.js).
+    allIndiaReportFor: { type: String },
   },
   { timestamps: true }
 );

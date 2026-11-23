@@ -13,6 +13,7 @@ import contentRoutes from "./routes/contentRoutes.js";
 import instituteRoutes from "./routes/instituteRoutes.js";
 import { startParentWhatsAppJob } from "./utils/parentWhatsApp.js";
 import { startRenewalReminderJob } from "./controllers/instituteBillingController.js";
+import { startAllIndiaReportJob } from "./utils/allIndiaInstitutes.js";
 import { startGoogleLeadReminderJob } from "./utils/googleLeadReminder.js";
 import { startPartnerWhatsAppJobs } from "./utils/partnerWhatsApp.js";
 import blogRoutes from "./routes/blogRoutes.js";
@@ -93,6 +94,7 @@ connectDB().then(() => {
   startInstagramReelsJob(); // daily NEET quiz Reels → Instagram (needs IG_ACCESS_TOKEN)
   startParentWhatsAppJob(); // weekly WhatsApp progress report to institute students' parents
   startRenewalReminderJob(); // monthly institute plans: renewal reminder emails
+  startAllIndiaReportJob(); // Monday: All-India NEET Mock results email to every institute
   startGoogleLeadReminderJob(); // one "finish your sign-up" email to unfinished Google sign-ups
   startPartnerWhatsAppJobs(); // widget partners: daily status-image reminder + Monday stats (need WA_PARTNER_* templates)
   seedBundledCutoffs(); // NEET College Predictor: official cutoff files shipped in data/predictor

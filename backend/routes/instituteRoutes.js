@@ -40,6 +40,14 @@ router.put("/students/:id/parent", c.protectInstitute, c.instituteSetParent);
 router.get("/students/:id/parent-report", c.protectInstitute, c.instituteParentReport);
 router.get("/progress.csv", c.protectInstitute, c.instituteProgressCsv);
 router.get("/progress", c.protectInstitute, c.instituteProgress);
+// All-India NEET Mock (YNeet, Sundays): this institute's students' ranks + institute rank list.
+router.get("/allindia", c.protectInstitute, async (req, res) => {
+  try {
+    const { instituteAllIndia } = await import("../utils/allIndiaInstitutes.js");
+    const date = /^\d{4}-\d{2}-\d{2}$/.test(req.query.date || "") ? req.query.date : undefined;
+    res.json(await instituteAllIndia(req.institute, date));
+  } catch (err) { res.status(502).json({ message: "Couldn't load All-India results right now. Please try again in a minute." }); }
+});
 router.get("/progress/:id", c.protectInstitute, c.instituteStudentProgress);
 
 export default router;
