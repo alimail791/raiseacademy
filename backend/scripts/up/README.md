@@ -1,19 +1,22 @@
 # Uttar Pradesh (DGME UP) cutoffs for the NEET College Predictor
 
-**Current bundled data (`up_2025.csv`) is interim:** 2025 round 1 + 2 closing ranks for the
-46 government / autonomous MBBS colleges, copied from a published college-wise table
-(`source_2025.csv`), because upneet.gov.in could not be reached to download the official
-2026 allotment PDFs. No private colleges, no BDS, no 2026 ranks yet.
+upneet.gov.in could not be reached, so the bundled data is built from published
+college-wise closing ranks (NEET All India Rank, MBBS):
 
-    python build_up.py source_2025.csv ../../data/predictor/up_2025.csv
+| File | What | Used for |
+| --- | --- | --- |
+| `up_2026.csv` ← `source_2026_open.csv` | 2026 rounds 1–3 open-seat closing ranks, 45 govt + 2 ESIC + 41 private colleges | everyone (private colleges also for other states) |
+| `up_2025.csv` ← `source_2025.csv` | 2025 rounds 1–2 govt category lists (UR/EWS/OBC/SC/ST, open + girls) | EWS/OBC/SC/ST students only, shown as 2025 |
+
+    python build_up.py source_2026_open.csv ../../data/predictor/up_2026.csv
+    python build_up.py source_2025.csv      ../../data/predictor/up_2025.csv
+
+The predictor uses the latest year; for categories that year lacks it falls back to the
+previous year's rows for that quota (`latestDatasets` → `fallback`). No BDS, no opening ranks.
 
 ## Replacing it with official 2026 data
 
-1. From upneet.gov.in download the 2026 MBBS/BDS seat allotment results (rounds 1, 2, mop-up,
-   stray) or the opening/closing rank PDFs.
-2. Convert with `../allotment_pdf_to_csv.py` (or a UP extractor like the other states).
-3. Admin → College Predictor → upload: quota **Uttar Pradesh**, year **2026**, ranks =
-   **NEET All India Rank**. The predictor always uses the latest year, so 2026 replaces 2025.
-
-UP category lists: UR (open), EW (EWS), BC (OBC), SC, ST; each as OP (all) and GL (girls →
-eligibility FEMALE). FF, PH and other special lists are not included.
+Download the 2026 MBBS/BDS allotment results from upneet.gov.in, convert with
+`../allotment_pdf_to_csv.py`, and upload in Admin → College Predictor: quota **Uttar Pradesh**,
+year **2026**, round 3, ranks = **NEET All India Rank** (replace existing). Once the 2026
+upload has the reserved categories, the 2025 fallback stops being used automatically.

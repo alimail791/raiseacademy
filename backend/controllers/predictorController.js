@@ -80,8 +80,17 @@ export async function latestDatasets(force = false) {
   const out = {};
   for (const g of agg) {
     const q = g._id.quota;
-    if (out[q]) continue; // first = latest year, latest round
-    out[q] = { quota: q, name: QUOTAS[q] || q, year: g._id.year, round: g._id.round, rows: g.rows, openRows: g.openRows, courses: g.courses.sort(), categories: g.categories.sort(), rankType: g.rankType };
+    if (out[q]) {
+      // An older year can fill in categories the latest year doesn't have yet (e.g. a
+      // state whose new data covers only open seats). Those rows keep their own year.
+      const missing = g.categories.filter((c) => !out[q].ownCategories.includes(c) && !(out[q].fallback?.categories || []).includes(c));
+      if (missing.length && g._id.year < out[q].year && !out[q].fallback) {
+        out[q].fallback = { year: g._id.year, round: g._id.round, categories: missing.sort() };
+        out[q].categories = [...new Set([...out[q].categories, ...missing])].sort();
+      }
+      continue;
+    }
+    out[q] = { ownCategories: g.categories, quota: q, name: QUOTAS[q] || q, year: g._id.year, round: g._id.round, rows: g.rows, openRows: g.openRows, courses: g.courses.sort(), categories: g.categories.sort(), rankType: g.rankType };
   }
   datasetCache = { at: Date.now(), value: out };
   return out;
@@ -189,6 +198,10 @@ export async function predict(input) {
     if (!home) clause.openToAll = true;
     or.push(clause);
     used.push({ quota: s.quota, name: s.name, year: s.year, round: s.round, rankType: s.rankType, home });
+    if (home && s.fallback?.categories.includes(cat)) {
+      or.push({ ...clause, year: s.fallback.year, round: s.fallback.round, category: cat });
+      used.push({ quota: s.quota, name: `${s.name} ${cat}`, year: s.fallback.year, round: s.fallback.round, rankType: s.rankType, home });
+    }
   }
   if (!or.length) return { results: [], used, notes };
 
@@ -473,7 +486,8 @@ const BUNDLED = [
   { file: "jh_2026.csv", quota: "JH", year: 2026, round: 2, rankType: "STATE", source: "JCECEB 2026 MBBS/BDS state quota rounds 1–2 (CML rank)" },
   { file: "wb_2026.csv", quota: "WB", year: 2026, round: 4, rankType: "AIR", source: "WBMCC 2026 MBBS/BDS rounds 1–3 (retained seats) + online stray round" },
   { file: "ap_2026.csv", quota: "AP", year: 2026, round: 3, rankType: "AIR", source: "Dr NTR UHS 2026 MBBS CQ + MQ, BDS MQ (phase III)" },
-  { file: "up_2025.csv", quota: "UP", year: 2025, round: 2, rankType: "AIR", source: "DGME UP 2025 govt MBBS rounds 1 + 2 (published closing ranks; interim until 2026 PDFs)" },
+  { file: "up_2026.csv", quota: "UP", year: 2026, round: 3, rankType: "AIR", source: "DGME UP 2026 MBBS rounds 1–3, open seats (published closing ranks)" },
+  { file: "up_2025.csv", quota: "UP", year: 2025, round: 2, rankType: "AIR", source: "DGME UP 2025 govt MBBS rounds 1 + 2 category lists (used for EWS/OBC/SC/ST until 2026 lists are loaded)" },
 ];
 export async function seedBundledCutoffs() {
   const { readFile } = await import("fs/promises");
