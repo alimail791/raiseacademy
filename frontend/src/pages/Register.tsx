@@ -57,7 +57,18 @@ function trackSignUpThen(next: () => void, plan: string, contentName: string, me
 const Register = () => {
   const [showPw, setShowPw] = useState(false);
   const [searchParams] = useSearchParams();
-  const referredByCode = searchParams.get("ref") || undefined;
+  // Referral code from a friend's link. Kept in localStorage for 30 days so it
+  // isn't lost if the friend looks around the site before signing up.
+  const referredByCode = (() => {
+    const fromUrl = (searchParams.get("ref") || "").trim().toUpperCase();
+    try {
+      if (fromUrl) { localStorage.setItem("yneet_ref", JSON.stringify({ code: fromUrl, at: Date.now() })); return fromUrl; }
+      const saved = JSON.parse(localStorage.getItem("yneet_ref") || "null");
+      if (saved?.code && Date.now() - saved.at < 30 * 864e5) return String(saved.code);
+    } catch { /* storage unavailable */ }
+    return fromUrl || undefined;
+  })();
+  const trialDays = referredByCode ? 45 : 30;
   // Which button sent them here (?from=question_page etc.), saved on the new account.
   const from = searchParams.get("from") || "register_page";
   // Name and phone can arrive pre-filled from YNeet Daily (play.yneet.in), where the
@@ -140,7 +151,7 @@ const Register = () => {
     <div className="max-w-2xl mx-auto px-4 py-16">
       <h1 className="font-display text-3xl font-bold text-center">Register for YNeet</h1>
       <div className="mt-4 rounded-2xl bg-gold/15 border border-gold/40 px-4 py-3 text-center">
-        <p className="font-semibold text-ink">{junior ? "🎁 Free for Class 6–8 — class tests, daily puzzles, quiz and Shorts" : "🎁 Your first 30 days are FREE — full access to every NEET test"}</p>
+        <p className="font-semibold text-ink">{junior ? "🎁 Free for Class 6–8 — class tests, daily puzzles, quiz and Shorts" : (referredByCode ? "🎁 You were invited by a friend — your first 45 days are FREE (instead of 30)" : "🎁 Your first 30 days are FREE — full access to every NEET test")}</p>
         <p className="text-sm text-ink/70 mt-0.5">{junior ? "No payment, ever." : "Starts automatically when you register. No payment, no card, no auto-charge."}</p>
       </div>
 
@@ -154,7 +165,7 @@ const Register = () => {
         <button type="button" onClick={() => setJunior(false)}
           className={`rounded-2xl border-2 p-4 text-left transition-colors ${!junior ? "border-gold bg-gold/10" : "border-ink/10 bg-white hover:border-gold/50"}`}>
           <p className="font-display font-bold">Class 9 – Dropper</p>
-          <p className="text-sm text-ink/70">{isAppMode() ? "30 days free · no payment needed" : "30 days free, then from ₹299/month"}</p>
+          <p className="text-sm text-ink/70">{isAppMode() ? `${trialDays} days free · no payment needed` : `${trialDays} days free, then from ₹299/month`}</p>
         </button>
       </div>
 
@@ -269,7 +280,7 @@ const Register = () => {
             </div>
           </div>
 
-          <p className="text-center text-sm font-semibold text-rise-dark">✓ Free for 30 days &nbsp;·&nbsp; ✓ No payment or card &nbsp;·&nbsp; ✓ No auto-charge</p>
+          <p className="text-center text-sm font-semibold text-rise-dark">✓ Free for {trialDays} days &nbsp;·&nbsp; ✓ No payment or card &nbsp;·&nbsp; ✓ No auto-charge</p>
           <button type="button" onClick={() => validateSenior() && submit()} disabled={loading}
             className="w-full bg-gold text-ink font-bold text-lg py-3.5 rounded-full hover:brightness-95 disabled:opacity-60">
             {loading ? "Creating account…" : "Start My Free 30 Days →"}
