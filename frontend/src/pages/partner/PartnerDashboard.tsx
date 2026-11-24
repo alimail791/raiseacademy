@@ -36,6 +36,8 @@ export default function PartnerDashboard() {
   const { partner: p, stats: s, terms: t } = d;
 
   const pitch = `Hello sir/madam, I'm ${p.name}. YNeet gives your NEET students 70,000+ practice questions, full mock tests and PYQs on their phone, and gives you a live panel with each student's weak chapters plus weekly parent reports. Start a FREE 14-day pilot for 5 students (no payment): ${p.link}`;
+  // Easy first message: something free for the centre, then the pilot link.
+  const freePitch = `Hello sir/madam, I'm ${p.name} from YNeet. A free gift for your NEET students: a daily NEET PYQ box for your website (6 previous-year questions a day with answers) (no sign-up needed) and free chapter-wise NEET PYQ PDFs. No payment: https://www.yneet.in/neet-question-widget#pyq\n\nIf you'd like, your students can also get a FREE 14-day mock test pilot: ${p.link}`;
   const copy = (text: string, msg: string) => { navigator.clipboard?.writeText(text).then(() => toast.success(msg)).catch(() => window.prompt("Copy:", text)); };
   const saveUpi = async () => {
     try { await partnerApi.put("/me", { upiId: upi }); toast.success("UPI ID saved"); load(); }
@@ -72,6 +74,7 @@ export default function PartnerDashboard() {
             <button onClick={() => copy(p.link, "Link copied")} className="flex items-center gap-1.5 bg-gold text-ink text-sm font-semibold px-4 py-2 rounded-full"><Copy size={15} /> Copy link</button>
             <a href={`https://wa.me/?text=${encodeURIComponent(pitch)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 border border-paper/30 text-sm font-semibold px-4 py-2 rounded-full hover:bg-paper/10"><Share2 size={15} /> Send on WhatsApp</a>
             <button onClick={() => copy(pitch, "Message copied")} className="flex items-center gap-1.5 border border-paper/30 text-sm font-semibold px-4 py-2 rounded-full hover:bg-paper/10"><MessageCircle size={15} /> Copy message</button>
+            <a href={`https://wa.me/?text=${encodeURIComponent(freePitch)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 border border-gold/60 text-gold text-sm font-semibold px-4 py-2 rounded-full hover:bg-paper/10"><Share2 size={15} /> Send free PYQ gift (easy first message)</a>
           </div>
         </div>
       </div>

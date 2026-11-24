@@ -224,7 +224,7 @@ export const WeightageEmbed = () => {
 // /embed/pyq?class=<6-10>&chapter=<chapterSlug>  5 Class 6–10 Science MCQs from one chapter
 // The API picks a new set of 5 each day (rotating through the chapter), never the full chapter,
 // so the box sends students to the chapter page on yneet.in for the rest.
-type WQ = { id: string; question: string; options: string[]; answer: number; explanation: string; pyqYear: number | null };
+type WQ = { id: string; question: string; options: string[]; answer: number; explanation: string; pyqYear: number | null; subject?: string; chapter?: string };
 const LETTERS = ["A", "B", "C", "D"];
 
 export const PyqEmbed = () => {
@@ -241,14 +241,19 @@ export const PyqEmbed = () => {
     const cls = Number(p.get("class") || 0);
     if (!YNEET_API || !chapter) { setQs(null); return; }
 
-    const url = cls >= 6 && cls <= 10
+    const mixed = chapter === "mixed";
+    const url = mixed
+      ? `${YNEET_API}/public/practice-daily-mixed`
+      : cls >= 6 && cls <= 10
       ? `${YNEET_API}/public/school-questions/daily?class=${cls}&chapter=${encodeURIComponent(chapter)}`
       : `${YNEET_API}/public/practice/${chapter}/daily`;
     axios.get(url).then((r) => {
       const c = r.data.chapter;
       const list: WQ[] = r.data.questions || [];
       if (!c || !list.length) { setQs(null); return; }
-      setInfo(c.classNum
+      setInfo(mixed
+        ? { title: "NEET PYQs of the day", page: "/neet-practice", total: c.total, school: false, slug: "mixed" }
+        : c.classNum
         ? { title: `Class ${c.classNum} · ${c.chapter}`, page: `/class-${c.classNum}-questions#${c.slug}`, total: c.total, school: true, slug: c.slug }
         : { title: `${c.subject} · ${c.chapter}`, page: `/neet-practice/${c.slug}`, total: c.pyqCount || c.total, school: false, slug: c.slug });
       setQs(list);
@@ -270,6 +275,7 @@ export const PyqEmbed = () => {
       {q && (
         <>
           {q.pyqYear && <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-gold/20 text-gold-deep px-2 py-0.5 rounded">NEET {q.pyqYear}</span>}
+          {q.subject && <span className="inline-block ml-2 text-[11px] font-semibold text-ink/60">{q.subject} · {q.chapter}</span>}
           <p className="font-semibold leading-snug whitespace-pre-line mt-2">{q.question}</p>
           <div className="mt-3 space-y-2">
             {q.options.map((o, k) => {
@@ -298,11 +304,11 @@ export const PyqEmbed = () => {
             <div className="mt-4 rounded-xl bg-gold/15 border border-gold/40 p-3 text-sm">
               <p className="font-bold">You scored {score} / {qs!.length}.</p>
               <a href={link(info.page)} target="_blank" rel="noopener" className="mt-2 block text-center bg-gold text-ink font-bold px-4 py-2.5 rounded-full">
-                More {label} on this chapter, free on YNeet ↗
+                {info.slug === "mixed" ? "Practise chapter-wise NEET PYQs free on YNeet ↗" : `More ${label} on this chapter, free on YNeet ↗`}
               </a>
               {!info.school && (
-                <a href={link(`/neet-pyq-books?chapter=${encodeURIComponent(info.slug)}`)} target="_blank" rel="noopener" className="mt-2 block text-center border border-ink/20 font-semibold px-4 py-2.5 rounded-full hover:border-gold">
-                  Free PDF: every NEET PYQ of this chapter ↗
+                <a href={link(info.slug === "mixed" ? "/neet-pyq-books" : `/neet-pyq-books?chapter=${encodeURIComponent(info.slug)}`)} target="_blank" rel="noopener" className="mt-2 block text-center border border-ink/20 font-semibold px-4 py-2.5 rounded-full hover:border-gold">
+                  {info.slug === "mixed" ? "Free chapter-wise NEET PYQ PDFs ↗" : "Free PDF: every NEET PYQ of this chapter ↗"}
                 </a>
               )}
             </div>

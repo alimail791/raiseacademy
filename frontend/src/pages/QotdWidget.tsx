@@ -151,6 +151,8 @@ function PyqWidgetCard({ by }: { by: string }) {
     req.then((list: PickChapter[]) => {
       if (!alive) return;
       const sorted = SUBJECTS.flatMap((s) => list.filter((c) => c.subject === s));
+      // NEET: "mixed" (2 Physics + 2 Chemistry + 2 Biology a day) first, as the easy default.
+      if (level === "neet" && sorted.length) sorted.unshift({ slug: "mixed", subject: "Mixed", chapter: "PYQs of the day, all subjects", count: 6 });
       setChapters(sorted);
       setSlug(sorted[0]?.slug || "");
     }).catch(() => alive && setChapters([]));
@@ -160,8 +162,9 @@ function PyqWidgetCard({ by }: { by: string }) {
   const ch = chapters?.find((c) => c.slug === slug);
   const school = level !== "neet";
   const src = withBy(school ? `https://www.yneet.in/embed/pyq?class=${level}&chapter=${slug}` : `https://www.yneet.in/embed/pyq?chapter=${slug}`, by);
-  const page = school ? `https://www.yneet.in/class-${level}-questions#${slug}` : `https://www.yneet.in/neet-practice/${slug}`;
-  const anchor = ch ? (school ? `Class ${level} ${ch.chapter} MCQs` : `${ch.chapter} NEET PYQs`) : "";
+  const mixed = slug === "mixed";
+  const page = school ? `https://www.yneet.in/class-${level}-questions#${slug}` : mixed ? "https://www.yneet.in/neet-practice" : `https://www.yneet.in/neet-practice/${slug}`;
+  const anchor = ch ? (school ? `Class ${level} ${ch.chapter} MCQs` : mixed ? "NEET PYQs of the day" : `${ch.chapter} NEET PYQs`) : "";
   const code = ch
     ? `<iframe src="${src}" title="${anchor}" width="100%" height="${PYQ_HEIGHT}" style="border:0;max-width:460px;width:100%" loading="lazy"></iframe>
 <p style="font-size:13px;margin:4px 0 0"><a href="${page}">${anchor}</a> by <a href="https://www.yneet.in">YNeet</a></p>`
@@ -179,7 +182,7 @@ function PyqWidgetCard({ by }: { by: string }) {
     <section id="pyq" className="mt-14 scroll-mt-24">
       <h2 className="font-display text-2xl font-bold">Chapter-wise NEET PYQs</h2>
       <p className="text-ink/70 dark:text-paper/70 mt-2 max-w-3xl">
-        5 previous year NEET questions from the chapter you pick, with answers and explanations. A new set every day, so students come back. Put a Biology chapter on your Biology page, a Physics chapter on your Physics page. Schools can pick a Class 6–10 Science chapter instead.
+        Pick "All subjects mixed" for 6 NEET PYQs a day (2 Physics, 2 Chemistry, 2 Biology), or 5 previous year NEET questions from one chapter you pick, with answers and explanations. A new set every day, so students come back. Put a Biology chapter on your Biology page, a Physics chapter on your Physics page. Schools can pick a Class 6–10 Science chapter instead.
       </p>
       <div className="mt-5 flex flex-wrap gap-10">
         <div style={{ flex: "1 1 340px" }} className="min-w-0">
@@ -193,6 +196,7 @@ function PyqWidgetCard({ by }: { by: string }) {
             <label className="block text-sm font-semibold">Chapter
               <select value={slug} onChange={(e) => setSlug(e.target.value)} className={sel} disabled={!chapters?.length}>
                 {chapters === null && <option>Loading chapters…</option>}
+                {chapters?.[0]?.slug === "mixed" && <option value="mixed">All subjects mixed: 6 PYQs a day (easiest)</option>}
                 {SUBJECTS.map((s) => {
                   const list = (chapters || []).filter((c) => c.subject === s);
                   return list.length ? (

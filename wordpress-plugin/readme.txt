@@ -4,7 +4,7 @@ Tags: education, quiz, mcq, coaching, school
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,7 @@ When a visitor views a page that contains one of the widgets, their browser load
    `[memcw_widget type="predictor"]`
    `[memcw_widget type="cutoff" state="tamil-nadu"]`
    `[memcw_widget type="weightage" subject="Biology"]`
+   `[memcw_widget type="pyq"]` (6 PYQs a day across Physics, Chemistry and Biology)
    `[memcw_widget type="pyq" chapter="biology/human-reproduction"]`
 
 == Frequently Asked Questions ==
@@ -54,9 +55,12 @@ When a visitor views a page that contains one of the widgets, their browser load
 Yes, completely.
 
 = Where do I find chapter ids for the PYQ widget? =
-Pick a chapter at https://www.yneet.in/neet-question-widget#pyq and copy the chapter value from the code shown.
+Pick a chapter at https://www.yneet.in/neet-question-widget#pyq and copy the chapter value from the code shown. Leave the chapter out to show a mixed set from all subjects.
 
 == Changelog ==
+
+= 1.4.0 =
+* PYQ widget works without a chapter: shows 6 PYQs a day across all subjects.
 
 = 1.3.0 =
 * Renamed to Raise Academy Medical Exam Widgets.

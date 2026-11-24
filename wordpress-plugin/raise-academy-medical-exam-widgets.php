@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Raise Academy Medical Exam Widgets
  * Description:       Free medical entrance exam widgets for coaching centre and school websites: exam countdown, MCQ of the day, college predictor, government MBBS cutoffs, chapter-wise weightage and daily chapter PYQs. Use the [memcw_widget] shortcode.
- * Version:           1.3.0
+ * Version:           1.4.0
  * Requires at least: 5.0
  * Requires PHP:      7.0
  * Author:            Raise Academy
@@ -24,7 +24,7 @@ define( 'MEMCW_SERVICE_URL', 'https://www.yneet.in' );
  * by       Optional. Shows "Shared by <name>" in the box. Defaults to the plugin setting.
  * state    For type="cutoff": all-india-quota, tamil-nadu, kerala, karnataka, ... (default all-india-quota)
  * subject  For type="weightage": Biology, Physics or Chemistry (default Biology)
- * chapter  For type="pyq": the chapter id listed on the service's widget page
+ * chapter  For type="pyq": the chapter id listed on the service's widget page, or "mixed" (the default) for 6 PYQs a day across all subjects
  * class    For type="pyq": 6 to 10 for school Science chapters; leave empty for medical entrance chapters
  *
  * @param array|string $atts Shortcode attributes.
@@ -86,11 +86,12 @@ function memcw_widget_shortcode( $atts ) {
 		case 'pyq':
 			$chapter = preg_replace( '/[^a-z0-9\/-]/', '', strtolower( (string) $a['chapter'] ) );
 			$class   = absint( $a['class'] );
-			if ( ! $chapter ) {
-				return '<!-- memcw_widget: type="pyq" needs a chapter attribute -->';
-			}
-			$path = '/embed/pyq';
-			if ( $class >= 6 && $class <= 10 ) {
+			$path    = '/embed/pyq';
+			if ( ! $chapter || ( 'mixed' === $chapter && ! ( $class >= 6 && $class <= 10 ) ) ) {
+				$chapter    = 'mixed';
+				$class      = 0;
+				$credit_url = $base . '/neet-practice';
+			} elseif ( $class >= 6 && $class <= 10 ) {
 				$query['class'] = $class;
 				$credit_url     = $base . '/class-' . $class . '-questions#' . $chapter;
 			} else {
@@ -189,6 +190,7 @@ function memcw_settings_page() {
 			<li><code>[memcw_widget type="predictor"]</code> <?php esc_html_e( 'Medical college predictor', 'raise-academy-medical-exam-widgets' ); ?></li>
 			<li><code>[memcw_widget type="cutoff" state="tamil-nadu"]</code> <?php esc_html_e( 'Government MBBS cutoffs (all-india-quota, kerala, karnataka, …)', 'raise-academy-medical-exam-widgets' ); ?></li>
 			<li><code>[memcw_widget type="weightage" subject="Biology"]</code> <?php esc_html_e( 'Chapter-wise weightage', 'raise-academy-medical-exam-widgets' ); ?></li>
+			<li><code>[memcw_widget type="pyq"]</code> <?php esc_html_e( '6 daily PYQs across Physics, Chemistry and Biology.', 'raise-academy-medical-exam-widgets' ); ?></li>
 			<li><code>[memcw_widget type="pyq" chapter="…"]</code> <?php esc_html_e( '5 daily PYQs from one chapter. Pick the chapter on', 'raise-academy-medical-exam-widgets' ); ?> <a href="<?php echo esc_url( MEMCW_SERVICE_URL . '/neet-question-widget#pyq' ); ?>" target="_blank" rel="noopener">yneet.in</a>.</li>
 		</ul>
 	</div>

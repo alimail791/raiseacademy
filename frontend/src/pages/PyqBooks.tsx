@@ -22,7 +22,20 @@ type Catalog = { books: Book[]; booklets: Booklet[]; price: { book: number; bund
 
 const mb = (b: number) => `${(b / 1024 / 1024).toFixed(1)} MB`;
 const errMsg = (e: any, f: string) => e?.response?.data?.message || f;
-const track = (event: string, params: Record<string, unknown> = {}) => { try { (window as any).gtag?.("event", event, params); } catch { /* analytics only */ } };
+// Visitors from a widget (utm_medium=widget) keep the host site for this visit,
+// so leads, booklet downloads and purchases show which institute's site sent them
+// (GA4 event parameter widget_site).
+function widgetSite() {
+  try {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get("utm_medium") === "widget" && p.get("utm_source")) sessionStorage.setItem("pyq_widget_site", p.get("utm_source")!.slice(0, 80));
+    return sessionStorage.getItem("pyq_widget_site") || "";
+  } catch { return ""; }
+}
+const track = (event: string, params: Record<string, unknown> = {}) => {
+  const site = widgetSite();
+  try { (window as any).gtag?.("event", event, site ? { ...params, widget_site: site } : params); } catch { /* analytics only */ }
+};
 const downloadUrl = (file: string, token: string) => `${api.defaults.baseURL}/books/download/${encodeURIComponent(file)}?token=${encodeURIComponent(token)}`;
 
 // WhatsApp number confirmation (same lead + OTP as the College Predictor).
@@ -98,6 +111,7 @@ const PyqBooks = () => {
 
   // ?chapter=<slug> (from the chapter PYQ widget): scroll to that chapter's free booklet.
   const [focus, setFocus] = useState("");
+  useEffect(() => { if (widgetSite()) track("pyq_books_from_widget"); }, []);
   useEffect(() => {
     if (!cat) return;
     const want = (new URLSearchParams(window.location.search).get("chapter") || "").toLowerCase();
@@ -124,6 +138,7 @@ const PyqBooks = () => {
       const v = await api.post("/books/verify", { token: tok, ...p });
       setOwned(v.data.books);
       trackPurchase(v.data.amount, label);
+      track("pyq_book_purchase", { value: v.data.amount, items: label });
       setMsg("Payment done. Your books are ready to download below, and you can download them again any time with this WhatsApp number.");
     } catch (e: any) {
       if (e?.message !== "cancelled") setMsg(errMsg(e, e?.message || "Payment didn't go through. No money was taken; try again."));
