@@ -43,6 +43,7 @@ const COMMUNITY: Item[] = [
   { label: "YNeet Shorts videos", to: "/neet-shorts" },
   { label: "NEET news & blog", to: "/blog" },
   { label: "Chrome extension", href: CHROME_EXTENSION_URL },
+  { label: "Free NEET widgets for WordPress", href: "https://wordpress.org/plugins/raise-academy-medical-exam-widgets/" },
 ];
 
 const PARENTS: Item[] = [

@@ -377,6 +377,72 @@ const DRAFTS = [
 <p><strong>Practise it:</strong> start with the <a href="/neet-physics-formula-sheet">NEET Physics formula sheet</a> and the Physics chapters in <a href="/neet-practice">chapter-wise PYQs</a>. For timed Physics chapter tests and full mocks with analysis, <a href="/register">try YNeet free for 30 days</a>.</p>
 `,
   },
+  {
+    slug: "free-neet-widgets-wordpress-plugin",
+    title: "How to Add Free NEET Widgets to Your Coaching Centre Website (WordPress Plugin)",
+    metaDescription:
+      "Add a NEET countdown, daily NEET question, college predictor, MBBS cutoffs and chapter-wise PYQs to your coaching centre or school website for free, with one WordPress plugin.",
+    bodyHtml: `
+<p><strong>Quick answer:</strong> install the free <a href="https://wordpress.org/plugins/raise-academy-medical-exam-widgets/">Raise Academy Medical Exam Widgets</a> plugin from WordPress.org, then paste a shortcode such as <code>[memcw_widget type="qotd"]</code> into any page. Your website will show a daily NEET question, a NEET countdown, a college predictor, MBBS cutoffs, chapter-wise weightage or daily chapter PYQs, always up to date and at no cost.</p>
+
+<h2>Why add NEET widgets to your website?</h2>
+<p>Most coaching centre websites list courses, fees and a phone number, and then never change. Students visit once and leave. A daily NEET question or a live countdown gives them a reason to come back every day, and every return visit is another chance for them to call you or walk in for admission.</p>
+<ul>
+<li><strong>Fresh content every day</strong> without you writing anything.</li>
+<li><strong>Longer visits:</strong> students attempt the question, check possible colleges or look up cutoffs.</li>
+<li><strong>Your name on every box:</strong> set your institute name once and each widget shows "Shared by" your institute.</li>
+<li><strong>Free, no account, no ads.</strong></li>
+</ul>
+
+<h2>The six widgets</h2>
+<table>
+<thead><tr><th>Widget</th><th>What students see</th><th>Shortcode</th></tr></thead>
+<tbody>
+<tr><td>NEET countdown</td><td>Days left to NEET with a target for this week</td><td><code>[memcw_widget type="countdown"]</code></td></tr>
+<tr><td>NEET question of the day</td><td>A new MCQ every day, with answer and explanation</td><td><code>[memcw_widget type="qotd"]</code></td></tr>
+<tr><td>College predictor</td><td>Enter rank, category and state to see possible MBBS/BDS colleges</td><td><code>[memcw_widget type="predictor"]</code></td></tr>
+<tr><td>Government MBBS cutoffs</td><td>Closing ranks for All India Quota or a state</td><td><code>[memcw_widget type="cutoff" state="tamil-nadu"]</code></td></tr>
+<tr><td>Chapter-wise weightage</td><td>Chapters with the most questions in Physics, Chemistry or Biology</td><td><code>[memcw_widget type="weightage" subject="Biology"]</code></td></tr>
+<tr><td>Chapter PYQs</td><td>5 previous-year NEET questions from one chapter, new every day</td><td><code>[memcw_widget type="pyq" chapter="biology/human-reproduction"]</code></td></tr>
+</tbody>
+</table>
+<p>The PYQ widget also works for Class 6–10 Science chapters: add <code>class="8"</code> (any class from 6 to 10).</p>
+
+<h2>How to install it (2 minutes)</h2>
+<ol>
+<li>In your WordPress dashboard, go to <strong>Plugins → Add New</strong>.</li>
+<li>Search for <strong>Raise Academy Medical Exam Widgets</strong>, click <strong>Install Now</strong>, then <strong>Activate</strong>.</li>
+<li>Go to <strong>Settings → Raise Academy Widgets</strong>, enter your institute or school name and save.</li>
+<li>Open any page or post, add a <strong>Shortcode</strong> block and paste one of the shortcodes above.</li>
+<li>Publish. The widget appears straight away.</li>
+</ol>
+<p>Good places to use them:</p>
+<ul>
+<li><strong>Home page:</strong> NEET countdown and question of the day.</li>
+<li><strong>Admissions or courses page:</strong> college predictor and MBBS cutoffs, so students see the rank they need right next to your course details.</li>
+<li><strong>Sidebar:</strong> question of the day on every blog post.</li>
+<li><strong>Subject course pages:</strong> chapter-wise weightage for that subject.</li>
+</ul>
+
+<h2>Not on WordPress?</h2>
+<p>You can still use the widgets. Copy the embed code for any widget from the <a href="/neet-question-widget">free NEET widgets page</a> and paste it into your website builder's HTML or embed block.</p>
+
+<h2>Common questions</h2>
+<h3>Is the plugin really free?</h3>
+<p>Yes. There is no paid version, no account to create and no ads.</p>
+<h3>Will it slow down my website?</h3>
+<p>No. Each widget loads lazily in a small frame, only when a visitor scrolls to it.</p>
+<h3>Do I need to update the questions or cutoffs myself?</h3>
+<p>No. Questions, cutoffs and weightage are updated by YNeet automatically.</p>
+<h3>Can I show my coaching centre's name?</h3>
+<p>Yes. Set it under Settings → Raise Academy Widgets, or add <code>by="Your Institute"</code> to a single shortcode.</p>
+<h3>Which exams does it cover?</h3>
+<p>NEET-UG preparation, plus Class 6–10 Science chapter questions in the PYQ widget.</p>
+
+<p><strong>Want more for your students?</strong> Every widget links to YNeet, where students can take free chapter tests, daily quizzes and the weekly All-India NEET Mock. Coaching centres can also <a href="/institutes">run YNeet for their whole batch</a>.</p>
+<p><em>Raise Academy Medical Exam Widgets is not affiliated with or endorsed by the National Testing Agency.</em></p>
+`,
+  },
 ];
 
 export async function addBlogDrafts() {

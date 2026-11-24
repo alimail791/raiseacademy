@@ -348,7 +348,7 @@ const QotdWidget = () => {
           </li>
         ))}
         <li className="rounded-xl border border-ink/10 dark:border-paper/15 p-4">
-          <b>WordPress plugin:</b> <span className="text-ink/75 dark:text-paper/75">or <a href="/downloads/yneet-neet-widgets.zip" className="underline font-semibold">download the YNeet NEET Widgets plugin</a>, upload it under Plugins → Add New → Upload, and put a shortcode like <code>[yneet_widget type="predictor"]</code> on any page.</span>
+          <b>WordPress plugin:</b> <span className="text-ink/75 dark:text-paper/75">or install the free <a href="https://wordpress.org/plugins/raise-academy-medical-exam-widgets/" target="_blank" rel="noopener" className="underline font-semibold">Raise Academy Medical Exam Widgets</a> plugin from WordPress.org (Plugins → Add New → search "Raise Academy Medical Exam Widgets"), then put a shortcode like <code>[memcw_widget type="predictor"]</code> on any page.</span>
         </li>
       </ul>
       <p className="mt-6 text-sm text-ink/70 dark:text-paper/70">
