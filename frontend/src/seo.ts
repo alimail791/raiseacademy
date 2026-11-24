@@ -18,7 +18,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/": {
     title: "YNeet | NEET Coaching, Mock Tests & Practice Questions Online",
     description:
-      "YNeet — NEET preparation built around your class syllabus. Full-length NEET mock tests, PYQs and 70,000+ practice questions for Class 11, 12 and droppers, Foundation tests for Class 9–10, and free tests, puzzles, quiz and Shorts for Class 6–8. Free sample test, no login needed.",
+      "NEET mock tests, PYQs and 70,000+ practice questions for Class 11, 12 and droppers, plus Class 9–10 Foundation. Free sample test, no login needed.",
   },
   "/courses": {
     title: "NEET Online Course from Class 6 to Droppers — Mock Tests, Shorts & Practice | YNeet",
