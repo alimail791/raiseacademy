@@ -230,7 +230,7 @@ const LETTERS = ["A", "B", "C", "D"];
 export const PyqEmbed = () => {
   const link = useLink("pyq_embed");
   usePing("pyq");
-  const [info, setInfo] = useState<{ title: string; page: string; total: number; school: boolean } | null>(null);
+  const [info, setInfo] = useState<{ title: string; page: string; total: number; school: boolean; slug: string } | null>(null);
   const [qs, setQs] = useState<WQ[] | null | undefined>(undefined);
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<Record<number, number>>({});
@@ -249,8 +249,8 @@ export const PyqEmbed = () => {
       const list: WQ[] = r.data.questions || [];
       if (!c || !list.length) { setQs(null); return; }
       setInfo(c.classNum
-        ? { title: `Class ${c.classNum} · ${c.chapter}`, page: `/class-${c.classNum}-questions#${c.slug}`, total: c.total, school: true }
-        : { title: `${c.subject} · ${c.chapter}`, page: `/neet-practice/${c.slug}`, total: c.pyqCount || c.total, school: false });
+        ? { title: `Class ${c.classNum} · ${c.chapter}`, page: `/class-${c.classNum}-questions#${c.slug}`, total: c.total, school: true, slug: c.slug }
+        : { title: `${c.subject} · ${c.chapter}`, page: `/neet-practice/${c.slug}`, total: c.pyqCount || c.total, school: false, slug: c.slug });
       setQs(list);
     }).catch(() => setQs(null));
   }, []);
@@ -300,6 +300,11 @@ export const PyqEmbed = () => {
               <a href={link(info.page)} target="_blank" rel="noopener" className="mt-2 block text-center bg-gold text-ink font-bold px-4 py-2.5 rounded-full">
                 More {label} on this chapter, free on YNeet ↗
               </a>
+              {!info.school && (
+                <a href={link(`/neet-pyq-books?chapter=${encodeURIComponent(info.slug)}`)} target="_blank" rel="noopener" className="mt-2 block text-center border border-ink/20 font-semibold px-4 py-2.5 rounded-full hover:border-gold">
+                  Free PDF: every NEET PYQ of this chapter ↗
+                </a>
+              )}
             </div>
           )}
         </>

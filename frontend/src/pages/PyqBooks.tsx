@@ -96,6 +96,19 @@ const PyqBooks = () => {
       .catch(() => { setToken(""); try { localStorage.removeItem(TOKEN_KEY); } catch { /* ignore */ } });
   }, [token]);
 
+  // ?chapter=<slug> (from the chapter PYQ widget): scroll to that chapter's free booklet.
+  const [focus, setFocus] = useState("");
+  useEffect(() => {
+    if (!cat) return;
+    const want = (new URLSearchParams(window.location.search).get("chapter") || "").toLowerCase();
+    if (!want) return;
+    const tail = want.split("/").pop();
+    const hit = cat.booklets.find((x) => x.slug === want) || cat.booklets.find((x) => x.slug?.split("/").pop() === tail);
+    if (!hit) return;
+    setFocus(hit.file);
+    setTimeout(() => document.getElementById(`booklet-${hit.file}`)?.scrollIntoView({ behavior: "smooth", block: "center" }), 150);
+  }, [cat]);
+
   const price = cat?.price || { book: 199, bundle: 499 };
   const books = SUBJECTS.map((s) => cat?.books.find((b) => b.subject === s)).filter(Boolean) as Book[];
   const totalQs = books.reduce((a, b) => a + b.questions, 0);
@@ -192,7 +205,7 @@ const PyqBooks = () => {
                 <h3 className="font-semibold text-lg">{LABEL[s]}</h3>
                 <ul className="mt-2 grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
                   {list.map((x) => (
-                    <li key={x.file} className="flex items-center justify-between gap-3 border-b border-ink/5 dark:border-paper/10 py-1.5">
+                    <li key={x.file} id={`booklet-${x.file}`} className={`flex items-center justify-between gap-3 border-b border-ink/5 dark:border-paper/10 py-1.5 scroll-mt-24 ${focus === x.file ? "bg-gold/20 rounded px-2 font-semibold" : ""}`}>
                       <span>{x.chapter} <span className="text-ink/70 dark:text-paper/70">· {x.questions} PYQs</span></span>
                       {token ? (
                         <a href={downloadUrl(x.file, token)} onClick={() => track("pyq_booklet_download", { chapter: x.chapter })} className="shrink-0 inline-flex items-center gap-1 text-rise-dark font-semibold"><Download size={14} /> PDF</a>
