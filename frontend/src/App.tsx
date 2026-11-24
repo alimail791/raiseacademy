@@ -53,6 +53,10 @@ const PapersIndex = page(() => import("./pages/Papers"), "PapersIndex");
 const PaperYear = page(() => import("./pages/Papers"), "PaperYear");
 const QuestionOfTheDay = page(() => import("./pages/QuestionOfTheDay"));
 const NeetExamDate = page(() => import("./pages/NeetExamDate"));
+const NeetEligibility = page(() => import("./pages/Neet2027Guides"), "NeetEligibility");
+const NeetSyllabus = page(() => import("./pages/Neet2027Guides"), "NeetSyllabus");
+const TnCounselling = page(() => import("./pages/Neet2027Guides"), "TnCounselling");
+const NeetUpdates = page(() => import("./pages/Neet2027Guides"), "NeetUpdates");
 const NeetAdmitCard = page(() => import("./pages/NeetEvents"), "NeetAdmitCard");
 const NeetAnswerKey = page(() => import("./pages/NeetEvents"), "NeetAnswerKey");
 const NeetResult = page(() => import("./pages/NeetEvents"), "NeetResult");
@@ -205,6 +209,10 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/brain-teaser" element={<BrainTeaser />} />
+            <Route path="/neet-2027-eligibility" element={<NeetEligibility />} />
+            <Route path="/neet-2027-syllabus" element={<NeetSyllabus />} />
+            <Route path="/neet-2027-updates" element={<NeetUpdates />} />
+            <Route path="/tamil-nadu-neet-counselling-2027" element={<TnCounselling />} />
             <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
             <Route path="/neet-2027-admit-card" element={<NeetAdmitCard />} />
             <Route path="/neet-2027-answer-key" element={<NeetAnswerKey />} />
@@ -268,7 +276,11 @@ function App() {
           <Route path="/neet-concept-maps" element={<ConceptMaps />} />
           <Route path="/neet-sprint" element={<NeetSprint />} />
           <Route path="/neet-shorts" element={<NeetShorts />} />
-          <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
+          <Route path="/neet-2027-eligibility" element={<NeetEligibility />} />
+            <Route path="/neet-2027-syllabus" element={<NeetSyllabus />} />
+            <Route path="/neet-2027-updates" element={<NeetUpdates />} />
+            <Route path="/tamil-nadu-neet-counselling-2027" element={<TnCounselling />} />
+            <Route path="/neet-2027-exam-date" element={<NeetExamDate />} />
           <Route path="/neet-2027-admit-card" element={<NeetAdmitCard />} />
           <Route path="/neet-2027-answer-key" element={<NeetAnswerKey />} />
           <Route path="/neet-2027-result" element={<NeetResult />} />

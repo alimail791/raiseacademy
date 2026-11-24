@@ -80,6 +80,10 @@ const NeetExamDate = () => (
       <li><Link to="/neet-question-papers" className="font-semibold text-rise-dark underline">NEET previous year question papers with answers</Link></li>
       <li><Link to="/neet-practice" className="font-semibold text-rise-dark underline">Chapter-wise NEET PYQs</Link></li>
       <li><Link to="/neet-question-of-the-day" className="font-semibold text-rise-dark underline">NEET Question of the Day</Link></li>
+      <li><Link to="/neet-2027-eligibility" className="font-semibold text-rise-dark underline">NEET 2027 eligibility: age limit, 12th marks, attempts</Link></li>
+      <li><Link to="/neet-2027-syllabus" className="font-semibold text-rise-dark underline">NEET 2027 syllabus, unit-wise</Link></li>
+      <li><Link to="/neet-2027-updates" className="font-semibold text-rise-dark underline">NEET 2027 latest official updates</Link></li>
+      <li><Link to="/tamil-nadu-neet-counselling-2027" className="font-semibold text-rise-dark underline">Tamil Nadu NEET counselling 2027 &amp; 7.5% quota</Link></li>
       <li><Link to="/neet-registration" className="font-semibold text-rise-dark underline">NEET registration guide & document checklist</Link></li>
       <li><Link to="/neet-photo-resizer" className="font-semibold text-rise-dark underline">NEET photo & signature resizer</Link></li>
     </ul>

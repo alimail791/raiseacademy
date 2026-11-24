@@ -56,7 +56,7 @@ export const APP_MODE_PATHS = ["/login", "/register", "/forgot-password", "/logo
 export const APP_FREE_PATHS = [
   "/neet-readiness", "/neet-college-predictor", "/neet-rank-predictor", "/neet-percentile-calculator", "/neet-physics-formula-sheet", "/neet-chemistry-formula-sheet", "/neet-compare-colleges", "/neet-sprint", "/neet-question-of-the-day", "/neet-daily-quiz", "/neet-practice",
   "/neet-question-papers", "/neet-concept-maps", "/ncert-notes", "/neet-shorts", "/ask-yneet",
-  "/blog", "/brain-teaser", "/neet-2027-exam-date", "/neet-trial", "/neet-parents", "/about", "/help",
+  "/blog", "/brain-teaser", "/neet-2027-exam-date", "/neet-2027-eligibility", "/neet-2027-syllabus", "/neet-2027-updates", "/tamil-nadu-neet-counselling-2027", "/neet-trial", "/neet-parents", "/about", "/help",
 ];
 
 export function isAppPath(pathname: string): boolean {

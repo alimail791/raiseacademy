@@ -58,6 +58,10 @@ const GROUPS: Group[] = [
     tools: [
       { name: "NEET cutoff by state", to: "/neet-cutoff", desc: "Last year's government MBBS cutoffs, state by state." },
       { name: "NEET 2027 exam date", to: "/neet-2027-exam-date", desc: "What is confirmed for NEET 2027, and the exam pattern." },
+      { name: "NEET 2027 latest updates", to: "/neet-2027-updates", desc: "Every official NTA and NMC announcement, newest first." },
+      { name: "NEET 2027 eligibility", to: "/neet-2027-eligibility", desc: "Age limit, Class 12 marks by category and attempts." },
+      { name: "NEET 2027 syllabus", to: "/neet-2027-syllabus", desc: "All 50 units for Physics, Chemistry and Biology, and deleted topics." },
+      { name: "Tamil Nadu NEET counselling", to: "/tamil-nadu-neet-counselling-2027", desc: "7.5% government school quota, reservation and documents." },
       { name: "NEET registration guide", to: "/neet-registration", desc: "Step-by-step help with the NEET application form, fees and documents." },
       { name: "NEET 2027 admit card", to: "/neet-2027-admit-card", desc: "When it comes, how to download it and what to carry." },
       { name: "NEET 2027 answer key", to: "/neet-2027-answer-key", desc: "Release dates, how to challenge an answer and work out your score." },

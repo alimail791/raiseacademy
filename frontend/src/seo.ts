@@ -98,6 +98,22 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "NEET 2027 Exam Date, Pattern & Marking Scheme — What's Confirmed | YNeet",
     description: "NEET UG 2027 exam date and mode (CBT or pen-and-paper) status, what happened in NEET 2026, and the exam pattern: 180 questions, 720 marks, +4/−1, 3 hours. Checked against NTA notices.",
   },
+  "/neet-2027-eligibility": {
+    title: "NEET 2027 Eligibility Criteria — Age Limit, 12th Marks, Attempts | YNeet",
+    description: "NEET UG 2027 eligibility: minimum age 17 by 31 Dec 2027, no upper age limit, no attempt limit, 50% PCB for General (40% SC/ST/OBC, 45% PwD), English compulsory. Latest on proposed age limits.",
+  },
+  "/neet-2027-syllabus": {
+    title: "NEET 2027 Syllabus — Physics, Chemistry, Biology Unit-wise (NMC) & Deleted Topics | YNeet",
+    description: "NEET 2027 syllabus: 50 units across Physics (20), Chemistry (20) and Biology (10) from NCERT Class 11 and 12. 2027 syllabus not yet released by NMC; the facts on deleted topics.",
+  },
+  "/neet-2027-updates": {
+    title: "NEET 2027 Latest Updates — NTA Notification, Syllabus, Exam Date News | YNeet",
+    description: "Every official NEET UG 2027 update from NTA and NMC in one place, newest first: notification, syllabus, exam date, mode and eligibility changes. Updated the same day.",
+  },
+  "/tamil-nadu-neet-counselling-2027": {
+    title: "Tamil Nadu NEET Counselling 2027 — Process, 7.5% Govt School Quota, Reservation | YNeet",
+    description: "Tamil Nadu MBBS/BDS counselling 2027 on tnmedicalselection.net: 85% state quota, 69% community reservation, the 7.5% government school quota, documents and expected timeline. With a Tamil summary.",
+  },
   "/neet-2027-admit-card": {
     title: "NEET 2027 Admit Card — Release Date, Download Steps & What to Carry | YNeet",
     description: "NEET UG 2027 admit card status, last year's city slip and admit card dates, how to download it from neet.nta.nic.in, details to check and what to carry on exam day.",
