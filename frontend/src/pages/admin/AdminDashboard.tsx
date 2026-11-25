@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Users, Hourglass, Stethoscope, Sparkles } from "lucide-react";
 import api from "../../api/axios";
 import SignupSources from "./SignupSources";
+import TrafficSignups from "./TrafficSignups";
 import TrialsEnding, { type Trial } from "./TrialsEnding";
 
 const AdminDashboard = () => {
@@ -55,6 +56,7 @@ const AdminDashboard = () => {
           );
         })}
       </div>
+      <TrafficSignups />
       <TrialsEnding trials={trials} />
       <SignupSources />
     </div>

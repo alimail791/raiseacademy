@@ -6,10 +6,12 @@ import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import "./fonts.css";
 import "./index.css";
-import { captureFirstTouch } from "./utils/attribution";
+import { captureFirstTouch, trackVisit } from "./utils/attribution";
 
 // Remember where this visitor first came from, for sign-up attribution.
 captureFirstTouch();
+// Count new visitors for Admin → Traffic & signups (first-party, one request).
+trackVisit();
 
 // The toast container isn't in the prerendered HTML, so it mounts right after
 // hydration instead of making the first client render differ from it.

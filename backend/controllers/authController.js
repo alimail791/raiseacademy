@@ -11,6 +11,7 @@ import GoogleLead from "../models/GoogleLead.js";
 import Institute from "../models/Institute.js";
 import { instituteAccessFor } from "../utils/yneetSync.js";
 import { normalizePhone } from "../utils/parentWhatsApp.js";
+import { recordStart, markCompleted } from "../utils/traffic.js";
 
 // Where the "a new student just registered" alert goes. Overridable via env
 // without a code change; falls back to the owner's own inbox.
@@ -164,6 +165,8 @@ export const register = async (req, res, next) => {
       signup: signupInfo(req.body.signup, "email", { referred: !!referredByCode }),
     });
 
+    markCompleted(student, student.email); // Admin → Traffic & signups
+
     // Clean up used OTPs
     await Otp.deleteMany({ email: email.toLowerCase(), purpose: "register" });
 
@@ -248,6 +251,7 @@ export const googleAuth = async (req, res, next) => {
       } catch (e) {
         console.warn("Saving Google lead failed:", e.message);
       }
+      recordStart({ key: g.email, method: "google", name: g.name, email: g.email, signup: req.body?.signup });
       return res.json({ needsDetails: true, email: g.email, fullName: g.name });
     }
 
@@ -273,6 +277,8 @@ export const googleAuth = async (req, res, next) => {
       subject: `New registration (Google) — ${student.fullName}`,
       html: newRegistrationAdminTemplate(student),
     }).catch((e) => console.warn("Admin registration-alert email failed:", e.message));
+
+    markCompleted(student, g.email);
 
     GoogleLead.updateOne(
       { email: g.email },
@@ -447,6 +453,10 @@ export const waSendOtp = async (req, res, next) => {
     if (last && Date.now() - new Date(last.createdAt).getTime() < 30 * 1000) {
       return res.status(429).json({ message: "Please wait 30 seconds before asking for another code" });
     }
+    // The sign-up form (not login) sends name + class with the code request.
+    if (req.body?.intent === "signup") {
+      recordStart({ key, method: "whatsapp", name: req.body.fullName, phone, currentClass: req.body.currentClass, signup: req.body.signup });
+    }
     const { waConfigured } = await import("../utils/parentWhatsApp.js");
     const code = crypto.randomInt(100000, 999999).toString();
     await Otp.deleteMany({ email: key, purpose: "wa-auth" });
@@ -522,6 +532,7 @@ export const waVerifyOtp = async (req, res, next) => {
       referredByCode: req.body?.referredByCode ? String(req.body.referredByCode).slice(0, 40) : undefined,
       signup: signupInfo(req.body?.signup, "whatsapp", { referred: !!req.body?.referredByCode }),
     });
+    markCompleted(student, WA_KEY(phone));
     await Otp.deleteMany({ email: WA_KEY(phone), purpose: "wa-auth" });
 
     sendEmail({

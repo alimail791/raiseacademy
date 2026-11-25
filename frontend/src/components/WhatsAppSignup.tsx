@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import api from "../api/axios";
-import { signupAttribution } from "../utils/attribution";
+import { signupAttribution, trackSignupView } from "../utils/attribution";
 import { useAuth } from "../context/AuthContext";
 import { goToYneet } from "../utils/yneet";
 
@@ -30,6 +30,7 @@ export default function WhatsAppSignup({ mode = "signup", place, referredByCode,
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
   const junior = ["6", "7", "8"].includes(f.currentClass);
+  useEffect(() => { if (mode === "signup") trackSignupView(place); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const send = async () => {
     const phone = f.phone.replace(/\D/g, "").slice(-10);
@@ -41,7 +42,9 @@ export default function WhatsAppSignup({ mode = "signup", place, referredByCode,
     if (!/^[6-9]\d{9}$/.test(phone)) return toast.error("Enter a 10-digit WhatsApp number");
     setBusy(true);
     try {
-      await api.post("/auth/wa/send", { phone });
+      await api.post("/auth/wa/send", needDetails
+        ? { phone, intent: "signup", fullName: f.fullName.trim(), currentClass: f.currentClass, signup: signupAttribution(place) }
+        : { phone });
       setStep("code");
       track("reg_start", { method: "whatsapp", place });
       toast.success("Code sent on WhatsApp");

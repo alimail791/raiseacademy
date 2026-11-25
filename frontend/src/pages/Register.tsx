@@ -9,7 +9,7 @@ import { isAppMode } from "../utils/appMode";
 import GoogleSignIn, { OrDivider } from "../components/GoogleSignIn";
 import WhatsAppSignup from "../components/WhatsAppSignup";
 import { isInAppBrowser } from "../components/SignupNudge";
-import { signupAttribution } from "../utils/attribution";
+import { signupAttribution, trackSignupView } from "../utils/attribution";
 
 const boards = ["CBSE", "Tamil Nadu State Board"];
 // Class 9–Dropper. Course (Foundation/Coaching), board and NEET year are worked
@@ -87,6 +87,7 @@ const Register = () => {
   // where Google sign-in is blocked, or when a link asks for it (?wa=1).
   const [waOpen, setWaOpen] = useState(searchParams.get("wa") === "1");
   useEffect(() => { if (isInAppBrowser()) setWaOpen(true); }, []);
+  useEffect(() => { trackSignupView(from); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const { login } = useAuth();
 
   const set = (key: keyof FormState, value: string) => setForm((f) => ({ ...f, [key]: value }));

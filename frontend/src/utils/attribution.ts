@@ -5,7 +5,11 @@
 // page of the first visit, and kept for 30 days — so a student who finds a
 // question on Google today and signs up next week still counts for Google.
 
+import api from "../api/axios";
+import { isAppMode } from "./appMode";
+
 const KEY = "yn_first_touch";
+const VID = "yn_vid"; // random visitor id for Admin → Traffic & signups
 // Same check as SignupNudge's isInAppBrowser (kept here to avoid an import cycle).
 const inAppBrowser = () => typeof navigator !== "undefined" && /FBAN|FBAV|Instagram|WhatsApp|Line\/|Snapchat|; wv\)|GSA\//i.test(navigator.userAgent || "");
 const KEEP_MS = 30 * 864e5;
@@ -56,5 +60,49 @@ export function signupAttribution(place?: string) {
     utmMedium: t.utmMedium || "",
     utmCampaign: t.utmCampaign || "",
     inApp: inAppBrowser(),
+    app: isAppMode(),
+    vid: visitorId(),
   };
+}
+
+// ---- Admin → "Traffic & signups" (backend/controllers/trackController.js) ----
+// First-party and tiny: one request on a visitor's very first page, and one
+// a day when they open a sign-up form. Nothing is sent for signed-in students,
+// admin/institute/partner pages, or widgets embedded on other sites.
+
+const NOT_COUNTED = /^\/(admin|institute|dashboard|login|logout|delete-account|embed|partner\/(login|dashboard))(\/|$)|^\/i\/[^/]+\/(poster|status)/;
+
+function visitorId() {
+  try { return localStorage.getItem(VID) || ""; } catch { return ""; }
+}
+
+function beacon(path: string, body: Record<string, unknown>) {
+  try {
+    const base = String(api.defaults.baseURL || "").replace(/\/$/, "");
+    fetch(`${base}/track/${path}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(() => {});
+  } catch { /* analytics only */ }
+}
+
+// Call once when the app starts (main.tsx), after captureFirstTouch().
+export function trackVisit() {
+  if (typeof window === "undefined") return;
+  try {
+    if (localStorage.getItem(VID)) return; // already counted
+    const vid = Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+    localStorage.setItem(VID, vid);
+    if (localStorage.getItem("ra_token") || NOT_COUNTED.test(window.location.pathname)) return; // existing student / not a public page
+    beacon("visit", signupAttribution());
+  } catch { /* private mode */ }
+}
+
+// A sign-up form was shown (register page, sign-up sheet, WhatsApp form).
+export function trackSignupView(place?: string) {
+  if (typeof window === "undefined") return;
+  try {
+    if (localStorage.getItem("ra_token")) return;
+    const day = new Date().toDateString();
+    if (localStorage.getItem("yn_sv") === day) return; // once a day is enough
+    localStorage.setItem("yn_sv", day);
+    beacon("event", { ...signupAttribution(place), event: "signup_view" });
+  } catch { /* analytics only */ }
 }

@@ -22,6 +22,7 @@ import booksRoutes from "./routes/booksRoutes.js";
 import youtubeShortsRoutes from "./routes/youtubeShortsRoutes.js";
 import instagramReelsRoutes from "./routes/instagramReelsRoutes.js";
 import widgetRoutes from "./routes/widgetRoutes.js";
+import trackRoutes from "./routes/trackRoutes.js";
 import { startInstagramReelsJob } from "./utils/instagramReels.js";
 import { seedBundledCutoffs, cutoffPagesCache } from "./controllers/predictorController.js";
 import { warmCompare } from "./controllers/compareController.js";
@@ -67,6 +68,7 @@ app.use("/api/sales-partners/signup", rateLimit({ windowMs: 60 * 60 * 1000, max:
 app.use("/api/sales-partners/login", authLimiter);
 app.use("/api/sales-partners/forgot", rateLimit({ windowMs: 60 * 60 * 1000, max: 5 }));
 app.use("/api/predictor/predict", rateLimit({ windowMs: 60 * 1000, max: 30 }));
+app.use("/api/track", rateLimit({ windowMs: 60 * 60 * 1000, max: 60, skip: (req) => req.method !== "POST" })); // visitor beacons (Traffic & signups)
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 
@@ -74,6 +76,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/otp", otpRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/content", contentRoutes);
+app.use("/api/track", trackRoutes);
 app.use("/api/institute", instituteRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/predictor", predictorRoutes);

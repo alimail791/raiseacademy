@@ -31,6 +31,8 @@ export function channelOf(s, { referred = false } = {}) {
   const u = (s.utmSource || "").toLowerCase();
   // Score cards shared from the app's mock test analysis carry the student's referral code.
   if (referred) return u === "score_card" ? "Referral: mock score card" : "Referral (friend's link)";
+  // Opened inside the YNeet Android app (Play Store), where the site runs with ?app=1.
+  if (s.app) return "YNeet Android app";
   const m = (s.utmMedium || "").toLowerCase();
   const r = s.referrer || "";
   const l = s.landing || "";
@@ -74,6 +76,7 @@ export function signupInfo(raw, method, opts = {}) {
     utmMedium: clip(s.utmMedium, 60),
     utmCampaign: clip(s.utmCampaign, 80),
     inApp: !!s.inApp,
+    app: !!s.app,
   };
   info.channel = channelOf(info, opts);
   return info;

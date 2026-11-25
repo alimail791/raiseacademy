@@ -6,6 +6,7 @@ import GoogleSignIn, { googleSignInEnabled, OrDivider } from "./GoogleSignIn";
 import { useAuth } from "../context/AuthContext";
 import WhatsAppSignup from "./WhatsAppSignup";
 import { goToYneet } from "../utils/yneet";
+import { trackSignupView } from "../utils/attribution";
 
 // Sign-up nudges for free SEO pages (chapter PYQs etc.). Visitors read the free
 // answers and leave, so we ask them to sign up at the moment they're engaged:
@@ -111,7 +112,7 @@ export function useRevealNudge(after = 5) {
 }
 
 export function RevealNudgeSheet({ open, onClose, title, place }: { open: boolean; onClose: () => void; title: string; place: string }) {
-  useEffect(() => { if (open) track("signup_nudge_view", { place, kind: "reveal_sheet" }); }, [open, place]);
+  useEffect(() => { if (open) { track("signup_nudge_view", { place, kind: "reveal_sheet" }); trackSignupView(`${place}_sheet`); } }, [open, place]);
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-ink/50" onClick={onClose}>
@@ -164,6 +165,7 @@ export function AnswerGateSheet({ open, onSkip, onClose, chapter, place }: { ope
   const { user } = useAuth();
   // Signed up from the sheet: show the answer they asked for.
   useEffect(() => { if (open && user) onSkip(); }, [open, user]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (open && !user) trackSignupView(`${place}_gate`); }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-ink/50" onClick={onClose}>
