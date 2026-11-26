@@ -1,5 +1,6 @@
 import WidgetPartner from "../models/WidgetPartner.js";
 import WidgetSite from "../models/WidgetSite.js";
+import crypto from "crypto";
 
 // Free NEET tools pages for institutes: www.yneet.in/i/<slug>.
 // See models/WidgetPartner.js.
@@ -143,6 +144,53 @@ export const directoryCity = async (req, res, next) => {
       .select("name slug city kind website").lean();
     if (!list.length) return res.status(404).json({ message: "No institutes listed in this city yet" });
     res.json({ city: list[0].city, slug: citySlug, institutes: list.map(({ _id, ...x }) => x) });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// ---- ClassCoach tutors in the directory (server-to-server) ----
+// A classcoach.in tutor who ticks "I teach NEET" on their directory listing is
+// also listed here, linking to their ClassCoach profile. Guarded by
+// X-Internal-Key = INTERNAL_SERVICE_KEY.
+const internalOk = (req) => {
+  const want = process.env.INTERNAL_SERVICE_KEY || "";
+  const got = String(req.headers["x-internal-key"] || "");
+  return !!want && got.length === want.length && crypto.timingSafeEqual(Buffer.from(got), Buffer.from(want));
+};
+
+// POST /api/widgets/internal/classcoach-listing
+//   { classcoachId, name, phone, city, kind: coaching|teacher, listed, profileUrl }
+export const classcoachListing = async (req, res, next) => {
+  try {
+    if (!internalOk(req)) return res.status(401).json({ message: "Unauthorized" });
+    const classcoachId = parseInt(req.body.classcoachId, 10);
+    if (!(classcoachId > 0)) return res.status(400).json({ message: "classcoachId required" });
+    const listed = req.body.listed === true;
+    const existing = await WidgetPartner.findOne({ classcoachId });
+    if (!listed) {
+      if (existing) { existing.listed = false; await existing.save(); }
+      return res.json({ slug: existing?.slug || "", listed: false });
+    }
+    const name = clean(req.body.name, 60);
+    const phone = String(req.body.phone || "").replace(/\D/g, "").slice(-10);
+    const city = clean(req.body.city, 40);
+    const kind = req.body.kind === "coaching" ? "coaching" : "teacher";
+    const profileUrl = /^https:\/\/[\w.-]*classcoach\.in\//.test(req.body.profileUrl || "") ? clean(req.body.profileUrl, 120) : "";
+    if (name.length < 3 || !city) return res.status(400).json({ message: "Name and city required" });
+    if (!/^[6-9]\d{9}$/.test(phone)) return res.status(400).json({ message: "A 10-digit WhatsApp number is required" });
+
+    const fields = { name, phone, city, citySlug: slugify(city), kind, listed: true, website: profileUrl };
+    if (existing) {
+      Object.assign(existing, fields);
+      await existing.save();
+      return res.json({ slug: existing.slug, listed: true });
+    }
+    const base = slugify(`${name} ${city}`) || "tutor";
+    let slug = base;
+    for (let n = 2; await WidgetPartner.exists({ slug }); n++) slug = `${base}-${n}`;
+    const p = await WidgetPartner.create({ ...fields, slug, classcoachId });
+    res.status(201).json({ slug: p.slug, listed: true });
   } catch (err) {
     next(err);
   }

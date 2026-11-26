@@ -16,7 +16,8 @@ const widgetPartnerSchema = new mongoose.Schema(
     views: { type: Number, default: 0 },
     hidden: { type: Boolean, default: false }, // admin can take a page down
     citySlug: { type: String, default: "", index: true }, // "salem" — for the directory (www.yneet.in/neet-coaching/<city>)
-    listed: { type: Boolean, default: true }, // show in the NEET coaching directory (they can untick it on the form)
+    listed: { type: Boolean, default: true },
+    classcoachId: { type: Number, index: true, sparse: true }, // tutor listed from classcoach.in (website = their ClassCoach profile) // show in the NEET coaching directory (they can untick it on the form)
 
     // Weekly "your tools were opened N times" WhatsApp: totals at the last report,
     // so the next one can say how many opens happened that week.

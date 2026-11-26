@@ -112,12 +112,13 @@ export const NeetCoachingCity = () => {
             <h2 className="font-display text-xl font-bold mt-1">{x.name}</h2>
             <div className="mt-3 flex flex-wrap gap-2 text-sm">
               <Link to={`/i/${x.slug}`} className="bg-gold text-ink font-semibold px-4 py-2 rounded-full">Free NEET tools</Link>
-              {x.website && <a href={x.website} target="_blank" rel="nofollow noopener" className="border border-ink/20 dark:border-paper/25 font-semibold px-4 py-2 rounded-full">Website ↗</a>}
+              {x.website && <a href={x.website} target="_blank" rel="nofollow noopener" className="border border-ink/20 dark:border-paper/25 font-semibold px-4 py-2 rounded-full">{/classcoach\.in\//.test(x.website) ? "Profile & join class ↗" : "Website ↗"}</a>}
             </div>
           </li>
         ))}
       </ul>
       <p className="mt-6 text-xs text-ink/60 dark:text-paper/60">Institutes list themselves here. YNeet doesn't rank or endorse them.</p>
+      <p className="mt-4 text-sm"><a href={`https://www.classcoach.in/tutors/${city}?utm_source=yneet&utm_medium=directory`} target="_blank" rel="noopener" className="underline font-semibold">Tutors in {d.city} for other subjects and classes (ClassCoach) ↗</a></p>
       <GetListed />
       <p className="mt-4 text-sm"><Link to="/advertise#packages" className="underline font-semibold">Want the top spot in {d.city}? Get featured →</Link></p>
     </div>
