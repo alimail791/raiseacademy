@@ -330,3 +330,84 @@ export const adminCommission = async (req, res, next) => {
     res.json({ ok: true });
   } catch (err) { next(err); }
 };
+
+// ───────── ClassCoach tutors (server-to-server) ─────────
+// classcoach.in's "YNeet for your students" page turns a ClassCoach tutor into
+// a YNeet sales partner in one tap, then shows their code, links and earnings.
+// Guarded by X-Internal-Key = INTERNAL_SERVICE_KEY (same key the other
+// internal routes use); switched off when that env var is missing.
+const internalOk = (req) => {
+  const want = process.env.INTERNAL_SERVICE_KEY || "";
+  const got = String(req.headers["x-internal-key"] || "");
+  return !!want && got.length === want.length && crypto.timingSafeEqual(Buffer.from(got), Buffer.from(want));
+};
+
+const tutorView = async (p) => {
+  const [insts, lines] = await Promise.all([
+    Institute.find({ salesPartner: p._id }).select("billing status endDate"),
+    PartnerCommission.find({ partnerId: p._id }).select("amount status kind"),
+  ]);
+  return {
+    partner: partnerView(p),
+    terms: TERMS,
+    stats: { ...summarise(lines), institutes: insts.length, paying: lines.filter((l) => l.kind === "first" && l.status !== "cancelled").length },
+  };
+};
+
+// POST /api/sales-partners/internal/provision { name, email, phone, city?, classcoachTeacherId }
+// Returns the existing partner for that email/phone, or creates one and emails
+// a temporary password for the /partner dashboard.
+export const internalProvision = async (req, res, next) => {
+  try {
+    if (!internalOk(req)) return res.status(401).json({ message: "Unauthorized" });
+    const b = req.body || {};
+    const name = String(b.name || "").trim();
+    const email = String(b.email || "").trim().toLowerCase();
+    const phone = phone10(b.phone);
+    if (name.length < 2 || !/^\S+@\S+\.\S+$/.test(email)) return res.status(400).json({ message: "Name and email are required" });
+    if (phone.length !== 10) return res.status(400).json({ message: "Add your 10-digit WhatsApp number in ClassCoach Settings first" });
+
+    let p = await SalesPartner.findOne({ $or: [{ email }, { phone }] });
+    let created = false;
+    if (!p) {
+      const pw = tempPassword();
+      try {
+        p = await SalesPartner.create({
+          name, phone, email, city: String(b.city || "").trim(), occupation: "ClassCoach tutor",
+          notes: `Joined from ClassCoach (teacher #${String(b.classcoachTeacherId || "").slice(0, 20)})`,
+          password: await bcrypt.hash(pw, 10), code: await newCode(name),
+        });
+        created = true;
+      } catch (e) {
+        if (e?.code !== 11000) throw e;
+        p = await SalesPartner.findOne({ $or: [{ email }, { phone }] }); // lost a race with a double tap
+      }
+      if (created) {
+        sendEmail({
+          to: p.email, subject: `Your YNeet partner code is ${p.code}`,
+          html: box(`<p>Hello ${esc(p.name)},</p><p>You joined YNeet Partners from ClassCoach. Your code is <b style="font-size:18px;">${p.code}</b>.</p>
+            <p>Coaching centres (or you, for your own students) that buy YNeet student logins through this link are tagged to you:<br/><a href="${instituteLink(p.code)}">${instituteLink(p.code)}</a></p>
+            <p>You earn <b>${TERMS.firstRate * 100}%</b> of the first payment, <b>${TERMS.renewalRate * 100}%</b> of renewals, and <b>${inr(TERMS.bonusAmount)}</b> when your ${TERMS.bonusAfter}rd institute pays.</p>
+            <p>Partner dashboard login: your email and the password <b>${pw}</b> (change it after logging in).</p>
+            <p style="margin:20px 0;"><a href="${SITE()}/partner/login" style="background:#F2A93B;color:#14213D;font-weight:bold;text-decoration:none;padding:12px 24px;border-radius:999px;display:inline-block;">Open your dashboard</a></p>`),
+        }).catch(() => {});
+        sendEmail({
+          to: ADMIN_ALERT_EMAIL, subject: `New YNeet partner from ClassCoach: ${p.name} (${p.code})`,
+          html: box(`<p>${esc(p.name)} · ${esc(p.phone)} · ${esc(p.email)} joined YNeet Partners from their ClassCoach dashboard.</p>`),
+        }).catch(() => {});
+      }
+    }
+    if (p.status === "suspended") return res.status(403).json({ message: "This YNeet partner account is paused. Please WhatsApp YNeet." });
+    res.status(created ? 201 : 200).json({ created, ...(await tutorView(p)) });
+  } catch (err) { next(err); }
+};
+
+// GET /api/sales-partners/internal/summary?code=X — code, links and earnings
+export const internalSummary = async (req, res, next) => {
+  try {
+    if (!internalOk(req)) return res.status(401).json({ message: "Unauthorized" });
+    const p = await SalesPartner.findOne({ code: String(req.query.code || "").trim().toUpperCase() });
+    if (!p) return res.status(404).json({ message: "Partner not found" });
+    res.json(await tutorView(p));
+  } catch (err) { next(err); }
+};

@@ -11,6 +11,10 @@ router.post("/signup", c.signup);
 router.post("/login", c.login);
 router.post("/forgot", c.forgot);
 router.get("/me", c.protectPartner, c.me);
+
+// classcoach.in → YNeet (X-Internal-Key)
+router.post("/internal/provision", c.internalProvision);
+router.get("/internal/summary", c.internalSummary);
 router.put("/me", c.protectPartner, c.updateMe);
 
 router.get("/admin", protect, adminOnly, c.adminList);
