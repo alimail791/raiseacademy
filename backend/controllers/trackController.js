@@ -6,6 +6,8 @@ import Student from "../models/Student.js";
 import { SiteVisit, SiteEvent, SignupAttempt } from "../models/Traffic.js";
 import { signupInfo, relabelChannel } from "../utils/signupSource.js";
 import { BOT_UA, deviceOf, vidOf } from "../utils/traffic.js";
+import { getSetting, setSetting } from "../models/AppSetting.js";
+import { FOLLOWUP_KEY, FOLLOWUP_DEFAULTS, MAX_FOLLOWUPS, sendNextFollowup, unsubToken } from "../utils/signupFollowup.js";
 
 const istDay = (d = new Date()) => new Date(d.getTime() + 330 * 60000).toISOString().slice(0, 10);
 const isBot = (req) => { const ua = req.get("user-agent") || ""; return !ua || BOT_UA.test(ua); };
@@ -112,7 +114,9 @@ export const report = async (req, res, next) => {
     const incomplete = open
       .filter((a) => !(a.phone && hp.has(a.phone)) && !(a.email && he.has(a.email)))
       .slice(0, 50)
-      .map((a) => ({ id: a._id, name: a.name, phone: a.phone, email: a.email, currentClass: a.currentClass, method: a.method, channel: relabelChannel(a.channel), place: a.place, tries: a.tries, at: a.updatedAt }));
+      .map((a) => ({ id: a._id, name: a.name, phone: a.phone, email: a.email, currentClass: a.currentClass, method: a.method, channel: relabelChannel(a.channel), place: a.place, tries: a.tries, at: a.updatedAt,
+        followups: a.followups || 0, followupAt: a.followupAt || null, optOut: !!a.followupOptOut }));
+    const followup = await getSetting(FOLLOWUP_KEY, FOLLOWUP_DEFAULTS);
 
     res.json({
       days,
@@ -123,6 +127,40 @@ export const report = async (req, res, next) => {
       landings: landings.map((r) => ({ page: r._id || "/", n: r.n })),
       devices: Object.fromEntries(devices.map((r) => [r._id || "unknown", r.n])),
       incomplete,
+      followup: { ...followup, max: MAX_FOLLOWUPS },
     });
   } catch (e) { next(e); }
+};
+
+// PUT /api/track/followup { enabled } (admin): switch the automatic
+// "finish your sign-up" emails on or off.
+export const setFollowup = async (req, res, next) => {
+  try {
+    const cur = await getSetting(FOLLOWUP_KEY, FOLLOWUP_DEFAULTS);
+    const value = await setSetting(FOLLOWUP_KEY, { ...cur, enabled: !!req.body?.enabled });
+    res.json({ ...value, max: MAX_FOLLOWUPS });
+  } catch (e) { next(e); }
+};
+
+// POST /api/track/followup/:id/send (admin): send the next follow-up email now.
+export const sendFollowupNow = async (req, res, next) => {
+  try {
+    const a = await SignupAttempt.findById(req.params.id).lean();
+    if (!a) return res.status(404).json({ message: "Not found" });
+    const r = await sendNextFollowup(a);
+    if (r === "skipped") return res.status(400).json({ message: "Nothing to send (no email, unsubscribed, or both emails already sent)." });
+    const now = await SignupAttempt.findById(a._id).select("followups followupAt").lean();
+    res.json({ result: r, followups: now.followups, followupAt: now.followupAt });
+  } catch (e) { next(e); }
+};
+
+// GET /api/track/unsubscribe?id=&t= (link in the email)
+export const unsubscribe = async (req, res) => {
+  const page = (msg) => res.type("html").send(`<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><div style="font-family:Arial,sans-serif;max-width:420px;margin:80px auto;text-align:center"><h2 style="color:#14213D">YNeet</h2><p>${msg}</p><p><a href="https://www.yneet.in">www.yneet.in</a></p></div>`);
+  try {
+    const id = String(req.query.id || "");
+    if (!/^[a-f0-9]{24}$/.test(id) || req.query.t !== unsubToken(id)) return page("This link isn't valid.");
+    await SignupAttempt.updateOne({ _id: id }, { $set: { followupOptOut: true } });
+    page("Done. We won't email you about finishing your sign-up again.");
+  } catch { page("Something went wrong. Please email info@yneet.in."); }
 };

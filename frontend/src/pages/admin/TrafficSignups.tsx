@@ -7,10 +7,12 @@ import api from "../../api/axios";
 
 type Src = { name: string; visitors: number; signupViews: number; started: number; completed: number; paid: number };
 type Day = { day: string; visitors: number; signupViews: number; started: number; completed: number };
-type Open = { id: string; name: string; phone: string; email: string; currentClass: string; method: string; channel: string; place: string; tries: number; at: string };
+type Open = { id: string; name: string; phone: string; email: string; currentClass: string; method: string; channel: string; place: string; tries: number; at: string;
+  followups: number; followupAt: string | null; optOut: boolean };
 type Report = {
   days: number; since: string | null; totals: Omit<Src, "name">; sources: Src[]; daily: Day[];
   landings: { page: string; n: number }[]; devices: Record<string, number>; incomplete: Open[];
+  followup?: { enabled: boolean; max: number };
 };
 
 const pct = (a: number, b: number) => (b ? `${Math.round((a * 100) / b)}%` : "–");
@@ -30,6 +32,15 @@ function Stat({ label, value, sub }: { label: string; value: number | string; su
   );
 }
 
+// Status of the automatic "finish your sign-up" emails for one person.
+function followupStatus(o: Open, max: number) {
+  if (!o.email) return null;
+  if (o.optOut) return { text: "Unsubscribed", cls: "bg-ink/5 text-ink/60" };
+  if (o.followups >= max) return { text: `Both emails sent${o.followupAt ? ` · last ${when(o.followupAt)}` : ""}`, cls: "bg-green-50 text-green-700" };
+  if (o.followups === 1) return { text: `Email 1 sent ${o.followupAt ? when(o.followupAt) : ""} · email 2 in 2 days`, cls: "bg-amber-50 text-amber-700" };
+  return { text: "Email 1 goes ~1 hour after they stopped", cls: "bg-ink/5 text-ink/60" };
+}
+
 const th = "py-3 px-3 text-left font-medium text-ink/60 whitespace-nowrap";
 const td = "py-3 px-3 whitespace-nowrap";
 
@@ -41,6 +52,28 @@ export default function TrafficSignups() {
     setR(null); setErr(false);
     api.get(`/track/report?days=${days}`).then((x) => setR(x.data)).catch(() => setErr(true));
   }, [days]);
+
+  const [busy, setBusy] = useState("");
+  const [note, setNote] = useState("");
+  const toggleFollowup = async () => {
+    if (!r?.followup) return;
+    setBusy("toggle");
+    try {
+      const x = await api.put("/track/followup", { enabled: !r.followup.enabled });
+      setR({ ...r, followup: x.data });
+    } catch { setNote("Couldn't change the setting."); }
+    setBusy("");
+  };
+  const sendNow = async (o: Open) => {
+    if (!r) return;
+    setBusy(o.id); setNote("");
+    try {
+      const x = await api.post(`/track/followup/${o.id}/send`);
+      setR({ ...r, incomplete: r.incomplete.map((i) => (i.id === o.id ? { ...i, followups: x.data.followups, followupAt: x.data.followupAt } : i)) });
+      setNote(x.data.result === "done" ? `${o.name || o.email} already has an account, so no email was sent.` : `Email sent to ${o.email}.`);
+    } catch (e: any) { setNote(e?.response?.data?.message || "Couldn't send the email."); }
+    setBusy("");
+  };
 
   const t = r?.totals;
   const dev = r ? Object.values(r.devices).reduce((a, b) => a + b, 0) : 0;
@@ -95,7 +128,20 @@ export default function TrafficSignups() {
           {r.incomplete.length > 0 && (
             <div className="mt-8">
               <h3 className="font-semibold">Started but didn't finish ({r.incomplete.length})</h3>
-              <p className="text-sm text-ink/60">Message them on WhatsApp to finish signing up. People who later made an account another way are left out.</p>
+              <p className="text-sm text-ink/60">Message them on WhatsApp, or let the automatic emails below do it. People who later made an account another way are left out.</p>
+              {r.followup && (
+                <div className="mt-3 rounded-xl border border-ink/10 bg-white p-3 flex items-center justify-between gap-3">
+                  <div className="text-sm">
+                    <p className="font-semibold">Automatic follow-up emails: {r.followup.enabled ? "On" : "Off"}</p>
+                    <p className="text-ink/60">Email 1 about 1 hour after they stop, email 2 two days later. Stops when they sign up or unsubscribe.</p>
+                  </div>
+                  <button onClick={toggleFollowup} disabled={busy === "toggle"} role="switch" aria-checked={r.followup.enabled}
+                    className={`shrink-0 w-12 h-7 rounded-full relative transition ${r.followup.enabled ? "bg-[#25D366]" : "bg-ink/20"}`}>
+                    <span className={`absolute top-1 w-5 h-5 rounded-full bg-white transition-all ${r.followup.enabled ? "left-6" : "left-1"}`} />
+                  </button>
+                </div>
+              )}
+              {note && <p className="mt-2 text-sm text-ink/70">{note}</p>}
               <ul className="mt-3 divide-y divide-ink/10 border-y border-ink/10">
                 {r.incomplete.map((o) => (
                   <li key={o.id} className="py-3 text-sm flex items-start justify-between gap-3">
@@ -103,12 +149,25 @@ export default function TrafficSignups() {
                       <p className="font-semibold truncate">{o.name || o.email || o.phone || "—"}{o.currentClass ? <span className="font-normal text-ink/60"> · Class {o.currentClass}</span> : null}</p>
                       <p className="text-ink/60 truncate">{METHOD[o.method] || o.method} · {o.channel || "—"} · {when(o.at)}{o.tries > 1 ? ` · ${o.tries} tries` : ""}</p>
                       {o.email && <p className="text-ink/50 text-xs truncate">{o.email}</p>}
+                      {(() => {
+                        const st = r.followup && followupStatus(o, r.followup.max);
+                        return st ? <span className={`inline-block mt-1 text-xs px-2 py-0.5 rounded-full ${st.cls}`}>{st.text}</span> : null;
+                      })()}
                     </div>
-                    {o.phone ? (
-                      <a href={waLink(o)} target="_blank" rel="noreferrer" className="shrink-0 bg-[#25D366] text-white font-semibold px-3 py-1.5 rounded-full">WhatsApp</a>
-                    ) : o.email ? (
-                      <a href={`mailto:${o.email}`} className="shrink-0 border border-ink/15 font-semibold px-3 py-1.5 rounded-full">Email</a>
-                    ) : null}
+                    <div className="shrink-0 flex flex-col items-end gap-1.5">
+                      {o.phone && (
+                        <a href={waLink(o)} target="_blank" rel="noreferrer" className="bg-[#25D366] text-white font-semibold px-3 py-1.5 rounded-full">WhatsApp</a>
+                      )}
+                      {o.email && !o.optOut && r.followup && o.followups < r.followup.max && (
+                        <button onClick={() => sendNow(o)} disabled={busy === o.id}
+                          className="border border-ink/15 font-semibold px-3 py-1.5 rounded-full disabled:opacity-50">
+                          {busy === o.id ? "Sending…" : `Send email ${o.followups + 1} now`}
+                        </button>
+                      )}
+                      {o.email && (
+                        <a href={`mailto:${o.email}`} className="text-xs text-ink/60 underline">Write my own</a>
+                      )}
+                    </div>
                   </li>
                 ))}
               </ul>

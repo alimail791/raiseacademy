@@ -46,6 +46,11 @@ const signupAttemptSchema = new mongoose.Schema(
     status: { type: String, default: "started", index: true }, // started | completed
     studentId: { type: mongoose.Schema.Types.ObjectId, ref: "Student" },
     completedAt: { type: Date },
+    // "Finish your sign-up" emails (utils/signupFollowup.js): how many sent,
+    // when the last one went, and whether they unsubscribed.
+    followups: { type: Number, default: 0 },
+    followupAt: { type: Date },
+    followupOptOut: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
