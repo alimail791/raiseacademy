@@ -7,7 +7,7 @@ import { SiteVisit, SiteEvent, SignupAttempt } from "../models/Traffic.js";
 import { signupInfo, relabelChannel } from "../utils/signupSource.js";
 import { BOT_UA, deviceOf, vidOf } from "../utils/traffic.js";
 import { getSetting, setSetting } from "../models/AppSetting.js";
-import { FOLLOWUP_KEY, FOLLOWUP_DEFAULTS, MAX_FOLLOWUPS, sendNextFollowup, unsubToken } from "../utils/signupFollowup.js";
+import { FOLLOWUP_KEY, FOLLOWUP_DEFAULTS, MAX_FOLLOWUPS, sendNextFollowup, unsubToken, emailsFrom, DEFAULT_EMAILS, followupEmail } from "../utils/signupFollowup.js";
 
 const istDay = (d = new Date()) => new Date(d.getTime() + 330 * 60000).toISOString().slice(0, 10);
 const isBot = (req) => { const ua = req.get("user-agent") || ""; return !ua || BOT_UA.test(ua); };
@@ -127,19 +127,34 @@ export const report = async (req, res, next) => {
       landings: landings.map((r) => ({ page: r._id || "/", n: r.n })),
       devices: Object.fromEntries(devices.map((r) => [r._id || "unknown", r.n])),
       incomplete,
-      followup: { ...followup, max: MAX_FOLLOWUPS },
+      followup: { enabled: followup.enabled, max: MAX_FOLLOWUPS, emails: emailsFrom(followup), defaults: DEFAULT_EMAILS },
     });
   } catch (e) { next(e); }
 };
 
-// PUT /api/track/followup { enabled } (admin): switch the automatic
-// "finish your sign-up" emails on or off.
+// PUT /api/track/followup { enabled?, emails? } (admin): switch the automatic
+// "finish your sign-up" emails on or off, and/or save their wording.
 export const setFollowup = async (req, res, next) => {
   try {
     const cur = await getSetting(FOLLOWUP_KEY, FOLLOWUP_DEFAULTS);
-    const value = await setSetting(FOLLOWUP_KEY, { ...cur, enabled: !!req.body?.enabled });
-    res.json({ ...value, max: MAX_FOLLOWUPS });
+    const next_ = { ...cur };
+    if (typeof req.body?.enabled === "boolean") next_.enabled = req.body.enabled;
+    if (Array.isArray(req.body?.emails)) {
+      const lim = { subject: 150, heading: 150, body: 3000, button: 40 };
+      next_.emails = req.body.emails.slice(0, MAX_FOLLOWUPS).map((e) =>
+        Object.fromEntries(Object.entries(lim).map(([k, n]) => [k, String(e?.[k] ?? "").slice(0, n)])));
+    }
+    const value = await setSetting(FOLLOWUP_KEY, next_);
+    res.json({ enabled: value.enabled, max: MAX_FOLLOWUPS, emails: emailsFrom(value), defaults: DEFAULT_EMAILS });
   } catch (e) { next(e); }
+};
+
+// POST /api/track/followup/preview { step, email } (admin): the email as it would look.
+export const previewFollowup = (req, res) => {
+  const step = req.body?.step === 2 ? 2 : 1;
+  const emails = emailsFrom({ emails: [step === 1 ? req.body?.email : null, step === 2 ? req.body?.email : null] });
+  const { subject, html } = followupEmail({ _id: "000000000000000000000000", name: "Arvind Kumar", method: "whatsapp" }, step, emails);
+  res.json({ subject, html });
 };
 
 // POST /api/track/followup/:id/send (admin): send the next follow-up email now.

@@ -12,8 +12,64 @@ type Open = { id: string; name: string; phone: string; email: string; currentCla
 type Report = {
   days: number; since: string | null; totals: Omit<Src, "name">; sources: Src[]; daily: Day[];
   landings: { page: string; n: number }[]; devices: Record<string, number>; incomplete: Open[];
-  followup?: { enabled: boolean; max: number };
+  followup?: Followup;
 };
+
+type FEmail = { subject: string; heading: string; body: string; button: string };
+type Followup = { enabled: boolean; max: number; emails: FEmail[]; defaults: FEmail[] };
+
+// Admin edits the wording of the two automatic "finish your sign-up" emails.
+function FollowupEditor({ f, onSaved }: { f: Followup; onSaved: (f: Followup) => void }) {
+  const [step, setStep] = useState(0);
+  const [draft, setDraft] = useState<FEmail[]>(f.emails);
+  const [saving, setSaving] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [preview, setPreview] = useState<{ subject: string; html: string } | null>(null);
+  const e = draft[step];
+  const set = (k: keyof FEmail, v: string) => { setDraft(draft.map((d, i) => (i === step ? { ...d, [k]: v } : d))); setPreview(null); setMsg(""); };
+  const changed = JSON.stringify(draft) !== JSON.stringify(f.emails);
+  const save = async () => {
+    setSaving(true); setMsg("");
+    try { const x = await api.put("/track/followup", { emails: draft }); onSaved(x.data); setDraft(x.data.emails); setMsg("Saved. New emails will use this wording."); }
+    catch { setMsg("Couldn't save."); }
+    setSaving(false);
+  };
+  const showPreview = async () => {
+    try { const x = await api.post("/track/followup/preview", { step: step + 1, email: e }); setPreview(x.data); } catch { setMsg("Couldn't load the preview."); }
+  };
+  const inp = "w-full mt-1 rounded-lg border border-ink/15 px-3 py-2 text-sm bg-white";
+  return (
+    <details className="mt-3 rounded-xl border border-ink/10 bg-white p-3">
+      <summary className="cursor-pointer text-sm font-semibold">Edit the email wording</summary>
+      <div className="flex gap-2 mt-3">
+        {draft.map((_, i) => (
+          <button key={i} onClick={() => { setStep(i); setPreview(null); }}
+            className={`px-4 py-1.5 rounded-lg border text-sm ${step === i ? "bg-ink text-paper border-ink" : "border-ink/15"}`}>
+            Email {i + 1}{i === 0 ? " · after 1 hour" : " · 2 days later"}
+          </button>
+        ))}
+      </div>
+      <p className="text-xs text-ink/60 mt-2">Write <b>{"{name}"}</b> for their first name. Leave a blank line for a new paragraph; start a line with "- " for a bullet point. The button links to the sign-up page.</p>
+      <label className="block mt-3 text-sm">Subject<input className={inp} value={e.subject} onChange={(x) => set("subject", x.target.value)} maxLength={150} /></label>
+      <label className="block mt-3 text-sm">Heading<input className={inp} value={e.heading} onChange={(x) => set("heading", x.target.value)} maxLength={150} /></label>
+      <label className="block mt-3 text-sm">Message<textarea className={`${inp} min-h-[180px]`} value={e.body} onChange={(x) => set("body", x.target.value)} maxLength={3000} /></label>
+      <label className="block mt-3 text-sm">Button text<input className={inp} value={e.button} onChange={(x) => set("button", x.target.value)} maxLength={40} /></label>
+      <div className="flex flex-wrap gap-2 mt-3">
+        <button onClick={save} disabled={saving || !changed} className="bg-ink text-paper font-semibold px-4 py-2 rounded-full text-sm disabled:opacity-40">{saving ? "Saving…" : "Save"}</button>
+        <button onClick={showPreview} className="border border-ink/15 font-semibold px-4 py-2 rounded-full text-sm">Preview</button>
+        <button onClick={() => { setDraft(draft.map((d, i) => (i === step ? { ...f.defaults[step] } : d))); setPreview(null); setMsg(""); }}
+          className="text-sm text-ink/60 underline px-2">Reset to original</button>
+      </div>
+      {msg && <p className="mt-2 text-sm text-ink/70">{msg}</p>}
+      {preview && (
+        <div className="mt-3 rounded-lg border border-ink/10">
+          <p className="text-sm px-3 py-2 border-b border-ink/10"><b>Subject:</b> {preview.subject} <span className="text-ink/50">(sample name: Arvind)</span></p>
+          <iframe title="Email preview" srcDoc={preview.html} sandbox="" className="w-full h-[460px] bg-white" />
+        </div>
+      )}
+    </details>
+  );
+}
 
 const pct = (a: number, b: number) => (b ? `${Math.round((a * 100) / b)}%` : "–");
 const when = (d: string) => new Date(d).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
@@ -125,7 +181,7 @@ export default function TrafficSignups() {
           </div>
           <p className="text-xs text-ink/60 mt-2">Sign-ups are counted by when they happened, so a source can show sign-ups from visitors who came before this period.</p>
 
-          {r.incomplete.length > 0 && (
+          {(r.incomplete.length > 0 || r.followup) && (
             <div className="mt-8">
               <h3 className="font-semibold">Started but didn't finish ({r.incomplete.length})</h3>
               <p className="text-sm text-ink/60">Message them on WhatsApp, or let the automatic emails below do it. People who later made an account another way are left out.</p>
@@ -141,6 +197,7 @@ export default function TrafficSignups() {
                   </button>
                 </div>
               )}
+              {r.followup && <FollowupEditor f={r.followup} onSaved={(f) => setR({ ...r, followup: f })} />}
               {note && <p className="mt-2 text-sm text-ink/70">{note}</p>}
               <ul className="mt-3 divide-y divide-ink/10 border-y border-ink/10">
                 {r.incomplete.map((o) => (

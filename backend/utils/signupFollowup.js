@@ -42,38 +42,79 @@ const button = (href, label) => `
       <a href="${href}" style="background:#F2A93B; color:#14213D; font-weight:700; font-size:16px; padding:14px 28px; border-radius:999px; text-decoration:none; display:inline-block;">${label}</a>
     </p>`;
 
-export function followupEmail(a, step) {
-  const first = esc(String(a.name || "").split(" ")[0]) || "there";
+// Default wording. The admin can change it in Traffic & signups (saved in
+// AppSetting "signupFollowup".emails). {name} becomes the first name. Blank
+// lines start a new paragraph; lines starting with "- " become a bullet list.
+export const DEFAULT_EMAILS = [
+  {
+    subject: "Your free NEET mock test is waiting",
+    heading: "Hi {name}, your sign-up got stuck halfway",
+    body: `Did something go wrong, like the code not arriving or the page not loading? Just reply to this email and we'll sort it out for you.
+
+Here's what's waiting once you finish (it takes a minute):
+- A starter test right away, so you see where you stand
+- Chapter Priority map: which chapters carry the most marks
+- This Sunday's free All-India NEET Mock with rank list
+- 30 days free, no payment needed`,
+    button: "Finish sign-up",
+  },
+  {
+    subject: "{name}, your YNeet account is almost ready",
+    heading: "Still preparing for NEET, {name}?",
+    body: `Your YNeet sign-up is still unfinished. Complete it and practise with chapter-wise NEET tests from 70,000+ questions, plus doubt support on WhatsApp.
+
+Your 30-day free trial starts the moment you finish. No card, no auto-charge.`,
+    button: "Complete my sign-up",
+  },
+];
+
+// Saved wording merged over the defaults (an empty field falls back).
+export const emailsFrom = (setting) =>
+  DEFAULT_EMAILS.map((d, i) => {
+    const c = (setting?.emails || [])[i] || {};
+    const pick = (k) => (typeof c[k] === "string" && c[k].trim() ? c[k] : d[k]);
+    return { subject: pick("subject"), heading: pick("heading"), body: pick("body"), button: pick("button") };
+  });
+
+const bodyHtml = (text) =>
+  String(text)
+    .replace(/\r/g, "")
+    .split(/\n\s*\n/)
+    .map((block) => {
+      const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+      const out = [];
+      let list = [];
+      const flush = () => { if (list.length) out.push(`<ul style="font-size:15px; color:#333; padding-left:20px;">${list.map((l) => `<li>${l}</li>`).join("")}</ul>`); list = []; };
+      let para = [];
+      const flushP = () => { if (para.length) out.push(`<p style="font-size:15px; color:#333;">${para.join("<br>")}</p>`); para = []; };
+      for (const l of lines) {
+        if (/^[-•*]\s+/.test(l)) { flushP(); list.push(esc(l.replace(/^[-•*]\s+/, ""))); }
+        else { flush(); para.push(esc(l)); }
+      }
+      flushP(); flush();
+      return out.join("");
+    })
+    .join("\n");
+
+export function followupEmail(a, step, emails = DEFAULT_EMAILS) {
+  const raw = String(a.name || "").trim().split(" ")[0];
+  const first = raw === raw.toLowerCase() ? raw.charAt(0).toUpperCase() + raw.slice(1) : raw; // "arvind" → "Arvind", "MD" stays
+  const fill = (t) =>
+    first
+      ? t.replace(/\{name\}/g, first)
+      : t.replace(/^\s*\{name\}\s*,\s*/, "").replace(/,\s*\{name\}/g, "").replace(/\{name\}/g, "there");
+  const e = emails[step - 1] || DEFAULT_EMAILS[step - 1];
   const params = new URLSearchParams({ utm_source: "email", utm_medium: "followup", utm_campaign: `finish_signup_${step}` });
   const link = `${SITE()}/register?${params}`;
   const how = a.method === "google" ? "<p style=\"font-size:13px; color:#555;\">Tip: tap <b>Continue with Google</b> and enter your class and WhatsApp number.</p>" : "";
-
-  if (step === 1) {
-    return {
-      subject: "Your free NEET mock test is waiting",
-      html: shell(`
-    <h2 style="color:#14213D; margin-top:0;">Hi ${first}, your sign-up got stuck halfway</h2>
-    <p style="font-size:15px; color:#333;">Did something go wrong, like the code not arriving or the page not loading? Just reply to this email and we'll sort it out for you.</p>
-    <p style="font-size:15px; color:#333;">Here's what's waiting once you finish (it takes a minute):</p>
-    <ul style="font-size:15px; color:#333; padding-left:20px;">
-      <li>A starter test right away, so you see where you stand</li>
-      <li>Chapter Priority map: which chapters carry the most marks</li>
-      <li>This Sunday's free All-India NEET Mock with rank list</li>
-      <li>30 days free, no payment needed</li>
-    </ul>
-    ${button(link, "Finish sign-up")}
-    ${how}`, a),
-    };
-  }
+  const subject = fill(e.subject).replace(/^\s*[a-z]/, (c) => c.toUpperCase());
   return {
-    subject: `${first === "there" ? "Your" : `${first}, your`} YNeet account is almost ready`,
+    subject,
     html: shell(`
-    <h2 style="color:#14213D; margin-top:0;">Still preparing for NEET, ${first}?</h2>
-    <p style="font-size:15px; color:#333;">Your YNeet sign-up is still unfinished. Complete it and practise with chapter-wise NEET tests from 70,000+ questions, plus doubt support on WhatsApp.</p>
-    <p style="font-size:15px; color:#333;">Your 30-day free trial starts the moment you finish. No card, no auto-charge.</p>
-    ${button(link, "Complete my sign-up")}
-    ${how}
-    <p style="font-size:13px; color:#555;">This is the last reminder we'll send.</p>`, a),
+    <h2 style="color:#14213D; margin-top:0;">${esc(fill(e.heading))}</h2>
+    ${bodyHtml(fill(e.body))}
+    ${button(link, esc(e.button))}
+    ${how}${step === MAX_FOLLOWUPS ? '\n    <p style="font-size:13px; color:#555;">This is the last reminder we\'ll send.</p>' : ""}`, a),
   };
 }
 
@@ -87,7 +128,7 @@ async function hasAccount(a) {
 }
 
 // Send the next email to one attempt now. Returns "sent" | "done" | "skipped".
-export async function sendNextFollowup(a, now = new Date()) {
+export async function sendNextFollowup(a, now = new Date(), emails) {
   if (a.status !== "started" || a.followupOptOut || !realEmail(a.email) || a.followups >= MAX_FOLLOWUPS) return "skipped";
   const step = (a.followups || 0) + 1;
   // Claim the step first so a restart or overlapping run can't email twice.
@@ -102,7 +143,8 @@ export async function sendNextFollowup(a, now = new Date()) {
     return "done";
   }
   try {
-    const { subject, html } = followupEmail(a, step);
+    if (!emails) emails = emailsFrom(await getSetting(FOLLOWUP_KEY, FOLLOWUP_DEFAULTS));
+    const { subject, html } = followupEmail(a, step, emails);
     await sendEmail({ to: a.email, subject, html });
     return "sent";
   } catch (e) {
@@ -114,8 +156,10 @@ export async function sendNextFollowup(a, now = new Date()) {
 }
 
 export async function sendSignupFollowups(now = new Date()) {
-  const { enabled } = await getSetting(FOLLOWUP_KEY, FOLLOWUP_DEFAULTS);
+  const setting = await getSetting(FOLLOWUP_KEY, FOLLOWUP_DEFAULTS);
+  const { enabled } = setting;
   if (!enabled) return { sent: 0, due: 0, enabled };
+  const emails = emailsFrom(setting);
 
   const due = await SignupAttempt.find({
     status: "started",
@@ -139,7 +183,7 @@ export async function sendSignupFollowups(now = new Date()) {
         continue;
       }
     }
-    if ((await sendNextFollowup(a, now)) === "sent") sent++;
+    if ((await sendNextFollowup(a, now, emails)) === "sent") sent++;
   }
   if (due.length) console.log(`Sign-up follow-ups: ${sent} sent of ${due.length} due.`);
   return { sent, due: due.length, enabled };
