@@ -43,6 +43,7 @@ export function channelOf(s, { referred = false } = {}) {
     if (u === "score_card") return "Mock score card shares";
     if (u.includes("chrome")) return "Chrome extension";
     if (u.includes("raiseacademy")) return "raiseacademy.in";
+    if (u === "classcoach") return m === "tutor" ? "ClassCoach tutors" : "classcoach.in";
     if (/youtube|^yt/.test(u)) return "YouTube";
     if (/insta|^ig/.test(u)) return "Instagram";
     if (/whatsapp|^wa/.test(u)) return "WhatsApp";
