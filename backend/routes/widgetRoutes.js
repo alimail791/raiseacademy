@@ -1,5 +1,5 @@
 import express from "express";
-import { createPartner, getPartner, adminListPartners, adminUpdatePartner, ping, adminSites, directoryCities, directoryCity } from "../controllers/widgetController.js";
+import { createPartner, getPartner, adminListPartners, adminUpdatePartner, ping, adminSites, directoryCities, directoryCity, classcoachListing } from "../controllers/widgetController.js";
 import { protect, adminOnly } from "../middleware/auth.js";
 import { stopDaily, sendWeeklyPartnerReports, sendDailyPartnerReminders, partnerWaStatus } from "../utils/partnerWhatsApp.js";
 
@@ -11,6 +11,7 @@ router.get("/partners/:slug", getPartner);
 router.post("/ping", ping); // a widget loaded on some website
 router.get("/directory", directoryCities);
 router.get("/directory/:city", directoryCity);
+router.post("/internal/classcoach-listing", classcoachListing); // classcoach.in → directory (X-Internal-Key)
 router.post("/partners/:slug/stop-daily", stopDaily); // "Reply STOP" link in the daily reminder
 
 // Admin
