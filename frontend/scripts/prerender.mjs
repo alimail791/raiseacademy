@@ -160,13 +160,62 @@ if (strict && failedSources.length) {
   process.exit(1);
 }
 
+// Duplicate questions: the bank has some questions twice under different ids
+// (e.g. two "Bleaching powder is …" pages). Google treats such near-copies as
+// low value and slows crawling of the whole set, so only one page is built per
+// question (same text and same options, ignoring case and punctuation) and the
+// other URLs 301 to it. A NEET PYQ wins, then the longer explanation, then the
+// API's order. Class 6–10 pages are compared within the same class only.
+const normText = (s) => String(s || "").toLowerCase().replace(/<[^>]+>/g, " ").replace(/[^a-z0-9]+/g, " ").trim();
+const dupKey = (q) => `${q.classNum || ""}|${normText(q.question)}|${(q.options || []).map(normText).sort().join("|")}`;
+const isBetter = (a, b) => (!!b.pyqYear - !!a.pyqYear || normText(b.explanation).length - normText(a.explanation).length) > 0;
+const questionRedirects = [];
+const slugRemap = new Map(); // dropped slug → kept slug
+function dedupe(list, pathOf) {
+  const best = new Map();
+  for (const q of list) {
+    const k = dupKey(q);
+    if (!best.has(k) || isBetter(best.get(k), q)) best.set(k, q);
+  }
+  const kept = new Set(best.values());
+  for (const q of list) {
+    if (kept.has(q)) continue;
+    const to = best.get(dupKey(q));
+    if (pathOf(q) === pathOf(to)) continue;
+    questionRedirects.push({ source: pathOf(q), destination: pathOf(to), type: 301 });
+    slugRemap.set(q.slug, to.slug);
+  }
+  return list.filter((q) => kept.has(q));
+}
+{
+  const before = questionPages.length + schoolPages.length;
+  questionPages = dedupe(questionPages, (q) => `/neet-question/${q.slug}`);
+  schoolPages = dedupe(schoolPages, (q) => `/class-${q.classNum}-questions/${q.slug}`);
+  const keptSlugs = new Set([...questionPages, ...schoolPages].map((q) => q.slug));
+  for (const q of [...questionPages, ...schoolPages]) {
+    if (Array.isArray(q.related)) q.related = q.related.filter((r) => !slugRemap.has(r.slug) || keptSlugs.has(r.slug));
+  }
+  console.log(`Duplicate questions: ${before - questionPages.length - schoolPages.length} pages merged into their twin (301 redirects).`);
+}
+
+// Thin pages: a question with no real explanation is just an MCQ and its
+// letter, which Google rarely indexes, and thousands of them dilute the crawl
+// budget for the good pages. They still get built (students can open them),
+// but noindex, out of the sitemap and out of chapter link lists, until the
+// question bank has an explanation for them. THIN_EXPLANATION_CHARS=0 turns
+// this off.
+const THIN_CHARS = Math.max(0, parseInt(process.env.THIN_EXPLANATION_CHARS ?? "25", 10) || 0);
+const isThin = (q) => THIN_CHARS > 0 && normText(q.explanation).length < THIN_CHARS;
+const thinSlugs = new Set([...questionPages, ...schoolPages].filter(isThin).map((q) => q.slug));
+console.log(`Thin question pages (explanation under ${THIN_CHARS} characters): ${thinSlugs.size} noindexed of ${questionPages.length + schoolPages.length}.`);
+
 // Daily NEET quiz Shorts (public YouTube videos the shorts-bot reported):
 // listed on /neet-quiz-shorts and embedded on their question's page.
 let quizShorts = [];
 try {
   const res = await fetchRetry(`${API_URL}/youtube-shorts?limit=200`);
   if (!res.ok) throw new Error(`API responded ${res.status}`);
-  quizShorts = (await res.json()).shorts || [];
+  quizShorts = ((await res.json()).shorts || []).map((x) => (slugRemap.has(x.questionSlug) ? { ...x, questionSlug: slugRemap.get(x.questionSlug) } : x));
 } catch (err) {
   console.warn(`prerender: could not fetch quiz Shorts (${err.message}).`);
 }
@@ -199,6 +248,7 @@ for (const q of questionPages) {
 }
 for (const c of practiceChapters) {
   c.questionLinks = (pagesByChapter.get(c.slug) || [])
+    .filter((q) => !thinSlugs.has(q.slug))
     .slice(0, QUESTION_LINKS_PER_CHAPTER)
     .map((q) => ({ slug: q.slug, question: q.question.slice(0, 140), pyqYear: q.pyqYear }));
 }
@@ -206,15 +256,32 @@ for (const c of practiceChapters) {
 // spread evenly across it, all pages that exist in this build. Every question
 // is then a couple of clicks from its chapter page instead of dozens.
 const linkOf = ({ id, slug, question, pyqYear }) => ({ id, slug, question: question.slice(0, 140), pyqYear });
-for (const list of pagesByChapter.values()) {
+function linkRelated(all) {
+  // Link only to pages Google may index (a thin page still links out to them).
+  const list = all.filter((q) => !thinSlugs.has(q.slug));
   const n = list.length;
-  list.forEach((q, i) => {
+  all.forEach((q, pos) => {
+    const self = list.indexOf(q);
+    const i = self >= 0 ? self : Math.floor((pos * n) / Math.max(1, all.length));
     const pick = new Set();
-    for (let k = 1; k <= 4 && pick.size < Math.min(4, n - 1); k++) pick.add((i + k) % n);
+    for (let k = 1; k <= 4; k++) pick.add((i + k - (self >= 0 ? 0 : 1)) % n);
     const stride = Math.max(1, Math.floor(n / 5));
-    for (let k = 1; k <= 4; k++) { const j = (i + k * stride + 2) % n; if (j !== i) pick.add(j); }
-    q.related = [...pick].slice(0, 8).map((j) => linkOf(list[j]));
+    for (let k = 1; k <= 4; k++) pick.add((i + k * stride + 2) % n);
+    pick.delete(self);
+    q.related = n ? [...pick].slice(0, 8).map((j) => linkOf(list[j])) : [];
   });
+}
+for (const list of pagesByChapter.values()) linkRelated(list);
+// Class 6–10 pages get the same spread of "More questions" links within their
+// chapter (the API only sent the neighbouring few).
+{
+  const byChapter = new Map();
+  for (const q of schoolPages) {
+    const k = `${q.classNum}|${q.chapterSlug}`;
+    if (!byChapter.has(k)) byChapter.set(k, []);
+    byChapter.get(k).push(q);
+  }
+  for (const list of byChapter.values()) linkRelated(list);
 }
 // Chapter facts shown on each question page (weightage, PYQ years, topics):
 // real, chapter-specific text instead of only the question and its answer.
@@ -344,8 +411,8 @@ for (const paper of papers) {
 fs.mkdirSync(path.join(dist, "neet-question"), { recursive: true });
 for (const q of questionPages) {
   const route = `/neet-question/${q.slug}`;
-  const meta = { ...questionMeta(q), canonical: `${SITE_ORIGIN}${route}` };
-  const withShort = { ...q, chapterInfo: chapterInfoBySlug.get(q.chapterSlug) || null, ...(shortBySlug.has(q.slug) ? { short: shortBySlug.get(q.slug) } : {}) };
+  const meta = { ...questionMeta(q), canonical: `${SITE_ORIGIN}${route}`, ...(thinSlugs.has(q.slug) && { noindex: true }) };
+  const withShort = { ...q, ...(meta.noindex && { noindex: true }), chapterInfo: chapterInfoBySlug.get(q.chapterSlug) || null, ...(shortBySlug.has(q.slug) ? { short: shortBySlug.get(q.slug) } : {}) };
   fs.writeFileSync(path.join(dist, "neet-question", `${q.slug}.html`), pageHtml(route, undefined, meta, { question: withShort }));
 }
 
@@ -365,14 +432,18 @@ for (const cl of schoolClasses) {
   const mine = schoolPages.filter((q) => q.classNum === n);
   const hub = {
     classNum: n, classes: schoolSummaries, chapters: cl.chapters,
-    links: mine.map(({ slug, chapterSlug, question }) => ({ slug, chapterSlug, question: question.slice(0, 140) })),
+    links: mine.filter((q) => !thinSlugs.has(q.slug)).map(({ slug, chapterSlug, question }) => ({ slug, chapterSlug, question: question.slice(0, 140) })),
   };
   const route = `/class-${n}-questions`;
   fs.writeFileSync(path.join(dist, `class-${n}-questions.html`), pageHtml(route, undefined, { ...schoolHubMeta(n, cl.total), canonical: `${SITE_ORIGIN}${route}` }, { school: hub }));
   fs.mkdirSync(path.join(dist, `class-${n}-questions`), { recursive: true });
   for (const q of mine) {
     const qRoute = `${route}/${q.slug}`;
-    fs.writeFileSync(path.join(dist, `class-${n}-questions`, `${q.slug}.html`), pageHtml(qRoute, undefined, { ...questionMeta(q), canonical: `${SITE_ORIGIN}${qRoute}` }, { question: q }));
+    // "About this chapter" box: how many questions it has and the class's other chapters in the same subject.
+    const chapters = (cl.chapters || []).filter((c) => c.subject === q.subject);
+    const schoolInfo = { chapterCount: chapters.find((c) => c.slug === q.chapterSlug)?.count || 0, chapters: chapters.map(({ slug, chapter, count }) => ({ slug, chapter, count })) };
+    const meta = { ...questionMeta(q), canonical: `${SITE_ORIGIN}${qRoute}`, ...(thinSlugs.has(q.slug) && { noindex: true }) };
+    fs.writeFileSync(path.join(dist, `class-${n}-questions`, `${q.slug}.html`), pageHtml(qRoute, undefined, meta, { question: { ...q, schoolInfo, ...(meta.noindex && { noindex: true }) } }));
   }
 }
 
@@ -468,6 +539,8 @@ fs.writeFileSync(
       ],
       // Common misspellings of the free-trial landing page ("trail" for "trial") go to the real page.
       redirects: [
+        // Duplicate question pages → the one page kept for that question (see dedupe above).
+        ...questionRedirects,
         ...["/neet-trail", "/free-trial", "/free-trail", "/trial", "/trail"].map((source) => ({ source, destination: "/neet-trial", type: 301 })),
         // Short referral link printed on the app's score-card images: yneet.in/r/<code>.
         { source: "/r/:code", destination: "/register?ref=:code&utm_source=score_card&utm_medium=image", type: 302 },
@@ -516,11 +589,11 @@ const indexable = [
   ...papers.map((p) => `/neet-question-papers/${p.year}`),
   ...paperSubjectRoutes.map((r) => `/neet-question-papers/${r.year}/${r.subject}`),
   ...NCERT_NOTES.map((n) => `/ncert-notes/${n.slug}`),
-  ...questionPages.map((q) => `/neet-question/${q.slug}`),
+  ...questionPages.filter((q) => !thinSlugs.has(q.slug)).map((q) => `/neet-question/${q.slug}`),
   ...cutoffStates.map((c) => `/neet-cutoff/${c.slug}`),
   ...regionalRoutes,
   ...schoolClasses.map((c) => `/class-${c.classNum}-questions`),
-  ...schoolPages.map((q) => `/class-${q.classNum}-questions/${q.slug}`),
+  ...schoolPages.filter((q) => !thinSlugs.has(q.slug)).map((q) => `/class-${q.classNum}-questions/${q.slug}`),
   ...dailyQuizzes.map((d) => `/neet-daily-quiz/${d.date}`),
 ];
 const lastmod = {};
