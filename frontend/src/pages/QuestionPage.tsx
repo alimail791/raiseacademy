@@ -26,7 +26,7 @@ function setMeta(q: QuestionPageData) {
   };
   const meta = (k: string, prop = false) => () => { const e = document.createElement("meta"); e.setAttribute(prop ? "property" : "name", k); return e; };
   set('meta[name="description"]', "content", m.description, meta("description"));
-  set('meta[name="robots"]', "content", "index, follow", meta("robots"));
+  set('meta[name="robots"]', "content", q.noindex ? "noindex, follow" : "index, follow", meta("robots"));
   set('meta[property="og:title"]', "content", m.title, meta("og:title", true));
   set('meta[property="og:description"]', "content", m.description, meta("og:description", true));
   set('meta[property="og:url"]', "content", url, meta("og:url", true));
@@ -159,6 +159,7 @@ const QuestionPage = ({ classNum }: { classNum?: number }) => {
       <AnswerGateSheet open={gate.open} onSkip={gate.skip} onClose={gate.close} chapter={q.chapter} place="question_page" />
 
       {!school && <ChapterFacts q={q} />}
+      {school && <SchoolChapterFacts q={q} />}
 
       {q.short && (
         <section className="mb-8">
@@ -211,6 +212,34 @@ function ChapterFacts({ q }: { q: QuestionPageData }) {
         {note && <Link to={`/ncert-notes/${note.slug}`} className="font-semibold text-rise-dark underline">{q.chapter} NCERT notes</Link>}
         <Link to="/neet-chapter-wise-weightage" className="font-semibold text-rise-dark underline">Chapter-wise weightage</Link>
       </p>
+    </section>
+  );
+}
+
+// Class 6–10 version: the chapter's size and the class's other chapters in the
+// same subject, so each page links across its class and carries more than the MCQ.
+function SchoolChapterFacts({ q }: { q: QuestionPageData }) {
+  const s = q.schoolInfo;
+  if (!s || !q.classNum) return null;
+  const hub = `/class-${q.classNum}-questions`;
+  const others = s.chapters.filter((c) => c.slug !== q.chapterSlug && c.count > 0);
+  return (
+    <section className="mb-8 p-5 rounded-2xl border border-ink/10 dark:border-paper/15">
+      <h2 className="font-display text-xl font-bold">About {q.chapter} (Class {q.classNum} {q.subject})</h2>
+      <p className="mt-3 text-sm text-ink/80 dark:text-paper/80">
+        {s.chapterCount > 0 ? <>YNeet has <b>{s.chapterCount} free {q.chapter} MCQs</b> for Class {q.classNum}, with answers. </> : null}
+        <Link to={`${hub}#${q.chapterSlug}`} className="font-semibold text-rise-dark underline">See all {q.chapter} questions</Link>
+      </p>
+      {others.length > 0 && (
+        <>
+          <h3 className="mt-4 text-sm font-semibold">Other Class {q.classNum} {q.subject} chapters</h3>
+          <p className="mt-1 text-sm flex flex-wrap gap-x-4 gap-y-1">
+            {others.map((c) => (
+              <Link key={c.slug} to={`${hub}#${c.slug}`} className="text-rise-dark hover:underline">{c.chapter} ({c.count})</Link>
+            ))}
+          </p>
+        </>
+      )}
     </section>
   );
 }

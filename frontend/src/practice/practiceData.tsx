@@ -54,6 +54,9 @@ export type QuestionPageData = PracticeQuestion & {
     total: number; pyqCount: number; pyqYears: [number, number] | null; classes: string[];
     topTopics: { topic: string; count: number }[]; weightage: ChapterWeightage | null; pagesInChapter: number;
   } | null;
+  // Class 6–10 pages: the chapter's question count and the class's other chapters in this subject (build time).
+  schoolInfo?: { chapterCount: number; chapters: { slug: string; chapter: string; count: number }[] } | null;
+  noindex?: boolean; // a thin page (no real explanation yet): built, but kept out of Google
 };
 // Class 6–10 hub (/class-<n>-questions): chapters with links to their questions.
 export type SchoolChapter = { subject: string; chapter: string; slug: string; count: number };
